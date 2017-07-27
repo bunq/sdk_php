@@ -1,0 +1,12 @@
+# PhpStorm configuration
+.idea/
+
+# bunq context file
+bunq.conf
+example/result_attachment.jpg
+
+# Composer
+vendor/
+
+# Temporary files
+tmp/
