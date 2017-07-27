@@ -1,0 +1,29 @@
+{
+    "name": "bunq/sdk_php",
+    "version": "0.9.0",
+    "description": "bunq PHP SDK",
+    "keywords": [
+        "bunq",
+        "banking",
+        "api"
+    ],
+    "homepage": "https://bunq.com",
+    "license": "TBA",
+    "authors": [],
+    "require": {
+        "php": "^5.6 || >=7.0",
+        "ext-curl": "*",
+        "ext-json": "*",
+        "ext-mbstring": "*",
+        "guzzlehttp/guzzle": "~6"
+    },
+    "autoload": {
+        "psr-4": {
+            "bunq\\": "lib/"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^5.7"
+    },
+    "bin": ["bin/bunq-install"]
+}
