@@ -9,6 +9,7 @@ use bunq\Model\SessionServer;
 use bunq\Model\Token;
 use bunq\Security\KeyPair;
 use bunq\Util\BunqEnumApiEnvironmentType;
+use bunq\Util\FileUtil;
 use GuzzleHttp\Psr7\Uri;
 
 /**
@@ -173,7 +174,7 @@ class ApiContext
      */
     private static function getContextJsonString($fileName)
     {
-        $contextFile = file_get_contents($fileName);
+        $contextFile = FileUtil::getFileContents($fileName);
 
         if ($contextFile === false) {
             throw new BunqException(self::ERROR_COULD_NOT_RESTORE_THE_API_CONTEXT, [$fileName]);

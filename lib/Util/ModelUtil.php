@@ -45,7 +45,7 @@ class ModelUtil
      * @return BunqModel
      * @throws BunqException
      */
-    public static function determineQualifiedModelClassName($model)
+    public static function determineModelClassNameQualified($model)
     {
         $classNameOverride = vsprintf(self::FORMAT_QUALIFIED_OVERRIDE_TYPE, [$model]);
         $classNameModel = vsprintf(self::FORMAT_QUALIFIED_MODEL_TYPE, [$model]);

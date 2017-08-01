@@ -5,7 +5,7 @@ use Psr\Http\Message\RequestInterface;
 
 /**
  */
-abstract class BaseRequestHandler
+abstract class RequestHandlerBase
 {
     /**
      * @param RequestInterface $request
