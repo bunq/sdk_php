@@ -2,9 +2,10 @@
 namespace bunq\tests;
 
 use bunq\Model\BunqModel;
-use bunq\Model\Installation;
 use bunq\Model\Generated\Object\Amount;
 use bunq\Model\Generated\UserCompany;
+use bunq\Model\Installation;
+use bunq\Util\FileUtil;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -83,7 +84,7 @@ class JsonParserTest extends TestCase
      */
     public function testCreateFromJson()
     {
-        $userCompanyJson = file_get_contents(__DIR__ . self::RESOURCE_USER_COMPANY_JSON);
+        $userCompanyJson = FileUtil::getFileContents(__DIR__ . self::RESOURCE_USER_COMPANY_JSON);
         /** @var UserCompany $userCompany */
         $userCompany = $this->callPrivateStaticMethod(
             UserCompany::class,
@@ -108,7 +109,7 @@ class JsonParserTest extends TestCase
             self::FUNCTION_CLASS_FROM_JSON,
             [
                 Installation::class,
-                file_get_contents(__DIR__ . self::RESOURCE_INSTALLATION_JSON),
+                FileUtil::getFileContents(__DIR__ . self::RESOURCE_INSTALLATION_JSON),
             ]
         );
 

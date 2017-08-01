@@ -7,7 +7,7 @@ use Psr\Http\Message\RequestInterface;
 
 /**
  */
-class RequestHandlerEncryption extends BaseRequestHandler
+class RequestHandlerEncryption extends RequestHandlerBase
 {
     /**
      * Header constants.

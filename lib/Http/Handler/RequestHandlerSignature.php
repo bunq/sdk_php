@@ -7,7 +7,7 @@ use Psr\Http\Message\UriInterface;
 
 /**
  */
-class RequestHandlerSignature extends BaseRequestHandler
+class RequestHandlerSignature extends RequestHandlerBase
 {
     /**
      * Endpoint constants.

@@ -6,7 +6,7 @@ use Psr\Http\Message\RequestInterface;
 
 /**
  */
-class RequestHandlerAuthentication extends BaseRequestHandler
+class RequestHandlerAuthentication extends RequestHandlerBase
 {
     /**
      * Header constants.

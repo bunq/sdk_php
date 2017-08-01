@@ -70,3 +70,8 @@ vendor/
 
 # Temporary files
 tmp/
+bunq-test.conf
+connectQr.png
+.DS_Store
+.idea/php.xml
+config.json

@@ -128,7 +128,7 @@ abstract class BunqModel implements \JsonSerializable
      *
      * @return string
      */
-    private static function determineResponseFieldName(string $fieldNameRaw): string
+    private static function determineResponseFieldName($fieldNameRaw)
     {
         $fieldNameOverrideMapFlipped = array_flip(static::$fieldNameOverrideMap);
 
@@ -155,9 +155,13 @@ abstract class BunqModel implements \JsonSerializable
             if (is_null($contents) || static::isTypeScalar($fieldType)) {
                 return $contents;
             } elseif (isset($matches[self::REGEX_MATCH_RESULT_IS_ARRAY])) {
-                return ModelUtil::determineQualifiedModelClassName($fieldType)::createListFromResponseArray($contents);
+                $modelClassNameQualified = ModelUtil::determineModelClassNameQualified($fieldType);
+
+                return $modelClassNameQualified::createListFromResponseArray($contents);
             } else {
-                return ModelUtil::determineQualifiedModelClassName($fieldType)::createFromResponseArray($contents);
+                $modelClassNameQualified = ModelUtil::determineModelClassNameQualified($fieldType);
+
+                return $modelClassNameQualified::createFromResponseArray($contents);
             }
         } else {
             return $contents;
@@ -273,7 +277,7 @@ abstract class BunqModel implements \JsonSerializable
     /**
      * @return ReflectionProperty[]
      */
-    private function getNonStaticProperties(): array
+    private function getNonStaticProperties()
     {
         $reflectionClass = new ReflectionClass($this);
 
@@ -288,7 +292,7 @@ abstract class BunqModel implements \JsonSerializable
      *
      * @return string
      */
-    private static function determineRequestFieldName(ReflectionProperty $property): string
+    private static function determineRequestFieldName(ReflectionProperty $property)
     {
         $fieldName = ModelUtil::camelCaseToSnakeCase($property->getName());
 

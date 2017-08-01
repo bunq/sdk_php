@@ -12,10 +12,11 @@ class HandlerUtil
      * Middleware that applies a map function to the request before passing to
      * the next handler.
      *
-     * @param BaseRequestHandler $requestHandler
+     * @param RequestHandlerBase $requestHandler
+     *
      * @return callable
      */
-    public static function applyRequestHandler(BaseRequestHandler $requestHandler)
+    public static function applyRequestHandler(RequestHandlerBase $requestHandler)
     {
         return function (callable $handler) use ($requestHandler) {
             return function ($request, array $options) use ($handler, $requestHandler) {
@@ -28,10 +29,11 @@ class HandlerUtil
      * Middleware that applies a map function to the resolved promise's
      * response.
      *
-     * @param BaseResponseHandler $responseHandler
+     * @param ResponseHandlerBase $responseHandler
+     *
      * @return callable
      */
-    public static function applyResponseHandler(BaseResponseHandler $responseHandler)
+    public static function applyResponseHandler(ResponseHandlerBase $responseHandler)
     {
         return function (callable $handler) use ($responseHandler) {
             return function (RequestInterface $request, array $options) use ($handler, $responseHandler) {

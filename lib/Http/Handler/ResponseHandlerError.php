@@ -7,7 +7,7 @@ use Psr\Http\Message\ResponseInterface;
 
 /**
  */
-class ResponseHandlerError extends BaseResponseHandler
+class ResponseHandlerError extends ResponseHandlerBase
 {
     /**
      * Error constants.

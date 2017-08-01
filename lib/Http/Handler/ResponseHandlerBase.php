@@ -5,7 +5,7 @@ use Psr\Http\Message\ResponseInterface;
 
 /**
  */
-abstract class BaseResponseHandler
+abstract class ResponseHandlerBase
 {
     /**
      * @param ResponseInterface $response
