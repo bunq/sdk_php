@@ -22,6 +22,11 @@
             "bunq\\": "lib/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "bunq\\test\\": "test/"
+        }
+    },
     "require-dev": {
         "phpunit/phpunit": "^5.7"
     },
