@@ -23,7 +23,7 @@ Thanks to your feedback we will make improvements on it.
 ## Installation
 
 ```shell
-$ composer require bunq/bunq-php
+$ composer require bunq/sdk_php
 ```
 
 ## Usage
