@@ -10,7 +10,12 @@
     "homepage": "https://bunq.com/",
     "license": "MIT",
     "authors": [
-        "bunq"
+        {
+            "name": "bunq",
+            "email": "support@bunq.com",
+            "homepage": "http://www.bunq.com",
+            "role": "Owner"
+        }
     ],
     "require": {
         "php": "^5.6 || >=7.0",
