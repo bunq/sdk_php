@@ -175,3 +175,9 @@ foreach ($monetaryAccountList as $monetaryAccount) {
 
 ##### Example
 See [`example/monetary_account_example.php`](./example/monetary_account_example.php)
+
+
+## Running Tests
+
+Information regarding the test cases can be found in the [README.md](./tests/README.md)
+located in [test](/tests).
