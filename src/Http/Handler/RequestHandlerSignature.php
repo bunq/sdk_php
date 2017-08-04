@@ -37,8 +37,6 @@ class RequestHandlerSignature extends RequestHandlerBase
     protected $privateKey;
 
     /**
-     * SignatureHandler constructor.
-     *
      * @param PrivateKey $privateKey
      */
     public function __construct(PrivateKey $privateKey)

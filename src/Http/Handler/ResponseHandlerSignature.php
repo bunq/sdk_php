@@ -41,8 +41,6 @@ class ResponseHandlerSignature extends ResponseHandlerBase
     protected $publicKeyServer;
 
     /**
-     * ServerSignatureHandler constructor.
-     *
      * @param PublicKey|null $publicKeyServer
      */
     public function __construct(PublicKey $publicKeyServer = null)
