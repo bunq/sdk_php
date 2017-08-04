@@ -5,6 +5,7 @@
 .idea/**/workspace.xml
 .idea/**/tasks.xml
 .idea/dictionaries
+.idea/php.xml
 
 # Sensitive or high-churn files:
 .idea/**/dataSources/
@@ -64,14 +65,15 @@ modules.xml
 # bunq context file
 bunq.conf
 example/result_attachment.jpg
+bunq-test.conf
+connectQr.png
+config.json
 
 # Composer
 vendor/
 
 # Temporary files
 tmp/
-bunq-test.conf
-connectQr.png
-.DS_Store
-.idea/php.xml
-config.json
+
+.DS_STORE
+
