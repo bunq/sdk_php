@@ -41,8 +41,7 @@ same directory, fill in your sandbox user data and rename the copy to config.jso
 You can run the tests  via command line: 
 
 ```
- vendor/phpunit/phpunit/phpunit test
-
+ vendor/phpunit/phpunit/phpunit
 ```
 
 or via PhpStorm, but first you must configure PhpStorm by doing the following:
