@@ -26,6 +26,7 @@ abstract class BunqEnum
      */
     public function __construct($choice)
     {
+        $choice = strtoupper($choice);
         if (isset($this->supportedChoices[$choice])) {
             $this->choice = $choice;
         } else {
