@@ -1,5 +1,5 @@
 # bunq PHP SDK
-gs
+
 ## Introduction
 Hi developers!
 
