@@ -5,12 +5,12 @@
         cacheTokens="false">
     <testsuites>
         <testsuite name="Test Suite">
-            <directory>./test</directory>
+            <directory>./tests</directory>
         </testsuite>
     </testsuites>
     <filter>
         <whitelist>
-            <directory suffix=".php">./lib</directory>
+            <directory suffix=".php">./src</directory>
         </whitelist>
     </filter>
 </phpunit>

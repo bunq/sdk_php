@@ -1,5 +1,4 @@
 # bunq PHP SDK
-Version 0.9.0 **BETA**
 
 ## Introduction
 Hi developers!
@@ -176,6 +175,7 @@ foreach ($monetaryAccountList as $monetaryAccount) {
 ##### Example
 See [`example/monetary_account_example.php`](./example/monetary_account_example.php)
 
+
 ## Running Examples
 In order to make the experience of getting into bunq PHP SDK smoother, we
 have bundled it with example use cases (located under `./example`).
@@ -215,3 +215,8 @@ $ vendor/bin/bunq-install
 
 Please do not forget to set the `_API_KEY` constant in
 `api_context_save_example.[php]` to your actual API key before running the sample!
+
+## Running Tests
+
+Information regarding the test cases can be found in the [README.md](./tests/README.md)
+located in [test](/tests).

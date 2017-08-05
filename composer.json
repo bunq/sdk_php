@@ -34,7 +34,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "bunq\\test\\": "test/"
+            "bunq\\test\\": "tests/"
         }
     },
     "require-dev": {
