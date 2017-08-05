@@ -1,6 +1,5 @@
 # bunq PHP SDK
-Version 0.9.0 **BETA**
-
+gs
 ## Introduction
 Hi developers!
 
