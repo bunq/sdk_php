@@ -2,16 +2,15 @@
 namespace bunq\Model\Generated;
 
 use bunq\Model\Generated\Object\Amount;
-use bunq\test\ApiContextHandler;
+use bunq\test\BunqSdkTestBase;
 use bunq\test\TestConfig;
-use PHPUnit\Framework\TestCase;
 
 /**
  * Tests:
  *  TabUsageSingle
  *  TabItemShop
  */
-class TabUsageSingleTest extends TestCase
+class TabUsageSingleTest extends BunqSdkTestBase
 {
     /**
      *  Field constants
@@ -55,6 +54,7 @@ class TabUsageSingleTest extends TestCase
      */
     public static function setUpBeforeClass()
     {
+        parent::setUpBeforeClass();
         static::$userId = TestConfig::getUserId();
         static::$monetaryAccountId = TestConfig::getMonetaryAccountId();
         static::$cashRegisterId = TestConfig::getCashRegisterId();
@@ -65,7 +65,7 @@ class TabUsageSingleTest extends TestCase
      */
     public static function tearDownAfterClass()
     {
-        $apiContext = ApiContextHandler::getApiContext();
+        $apiContext = static::getApiContext();
 
         TabUsageSingle::delete(
             $apiContext,
@@ -83,7 +83,7 @@ class TabUsageSingleTest extends TestCase
      */
     public function testCreateTab()
     {
-        $apiContext = ApiContextHandler::getApiContext();
+        $apiContext = static::getApiContext();
 
         $tabUsageSingleCreateMap = [
             TabUsageSingle::FIELD_DESCRIPTION => self::TAB_DESCRIPTION,
@@ -106,7 +106,7 @@ class TabUsageSingleTest extends TestCase
      */
     public function testAddItemToTab()
     {
-        $apiContext = ApiContextHandler::getApiContext();
+        $apiContext = static::getApiContext();
 
         $tabItemShopMap = [
             TabItemShop::FIELD_DESCRIPTION => self::ITEM_DESCRIPTION,
@@ -129,7 +129,7 @@ class TabUsageSingleTest extends TestCase
      */
     public function testUpdateTab()
     {
-        $apiContext = ApiContextHandler::getApiContext();
+        $apiContext = static::getApiContext();
 
         $tabUsageSingleUpdateMap = [
             TabUsageSingle::FIELD_STATUS => self::TAB_STATUS_AFTER,

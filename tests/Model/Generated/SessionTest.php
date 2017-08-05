@@ -1,14 +1,13 @@
 <?php
 namespace bunq\Model\Generated;
 
-use bunq\test\ApiContextHandler;
-use PHPUnit\Framework\TestCase;
+use bunq\test\BunqSdkTestBase;
 
 /**
  * Tests:
  *  Session
  */
-class SessionTest extends TestCase
+class SessionTest extends BunqSdkTestBase
 {
     /**
      *  The id of the session that we want to delete.
@@ -22,8 +21,15 @@ class SessionTest extends TestCase
      */
     public function testDeleteSession()
     {
-        $apiContext = ApiContextHandler::getApiContext();
+        $apiContext = static::getApiContext();
 
         Session::delete($apiContext, self::SESSION_ID_DUMMY);
+    }
+
+    /**
+     */
+    public static function tearDownAfterClass()
+    {
+        static::ensureApiContextValid();
     }
 }

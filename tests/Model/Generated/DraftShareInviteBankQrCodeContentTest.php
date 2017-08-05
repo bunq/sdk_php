@@ -5,16 +5,15 @@ use bunq\Context\ApiContext;
 use bunq\Model\Generated\Object\DraftShareInviteBankEntry;
 use bunq\Model\Generated\Object\ShareDetail;
 use bunq\Model\Generated\Object\ShareDetailReadOnly;
-use bunq\test\ApiContextHandler;
+use bunq\test\BunqSdkTestBase;
 use bunq\test\TestConfig;
-use PHPUnit\Framework\TestCase;
 
 /**
  * Tests
  *  DraftShareInviteBankEntry
  *  DraftShareInviteBankQrCodeContent
  */
-class DraftShareInviteBankQrCodeContentTest extends TestCase
+class DraftShareInviteBankQrCodeContentTest extends BunqSdkTestBase
 {
     /**
      * The file path to where to write the generated qr code.
@@ -45,6 +44,7 @@ class DraftShareInviteBankQrCodeContentTest extends TestCase
      */
     public static function setUpBeforeClass()
     {
+        parent::setUpBeforeClass();
         static::$userId = TestConfig::getUserId();
         static::$expirationDate = date(self::FORMAT_MICROTIME, strtotime(self::EXPIRATION_ADDED_TIME));
     }
@@ -56,7 +56,7 @@ class DraftShareInviteBankQrCodeContentTest extends TestCase
      */
     public function testCreateDraftShareAndGetGr()
     {
-        $apiContext = ApiContextHandler::getApiContext();
+        $apiContext = static::getApiContext();
 
         $draftShareId = $this->createConnect($apiContext);
         $qrContent = $this->getQrContent($apiContext, $draftShareId);

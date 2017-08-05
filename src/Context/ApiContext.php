@@ -19,7 +19,7 @@ class ApiContext
     /**
      * Api environment urls.
      */
-    const BASE_URL_PRODUCTION = 'https://public.api.bunq.com/v1/';
+    const BASE_URL_PRODUCTION = 'https://api.bunq.com/v1/';
     const BASE_URL_SANDBOX = 'https://sandbox.public.api.bunq.com/v1/';
 
     /**

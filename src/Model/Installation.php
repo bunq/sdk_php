@@ -37,8 +37,6 @@ class Installation extends BunqModel
     protected $serverPublicKey;
 
     /**
-     * Installation constructor.
-     *
      * @param string $clientPublicKey
      */
     public function __construct($clientPublicKey = null)

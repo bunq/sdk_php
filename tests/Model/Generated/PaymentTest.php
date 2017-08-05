@@ -3,9 +3,8 @@ namespace bunq\Model\Generated;
 
 use bunq\Model\Generated\Object\Amount;
 use bunq\Model\Generated\Object\Pointer;
-use bunq\test\ApiContextHandler;
+use bunq\test\BunqSdkTestBase;
 use bunq\test\TestConfig;
-use PHPUnit\Framework\TestCase;
 
 /**
  * Tests:
@@ -13,7 +12,7 @@ use PHPUnit\Framework\TestCase;
  *  PaymentChat
  *  ChatMessageText
  */
-class PaymentTest extends TestCase
+class PaymentTest extends BunqSdkTestBase
 {
     /**
      *  The amount of euros send to the other account/user.
@@ -74,6 +73,7 @@ class PaymentTest extends TestCase
      */
     public static function setUpBeforeClass()
     {
+        parent::setUpBeforeClass();
         static::$userId = TestConfig::getUserId();
         static::$monetaryAccountId = TestConfig::getMonetaryAccountId();
         static::$counterAliasOtherUser = TestConfig::getAliasCounterPartyOther();
@@ -89,7 +89,7 @@ class PaymentTest extends TestCase
      */
     public function testSendMoneyToOtherUser()
     {
-        $apiContext = ApiContextHandler::getApiContext();
+        $apiContext = static::getApiContext();
 
         $requestMap = [
             Payment::FIELD_COUNTERPARTY_ALIAS => new Pointer(
@@ -110,7 +110,7 @@ class PaymentTest extends TestCase
      */
     public function testSendMoneyToOtherMonetaryAccount()
     {
-        $apiContext = ApiContextHandler::getApiContext();
+        $apiContext = static::getApiContext();
         $requestMap = [
             Payment::FIELD_AMOUNT => new Amount(self::PAYMENT_AMOUNT_IN_EUR, self::PAYMENT_CURRENCY),
             Payment::FIELD_COUNTERPARTY_ALIAS => new Pointer(
@@ -132,7 +132,7 @@ class PaymentTest extends TestCase
      */
     public function testSendMessageToPayment()
     {
-        $apiContext = ApiContextHandler::getApiContext();
+        $apiContext = static::getApiContext();
         $chatId = PaymentChat::create(
             $apiContext,
             [],

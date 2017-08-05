@@ -28,6 +28,7 @@ class RequestHandlerAuthentication extends RequestHandlerBase
 
     /**
      * @param RequestInterface $request
+     *
      * @return RequestInterface
      */
     public function execute(RequestInterface $request)
