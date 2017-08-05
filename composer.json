@@ -44,7 +44,7 @@
     },
     "bin": [
         "bin/bunq-install"
-    ]
+    ],
     "scripts": {
         "phpcs": [
             "./vendor/bin/php-cs-fixer fix -v --dry-run --using-cache=no lib"
