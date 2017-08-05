@@ -4,15 +4,14 @@ namespace bunq\Model\Generated;
 use bunq\Context\ApiContext;
 use bunq\Model\Generated\Object\Amount;
 use bunq\Model\Generated\Object\Pointer;
-use bunq\test\ApiContextHandler;
+use bunq\test\BunqSdkTestBase;
 use bunq\test\TestConfig;
-use PHPUnit\Framework\TestCase;
 
 /**
  * Tests:
  *  RequestInquiry
  */
-class RequestInquiryTest extends TestCase
+class RequestInquiryTest extends BunqSdkTestBase
 {
     /**
      *  The amount of money that is being requested.
@@ -65,6 +64,7 @@ class RequestInquiryTest extends TestCase
      */
     public static function setUpBeforeClass()
     {
+        parent::setUpBeforeClass();
         static::$userId = TestConfig::getUserId();
         static::$monetaryAccountId = TestConfig::getMonetaryAccountId();
         static::$monetaryAccountId2 = TestConfig::getMonetaryAccountId2();
@@ -79,7 +79,7 @@ class RequestInquiryTest extends TestCase
      */
     public function testSendingAndAcceptingRequest()
     {
-        $apiContext = ApiContextHandler::getApiContext();
+        $apiContext = static::getApiContext();
 
         $this->sendRequest($apiContext);
         $requestResponseId = RequestResponse::listing($apiContext, static::$userId, static::$monetaryAccountId2)[

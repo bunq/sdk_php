@@ -41,6 +41,7 @@ class RequestHandlerEncryption extends RequestHandlerBase
 
     /**
      * @param RequestInterface $request
+     *
      * @return Request
      */
     public function execute(RequestInterface $request)

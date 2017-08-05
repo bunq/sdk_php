@@ -22,7 +22,6 @@ class ResponseHandlerSignature extends ResponseHandlerBase
     const HEADER_PREFIX_START = 0;
     const HEADER_SEPARATOR = ', ';
     const FORMAT_HEADER = '%s: %s';
-    const HEADER_NEWLINE = "\n";
 
     /**
      * Http status constants.
@@ -65,9 +64,9 @@ class ResponseHandlerSignature extends ResponseHandlerBase
             } else {
                 $toVerify =
                     $response->getStatusCode() .
-                    self::HEADER_NEWLINE .
+                    self::NEWLINE .
                     $this->determineHeaderStringForSignedResponse($response->getHeaders()) .
-                    self::HEADER_NEWLINE . self::HEADER_NEWLINE .
+                    self::NEWLINE . self::NEWLINE .
                     $response->getBody()->getContents();
 
                 $signature = base64_decode($response->getHeaderLine(self::HEADER_SERVER_SIGNATURE));
@@ -105,7 +104,7 @@ class ResponseHandlerSignature extends ResponseHandlerBase
             }
         }
 
-        return implode(self::HEADER_NEWLINE, $signedDataHeaders);
+        return implode(self::NEWLINE, $signedDataHeaders);
     }
 
     /**

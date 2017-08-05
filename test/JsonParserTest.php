@@ -66,7 +66,7 @@ class JsonParserTest extends TestCase
     {
         $id = $this->callPrivateStaticMethod(BunqModel::class, self::FUNCTION_PROCESS_FOR_ID, [self::JSON_ID]);
 
-        $this->assertEquals(self::EXPECTED_ID, $id);
+        static::assertEquals(self::EXPECTED_ID, $id);
     }
 
     /**
@@ -76,7 +76,7 @@ class JsonParserTest extends TestCase
     {
         $uuid = $this->callPrivateStaticMethod(BunqModel::class, self::FUNCTION_PROCESS_FOR_UUID, [self::JSON_UUID]);
 
-        $this->assertEquals(self::EXPECTED_UUID, $uuid);
+        static::assertEquals(self::EXPECTED_UUID, $uuid);
     }
 
     /**
@@ -92,10 +92,10 @@ class JsonParserTest extends TestCase
             [$userCompanyJson]
         );
 
-        $this->assertInstanceOf(UserCompany::class, $userCompany);
-        $this->assertEquals(self::EXPECTED_NAME_BUNQ, $userCompany->getName());
-        $this->assertEquals(self::EXPECTED_EMAIL_BRAVO, $userCompany->getAlias()[0]->getValue());
-        $this->assertInstanceOf(Amount::class, $userCompany->getDailyLimitWithoutConfirmationLogin());
+        static::assertInstanceOf(UserCompany::class, $userCompany);
+        static::assertEquals(self::EXPECTED_NAME_BUNQ, $userCompany->getName());
+        static::assertEquals(self::EXPECTED_EMAIL_BRAVO, $userCompany->getAlias()[0]->getValue());
+        static::assertInstanceOf(Amount::class, $userCompany->getDailyLimitWithoutConfirmationLogin());
     }
 
     /**
@@ -113,10 +113,10 @@ class JsonParserTest extends TestCase
             ]
         );
 
-        $this->assertInstanceOf(Installation::class, $installation);
-        $this->assertEquals(self::EXPECTED_INSTALLATION_ID, $installation->getId()->getId());
-        $this->assertEquals(self::EXPECTED_TOKEN, $installation->getToken()->getToken());
-        $this->assertEquals(
+        static::assertInstanceOf(Installation::class, $installation);
+        static::assertEquals(self::EXPECTED_INSTALLATION_ID, $installation->getId()->getId());
+        static::assertEquals(self::EXPECTED_TOKEN, $installation->getToken()->getToken());
+        static::assertEquals(
             self::EXPECTED_PUBLIC_KEY,
             $installation->getServerPublicKey()->getServerPublicKey()->getKey()
         );

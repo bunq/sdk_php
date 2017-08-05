@@ -175,3 +175,43 @@ foreach ($monetaryAccountList as $monetaryAccount) {
 
 ##### Example
 See [`example/monetary_account_example.php`](./example/monetary_account_example.php)
+
+## Running Examples
+In order to make the experience of getting into bunq PHP SDK smoother, we
+have bundled it with example use cases (located under `./example`).
+
+To run an example, please do the following:
+1. In your IDE, open the example you are interested in and adjust the constants,
+such as `API_KEY` or `USER_ID`, to hold your data.
+2. In your terminal, go to the root of bunq SDK project:
+
+```shell
+$ cd /path/to/bunq/sdk/
+```
+3. In the terminal, run:
+
+```shell
+$ php example/<something_example.php>
+```
+   Replace `<something_example.php>` with the name of the example you would like
+   to run.
+
+In order for examples to run, you would need a valid context file (`bunq.conf`)
+to be present in the bunq SDK project root directory. There are three ways to get
+a valid `bunq.conf` in the bunq PHP SDK:
+1) Copy from somewhere else (e.g. tests)
+2) Create by running the following command in your bunq SDK project root directory:
+
+```shell
+$ php example/api_context_save_example.php
+```
+
+3) Create using the interactive script for API Context creation (see details in the
+[Creating an API context](#creating-an-api-context) section above):
+
+```shell
+$ vendor/bin/bunq-install
+``` 
+
+Please do not forget to set the `_API_KEY` constant in
+`api_context_save_example.[php]` to your actual API key before running the sample!

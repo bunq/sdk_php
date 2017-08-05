@@ -39,6 +39,7 @@ class ResponseHandlerError extends ResponseHandlerBase
 
     /**
      * @param ResponseInterface $response
+     *
      * @return ResponseInterface
      * @throws ApiException
      */
