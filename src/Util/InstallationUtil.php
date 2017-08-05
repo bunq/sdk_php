@@ -99,9 +99,9 @@ final class InstallationUtil
                 $context->save($contextFileName);
             }
         } catch (BunqException $exception) {
-            vprintf(self::ERROR_BUNQ_EXCEPTION, [$exception->getMessage()]);
+            echo sprintf(self::ERROR_BUNQ_EXCEPTION, $exception->getMessage());
         } catch (Exception $exception) {
-            vprintf(self::ERROR_EXCEPTION, [$exception->getMessage()]);
+            echo sprintf(self::ERROR_EXCEPTION, $exception->getMessage());
         }
     }
 
@@ -129,7 +129,7 @@ final class InstallationUtil
         $input = readline($promptMessage);
 
         if ($input === false || $input === self::STRING_EMPTY) {
-            printf($errorMessage . PHP_EOL);
+            echo $errorMessage . PHP_EOL;
 
             return static::readLine($promptMessage, $errorMessage);
         } else {

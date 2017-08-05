@@ -1,6 +1,16 @@
 #!/usr/bin/env php
 <?php
 
-require __DIR__ . '/bootstrap.php';
+$filenameAutoloadLocal = __DIR__ . '/../vendor/autoload.php';
+$filenameAutoloadVendor = __DIR__ . '/../../../autoload.php';
+
+if (file_exists($filenameAutoloadLocal)) {
+    require_once $filenameAutoloadLocal;
+} elseif (file_exists($filenameAutoloadVendor)) {
+    require_once $filenameAutoloadVendor;
+} else {
+    echo 'Missing autoload.php, run composer install.' . PHP_EOL;
+    exit(1);
+}
 
 \bunq\Util\InstallationUtil::interactiveInstall();

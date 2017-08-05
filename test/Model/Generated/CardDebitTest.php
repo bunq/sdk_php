@@ -2,10 +2,8 @@
 namespace bunq\Model\Generated;
 
 use bunq\Model\Generated\Object\Pointer;
-use bunq\test\ApiContextHandler;
+use bunq\test\BunqSdkTestBase;
 use bunq\test\TestConfig;
-use PHPUnit\Framework\TestCase;
-use function uniqid;
 
 /**
  * Tests:
@@ -14,7 +12,7 @@ use function uniqid;
  *  Card
  *  CardDebit
  */
-class CardDebitTest extends TestCase
+class CardDebitTest extends BunqSdkTestBase
 {
     /**
      *  Pin code that the card will be ordered with.
@@ -50,14 +48,15 @@ class CardDebitTest extends TestCase
      */
     public static function setUpBeforeClass()
     {
+        parent::setUpBeforeClass();
         static::$userId = TestConfig::getUserId();
         static::$nameOnCard =
             CardName::listing(
-                ApiContextHandler::getApiContext(),
+                static::getApiContext(),
                 static::$userId
             )[self::INDEX_FIRST]->getPossibleCardNameArray();
         static::$alias =
-            User::listing(ApiContextHandler::getApiContext())[self::INDEX_FIRST]->getUserCompany()->getAlias(
+            User::listing(static::getApiContext())[self::INDEX_FIRST]->getUserCompany()->getAlias(
             )[self::INDEX_FIRST];
     }
 
@@ -66,7 +65,7 @@ class CardDebitTest extends TestCase
      */
     public function testOrderingDebitCard()
     {
-        $apiContext = ApiContextHandler::getApiContext();
+        $apiContext = static::getApiContext();
         $alias = new Pointer(static::$alias->getType(), static::$alias->getValue());
 
         $cardDebitMap = [

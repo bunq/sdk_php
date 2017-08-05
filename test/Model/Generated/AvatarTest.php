@@ -1,11 +1,9 @@
 <?php
 namespace bunq\Model\Generated;
 
-use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
-use bunq\test\ApiContextHandler;
+use bunq\test\BunqSdkTestBase;
 use bunq\test\TestConfig;
-use PHPUnit\Framework\TestCase;
 use bunq\Util\FileUtil;
 
 /**
@@ -13,7 +11,7 @@ use bunq\Util\FileUtil;
  *  AttachmentPublic
  *  AttachmentPublicContent Avatar
  */
-class AvatarTest extends TestCase
+class AvatarTest extends BunqSdkTestBase
 {
     /**
      * Index number of the first item in an array.
@@ -26,11 +24,6 @@ class AvatarTest extends TestCase
     const PATH_ATTACHMENT = '/../../resource/';
 
     /**
-     * @var ApiContext
-     */
-    private static $apiContext;
-
-    /**
      * @var string
      */
     private static $contentType;
@@ -38,7 +31,7 @@ class AvatarTest extends TestCase
     /**
      * @var string
      */
-    private static $attachmentDescpription;
+    private static $attachmentDescription;
 
     /**
      * @var string
@@ -49,8 +42,8 @@ class AvatarTest extends TestCase
      */
     public static function setUpBeforeClass()
     {
-        static::$apiContext = ApiContextHandler::getApiContext();
-        static::$attachmentDescpription = TestConfig::getAttachmentDescription();
+        parent::setUpBeforeClass();
+        static::$attachmentDescription = TestConfig::getAttachmentDescription();
         static::$attachmentPathIn = TestConfig::getAttachmentPathIn();
         static::$contentType = TestConfig::getAttachmentContentType();
     }
@@ -62,20 +55,20 @@ class AvatarTest extends TestCase
     {
         $fileContentsBefore = $this->getFileContentsOfAttachment();
         $customHeadersMap = [
-            ApiClient::HEADER_ATTACHMENT_DESCRIPTION => static::$attachmentDescpription,
+            ApiClient::HEADER_ATTACHMENT_DESCRIPTION => static::$attachmentDescription,
             ApiClient::HEADER_CONTENT_TYPE => static::$contentType,
         ];
 
-        $attachmentUuidBefore = AttachmentPublic::create(static::$apiContext, $fileContentsBefore, $customHeadersMap);
+        $attachmentUuidBefore = AttachmentPublic::create(static::getApiContext(), $fileContentsBefore, $customHeadersMap);
         $avatarMap = [
             Avatar::FIELD_ATTACHMENT_PUBLIC_UUID => $attachmentUuidBefore,
         ];
-        $avatarUuid = Avatar::create(static::$apiContext, $avatarMap);
+        $avatarUuid = Avatar::create(static::getApiContext(), $avatarMap);
 
-        $attachmentUuidAfter = Avatar::get(static::$apiContext, $avatarUuid);
+        $attachmentUuidAfter = Avatar::get(static::getApiContext(), $avatarUuid);
         $imageInfoArray = $attachmentUuidAfter->getImage();
         $attachmentPublicUuid = $imageInfoArray[self::INDEX_FIRST]->getAttachmentPublicUuid();
-        $fileContentsAfter = AttachmentPublicContent::listing(static::$apiContext, $attachmentPublicUuid);
+        $fileContentsAfter = AttachmentPublicContent::listing(static::getApiContext(), $attachmentPublicUuid);
 
         static::assertEquals($fileContentsBefore, $fileContentsAfter);
     }

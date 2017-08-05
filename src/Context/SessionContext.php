@@ -57,9 +57,23 @@ class SessionContext implements JsonSerializable
      */
     private static function calculateExpiryTime(SessionServer $sessionServer)
     {
-        $expiryTime = microtime(true) + $sessionServer->getUserCompany()->getSessionTimeout();
+        $expiryTime = microtime(true) + static::getSessionTimeout($sessionServer);
 
         return static::microtimeToDateTime($expiryTime);
+    }
+
+    /**
+     * @param SessionServer $sessionServer
+     *
+     * @return int
+     */
+    private static function getSessionTimeout(SessionServer $sessionServer)
+    {
+        if (is_null($sessionServer->getUserCompany())) {
+            return $sessionServer->getUserPerson()->getSessionTimeout();
+        } else {
+            return $sessionServer->getUserCompany()->getSessionTimeout();
+        }
     }
 
     /**

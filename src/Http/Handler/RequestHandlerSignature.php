@@ -36,8 +36,6 @@ class RequestHandlerSignature extends RequestHandlerBase
     protected $privateKey;
 
     /**
-     * SignatureHandler constructor.
-     *
      * @param PrivateKey $privateKey
      */
     public function __construct(PrivateKey $privateKey)
@@ -47,6 +45,7 @@ class RequestHandlerSignature extends RequestHandlerBase
 
     /**
      * @param RequestInterface $request
+     *
      * @return RequestInterface
      */
     public function execute(RequestInterface $request)
@@ -82,7 +81,7 @@ class RequestHandlerSignature extends RequestHandlerBase
         $dataToSign =
             $method . self::REQUEST_METHOD_PATH_SEPARATOR . $uri->getPath() .
             $this->determineHeaderStringForSignedRequest($headers) .
-            PHP_EOL . PHP_EOL .
+            self::NEWLINE . self::NEWLINE .
             $body;
 
         return $this->privateKey->sign($dataToSign);
@@ -102,7 +101,7 @@ class RequestHandlerSignature extends RequestHandlerBase
             // Not all headers should be signed.
             // The User-Agent and Cache-Control headers need to be signed.
             if ($headerName === self::HEADER_USER_AGENT || $headerName === self::HEADER_CACHE_CONTROL) {
-                $signedDataHeaderString .= PHP_EOL;
+                $signedDataHeaderString .= self::NEWLINE;
                 $signedDataHeaderString .= $this->determineHeaderStringLine($headerName, $headerValue);
             }
 
@@ -110,7 +109,7 @@ class RequestHandlerSignature extends RequestHandlerBase
             if ($headerName === self::HEADER_SERVER_SIGNATURE) {
                 // Skip this header
             } elseif (strpos($headerName, self::HEADER_PREFIX) === self::HEADER_PREFIX_START) {
-                $signedDataHeaderString .= PHP_EOL;
+                $signedDataHeaderString .= self::NEWLINE;
                 $signedDataHeaderString .= $this->determineHeaderStringLine($headerName, $headerValue);
             }
         }

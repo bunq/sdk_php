@@ -40,8 +40,6 @@ class ResponseHandlerSignature extends ResponseHandlerBase
     protected $publicKeyServer;
 
     /**
-     * ServerSignatureHandler constructor.
-     *
      * @param PublicKey|null $publicKeyServer
      */
     public function __construct(PublicKey $publicKeyServer = null)
@@ -64,9 +62,9 @@ class ResponseHandlerSignature extends ResponseHandlerBase
             } else {
                 $toVerify =
                     $response->getStatusCode() .
-                    PHP_EOL .
+                    self::NEWLINE .
                     $this->determineHeaderStringForSignedResponse($response->getHeaders()) .
-                    PHP_EOL . PHP_EOL .
+                    self::NEWLINE . self::NEWLINE .
                     $response->getBody()->getContents();
 
                 $signature = base64_decode($response->getHeaderLine(self::HEADER_SERVER_SIGNATURE));
@@ -104,7 +102,7 @@ class ResponseHandlerSignature extends ResponseHandlerBase
             }
         }
 
-        return implode(PHP_EOL, $signedDataHeaders);
+        return implode(self::NEWLINE, $signedDataHeaders);
     }
 
     /**

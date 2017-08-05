@@ -30,8 +30,6 @@ class RequestHandlerEncryption extends RequestHandlerBase
     protected $publicKey;
 
     /**
-     * RequestEncryptionHandler constructor.
-     *
      * @param PublicKey $publicKey
      */
     public function __construct(PublicKey $publicKey)
@@ -41,6 +39,7 @@ class RequestHandlerEncryption extends RequestHandlerBase
 
     /**
      * @param RequestInterface $request
+     *
      * @return Request
      */
     public function execute(RequestInterface $request)

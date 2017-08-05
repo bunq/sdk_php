@@ -1,11 +1,10 @@
 <?php
 namespace bunq\test\Model\Generated;
 
-use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
 use bunq\Model\Generated\AttachmentPublic;
 use bunq\Model\Generated\AttachmentPublicContent;
-use bunq\test\ApiContextHandler;
+use bunq\test\BunqSdkTestBase;
 use bunq\test\TestConfig;
 use bunq\Util\FileUtil;
 
@@ -14,17 +13,12 @@ use bunq\Util\FileUtil;
  *  AttachmentPublic
  *  AttachmentPublicContent
  */
-class AttachmentPublicTest extends \PHPUnit_Framework_TestCase
+class AttachmentPublicTest extends BunqSdkTestBase
 {
     /**
      *  Points to the folder where attachments are located.
      */
     const PATH_ATTACHMENT = '/../../resource/';
-
-    /**
-     * @var ApiContext
-     */
-    private static $apiContext;
 
     /**
      * @var string
@@ -45,7 +39,7 @@ class AttachmentPublicTest extends \PHPUnit_Framework_TestCase
      */
     public static function setUpBeforeClass()
     {
-        static::$apiContext = ApiContextHandler::getApiContext();
+        parent::setUpBeforeClass();
         static::$contentType = TestConfig::getAttachmentContentType();
         static::$attachmentDescription = TestConfig::getAttachmentDescription();
         static::$attachmentPathIn = TestConfig::getAttachmentPathIn();
@@ -62,8 +56,8 @@ class AttachmentPublicTest extends \PHPUnit_Framework_TestCase
             ApiClient::HEADER_ATTACHMENT_DESCRIPTION => static::$attachmentDescription,
         ];
 
-        $beforeUuid = AttachmentPublic::create(static::$apiContext, $beforeBytes, $customHeadersMap);
-        $bytesAfter = AttachmentPublicContent::listing(static::$apiContext, $beforeUuid);
+        $beforeUuid = AttachmentPublic::create(static::getApiContext(), $beforeBytes, $customHeadersMap);
+        $bytesAfter = AttachmentPublicContent::listing(static::getApiContext(), $beforeUuid);
 
         static::assertEquals($beforeBytes, $bytesAfter);
     }
