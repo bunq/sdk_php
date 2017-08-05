@@ -30,8 +30,6 @@ class RequestHandlerEncryption extends RequestHandlerBase
     protected $publicKey;
 
     /**
-     * RequestEncryptionHandler constructor.
-     *
      * @param PublicKey $publicKey
      */
     public function __construct(PublicKey $publicKey)
