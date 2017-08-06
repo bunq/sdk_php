@@ -79,7 +79,7 @@ final class InstallationUtil
             );
             $methodInitializeInstallationContext->invoke($context);
 
-            $description = static::readline(self::PROMPT_DESCRIPTION, self::ERROR_EMPTY_DESCRIPTION);
+            $description = static::readLine(self::PROMPT_DESCRIPTION, self::ERROR_EMPTY_DESCRIPTION);
             $permittedIpsInput = static::readLineOrNull(self::PROMPT_PERMITTED_IPS);
             $permittedIps = static::formatIps($permittedIpsInput);
             $methodRegisterDevice = static::createAccessibleReflectionMethod(ApiContext::class, self::METHOD_REGISTER_DEVICE);
