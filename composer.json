@@ -48,12 +48,6 @@
         "bin/bunq-install"
     ],
     "scripts": {
-        "phpcs": [
-            "./vendor/bin/php-cs-fixer fix -v --dry-run --using-cache=no lib"
-        ],
-        "phpcs-fix": [
-            "./vendor/bin/php-cs-fixer fix -v --using-cache=no lib"
-        ],
         "phpstan": [
             "./vendor/bin/phpstan analyse --level 5 lib"
         ]
