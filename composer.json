@@ -46,10 +46,5 @@
     },
     "bin": [
         "bin/bunq-install"
-    ],
-    "scripts": {
-        "phpstan": [
-            "./vendor/bin/phpstan analyse --level 5 lib"
-        ]
-    }
+    ]
 }

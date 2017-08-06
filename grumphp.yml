@@ -52,7 +52,7 @@ parameters:
         phpstan:
             autoload_file: ~
             configuration: ~
-            level: 0
+            level: 5
             triggered_by: ['php']
         phpunit:
             config_file: ~
