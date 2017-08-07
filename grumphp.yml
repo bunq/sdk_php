@@ -49,11 +49,6 @@ parameters:
             exclude: ['vendor']
             jobs: ~
             triggered_by: ['php', 'phtml']
-        phpstan:
-            autoload_file: ~
-            configuration: ~
-            level: 5
-            triggered_by: ['php']
         phpunit:
             config_file: ~
             testsuite: ~
