@@ -306,7 +306,7 @@ class ApiContext
             self::FIELD_API_KEY => $this->getApiKey(),
             self::FIELD_ENVIRONMENT_TYPE => $this->getEnvironmentType()->getChoiceString(),
             self::FIELD_INSTALLATION_CONTEXT => $this->getInstallationContext(),
-            self::FIELD_PROXY_URL => $this->getProxyUrlOrNull(),
+            self::FIELD_PROXY_URL => $this->getProxy(),
             self::FIELD_SESSION_CONTEXT => $this->getSessionContext(),
         ];
 
@@ -346,9 +346,9 @@ class ApiContext
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getProxyUrlOrNull()
+    public function getProxy()
     {
         return $this->proxyUrl;
     }

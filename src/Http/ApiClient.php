@@ -163,7 +163,7 @@ class ApiClient
                     self::OPTION_CURL => [
                         CURLOPT_PINNEDPUBLICKEY => $this->determinePinnedServerPublicKey(),
                     ],
-                    self::OPTION_PROXY => $this->apiContext->getProxyUrlOrNull(),
+                    self::OPTION_PROXY => $this->apiContext->getProxy(),
                 ]
             );
         }

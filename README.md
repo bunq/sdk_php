@@ -81,12 +81,11 @@ $apiContext = ApiContext::restore($fileName);
 to/restored from the `bunq.conf` file in the same folder with your script.
 
 ##### Proxy
-
 You can use a proxy with the bunq PHP SDK. This option must be a string. This proxy will be used for all requests done with
-the SDK. You will be prompted to provide a proxy URL when using the interactive installation script.
+the context for which it was provided. You will be prompted to provide a proxy URL when using the interactive installation script.
 
 ```php
-$proxyUrl = 'socks5://localhost:1080'; // The proxy for all requests, leave empty to disable
+$proxyUrl = 'socks5://localhost:1080'; // The proxy for all requests, null to disable
 
 $apiContext = ApiContext::create(
     ...
