@@ -58,7 +58,7 @@ class ApiClient
     /**
      * User agent.
      */
-    const USER_AGENT_BUNQ_SDK = 'bunq-sdk-php/0.9.0';
+    const HEADER_USER_AGENT_BUNQ_SDK_DEFAULT = 'bunq-sdk-php/0.9.0';
 
     /**
      * Binary request constants.
@@ -272,7 +272,7 @@ class ApiClient
     {
         return [
             self::HEADER_CACHE_CONTROL => [self::HEADER_CACHE_CONTROL_DEFAULT],
-            self::HEADER_USER_AGENT => [self::USER_AGENT_BUNQ_SDK],
+            self::HEADER_USER_AGENT => [self::HEADER_USER_AGENT_BUNQ_SDK_DEFAULT],
             self::HEADER_GEOLOCATION => [self::HEADER_CUSTOM_GEOLOCATION_DEFAULT],
             self::HEADER_LANGUAGE => [self::HEADER_CUSTOM_LANGUAGE_DEFAULT],
             self::HEADER_REGION => [self::HEADER_CUSTOM_REGION_DEFAULT],
