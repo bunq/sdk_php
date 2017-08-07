@@ -70,6 +70,7 @@ connectQr.png
 config.json
 
 # Composer
+composer.lock
 vendor/
 
 # Temporary files

@@ -1,6 +1,5 @@
 {
     "name": "bunq/sdk_php",
-    "version": "0.9.0",
     "description": "bunq PHP SDK",
     "keywords": [
         "open-banking",
@@ -39,21 +38,17 @@
     },
     "require-dev": {
         "phpunit/phpunit": "^5.7",
-        "friendsofphp/php-cs-fixer": "^2.4",
-        "phpstan/phpstan": "^0.8"
+        "friendsofphp/php-cs-fixer": "^2.4"
     },
     "bin": [
         "bin/bunq-install"
     ],
     "scripts": {
         "phpcs": [
-            "./vendor/bin/php-cs-fixer fix -v --dry-run --using-cache=no lib"
+            "./vendor/bin/php-cs-fixer fix -v --dry-run --using-cache=no src"
         ],
         "phpcs-fix": [
-            "./vendor/bin/php-cs-fixer fix -v --using-cache=no lib"
-        ],
-        "phpstan": [
-            "./vendor/bin/phpstan analyse --level 5 lib"
+            "./vendor/bin/php-cs-fixer fix -v --using-cache=no src"
         ]
     }
 }

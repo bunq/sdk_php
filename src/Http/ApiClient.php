@@ -56,11 +56,9 @@ class ApiClient
     const HEADER_CUSTOM_REGION_DEFAULT = 'en_US';
 
     /**
-     * User agent constants.
+     * User agent.
      */
-    const FILENAME_COMPOSER_JSON = __DIR__ . '/../../composer.json';
-    const COMPOSER_FIELD_VERSION = 'version';
-    const USER_AGENT_BUNQ_SDK = 'bunq-sdk-php/%s';
+    const HEADER_USER_AGENT_BUNQ_SDK_DEFAULT = 'bunq-sdk-php/0.9.1';
 
     /**
      * Binary request constants.
@@ -274,22 +272,12 @@ class ApiClient
     {
         return [
             self::HEADER_CACHE_CONTROL => [self::HEADER_CACHE_CONTROL_DEFAULT],
-            self::HEADER_USER_AGENT => [$this->determineUserAgent()],
+            self::HEADER_USER_AGENT => [self::HEADER_USER_AGENT_BUNQ_SDK_DEFAULT],
             self::HEADER_GEOLOCATION => [self::HEADER_CUSTOM_GEOLOCATION_DEFAULT],
             self::HEADER_LANGUAGE => [self::HEADER_CUSTOM_LANGUAGE_DEFAULT],
             self::HEADER_REGION => [self::HEADER_CUSTOM_REGION_DEFAULT],
             self::HEADER_CLIENT_REQUEST_ID => [uniqid()],
         ];
-    }
-
-    /**
-     * @return string
-     */
-    private function determineUserAgent()
-    {
-        $composer = \GuzzleHttp\json_decode(file_get_contents(self::FILENAME_COMPOSER_JSON), true);
-
-        return vsprintf(self::USER_AGENT_BUNQ_SDK, [$composer[self::COMPOSER_FIELD_VERSION]]);
     }
 
     /**
