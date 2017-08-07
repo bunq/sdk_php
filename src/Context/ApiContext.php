@@ -170,6 +170,8 @@ class ApiContext
 
         if (isset($contextJson[self::FIELD_PROXY_URL])) {
             $apiContext->proxyUrl = $contextJson[self::FIELD_PROXY_URL];
+        } else {
+            $apiContext->proxyUrl = null;
         }
 
         $apiContext->installationContext = InstallationContext::restore($contextJson[self::FIELD_INSTALLATION_CONTEXT]);
