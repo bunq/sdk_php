@@ -4,6 +4,7 @@ namespace bunq\Model\Generated;
 use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
 use bunq\Model\BunqModel;
+use bunq\Model\BunqResponse;
 use bunq\Model\Generated\Object\Image;
 
 /**
@@ -54,12 +55,12 @@ class Avatar extends BunqModel
      * @param mixed[] $requestMap
      * @param string[] $customHeaders
      *
-     * @return string
+     * @return BunqResponse<string>
      */
     public static function create(ApiContext $apiContext, array $requestMap, array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
-        $response = $apiClient->post(
+        $responseRaw = $apiClient->post(
             vsprintf(
                 self::ENDPOINT_URL_CREATE,
                 []
@@ -68,7 +69,7 @@ class Avatar extends BunqModel
             $customHeaders
         );
 
-        return static::processForUuid($response);
+        return static::processForUuid($responseRaw);
     }
 
     /**
@@ -76,12 +77,12 @@ class Avatar extends BunqModel
      * @param string $avatarUuid
      * @param string[] $customHeaders
      *
-     * @return BunqModel|Avatar
+     * @return BunqResponse<Avatar>
      */
     public static function get(ApiContext $apiContext, $avatarUuid, array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
-        $response = $apiClient->get(
+        $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_READ,
                 [$avatarUuid]
@@ -89,7 +90,7 @@ class Avatar extends BunqModel
             $customHeaders
         );
 
-        return static::fromJson($response);
+        return static::fromJson($responseRaw);
     }
 
     /**

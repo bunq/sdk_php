@@ -4,6 +4,7 @@ namespace bunq\Model\Generated;
 use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
 use bunq\Model\BunqModel;
+use bunq\Model\BunqResponse;
 use bunq\Model\Generated\Object\Attachment;
 
 /**
@@ -72,13 +73,13 @@ class AttachmentPublic extends BunqModel
      * @param string $requestBytes
      * @param string[] $customHeaders
      *
-     * @return string
+     * @return BunqResponse<string>
      */
     public static function create(ApiContext $apiContext, $requestBytes, array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
         $apiClient->enableBinary();
-        $response = $apiClient->post(
+        $responseRaw = $apiClient->post(
             vsprintf(
                 self::ENDPOINT_URL_CREATE,
                 []
@@ -87,7 +88,7 @@ class AttachmentPublic extends BunqModel
             $customHeaders
         );
 
-        return static::processForUuid($response);
+        return static::processForUuid($responseRaw);
     }
 
     /**
@@ -99,12 +100,12 @@ class AttachmentPublic extends BunqModel
      * @param string $attachmentPublicUuid
      * @param string[] $customHeaders
      *
-     * @return BunqModel|AttachmentPublic
+     * @return BunqResponse<AttachmentPublic>
      */
     public static function get(ApiContext $apiContext, $attachmentPublicUuid, array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
-        $response = $apiClient->get(
+        $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_READ,
                 [$attachmentPublicUuid]
@@ -112,7 +113,7 @@ class AttachmentPublic extends BunqModel
             $customHeaders
         );
 
-        return static::fromJson($response);
+        return static::fromJson($responseRaw);
     }
 
     /**

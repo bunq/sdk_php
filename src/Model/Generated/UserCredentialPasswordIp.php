@@ -4,6 +4,7 @@ namespace bunq\Model\Generated;
 use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
 use bunq\Model\BunqModel;
+use bunq\Model\BunqResponse;
 use bunq\Model\Generated\Object\PermittedDevice;
 
 /**
@@ -24,6 +25,27 @@ class UserCredentialPasswordIp extends BunqModel
      * Object type.
      */
     const OBJECT_TYPE = 'CredentialPasswordIp';
+
+    /**
+     * The id of the credential.
+     *
+     * @var int
+     */
+    protected $id;
+
+    /**
+     * The timestamp of the credential object's creation.
+     *
+     * @var string
+     */
+    protected $created;
+
+    /**
+     * The timestamp of the credential object's last update.
+     *
+     * @var string
+     */
+    protected $updated;
 
     /**
      * The status of the credential.
@@ -60,12 +82,12 @@ class UserCredentialPasswordIp extends BunqModel
      * @param int $userCredentialPasswordIpId
      * @param string[] $customHeaders
      *
-     * @return BunqModel|UserCredentialPasswordIp
+     * @return BunqResponse<UserCredentialPasswordIp>
      */
     public static function get(ApiContext $apiContext, $userId, $userCredentialPasswordIpId, array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
-        $response = $apiClient->get(
+        $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_READ,
                 [$userId, $userCredentialPasswordIpId]
@@ -73,7 +95,7 @@ class UserCredentialPasswordIp extends BunqModel
             $customHeaders
         );
 
-        return static::fromJson($response);
+        return static::fromJson($responseRaw);
     }
 
     /**
@@ -84,12 +106,12 @@ class UserCredentialPasswordIp extends BunqModel
      * @param int $userId
      * @param string[] $customHeaders
      *
-     * @return BunqModel[]|UserCredentialPasswordIp[]
+     * @return BunqResponse<BunqModel[]|UserCredentialPasswordIp[]>
      */
     public static function listing(ApiContext $apiContext, $userId, array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
-        $response = $apiClient->get(
+        $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_LISTING,
                 [$userId]
@@ -97,7 +119,61 @@ class UserCredentialPasswordIp extends BunqModel
             $customHeaders
         );
 
-        return static::fromJsonList($response, self::OBJECT_TYPE);
+        return static::fromJsonList($responseRaw, self::OBJECT_TYPE);
+    }
+
+    /**
+     * The id of the credential.
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * The timestamp of the credential object's creation.
+     *
+     * @return string
+     */
+    public function getCreated()
+    {
+        return $this->created;
+    }
+
+    /**
+     * @param string $created
+     */
+    public function setCreated($created)
+    {
+        $this->created = $created;
+    }
+
+    /**
+     * The timestamp of the credential object's last update.
+     *
+     * @return string
+     */
+    public function getUpdated()
+    {
+        return $this->updated;
+    }
+
+    /**
+     * @param string $updated
+     */
+    public function setUpdated($updated)
+    {
+        $this->updated = $updated;
     }
 
     /**

@@ -4,6 +4,7 @@ namespace bunq\Model\Generated;
 use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
 use bunq\Model\BunqModel;
+use bunq\Model\BunqResponse;
 use bunq\Model\Generated\Object\Attachment;
 
 /**
@@ -59,13 +60,13 @@ class AttachmentMonetaryAccount extends BunqModel
      * @param int $monetaryAccountId
      * @param string[] $customHeaders
      *
-     * @return int
+     * @return BunqResponse<int>
      */
     public static function create(ApiContext $apiContext, $requestBytes, $userId, $monetaryAccountId, array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
         $apiClient->enableBinary();
-        $response = $apiClient->post(
+        $responseRaw = $apiClient->post(
             vsprintf(
                 self::ENDPOINT_URL_CREATE,
                 [$userId, $monetaryAccountId]
@@ -74,7 +75,7 @@ class AttachmentMonetaryAccount extends BunqModel
             $customHeaders
         );
 
-        return static::processForId($response);
+        return static::processForId($responseRaw);
     }
 
     /**

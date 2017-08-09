@@ -4,6 +4,7 @@ namespace bunq\Model\Generated;
 use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
 use bunq\Model\BunqModel;
+use bunq\Model\BunqResponse;
 
 /**
  * Endpoint for the type of chat message that carries text.
@@ -44,12 +45,12 @@ class ChatMessageText extends BunqModel
      * @param int $chatConversationId
      * @param string[] $customHeaders
      *
-     * @return int
+     * @return BunqResponse<int>
      */
     public static function create(ApiContext $apiContext, array $requestMap, $userId, $chatConversationId, array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
-        $response = $apiClient->post(
+        $responseRaw = $apiClient->post(
             vsprintf(
                 self::ENDPOINT_URL_CREATE,
                 [$userId, $chatConversationId]
@@ -58,7 +59,7 @@ class ChatMessageText extends BunqModel
             $customHeaders
         );
 
-        return static::processForId($response);
+        return static::processForId($responseRaw);
     }
 
     /**

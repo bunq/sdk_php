@@ -21,9 +21,10 @@ const INDEX_FIRST = 0;
 // Restore tha API context
 $apiContext = ApiContext::restore(ApiContext::FILENAME_CONFIG_DEFAULT);
 
-// Retrieve the user associated with this API key.
-$user = User::listing($apiContext)[INDEX_FIRST]->getUserCompany();
-
+// Retrieve the active user.
+/** @var User[] $users */
+$users = User::listing($apiContext)->getValue();
+$user= $users[INDEX_FIRST]->getUserCompany();
 $userId = $user->getId();
 
 // Update the publicly visible name of your company.
@@ -35,6 +36,7 @@ $userCompanyMap = [
 UserCompany::update($apiContext, $userCompanyMap, $userId);
 
 // You can retrieve the UserCompany again with the id.
-$userCompany = UserCompany::get($apiContext, $userId);
+/** @var UserCompany $userCompany */
+$userCompany = UserCompany::get($apiContext, $userId)->getValue();
 
 vprintf(MESSAGE_USER_COMPANY_NICKNAME, [$userCompany->getPublicNickName()]);

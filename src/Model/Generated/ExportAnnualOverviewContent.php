@@ -4,7 +4,7 @@ namespace bunq\Model\Generated;
 use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
 use bunq\Model\BunqModel;
-use Psr\Http\Message\StreamInterface;
+use bunq\Model\BunqResponse;
 
 /**
  * Fetch the raw content of an annual overview. The annual overview is
@@ -36,18 +36,20 @@ class ExportAnnualOverviewContent extends BunqModel
      * @param int $exportAnnualOverviewId
      * @param string[] $customHeaders
      *
-     * @return string|StreamInterface
+     * @return BunqResponse<string>
      */
     public static function listing(ApiContext $apiContext, $userId, $exportAnnualOverviewId, array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
 
-        return $apiClient->get(
+        $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_LISTING,
                 [$userId, $exportAnnualOverviewId]
             ),
             $customHeaders
         );
+
+        return new BunqResponse($responseRaw->getBodyString(), $responseRaw->getHeaders());
     }
 }

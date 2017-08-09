@@ -4,6 +4,7 @@ namespace bunq\Model\Generated;
 use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
 use bunq\Model\BunqModel;
+use bunq\Model\BunqResponse;
 use bunq\Model\Generated\Object\Certificate;
 
 /**
@@ -55,12 +56,12 @@ class CertificatePinned extends BunqModel
      * @param int $userId
      * @param string[] $customHeaders
      *
-     * @return int
+     * @return BunqResponse<int>
      */
     public static function create(ApiContext $apiContext, array $requestMap, $userId, array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
-        $response = $apiClient->post(
+        $responseRaw = $apiClient->post(
             vsprintf(
                 self::ENDPOINT_URL_CREATE,
                 [$userId]
@@ -69,7 +70,7 @@ class CertificatePinned extends BunqModel
             $customHeaders
         );
 
-        return static::processForId($response);
+        return static::processForId($responseRaw);
     }
 
     /**
@@ -79,17 +80,21 @@ class CertificatePinned extends BunqModel
      * @param string[] $customHeaders
      * @param int $userId
      * @param int $certificatePinnedId
+     *
+     * @return BunqResponse<null>
      */
     public static function delete(ApiContext $apiContext, $userId, $certificatePinnedId, array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
-        $apiClient->delete(
+        $responseRaw = $apiClient->delete(
             vsprintf(
                 self::ENDPOINT_URL_DELETE,
                 [$userId, $certificatePinnedId]
             ),
             $customHeaders
         );
+
+        return new BunqResponse(null, $responseRaw->getHeaders());
     }
 
     /**
@@ -102,12 +107,12 @@ class CertificatePinned extends BunqModel
      * @param int $userId
      * @param string[] $customHeaders
      *
-     * @return BunqModel[]|CertificatePinned[]
+     * @return BunqResponse<BunqModel[]|CertificatePinned[]>
      */
     public static function listing(ApiContext $apiContext, $userId, array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
-        $response = $apiClient->get(
+        $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_LISTING,
                 [$userId]
@@ -115,7 +120,7 @@ class CertificatePinned extends BunqModel
             $customHeaders
         );
 
-        return static::fromJsonList($response, self::OBJECT_TYPE);
+        return static::fromJsonList($responseRaw, self::OBJECT_TYPE);
     }
 
     /**
@@ -126,12 +131,12 @@ class CertificatePinned extends BunqModel
      * @param int $certificatePinnedId
      * @param string[] $customHeaders
      *
-     * @return BunqModel|CertificatePinned
+     * @return BunqResponse<CertificatePinned>
      */
     public static function get(ApiContext $apiContext, $userId, $certificatePinnedId, array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
-        $response = $apiClient->get(
+        $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_READ,
                 [$userId, $certificatePinnedId]
@@ -139,7 +144,7 @@ class CertificatePinned extends BunqModel
             $customHeaders
         );
 
-        return static::fromJson($response);
+        return static::fromJson($responseRaw);
     }
 
     /**

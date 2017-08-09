@@ -4,6 +4,7 @@ namespace bunq\Model\Generated;
 use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
 use bunq\Model\BunqModel;
+use bunq\Model\BunqResponse;
 
 /**
  * Used to view TabResultResponse objects belonging to a tab. A
@@ -48,12 +49,12 @@ class TabResultResponse extends BunqModel
      * @param int $tabResultResponseId
      * @param string[] $customHeaders
      *
-     * @return BunqModel|TabResultResponse
+     * @return BunqResponse<TabResultResponse>
      */
     public static function get(ApiContext $apiContext, $userId, $monetaryAccountId, $tabResultResponseId, array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
-        $response = $apiClient->get(
+        $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_READ,
                 [$userId, $monetaryAccountId, $tabResultResponseId]
@@ -61,7 +62,7 @@ class TabResultResponse extends BunqModel
             $customHeaders
         );
 
-        return static::fromJson($response);
+        return static::fromJson($responseRaw);
     }
 
     /**
@@ -75,12 +76,12 @@ class TabResultResponse extends BunqModel
      * @param int $monetaryAccountId
      * @param string[] $customHeaders
      *
-     * @return BunqModel[]|TabResultResponse[]
+     * @return BunqResponse<BunqModel[]|TabResultResponse[]>
      */
     public static function listing(ApiContext $apiContext, $userId, $monetaryAccountId, array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
-        $response = $apiClient->get(
+        $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_LISTING,
                 [$userId, $monetaryAccountId]
@@ -88,7 +89,7 @@ class TabResultResponse extends BunqModel
             $customHeaders
         );
 
-        return static::fromJsonList($response, self::OBJECT_TYPE);
+        return static::fromJsonList($responseRaw, self::OBJECT_TYPE);
     }
 
     /**

@@ -19,6 +19,8 @@ abstract class BunqEnum
     protected $supportedChoices = [];
 
     /**
+     * BunqEnum constructor.
+     *
      * @param string $choice
      * @throws BunqException
      */

@@ -18,6 +18,8 @@ class ServerPublicKey extends BunqModel
     protected $serverPublicKey;
 
     /**
+     * PublicKeyServer constructor.
+     *
      * @param string|null $serverPublicKey
      */
     public function __construct($serverPublicKey = null)

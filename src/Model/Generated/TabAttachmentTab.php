@@ -4,6 +4,7 @@ namespace bunq\Model\Generated;
 use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
 use bunq\Model\BunqModel;
+use bunq\Model\BunqResponse;
 use bunq\Model\Generated\Object\Attachment;
 
 /**
@@ -60,12 +61,12 @@ class TabAttachmentTab extends BunqModel
      * @param int $tabAttachmentTabId
      * @param string[] $customHeaders
      *
-     * @return BunqModel|TabAttachmentTab
+     * @return BunqResponse<TabAttachmentTab>
      */
     public static function get(ApiContext $apiContext, $tabUuid, $tabAttachmentTabId, array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
-        $response = $apiClient->get(
+        $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_READ,
                 [$tabUuid, $tabAttachmentTabId]
@@ -73,7 +74,7 @@ class TabAttachmentTab extends BunqModel
             $customHeaders
         );
 
-        return static::fromJson($response);
+        return static::fromJson($responseRaw);
     }
 
     /**

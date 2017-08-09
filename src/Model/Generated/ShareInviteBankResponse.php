@@ -4,6 +4,7 @@ namespace bunq\Model\Generated;
 use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
 use bunq\Model\BunqModel;
+use bunq\Model\BunqResponse;
 use bunq\Model\Generated\Object\LabelMonetaryAccount;
 use bunq\Model\Generated\Object\LabelUser;
 use bunq\Model\Generated\Object\ShareDetail;
@@ -113,12 +114,12 @@ class ShareInviteBankResponse extends BunqModel
      * @param int $shareInviteBankResponseId
      * @param string[] $customHeaders
      *
-     * @return BunqModel|ShareInviteBankResponse
+     * @return BunqResponse<ShareInviteBankResponse>
      */
     public static function get(ApiContext $apiContext, $userId, $shareInviteBankResponseId, array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
-        $response = $apiClient->get(
+        $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_READ,
                 [$userId, $shareInviteBankResponseId]
@@ -126,7 +127,7 @@ class ShareInviteBankResponse extends BunqModel
             $customHeaders
         );
 
-        return static::fromJson($response);
+        return static::fromJson($responseRaw);
     }
 
     /**
@@ -138,12 +139,12 @@ class ShareInviteBankResponse extends BunqModel
      * @param int $shareInviteBankResponseId
      * @param string[] $customHeaders
      *
-     * @return BunqModel|ShareInviteBankResponse
+     * @return BunqResponse<BunqResponse<ShareInviteBankResponse>>
      */
     public static function update(ApiContext $apiContext, array $requestMap, $userId, $shareInviteBankResponseId, array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
-        $response = $apiClient->put(
+        $responseRaw = $apiClient->put(
             vsprintf(
                 self::ENDPOINT_URL_UPDATE,
                 [$userId, $shareInviteBankResponseId]
@@ -152,7 +153,7 @@ class ShareInviteBankResponse extends BunqModel
             $customHeaders
         );
 
-        return static::fromJson($response);
+        return static::fromJson($responseRaw);
     }
 
     /**
@@ -165,12 +166,12 @@ class ShareInviteBankResponse extends BunqModel
      * @param int $userId
      * @param string[] $customHeaders
      *
-     * @return BunqModel[]|ShareInviteBankResponse[]
+     * @return BunqResponse<BunqModel[]|ShareInviteBankResponse[]>
      */
     public static function listing(ApiContext $apiContext, $userId, array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
-        $response = $apiClient->get(
+        $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_LISTING,
                 [$userId]
@@ -178,7 +179,7 @@ class ShareInviteBankResponse extends BunqModel
             $customHeaders
         );
 
-        return static::fromJsonList($response, self::OBJECT_TYPE);
+        return static::fromJsonList($responseRaw, self::OBJECT_TYPE);
     }
 
     /**

@@ -4,6 +4,7 @@ namespace bunq\Model\Generated;
 use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
 use bunq\Model\BunqModel;
+use bunq\Model\BunqResponse;
 
 /**
  * When you have connected your monetary account bank to a user, and given
@@ -36,16 +37,20 @@ class ShareInviteBankAmountUsed extends BunqModel
      * @param int $monetaryAccountId
      * @param int $shareInviteBankInquiryId
      * @param int $shareInviteBankAmountUsedId
+     *
+     * @return BunqResponse<null>
      */
     public static function delete(ApiContext $apiContext, $userId, $monetaryAccountId, $shareInviteBankInquiryId, $shareInviteBankAmountUsedId, array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
-        $apiClient->delete(
+        $responseRaw = $apiClient->delete(
             vsprintf(
                 self::ENDPOINT_URL_DELETE,
                 [$userId, $monetaryAccountId, $shareInviteBankInquiryId, $shareInviteBankAmountUsedId]
             ),
             $customHeaders
         );
+
+        return new BunqResponse(null, $responseRaw->getHeaders());
     }
 }

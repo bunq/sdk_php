@@ -4,6 +4,7 @@ namespace bunq\Model\Generated;
 use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
 use bunq\Model\BunqModel;
+use bunq\Model\BunqResponse;
 
 /**
  * Used to get a Device or a listing of Devices. Creating a DeviceServer
@@ -41,12 +42,12 @@ class Device extends BunqModel
      * @param int $deviceId
      * @param string[] $customHeaders
      *
-     * @return BunqModel|Device
+     * @return BunqResponse<Device>
      */
     public static function get(ApiContext $apiContext, $deviceId, array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
-        $response = $apiClient->get(
+        $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_READ,
                 [$deviceId]
@@ -54,7 +55,7 @@ class Device extends BunqModel
             $customHeaders
         );
 
-        return static::fromJson($response);
+        return static::fromJson($responseRaw);
     }
 
     /**
@@ -67,12 +68,12 @@ class Device extends BunqModel
      * @param ApiContext $apiContext
      * @param string[] $customHeaders
      *
-     * @return BunqModel[]|Device[]
+     * @return BunqResponse<BunqModel[]|Device[]>
      */
     public static function listing(ApiContext $apiContext, array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
-        $response = $apiClient->get(
+        $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_LISTING,
                 []
@@ -80,7 +81,7 @@ class Device extends BunqModel
             $customHeaders
         );
 
-        return static::fromJsonList($response);
+        return static::fromJsonList($responseRaw);
     }
 
     /**

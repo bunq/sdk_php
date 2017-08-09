@@ -46,6 +46,8 @@ class KeyPair
     }
 
     /**
+     * KeyPair constructor.
+     *
      * @param PrivateKey $privateKey
      * @param PublicKey $publicKey
      */

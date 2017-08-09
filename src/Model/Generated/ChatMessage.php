@@ -4,6 +4,7 @@ namespace bunq\Model\Generated;
 use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
 use bunq\Model\BunqModel;
+use bunq\Model\BunqResponse;
 use bunq\Model\Generated\Object\LabelUser;
 
 /**
@@ -90,12 +91,12 @@ class ChatMessage extends BunqModel
      * @param int $chatConversationId
      * @param string[] $customHeaders
      *
-     * @return BunqModel[]|ChatMessage[]
+     * @return BunqResponse<BunqModel[]|ChatMessage[]>
      */
     public static function listing(ApiContext $apiContext, $userId, $chatConversationId, array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
-        $response = $apiClient->get(
+        $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_LISTING,
                 [$userId, $chatConversationId]
@@ -103,7 +104,7 @@ class ChatMessage extends BunqModel
             $customHeaders
         );
 
-        return static::fromJsonList($response, self::OBJECT_TYPE);
+        return static::fromJsonList($responseRaw, self::OBJECT_TYPE);
     }
 
     /**

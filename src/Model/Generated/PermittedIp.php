@@ -4,6 +4,7 @@ namespace bunq\Model\Generated;
 use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
 use bunq\Model\BunqModel;
+use bunq\Model\BunqResponse;
 
 /**
  * Manage the IPs which may be used for a credential of a user for server
@@ -55,12 +56,12 @@ class PermittedIp extends BunqModel
      * @param int $permittedIpId
      * @param string[] $customHeaders
      *
-     * @return BunqModel|PermittedIp
+     * @return BunqResponse<PermittedIp>
      */
     public static function get(ApiContext $apiContext, $userId, $credentialPasswordIpId, $permittedIpId, array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
-        $response = $apiClient->get(
+        $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_READ,
                 [$userId, $credentialPasswordIpId, $permittedIpId]
@@ -68,7 +69,7 @@ class PermittedIp extends BunqModel
             $customHeaders
         );
 
-        return static::fromJson($response);
+        return static::fromJson($responseRaw);
     }
 
     /**
@@ -78,12 +79,12 @@ class PermittedIp extends BunqModel
      * @param int $credentialPasswordIpId
      * @param string[] $customHeaders
      *
-     * @return int
+     * @return BunqResponse<int>
      */
     public static function create(ApiContext $apiContext, array $requestMap, $userId, $credentialPasswordIpId, array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
-        $response = $apiClient->post(
+        $responseRaw = $apiClient->post(
             vsprintf(
                 self::ENDPOINT_URL_CREATE,
                 [$userId, $credentialPasswordIpId]
@@ -92,7 +93,7 @@ class PermittedIp extends BunqModel
             $customHeaders
         );
 
-        return static::processForId($response);
+        return static::processForId($responseRaw);
     }
 
     /**
@@ -104,12 +105,12 @@ class PermittedIp extends BunqModel
      * @param int $credentialPasswordIpId
      * @param string[] $customHeaders
      *
-     * @return BunqModel[]|PermittedIp[]
+     * @return BunqResponse<BunqModel[]|PermittedIp[]>
      */
     public static function listing(ApiContext $apiContext, $userId, $credentialPasswordIpId, array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
-        $response = $apiClient->get(
+        $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_LISTING,
                 [$userId, $credentialPasswordIpId]
@@ -117,7 +118,7 @@ class PermittedIp extends BunqModel
             $customHeaders
         );
 
-        return static::fromJsonList($response, self::OBJECT_TYPE);
+        return static::fromJsonList($responseRaw, self::OBJECT_TYPE);
     }
 
     /**
@@ -128,12 +129,12 @@ class PermittedIp extends BunqModel
      * @param int $permittedIpId
      * @param string[] $customHeaders
      *
-     * @return int
+     * @return BunqResponse<int>
      */
     public static function update(ApiContext $apiContext, array $requestMap, $userId, $credentialPasswordIpId, $permittedIpId, array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
-        $response = $apiClient->put(
+        $responseRaw = $apiClient->put(
             vsprintf(
                 self::ENDPOINT_URL_UPDATE,
                 [$userId, $credentialPasswordIpId, $permittedIpId]
@@ -142,7 +143,7 @@ class PermittedIp extends BunqModel
             $customHeaders
         );
 
-        return static::processForId($response);
+        return static::processForId($responseRaw);
     }
 
     /**

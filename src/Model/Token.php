@@ -18,6 +18,8 @@ class Token extends BunqModel
     protected $token;
 
     /**
+     * Token constructor.
+     *
      * @param string $token
      */
     public function __construct($token = null)

@@ -4,7 +4,7 @@ namespace bunq\Model\Generated;
 use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
 use bunq\Model\BunqModel;
-use Psr\Http\Message\StreamInterface;
+use bunq\Model\BunqResponse;
 
 /**
  * Fetch the raw content of a statement export. The returned file format
@@ -36,18 +36,20 @@ class CustomerStatementExportContent extends BunqModel
      * @param int $customerStatementId
      * @param string[] $customHeaders
      *
-     * @return string|StreamInterface
+     * @return BunqResponse<string>
      */
     public static function listing(ApiContext $apiContext, $userId, $monetaryAccountId, $customerStatementId, array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
 
-        return $apiClient->get(
+        $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_LISTING,
                 [$userId, $monetaryAccountId, $customerStatementId]
             ),
             $customHeaders
         );
+
+        return new BunqResponse($responseRaw->getBodyString(), $responseRaw->getHeaders());
     }
 }

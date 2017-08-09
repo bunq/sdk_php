@@ -4,6 +4,7 @@ namespace bunq\Model\Generated;
 use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
 use bunq\Model\BunqModel;
+use bunq\Model\BunqResponse;
 
 /**
  * After having created an Installation you can now create a DeviceServer. A
@@ -85,12 +86,12 @@ class DeviceServer extends BunqModel
      * @param mixed[] $requestMap
      * @param string[] $customHeaders
      *
-     * @return int
+     * @return BunqResponse<int>
      */
     public static function create(ApiContext $apiContext, array $requestMap, array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
-        $response = $apiClient->post(
+        $responseRaw = $apiClient->post(
             vsprintf(
                 self::ENDPOINT_URL_CREATE,
                 []
@@ -99,7 +100,7 @@ class DeviceServer extends BunqModel
             $customHeaders
         );
 
-        return static::processForId($response);
+        return static::processForId($responseRaw);
     }
 
     /**
@@ -109,12 +110,12 @@ class DeviceServer extends BunqModel
      * @param int $deviceServerId
      * @param string[] $customHeaders
      *
-     * @return BunqModel|DeviceServer
+     * @return BunqResponse<DeviceServer>
      */
     public static function get(ApiContext $apiContext, $deviceServerId, array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
-        $response = $apiClient->get(
+        $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_READ,
                 [$deviceServerId]
@@ -122,7 +123,7 @@ class DeviceServer extends BunqModel
             $customHeaders
         );
 
-        return static::fromJson($response);
+        return static::fromJson($responseRaw);
     }
 
     /**
@@ -134,12 +135,12 @@ class DeviceServer extends BunqModel
      * @param ApiContext $apiContext
      * @param string[] $customHeaders
      *
-     * @return BunqModel[]|DeviceServer[]
+     * @return BunqResponse<BunqModel[]|DeviceServer[]>
      */
     public static function listing(ApiContext $apiContext, array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
-        $response = $apiClient->get(
+        $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_LISTING,
                 []
@@ -147,7 +148,7 @@ class DeviceServer extends BunqModel
             $customHeaders
         );
 
-        return static::fromJsonList($response, self::OBJECT_TYPE);
+        return static::fromJsonList($responseRaw, self::OBJECT_TYPE);
     }
 
     /**

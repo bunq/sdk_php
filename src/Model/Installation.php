@@ -37,6 +37,8 @@ class Installation extends BunqModel
     protected $serverPublicKey;
 
     /**
+     * Installation constructor.
+     *
      * @param string $clientPublicKey
      */
     public function __construct($clientPublicKey = null)
@@ -48,16 +50,16 @@ class Installation extends BunqModel
      * @param ApiContext $apiContext
      * @param string $clientPublicKey
      *
-     * @return Installation|BunqModel
+     * @return BunqResponse<Installation>
      */
     public static function create(ApiContext $apiContext, $clientPublicKey)
     {
         $installation = new static($clientPublicKey);
 
         $apiClient = new ApiClient($apiContext);
-        $response = $apiClient->post(self::ENDPOINT_URL_POST, $installation->jsonSerialize());
+        $responseRaw = $apiClient->post(self::ENDPOINT_URL_POST, $installation->jsonSerialize());
 
-        return static::classFromJson(Installation::class, $response);
+        return static::classFromJson(Installation::class, $responseRaw);
     }
 
     /**
