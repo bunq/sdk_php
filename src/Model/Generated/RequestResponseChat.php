@@ -3,8 +3,8 @@ namespace bunq\Model\Generated;
 
 use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
+use bunq\Http\BunqResponse;
 use bunq\Model\BunqModel;
-use bunq\Model\BunqResponse;
 
 /**
  * Manage the chat connected to a request response. In the same way a

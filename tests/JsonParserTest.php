@@ -3,7 +3,7 @@ namespace bunq\tests;
 
 use bunq\Http\BunqResponseRaw;
 use bunq\Model\BunqModel;
-use bunq\Model\BunqResponse;
+use bunq\Http\BunqResponse;
 use bunq\Model\Generated\Object\Amount;
 use bunq\Model\Generated\UserCompany;
 use bunq\Model\Installation;

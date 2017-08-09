@@ -3,8 +3,8 @@ namespace bunq\Model\Generated;
 
 use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
+use bunq\Http\BunqResponse;
 use bunq\Model\BunqModel;
-use bunq\Model\BunqResponse;
 
 /**
  * Used to show the MonetaryAccounts that you can access. Currently the only

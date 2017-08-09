@@ -3,6 +3,7 @@ namespace bunq\Model;
 
 use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
+use bunq\Http\BunqResponse;
 
 /**
  * Once you have created an Installation and a DeviceServer with that Installation, then you are

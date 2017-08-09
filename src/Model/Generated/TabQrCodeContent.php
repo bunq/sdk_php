@@ -3,8 +3,8 @@ namespace bunq\Model\Generated;
 
 use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
+use bunq\Http\BunqResponse;
 use bunq\Model\BunqModel;
-use bunq\Model\BunqResponse;
 
 /**
  * This call returns the raw content of the QR code that links to this Tab.

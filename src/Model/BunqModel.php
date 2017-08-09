@@ -3,6 +3,7 @@
 namespace bunq\Model;
 
 use bunq\Exception\BunqException;
+use bunq\Http\BunqResponse;
 use bunq\Http\BunqResponseRaw;
 use bunq\Util\ModelUtil;
 use JsonSerializable;

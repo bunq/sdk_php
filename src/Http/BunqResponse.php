@@ -1,5 +1,5 @@
 <?php
-namespace bunq\Model;
+namespace bunq\Http;
 
 /**
  */
