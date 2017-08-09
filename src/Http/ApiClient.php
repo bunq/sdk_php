@@ -141,6 +141,41 @@ class ApiClient
     }
 
     /**
+     * @param string $uri
+     * @param mixed[]|string $body
+     * @param string[] $customHeaders
+     *
+     * @return BunqResponseRaw
+     */
+    public function post($uri, $body, array $customHeaders = [])
+    {
+        return $this->request(self::METHOD_POST, $uri, $body, $customHeaders);
+    }
+
+    /**
+     * @param string $uri
+     * @param mixed[]|string $body
+     * @param string[] $customHeaders
+     *
+     * @return BunqResponseRaw
+     */
+    public function put($uri, array $body = [], array $customHeaders = [])
+    {
+        return $this->request(self::METHOD_PUT, $uri, $body, $customHeaders);
+    }
+
+    /**
+     * @param string $uri
+     * @param string[] $customHeaders
+     *
+     * @return BunqResponseRaw
+     */
+    public function delete($uri, array $customHeaders = [])
+    {
+        return $this->request(self::METHOD_DELETE, $uri, [], $customHeaders);
+    }
+
+    /**
      * @param string $method
      * @param string $uri
      * @param mixed[][]|string $body
@@ -321,40 +356,5 @@ class ApiClient
             self::HEADER_REGION => [self::HEADER_CUSTOM_REGION_DEFAULT],
             self::HEADER_CLIENT_REQUEST_ID => [uniqid()],
         ];
-    }
-
-    /**
-     * @param string $uri
-     * @param mixed[]|string $body
-     * @param string[] $customHeaders
-     *
-     * @return BunqResponseRaw
-     */
-    public function post($uri, $body, array $customHeaders = [])
-    {
-        return $this->request(self::METHOD_POST, $uri, $body, $customHeaders);
-    }
-
-    /**
-     * @param string $uri
-     * @param mixed[]|string $body
-     * @param string[] $customHeaders
-     *
-     * @return BunqResponseRaw
-     */
-    public function put($uri, array $body = [], array $customHeaders = [])
-    {
-        return $this->request(self::METHOD_PUT, $uri, $body, $customHeaders);
-    }
-
-    /**
-     * @param string $uri
-     * @param string[] $customHeaders
-     *
-     * @return BunqResponseRaw
-     */
-    public function delete($uri, array $customHeaders = [])
-    {
-        return $this->request(self::METHOD_DELETE, $uri, [], $customHeaders);
     }
 }

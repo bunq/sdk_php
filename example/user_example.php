@@ -24,7 +24,7 @@ $apiContext = ApiContext::restore(ApiContext::FILENAME_CONFIG_DEFAULT);
 // Retrieve the active user.
 /** @var User[] $users */
 $users = User::listing($apiContext)->getValue();
-$user= $users[INDEX_FIRST]->getUserCompany();
+$user = $users[INDEX_FIRST]->getUserCompany();
 $userId = $user->getId();
 
 // Update the publicly visible name of your company.
