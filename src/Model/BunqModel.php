@@ -11,7 +11,6 @@ use ReflectionProperty;
 
 /**
  * Base class for all endpoints, responsible for parsing json received from the server.
- *
  */
 abstract class BunqModel implements JsonSerializable
 {
