@@ -82,8 +82,9 @@ class RequestInquiryTest extends BunqSdkTestBase
         $apiContext = static::getApiContext();
 
         $this->sendRequest($apiContext);
-        $requestResponseId = RequestResponse::listing($apiContext, static::$userId, static::$monetaryAccountId2)[
-            self::INDEX_FIRST]->getId();
+        /** @var RequestResponse[] $responses */
+        $responses = RequestResponse::listing($apiContext, static::$userId, static::$monetaryAccountId2)->getValue();
+        $requestResponseId = $responses[self::INDEX_FIRST]->getId();
         $this->acceptRequest($apiContext, $requestResponseId);
     }
 

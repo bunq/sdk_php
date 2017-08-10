@@ -3,8 +3,8 @@ namespace bunq\Model\Generated;
 
 use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
+use bunq\Http\BunqResponse;
 use bunq\Model\BunqModel;
-use Psr\Http\Message\StreamInterface;
 
 /**
  * This call returns the raw content of the QR code that links to this Tab.
@@ -40,18 +40,20 @@ class TabQrCodeContent extends BunqModel
      * @param string $tabUuid
      * @param string[] $customHeaders
      *
-     * @return string|StreamInterface
+     * @return BunqResponse<string>
      */
     public static function listing(ApiContext $apiContext, $userId, $monetaryAccountId, $cashRegisterId, $tabUuid, array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
 
-        return $apiClient->get(
+        $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_LISTING,
                 [$userId, $monetaryAccountId, $cashRegisterId, $tabUuid]
             ),
             $customHeaders
         );
+
+        return new BunqResponse($responseRaw->getBodyString(), $responseRaw->getHeaders());
     }
 }

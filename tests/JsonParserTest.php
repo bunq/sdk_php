@@ -1,7 +1,9 @@
 <?php
 namespace bunq\tests;
 
+use bunq\Http\BunqResponseRaw;
 use bunq\Model\BunqModel;
+use bunq\Http\BunqResponse;
 use bunq\Model\Generated\Object\Amount;
 use bunq\Model\Generated\UserCompany;
 use bunq\Model\Installation;
@@ -64,7 +66,13 @@ class JsonParserTest extends TestCase
      */
     public function testCreateIdFromJson()
     {
-        $id = $this->callPrivateStaticMethod(BunqModel::class, self::FUNCTION_PROCESS_FOR_ID, [self::JSON_ID]);
+        /** @var BunqResponse $bunqResponseId */
+        $bunqResponseId = $this->callPrivateStaticMethod(
+            BunqModel::class,
+            self::FUNCTION_PROCESS_FOR_ID,
+            [new BunqResponseRaw(self::JSON_ID, [])]
+        );
+        $id = $bunqResponseId->getValue();
 
         static::assertEquals(self::EXPECTED_ID, $id);
     }
@@ -74,7 +82,13 @@ class JsonParserTest extends TestCase
      */
     public function testCreateUuidFromJson()
     {
-        $uuid = $this->callPrivateStaticMethod(BunqModel::class, self::FUNCTION_PROCESS_FOR_UUID, [self::JSON_UUID]);
+        /** @var BunqResponse $bunqResponseUuid */
+        $bunqResponseUuid = $this->callPrivateStaticMethod(
+            BunqModel::class,
+            self::FUNCTION_PROCESS_FOR_UUID,
+            [new BunqResponseRaw(self::JSON_UUID, [])]
+        );
+        $uuid = $bunqResponseUuid->getValue();
 
         static::assertEquals(self::EXPECTED_UUID, $uuid);
     }
@@ -85,12 +99,14 @@ class JsonParserTest extends TestCase
     public function testCreateFromJson()
     {
         $userCompanyJson = FileUtil::getFileContents(__DIR__ . self::RESOURCE_USER_COMPANY_JSON);
-        /** @var UserCompany $userCompany */
-        $userCompany = $this->callPrivateStaticMethod(
+        /** @var BunqResponse $bunqResponseUserCompany */
+        $bunqResponseUserCompany = $this->callPrivateStaticMethod(
             UserCompany::class,
             self::FUNCTION_FROM_JSON,
-            [$userCompanyJson]
+            [new BunqResponseRaw($userCompanyJson, [])]
         );
+        /** @var UserCompany $userCompany */
+        $userCompany = $bunqResponseUserCompany->getValue();
 
         static::assertInstanceOf(UserCompany::class, $userCompany);
         static::assertEquals(self::EXPECTED_NAME_BUNQ, $userCompany->getName());
@@ -103,15 +119,18 @@ class JsonParserTest extends TestCase
      */
     public function testCreateClassFormJson()
     {
-        /** @var Installation $installation */
-        $installation = $this->callPrivateStaticMethod(
+        $installationJson = FileUtil::getFileContents(__DIR__ . self::RESOURCE_INSTALLATION_JSON);
+        /** @var BunqResponse $bunqResponseInstallation */
+        $bunqResponseInstallation = $this->callPrivateStaticMethod(
             BunqModel::class,
             self::FUNCTION_CLASS_FROM_JSON,
             [
                 Installation::class,
-                FileUtil::getFileContents(__DIR__ . self::RESOURCE_INSTALLATION_JSON),
+                new BunqResponseRaw($installationJson, []),
             ]
         );
+        /** @var Installation $installation */
+        $installation = $bunqResponseInstallation->getValue();
 
         static::assertInstanceOf(Installation::class, $installation);
         static::assertEquals(self::EXPECTED_INSTALLATION_ID, $installation->getId()->getId());

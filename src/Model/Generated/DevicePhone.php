@@ -15,6 +15,7 @@ class DevicePhone extends BunqModel
      */
     const FIELD_DESCRIPTION = 'description';
     const FIELD_PHONE_NUMBER = 'phone_number';
+    const FIELD_REMOVE_OLD_DEVICES = 'remove_old_devices';
 
     /**
      * Object type.

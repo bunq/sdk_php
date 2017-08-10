@@ -3,6 +3,7 @@ namespace bunq\Model\Generated;
 
 use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
+use bunq\Http\BunqResponse;
 use bunq\Model\BunqModel;
 
 /**
@@ -49,12 +50,12 @@ class Tab extends BunqModel
      * @param string $tabUuid
      * @param string[] $customHeaders
      *
-     * @return BunqModel|Tab
+     * @return BunqResponse<Tab>
      */
     public static function get(ApiContext $apiContext, $userId, $monetaryAccountId, $cashRegisterId, $tabUuid, array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
-        $response = $apiClient->get(
+        $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_READ,
                 [$userId, $monetaryAccountId, $cashRegisterId, $tabUuid]
@@ -62,7 +63,7 @@ class Tab extends BunqModel
             $customHeaders
         );
 
-        return static::fromJson($response);
+        return static::fromJson($responseRaw);
     }
 
     /**
@@ -77,12 +78,12 @@ class Tab extends BunqModel
      * @param int $cashRegisterId
      * @param string[] $customHeaders
      *
-     * @return BunqModel[]|Tab[]
+     * @return BunqResponse<BunqModel[]|Tab[]>
      */
     public static function listing(ApiContext $apiContext, $userId, $monetaryAccountId, $cashRegisterId, array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
-        $response = $apiClient->get(
+        $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_LISTING,
                 [$userId, $monetaryAccountId, $cashRegisterId]
@@ -90,7 +91,7 @@ class Tab extends BunqModel
             $customHeaders
         );
 
-        return static::fromJsonList($response);
+        return static::fromJsonList($responseRaw);
     }
 
     /**

@@ -27,9 +27,10 @@ $attachmentPublicHeadersMap = [
 ];
 
 // Create public attachment.
-$attachmentPublicUuid = AttachmentPublic::create($apiContext, $attachmentPublicBytes, $attachmentPublicHeadersMap);
+$attachmentPublicUuid = AttachmentPublic::create($apiContext, $attachmentPublicBytes, $attachmentPublicHeadersMap)
+    ->getValue();
 
 // Download the attachment again.
-$attachmentFile = AttachmentPublicContent::listing($apiContext, $attachmentPublicUuid);
+$attachmentFile = AttachmentPublicContent::listing($apiContext, $attachmentPublicUuid)->getValue();
 
 file_put_contents(__DIR__ . FILENAME_RESULT_ATTACHMENT, $attachmentFile);

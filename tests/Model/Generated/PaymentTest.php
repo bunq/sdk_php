@@ -120,7 +120,12 @@ class PaymentTest extends BunqSdkTestBase
             Payment::FIELD_DESCRIPTION => self::PAYMENT_DESCRIPTION,
         ];
 
-        static::$paymentId = Payment::create($apiContext, $requestMap, static::$userId, static::$monetaryAccountId);
+        static::$paymentId = Payment::create(
+            $apiContext,
+            $requestMap,
+            static::$userId,
+            static::$monetaryAccountId
+        )->getValue();
     }
 
     /**
@@ -139,7 +144,7 @@ class PaymentTest extends BunqSdkTestBase
             static::$userId,
             static::$monetaryAccountId,
             static::$paymentId
-        );
+        )->getValue();
         $messageMap = [
             ChatMessageText::FIELD_TEXT => self::PAYMENT_CHAT_TEXT_MESSAGE,
         ];

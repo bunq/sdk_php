@@ -13,7 +13,7 @@ use bunq\Util\BunqEnumApiEnvironmentType;
 use GuzzleHttp\Client;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Uri;
-use Psr\Http\Message\StreamInterface;
+use Psr\Http\Message\ResponseInterface;
 
 /**
  */
@@ -56,7 +56,7 @@ class ApiClient
     const HEADER_CUSTOM_REGION_DEFAULT = 'en_US';
 
     /**
-     * User agent.
+     * User agent constants.
      */
     const HEADER_USER_AGENT_BUNQ_SDK_DEFAULT = 'bunq-sdk-php/0.9.1';
 
@@ -81,6 +81,19 @@ class ApiClient
     const OPTION_DEBUG = 'debug';
     const OPTION_HANDLER = 'handler';
     const OPTION_VERIFY = 'verify';
+
+    /**
+     * HTTP methods to make calls.
+     */
+    const METHOD_GET = 'GET';
+    const METHOD_POST = 'POST';
+    const METHOD_PUT = 'PUT';
+    const METHOD_DELETE = 'DELETE';
+
+    /**
+     * Glue to connect multiple header values into one string.
+     */
+    const GLUE_HEADER_VALUE = ',';
 
     /** @var Client */
     protected $httpClient;
@@ -120,18 +133,83 @@ class ApiClient
      * @param string $uri
      * @param string[] $customHeaders
      *
-     * @return StreamInterface
+     * @return BunqResponseRaw
      */
     public function get($uri, array $customHeaders = [])
     {
+        return $this->request(self::METHOD_GET, $uri, [], $customHeaders);
+    }
+
+    /**
+     * @param string $uri
+     * @param mixed[]|string $body
+     * @param string[] $customHeaders
+     *
+     * @return BunqResponseRaw
+     */
+    public function post($uri, $body, array $customHeaders = [])
+    {
+        return $this->request(self::METHOD_POST, $uri, $body, $customHeaders);
+    }
+
+    /**
+     * @param string $uri
+     * @param mixed[]|string $body
+     * @param string[] $customHeaders
+     *
+     * @return BunqResponseRaw
+     */
+    public function put($uri, array $body = [], array $customHeaders = [])
+    {
+        return $this->request(self::METHOD_PUT, $uri, $body, $customHeaders);
+    }
+
+    /**
+     * @param string $uri
+     * @param string[] $customHeaders
+     *
+     * @return BunqResponseRaw
+     */
+    public function delete($uri, array $customHeaders = [])
+    {
+        return $this->request(self::METHOD_DELETE, $uri, [], $customHeaders);
+    }
+
+    /**
+     * @param string $method
+     * @param string $uri
+     * @param mixed[][]|string $body
+     * @param string[] $customHeaders
+     *
+     * @return BunqResponseRaw
+     */
+    private function request($method, $uri, $body, array $customHeaders)
+    {
         $this->initialize();
 
-        $response = $this->httpClient->get(
+        $response = $this->httpClient->request(
+            $method,
             $this->determineFullUri($uri),
-            $this->determineRequestOptions([], $customHeaders)
+            $this->determineRequestOptions($body, $customHeaders)
         );
 
-        return $response->getBody();
+        return $this->createBunqResponseRaw($response);
+    }
+
+    /**
+     * @param ResponseInterface $response
+     *
+     * @return BunqResponseRaw
+     */
+    private function createBunqResponseRaw($response)
+    {
+        $headers = [];
+
+        foreach ($response->getHeaders() as $headerKey => $headerValues) {
+            $headers[$headerKey] = join(self::GLUE_HEADER_VALUE, $headerValues);
+        }
+
+        return new BunqResponseRaw($response->getBody(), $headers);
     }
 
     /**
@@ -278,61 +356,5 @@ class ApiClient
             self::HEADER_REGION => [self::HEADER_CUSTOM_REGION_DEFAULT],
             self::HEADER_CLIENT_REQUEST_ID => [uniqid()],
         ];
-    }
-
-    /**
-     * @param string $uri
-     * @param mixed[]|string $body
-     * @param string[] $customHeaders
-     *
-     * @return StreamInterface
-     */
-    public function post($uri, $body, array $customHeaders = [])
-    {
-        $this->initialize();
-
-        $response = $this->httpClient->post(
-            $this->determineFullUri($uri),
-            $this->determineRequestOptions($body, $customHeaders)
-        );
-
-        return $response->getBody();
-    }
-
-    /**
-     * @param string $uri
-     * @param mixed[]|string $body
-     * @param string[] $customHeaders
-     *
-     * @return StreamInterface
-     */
-    public function put($uri, array $body = [], array $customHeaders = [])
-    {
-        $this->initialize();
-
-        $response = $this->httpClient->put(
-            $this->determineFullUri($uri),
-            $this->determineRequestOptions($body, $customHeaders)
-        );
-
-        return $response->getBody();
-    }
-
-    /**
-     * @param string $uri
-     * @param string[] $customHeaders
-     *
-     * @return StreamInterface
-     */
-    public function delete($uri, array $customHeaders = [])
-    {
-        $this->initialize();
-
-        $response = $this->httpClient->delete(
-            $this->determineFullUri($uri),
-            $this->determineRequestOptions([], $customHeaders)
-        );
-
-        return $response->getBody();
     }
 }

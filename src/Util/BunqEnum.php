@@ -20,6 +20,7 @@ abstract class BunqEnum
 
     /**
      * @param string $choice
+     *
      * @throws BunqException
      */
     public function __construct($choice)

@@ -56,8 +56,8 @@ class AttachmentPublicTest extends BunqSdkTestBase
             ApiClient::HEADER_ATTACHMENT_DESCRIPTION => static::$attachmentDescription,
         ];
 
-        $beforeUuid = AttachmentPublic::create(static::getApiContext(), $beforeBytes, $customHeadersMap);
-        $bytesAfter = AttachmentPublicContent::listing(static::getApiContext(), $beforeUuid);
+        $beforeUuid = AttachmentPublic::create(static::getApiContext(), $beforeBytes, $customHeadersMap)->getValue();
+        $bytesAfter = AttachmentPublicContent::listing(static::getApiContext(), $beforeUuid)->getValue();
 
         static::assertEquals($beforeBytes, $bytesAfter);
     }

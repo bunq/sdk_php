@@ -3,6 +3,7 @@ namespace bunq\Model\Generated;
 
 use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
+use bunq\Http\BunqResponse;
 use bunq\Model\BunqModel;
 use bunq\Model\Generated\Object\Amount;
 use bunq\Model\Generated\Object\BunqId;
@@ -189,12 +190,12 @@ class TabUsageMultiple extends BunqModel
      * @param int $cashRegisterId
      * @param string[] $customHeaders
      *
-     * @return string
+     * @return BunqResponse<string>
      */
     public static function create(ApiContext $apiContext, array $requestMap, $userId, $monetaryAccountId, $cashRegisterId, array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
-        $response = $apiClient->post(
+        $responseRaw = $apiClient->post(
             vsprintf(
                 self::ENDPOINT_URL_CREATE,
                 [$userId, $monetaryAccountId, $cashRegisterId]
@@ -203,7 +204,7 @@ class TabUsageMultiple extends BunqModel
             $customHeaders
         );
 
-        return static::processForUuid($response);
+        return static::processForUuid($responseRaw);
     }
 
     /**
@@ -222,12 +223,12 @@ class TabUsageMultiple extends BunqModel
      * @param string $tabUsageMultipleUuid
      * @param string[] $customHeaders
      *
-     * @return string
+     * @return BunqResponse<string>
      */
     public static function update(ApiContext $apiContext, array $requestMap, $userId, $monetaryAccountId, $cashRegisterId, $tabUsageMultipleUuid, array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
-        $response = $apiClient->put(
+        $responseRaw = $apiClient->put(
             vsprintf(
                 self::ENDPOINT_URL_UPDATE,
                 [$userId, $monetaryAccountId, $cashRegisterId, $tabUsageMultipleUuid]
@@ -236,7 +237,7 @@ class TabUsageMultiple extends BunqModel
             $customHeaders
         );
 
-        return static::processForUuid($response);
+        return static::processForUuid($responseRaw);
     }
 
     /**
@@ -249,17 +250,21 @@ class TabUsageMultiple extends BunqModel
      * @param int $monetaryAccountId
      * @param int $cashRegisterId
      * @param string $tabUsageMultipleUuid
+     *
+     * @return BunqResponse<null>
      */
     public static function delete(ApiContext $apiContext, $userId, $monetaryAccountId, $cashRegisterId, $tabUsageMultipleUuid, array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
-        $apiClient->delete(
+        $responseRaw = $apiClient->delete(
             vsprintf(
                 self::ENDPOINT_URL_DELETE,
                 [$userId, $monetaryAccountId, $cashRegisterId, $tabUsageMultipleUuid]
             ),
             $customHeaders
         );
+
+        return new BunqResponse(null, $responseRaw->getHeaders());
     }
 
     /**
@@ -272,12 +277,12 @@ class TabUsageMultiple extends BunqModel
      * @param string $tabUsageMultipleUuid
      * @param string[] $customHeaders
      *
-     * @return BunqModel|TabUsageMultiple
+     * @return BunqResponse<TabUsageMultiple>
      */
     public static function get(ApiContext $apiContext, $userId, $monetaryAccountId, $cashRegisterId, $tabUsageMultipleUuid, array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
-        $response = $apiClient->get(
+        $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_READ,
                 [$userId, $monetaryAccountId, $cashRegisterId, $tabUsageMultipleUuid]
@@ -285,7 +290,7 @@ class TabUsageMultiple extends BunqModel
             $customHeaders
         );
 
-        return static::fromJson($response);
+        return static::fromJson($responseRaw);
     }
 
     /**
@@ -300,12 +305,12 @@ class TabUsageMultiple extends BunqModel
      * @param int $cashRegisterId
      * @param string[] $customHeaders
      *
-     * @return BunqModel[]|TabUsageMultiple[]
+     * @return BunqResponse<BunqModel[]|TabUsageMultiple[]>
      */
     public static function listing(ApiContext $apiContext, $userId, $monetaryAccountId, $cashRegisterId, array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
-        $response = $apiClient->get(
+        $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_LISTING,
                 [$userId, $monetaryAccountId, $cashRegisterId]
@@ -313,7 +318,7 @@ class TabUsageMultiple extends BunqModel
             $customHeaders
         );
 
-        return static::fromJsonList($response, self::OBJECT_TYPE);
+        return static::fromJsonList($responseRaw, self::OBJECT_TYPE);
     }
 
     /**

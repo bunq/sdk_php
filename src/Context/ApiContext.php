@@ -112,10 +112,11 @@ class ApiContext
     {
         $keyPairClient = KeyPair::generate();
 
+        /** @var Installation $installation */
         $installation = Installation::create(
             $this,
             $keyPairClient->getPublicKey()->getKey()
-        );
+        )->getValue();
 
         $this->installationContext = new InstallationContext(
             $installation->getToken(),
@@ -145,8 +146,9 @@ class ApiContext
      */
     private function initializeSessionContext()
     {
-        $session = SessionServer::create($this);
-        $this->sessionContext = SessionContext::create($session);
+        /** @var SessionServer $sessionServer */
+        $sessionServer = SessionServer::create($this)->getValue();
+        $this->sessionContext = SessionContext::create($sessionServer);
     }
 
     /**

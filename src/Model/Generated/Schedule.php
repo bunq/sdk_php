@@ -3,6 +3,7 @@ namespace bunq\Model\Generated;
 
 use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
+use bunq\Http\BunqResponse;
 use bunq\Model\BunqModel;
 
 /**
@@ -32,12 +33,12 @@ class Schedule extends BunqModel
      * @param int $scheduleId
      * @param string[] $customHeaders
      *
-     * @return BunqModel|Schedule
+     * @return BunqResponse<Schedule>
      */
     public static function get(ApiContext $apiContext, $userId, $monetaryAccountId, $scheduleId, array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
-        $response = $apiClient->get(
+        $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_READ,
                 [$userId, $monetaryAccountId, $scheduleId]
@@ -45,7 +46,7 @@ class Schedule extends BunqModel
             $customHeaders
         );
 
-        return static::fromJson($response);
+        return static::fromJson($responseRaw);
     }
 
     /**
@@ -63,12 +64,12 @@ class Schedule extends BunqModel
      * @param int $monetaryAccountId
      * @param string[] $customHeaders
      *
-     * @return BunqModel[]|Schedule[]
+     * @return BunqResponse<BunqModel[]|Schedule[]>
      */
     public static function listing(ApiContext $apiContext, $userId, $monetaryAccountId, array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
-        $response = $apiClient->get(
+        $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_LISTING,
                 [$userId, $monetaryAccountId]
@@ -76,6 +77,6 @@ class Schedule extends BunqModel
             $customHeaders
         );
 
-        return static::fromJsonList($response, self::OBJECT_TYPE);
+        return static::fromJsonList($responseRaw, self::OBJECT_TYPE);
     }
 }

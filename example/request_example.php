@@ -26,14 +26,23 @@ const POINTER_TYPE_EMAIL = "EMAIL";
 const STATUS_REVOKED = 'REVOKED';
 const MESSAGE_REQUEST_STATUS = 'Request status: "%s".' . PHP_EOL;
 
+/**
+ * The first index in an array.
+ */
+const INDEX_FIRST = 0;
+
 // Restore the API context.
 $apiContext = ApiContext::restore(FILENAME_BUNQ_CONFIG);
 
 // Retrieve the active user.
-$userId = User::listing($apiContext)[INDEX_FIRST]->getUserCompany()->getId();
+/** @var User[] $users */
+$users = User::listing($apiContext)->getValue();
+$userId = $users[INDEX_FIRST]->getUserCompany()->getId();
 
 // Retrieve the first monetary account of the active user.
-$monetaryAccountId = MonetaryAccount::listing($apiContext, $userId)[INDEX_FIRST]->getMonetaryAccountBank()->getId();
+/** @var MonetaryAccount[] $monetaryAccounts */
+$monetaryAccounts = MonetaryAccount::listing($apiContext, $userId)->getValue();
+$monetaryAccountId = $monetaryAccounts[INDEX_FIRST]->getMonetaryAccountBank()->getId();
 
 $requestMap = [
     RequestInquiry::FIELD_AMOUNT_INQUIRED => new Amount(REQUEST_AMOUNT, CURRENCY_EUR),
@@ -42,9 +51,10 @@ $requestMap = [
     RequestInquiry::FIELD_ALLOW_BUNQME => true,
 ];
 
-$requestInquiryUpdated = RequestInquiry::create($apiContext, $requestMap, $userId, $monetaryAccountId);
+$requestInquiryUpdatedId = RequestInquiry::create($apiContext, $requestMap, $userId, $monetaryAccountId)->getValue();
 
-$request = RequestInquiry::get($apiContext, $userId, $monetaryAccountId, $requestInquiryUpdated);
+/** @var RequestInquiry $request */
+$request = RequestInquiry::get($apiContext, $userId, $monetaryAccountId, $requestInquiryUpdatedId)->getValue();
 
 vprintf(MESSAGE_REQUEST_STATUS, [$request->getStatus()]);
 
@@ -52,14 +62,14 @@ $requestMapUpdate = [
     RequestInquiry::FIELD_STATUS => STATUS_REVOKED,
 ];
 
-$requestInquiryUpdated = RequestInquiry::update(
+$requestInquiryUpdatedId = RequestInquiry::update(
     $apiContext,
     $requestMapUpdate,
     $userId,
     $monetaryAccountId,
-    $requestInquiryUpdated
-);
+    $requestInquiryUpdatedId
+)->getValue();
 
-$request = RequestInquiry::get($apiContext, $userId, $monetaryAccountId, $requestInquiryUpdated->getId());
+$request = RequestInquiry::get($apiContext, $userId, $monetaryAccountId, $requestInquiryUpdatedId->getId())->getValue();
 
 vprintf(MESSAGE_REQUEST_STATUS, [$request->getStatus()]);

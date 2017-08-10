@@ -3,6 +3,7 @@ namespace bunq\Model\Generated;
 
 use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
+use bunq\Http\BunqResponse;
 use bunq\Model\BunqModel;
 use bunq\Model\Generated\Object\Address;
 use bunq\Model\Generated\Object\Amount;
@@ -191,12 +192,12 @@ class TokenQrRequestIdeal extends BunqModel
      * @param int $userId
      * @param string[] $customHeaders
      *
-     * @return BunqModel|TokenQrRequestIdeal
+     * @return BunqResponse<BunqResponse<TokenQrRequestIdeal>>
      */
     public static function create(ApiContext $apiContext, array $requestMap, $userId, array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
-        $response = $apiClient->post(
+        $responseRaw = $apiClient->post(
             vsprintf(
                 self::ENDPOINT_URL_CREATE,
                 [$userId]
@@ -205,7 +206,7 @@ class TokenQrRequestIdeal extends BunqModel
             $customHeaders
         );
 
-        return static::fromJson($response);
+        return static::fromJson($responseRaw);
     }
 
     /**

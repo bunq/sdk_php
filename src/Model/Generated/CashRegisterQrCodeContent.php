@@ -3,8 +3,8 @@ namespace bunq\Model\Generated;
 
 use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
+use bunq\Http\BunqResponse;
 use bunq\Model\BunqModel;
-use Psr\Http\Message\StreamInterface;
 
 /**
  * Show the raw contents of a QR code. First you need to created a QR code
@@ -37,18 +37,20 @@ class CashRegisterQrCodeContent extends BunqModel
      * @param int $qrCodeId
      * @param string[] $customHeaders
      *
-     * @return string|StreamInterface
+     * @return BunqResponse<string>
      */
     public static function listing(ApiContext $apiContext, $userId, $monetaryAccountId, $cashRegisterId, $qrCodeId, array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
 
-        return $apiClient->get(
+        $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_LISTING,
                 [$userId, $monetaryAccountId, $cashRegisterId, $qrCodeId]
             ),
             $customHeaders
         );
+
+        return new BunqResponse($responseRaw->getBodyString(), $responseRaw->getHeaders());
     }
 }
