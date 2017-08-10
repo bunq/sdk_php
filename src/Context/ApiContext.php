@@ -39,6 +39,7 @@ class ApiContext
     const FIELD_SESSION_CONTEXT = 'session_context';
     const FIELD_ENVIRONMENT_TYPE = 'environment_type';
     const FIELD_API_KEY = 'api_key';
+    const FIELD_PROXY_URL = 'proxy_url';
 
     /**
      * Dummy ID to pass to Session endpoint.
@@ -67,6 +68,9 @@ class ApiContext
     /** @var InstallationContext */
     protected $installationContext;
 
+    /** @var string */
+    protected $proxyUrl;
+
     /**
      */
     private function __construct()
@@ -78,6 +82,7 @@ class ApiContext
      * @param string $apiKey
      * @param string $description
      * @param string[] $permittedIps
+     * @param string|null $proxyUrl
      *
      * @return static
      */
@@ -85,11 +90,13 @@ class ApiContext
         BunqEnumApiEnvironmentType $environmentType,
         $apiKey,
         $description,
-        array $permittedIps = []
+        array $permittedIps = [],
+        $proxyUrl = null
     ) {
         $apiContext = new static();
         $apiContext->environmentType = $environmentType;
         $apiContext->apiKey = $apiKey;
+        $apiContext->proxyUrl = $proxyUrl;
         $apiContext->initialize($description, $permittedIps);
 
         return $apiContext;
@@ -162,6 +169,13 @@ class ApiContext
         $contextJson = self::getContextJsonString($fileName);
         $apiContext->environmentType = new BunqEnumApiEnvironmentType($contextJson[self::FIELD_ENVIRONMENT_TYPE]);
         $apiContext->apiKey = $contextJson[self::FIELD_API_KEY];
+
+        if (isset($contextJson[self::FIELD_PROXY_URL])) {
+            $apiContext->proxyUrl = $contextJson[self::FIELD_PROXY_URL];
+        } else {
+            $apiContext->proxyUrl = null;
+        }
+
         $apiContext->installationContext = InstallationContext::restore($contextJson[self::FIELD_INSTALLATION_CONTEXT]);
         $apiContext->sessionContext = SessionContext::restore($contextJson[self::FIELD_SESSION_CONTEXT]);
 
@@ -294,6 +308,7 @@ class ApiContext
             self::FIELD_API_KEY => $this->getApiKey(),
             self::FIELD_ENVIRONMENT_TYPE => $this->getEnvironmentType()->getChoiceString(),
             self::FIELD_INSTALLATION_CONTEXT => $this->getInstallationContext(),
+            self::FIELD_PROXY_URL => $this->getProxy(),
             self::FIELD_SESSION_CONTEXT => $this->getSessionContext(),
         ];
 
@@ -330,6 +345,14 @@ class ApiContext
     public function getEnvironmentType()
     {
         return $this->environmentType;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getProxy()
+    {
+        return $this->proxyUrl;
     }
 
     /**

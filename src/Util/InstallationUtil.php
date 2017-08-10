@@ -28,6 +28,7 @@ final class InstallationUtil
      */
     const PROMPT_ENVIRONMENT = 'Choose an environment (SANDBOX/PRODUCTION): ';
     const PROMPT_API_KEY = 'Please provide your api key: ';
+    const PROMPT_PROXY_URL = 'Provide a proxy url, leave empty for no proxy (default: no proxy): ';
     const PROMPT_DESCRIPTION = 'Provide a device description: ';
     const PROMPT_PERMITTED_IPS = 'Provide a list of comma-separated IPs (or leave empty for current IP): ';
     const PROMPT_CONTEXT_FILE = 'Provide a file where the bunq api context will be saved (default: bunq.conf): ';
@@ -37,6 +38,7 @@ final class InstallationUtil
      */
     const PROPERTY_ENVIRONMENT_TYPE = 'environmentType';
     const PROPERTY_API_KEY = 'apiKey';
+    const PROPERTY_PROXY_URL = 'proxyUrl';
     const METHOD_INITIALIZE_INSTALLATION_CONTEXT = 'initializeInstallationContext';
     const METHOD_REGISTER_DEVICE = 'registerDevice';
     const METHOD_INITIALIZE_SESSION_CONTEXT = 'initializeSessionContext';
@@ -72,6 +74,9 @@ final class InstallationUtil
                 self::ERROR_EMPTY_API_KEY
             );
             static::setPrivateProperty($context, self::PROPERTY_API_KEY, $apiKey);
+
+            $proxyUrl = static::readLineOrNull(self::PROMPT_PROXY_URL);
+            static::setPrivateProperty($context, self::PROPERTY_PROXY_URL, $proxyUrl);
 
             $methodInitializeInstallationContext = static::createAccessibleReflectionMethod(
                 ApiContext::class,

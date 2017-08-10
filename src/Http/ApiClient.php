@@ -80,6 +80,7 @@ class ApiClient
     const OPTION_CURL = 'curl';
     const OPTION_DEBUG = 'debug';
     const OPTION_HANDLER = 'handler';
+    const OPTION_PROXY = 'proxy';
     const OPTION_VERIFY = 'verify';
 
     /**
@@ -237,7 +238,8 @@ class ApiClient
                     self::OPTION_VERIFY => true,
                     self::OPTION_CURL => [
                         CURLOPT_PINNEDPUBLICKEY => $this->determinePinnedServerPublicKey(),
-                    ]
+                    ],
+                    self::OPTION_PROXY => $this->apiContext->getProxy(),
                 ]
             );
         }
