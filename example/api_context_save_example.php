@@ -15,5 +15,6 @@ const API_KEY = '### Your API key ###'; // Insert your API key here.
 const DEVICE_DESCRIPTION = 'Server 1';
 const PERMITTED_IPS = [];
 
+date_default_timezone_set('UTC'); // When using php5.6
 $apiContext = ApiContext::create(BunqEnumApiEnvironmentType::SANDBOX(), API_KEY, DEVICE_DESCRIPTION);
 $apiContext->save(ApiContext::FILENAME_CONFIG_DEFAULT);

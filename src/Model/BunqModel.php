@@ -35,16 +35,22 @@ abstract class BunqModel implements \JsonSerializable
     /**
      * Type constants.
      */
-    const SCALAR_TYPES = [
-        self::SCALAR_TYPE_STRING => true,
-        self::SCALAR_TYPE_BOOL => true,
-        self::SCALAR_TYPE_INT => true,
-        self::SCALAR_TYPE_FLOAT => true
-    ];
     const SCALAR_TYPE_STRING = 'string';
     const SCALAR_TYPE_BOOL = 'bool';
     const SCALAR_TYPE_INT = 'int';
     const SCALAR_TYPE_FLOAT = 'float';
+
+    /**
+     * Set of the PHP scalar types. Mimicking a constant, and therefore should be used with self::.
+     *
+     * @var bool[]
+     */
+    private static $scalarTypes = [
+        self::SCALAR_TYPE_STRING => true,
+        self::SCALAR_TYPE_BOOL => true,
+        self::SCALAR_TYPE_INT => true,
+        self::SCALAR_TYPE_FLOAT => true,
+    ];
 
     /**
      * @var string[]
@@ -177,7 +183,7 @@ abstract class BunqModel implements \JsonSerializable
      */
     private static function isTypeScalar($type)
     {
-        return isset(self::SCALAR_TYPES[$type]);
+        return isset(self::$scalarTypes[$type]);
     }
 
     /**
