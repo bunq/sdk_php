@@ -3,6 +3,7 @@ namespace bunq\Model\Generated;
 
 use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
+use bunq\Http\BunqResponse;
 use bunq\Model\BunqModel;
 use bunq\Model\Generated\Object\Address;
 use bunq\Model\Generated\Object\Amount;
@@ -240,12 +241,12 @@ class UserCompany extends BunqModel
      * @param int $userCompanyId
      * @param string[] $customHeaders
      *
-     * @return BunqModel|UserCompany
+     * @return BunqResponse<UserCompany>
      */
     public static function get(ApiContext $apiContext, $userCompanyId, array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
-        $response = $apiClient->get(
+        $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_READ,
                 [$userCompanyId]
@@ -253,7 +254,7 @@ class UserCompany extends BunqModel
             $customHeaders
         );
 
-        return static::fromJson($response);
+        return static::fromJson($responseRaw);
     }
 
     /**
@@ -264,12 +265,12 @@ class UserCompany extends BunqModel
      * @param int $userCompanyId
      * @param string[] $customHeaders
      *
-     * @return int
+     * @return BunqResponse<int>
      */
     public static function update(ApiContext $apiContext, array $requestMap, $userCompanyId, array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
-        $response = $apiClient->put(
+        $responseRaw = $apiClient->put(
             vsprintf(
                 self::ENDPOINT_URL_UPDATE,
                 [$userCompanyId]
@@ -278,7 +279,7 @@ class UserCompany extends BunqModel
             $customHeaders
         );
 
-        return static::processForId($response);
+        return static::processForId($responseRaw);
     }
 
     /**

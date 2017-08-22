@@ -3,6 +3,7 @@ namespace bunq\Model\Generated;
 
 use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
+use bunq\Http\BunqResponse;
 use bunq\Model\BunqModel;
 
 /**
@@ -40,12 +41,12 @@ class MonetaryAccount extends BunqModel
      * @param int $monetaryAccountId
      * @param string[] $customHeaders
      *
-     * @return BunqModel|MonetaryAccount
+     * @return BunqResponse<MonetaryAccount>
      */
     public static function get(ApiContext $apiContext, $userId, $monetaryAccountId, array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
-        $response = $apiClient->get(
+        $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_READ,
                 [$userId, $monetaryAccountId]
@@ -53,7 +54,7 @@ class MonetaryAccount extends BunqModel
             $customHeaders
         );
 
-        return static::fromJson($response);
+        return static::fromJson($responseRaw);
     }
 
     /**
@@ -66,12 +67,12 @@ class MonetaryAccount extends BunqModel
      * @param int $userId
      * @param string[] $customHeaders
      *
-     * @return BunqModel[]|MonetaryAccount[]
+     * @return BunqResponse<BunqModel[]|MonetaryAccount[]>
      */
     public static function listing(ApiContext $apiContext, $userId, array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
-        $response = $apiClient->get(
+        $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_LISTING,
                 [$userId]
@@ -79,7 +80,7 @@ class MonetaryAccount extends BunqModel
             $customHeaders
         );
 
-        return static::fromJsonList($response);
+        return static::fromJsonList($responseRaw);
     }
 
     /**

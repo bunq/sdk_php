@@ -96,7 +96,7 @@ class TabUsageSingleTest extends BunqSdkTestBase
             static::$userId,
             static::$monetaryAccountId,
             static::$cashRegisterId
-        );
+        )->getValue();
     }
 
     /**

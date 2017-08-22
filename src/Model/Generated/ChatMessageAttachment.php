@@ -3,6 +3,7 @@ namespace bunq\Model\Generated;
 
 use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
+use bunq\Http\BunqResponse;
 use bunq\Model\BunqModel;
 
 /**
@@ -45,12 +46,12 @@ class ChatMessageAttachment extends BunqModel
      * @param int $chatConversationId
      * @param string[] $customHeaders
      *
-     * @return int
+     * @return BunqResponse<int>
      */
     public static function create(ApiContext $apiContext, array $requestMap, $userId, $chatConversationId, array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
-        $response = $apiClient->post(
+        $responseRaw = $apiClient->post(
             vsprintf(
                 self::ENDPOINT_URL_CREATE,
                 [$userId, $chatConversationId]
@@ -59,7 +60,7 @@ class ChatMessageAttachment extends BunqModel
             $customHeaders
         );
 
-        return static::processForId($response);
+        return static::processForId($responseRaw);
     }
 
     /**

@@ -72,11 +72,14 @@ const INDEX_FIRST = 0;
 $apiContext = ApiContext::restore(ApiContext::FILENAME_CONFIG_DEFAULT);
 
 // Retrieve the active user.
-// You can store this id to quickly retrieve the user at any time.
-$userId = User::listing($apiContext)[INDEX_FIRST]->getUserCompany()->getId();
+/** @var User[] $users */
+$users = User::listing($apiContext)->getValue();
+$userId = $users[INDEX_FIRST]->getUserCompany()->getId();
 
 // Retrieve the first monetary account of the active user.
-$monetaryAccountId = MonetaryAccount::listing($apiContext, $userId)[INDEX_FIRST]->getMonetaryAccountBank()->getId();
+/** @var MonetaryAccount[] $monetaryAccounts */
+$monetaryAccounts = MonetaryAccount::listing($apiContext, $userId)->getValue();
+$monetaryAccountId = $monetaryAccounts[INDEX_FIRST]->getMonetaryAccountBank()->getId();
 
 $attachmentPublicBytes = file_get_contents(__DIR__ . ATTACHMENT_FILENAME);
 $requestHeadersMap = [
@@ -86,14 +89,14 @@ $requestHeadersMap = [
 
 
 // Create a new public attachment.
-$attachmentPublicUuid = AttachmentPublic::create($apiContext, $attachmentPublicBytes, $requestHeadersMap);
+$attachmentPublicUuid = AttachmentPublic::create($apiContext, $attachmentPublicBytes, $requestHeadersMap)->getValue();
 
 $attachmentPublicUuidMap = [
     Avatar::FIELD_ATTACHMENT_PUBLIC_UUID => $attachmentPublicUuid,
 ];
 
 // Create a new avatar using the public attachment.
-$avatarUuid = Avatar::create($apiContext, $attachmentPublicUuidMap);
+$avatarUuid = Avatar::create($apiContext, $attachmentPublicUuidMap)->getValue();
 
 $geoLocation = new Geolocation();
 $geoLocation->setAltitude(GEOLOCATION_ALTITUDE);
@@ -108,7 +111,7 @@ $cashRegisterMap = [
     CashRegister::FIELD_STATUS => CASH_REGISTER_STATUS_PENDING_APPROVAL,
 ];
 
-$cashRegisterId = CashRegister::create($apiContext, $cashRegisterMap, $userId, $monetaryAccountId);
+$cashRegisterId = CashRegister::create($apiContext, $cashRegisterMap, $userId, $monetaryAccountId)->getValue();
 
 $attachmentTabBytes = file_get_contents(__DIR__ . ATTACHMENT_FILENAME);
 $requestHeadersMap = [
@@ -122,7 +125,7 @@ $attachmentTabId = AttachmentTab::create(
     $userId,
     $monetaryAccountId,
     $requestHeadersMap
-);
+)->getValue();
 
 $tabUsageSingleMap = [
     TabUsageSingle::FIELD_DESCRIPTION => TAB_USAGE_SINGLE_DESCRIPTION,
@@ -139,7 +142,7 @@ $tabUsageSingleUuid = TabUsageSingle::create(
     $userId,
     $monetaryAccountId,
     $cashRegisterId
-);
+)->getValue();
 
 $tabItemMap = [
     TabItemShop::FIELD_DESCRIPTION => TAB_ITEM_DESCRIPTION,
@@ -153,7 +156,7 @@ $tabItemId = TabItemShop::create(
     $monetaryAccountId,
     $cashRegisterId,
     $tabUsageSingleUuid
-);
+)->getValue();
 
 $tabUsageSingleMap = [
     TabUsageSingle::FIELD_STATUS => TAB_USAGE_SINGLE_STATUS_WAITING_FOR_PAYMENT,
@@ -169,7 +172,8 @@ TabUsageSingle::update(
     $tabUsageSingleUuid
 );
 
-$tabUsageSingleArray = TabUsageSingle::listing($apiContext, $userId, $monetaryAccountId, $cashRegisterId);
+/** @var TabUsageSingle[] $tabUsageSingleArray */
+$tabUsageSingleArray = TabUsageSingle::listing($apiContext, $userId, $monetaryAccountId, $cashRegisterId)->getValue();
 
 foreach ($tabUsageSingleArray as $tabUsageSingle) {
     vprintf(

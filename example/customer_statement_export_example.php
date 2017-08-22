@@ -32,10 +32,14 @@ const SECONDS_IN_WEEK = 604800;
 $apiContext = ApiContext::restore();
 
 // Retrieve the active user.
-$userId = User::listing($apiContext)[INDEX_FIRST]->getUserCompany()->getId();
+/** @var User[] $users */
+$users = User::listing($apiContext)->getValue();
+$userId = $users[INDEX_FIRST]->getUserCompany()->getId();
 
 // Retrieve the first monetary account of the active user.
-$monetaryAccountId = MonetaryAccount::listing($apiContext, $userId)[INDEX_FIRST]->getMonetaryAccountBank()->getId();
+/** @var MonetaryAccount[] $monetaryAccounts */
+$monetaryAccounts = MonetaryAccount::listing($apiContext, $userId)->getValue();
+$monetaryAccountId = $monetaryAccounts[INDEX_FIRST]->getMonetaryAccountBank()->getId();
 
 $dateStart = date(FORMAT_DATE, time() - SECONDS_IN_WEEK);
 $dateEnd = date(FORMAT_DATE);
@@ -48,7 +52,8 @@ $customerStatementMap = [
 ];
 
 // Create a new customer statement and retrieve it's id.
-$customerStatementId = CustomerStatementExport::create($apiContext, $customerStatementMap, $userId, $monetaryAccountId);
+$customerStatementId = CustomerStatementExport::create($apiContext, $customerStatementMap, $userId, $monetaryAccountId)
+    ->getValue();
 
 // Delete the customer statement.
 CustomerStatementExport::delete($apiContext, $userId, $monetaryAccountId, $customerStatementId);

@@ -3,10 +3,12 @@ namespace bunq\Model\Generated;
 
 use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
+use bunq\Http\BunqResponse;
 use bunq\Model\BunqModel;
 use bunq\Model\Generated\Object\CardCountryPermission;
 use bunq\Model\Generated\Object\CardLimit;
 use bunq\Model\Generated\Object\CardMagStripePermission;
+use bunq\Model\Generated\Object\CardPinAssignment;
 use bunq\Model\Generated\Object\LabelMonetaryAccount;
 
 /**
@@ -26,6 +28,8 @@ class Card extends BunqModel
     const FIELD_MAG_STRIPE_PERMISSION = 'mag_stripe_permission';
     const FIELD_COUNTRY_PERMISSION = 'country_permission';
     const FIELD_MONETARY_ACCOUNT_CURRENT_ID = 'monetary_account_current_id';
+    const FIELD_PIN_CODE_ASSIGNMENT = 'pin_code_assignment';
+    const FIELD_MONETARY_ACCOUNT_ID_FALLBACK = 'monetary_account_id_fallback';
 
     /**
      * Endpoint constants.
@@ -152,6 +156,13 @@ class Card extends BunqModel
     protected $labelMonetaryAccountCurrent;
 
     /**
+     * Array of Types, PINs, account IDs assigned to the card.
+     *
+     * @var CardPinAssignment
+     */
+    protected $pinCodeAssignment;
+
+    /**
      * Update the card details. Allow to change pin code, status, limits,
      * country permissions and the monetary account connected to the card. When
      * the card has been received, it can be also activated through this
@@ -163,13 +174,13 @@ class Card extends BunqModel
      * @param int $cardId
      * @param string[] $customHeaders
      *
-     * @return BunqModel|Card
+     * @return BunqResponse<BunqResponse<Card>>
      */
     public static function update(ApiContext $apiContext, array $requestMap, $userId, $cardId, array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
         $apiClient->enableEncryption();
-        $response = $apiClient->put(
+        $responseRaw = $apiClient->put(
             vsprintf(
                 self::ENDPOINT_URL_UPDATE,
                 [$userId, $cardId]
@@ -178,7 +189,7 @@ class Card extends BunqModel
             $customHeaders
         );
 
-        return static::fromJson($response);
+        return static::fromJson($responseRaw);
     }
 
     /**
@@ -189,12 +200,12 @@ class Card extends BunqModel
      * @param int $cardId
      * @param string[] $customHeaders
      *
-     * @return BunqModel|Card
+     * @return BunqResponse<Card>
      */
     public static function get(ApiContext $apiContext, $userId, $cardId, array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
-        $response = $apiClient->get(
+        $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_READ,
                 [$userId, $cardId]
@@ -202,7 +213,7 @@ class Card extends BunqModel
             $customHeaders
         );
 
-        return static::fromJson($response);
+        return static::fromJson($responseRaw);
     }
 
     /**
@@ -215,12 +226,12 @@ class Card extends BunqModel
      * @param int $userId
      * @param string[] $customHeaders
      *
-     * @return BunqModel[]|Card[]
+     * @return BunqResponse<BunqModel[]|Card[]>
      */
     public static function listing(ApiContext $apiContext, $userId, array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
-        $response = $apiClient->get(
+        $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_LISTING,
                 [$userId]
@@ -228,7 +239,7 @@ class Card extends BunqModel
             $customHeaders
         );
 
-        return static::fromJsonList($response, self::OBJECT_TYPE);
+        return static::fromJsonList($responseRaw, self::OBJECT_TYPE);
     }
 
     /**
@@ -506,5 +517,23 @@ class Card extends BunqModel
     public function setLabelMonetaryAccountCurrent(LabelMonetaryAccount $labelMonetaryAccountCurrent)
     {
         $this->labelMonetaryAccountCurrent = $labelMonetaryAccountCurrent;
+    }
+
+    /**
+     * Array of Types, PINs, account IDs assigned to the card.
+     *
+     * @return CardPinAssignment
+     */
+    public function getPinCodeAssignment()
+    {
+        return $this->pinCodeAssignment;
+    }
+
+    /**
+     * @param CardPinAssignment $pinCodeAssignment
+     */
+    public function setPinCodeAssignment(CardPinAssignment $pinCodeAssignment)
+    {
+        $this->pinCodeAssignment = $pinCodeAssignment;
     }
 }

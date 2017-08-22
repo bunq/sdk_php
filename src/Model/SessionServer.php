@@ -3,6 +3,7 @@ namespace bunq\Model;
 
 use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
+use bunq\Http\BunqResponse;
 use bunq\Model\Generated\UserCompany;
 use bunq\Model\Generated\UserPerson;
 
@@ -43,17 +44,17 @@ class SessionServer extends BunqModel
     /**
      * @param ApiContext $apiContext
      *
-     * @return BunqModel|SessionServer
+     * @return BunqResponse<SessionServer>
      */
     public static function create(ApiContext $apiContext)
     {
         $apiClient = new ApiClient($apiContext);
-        $response = $apiClient->post(
+        $responseRaw = $apiClient->post(
             self::ENDPOINT_URL_POST,
             [self::FIELD_SECRET => $apiContext->getApiKey()]
         );
 
-        return static::classFromJson(SessionServer::class, $response);
+        return static::classFromJson(SessionServer::class, $responseRaw);
     }
 
     /**

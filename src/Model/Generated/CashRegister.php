@@ -3,6 +3,7 @@ namespace bunq\Model\Generated;
 
 use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
+use bunq\Http\BunqResponse;
 use bunq\Model\BunqModel;
 use bunq\Model\Generated\Object\Avatar;
 use bunq\Model\Generated\Object\Geolocation;
@@ -119,12 +120,12 @@ class CashRegister extends BunqModel
      * @param int $monetaryAccountId
      * @param string[] $customHeaders
      *
-     * @return int
+     * @return BunqResponse<int>
      */
     public static function create(ApiContext $apiContext, array $requestMap, $userId, $monetaryAccountId, array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
-        $response = $apiClient->post(
+        $responseRaw = $apiClient->post(
             vsprintf(
                 self::ENDPOINT_URL_CREATE,
                 [$userId, $monetaryAccountId]
@@ -133,7 +134,7 @@ class CashRegister extends BunqModel
             $customHeaders
         );
 
-        return static::processForId($response);
+        return static::processForId($responseRaw);
     }
 
     /**
@@ -145,12 +146,12 @@ class CashRegister extends BunqModel
      * @param int $cashRegisterId
      * @param string[] $customHeaders
      *
-     * @return BunqModel|CashRegister
+     * @return BunqResponse<CashRegister>
      */
     public static function get(ApiContext $apiContext, $userId, $monetaryAccountId, $cashRegisterId, array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
-        $response = $apiClient->get(
+        $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_READ,
                 [$userId, $monetaryAccountId, $cashRegisterId]
@@ -158,7 +159,7 @@ class CashRegister extends BunqModel
             $customHeaders
         );
 
-        return static::fromJson($response);
+        return static::fromJson($responseRaw);
     }
 
     /**
@@ -173,12 +174,12 @@ class CashRegister extends BunqModel
      * @param int $cashRegisterId
      * @param string[] $customHeaders
      *
-     * @return int
+     * @return BunqResponse<int>
      */
     public static function update(ApiContext $apiContext, array $requestMap, $userId, $monetaryAccountId, $cashRegisterId, array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
-        $response = $apiClient->put(
+        $responseRaw = $apiClient->put(
             vsprintf(
                 self::ENDPOINT_URL_UPDATE,
                 [$userId, $monetaryAccountId, $cashRegisterId]
@@ -187,7 +188,7 @@ class CashRegister extends BunqModel
             $customHeaders
         );
 
-        return static::processForId($response);
+        return static::processForId($responseRaw);
     }
 
     /**
@@ -201,12 +202,12 @@ class CashRegister extends BunqModel
      * @param int $monetaryAccountId
      * @param string[] $customHeaders
      *
-     * @return BunqModel[]|CashRegister[]
+     * @return BunqResponse<BunqModel[]|CashRegister[]>
      */
     public static function listing(ApiContext $apiContext, $userId, $monetaryAccountId, array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
-        $response = $apiClient->get(
+        $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_LISTING,
                 [$userId, $monetaryAccountId]
@@ -214,7 +215,7 @@ class CashRegister extends BunqModel
             $customHeaders
         );
 
-        return static::fromJsonList($response, self::OBJECT_TYPE);
+        return static::fromJsonList($responseRaw, self::OBJECT_TYPE);
     }
 
     /**

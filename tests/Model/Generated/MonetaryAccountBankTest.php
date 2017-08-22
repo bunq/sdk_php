@@ -57,7 +57,12 @@ class MonetaryAccountBankTest extends BunqSdkTestBase
                 MonetaryAccountBank::FIELD_REASON_DESCRIPTION => self::REASON_DESCRIPTION,
             ];
 
-            MonetaryAccountBank::update($apiContext, $requestMap, static::$userId, static::$monetaryAccountBankToCloseId);
+            MonetaryAccountBank::update(
+                $apiContext,
+                $requestMap,
+                static::$userId,
+                static::$monetaryAccountBankToCloseId
+            );
         }
     }
 
@@ -74,6 +79,10 @@ class MonetaryAccountBankTest extends BunqSdkTestBase
             MonetaryAccountBank::FIELD_DESCRIPTION => uniqid(self::PREFIX_MONETARY_ACCOUNT_DESCRIPTION),
         ];
 
-        static::$monetaryAccountBankToCloseId = MonetaryAccountBank::create($apiContext, $requestMap, static::$userId);
+        static::$monetaryAccountBankToCloseId = MonetaryAccountBank::create(
+            $apiContext,
+            $requestMap,
+            static::$userId
+        )->getValue();
     }
 }

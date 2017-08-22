@@ -3,6 +3,7 @@ namespace bunq\Model\Generated;
 
 use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
+use bunq\Http\BunqResponse;
 use bunq\Model\BunqModel;
 
 /**
@@ -71,12 +72,12 @@ class RequestInquiryChat extends BunqModel
      * @param int $requestInquiryId
      * @param string[] $customHeaders
      *
-     * @return int
+     * @return BunqResponse<int>
      */
     public static function create(ApiContext $apiContext, array $requestMap, $userId, $monetaryAccountId, $requestInquiryId, array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
-        $response = $apiClient->post(
+        $responseRaw = $apiClient->post(
             vsprintf(
                 self::ENDPOINT_URL_CREATE,
                 [$userId, $monetaryAccountId, $requestInquiryId]
@@ -85,7 +86,7 @@ class RequestInquiryChat extends BunqModel
             $customHeaders
         );
 
-        return static::processForId($response);
+        return static::processForId($responseRaw);
     }
 
     /**
@@ -99,12 +100,12 @@ class RequestInquiryChat extends BunqModel
      * @param int $requestInquiryChatId
      * @param string[] $customHeaders
      *
-     * @return BunqModel|RequestInquiryChat
+     * @return BunqResponse<BunqResponse<RequestInquiryChat>>
      */
     public static function update(ApiContext $apiContext, array $requestMap, $userId, $monetaryAccountId, $requestInquiryId, $requestInquiryChatId, array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
-        $response = $apiClient->put(
+        $responseRaw = $apiClient->put(
             vsprintf(
                 self::ENDPOINT_URL_UPDATE,
                 [$userId, $monetaryAccountId, $requestInquiryId, $requestInquiryChatId]
@@ -113,7 +114,7 @@ class RequestInquiryChat extends BunqModel
             $customHeaders
         );
 
-        return static::fromJson($response);
+        return static::fromJson($responseRaw);
     }
 
     /**
@@ -128,12 +129,12 @@ class RequestInquiryChat extends BunqModel
      * @param int $requestInquiryId
      * @param string[] $customHeaders
      *
-     * @return BunqModel[]|RequestInquiryChat[]
+     * @return BunqResponse<BunqModel[]|RequestInquiryChat[]>
      */
     public static function listing(ApiContext $apiContext, $userId, $monetaryAccountId, $requestInquiryId, array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
-        $response = $apiClient->get(
+        $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_LISTING,
                 [$userId, $monetaryAccountId, $requestInquiryId]
@@ -141,7 +142,7 @@ class RequestInquiryChat extends BunqModel
             $customHeaders
         );
 
-        return static::fromJsonList($response, self::OBJECT_TYPE);
+        return static::fromJsonList($responseRaw, self::OBJECT_TYPE);
     }
 
     /**

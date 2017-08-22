@@ -31,10 +31,14 @@ const INDEX_FIRST = 0;
 $apiContext = ApiContext::restore(ApiContext::FILENAME_CONFIG_DEFAULT);
 
 // Retrieve the active user.
-$userId = User::listing($apiContext)[INDEX_FIRST]->getUserCompany()->getId();
+/** @var User[] $users */
+$users = User::listing($apiContext)->getValue();
+$userId = $users[INDEX_FIRST]->getUserCompany()->getId();
 
 // Retrieve the first monetary account of the active user.
-$monetaryAccountId = MonetaryAccount::listing($apiContext, $userId)[INDEX_FIRST]->getMonetaryAccountBank()->getId();
+/** @var MonetaryAccount[] $monetaryAccounts */
+$monetaryAccounts = MonetaryAccount::listing($apiContext, $userId)->getValue();
+$monetaryAccountId = $monetaryAccounts[INDEX_FIRST]->getMonetaryAccountBank()->getId();
 
 // Create a payments map.
 $payments = [
@@ -48,10 +52,12 @@ $payments = [
 ];
 
 // Create a new payment batch and retrieve it's id.
-$paymentBatchId = PaymentBatch::create($apiContext, $payments, $userId, $monetaryAccountId);
+$paymentBatchId = PaymentBatch::create($apiContext, $payments, $userId, $monetaryAccountId)->getValue();
 
 // Retrieve all payments in the payment batch.
-$payments = PaymentBatch::get($apiContext, $userId, $monetaryAccountId, $paymentBatchId)->getPayments();
+/** @var PaymentBatch $paymentBatch */
+$paymentBatch = PaymentBatch::get($apiContext, $userId, $monetaryAccountId, $paymentBatchId)->getValue();
+$payments = $paymentBatch->getPayments();
 
 // Print the recipient's name and the description of the payment.
 vprintf(

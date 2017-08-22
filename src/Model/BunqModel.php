@@ -1,17 +1,18 @@
 <?php
-
 namespace bunq\Model;
 
 use bunq\Exception\BunqException;
+use bunq\Http\BunqResponse;
+use bunq\Http\BunqResponseRaw;
 use bunq\Util\ModelUtil;
+use JsonSerializable;
 use ReflectionClass;
 use ReflectionProperty;
 
 /**
  * Base class for all endpoints, responsible for parsing json received from the server.
- *
  */
-abstract class BunqModel implements \JsonSerializable
+abstract class BunqModel implements JsonSerializable
 {
     /**
      * Error constants.
@@ -35,16 +36,22 @@ abstract class BunqModel implements \JsonSerializable
     /**
      * Type constants.
      */
-    const SCALAR_TYPES = [
-        self::SCALAR_TYPE_STRING => true,
-        self::SCALAR_TYPE_BOOL => true,
-        self::SCALAR_TYPE_INT => true,
-        self::SCALAR_TYPE_FLOAT => true
-    ];
     const SCALAR_TYPE_STRING = 'string';
     const SCALAR_TYPE_BOOL = 'bool';
     const SCALAR_TYPE_INT = 'int';
     const SCALAR_TYPE_FLOAT = 'float';
+
+    /**
+     * Set of the PHP scalar types. Mimicking a constant, and therefore should be used with self::.
+     *
+     * @var bool[]
+     */
+    private static $scalarTypes = [
+        self::SCALAR_TYPE_STRING => true,
+        self::SCALAR_TYPE_BOOL => true,
+        self::SCALAR_TYPE_INT => true,
+        self::SCALAR_TYPE_FLOAT => true,
+    ];
 
     /**
      * @var string[]
@@ -52,16 +59,18 @@ abstract class BunqModel implements \JsonSerializable
     protected static $fieldNameOverrideMap = [];
 
     /**
-     * @param string $json
+     * @param BunqResponseRaw $responseRaw
      * @param string $wrapper
      *
-     * @return BunqModel[]
+     * @return BunqResponse
      */
-    protected static function fromJsonList($json, $wrapper = null)
+    protected static function fromJsonList(BunqResponseRaw $responseRaw, $wrapper = null)
     {
+        $json = $responseRaw->getBodyString();
         $array = ModelUtil::determineResponseArray($json);
+        $value = static::createListFromResponseArray($array, $wrapper);
 
-        return static::createListFromResponseArray($array, $wrapper);
+        return new BunqResponse($value, $responseRaw->getHeaders());
     }
 
     /**
@@ -169,59 +178,57 @@ abstract class BunqModel implements \JsonSerializable
     }
 
     /**
-     * Determine if a type is scalar.
-     *
      * @param string $type
      *
      * @return bool
      */
     private static function isTypeScalar($type)
     {
-        return isset(self::SCALAR_TYPES[$type]);
+        return isset(self::$scalarTypes[$type]);
     }
 
     /**
      * @param string $class
-     * @param string $json
+     * @param BunqResponseRaw $responseRaw
      *
-     * @return BunqModel
+     * @return BunqResponse
      */
-    protected static function classFromJson($class, $json)
+    protected static function classFromJson($class, BunqResponseRaw $responseRaw)
     {
         assert(is_subclass_of($class, BunqModel::class));
         /** @var BunqModel $class */
 
+        $json = $responseRaw->getBodyString();
         $responseArray = ModelUtil::determineResponseArray($json);
         $formattedResponseArray = ModelUtil::formatResponseArray($responseArray);
+        $value = $class::createFromResponseArray($formattedResponseArray);
 
-        return $class::createFromResponseArray($formattedResponseArray);
+        return new BunqResponse($value, $responseRaw->getHeaders());
     }
 
     /**
-     * Process json and retrieve the ID.
+     * @param BunqResponseRaw $responseRaw
      *
-     * @param string $json
-     *
-     * @return int
+     * @return BunqResponse
      */
-    protected static function processForId($json)
+    protected static function processForId(BunqResponseRaw $responseRaw)
     {
         /** @var Id $id */
-        $id = Id::fromJson($json);
+        $id = Id::fromJson($responseRaw)->getValue();
 
-        return $id->getId();
+        return new BunqResponse($id->getId(), $responseRaw->getHeaders());
     }
 
     /**
-     * @param string $json
+     * @param BunqResponseRaw $responseRaw
      *
-     * @return BunqModel
-     * @throws BunqException
+     * @return BunqResponse
+     * @throws BunqException   When the result is not expected.
      */
-    protected static function fromJson($json)
+    protected static function fromJson(BunqResponseRaw $responseRaw)
     {
+        $json = $responseRaw->getBodyString();
         $responseArray = ModelUtil::determineResponseArray($json);
-
         $bunqModelList = [];
 
         foreach ($responseArray as $modelPropertyArray) {
@@ -230,7 +237,7 @@ abstract class BunqModel implements \JsonSerializable
         }
 
         if (count($bunqModelList) === self::COUNT_ONE) {
-            return current($bunqModelList);
+            return new BunqResponse(current($bunqModelList), $responseRaw->getHeaders());
         } else {
             throw new BunqException(self::ERROR_UNEXPECTED_RESULT, [count($bunqModelList)]);
         }
@@ -247,16 +254,16 @@ abstract class BunqModel implements \JsonSerializable
     }
 
     /**
-     * @param $json
+     * @param BunqResponseRaw $responseRaw
      *
-     * @return string
+     * @return BunqResponse
      */
-    protected static function processForUuid($json)
+    protected static function processForUuid(BunqResponseRaw $responseRaw)
     {
         /** @var Uuid $uuid */
-        $uuid = Uuid::fromJson($json);
+        $uuid = Uuid::fromJson($responseRaw)->getValue();
 
-        return $uuid->getUuid();
+        return new BunqResponse($uuid->getUuid(), $responseRaw->getHeaders());
     }
 
     /**

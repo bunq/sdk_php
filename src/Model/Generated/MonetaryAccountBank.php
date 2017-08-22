@@ -3,6 +3,7 @@ namespace bunq\Model\Generated;
 
 use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
+use bunq\Http\BunqResponse;
 use bunq\Model\BunqModel;
 use bunq\Model\Generated\Object\Amount;
 use bunq\Model\Generated\Object\Avatar;
@@ -211,12 +212,12 @@ class MonetaryAccountBank extends BunqModel
      * @param int $userId
      * @param string[] $customHeaders
      *
-     * @return int
+     * @return BunqResponse<int>
      */
     public static function create(ApiContext $apiContext, array $requestMap, $userId, array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
-        $response = $apiClient->post(
+        $responseRaw = $apiClient->post(
             vsprintf(
                 self::ENDPOINT_URL_CREATE,
                 [$userId]
@@ -225,7 +226,7 @@ class MonetaryAccountBank extends BunqModel
             $customHeaders
         );
 
-        return static::processForId($response);
+        return static::processForId($responseRaw);
     }
 
     /**
@@ -236,12 +237,12 @@ class MonetaryAccountBank extends BunqModel
      * @param int $monetaryAccountBankId
      * @param string[] $customHeaders
      *
-     * @return BunqModel|MonetaryAccountBank
+     * @return BunqResponse<MonetaryAccountBank>
      */
     public static function get(ApiContext $apiContext, $userId, $monetaryAccountBankId, array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
-        $response = $apiClient->get(
+        $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_READ,
                 [$userId, $monetaryAccountBankId]
@@ -249,7 +250,7 @@ class MonetaryAccountBank extends BunqModel
             $customHeaders
         );
 
-        return static::fromJson($response);
+        return static::fromJson($responseRaw);
     }
 
     /**
@@ -261,12 +262,12 @@ class MonetaryAccountBank extends BunqModel
      * @param int $monetaryAccountBankId
      * @param string[] $customHeaders
      *
-     * @return int
+     * @return BunqResponse<int>
      */
     public static function update(ApiContext $apiContext, array $requestMap, $userId, $monetaryAccountBankId, array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
-        $response = $apiClient->put(
+        $responseRaw = $apiClient->put(
             vsprintf(
                 self::ENDPOINT_URL_UPDATE,
                 [$userId, $monetaryAccountBankId]
@@ -275,7 +276,7 @@ class MonetaryAccountBank extends BunqModel
             $customHeaders
         );
 
-        return static::processForId($response);
+        return static::processForId($responseRaw);
     }
 
     /**
@@ -288,12 +289,12 @@ class MonetaryAccountBank extends BunqModel
      * @param int $userId
      * @param string[] $customHeaders
      *
-     * @return BunqModel[]|MonetaryAccountBank[]
+     * @return BunqResponse<BunqModel[]|MonetaryAccountBank[]>
      */
     public static function listing(ApiContext $apiContext, $userId, array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
-        $response = $apiClient->get(
+        $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_LISTING,
                 [$userId]
@@ -301,7 +302,7 @@ class MonetaryAccountBank extends BunqModel
             $customHeaders
         );
 
-        return static::fromJsonList($response, self::OBJECT_TYPE);
+        return static::fromJsonList($responseRaw, self::OBJECT_TYPE);
     }
 
     /**

@@ -34,10 +34,14 @@ const INDEX_FIRST = 0;
 $apiContext = ApiContext::restore(FILENAME_BUNQ_CONFIG);
 
 // Retrieve the active user.
-$userId = User::listing($apiContext)[INDEX_FIRST]->getUserCompany()->getId();
+/** @var User[] $users */
+$users = User::listing($apiContext)->getValue();
+$userId = $users[INDEX_FIRST]->getUserCompany()->getId();
 
 // Retrieve the first monetary account of the active user.
-$monetaryAccountId = MonetaryAccount::listing($apiContext, $userId)[INDEX_FIRST]->getMonetaryAccountBank()->getId();
+/** @var MonetaryAccount[] $monetaryAccounts */
+$monetaryAccounts = MonetaryAccount::listing($apiContext, $userId)->getValue();
+$monetaryAccountId = $monetaryAccounts[INDEX_FIRST]->getMonetaryAccountBank()->getId();
 
 // Create a payment map.
 $paymentMap = [
@@ -47,9 +51,10 @@ $paymentMap = [
 ];
 
 // Create a new payment and retrieve it's id.
-$paymentId = Payment::create($apiContext, $paymentMap, $userId, $monetaryAccountId);
+$paymentId = Payment::create($apiContext, $paymentMap, $userId, $monetaryAccountId)->getValue();
 
 // Retrieve the payment.
-$payment = Payment::get($apiContext, $userId, $monetaryAccountId, $paymentId);
+/** @var Payment $payment */
+$payment = Payment::get($apiContext, $userId, $monetaryAccountId, $paymentId)->getValue();
 
 vprintf(MESSAGE_MONETARY_ACCOUNT_NAME, [$payment->getAlias()->getDisplayName()]);

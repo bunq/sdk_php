@@ -25,7 +25,7 @@ class ApiContext
     /**
      * Error constants.
      */
-    const ERROR_COULD_NOT_RESTORE_THE_API_CONTEXT = 'Could not restore the API context at "%s".';
+    const ERROR_CONTEXT_FILE_NOT_FOUND = 'Could not find the API context file "%s".';
     const ERROR_COULD_NOT_SAVE_THE_API_CONTEXT = 'Could not save the API context to "%s".';
     const ERROR_CONTEXT_NOT_INSTALLED = 'Context not yet installed. Please finish installation first.';
     const ERROR_CONTEXT_HAS_NO_SESSION = 'Context doesn\'t have a session yet. Please finish installation first.';
@@ -39,6 +39,7 @@ class ApiContext
     const FIELD_SESSION_CONTEXT = 'session_context';
     const FIELD_ENVIRONMENT_TYPE = 'environment_type';
     const FIELD_API_KEY = 'api_key';
+    const FIELD_PROXY_URL = 'proxy_url';
 
     /**
      * Dummy ID to pass to Session endpoint.
@@ -67,6 +68,9 @@ class ApiContext
     /** @var InstallationContext */
     protected $installationContext;
 
+    /** @var string */
+    protected $proxyUrl;
+
     /**
      */
     private function __construct()
@@ -78,6 +82,7 @@ class ApiContext
      * @param string $apiKey
      * @param string $description
      * @param string[] $permittedIps
+     * @param string|null $proxyUrl
      *
      * @return static
      */
@@ -85,11 +90,13 @@ class ApiContext
         BunqEnumApiEnvironmentType $environmentType,
         $apiKey,
         $description,
-        array $permittedIps = []
+        array $permittedIps = [],
+        $proxyUrl = null
     ) {
         $apiContext = new static();
         $apiContext->environmentType = $environmentType;
         $apiContext->apiKey = $apiKey;
+        $apiContext->proxyUrl = $proxyUrl;
         $apiContext->initialize($description, $permittedIps);
 
         return $apiContext;
@@ -112,10 +119,11 @@ class ApiContext
     {
         $keyPairClient = KeyPair::generate();
 
+        /** @var Installation $installation */
         $installation = Installation::create(
             $this,
             $keyPairClient->getPublicKey()->getKey()
-        );
+        )->getValue();
 
         $this->installationContext = new InstallationContext(
             $installation->getToken(),
@@ -145,8 +153,9 @@ class ApiContext
      */
     private function initializeSessionContext()
     {
-        $session = SessionServer::create($this);
-        $this->sessionContext = SessionContext::create($session);
+        /** @var SessionServer $sessionServer */
+        $sessionServer = SessionServer::create($this)->getValue();
+        $this->sessionContext = SessionContext::create($sessionServer);
     }
 
     /**
@@ -156,10 +165,23 @@ class ApiContext
      */
     public static function restore($fileName = self::FILENAME_CONFIG_DEFAULT)
     {
+        $contextJsonString = self::getContextJsonString($fileName);
+
+        return static::fromJson($contextJsonString);
+    }
+
+    /**
+     * @param string $jsonString
+     *
+     * @return ApiContext
+     */
+    public static function fromJson($jsonString)
+    {
         $apiContext = new static();
-        $contextJson = self::getContextJsonString($fileName);
+        $contextJson = \GuzzleHttp\json_decode($jsonString, true);
         $apiContext->environmentType = new BunqEnumApiEnvironmentType($contextJson[self::FIELD_ENVIRONMENT_TYPE]);
         $apiContext->apiKey = $contextJson[self::FIELD_API_KEY];
+        $apiContext->proxyUrl = static::restoreProxyUrl($contextJson);
         $apiContext->installationContext = InstallationContext::restore($contextJson[self::FIELD_INSTALLATION_CONTEXT]);
         $apiContext->sessionContext = SessionContext::restore($contextJson[self::FIELD_SESSION_CONTEXT]);
 
@@ -167,22 +189,34 @@ class ApiContext
     }
 
     /**
+     * @param string[][] $contextJson
+     *
+     * @return string|null
+     */
+    private static function restoreProxyUrl(array $contextJson)
+    {
+        if (isset($contextJson[self::FIELD_PROXY_URL])) {
+            return $contextJson[self::FIELD_PROXY_URL];
+        } else {
+            return null;
+        }
+    }
+
+    /**
      * @param $fileName
      *
-     * @return string[][]
-     * @throws BunqException
+     * @return string
+     * @throws BunqException When the context couldn't be loaded from the given location.
      */
     private static function getContextJsonString($fileName)
     {
-        $contextFile = FileUtil::getFileContents($fileName);
+        $jsonString = FileUtil::getFileContents($fileName);
 
-        if ($contextFile === false) {
-            throw new BunqException(self::ERROR_COULD_NOT_RESTORE_THE_API_CONTEXT, [$fileName]);
+        if ($jsonString === false) {
+            throw new BunqException(self::ERROR_CONTEXT_FILE_NOT_FOUND, [$fileName]);
         }
 
-        $contextJson = \GuzzleHttp\json_decode($contextFile, true);
-
-        return $contextJson;
+        return $jsonString;
     }
 
     /**
@@ -274,14 +308,23 @@ class ApiContext
     /**
      * @param string $fileName
      *
-     * @throws BunqException
+     * @throws BunqException When the context couldn't be saved to the given location.
      */
-    public function save($fileName = null)
+    public function save($fileName = self::FILENAME_CONFIG_DEFAULT)
     {
-        if (is_null($fileName)) {
-            $fileName = self::FILENAME_CONFIG_DEFAULT;
-        }
+        $saved = file_put_contents($fileName, $this->toJson());
 
+        if ($saved === false) {
+            throw new BunqException(self::ERROR_COULD_NOT_SAVE_THE_API_CONTEXT, [$fileName]);
+        }
+    }
+
+    /**
+     * @return string
+     * @throws BunqException When the context is incomplete.
+     */
+    public function toJson()
+    {
         if (is_null($this->getInstallationContext())) {
             throw new BunqException(self::ERROR_CONTEXT_NOT_INSTALLED);
         } elseif (is_null($this->getSessionContext())) {
@@ -292,10 +335,11 @@ class ApiContext
             self::FIELD_API_KEY => $this->getApiKey(),
             self::FIELD_ENVIRONMENT_TYPE => $this->getEnvironmentType()->getChoiceString(),
             self::FIELD_INSTALLATION_CONTEXT => $this->getInstallationContext(),
+            self::FIELD_PROXY_URL => $this->getProxy(),
             self::FIELD_SESSION_CONTEXT => $this->getSessionContext(),
         ];
 
-        $this->saveContext($fileName, $context);
+        return \GuzzleHttp\json_encode($context, JSON_PRETTY_PRINT);
     }
 
     /**
@@ -331,17 +375,10 @@ class ApiContext
     }
 
     /**
-     * @param string $fileName
-     * @param string[][] $context
-     *
-     * @throws BunqException
+     * @return string|null
      */
-    private function saveContext($fileName, array $context)
+    public function getProxy()
     {
-        $saved = file_put_contents($fileName, \GuzzleHttp\json_encode($context, JSON_PRETTY_PRINT));
-
-        if ($saved === false) {
-            throw new BunqException(self::ERROR_COULD_NOT_SAVE_THE_API_CONTEXT, [$fileName]);
-        }
+        return $this->proxyUrl;
     }
 }

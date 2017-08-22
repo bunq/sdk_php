@@ -3,6 +3,7 @@ namespace bunq\Model\Generated;
 
 use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
+use bunq\Http\BunqResponse;
 use bunq\Model\BunqModel;
 
 /**
@@ -36,16 +37,20 @@ class ShareInviteBankAmountUsed extends BunqModel
      * @param int $monetaryAccountId
      * @param int $shareInviteBankInquiryId
      * @param int $shareInviteBankAmountUsedId
+     *
+     * @return BunqResponse<null>
      */
     public static function delete(ApiContext $apiContext, $userId, $monetaryAccountId, $shareInviteBankInquiryId, $shareInviteBankAmountUsedId, array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
-        $apiClient->delete(
+        $responseRaw = $apiClient->delete(
             vsprintf(
                 self::ENDPOINT_URL_DELETE,
                 [$userId, $monetaryAccountId, $shareInviteBankInquiryId, $shareInviteBankAmountUsedId]
             ),
             $customHeaders
         );
+
+        return new BunqResponse(null, $responseRaw->getHeaders());
     }
 }

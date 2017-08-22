@@ -78,7 +78,7 @@ class DraftShareInviteBankQrCodeContentTest extends BunqSdkTestBase
             DraftShareInviteBank::FIELD_DRAFT_SHARE_SETTINGS => new DraftShareInviteBankEntry($shareDetail),
         ];
 
-        return DraftShareInviteBank::create($apiContext, $draftMap, static::$userId);
+        return DraftShareInviteBank::create($apiContext, $draftMap, static::$userId)->getValue();
     }
 
     /**
@@ -89,6 +89,6 @@ class DraftShareInviteBankQrCodeContentTest extends BunqSdkTestBase
      */
     private function getQrContent($apiContext, $draftShareId)
     {
-        return DraftShareInviteBankQrCodeContent::listing($apiContext, static::$userId, $draftShareId);
+        return DraftShareInviteBankQrCodeContent::listing($apiContext, static::$userId, $draftShareId)->getValue();
     }
 }

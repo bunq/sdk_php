@@ -11,7 +11,7 @@ require_once __DIR__ . '/../vendor/autoload.php';
  *
  * You can also run `vendor/bin/bunq-install` from your command line.
  */
-const API_KEY = '### Your API key ###'; // Insert your API key here.
+const API_KEY = '### YOUR_API_KEY ###'; // Insert your API key here.
 const DEVICE_DESCRIPTION = 'Server 1';
 const PERMITTED_IPS = [];
 

@@ -16,12 +16,14 @@ const INDEX_FIRST = 0;
 $apiContext = ApiContext::restore(ApiContext::FILENAME_CONFIG_DEFAULT);
 
 // Retrieve the active user.
-// You can store this id to quickly retrieve the user at any time.
-$userId = User::listing($apiContext)[INDEX_FIRST]->getUserCompany()->getId();
+/** @var User[] $users */
+$users = User::listing($apiContext)->getValue();
+$userId = $users[INDEX_FIRST]->getUserCompany()->getId();
 
 // Retrieve all monetary accounts of the active user.
-$monetaryAccountList = MonetaryAccount::listing($apiContext, $userId);
+/** @var MonetaryAccount[] $monetaryAccounts */
+$monetaryAccounts = MonetaryAccount::listing($apiContext, $userId)->getValue();
 
-foreach ($monetaryAccountList as $monetaryAccount) {
-    printf($monetaryAccount->getMonetaryAccountBank()->getDescription() . PHP_EOL);
+foreach ($monetaryAccounts as $monetaryAccount) {
+    echo $monetaryAccount->getMonetaryAccountBank()->getDescription() . PHP_EOL;
 }

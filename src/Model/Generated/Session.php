@@ -3,6 +3,7 @@ namespace bunq\Model\Generated;
 
 use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
+use bunq\Http\BunqResponse;
 use bunq\Model\BunqModel;
 
 /**
@@ -28,16 +29,20 @@ class Session extends BunqModel
      * @param ApiContext $apiContext
      * @param string[] $customHeaders
      * @param int $sessionId
+     *
+     * @return BunqResponse<null>
      */
     public static function delete(ApiContext $apiContext, $sessionId, array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
-        $apiClient->delete(
+        $responseRaw = $apiClient->delete(
             vsprintf(
                 self::ENDPOINT_URL_DELETE,
                 [$sessionId]
             ),
             $customHeaders
         );
+
+        return new BunqResponse(null, $responseRaw->getHeaders());
     }
 }

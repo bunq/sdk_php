@@ -3,6 +3,7 @@ namespace bunq\Model\Generated;
 
 use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
+use bunq\Http\BunqResponse;
 use bunq\Model\BunqModel;
 
 /**
@@ -46,12 +47,12 @@ class User extends BunqModel
      * @param int $userId
      * @param string[] $customHeaders
      *
-     * @return BunqModel|User
+     * @return BunqResponse<User>
      */
     public static function get(ApiContext $apiContext, $userId, array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
-        $response = $apiClient->get(
+        $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_READ,
                 [$userId]
@@ -59,7 +60,7 @@ class User extends BunqModel
             $customHeaders
         );
 
-        return static::fromJson($response);
+        return static::fromJson($responseRaw);
     }
 
     /**
@@ -71,12 +72,12 @@ class User extends BunqModel
      * @param ApiContext $apiContext
      * @param string[] $customHeaders
      *
-     * @return BunqModel[]|User[]
+     * @return BunqResponse<BunqModel[]|User[]>
      */
     public static function listing(ApiContext $apiContext, array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
-        $response = $apiClient->get(
+        $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_LISTING,
                 []
@@ -84,7 +85,7 @@ class User extends BunqModel
             $customHeaders
         );
 
-        return static::fromJsonList($response);
+        return static::fromJsonList($responseRaw);
     }
 
     /**

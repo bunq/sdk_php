@@ -3,6 +3,7 @@ namespace bunq\Model\Generated;
 
 use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
+use bunq\Http\BunqResponse;
 use bunq\Model\BunqModel;
 use bunq\Model\Generated\Object\Attachment;
 
@@ -75,13 +76,13 @@ class AttachmentTab extends BunqModel
      * @param int $monetaryAccountId
      * @param string[] $customHeaders
      *
-     * @return int
+     * @return BunqResponse<int>
      */
     public static function create(ApiContext $apiContext, $requestBytes, $userId, $monetaryAccountId, array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
         $apiClient->enableBinary();
-        $response = $apiClient->post(
+        $responseRaw = $apiClient->post(
             vsprintf(
                 self::ENDPOINT_URL_CREATE,
                 [$userId, $monetaryAccountId]
@@ -90,7 +91,7 @@ class AttachmentTab extends BunqModel
             $customHeaders
         );
 
-        return static::processForId($response);
+        return static::processForId($responseRaw);
     }
 
     /**
@@ -103,12 +104,12 @@ class AttachmentTab extends BunqModel
      * @param int $attachmentTabId
      * @param string[] $customHeaders
      *
-     * @return BunqModel|AttachmentTab
+     * @return BunqResponse<AttachmentTab>
      */
     public static function get(ApiContext $apiContext, $userId, $monetaryAccountId, $attachmentTabId, array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
-        $response = $apiClient->get(
+        $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_READ,
                 [$userId, $monetaryAccountId, $attachmentTabId]
@@ -116,7 +117,7 @@ class AttachmentTab extends BunqModel
             $customHeaders
         );
 
-        return static::fromJson($response);
+        return static::fromJson($responseRaw);
     }
 
     /**

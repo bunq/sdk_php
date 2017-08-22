@@ -3,6 +3,7 @@ namespace bunq\Model\Generated;
 
 use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
+use bunq\Http\BunqResponse;
 use bunq\Model\BunqModel;
 
 /**
@@ -41,12 +42,12 @@ class InstallationServerPublicKey extends BunqModel
      * @param int $installationId
      * @param string[] $customHeaders
      *
-     * @return BunqModel[]|InstallationServerPublicKey[]
+     * @return BunqResponse<BunqModel[]|InstallationServerPublicKey[]>
      */
     public static function listing(ApiContext $apiContext, $installationId, array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
-        $response = $apiClient->get(
+        $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_LISTING,
                 [$installationId]
@@ -54,7 +55,7 @@ class InstallationServerPublicKey extends BunqModel
             $customHeaders
         );
 
-        return static::fromJsonList($response, self::OBJECT_TYPE);
+        return static::fromJsonList($responseRaw, self::OBJECT_TYPE);
     }
 
     /**

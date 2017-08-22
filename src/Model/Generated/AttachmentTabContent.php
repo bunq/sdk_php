@@ -3,8 +3,8 @@ namespace bunq\Model\Generated;
 
 use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
+use bunq\Http\BunqResponse;
 use bunq\Model\BunqModel;
-use Psr\Http\Message\StreamInterface;
 
 /**
  * Fetch the raw content of a tab attachment with given ID. The raw content
@@ -36,18 +36,20 @@ class AttachmentTabContent extends BunqModel
      * @param int $attachmentTabId
      * @param string[] $customHeaders
      *
-     * @return string|StreamInterface
+     * @return BunqResponse<string>
      */
     public static function listing(ApiContext $apiContext, $userId, $monetaryAccountId, $attachmentTabId, array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
 
-        return $apiClient->get(
+        $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_LISTING,
                 [$userId, $monetaryAccountId, $attachmentTabId]
             ),
             $customHeaders
         );
+
+        return new BunqResponse($responseRaw->getBodyString(), $responseRaw->getHeaders());
     }
 }

@@ -3,6 +3,7 @@ namespace bunq\Model\Generated;
 
 use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
+use bunq\Http\BunqResponse;
 use bunq\Model\BunqModel;
 
 /**
@@ -37,12 +38,12 @@ class ScheduleUser extends BunqModel
      * @param int $userId
      * @param string[] $customHeaders
      *
-     * @return BunqModel[]|ScheduleUser[]
+     * @return BunqResponse<BunqModel[]|ScheduleUser[]>
      */
     public static function listing(ApiContext $apiContext, $userId, array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
-        $response = $apiClient->get(
+        $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_LISTING,
                 [$userId]
@@ -50,6 +51,6 @@ class ScheduleUser extends BunqModel
             $customHeaders
         );
 
-        return static::fromJsonList($response, self::OBJECT_TYPE);
+        return static::fromJsonList($responseRaw, self::OBJECT_TYPE);
     }
 }

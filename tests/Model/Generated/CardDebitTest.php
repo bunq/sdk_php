@@ -50,14 +50,12 @@ class CardDebitTest extends BunqSdkTestBase
     {
         parent::setUpBeforeClass();
         static::$userId = TestConfig::getUserId();
-        static::$nameOnCard =
-            CardName::listing(
-                static::getApiContext(),
-                static::$userId
-            )[self::INDEX_FIRST]->getPossibleCardNameArray();
-        static::$alias =
-            User::listing(static::getApiContext())[self::INDEX_FIRST]->getUserCompany()->getAlias(
-            )[self::INDEX_FIRST];
+        /** @var CardName[] $cardNamesAllowed */
+        $cardNamesAllowed = CardName::listing(static::getApiContext(), static::$userId)->getValue();
+        static::$nameOnCard = $cardNamesAllowed[self::INDEX_FIRST]->getPossibleCardNameArray();
+        /** @var User[] $usersAccessible */
+        $usersAccessible = User::listing(static::getApiContext())->getValue();
+        static::$alias = $usersAccessible[self::INDEX_FIRST]->getUserCompany()->getAlias()[self::INDEX_FIRST];
     }
 
     /**
@@ -74,8 +72,10 @@ class CardDebitTest extends BunqSdkTestBase
             CardDebit::FIELD_PIN_CODE => self::CARD_PIN_CODE,
             CardDebit::FIELD_NAME_ON_CARD => static::$nameOnCard[self::INDEX_FIRST],
         ];
-        $cardDebit = CardDebit::create($apiContext, $cardDebitMap, static::$userId);
-        $card = Card::get($apiContext, static::$userId, $cardDebit->getId());
+        /** @var CardDebit $cardDebit */
+        $cardDebit = CardDebit::create($apiContext, $cardDebitMap, static::$userId)->getValue();
+        /** @var Card $card */
+        $card = Card::get($apiContext, static::$userId, $cardDebit->getId())->getValue();
 
         static::assertEquals($cardDebit->getNameOnCard(), $card->getNameOnCard());
         static::assertEquals($cardDebit->getCreated(), $card->getCreated());

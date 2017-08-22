@@ -32,9 +32,16 @@ const INDEX_FIRST = 0;
 // Restore the API context.
 $apiContext = ApiContext::restore(ApiContext::FILENAME_CONFIG_DEFAULT);
 
-$userId = User::listing($apiContext)[INDEX_FIRST]->getUserCompany()->getId();
 
-$monetaryAccount = MonetaryAccount::listing($apiContext, $userId)[INDEX_FIRST]->getMonetaryAccountBank();
+// Retrieve the active user.
+/** @var User[] $users */
+$users = User::listing($apiContext)->getValue();
+$userId = $users[INDEX_FIRST]->getUserCompany()->getId();
+
+// Retrieve the first monetary account of the active user.
+/** @var MonetaryAccount[] $monetaryAccounts */
+$monetaryAccounts = MonetaryAccount::listing($apiContext, $userId)->getValue();
+$monetaryAccount = $monetaryAccounts[INDEX_FIRST]->getMonetaryAccountBank();
 
 $aliasList = $monetaryAccount->getAlias();
 $monetaryAccountAlias = null;
@@ -55,10 +62,11 @@ $cardDebitMap = [
 ];
 
 // Create a new card for this user.
-$cardId = CardDebit::create($apiContext, $cardDebitMap, $userId);
+$cardId = CardDebit::create($apiContext, $cardDebitMap, $userId)->getValue();
 
 // List all cards for this user.
-$cards = Card::listing($apiContext, $userId);
+/** @var Card[] $cards */
+$cards = Card::listing($apiContext, $userId)->getValue();
 
 // Print information for each card.
 foreach ($cards as $card) {
