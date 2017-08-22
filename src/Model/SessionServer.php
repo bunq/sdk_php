@@ -3,6 +3,7 @@ namespace bunq\Model;
 
 use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
+use bunq\Http\BunqResponse;
 use bunq\Model\Generated\UserCompany;
 use bunq\Model\Generated\UserPerson;
 
