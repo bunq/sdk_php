@@ -206,7 +206,7 @@ class ApiContext
      * @param $fileName
      *
      * @return string
-     * @throws BunqException If could not
+     * @throws BunqException If could not find the file to get the string from.
      */
     private static function getContextJsonString($fileName)
     {
