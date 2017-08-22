@@ -206,7 +206,7 @@ class ApiContext
      * @param $fileName
      *
      * @return string
-     * @throws BunqException If could not find the file to get the string from.
+     * @throws BunqException When the context couldn't be loaded from the given location.
      */
     private static function getContextJsonString($fileName)
     {
@@ -308,7 +308,7 @@ class ApiContext
     /**
      * @param string $fileName
      *
-     * @throws BunqException When could not save the context to the given location.
+     * @throws BunqException When the context couldn't be saved to the given location.
      */
     public function save($fileName = self::FILENAME_CONFIG_DEFAULT)
     {
