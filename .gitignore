@@ -64,6 +64,7 @@ modules.xml
 
 # bunq context file
 bunq.conf
+context-save-restore-test.conf
 example/result_attachment.jpg
 bunq-test.conf
 connectQr.png

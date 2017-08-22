@@ -1,5 +1,4 @@
 <?php
-
 namespace bunq\Model;
 
 use bunq\Exception\BunqException;
