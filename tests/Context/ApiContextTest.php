@@ -16,11 +16,6 @@ class ApiContextTest extends BunqSdkTestBase
     const CONTEXT_FILE_PATH_TEST = __DIR__ . '/context-save-restore-test.conf';
 
     /**
-     * @var ApiContext
-     */
-    private static $apiContext;
-
-    /**
      */
     public static function setUpBeforeClass()
     {
