@@ -4,6 +4,7 @@ namespace bunq\Model;
 use bunq\Exception\BunqException;
 use bunq\Http\BunqResponse;
 use bunq\Http\BunqResponseRaw;
+use bunq\Http\Pagination;
 use bunq\Util\ModelUtil;
 use JsonSerializable;
 use ReflectionClass;
@@ -19,6 +20,12 @@ abstract class BunqModel implements JsonSerializable
      */
     const ERROR_PROPERTY_DOES_NOT_EXIST = 'Property "%s" does not exist in "%s"' . PHP_EOL;
     const ERROR_UNEXPECTED_RESULT = 'Unexpected number of results "%d", expected "1".';
+
+    /**
+     * Field constants.
+     */
+    const FIELD_RESPONSE = 'Response';
+    const FIELD_PAGINATION = 'Pagination';
 
     /**
      * Regex constants.
@@ -67,10 +74,12 @@ abstract class BunqModel implements JsonSerializable
     protected static function fromJsonList(BunqResponseRaw $responseRaw, $wrapper = null)
     {
         $json = $responseRaw->getBodyString();
-        $array = ModelUtil::determineResponseArray($json);
-        $value = static::createListFromResponseArray($array, $wrapper);
+        $responseArray = ModelUtil::deserializeResponseArray($json);
+        $response = $responseArray[self::FIELD_RESPONSE];
+        $value = static::createListFromResponseArray($response, $wrapper);
+        $pagination = Pagination::restore($responseArray[self::FIELD_PAGINATION]);
 
-        return new BunqResponse($value, $responseRaw->getHeaders());
+        return new BunqResponse($value, $responseRaw->getHeaders(), $pagination);
     }
 
     /**
@@ -199,8 +208,8 @@ abstract class BunqModel implements JsonSerializable
         /** @var BunqModel $class */
 
         $json = $responseRaw->getBodyString();
-        $responseArray = ModelUtil::determineResponseArray($json);
-        $formattedResponseArray = ModelUtil::formatResponseArray($responseArray);
+        $response = ModelUtil::deserializeResponseArray($json)[self::FIELD_RESPONSE];
+        $formattedResponseArray = ModelUtil::formatResponseArray($response);
         $value = $class::createFromResponseArray($formattedResponseArray);
 
         return new BunqResponse($value, $responseRaw->getHeaders());
@@ -228,10 +237,10 @@ abstract class BunqModel implements JsonSerializable
     protected static function fromJson(BunqResponseRaw $responseRaw)
     {
         $json = $responseRaw->getBodyString();
-        $responseArray = ModelUtil::determineResponseArray($json);
+        $response = ModelUtil::deserializeResponseArray($json)[self::FIELD_RESPONSE];
         $bunqModelList = [];
 
-        foreach ($responseArray as $modelPropertyArray) {
+        foreach ($response as $modelPropertyArray) {
             $value = self::determineJsonResponseValue($modelPropertyArray);
             $bunqModelList[] = static::createFromResponseArray($value);
         }

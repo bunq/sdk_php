@@ -34,19 +34,20 @@ class AttachmentTabContent extends BunqModel
      * @param int $userId
      * @param int $monetaryAccountId
      * @param int $attachmentTabId
+     * @param string[] $params
      * @param string[] $customHeaders
      *
      * @return BunqResponse<string>
      */
-    public static function listing(ApiContext $apiContext, $userId, $monetaryAccountId, $attachmentTabId, array $customHeaders = [])
+    public static function listing(ApiContext $apiContext, $userId, $monetaryAccountId, $attachmentTabId, array $params = [], array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
-
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_LISTING,
                 [$userId, $monetaryAccountId, $attachmentTabId]
             ),
+            $params,
             $customHeaders
         );
 

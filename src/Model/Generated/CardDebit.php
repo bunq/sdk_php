@@ -7,6 +7,8 @@ use bunq\Http\BunqResponse;
 use bunq\Model\BunqModel;
 use bunq\Model\Generated\Object\CardCountryPermission;
 use bunq\Model\Generated\Object\CardLimit;
+use bunq\Model\Generated\Object\CardPinAssignment;
+use bunq\Model\Generated\Object\LabelMonetaryAccount;
 use bunq\Model\Generated\Object\LabelUser;
 
 /**
@@ -26,6 +28,8 @@ class CardDebit extends BunqModel
     const FIELD_PIN_CODE = 'pin_code';
     const FIELD_ALIAS = 'alias';
     const FIELD_TYPE = 'type';
+    const FIELD_PIN_CODE_ASSIGNMENT = 'pin_code_assignment';
+    const FIELD_MONETARY_ACCOUNT_ID_FALLBACK = 'monetary_account_id_fallback';
 
     /**
      * Endpoint constants.
@@ -59,6 +63,13 @@ class CardDebit extends BunqModel
     protected $updated;
 
     /**
+     * The public UUID of the card.
+     *
+     * @var string
+     */
+    protected $publicUuid;
+
+    /**
      * The second line of text on the card
      *
      * @var string
@@ -71,6 +82,13 @@ class CardDebit extends BunqModel
      * @var string
      */
     protected $nameOnCard;
+
+    /**
+     * The last 4 digits of the PAN of the card.
+     *
+     * @var string
+     */
+    protected $primaryAccountNumberFourDigit;
 
     /**
      * The status to set for the card. After ordering the card it will be
@@ -111,11 +129,42 @@ class CardDebit extends BunqModel
     protected $countryPermission;
 
     /**
+     * The monetary account this card was ordered on and the label user that
+     * owns the card.
+     *
+     * @var LabelMonetaryAccount
+     */
+    protected $labelMonetaryAccountOrdered;
+
+    /**
+     * The monetary account that this card is currently linked to and the label
+     * user viewing it.
+     *
+     * @var LabelMonetaryAccount
+     */
+    protected $labelMonetaryAccountCurrent;
+
+    /**
      * The label for the user who requested the card.
      *
      * @var LabelUser
      */
     protected $alias;
+
+    /**
+     * Array of Types, PINs, account IDs assigned to the card.
+     *
+     * @var CardPinAssignment[]
+     */
+    protected $pinCodeAssignment;
+
+    /**
+     * ID of the MA to be used as fallback for this card if insufficient
+     * balance. Fallback account is removed if not supplied.
+     *
+     * @var int
+     */
+    protected $monetaryAccountIdFallback;
 
     /**
      * Create a new debit card request.
@@ -198,6 +247,24 @@ class CardDebit extends BunqModel
     }
 
     /**
+     * The public UUID of the card.
+     *
+     * @return string
+     */
+    public function getPublicUuid()
+    {
+        return $this->publicUuid;
+    }
+
+    /**
+     * @param string $publicUuid
+     */
+    public function setPublicUuid($publicUuid)
+    {
+        $this->publicUuid = $publicUuid;
+    }
+
+    /**
      * The second line of text on the card
      *
      * @return string
@@ -231,6 +298,24 @@ class CardDebit extends BunqModel
     public function setNameOnCard($nameOnCard)
     {
         $this->nameOnCard = $nameOnCard;
+    }
+
+    /**
+     * The last 4 digits of the PAN of the card.
+     *
+     * @return string
+     */
+    public function getPrimaryAccountNumberFourDigit()
+    {
+        return $this->primaryAccountNumberFourDigit;
+    }
+
+    /**
+     * @param string $primaryAccountNumberFourDigit
+     */
+    public function setPrimaryAccountNumberFourDigit($primaryAccountNumberFourDigit)
+    {
+        $this->primaryAccountNumberFourDigit = $primaryAccountNumberFourDigit;
     }
 
     /**
@@ -327,6 +412,44 @@ class CardDebit extends BunqModel
     }
 
     /**
+     * The monetary account this card was ordered on and the label user that
+     * owns the card.
+     *
+     * @return LabelMonetaryAccount
+     */
+    public function getLabelMonetaryAccountOrdered()
+    {
+        return $this->labelMonetaryAccountOrdered;
+    }
+
+    /**
+     * @param LabelMonetaryAccount $labelMonetaryAccountOrdered
+     */
+    public function setLabelMonetaryAccountOrdered(LabelMonetaryAccount $labelMonetaryAccountOrdered)
+    {
+        $this->labelMonetaryAccountOrdered = $labelMonetaryAccountOrdered;
+    }
+
+    /**
+     * The monetary account that this card is currently linked to and the label
+     * user viewing it.
+     *
+     * @return LabelMonetaryAccount
+     */
+    public function getLabelMonetaryAccountCurrent()
+    {
+        return $this->labelMonetaryAccountCurrent;
+    }
+
+    /**
+     * @param LabelMonetaryAccount $labelMonetaryAccountCurrent
+     */
+    public function setLabelMonetaryAccountCurrent(LabelMonetaryAccount $labelMonetaryAccountCurrent)
+    {
+        $this->labelMonetaryAccountCurrent = $labelMonetaryAccountCurrent;
+    }
+
+    /**
      * The label for the user who requested the card.
      *
      * @return LabelUser
@@ -342,5 +465,42 @@ class CardDebit extends BunqModel
     public function setAlias(LabelUser $alias)
     {
         $this->alias = $alias;
+    }
+
+    /**
+     * Array of Types, PINs, account IDs assigned to the card.
+     *
+     * @return CardPinAssignment[]
+     */
+    public function getPinCodeAssignment()
+    {
+        return $this->pinCodeAssignment;
+    }
+
+    /**
+     * @param CardPinAssignment[] $pinCodeAssignment
+     */
+    public function setPinCodeAssignment(array$pinCodeAssignment)
+    {
+        $this->pinCodeAssignment = $pinCodeAssignment;
+    }
+
+    /**
+     * ID of the MA to be used as fallback for this card if insufficient
+     * balance. Fallback account is removed if not supplied.
+     *
+     * @return int
+     */
+    public function getMonetaryAccountIdFallback()
+    {
+        return $this->monetaryAccountIdFallback;
+    }
+
+    /**
+     * @param int $monetaryAccountIdFallback
+     */
+    public function setMonetaryAccountIdFallback($monetaryAccountIdFallback)
+    {
+        $this->monetaryAccountIdFallback = $monetaryAccountIdFallback;
     }
 }

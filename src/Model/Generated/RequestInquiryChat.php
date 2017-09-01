@@ -127,11 +127,12 @@ class RequestInquiryChat extends BunqModel
      * @param int $userId
      * @param int $monetaryAccountId
      * @param int $requestInquiryId
+     * @param string[] $params
      * @param string[] $customHeaders
      *
      * @return BunqResponse<BunqModel[]|RequestInquiryChat[]>
      */
-    public static function listing(ApiContext $apiContext, $userId, $monetaryAccountId, $requestInquiryId, array $customHeaders = [])
+    public static function listing(ApiContext $apiContext, $userId, $monetaryAccountId, $requestInquiryId, array $params = [], array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(
@@ -139,6 +140,7 @@ class RequestInquiryChat extends BunqModel
                 self::ENDPOINT_URL_LISTING,
                 [$userId, $monetaryAccountId, $requestInquiryId]
             ),
+            $params,
             $customHeaders
         );
 

@@ -34,19 +34,20 @@ class AttachmentConversationContent extends BunqModel
      * @param int $userId
      * @param int $chatConversationId
      * @param int $attachmentId
+     * @param string[] $params
      * @param string[] $customHeaders
      *
      * @return BunqResponse<string>
      */
-    public static function listing(ApiContext $apiContext, $userId, $chatConversationId, $attachmentId, array $customHeaders = [])
+    public static function listing(ApiContext $apiContext, $userId, $chatConversationId, $attachmentId, array $params = [], array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
-
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_LISTING,
                 [$userId, $chatConversationId, $attachmentId]
             ),
+            $params,
             $customHeaders
         );
 

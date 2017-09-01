@@ -311,6 +311,7 @@ class UserLight extends BunqModel
                 self::ENDPOINT_URL_READ,
                 [$userLightId]
             ),
+            [],
             $customHeaders
         );
 

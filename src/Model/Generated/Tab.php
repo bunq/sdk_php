@@ -60,6 +60,7 @@ class Tab extends BunqModel
                 self::ENDPOINT_URL_READ,
                 [$userId, $monetaryAccountId, $cashRegisterId, $tabUuid]
             ),
+            [],
             $customHeaders
         );
 
@@ -76,11 +77,12 @@ class Tab extends BunqModel
      * @param int $userId
      * @param int $monetaryAccountId
      * @param int $cashRegisterId
+     * @param string[] $params
      * @param string[] $customHeaders
      *
      * @return BunqResponse<BunqModel[]|Tab[]>
      */
-    public static function listing(ApiContext $apiContext, $userId, $monetaryAccountId, $cashRegisterId, array $customHeaders = [])
+    public static function listing(ApiContext $apiContext, $userId, $monetaryAccountId, $cashRegisterId, array $params = [], array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(
@@ -88,6 +90,7 @@ class Tab extends BunqModel
                 self::ENDPOINT_URL_LISTING,
                 [$userId, $monetaryAccountId, $cashRegisterId]
             ),
+            $params,
             $customHeaders
         );
 

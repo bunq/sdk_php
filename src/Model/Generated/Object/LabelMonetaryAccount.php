@@ -51,6 +51,13 @@ class LabelMonetaryAccount extends BunqModel
     protected $bunqMe;
 
     /**
+     * Whether or not the monetary account is light.
+     *
+     * @var bool
+     */
+    protected $isLight;
+
+    /**
      * The IBAN of the monetary account.
      *
      * @return string
@@ -156,5 +163,23 @@ class LabelMonetaryAccount extends BunqModel
     public function setBunqMe(Pointer $bunqMe)
     {
         $this->bunqMe = $bunqMe;
+    }
+
+    /**
+     * Whether or not the monetary account is light.
+     *
+     * @return bool
+     */
+    public function getIsLight()
+    {
+        return $this->isLight;
+    }
+
+    /**
+     * @param bool $isLight
+     */
+    public function setIsLight($isLight)
+    {
+        $this->isLight = $isLight;
     }
 }

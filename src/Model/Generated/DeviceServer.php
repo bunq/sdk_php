@@ -120,6 +120,7 @@ class DeviceServer extends BunqModel
                 self::ENDPOINT_URL_READ,
                 [$deviceServerId]
             ),
+            [],
             $customHeaders
         );
 
@@ -133,11 +134,12 @@ class DeviceServer extends BunqModel
      * and cannot be used as constants, class names, function or method names.
      *
      * @param ApiContext $apiContext
+     * @param string[] $params
      * @param string[] $customHeaders
      *
      * @return BunqResponse<BunqModel[]|DeviceServer[]>
      */
-    public static function listing(ApiContext $apiContext, array $customHeaders = [])
+    public static function listing(ApiContext $apiContext, array $params = [], array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(
@@ -145,6 +147,7 @@ class DeviceServer extends BunqModel
                 self::ENDPOINT_URL_LISTING,
                 []
             ),
+            $params,
             $customHeaders
         );
 

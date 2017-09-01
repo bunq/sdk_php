@@ -32,6 +32,11 @@ class RequestHandlerSignature extends RequestHandlerBase
     const REQUEST_METHOD_PATH_SEPARATOR = ' ';
     const SIGNED_DATA_EMPTY_STRING = '';
 
+    /**
+     * Delimiter between path and parameters.
+     */
+    const DELIMITER_URL_QUERY = '?';
+
     /** @var PrivateKey */
     protected $privateKey;
 
@@ -79,12 +84,28 @@ class RequestHandlerSignature extends RequestHandlerBase
         array $headers
     ) {
         $dataToSign =
-            $method . self::REQUEST_METHOD_PATH_SEPARATOR . $uri->getPath() .
+            $method . self::REQUEST_METHOD_PATH_SEPARATOR . $this->getPathWithQuery($uri) .
             $this->determineHeaderStringForSignedRequest($headers) .
             self::NEWLINE . self::NEWLINE .
             $body;
 
         return $this->privateKey->sign($dataToSign);
+    }
+
+    /**
+     * @param UriInterface $uri
+     *
+     * @return string
+     */
+    private function getPathWithQuery(UriInterface $uri)
+    {
+        $uriString = $uri->getPath();
+
+        if (!empty($uri->getQuery())) {
+            $uriString .= self::DELIMITER_URL_QUERY . $uri->getQuery();
+        }
+
+        return $uriString;
     }
 
     /**

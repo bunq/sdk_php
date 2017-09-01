@@ -51,6 +51,13 @@ class Address extends BunqModel
     protected $country;
 
     /**
+     * The province according to local standard.
+     *
+     * @var string
+     */
+    protected $province;
+
+    /**
      * @param string $street
      * @param string $houseNumber
      * @param string $postalCode
@@ -172,5 +179,23 @@ class Address extends BunqModel
     public function setCountry($country)
     {
         $this->country = $country;
+    }
+
+    /**
+     * The province according to local standard.
+     *
+     * @return string
+     */
+    public function getProvince()
+    {
+        return $this->province;
+    }
+
+    /**
+     * @param string $province
+     */
+    public function setProvince($province)
+    {
+        $this->province = $province;
     }
 }

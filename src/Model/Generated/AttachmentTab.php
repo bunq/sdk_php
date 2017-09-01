@@ -114,6 +114,7 @@ class AttachmentTab extends BunqModel
                 self::ENDPOINT_URL_READ,
                 [$userId, $monetaryAccountId, $attachmentTabId]
             ),
+            [],
             $customHeaders
         );
 

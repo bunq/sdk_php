@@ -305,6 +305,7 @@ class UserPerson extends BunqModel
                 self::ENDPOINT_URL_READ,
                 [$userPersonId]
             ),
+            [],
             $customHeaders
         );
 

@@ -51,6 +51,7 @@ class MonetaryAccount extends BunqModel
                 self::ENDPOINT_URL_READ,
                 [$userId, $monetaryAccountId]
             ),
+            [],
             $customHeaders
         );
 
@@ -65,11 +66,12 @@ class MonetaryAccount extends BunqModel
      *
      * @param ApiContext $apiContext
      * @param int $userId
+     * @param string[] $params
      * @param string[] $customHeaders
      *
      * @return BunqResponse<BunqModel[]|MonetaryAccount[]>
      */
-    public static function listing(ApiContext $apiContext, $userId, array $customHeaders = [])
+    public static function listing(ApiContext $apiContext, $userId, array $params = [], array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(
@@ -77,6 +79,7 @@ class MonetaryAccount extends BunqModel
                 self::ENDPOINT_URL_LISTING,
                 [$userId]
             ),
+            $params,
             $customHeaders
         );
 

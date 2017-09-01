@@ -180,6 +180,13 @@ class UserCompany extends BunqModel
     protected $language;
 
     /**
+     * The country as an ISO 3166-1 alpha-2 country code..
+     *
+     * @var string
+     */
+    protected $country;
+
+    /**
      * The person's preferred region. Formatted as a ISO 639-1 language code
      * plus a ISO 3166-1 alpha-2 country code, seperated by an underscore.
      *
@@ -235,6 +242,27 @@ class UserCompany extends BunqModel
     protected $notificationFilters;
 
     /**
+     * The customer profile of the company.
+     *
+     * @var Customer
+     */
+    protected $customer;
+
+    /**
+     * The customer limits of the company.
+     *
+     * @var CustomerLimit
+     */
+    protected $customerLimit;
+
+    /**
+     * The subscription of the company.
+     *
+     * @var BillingContractSubscription
+     */
+    protected $billingContract;
+
+    /**
      * Get a specific company.
      *
      * @param ApiContext $apiContext
@@ -251,6 +279,7 @@ class UserCompany extends BunqModel
                 self::ENDPOINT_URL_READ,
                 [$userCompanyId]
             ),
+            [],
             $customHeaders
         );
 
@@ -608,6 +637,24 @@ class UserCompany extends BunqModel
     }
 
     /**
+     * The country as an ISO 3166-1 alpha-2 country code..
+     *
+     * @return string
+     */
+    public function getCountry()
+    {
+        return $this->country;
+    }
+
+    /**
+     * @param string $country
+     */
+    public function setCountry($country)
+    {
+        $this->country = $country;
+    }
+
+    /**
      * The person's preferred region. Formatted as a ISO 639-1 language code
      * plus a ISO 3166-1 alpha-2 country code, seperated by an underscore.
      *
@@ -737,5 +784,59 @@ class UserCompany extends BunqModel
     public function setNotificationFilters(array$notificationFilters)
     {
         $this->notificationFilters = $notificationFilters;
+    }
+
+    /**
+     * The customer profile of the company.
+     *
+     * @return Customer
+     */
+    public function getCustomer()
+    {
+        return $this->customer;
+    }
+
+    /**
+     * @param Customer $customer
+     */
+    public function setCustomer(Customer $customer)
+    {
+        $this->customer = $customer;
+    }
+
+    /**
+     * The customer limits of the company.
+     *
+     * @return CustomerLimit
+     */
+    public function getCustomerLimit()
+    {
+        return $this->customerLimit;
+    }
+
+    /**
+     * @param CustomerLimit $customerLimit
+     */
+    public function setCustomerLimit(CustomerLimit $customerLimit)
+    {
+        $this->customerLimit = $customerLimit;
+    }
+
+    /**
+     * The subscription of the company.
+     *
+     * @return BillingContractSubscription
+     */
+    public function getBillingContract()
+    {
+        return $this->billingContract;
+    }
+
+    /**
+     * @param BillingContractSubscription $billingContract
+     */
+    public function setBillingContract(BillingContractSubscription $billingContract)
+    {
+        $this->billingContract = $billingContract;
     }
 }
