@@ -3,7 +3,6 @@ namespace bunq\sdk\examples;
 
 use bunq\Context\ApiContext;
 use bunq\Http\Pagination;
-use bunq\Model\Generated\CertificatePinned;
 use bunq\Model\Generated\MonetaryAccount;
 use bunq\Model\Generated\Payment;
 use bunq\Model\Generated\User;
