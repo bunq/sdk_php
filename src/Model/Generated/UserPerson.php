@@ -26,7 +26,6 @@ class UserPerson extends BunqModel
     const FIELD_MIDDLE_NAME = 'middle_name';
     const FIELD_LAST_NAME = 'last_name';
     const FIELD_PUBLIC_NICK_NAME = 'public_nick_name';
-    const FIELD_ADDRESS = 'address';
     const FIELD_ADDRESS_MAIN = 'address_main';
     const FIELD_ADDRESS_POSTAL = 'address_postal';
     const FIELD_AVATAR_UUID = 'avatar_uuid';

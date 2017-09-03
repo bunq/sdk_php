@@ -26,7 +26,6 @@ class UserCompany extends BunqModel
     const FIELD_NAME = 'name';
     const FIELD_PUBLIC_NICK_NAME = 'public_nick_name';
     const FIELD_AVATAR_UUID = 'avatar_uuid';
-    const FIELD_ADDRESS = 'address';
     const FIELD_ADDRESS_MAIN = 'address_main';
     const FIELD_ADDRESS_POSTAL = 'address_postal';
     const FIELD_LANGUAGE = 'language';
