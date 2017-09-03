@@ -257,7 +257,7 @@ class UserCompany extends BunqModel
     /**
      * The subscription of the company.
      *
-     * @var BillingContractSubscription
+     * @var BillingContractSubscription[]
      */
     protected $billingContract;
 
@@ -824,7 +824,7 @@ class UserCompany extends BunqModel
     /**
      * The subscription of the company.
      *
-     * @return BillingContractSubscription
+     * @return BillingContractSubscription[]
      */
     public function getBillingContract()
     {
@@ -832,9 +832,9 @@ class UserCompany extends BunqModel
     }
 
     /**
-     * @param BillingContractSubscription $billingContract
+     * @param BillingContractSubscription[] $billingContract
      */
-    public function setBillingContract(BillingContractSubscription $billingContract)
+    public function setBillingContract(array$billingContract)
     {
         $this->billingContract = $billingContract;
     }
