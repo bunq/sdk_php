@@ -35,12 +35,11 @@ class CashRegisterQrCodeContent extends BunqModel
      * @param int $monetaryAccountId
      * @param int $cashRegisterId
      * @param int $qrCodeId
-     * @param string[] $params
      * @param string[] $customHeaders
      *
      * @return BunqResponse<string>
      */
-    public static function listing(ApiContext $apiContext, $userId, $monetaryAccountId, $cashRegisterId, $qrCodeId, array $params = [], array $customHeaders = [])
+    public static function listing(ApiContext $apiContext, $userId, $monetaryAccountId, $cashRegisterId, $qrCodeId, array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(
@@ -48,7 +47,7 @@ class CashRegisterQrCodeContent extends BunqModel
                 self::ENDPOINT_URL_LISTING,
                 [$userId, $monetaryAccountId, $cashRegisterId, $qrCodeId]
             ),
-            $params,
+            [],
             $customHeaders
         );
 

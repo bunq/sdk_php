@@ -33,12 +33,11 @@ class AttachmentPublicContent extends BunqModel
      *
      * @param ApiContext $apiContext
      * @param string $attachmentPublicUuid
-     * @param string[] $params
      * @param string[] $customHeaders
      *
      * @return BunqResponse<string>
      */
-    public static function listing(ApiContext $apiContext, $attachmentPublicUuid, array $params = [], array $customHeaders = [])
+    public static function listing(ApiContext $apiContext, $attachmentPublicUuid, array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(
@@ -46,7 +45,7 @@ class AttachmentPublicContent extends BunqModel
                 self::ENDPOINT_URL_LISTING,
                 [$attachmentPublicUuid]
             ),
-            $params,
+            [],
             $customHeaders
         );
 

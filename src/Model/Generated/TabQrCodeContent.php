@@ -38,12 +38,11 @@ class TabQrCodeContent extends BunqModel
      * @param int $monetaryAccountId
      * @param int $cashRegisterId
      * @param string $tabUuid
-     * @param string[] $params
      * @param string[] $customHeaders
      *
      * @return BunqResponse<string>
      */
-    public static function listing(ApiContext $apiContext, $userId, $monetaryAccountId, $cashRegisterId, $tabUuid, array $params = [], array $customHeaders = [])
+    public static function listing(ApiContext $apiContext, $userId, $monetaryAccountId, $cashRegisterId, $tabUuid, array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(
@@ -51,7 +50,7 @@ class TabQrCodeContent extends BunqModel
                 self::ENDPOINT_URL_LISTING,
                 [$userId, $monetaryAccountId, $cashRegisterId, $tabUuid]
             ),
-            $params,
+            [],
             $customHeaders
         );
 

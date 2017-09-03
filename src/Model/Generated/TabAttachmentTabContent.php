@@ -33,12 +33,11 @@ class TabAttachmentTabContent extends BunqModel
      * @param ApiContext $apiContext
      * @param string $tabUuid
      * @param int $attachmentId
-     * @param string[] $params
      * @param string[] $customHeaders
      *
      * @return BunqResponse<string>
      */
-    public static function listing(ApiContext $apiContext, $tabUuid, $attachmentId, array $params = [], array $customHeaders = [])
+    public static function listing(ApiContext $apiContext, $tabUuid, $attachmentId, array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(
@@ -46,7 +45,7 @@ class TabAttachmentTabContent extends BunqModel
                 self::ENDPOINT_URL_LISTING,
                 [$tabUuid, $attachmentId]
             ),
-            $params,
+            [],
             $customHeaders
         );
 
