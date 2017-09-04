@@ -49,7 +49,7 @@ class Pagination
     protected $count;
 
     /**
-     * @param string[][] $paginationJson
+     * @param string[] $paginationJson
      *
      * @return static
      */
