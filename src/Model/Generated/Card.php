@@ -87,6 +87,13 @@ class Card extends BunqModel
     protected $status;
 
     /**
+     * The sub-status of the card. Can be NONE or REPLACED.
+     *
+     * @var string
+     */
+    protected $subStatus;
+
+    /**
      * The order status of the card. Can be CARD_UPDATE_REQUESTED,
      * CARD_UPDATE_SENT, CARD_UPDATE_ACCEPTED, ACCEPTED_FOR_PRODUCTION or
      * DELIVERED_TO_CUSTOMER.
@@ -360,6 +367,24 @@ class Card extends BunqModel
     public function setStatus($status)
     {
         $this->status = $status;
+    }
+
+    /**
+     * The sub-status of the card. Can be NONE or REPLACED.
+     *
+     * @return string
+     */
+    public function getSubStatus()
+    {
+        return $this->subStatus;
+    }
+
+    /**
+     * @param string $subStatus
+     */
+    public function setSubStatus($subStatus)
+    {
+        $this->subStatus = $subStatus;
     }
 
     /**

@@ -77,10 +77,14 @@ class DeviceServer extends BunqModel
     protected $status;
 
     /**
-     * Create a new DeviceServer. Provide the Installation token in the
-     * "X-Bunq-Client-Authentication" header. And sign this request with the key
-     * of which you used the public part to create the Installation. Your API
-     * key will be bound to the ip address of this DeviceServer.
+     * Create a new DeviceServer providing the installation token in the header
+     * and signing the request with the private part of the key you used to
+     * create the installation. The API Key that you are using will be bound to
+     * the IP address of the DeviceServer which you have created.<br/><br/>Using
+     * a Wildcard API Key gives you the freedom to make API calls even if the IP
+     * address has changed after the POST device-server.<br/><br/>Find out more
+     * at this link <a href="https://bunq.com/en/apikey-dynamic-ip"
+     * target="_blank">https://bunq.com/en/apikey-dynamic-ip</a>.
      *
      * @param ApiContext $apiContext
      * @param mixed[] $requestMap

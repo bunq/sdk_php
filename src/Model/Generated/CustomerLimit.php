@@ -45,6 +45,13 @@ class CustomerLimit extends BunqModel
     protected $limitCardDebitMastercard;
 
     /**
+     * The limit of free replacement cards.
+     *
+     * @var int
+     */
+    protected $limitCardDebitReplacement;
+
+    /**
      * Get all limits for the authenticated user.
      *
      * This method is called "listing" because "list" is a restricted PHP word
@@ -124,5 +131,23 @@ class CustomerLimit extends BunqModel
     public function setLimitCardDebitMastercard($limitCardDebitMastercard)
     {
         $this->limitCardDebitMastercard = $limitCardDebitMastercard;
+    }
+
+    /**
+     * The limit of free replacement cards.
+     *
+     * @return int
+     */
+    public function getLimitCardDebitReplacement()
+    {
+        return $this->limitCardDebitReplacement;
+    }
+
+    /**
+     * @param int $limitCardDebitReplacement
+     */
+    public function setLimitCardDebitReplacement($limitCardDebitReplacement)
+    {
+        $this->limitCardDebitReplacement = $limitCardDebitReplacement;
     }
 }
