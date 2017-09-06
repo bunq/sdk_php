@@ -53,7 +53,7 @@ class RequestInquiryTest extends BunqSdkTestBase
     /**
      * @var string
      */
-    private static $counterPartyAliasOther;
+    private static $counterPartyAliasSelf;
 
 
     /**
@@ -64,7 +64,7 @@ class RequestInquiryTest extends BunqSdkTestBase
         static::$userId = Config::getUserId();
         static::$monetaryAccountId = Config::getMonetaryAccountId();
         static::$monetaryAccountId2 = Config::getMonetaryAccountId2();
-        static::$counterPartyAliasOther = Config::getCounterPartyAliasOther();
+        static::$counterPartyAliasSelf = Config::getCounterPartyAliasSelf();
     }
 
     /**
@@ -93,7 +93,7 @@ class RequestInquiryTest extends BunqSdkTestBase
                 self::REQUEST_AMOUNT_IN_EUR,
                 self::REQUEST_CURRENCY
             ),
-            RequestInquiry::FIELD_COUNTERPARTY_ALIAS => static::$counterPartyAliasOther,
+            RequestInquiry::FIELD_COUNTERPARTY_ALIAS => static::$counterPartyAliasSelf,
             RequestInquiry::FIELD_DESCRIPTION => self::REQUEST_DESCRIPTION,
             RequestInquiry::FIELD_ALLOW_BUNQME => false,
         ];
