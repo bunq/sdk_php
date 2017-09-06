@@ -8,21 +8,20 @@ use bunq\Model\BunqModel;
  */
 class ModelUtil
 {
-    const STRING_UNDERSCORE = '_';
+    /**
+     * Constants for name format conversion.
+     */
+    const DELIMITER_UNDERSCORE = '_';
     const STRING_EMPTY = '';
     const REGEX_CAPITAL = '/(?<!^)[A-Z]/';
     const REPLACEMENT_UNDERSCORE = '_$0';
+
     /**
      * Qualified type format.
      */
     const FORMAT_QUALIFIED_MODEL_TYPE = 'bunq\\Model\\Generated\\%s';
     const FORMAT_QUALIFIED_OBJECT_TYPE = 'bunq\\Model\\Generated\\Object\\%s';
     const FORMAT_QUALIFIED_OVERRIDE_TYPE = 'bunq\\Model\\%s';
-
-    /**
-     * Response field.
-     */
-    const FIELD_RESPONSE = 'Response';
 
     /**
      * Error constants.
@@ -34,9 +33,9 @@ class ModelUtil
      *
      * @return mixed[]
      */
-    public static function determineResponseArray($json)
+    public static function deserializeResponseArray($json)
     {
-        return \GuzzleHttp\json_decode($json, true)[self::FIELD_RESPONSE];
+        return \GuzzleHttp\json_decode($json, true);
     }
 
     /**
@@ -98,9 +97,9 @@ class ModelUtil
     public static function snakeCaseToCamelCase($field)
     {
         return lcfirst(str_replace(
-            self::STRING_UNDERSCORE,
+            self::DELIMITER_UNDERSCORE,
             self::STRING_EMPTY,
-            ucwords($field, self::STRING_UNDERSCORE)
+            ucwords($field, self::DELIMITER_UNDERSCORE)
         ));
     }
 

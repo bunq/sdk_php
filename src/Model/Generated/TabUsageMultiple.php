@@ -287,6 +287,7 @@ class TabUsageMultiple extends BunqModel
                 self::ENDPOINT_URL_READ,
                 [$userId, $monetaryAccountId, $cashRegisterId, $tabUsageMultipleUuid]
             ),
+            [],
             $customHeaders
         );
 
@@ -303,11 +304,12 @@ class TabUsageMultiple extends BunqModel
      * @param int $userId
      * @param int $monetaryAccountId
      * @param int $cashRegisterId
+     * @param string[] $params
      * @param string[] $customHeaders
      *
      * @return BunqResponse<BunqModel[]|TabUsageMultiple[]>
      */
-    public static function listing(ApiContext $apiContext, $userId, $monetaryAccountId, $cashRegisterId, array $customHeaders = [])
+    public static function listing(ApiContext $apiContext, $userId, $monetaryAccountId, $cashRegisterId, array $params = [], array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(
@@ -315,6 +317,7 @@ class TabUsageMultiple extends BunqModel
                 self::ENDPOINT_URL_LISTING,
                 [$userId, $monetaryAccountId, $cashRegisterId]
             ),
+            $params,
             $customHeaders
         );
 

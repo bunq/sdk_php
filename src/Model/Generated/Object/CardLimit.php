@@ -31,6 +31,13 @@ class CardLimit extends BunqModel
     protected $type;
 
     /**
+     * The id of the card limit entry.
+     *
+     * @var int
+     */
+    protected $id;
+
+    /**
      * @param string $dailyLimit
      * @param string $currency
      * @param string $type
@@ -40,6 +47,24 @@ class CardLimit extends BunqModel
         $this->dailyLimit = $dailyLimit;
         $this->currency = $currency;
         $this->type = $type;
+    }
+
+    /**
+     * The id of the card limit entry.
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
     }
 
     /**

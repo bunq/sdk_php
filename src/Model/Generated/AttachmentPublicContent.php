@@ -40,12 +40,12 @@ class AttachmentPublicContent extends BunqModel
     public static function listing(ApiContext $apiContext, $attachmentPublicUuid, array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
-
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_LISTING,
                 [$attachmentPublicUuid]
             ),
+            [],
             $customHeaders
         );
 

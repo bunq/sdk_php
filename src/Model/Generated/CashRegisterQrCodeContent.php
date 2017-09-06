@@ -42,12 +42,12 @@ class CashRegisterQrCodeContent extends BunqModel
     public static function listing(ApiContext $apiContext, $userId, $monetaryAccountId, $cashRegisterId, $qrCodeId, array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
-
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_LISTING,
                 [$userId, $monetaryAccountId, $cashRegisterId, $qrCodeId]
             ),
+            [],
             $customHeaders
         );
 

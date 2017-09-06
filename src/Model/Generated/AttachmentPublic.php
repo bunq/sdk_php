@@ -110,6 +110,7 @@ class AttachmentPublic extends BunqModel
                 self::ENDPOINT_URL_READ,
                 [$attachmentPublicUuid]
             ),
+            [],
             $customHeaders
         );
 

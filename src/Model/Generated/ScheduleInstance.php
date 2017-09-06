@@ -93,6 +93,7 @@ class ScheduleInstance extends BunqModel
                 self::ENDPOINT_URL_READ,
                 [$userId, $monetaryAccountId, $scheduleId, $scheduleInstanceId]
             ),
+            [],
             $customHeaders
         );
 
@@ -133,11 +134,12 @@ class ScheduleInstance extends BunqModel
      * @param int $userId
      * @param int $monetaryAccountId
      * @param int $scheduleId
+     * @param string[] $params
      * @param string[] $customHeaders
      *
      * @return BunqResponse<BunqModel[]|ScheduleInstance[]>
      */
-    public static function listing(ApiContext $apiContext, $userId, $monetaryAccountId, $scheduleId, array $customHeaders = [])
+    public static function listing(ApiContext $apiContext, $userId, $monetaryAccountId, $scheduleId, array $params = [], array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(
@@ -145,6 +147,7 @@ class ScheduleInstance extends BunqModel
                 self::ENDPOINT_URL_LISTING,
                 [$userId, $monetaryAccountId, $scheduleId]
             ),
+            $params,
             $customHeaders
         );
 

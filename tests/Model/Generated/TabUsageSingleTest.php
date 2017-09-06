@@ -1,9 +1,11 @@
 <?php
-namespace bunq\Model\Generated;
+namespace bunq\test\Model\Generated;
 
 use bunq\Model\Generated\Object\Amount;
+use bunq\Model\Generated\TabItemShop;
+use bunq\Model\Generated\TabUsageSingle;
 use bunq\test\BunqSdkTestBase;
-use bunq\test\TestConfig;
+use bunq\test\Config;
 
 /**
  * Tests:
@@ -55,9 +57,9 @@ class TabUsageSingleTest extends BunqSdkTestBase
     public static function setUpBeforeClass()
     {
         parent::setUpBeforeClass();
-        static::$userId = TestConfig::getUserId();
-        static::$monetaryAccountId = TestConfig::getMonetaryAccountId();
-        static::$cashRegisterId = TestConfig::getCashRegisterId();
+        static::$userId = Config::getUserId();
+        static::$monetaryAccountId = Config::getMonetaryAccountId();
+        static::$cashRegisterId = Config::getCashRegisterId();
     }
 
     /**

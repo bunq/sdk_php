@@ -40,11 +40,12 @@ class InstallationServerPublicKey extends BunqModel
      *
      * @param ApiContext $apiContext
      * @param int $installationId
+     * @param string[] $params
      * @param string[] $customHeaders
      *
      * @return BunqResponse<BunqModel[]|InstallationServerPublicKey[]>
      */
-    public static function listing(ApiContext $apiContext, $installationId, array $customHeaders = [])
+    public static function listing(ApiContext $apiContext, $installationId, array $params = [], array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(
@@ -52,6 +53,7 @@ class InstallationServerPublicKey extends BunqModel
                 self::ENDPOINT_URL_LISTING,
                 [$installationId]
             ),
+            $params,
             $customHeaders
         );
 

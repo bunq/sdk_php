@@ -89,11 +89,12 @@ class ChatMessage extends BunqModel
      * @param ApiContext $apiContext
      * @param int $userId
      * @param int $chatConversationId
+     * @param string[] $params
      * @param string[] $customHeaders
      *
      * @return BunqResponse<BunqModel[]|ChatMessage[]>
      */
-    public static function listing(ApiContext $apiContext, $userId, $chatConversationId, array $customHeaders = [])
+    public static function listing(ApiContext $apiContext, $userId, $chatConversationId, array $params = [], array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(
@@ -101,6 +102,7 @@ class ChatMessage extends BunqModel
                 self::ENDPOINT_URL_LISTING,
                 [$userId, $chatConversationId]
             ),
+            $params,
             $customHeaders
         );
 

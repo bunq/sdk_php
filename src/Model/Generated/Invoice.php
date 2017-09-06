@@ -155,11 +155,12 @@ class Invoice extends BunqModel
      * @param ApiContext $apiContext
      * @param int $userId
      * @param int $monetaryAccountId
+     * @param string[] $params
      * @param string[] $customHeaders
      *
      * @return BunqResponse<BunqModel[]|Invoice[]>
      */
-    public static function listing(ApiContext $apiContext, $userId, $monetaryAccountId, array $customHeaders = [])
+    public static function listing(ApiContext $apiContext, $userId, $monetaryAccountId, array $params = [], array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(
@@ -167,6 +168,7 @@ class Invoice extends BunqModel
                 self::ENDPOINT_URL_LISTING,
                 [$userId, $monetaryAccountId]
             ),
+            $params,
             $customHeaders
         );
 
@@ -190,6 +192,7 @@ class Invoice extends BunqModel
                 self::ENDPOINT_URL_READ,
                 [$userId, $monetaryAccountId, $invoiceId]
             ),
+            [],
             $customHeaders
         );
 

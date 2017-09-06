@@ -92,6 +92,7 @@ class UserCredentialPasswordIp extends BunqModel
                 self::ENDPOINT_URL_READ,
                 [$userId, $userCredentialPasswordIpId]
             ),
+            [],
             $customHeaders
         );
 
@@ -104,11 +105,12 @@ class UserCredentialPasswordIp extends BunqModel
      *
      * @param ApiContext $apiContext
      * @param int $userId
+     * @param string[] $params
      * @param string[] $customHeaders
      *
      * @return BunqResponse<BunqModel[]|UserCredentialPasswordIp[]>
      */
-    public static function listing(ApiContext $apiContext, $userId, array $customHeaders = [])
+    public static function listing(ApiContext $apiContext, $userId, array $params = [], array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(
@@ -116,6 +118,7 @@ class UserCredentialPasswordIp extends BunqModel
                 self::ENDPOINT_URL_LISTING,
                 [$userId]
             ),
+            $params,
             $customHeaders
         );
 

@@ -59,8 +59,12 @@ class BunqSdkTestBase extends TestCase
      */
     protected static function createApiContext()
     {
-        return ApiContext::create(BunqEnumApiEnvironmentType::SANDBOX(), TestConfig::getApiKey(),
-            static::DEVICE_DESCRIPTION, [TestConfig::getIpAddress()]);
+        return ApiContext::create(
+            BunqEnumApiEnvironmentType::SANDBOX(),
+            Config::getApiKey(),
+            static::DEVICE_DESCRIPTION,
+            Config::getPermittedIps()
+        );
     }
 
     /**
