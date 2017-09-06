@@ -54,6 +54,7 @@ class PaginationTest extends TestCase
             Pagination::PARAM_OLDER_ID => self::PAGINATION_OLDER_ID_CUSTOM,
         ];
 
+        static::assertTrue($pagination->hasPreviousPage());
         static::assertEquals($urlParamsPreviousPageExpected, $pagination->getUrlParamsPreviousPage());
     }
 
@@ -67,6 +68,7 @@ class PaginationTest extends TestCase
             Pagination::PARAM_OLDER_ID => self::PAGINATION_OLDER_ID_CUSTOM,
         ];
 
+        static::assertTrue($pagination->hasPreviousPage());
         static::assertEquals($urlParamsPreviousPageExpected, $pagination->getUrlParamsPreviousPage());
     }
 
@@ -80,6 +82,7 @@ class PaginationTest extends TestCase
             Pagination::PARAM_NEWER_ID => self::PAGINATION_NEWER_ID_CUSTOM,
         ];
 
+        static::assertTrue($pagination->hasNextPageAssured());
         static::assertEquals($urlParamsNextPageExpected, $pagination->getUrlParamsNextPage());
     }
 
@@ -93,6 +96,7 @@ class PaginationTest extends TestCase
             Pagination::PARAM_NEWER_ID => self::PAGINATION_NEWER_ID_CUSTOM,
         ];
 
+        static::assertTrue($pagination->hasNextPageAssured());
         static::assertEquals($urlParamsNextPageExpected, $pagination->getUrlParamsNextPage());
     }
 
@@ -107,6 +111,7 @@ class PaginationTest extends TestCase
             Pagination::PARAM_NEWER_ID => self::PAGINATION_FUTURE_ID_CUSTOM,
         ];
 
+        static::assertFalse($pagination->hasNextPageAssured());
         static::assertEquals($urlParamsNextPageExpected, $pagination->getUrlParamsNextPage());
     }
 
@@ -121,6 +126,7 @@ class PaginationTest extends TestCase
             Pagination::PARAM_NEWER_ID => self::PAGINATION_FUTURE_ID_CUSTOM,
         ];
 
+        static::assertFalse($pagination->hasNextPageAssured());
         static::assertEquals($urlParamsNextPageExpected, $pagination->getUrlParamsNextPage());
     }
 
@@ -131,6 +137,8 @@ class PaginationTest extends TestCase
     {
         $pagination = $this->createPaginationWithAllPropertiesSet();
         $pagination->setOlderId(null);
+
+        static::assertFalse($pagination->hasPreviousPage());
         $pagination->getUrlParamsPreviousPage();
     }
 
@@ -142,6 +150,7 @@ class PaginationTest extends TestCase
         $pagination = $this->createPaginationWithAllPropertiesSet();
         $pagination->setNewerId(null);
         $pagination->setFutureId(null);
+
         $pagination->getUrlParamsNextPage();
     }
 }
