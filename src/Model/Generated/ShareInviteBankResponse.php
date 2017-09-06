@@ -124,6 +124,7 @@ class ShareInviteBankResponse extends BunqModel
                 self::ENDPOINT_URL_READ,
                 [$userId, $shareInviteBankResponseId]
             ),
+            [],
             $customHeaders
         );
 
@@ -164,11 +165,12 @@ class ShareInviteBankResponse extends BunqModel
      *
      * @param ApiContext $apiContext
      * @param int $userId
+     * @param string[] $params
      * @param string[] $customHeaders
      *
      * @return BunqResponse<BunqModel[]|ShareInviteBankResponse[]>
      */
-    public static function listing(ApiContext $apiContext, $userId, array $customHeaders = [])
+    public static function listing(ApiContext $apiContext, $userId, array $params = [], array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(
@@ -176,6 +178,7 @@ class ShareInviteBankResponse extends BunqModel
                 self::ENDPOINT_URL_LISTING,
                 [$userId]
             ),
+            $params,
             $customHeaders
         );
 

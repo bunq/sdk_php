@@ -41,12 +41,12 @@ class ExportAnnualOverviewContent extends BunqModel
     public static function listing(ApiContext $apiContext, $userId, $exportAnnualOverviewId, array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
-
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_LISTING,
                 [$userId, $exportAnnualOverviewId]
             ),
+            [],
             $customHeaders
         );
 

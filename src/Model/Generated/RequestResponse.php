@@ -160,7 +160,8 @@ class RequestResponse extends BunqModel
     protected $geolocation;
 
     /**
-     * The type of the RequestInquiry. Can be DIRECT_DEBIT, IDEAL or INTERNAL.
+     * The type of the RequestInquiry. Can be DIRECT_DEBIT, DIRECT_DEBIT_B2B,
+     * IDEAL or INTERNAL.
      *
      * @var string
      */
@@ -206,6 +207,21 @@ class RequestResponse extends BunqModel
     protected $allowChat;
 
     /**
+     * The credit scheme id provided by the counterparty for DIRECT_DEBIT
+     * inquiries.
+     *
+     * @var string
+     */
+    protected $creditSchemeIdentifier;
+
+    /**
+     * The mandate id provided by the counterparty for DIRECT_DEBIT inquiries.
+     *
+     * @var string
+     */
+    protected $mandateIdentifier;
+
+    /**
      * The whitelist id for this action or null.
      *
      * @var int
@@ -248,11 +264,12 @@ class RequestResponse extends BunqModel
      * @param ApiContext $apiContext
      * @param int $userId
      * @param int $monetaryAccountId
+     * @param string[] $params
      * @param string[] $customHeaders
      *
      * @return BunqResponse<BunqModel[]|RequestResponse[]>
      */
-    public static function listing(ApiContext $apiContext, $userId, $monetaryAccountId, array $customHeaders = [])
+    public static function listing(ApiContext $apiContext, $userId, $monetaryAccountId, array $params = [], array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(
@@ -260,6 +277,7 @@ class RequestResponse extends BunqModel
                 self::ENDPOINT_URL_LISTING,
                 [$userId, $monetaryAccountId]
             ),
+            $params,
             $customHeaders
         );
 
@@ -285,6 +303,7 @@ class RequestResponse extends BunqModel
                 self::ENDPOINT_URL_READ,
                 [$userId, $monetaryAccountId, $requestResponseId]
             ),
+            [],
             $customHeaders
         );
 
@@ -585,7 +604,8 @@ class RequestResponse extends BunqModel
     }
 
     /**
-     * The type of the RequestInquiry. Can be DIRECT_DEBIT, IDEAL or INTERNAL.
+     * The type of the RequestInquiry. Can be DIRECT_DEBIT, DIRECT_DEBIT_B2B,
+     * IDEAL or INTERNAL.
      *
      * @return string
      */
@@ -694,6 +714,43 @@ class RequestResponse extends BunqModel
     public function setAllowChat($allowChat)
     {
         $this->allowChat = $allowChat;
+    }
+
+    /**
+     * The credit scheme id provided by the counterparty for DIRECT_DEBIT
+     * inquiries.
+     *
+     * @return string
+     */
+    public function getCreditSchemeIdentifier()
+    {
+        return $this->creditSchemeIdentifier;
+    }
+
+    /**
+     * @param string $creditSchemeIdentifier
+     */
+    public function setCreditSchemeIdentifier($creditSchemeIdentifier)
+    {
+        $this->creditSchemeIdentifier = $creditSchemeIdentifier;
+    }
+
+    /**
+     * The mandate id provided by the counterparty for DIRECT_DEBIT inquiries.
+     *
+     * @return string
+     */
+    public function getMandateIdentifier()
+    {
+        return $this->mandateIdentifier;
+    }
+
+    /**
+     * @param string $mandateIdentifier
+     */
+    public function setMandateIdentifier($mandateIdentifier)
+    {
+        $this->mandateIdentifier = $mandateIdentifier;
     }
 
     /**

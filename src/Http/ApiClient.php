@@ -58,7 +58,7 @@ class ApiClient
     /**
      * User agent constants.
      */
-    const HEADER_USER_AGENT_BUNQ_SDK_DEFAULT = 'bunq-sdk-php/0.10.0';
+    const HEADER_USER_AGENT_BUNQ_SDK_DEFAULT = 'bunq-sdk-php/0.11.0';
 
     /**
      * Binary request constants.
@@ -132,85 +132,36 @@ class ApiClient
 
     /**
      * @param string $uri
+     * @param string[] $params
      * @param string[] $customHeaders
      *
      * @return BunqResponseRaw
      */
-    public function get($uri, array $customHeaders = [])
+    public function get($uri, array $params, array $customHeaders)
     {
-        return $this->request(self::METHOD_GET, $uri, [], $customHeaders);
-    }
-
-    /**
-     * @param string $uri
-     * @param mixed[]|string $body
-     * @param string[] $customHeaders
-     *
-     * @return BunqResponseRaw
-     */
-    public function post($uri, $body, array $customHeaders = [])
-    {
-        return $this->request(self::METHOD_POST, $uri, $body, $customHeaders);
-    }
-
-    /**
-     * @param string $uri
-     * @param mixed[]|string $body
-     * @param string[] $customHeaders
-     *
-     * @return BunqResponseRaw
-     */
-    public function put($uri, array $body = [], array $customHeaders = [])
-    {
-        return $this->request(self::METHOD_PUT, $uri, $body, $customHeaders);
-    }
-
-    /**
-     * @param string $uri
-     * @param string[] $customHeaders
-     *
-     * @return BunqResponseRaw
-     */
-    public function delete($uri, array $customHeaders = [])
-    {
-        return $this->request(self::METHOD_DELETE, $uri, [], $customHeaders);
+        return $this->request(self::METHOD_GET, $uri, [], $params, $customHeaders);
     }
 
     /**
      * @param string $method
      * @param string $uri
      * @param mixed[][]|string $body
+     * @param string[] $params
      * @param string[] $customHeaders
      *
      * @return BunqResponseRaw
      */
-    private function request($method, $uri, $body, array $customHeaders)
+    private function request($method, $uri, $body, array $params, array $customHeaders)
     {
         $this->initialize();
 
         $response = $this->httpClient->request(
             $method,
-            $this->determineFullUri($uri),
+            $this->determineUriFull($uri, $params),
             $this->determineRequestOptions($body, $customHeaders)
         );
 
         return $this->createBunqResponseRaw($response);
-    }
-
-    /**
-     * @param ResponseInterface $response
-     *
-     * @return BunqResponseRaw
-     */
-    private function createBunqResponseRaw($response)
-    {
-        $headers = [];
-
-        foreach ($response->getHeaders() as $headerKey => $headerValues) {
-            $headers[$headerKey] = join(self::GLUE_HEADER_VALUE, $headerValues);
-        }
-
-        return new BunqResponseRaw($response->getBody(), $headers);
     }
 
     /**
@@ -299,14 +250,18 @@ class ApiClient
 
     /**
      * @param string $uri
+     * @param string[] $params
      *
      * @return Uri
      */
-    private function determineFullUri($uri)
+    private function determineUriFull($uri, $params)
     {
         $basePath = $this->apiContext->determineBaseUri()->getPath();
 
-        return $this->apiContext->determineBaseUri()->withPath($basePath . $uri);
+        return $this->apiContext
+            ->determineBaseUri()
+            ->withPath($basePath . $uri)
+            ->withQuery(http_build_query($params));
     }
 
     /**
@@ -324,6 +279,21 @@ class ApiClient
             self::OPTION_BODY => $this->determineBodyString($body),
             self::OPTION_DEBUG => false,
             self::OPTION_HTTP_ERRORS => false,
+        ];
+    }
+
+    /**
+     * @return string[][]
+     */
+    protected function determineDefaultHeaders()
+    {
+        return [
+            self::HEADER_CACHE_CONTROL => [self::HEADER_CACHE_CONTROL_DEFAULT],
+            self::HEADER_USER_AGENT => [self::HEADER_USER_AGENT_BUNQ_SDK_DEFAULT],
+            self::HEADER_GEOLOCATION => [self::HEADER_CUSTOM_GEOLOCATION_DEFAULT],
+            self::HEADER_LANGUAGE => [self::HEADER_CUSTOM_LANGUAGE_DEFAULT],
+            self::HEADER_REGION => [self::HEADER_CUSTOM_REGION_DEFAULT],
+            self::HEADER_CLIENT_REQUEST_ID => [uniqid()],
         ];
     }
 
@@ -346,17 +316,53 @@ class ApiClient
     }
 
     /**
-     * @return string[][]
+     * @param ResponseInterface $response
+     *
+     * @return BunqResponseRaw
      */
-    protected function determineDefaultHeaders()
+    private function createBunqResponseRaw($response)
     {
-        return [
-            self::HEADER_CACHE_CONTROL => [self::HEADER_CACHE_CONTROL_DEFAULT],
-            self::HEADER_USER_AGENT => [self::HEADER_USER_AGENT_BUNQ_SDK_DEFAULT],
-            self::HEADER_GEOLOCATION => [self::HEADER_CUSTOM_GEOLOCATION_DEFAULT],
-            self::HEADER_LANGUAGE => [self::HEADER_CUSTOM_LANGUAGE_DEFAULT],
-            self::HEADER_REGION => [self::HEADER_CUSTOM_REGION_DEFAULT],
-            self::HEADER_CLIENT_REQUEST_ID => [uniqid()],
-        ];
+        $headers = [];
+
+        foreach ($response->getHeaders() as $headerKey => $headerValues) {
+            $headers[$headerKey] = implode(self::GLUE_HEADER_VALUE, $headerValues);
+        }
+
+        return new BunqResponseRaw($response->getBody(), $headers);
+    }
+
+    /**
+     * @param string $uri
+     * @param mixed[]|string $body
+     * @param string[] $customHeaders
+     *
+     * @return BunqResponseRaw
+     */
+    public function post($uri, $body, array $customHeaders)
+    {
+        return $this->request(self::METHOD_POST, $uri, $body, [], $customHeaders);
+    }
+
+    /**
+     * @param string $uri
+     * @param mixed[]|string $body
+     * @param string[] $customHeaders
+     *
+     * @return BunqResponseRaw
+     */
+    public function put($uri, array $body, array $customHeaders)
+    {
+        return $this->request(self::METHOD_PUT, $uri, $body, [], $customHeaders);
+    }
+
+    /**
+     * @param string $uri
+     * @param string[] $customHeaders
+     *
+     * @return BunqResponseRaw
+     */
+    public function delete($uri, array $customHeaders)
+    {
+        return $this->request(self::METHOD_DELETE, $uri, [], [], $customHeaders);
     }
 }

@@ -56,7 +56,7 @@ class Installation extends BunqModel
         $installation = new static($clientPublicKey);
 
         $apiClient = new ApiClient($apiContext);
-        $responseRaw = $apiClient->post(self::ENDPOINT_URL_POST, $installation->jsonSerialize());
+        $responseRaw = $apiClient->post(self::ENDPOINT_URL_POST, $installation->jsonSerialize(), []);
 
         return static::classFromJson(Installation::class, $responseRaw);
     }

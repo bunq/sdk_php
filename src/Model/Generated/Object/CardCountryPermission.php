@@ -23,11 +23,36 @@ class CardCountryPermission extends BunqModel
     protected $expiryTime;
 
     /**
+     * The id of the card country permission entry.
+     *
+     * @var int
+     */
+    protected $id;
+
+    /**
      * @param string $country
      */
     public function __construct($country)
     {
         $this->country = $country;
+    }
+
+    /**
+     * The id of the card country permission entry.
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
     }
 
     /**

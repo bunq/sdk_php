@@ -87,6 +87,7 @@ class Avatar extends BunqModel
                 self::ENDPOINT_URL_READ,
                 [$avatarUuid]
             ),
+            [],
             $customHeaders
         );
 

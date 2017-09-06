@@ -1,9 +1,12 @@
 <?php
-namespace bunq\Model\Generated;
+namespace bunq\test\Model\Generated;
 
 use bunq\Http\ApiClient;
+use bunq\Model\Generated\AttachmentPublic;
+use bunq\Model\Generated\AttachmentPublicContent;
+use bunq\Model\Generated\Avatar;
 use bunq\test\BunqSdkTestBase;
-use bunq\test\TestConfig;
+use bunq\test\Config;
 use bunq\Util\FileUtil;
 
 /**
@@ -43,9 +46,9 @@ class AvatarTest extends BunqSdkTestBase
     public static function setUpBeforeClass()
     {
         parent::setUpBeforeClass();
-        static::$attachmentDescription = TestConfig::getAttachmentDescription();
-        static::$attachmentPathIn = TestConfig::getAttachmentPathIn();
-        static::$contentType = TestConfig::getAttachmentContentType();
+        static::$attachmentDescription = Config::getAttachmentDescription();
+        static::$attachmentPathIn = Config::getAttachmentPathIn();
+        static::$contentType = Config::getAttachmentContentType();
     }
 
     /**
@@ -73,7 +76,8 @@ class AvatarTest extends BunqSdkTestBase
         $attachmentUuidAfter = Avatar::get(static::getApiContext(), $avatarUuid)->getValue();
         $imageInfoArray = $attachmentUuidAfter->getImage();
         $attachmentPublicUuid = $imageInfoArray[self::INDEX_FIRST]->getAttachmentPublicUuid();
-        $fileContentsAfter = AttachmentPublicContent::listing(static::getApiContext(), $attachmentPublicUuid)->getValue();
+        $fileContentsAfter = AttachmentPublicContent::listing(static::getApiContext(), $attachmentPublicUuid)
+            ->getValue();
 
         static::assertEquals($fileContentsBefore, $fileContentsAfter);
     }

@@ -1,17 +1,28 @@
 <?php
 namespace bunq\test;
 
+use bunq\Model\Generated\Object\Pointer;
 use bunq\Util\FileUtil;
 
 /**
  * Configuration for the test cases
  */
-class TestConfig
+class Config
 {
     /**
-     * Field constants
+     * The path where the config.json file is stored
      */
-    const FIELD_IP_ADDRESS_ALLOWED = 'ipAddress';
+    const CONFIG_PATH = '/resource/config.json';
+
+    /**
+     * Delimiter between the IP addresses in the PERMITTED_IPS field.
+     */
+    const DELIMITER_IPS = ',';
+
+    /**
+     * Field constants.
+     */
+    const FIELD_PERMITTED_IPS = 'PERMITTED_IPS';
     const FIELD_COUNTER_PARTY_OTHER = 'CounterPartyOther';
     const FIELD_ALIAS_TYPE = 'Type';
     const FIELD_COUNTER_PARTY_SELF = 'CounterPartySelf';
@@ -28,16 +39,17 @@ class TestConfig
     const FIELD_ATTACHMENT_PATH_IN = 'PATH_IN';
 
     /**
-     * The path where the config.json file is stored
+     * @return string[]
      */
-    const CONFIG_PATH = '/resource/config.json';
-
-    /**
-     * @return string
-     */
-    public static function getIpAddress()
+    public static function getPermittedIps(): array
     {
-        return static::getConfigFile()[self::FIELD_IP_ADDRESS_ALLOWED];
+        $permittedIpsString = static::getConfigFile()[self::FIELD_PERMITTED_IPS];
+
+        if (empty($permittedIpsString)) {
+            return [];
+        } else {
+            return explode(self::DELIMITER_IPS, $permittedIpsString);
+        }
     }
 
     /**
@@ -49,35 +61,25 @@ class TestConfig
     }
 
     /**
-     * @return string
+     * @return Pointer
      */
-    public static function getTypeCounterPartyOther()
+    public static function getCounterPartyAliasOther(): Pointer
     {
-        return static::getConfigFile()[self::FIELD_COUNTER_PARTY_OTHER][self::FIELD_ALIAS_TYPE];
+        $type = static::getConfigFile()[self::FIELD_COUNTER_PARTY_OTHER][self::FIELD_ALIAS_TYPE];
+        $alias = static::getConfigFile()[self::FIELD_COUNTER_PARTY_OTHER][self::FIELD_ALIAS];
+
+        return new Pointer($type, $alias);
     }
 
     /**
-     * @return string
+     * @return Pointer
      */
-    public static function getAliasCounterPartyOther()
+    public static function getCounterPartyAliasSelf(): Pointer
     {
-        return static::getConfigFile()[self::FIELD_COUNTER_PARTY_OTHER][self::FIELD_ALIAS];
-    }
+        $type = static::getConfigFile()[self::FIELD_COUNTER_PARTY_SELF][self::FIELD_ALIAS_TYPE];
+        $alias = static::getConfigFile()[self::FIELD_COUNTER_PARTY_SELF][self::FIELD_ALIAS];
 
-    /**
-     * @return string
-     */
-    public static function getAliasCounterParty()
-    {
-        return static::getConfigFile()[self::FIELD_COUNTER_PARTY_SELF][self::FIELD_ALIAS];
-    }
-
-    /**
-     * @return string
-     */
-    public static function getTypeCounterParty()
-    {
-        return static::getConfigFile()[self::FIELD_COUNTER_PARTY_SELF][self::FIELD_ALIAS_TYPE];
+        return new Pointer($type, $alias);
     }
 
     /**
@@ -115,7 +117,8 @@ class TestConfig
     /**
      * @return string
      */
-    public static function getApiKey(){
+    public static function getApiKey()
+    {
         return static::getConfigFile()[self::FIELD_API_KEY];
     }
 

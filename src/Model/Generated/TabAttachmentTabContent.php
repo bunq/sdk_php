@@ -40,12 +40,12 @@ class TabAttachmentTabContent extends BunqModel
     public static function listing(ApiContext $apiContext, $tabUuid, $attachmentId, array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
-
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_LISTING,
                 [$tabUuid, $attachmentId]
             ),
+            [],
             $customHeaders
         );
 

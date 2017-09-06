@@ -41,12 +41,12 @@ class CustomerStatementExportContent extends BunqModel
     public static function listing(ApiContext $apiContext, $userId, $monetaryAccountId, $customerStatementId, array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
-
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_LISTING,
                 [$userId, $monetaryAccountId, $customerStatementId]
             ),
+            [],
             $customHeaders
         );
 

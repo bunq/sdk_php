@@ -5,7 +5,6 @@ use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
 use bunq\Http\BunqResponse;
 use bunq\Model\BunqModel;
-use bunq\Model\Generated\Object\Certificate;
 
 /**
  * This endpoint allow you to pin the certificate chains to your account.
@@ -35,9 +34,10 @@ class CertificatePinned extends BunqModel
     const OBJECT_TYPE = 'CertificatePinned';
 
     /**
-     * The certificate chain in .PEM format.
+     * The certificate chain in .PEM format. Certificates are glued with newline
+     * characters.
      *
-     * @var Certificate[]
+     * @var string
      */
     protected $certificateChain;
 
@@ -105,11 +105,12 @@ class CertificatePinned extends BunqModel
      *
      * @param ApiContext $apiContext
      * @param int $userId
+     * @param string[] $params
      * @param string[] $customHeaders
      *
      * @return BunqResponse<BunqModel[]|CertificatePinned[]>
      */
-    public static function listing(ApiContext $apiContext, $userId, array $customHeaders = [])
+    public static function listing(ApiContext $apiContext, $userId, array $params = [], array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(
@@ -117,6 +118,7 @@ class CertificatePinned extends BunqModel
                 self::ENDPOINT_URL_LISTING,
                 [$userId]
             ),
+            $params,
             $customHeaders
         );
 
@@ -141,6 +143,7 @@ class CertificatePinned extends BunqModel
                 self::ENDPOINT_URL_READ,
                 [$userId, $certificatePinnedId]
             ),
+            [],
             $customHeaders
         );
 
@@ -148,9 +151,10 @@ class CertificatePinned extends BunqModel
     }
 
     /**
-     * The certificate chain in .PEM format.
+     * The certificate chain in .PEM format. Certificates are glued with newline
+     * characters.
      *
-     * @return Certificate[]
+     * @return string
      */
     public function getCertificateChain()
     {
@@ -158,9 +162,9 @@ class CertificatePinned extends BunqModel
     }
 
     /**
-     * @param Certificate[] $certificateChain
+     * @param string $certificateChain
      */
-    public function setCertificateChain(array$certificateChain)
+    public function setCertificateChain($certificateChain)
     {
         $this->certificateChain = $certificateChain;
     }

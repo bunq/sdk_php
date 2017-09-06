@@ -30,11 +30,12 @@ class ChatConversation extends BunqModel
      *
      * @param ApiContext $apiContext
      * @param int $userId
+     * @param string[] $params
      * @param string[] $customHeaders
      *
      * @return BunqResponse<BunqModel[]|ChatConversation[]>
      */
-    public static function listing(ApiContext $apiContext, $userId, array $customHeaders = [])
+    public static function listing(ApiContext $apiContext, $userId, array $params = [], array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(
@@ -42,6 +43,7 @@ class ChatConversation extends BunqModel
                 self::ENDPOINT_URL_LISTING,
                 [$userId]
             ),
+            $params,
             $customHeaders
         );
 
@@ -64,6 +66,7 @@ class ChatConversation extends BunqModel
                 self::ENDPOINT_URL_READ,
                 [$userId, $chatConversationId]
             ),
+            [],
             $customHeaders
         );
 

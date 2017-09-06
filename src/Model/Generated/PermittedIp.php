@@ -66,6 +66,7 @@ class PermittedIp extends BunqModel
                 self::ENDPOINT_URL_READ,
                 [$userId, $credentialPasswordIpId, $permittedIpId]
             ),
+            [],
             $customHeaders
         );
 
@@ -103,11 +104,12 @@ class PermittedIp extends BunqModel
      * @param ApiContext $apiContext
      * @param int $userId
      * @param int $credentialPasswordIpId
+     * @param string[] $params
      * @param string[] $customHeaders
      *
      * @return BunqResponse<BunqModel[]|PermittedIp[]>
      */
-    public static function listing(ApiContext $apiContext, $userId, $credentialPasswordIpId, array $customHeaders = [])
+    public static function listing(ApiContext $apiContext, $userId, $credentialPasswordIpId, array $params = [], array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(
@@ -115,6 +117,7 @@ class PermittedIp extends BunqModel
                 self::ENDPOINT_URL_LISTING,
                 [$userId, $credentialPasswordIpId]
             ),
+            $params,
             $customHeaders
         );
 

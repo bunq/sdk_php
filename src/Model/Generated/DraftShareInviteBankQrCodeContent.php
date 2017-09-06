@@ -43,12 +43,12 @@ class DraftShareInviteBankQrCodeContent extends BunqModel
     public static function listing(ApiContext $apiContext, $userId, $draftShareInviteBankId, array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
-
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_LISTING,
                 [$userId, $draftShareInviteBankId]
             ),
+            [],
             $customHeaders
         );
 

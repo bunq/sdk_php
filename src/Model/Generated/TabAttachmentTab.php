@@ -71,6 +71,7 @@ class TabAttachmentTab extends BunqModel
                 self::ENDPOINT_URL_READ,
                 [$tabUuid, $tabAttachmentTabId]
             ),
+            [],
             $customHeaders
         );
 

@@ -51,7 +51,8 @@ class SessionServer extends BunqModel
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->post(
             self::ENDPOINT_URL_POST,
-            [self::FIELD_SECRET => $apiContext->getApiKey()]
+            [self::FIELD_SECRET => $apiContext->getApiKey()],
+            []
         );
 
         return static::classFromJson(SessionServer::class, $responseRaw);

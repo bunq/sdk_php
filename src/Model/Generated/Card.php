@@ -87,6 +87,13 @@ class Card extends BunqModel
     protected $status;
 
     /**
+     * The sub-status of the card. Can be NONE or REPLACED.
+     *
+     * @var string
+     */
+    protected $subStatus;
+
+    /**
      * The order status of the card. Can be CARD_UPDATE_REQUESTED,
      * CARD_UPDATE_SENT, CARD_UPDATE_ACCEPTED, ACCEPTED_FOR_PRODUCTION or
      * DELIVERED_TO_CUSTOMER.
@@ -158,9 +165,17 @@ class Card extends BunqModel
     /**
      * Array of Types, PINs, account IDs assigned to the card.
      *
-     * @var CardPinAssignment
+     * @var CardPinAssignment[]
      */
     protected $pinCodeAssignment;
+
+    /**
+     * ID of the MA to be used as fallback for this card if insufficient
+     * balance. Fallback account is removed if not supplied.
+     *
+     * @var int
+     */
+    protected $monetaryAccountIdFallback;
 
     /**
      * Update the card details. Allow to change pin code, status, limits,
@@ -210,6 +225,7 @@ class Card extends BunqModel
                 self::ENDPOINT_URL_READ,
                 [$userId, $cardId]
             ),
+            [],
             $customHeaders
         );
 
@@ -224,11 +240,12 @@ class Card extends BunqModel
      *
      * @param ApiContext $apiContext
      * @param int $userId
+     * @param string[] $params
      * @param string[] $customHeaders
      *
      * @return BunqResponse<BunqModel[]|Card[]>
      */
-    public static function listing(ApiContext $apiContext, $userId, array $customHeaders = [])
+    public static function listing(ApiContext $apiContext, $userId, array $params = [], array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(
@@ -236,6 +253,7 @@ class Card extends BunqModel
                 self::ENDPOINT_URL_LISTING,
                 [$userId]
             ),
+            $params,
             $customHeaders
         );
 
@@ -349,6 +367,24 @@ class Card extends BunqModel
     public function setStatus($status)
     {
         $this->status = $status;
+    }
+
+    /**
+     * The sub-status of the card. Can be NONE or REPLACED.
+     *
+     * @return string
+     */
+    public function getSubStatus()
+    {
+        return $this->subStatus;
+    }
+
+    /**
+     * @param string $subStatus
+     */
+    public function setSubStatus($subStatus)
+    {
+        $this->subStatus = $subStatus;
     }
 
     /**
@@ -522,7 +558,7 @@ class Card extends BunqModel
     /**
      * Array of Types, PINs, account IDs assigned to the card.
      *
-     * @return CardPinAssignment
+     * @return CardPinAssignment[]
      */
     public function getPinCodeAssignment()
     {
@@ -530,10 +566,29 @@ class Card extends BunqModel
     }
 
     /**
-     * @param CardPinAssignment $pinCodeAssignment
+     * @param CardPinAssignment[] $pinCodeAssignment
      */
-    public function setPinCodeAssignment(CardPinAssignment $pinCodeAssignment)
+    public function setPinCodeAssignment(array$pinCodeAssignment)
     {
         $this->pinCodeAssignment = $pinCodeAssignment;
+    }
+
+    /**
+     * ID of the MA to be used as fallback for this card if insufficient
+     * balance. Fallback account is removed if not supplied.
+     *
+     * @return int
+     */
+    public function getMonetaryAccountIdFallback()
+    {
+        return $this->monetaryAccountIdFallback;
+    }
+
+    /**
+     * @param int $monetaryAccountIdFallback
+     */
+    public function setMonetaryAccountIdFallback($monetaryAccountIdFallback)
+    {
+        $this->monetaryAccountIdFallback = $monetaryAccountIdFallback;
     }
 }

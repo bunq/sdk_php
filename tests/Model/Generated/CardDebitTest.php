@@ -1,9 +1,13 @@
 <?php
-namespace bunq\Model\Generated;
+namespace bunq\test\Model\Generated;
 
+use bunq\Model\Generated\Card;
+use bunq\Model\Generated\CardDebit;
+use bunq\Model\Generated\CardName;
 use bunq\Model\Generated\Object\Pointer;
+use bunq\Model\Generated\User;
 use bunq\test\BunqSdkTestBase;
-use bunq\test\TestConfig;
+use bunq\test\Config;
 
 /**
  * Tests:
@@ -49,7 +53,7 @@ class CardDebitTest extends BunqSdkTestBase
     public static function setUpBeforeClass()
     {
         parent::setUpBeforeClass();
-        static::$userId = TestConfig::getUserId();
+        static::$userId = Config::getUserId();
         /** @var CardName[] $cardNamesAllowed */
         $cardNamesAllowed = CardName::listing(static::getApiContext(), static::$userId)->getValue();
         static::$nameOnCard = $cardNamesAllowed[self::INDEX_FIRST]->getPossibleCardNameArray();

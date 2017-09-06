@@ -16,13 +16,20 @@ class BunqResponse
     protected $headers;
 
     /**
+     * @var Pagination|null
+     */
+    protected $pagination;
+
+    /**
      * @param mixed $value
      * @param string[] $headers
+     * @param Pagination|null $pagination
      */
-    public function __construct($value, array $headers)
+    public function __construct($value, array $headers, Pagination $pagination = null)
     {
         $this->value = $value;
         $this->headers = $headers;
+        $this->pagination = $pagination;
     }
 
     /**
@@ -39,5 +46,13 @@ class BunqResponse
     public function getHeaders()
     {
         return $this->headers;
+    }
+
+    /**
+     * @return Pagination|null
+     */
+    public function getPagination()
+    {
+        return $this->pagination;
     }
 }

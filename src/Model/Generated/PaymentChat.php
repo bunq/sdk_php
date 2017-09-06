@@ -123,11 +123,12 @@ class PaymentChat extends BunqModel
      * @param int $userId
      * @param int $monetaryAccountId
      * @param int $paymentId
+     * @param string[] $params
      * @param string[] $customHeaders
      *
      * @return BunqResponse<BunqModel[]|PaymentChat[]>
      */
-    public static function listing(ApiContext $apiContext, $userId, $monetaryAccountId, $paymentId, array $customHeaders = [])
+    public static function listing(ApiContext $apiContext, $userId, $monetaryAccountId, $paymentId, array $params = [], array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(
@@ -135,6 +136,7 @@ class PaymentChat extends BunqModel
                 self::ENDPOINT_URL_LISTING,
                 [$userId, $monetaryAccountId, $paymentId]
             ),
+            $params,
             $customHeaders
         );
 

@@ -1,8 +1,9 @@
 <?php
-namespace bunq\Model\Generated;
+namespace bunq\test\Model\Generated;
 
+use bunq\Model\Generated\MonetaryAccountBank;
 use bunq\test\BunqSdkTestBase;
-use bunq\test\TestConfig;
+use bunq\test\Config;
 
 /**
  * Tests:
@@ -39,7 +40,7 @@ class MonetaryAccountBankTest extends BunqSdkTestBase
     public static function setUpBeforeClass()
     {
         parent::setUpBeforeClass();
-        static::$userId = TestConfig::getUserId();
+        static::$userId = Config::getUserId();
     }
 
     /**

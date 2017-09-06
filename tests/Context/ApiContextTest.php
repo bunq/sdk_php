@@ -1,5 +1,5 @@
 <?php
-namespace bunq\tests\Context;
+namespace bunq\test\Context;
 
 use bunq\Context\ApiContext;
 use bunq\test\BunqSdkTestBase;
