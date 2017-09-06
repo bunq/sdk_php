@@ -1,5 +1,5 @@
 <?php
-namespace bunq\Model\Generated;
+namespace bunq\test\Model\Generated;
 
 use bunq\test\BunqSdkTestBase;
 

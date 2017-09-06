@@ -5,7 +5,7 @@ use bunq\Http\ApiClient;
 use bunq\Model\Generated\AttachmentPublic;
 use bunq\Model\Generated\AttachmentPublicContent;
 use bunq\test\BunqSdkTestBase;
-use bunq\test\TestConfig;
+use bunq\test\Config;
 use bunq\Util\FileUtil;
 
 /**
@@ -40,9 +40,9 @@ class AttachmentPublicTest extends BunqSdkTestBase
     public static function setUpBeforeClass()
     {
         parent::setUpBeforeClass();
-        static::$contentType = TestConfig::getAttachmentContentType();
-        static::$attachmentDescription = TestConfig::getAttachmentDescription();
-        static::$attachmentPathIn = TestConfig::getAttachmentPathIn();
+        static::$contentType = Config::getAttachmentContentType();
+        static::$attachmentDescription = Config::getAttachmentDescription();
+        static::$attachmentPathIn = Config::getAttachmentPathIn();
     }
 
     /**

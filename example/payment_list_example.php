@@ -14,6 +14,7 @@ require_once __DIR__ . '/../vendor/autoload.php';
  */
 const MESSAGE_LATEST_PAGE_IDS = 'Latest page IDs: ';
 const MESSAGE_SECOND_LATEST_PAGE_IDS = 'Second latest page IDs: ';
+const MESSAGE_NO_PRIOR_PAYMENTS_FOUND = "No prior payments found!";
 
 /**
  * Very first index in an array.
@@ -46,14 +47,14 @@ $monetaryAccounts = MonetaryAccount::listing($apiContext, $userId)->getValue();
 $monetaryAccount = $monetaryAccounts[INDEX_FIRST]->getMonetaryAccountBank();
 $monetaryAccountId = $monetaryAccount->getId();
 
-$pagination = new Pagination();
-$pagination->setCount(PAGE_SIZE);
+$paginationCountOnly = new Pagination();
+$paginationCountOnly->setCount(PAGE_SIZE);
 
 $paymentsResponse = Payment::listing(
     $apiContext,
     $userId,
     $monetaryAccountId,
-    $pagination->getUrlParamsCountOnly()
+    $paginationCountOnly->getUrlParamsCountOnly()
 );
 
 /** @var Payment[] $payments */
@@ -65,18 +66,22 @@ foreach ($payments as $payment) {
     echo $payment->getId() . PHP_EOL;
 }
 
-$previousPagination = $paymentsResponse->getPagination();
+$pagination = $paymentsResponse->getPagination();
 
-echo MESSAGE_SECOND_LATEST_PAGE_IDS . PHP_EOL;
+if ($pagination->hasPreviousPage()) {
+    echo MESSAGE_SECOND_LATEST_PAGE_IDS . PHP_EOL;
 
-/** @var Payment[] $previousPayments */
-$previousPayments = Payment::listing(
-    $apiContext,
-    $userId,
-    $monetaryAccountId,
-    $previousPagination->getUrlParamsPreviousPage()
-)->getValue();
+    /** @var Payment[] $previousPayments */
+    $previousPayments = Payment::listing(
+        $apiContext,
+        $userId,
+        $monetaryAccountId,
+        $pagination->getUrlParamsPreviousPage()
+    )->getValue();
 
-foreach ($previousPayments as $payment) {
-    echo $payment->getId() . PHP_EOL;
+    foreach ($previousPayments as $payment) {
+        echo $payment->getId() . PHP_EOL;
+    }
+} else {
+    echo MESSAGE_NO_PRIOR_PAYMENTS_FOUND . PHP_EOL;
 }

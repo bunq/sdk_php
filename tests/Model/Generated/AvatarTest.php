@@ -1,9 +1,9 @@
 <?php
-namespace bunq\Model\Generated;
+namespace bunq\test\Model\Generated;
 
 use bunq\Http\ApiClient;
 use bunq\test\BunqSdkTestBase;
-use bunq\test\TestConfig;
+use bunq\test\Config;
 use bunq\Util\FileUtil;
 
 /**
@@ -43,9 +43,9 @@ class AvatarTest extends BunqSdkTestBase
     public static function setUpBeforeClass()
     {
         parent::setUpBeforeClass();
-        static::$attachmentDescription = TestConfig::getAttachmentDescription();
-        static::$attachmentPathIn = TestConfig::getAttachmentPathIn();
-        static::$contentType = TestConfig::getAttachmentContentType();
+        static::$attachmentDescription = Config::getAttachmentDescription();
+        static::$attachmentPathIn = Config::getAttachmentPathIn();
+        static::$contentType = Config::getAttachmentContentType();
     }
 
     /**

@@ -1,5 +1,5 @@
 <?php
-namespace bunq\tests;
+namespace bunq\test;
 
 use bunq\Http\BunqResponseRaw;
 use bunq\Model\BunqModel;

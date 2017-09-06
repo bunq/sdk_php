@@ -1,12 +1,12 @@
 <?php
-namespace bunq\Model\Generated;
+namespace bunq\test\Model\Generated;
 
 use bunq\Context\ApiContext;
 use bunq\Model\Generated\Object\DraftShareInviteBankEntry;
 use bunq\Model\Generated\Object\ShareDetail;
 use bunq\Model\Generated\Object\ShareDetailReadOnly;
 use bunq\test\BunqSdkTestBase;
-use bunq\test\TestConfig;
+use bunq\test\Config;
 
 /**
  * Tests
@@ -45,7 +45,7 @@ class DraftShareInviteBankQrCodeContentTest extends BunqSdkTestBase
     public static function setUpBeforeClass()
     {
         parent::setUpBeforeClass();
-        static::$userId = TestConfig::getUserId();
+        static::$userId = Config::getUserId();
         static::$expirationDate = date(self::FORMAT_MICROTIME, strtotime(self::EXPIRATION_ADDED_TIME));
     }
 

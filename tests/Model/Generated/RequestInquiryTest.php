@@ -1,11 +1,11 @@
 <?php
-namespace bunq\Model\Generated;
+namespace bunq\test\Model\Generated;
 
 use bunq\Context\ApiContext;
 use bunq\Model\Generated\Object\Amount;
 use bunq\Model\Generated\Object\Pointer;
 use bunq\test\BunqSdkTestBase;
-use bunq\test\TestConfig;
+use bunq\test\Config;
 
 /**
  * Tests:
@@ -65,11 +65,11 @@ class RequestInquiryTest extends BunqSdkTestBase
     public static function setUpBeforeClass()
     {
         parent::setUpBeforeClass();
-        static::$userId = TestConfig::getUserId();
-        static::$monetaryAccountId = TestConfig::getMonetaryAccountId();
-        static::$monetaryAccountId2 = TestConfig::getMonetaryAccountId2();
-        static::$counterAlias = TestConfig::getAliasCounterParty();
-        static::$counterType = TestConfig::getTypeCounterParty();
+        static::$userId = Config::getUserId();
+        static::$monetaryAccountId = Config::getMonetaryAccountId();
+        static::$monetaryAccountId2 = Config::getMonetaryAccountId2();
+        static::$counterAlias = Config::getAliasCounterParty();
+        static::$counterType = Config::getTypeCounterParty();
     }
 
     /**

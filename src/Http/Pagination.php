@@ -12,6 +12,7 @@ class Pagination
      * Error constants.
      */
     const ERROR_NO_PREVIOUS_PAGE = 'Could not generate previous page URL params: there is no previous page.';
+    const ERROR_NO_NEXT_PAGE = 'Could not generate next page URL params: there is no next page.';
 
     /**
      * URL Param constants.
@@ -168,6 +169,8 @@ class Pagination
      */
     public function getUrlParamsNextPage()
     {
+        $this->assertHasNextPage();
+
         $params = [
             self::PARAM_NEWER_ID => $this->getNextId(),
         ];
@@ -177,11 +180,21 @@ class Pagination
     }
 
     /**
+     * @throws BunqException
+     */
+    private function assertHasNextPage()
+    {
+        if (is_null($this->getNextId())) {
+            throw new BunqException(self::ERROR_NO_NEXT_PAGE);
+        }
+    }
+
+    /**
      * @return int
      */
     private function getNextId()
     {
-        if ($this->hasNextItemAssured()) {
+        if ($this->hasNextPageAssured()) {
             return $this->newerId;
         } else {
             return $this->futureId;
@@ -191,7 +204,7 @@ class Pagination
     /**
      * @return bool
      */
-    public function hasNextItemAssured()
+    public function hasNextPageAssured()
     {
         return !is_null($this->newerId);
     }
@@ -213,9 +226,7 @@ class Pagination
      */
     public function getUrlParamsPreviousPage()
     {
-        if (!$this->hasPreviousItem()) {
-            throw new BunqException(self::ERROR_NO_PREVIOUS_PAGE);
-        }
+        $this->assertHasPreviousPage();
 
         $params = [
             self::PARAM_OLDER_ID => $this->olderId,
@@ -226,9 +237,19 @@ class Pagination
     }
 
     /**
+     * @throws BunqException
+     */
+    private function assertHasPreviousPage()
+    {
+        if (!$this->hasPreviousPage()) {
+            throw new BunqException(self::ERROR_NO_PREVIOUS_PAGE);
+        }
+    }
+
+    /**
      * @return bool
      */
-    public function hasPreviousItem()
+    public function hasPreviousPage()
     {
         return !is_null($this->olderId);
     }

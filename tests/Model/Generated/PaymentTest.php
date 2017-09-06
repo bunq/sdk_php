@@ -1,10 +1,10 @@
 <?php
-namespace bunq\Model\Generated;
+namespace bunq\test\Model\Generated;
 
 use bunq\Model\Generated\Object\Amount;
 use bunq\Model\Generated\Object\Pointer;
 use bunq\test\BunqSdkTestBase;
-use bunq\test\TestConfig;
+use bunq\test\Config;
 
 /**
  * Tests:
@@ -74,12 +74,12 @@ class PaymentTest extends BunqSdkTestBase
     public static function setUpBeforeClass()
     {
         parent::setUpBeforeClass();
-        static::$userId = TestConfig::getUserId();
-        static::$monetaryAccountId = TestConfig::getMonetaryAccountId();
-        static::$counterAliasOtherUser = TestConfig::getAliasCounterPartyOther();
-        static::$counterTypeOtherUser = TestConfig::getTypeCounterPartyOther();
-        static::$counterAliasSameUserOtherAccount = TestConfig::getAliasCounterParty();
-        static::$counterTypeSameUserOtherAccount = TestConfig::getTypeCounterParty();
+        static::$userId = Config::getUserId();
+        static::$monetaryAccountId = Config::getMonetaryAccountId();
+        static::$counterAliasOtherUser = Config::getAliasCounterPartyOther();
+        static::$counterTypeOtherUser = Config::getTypeCounterPartyOther();
+        static::$counterAliasSameUserOtherAccount = Config::getAliasCounterParty();
+        static::$counterTypeSameUserOtherAccount = Config::getTypeCounterParty();
     }
 
     /**
