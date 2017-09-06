@@ -325,7 +325,7 @@ class ApiClient
         $headers = [];
 
         foreach ($response->getHeaders() as $headerKey => $headerValues) {
-            $headers[$headerKey] = join(self::GLUE_HEADER_VALUE, $headerValues);
+            $headers[$headerKey] = implode(self::GLUE_HEADER_VALUE, $headerValues);
         }
 
         return new BunqResponseRaw($response->getBody(), $headers);
