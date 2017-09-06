@@ -1,9 +1,9 @@
 <?php
 namespace bunq\test;
 
+use bunq\Http\BunqResponse;
 use bunq\Http\BunqResponseRaw;
 use bunq\Model\BunqModel;
-use bunq\Http\BunqResponse;
 use bunq\Model\Generated\Object\Amount;
 use bunq\Model\Generated\UserCompany;
 use bunq\Model\Installation;
@@ -44,6 +44,22 @@ class JsonParserTest extends TestCase
     const FUNCTION_PROCESS_FOR_UUID = 'processForUuid';
 
     /**
+     * Test creation of Id.
+     */
+    public function testCreateIdFromJson()
+    {
+        /** @var BunqResponse $bunqResponseId */
+        $bunqResponseId = $this->callPrivateStaticMethod(
+            BunqModel::class,
+            self::FUNCTION_PROCESS_FOR_ID,
+            [new BunqResponseRaw(self::JSON_ID, [])]
+        );
+        $id = $bunqResponseId->getValue();
+
+        static::assertEquals(self::EXPECTED_ID, $id);
+    }
+
+    /**
      * Call a private static method on a class.
      *
      * @param string $class
@@ -59,22 +75,6 @@ class JsonParserTest extends TestCase
         $createFromJsonMethod->setAccessible(true);
 
         return $createFromJsonMethod->invokeArgs(null, $args);
-    }
-
-    /**
-     * Test creation of Id.
-     */
-    public function testCreateIdFromJson()
-    {
-        /** @var BunqResponse $bunqResponseId */
-        $bunqResponseId = $this->callPrivateStaticMethod(
-            BunqModel::class,
-            self::FUNCTION_PROCESS_FOR_ID,
-            [new BunqResponseRaw(self::JSON_ID, [])]
-        );
-        $id = $bunqResponseId->getValue();
-
-        static::assertEquals(self::EXPECTED_ID, $id);
     }
 
     /**
