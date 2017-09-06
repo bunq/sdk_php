@@ -1,6 +1,7 @@
 <?php
 namespace bunq\test;
 
+use bunq\Model\Generated\Object\Pointer;
 use bunq\Util\FileUtil;
 
 /**
@@ -60,35 +61,25 @@ class Config
     }
 
     /**
-     * @return string
+     * @return Pointer
      */
-    public static function getTypeCounterPartyOther()
+    public static function getCounterPartyAliasOther(): Pointer
     {
-        return static::getConfigFile()[self::FIELD_COUNTER_PARTY_OTHER][self::FIELD_ALIAS_TYPE];
+        $type = static::getConfigFile()[self::FIELD_COUNTER_PARTY_OTHER][self::FIELD_ALIAS_TYPE];
+        $alias = static::getConfigFile()[self::FIELD_COUNTER_PARTY_OTHER][self::FIELD_ALIAS];
+
+        return new Pointer($type, $alias);
     }
 
     /**
-     * @return string
+     * @return Pointer
      */
-    public static function getAliasCounterPartyOther()
+    public static function getCounterPartyAliasSelf(): Pointer
     {
-        return static::getConfigFile()[self::FIELD_COUNTER_PARTY_OTHER][self::FIELD_ALIAS];
-    }
+        $type = static::getConfigFile()[self::FIELD_COUNTER_PARTY_SELF][self::FIELD_ALIAS_TYPE];
+        $alias = static::getConfigFile()[self::FIELD_COUNTER_PARTY_SELF][self::FIELD_ALIAS];
 
-    /**
-     * @return string
-     */
-    public static function getAliasCounterParty()
-    {
-        return static::getConfigFile()[self::FIELD_COUNTER_PARTY_SELF][self::FIELD_ALIAS];
-    }
-
-    /**
-     * @return string
-     */
-    public static function getTypeCounterParty()
-    {
-        return static::getConfigFile()[self::FIELD_COUNTER_PARTY_SELF][self::FIELD_ALIAS_TYPE];
+        return new Pointer($type, $alias);
     }
 
     /**

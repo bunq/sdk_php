@@ -2,6 +2,8 @@
 namespace bunq\test\Model\Generated;
 
 use bunq\Model\Generated\Object\Amount;
+use bunq\Model\Generated\TabItemShop;
+use bunq\Model\Generated\TabUsageSingle;
 use bunq\test\BunqSdkTestBase;
 use bunq\test\Config;
 

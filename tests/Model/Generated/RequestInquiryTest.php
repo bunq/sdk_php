@@ -3,7 +3,8 @@ namespace bunq\test\Model\Generated;
 
 use bunq\Context\ApiContext;
 use bunq\Model\Generated\Object\Amount;
-use bunq\Model\Generated\Object\Pointer;
+use bunq\Model\Generated\RequestInquiry;
+use bunq\Model\Generated\RequestResponse;
 use bunq\test\BunqSdkTestBase;
 use bunq\test\Config;
 
@@ -52,12 +53,7 @@ class RequestInquiryTest extends BunqSdkTestBase
     /**
      * @var string
      */
-    private static $counterAlias;
-
-    /**
-     * @var string
-     */
-    private static $counterType;
+    private static $counterPartyAliasOther;
 
 
     /**
@@ -68,8 +64,7 @@ class RequestInquiryTest extends BunqSdkTestBase
         static::$userId = Config::getUserId();
         static::$monetaryAccountId = Config::getMonetaryAccountId();
         static::$monetaryAccountId2 = Config::getMonetaryAccountId2();
-        static::$counterAlias = Config::getAliasCounterParty();
-        static::$counterType = Config::getTypeCounterParty();
+        static::$counterPartyAliasOther = Config::getCounterPartyAliasOther();
     }
 
     /**
@@ -94,9 +89,11 @@ class RequestInquiryTest extends BunqSdkTestBase
     private function sendRequest($apiContext)
     {
         $requestMap = [
-            RequestInquiry::FIELD_AMOUNT_INQUIRED => new Amount(self::REQUEST_AMOUNT_IN_EUR,
-                self::REQUEST_CURRENCY),
-            RequestInquiry::FIELD_COUNTERPARTY_ALIAS => new Pointer(static::$counterType, static::$counterAlias),
+            RequestInquiry::FIELD_AMOUNT_INQUIRED => new Amount(
+                self::REQUEST_AMOUNT_IN_EUR,
+                self::REQUEST_CURRENCY
+            ),
+            RequestInquiry::FIELD_COUNTERPARTY_ALIAS => static::$counterPartyAliasOther,
             RequestInquiry::FIELD_DESCRIPTION => self::REQUEST_DESCRIPTION,
             RequestInquiry::FIELD_ALLOW_BUNQME => false,
         ];
@@ -123,4 +120,3 @@ class RequestInquiryTest extends BunqSdkTestBase
         );
     }
 }
-

@@ -2,6 +2,8 @@
 namespace bunq\test\Model\Generated;
 
 use bunq\Context\ApiContext;
+use bunq\Model\Generated\DraftShareInviteBank;
+use bunq\Model\Generated\DraftShareInviteBankQrCodeContent;
 use bunq\Model\Generated\Object\DraftShareInviteBankEntry;
 use bunq\Model\Generated\Object\ShareDetail;
 use bunq\Model\Generated\Object\ShareDetailReadOnly;

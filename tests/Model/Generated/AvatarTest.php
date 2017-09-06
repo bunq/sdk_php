@@ -2,6 +2,9 @@
 namespace bunq\test\Model\Generated;
 
 use bunq\Http\ApiClient;
+use bunq\Model\Generated\AttachmentPublic;
+use bunq\Model\Generated\AttachmentPublicContent;
+use bunq\Model\Generated\Avatar;
 use bunq\test\BunqSdkTestBase;
 use bunq\test\Config;
 use bunq\Util\FileUtil;
@@ -73,7 +76,8 @@ class AvatarTest extends BunqSdkTestBase
         $attachmentUuidAfter = Avatar::get(static::getApiContext(), $avatarUuid)->getValue();
         $imageInfoArray = $attachmentUuidAfter->getImage();
         $attachmentPublicUuid = $imageInfoArray[self::INDEX_FIRST]->getAttachmentPublicUuid();
-        $fileContentsAfter = AttachmentPublicContent::listing(static::getApiContext(), $attachmentPublicUuid)->getValue();
+        $fileContentsAfter = AttachmentPublicContent::listing(static::getApiContext(), $attachmentPublicUuid)
+            ->getValue();
 
         static::assertEquals($fileContentsBefore, $fileContentsAfter);
     }

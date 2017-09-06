@@ -1,8 +1,11 @@
 <?php
 namespace bunq\test\Model\Generated;
 
+use bunq\Model\Generated\ChatMessageText;
 use bunq\Model\Generated\Object\Amount;
 use bunq\Model\Generated\Object\Pointer;
+use bunq\Model\Generated\Payment;
+use bunq\Model\Generated\PaymentChat;
 use bunq\test\BunqSdkTestBase;
 use bunq\test\Config;
 
@@ -45,24 +48,14 @@ class PaymentTest extends BunqSdkTestBase
     private static $monetaryAccountId;
 
     /**
-     * @var string
+     * @var Pointer
      */
-    private static $counterAliasOtherUser;
+    private static $counterPartyAliasOther;
 
     /**
-     * @var string
+     * @var Pointer
      */
-    private static $counterTypeOtherUser;
-
-    /**
-     * @var string
-     */
-    private static $counterAliasSameUserOtherAccount;
-
-    /**
-     * @var string
-     */
-    private static $counterTypeSameUserOtherAccount;
+    private static $counterPartyAliasSelf;
 
     /**
      * @var int
@@ -76,10 +69,8 @@ class PaymentTest extends BunqSdkTestBase
         parent::setUpBeforeClass();
         static::$userId = Config::getUserId();
         static::$monetaryAccountId = Config::getMonetaryAccountId();
-        static::$counterAliasOtherUser = Config::getAliasCounterPartyOther();
-        static::$counterTypeOtherUser = Config::getTypeCounterPartyOther();
-        static::$counterAliasSameUserOtherAccount = Config::getAliasCounterParty();
-        static::$counterTypeSameUserOtherAccount = Config::getTypeCounterParty();
+        static::$counterPartyAliasOther = Config::getCounterPartyAliasOther();
+        static::$counterPartyAliasSelf = Config::getCounterPartyAliasSelf();
     }
 
     /**
@@ -92,10 +83,7 @@ class PaymentTest extends BunqSdkTestBase
         $apiContext = static::getApiContext();
 
         $requestMap = [
-            Payment::FIELD_COUNTERPARTY_ALIAS => new Pointer(
-                static::$counterTypeOtherUser,
-                static::$counterAliasOtherUser
-            ),
+            Payment::FIELD_COUNTERPARTY_ALIAS => static::$counterPartyAliasOther,
             Payment::FIELD_AMOUNT => new Amount(self::PAYMENT_AMOUNT_IN_EUR, self::PAYMENT_CURRENCY),
             Payment::FIELD_DESCRIPTION => self::PAYMENT_DESCRIPTION,
         ];
@@ -113,10 +101,7 @@ class PaymentTest extends BunqSdkTestBase
         $apiContext = static::getApiContext();
         $requestMap = [
             Payment::FIELD_AMOUNT => new Amount(self::PAYMENT_AMOUNT_IN_EUR, self::PAYMENT_CURRENCY),
-            Payment::FIELD_COUNTERPARTY_ALIAS => new Pointer(
-                static::$counterTypeSameUserOtherAccount,
-                static::$counterAliasSameUserOtherAccount
-            ),
+            Payment::FIELD_COUNTERPARTY_ALIAS => static::$counterPartyAliasSelf,
             Payment::FIELD_DESCRIPTION => self::PAYMENT_DESCRIPTION,
         ];
 
