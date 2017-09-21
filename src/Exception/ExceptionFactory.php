@@ -16,6 +16,9 @@ class ExceptionFactory
     const HTTP_RESPONSE_CODE_TOO_MANY_REQUESTS = 429;
     const HTTP_RESPONSE_CODE_INTERNAL_SERVER_ERROR = 500;
 
+    /**
+     * Formatting constants
+     */
     const FORMAT_RESPONSE_CODE_LINE = 'HTTP Response Code: %s';
     const GLUE_ERROR_MESSAGES = "\n";
 
@@ -32,9 +35,7 @@ class ExceptionFactory
      */
     public static function createExceptionForResponse($messages, $responseCode)
     {
-        var_dump($messages);
         $errorMessage = static::generateMessageError($responseCode, $messages);
-        var_dump($errorMessage);
 
         switch ($responseCode)
         {
@@ -57,6 +58,12 @@ class ExceptionFactory
         }
     }
 
+    /**
+     * @param $responseCode
+     * @param $messages
+     *
+     * @return string
+     */
     private static function generateMessageError($responseCode, $messages)
     {
         $lineResponseCode = sprintf(self::FORMAT_RESPONSE_CODE_LINE, $responseCode);
@@ -64,6 +71,11 @@ class ExceptionFactory
         return static::glueMessages(array_merge([$lineResponseCode], $messages));
     }
 
+    /**
+     * @param $messages
+     *
+     * @return string
+     */
     private static function glueMessages($messages)
     {
         return implode(self::GLUE_ERROR_MESSAGES, $messages);

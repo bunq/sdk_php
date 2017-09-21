@@ -11,27 +11,10 @@ use Psr\Http\Message\ResponseInterface;
 class ResponseHandlerError extends ResponseHandlerBase
 {
     /**
-     * Error constants.
-     */
-    const ERROR_UNKNOWN = 'An error occurred with status code "%d" and message "%s"';
-    const ERROR_FROM_JSON = 'An unexpected error occurred with status code "%d" and message "%s"';
-
-    /**
-     * Header constants.
-     */
-    const HEADER_CONTENT_TYPE = 'Content-Type';
-    const HEADER_CONTENT_TYPE_APPLICATION_JSON = 'application/json';
-
-    /**
      * Field constants.
      */
     const FIELD_ERROR = 'Error';
     const FIELD_ERROR_DESCRIPTION = 'error_description';
-
-    /**
-     * Formatting constants.
-     */
-    const SEPERATOR_ERROR = ', ';
 
     /**
      * Http status code constants.
@@ -56,6 +39,11 @@ class ResponseHandlerError extends ResponseHandlerBase
         return $response;
     }
 
+    /**
+     * @param ResponseInterface $response
+     *
+     * @return array
+     */
     private function fetchErrorMessages(ResponseInterface $response)
     {
         $responseBody = $response->getBody();
@@ -69,49 +57,20 @@ class ResponseHandlerError extends ResponseHandlerBase
 
     }
 
+    /**
+     * @param array $errorArray
+     *
+     * @return array
+     */
     private function fetchErrorDescriptions(array $errorArray)
     {
         $errorDescriptions = [];
 
-        foreach ($errorArray['Error'] as $error){
-            $description = $error['error_description'];
+        foreach ($errorArray[self::FIELD_ERROR] as $error){
+            $description = $error[self::FIELD_ERROR_DESCRIPTION];
             $errorDescriptions[] = $description;
         }
 
         return $errorDescriptions;
     }
-    //{
-    //    $contentType = $response->getHeaderLine(self::HEADER_CONTENT_TYPE);
-    //
-    //    if ($response->getStatusCode() === self::STATUS_CODE_OK) {
-    //        return $response;
-    //    } else {
-    //        if ($contentType === self::HEADER_CONTENT_TYPE_APPLICATION_JSON) {
-    //            $responseBody = $response->getBody();
-    //            $responseJson = \GuzzleHttp\json_decode($responseBody, true);
-    //
-    //            $errorDescriptions = [];
-    //
-    //            foreach ($responseJson[self::FIELD_ERROR] as $error) {
-    //                $errorDescriptions[] = $error[self::FIELD_ERROR_DESCRIPTION];
-    //            }
-    //
-    //            throw ExceptionFactory::createExceptionForResponse(
-    //                self::ERROR_FROM_JSON,
-    //                [
-    //                    $response->getStatusCode(),
-    //                    implode(self::SEPERATOR_ERROR, $errorDescriptions),
-    //                ]
-    //            );
-    //        } else {
-    //            throw ExceptionFactory::createExceptionForResponse(
-    //                self::ERROR_UNKNOWN,
-    //                [
-    //                    $response->getStatusCode(),
-    //                    $response->getBody(),
-    //                ]
-    //            );
-    //        }
-    //    }
-    //}
 }
