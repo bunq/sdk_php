@@ -27,9 +27,9 @@ class ResponseHandlerError extends ResponseHandlerBase
      * @return ResponseInterface
      * @throws ApiException
      */
-    public function execute(ResponseInterface $response)
+    public function execute(ResponseInterface $response): ResponseInterface
     {
-        if (!($response->getStatusCode() == self::STATUS_CODE_OK)){
+        if ($response->getStatusCode() !== self::STATUS_CODE_OK){
             throw ExceptionFactory::createExceptionForResponse(
                 $this->fetchErrorMessages($response),
                 $response->getStatusCode()
@@ -42,27 +42,26 @@ class ResponseHandlerError extends ResponseHandlerBase
     /**
      * @param ResponseInterface $response
      *
-     * @return array
+     * @return string[]
      */
-    private function fetchErrorMessages(ResponseInterface $response)
+    private function fetchErrorMessages(ResponseInterface $response): array
     {
         $responseBody = $response->getBody();
         $responseBodyInJson = json_decode($responseBody, true);
 
-        if (!($responseBodyInJson == false)){
+        if ($responseBodyInJson != false){
             return $this->fetchErrorDescriptions($responseBodyInJson);
+        }else{
+            return [$responseBody];
         }
-
-        return [$responseBody];
-
     }
 
     /**
-     * @param array $errorArray
+     * @param string[] $errorArray
      *
-     * @return array
+     * @return string[]
      */
-    private function fetchErrorDescriptions(array $errorArray)
+    private function fetchErrorDescriptions(array $errorArray): array
     {
         $errorDescriptions = [];
 

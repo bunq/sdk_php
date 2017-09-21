@@ -35,7 +35,7 @@ class ExceptionFactory
      */
     public static function createExceptionForResponse($messages, $responseCode)
     {
-        $errorMessage = static::generateMessageError($responseCode, $messages);
+        $errorMessage = static::generateErrorMessage($responseCode, $messages);
 
         switch ($responseCode)
         {
@@ -59,12 +59,12 @@ class ExceptionFactory
     }
 
     /**
-     * @param $responseCode
-     * @param $messages
+     * @param int $responseCode
+     * @param string[] $messages
      *
      * @return string
      */
-    private static function generateMessageError($responseCode, $messages)
+    private static function generateErrorMessage(int $responseCode, array $messages): string
     {
         $lineResponseCode = sprintf(self::FORMAT_RESPONSE_CODE_LINE, $responseCode);
 
@@ -72,11 +72,11 @@ class ExceptionFactory
     }
 
     /**
-     * @param $messages
+     * @param string[] $messages
      *
      * @return string
      */
-    private static function glueMessages($messages)
+    private static function glueMessages(array $messages): string
     {
         return implode(self::GLUE_ERROR_MESSAGES, $messages);
     }
