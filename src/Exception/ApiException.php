@@ -32,7 +32,7 @@ class ApiException extends Exception
     /**
      * @return int
      */
-    public function getResponseCode()
+    public function getResponseCode(): int
     {
         return $this->responseCode;
     }
