@@ -6,6 +6,11 @@ namespace bunq\Exception;
 class ApiException extends \Exception
 {
     /**
+     * The first item index in an array.
+     */
+    const INDEX_FIRST = 0;
+
+    /**
      * @var int
      */
     private $responseCode;
@@ -17,7 +22,7 @@ class ApiException extends \Exception
      */
     public function __construct($message, $args = [])
     {
-        $this->responseCode = $args[0];
+        $this->responseCode = $args[self::INDEX_FIRST];
 
         parent::__construct(vsprintf($message, $args));
     }
