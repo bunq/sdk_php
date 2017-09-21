@@ -8,11 +8,6 @@ use Exception;
 class ApiException extends Exception
 {
     /**
-     * The first item index in an array.
-     */
-    const INDEX_FIRST = 0;
-
-    /**
      * @var int
      */
     private $responseCode;
