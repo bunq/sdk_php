@@ -3,6 +3,7 @@
 namespace bunq\Http\Handler;
 
 use bunq\Exception\ApiException;
+use bunq\Exception\ExceptionFactory;
 use Psr\Http\Message\ResponseInterface;
 
 /**
@@ -60,7 +61,7 @@ class ResponseHandlerError extends ResponseHandlerBase
                     $errorDescriptions[] = $error[self::FIELD_ERROR_DESCRIPTION];
                 }
 
-                throw new ApiException(
+                throw ExceptionFactory::createExceptionForResponse(
                     self::ERROR_FROM_JSON,
                     [
                         $response->getStatusCode(),
@@ -68,7 +69,7 @@ class ResponseHandlerError extends ResponseHandlerBase
                     ]
                 );
             } else {
-                throw new ApiException(
+                throw ExceptionFactory::createExceptionForResponse(
                     self::ERROR_UNKNOWN,
                     [
                         $response->getStatusCode(),
