@@ -55,7 +55,7 @@
     },
     "scripts": {
         "phpstan": [
-            "./vendor/bin/phpstan analyse --level 5 src"
+            "./vendor/bin/phpstan analyse --level 2 src"
         ]
     }
 }
