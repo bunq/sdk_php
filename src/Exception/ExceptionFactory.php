@@ -16,37 +16,56 @@ class ExceptionFactory
     const HTTP_RESPONSE_CODE_TOO_MANY_REQUESTS = 429;
     const HTTP_RESPONSE_CODE_INTERNAL_SERVER_ERROR = 500;
 
+    const FORMAT_RESPONSE_CODE_LINE = 'HTTP Response Code: %s';
+    const GLUE_ERROR_MESSAGES = "\n";
+
     /**
      * The first item index in an array.
      */
     const INDEX_FIRST = 0;
 
     /**
-     * @param string $message
-     * @param array $args
+     * @param array $messages
+     * @param int $responseCode
      *
-     * @return BadRequestException|ForbiddenException|MethodNotAllowedException|NotFoundException|PleaseContactBunqException|ToManyRequestsException|UnauthorizedException|UnknownApiErrorException
+     * @return ApiException
      */
-    public static function createExceptionForResponse($message, $args = [])
+    public static function createExceptionForResponse($messages, $responseCode)
     {
-        switch ($args[self::INDEX_FIRST])
+        var_dump($messages);
+        $errorMessage = static::generateMessageError($responseCode, $messages);
+        var_dump($errorMessage);
+
+        switch ($responseCode)
         {
             case self::HTTP_RESPONSE_CODE_BAD_REQUEST:
-                return new BadRequestException($message, $args);
+                return new BadRequestException($errorMessage, $responseCode);
             case self::HTTP_RESPONSE_CODE_UNAUTHORIZED:
-                return new UnauthorizedException($message, $args);
+                return new UnauthorizedException($errorMessage, $responseCode);
             case self::HTTP_RESPONSE_CODE_FORBIDDEN:
-                return new ForbiddenException($message, $args);
+                return new ForbiddenException($errorMessage, $responseCode);
             case self::HTTP_RESPONSE_CODE_NOT_FOUND:
-                return new NotFoundException($message, $args);
+                return new NotFoundException($errorMessage, $responseCode);
             case self::HTTP_RESPONSE_CODE_METHOD_NOT_ALLOWED:
-                return new MethodNotAllowedException($message, $args);
+                return new MethodNotAllowedException($errorMessage, $responseCode);
             case self::HTTP_RESPONSE_CODE_TOO_MANY_REQUESTS:
-                return new ToManyRequestsException($message, $args);
+                return new TooManyRequestsException($errorMessage, $responseCode);
             case self::HTTP_RESPONSE_CODE_INTERNAL_SERVER_ERROR:
-                return new PleaseContactBunqException($message, $args);
+                return new PleaseContactBunqException($errorMessage, $responseCode);
             default:
-                return new UnknownApiErrorException($message, $args);
+                return new UnknownApiErrorException($errorMessage, $responseCode);
         }
+    }
+
+    private static function generateMessageError($responseCode, $messages)
+    {
+        $lineResponseCode = sprintf(self::FORMAT_RESPONSE_CODE_LINE, $responseCode);
+
+        return static::glueMessages(array_merge([$lineResponseCode], $messages));
+    }
+
+    private static function glueMessages($messages)
+    {
+        return implode(self::GLUE_ERROR_MESSAGES, $messages);
     }
 }

@@ -7,10 +7,10 @@ class BunqException extends \Exception
 {
     /**
      * @param string $message
-     * @param string[] $args
+     * @param string[] $responseCode
      */
-    public function __construct($message, $args = [])
+    public function __construct($message, $responseCode = [])
     {
-        parent::__construct(vsprintf($message, $args));
+        parent::__construct(vsprintf($message, $responseCode));
     }
 }

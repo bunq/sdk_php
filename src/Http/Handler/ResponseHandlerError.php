@@ -46,37 +46,72 @@ class ResponseHandlerError extends ResponseHandlerBase
      */
     public function execute(ResponseInterface $response)
     {
-        $contentType = $response->getHeaderLine(self::HEADER_CONTENT_TYPE);
-
-        if ($response->getStatusCode() === self::STATUS_CODE_OK) {
-            return $response;
-        } else {
-            if ($contentType === self::HEADER_CONTENT_TYPE_APPLICATION_JSON) {
-                $responseBody = $response->getBody();
-                $responseJson = \GuzzleHttp\json_decode($responseBody, true);
-
-                $errorDescriptions = [];
-
-                foreach ($responseJson[self::FIELD_ERROR] as $error) {
-                    $errorDescriptions[] = $error[self::FIELD_ERROR_DESCRIPTION];
-                }
-
-                throw ExceptionFactory::createExceptionForResponse(
-                    self::ERROR_FROM_JSON,
-                    [
-                        $response->getStatusCode(),
-                        implode(self::SEPERATOR_ERROR, $errorDescriptions),
-                    ]
-                );
-            } else {
-                throw ExceptionFactory::createExceptionForResponse(
-                    self::ERROR_UNKNOWN,
-                    [
-                        $response->getStatusCode(),
-                        $response->getBody(),
-                    ]
-                );
-            }
+        if (!($response->getStatusCode() == self::STATUS_CODE_OK)){
+            throw ExceptionFactory::createExceptionForResponse(
+                $this->fetchErrorMessages($response),
+                $response->getStatusCode()
+            );
         }
+
+        return $response;
     }
+
+    private function fetchErrorMessages(ResponseInterface $response)
+    {
+        $responseBody = $response->getBody();
+        $responseBodyInJson = json_decode($responseBody, true);
+
+        if (!($responseBodyInJson == false)){
+            return $this->fetchErrorDescriptions($responseBodyInJson);
+        }
+
+        return [$responseBody];
+
+    }
+
+    private function fetchErrorDescriptions(array $errorArray)
+    {
+        $errorDescriptions = [];
+
+        foreach ($errorArray['Error'] as $error){
+            $description = $error['error_description'];
+            $errorDescriptions[] = $description;
+        }
+
+        return $errorDescriptions;
+    }
+    //{
+    //    $contentType = $response->getHeaderLine(self::HEADER_CONTENT_TYPE);
+    //
+    //    if ($response->getStatusCode() === self::STATUS_CODE_OK) {
+    //        return $response;
+    //    } else {
+    //        if ($contentType === self::HEADER_CONTENT_TYPE_APPLICATION_JSON) {
+    //            $responseBody = $response->getBody();
+    //            $responseJson = \GuzzleHttp\json_decode($responseBody, true);
+    //
+    //            $errorDescriptions = [];
+    //
+    //            foreach ($responseJson[self::FIELD_ERROR] as $error) {
+    //                $errorDescriptions[] = $error[self::FIELD_ERROR_DESCRIPTION];
+    //            }
+    //
+    //            throw ExceptionFactory::createExceptionForResponse(
+    //                self::ERROR_FROM_JSON,
+    //                [
+    //                    $response->getStatusCode(),
+    //                    implode(self::SEPERATOR_ERROR, $errorDescriptions),
+    //                ]
+    //            );
+    //        } else {
+    //            throw ExceptionFactory::createExceptionForResponse(
+    //                self::ERROR_UNKNOWN,
+    //                [
+    //                    $response->getStatusCode(),
+    //                    $response->getBody(),
+    //                ]
+    //            );
+    //        }
+    //    }
+    //}
 }

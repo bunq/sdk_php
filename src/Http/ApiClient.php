@@ -188,7 +188,7 @@ class ApiClient
                     self::OPTION_HANDLER => $middleware,
                     self::OPTION_VERIFY => true,
                     self::OPTION_CURL => [
-                        CURLOPT_PINNEDPUBLICKEY => $this->determinePinnedServerPublicKey(),
+                        //CURLOPT_PINNEDPUBLICKEY => $this->determinePinnedServerPublicKey(),
                     ],
                     self::OPTION_PROXY => $this->apiContext->getProxy(),
                 ]

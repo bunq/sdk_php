@@ -1,9 +1,11 @@
 <?php
 namespace bunq\Exception;
 
+use Exception;
+
 /**
  */
-class ApiException extends \Exception
+class ApiException extends Exception
 {
     /**
      * The first item index in an array.
@@ -20,11 +22,11 @@ class ApiException extends \Exception
      *
      * @param int $responseCode
      */
-    public function __construct($message, $args = [])
+    public function __construct($message, $responseCode)
     {
-        $this->responseCode = $args[self::INDEX_FIRST];
+        $this->responseCode = $responseCode;
 
-        parent::__construct(vsprintf($message, $args));
+        parent::__construct($message);
     }
 
     /**
