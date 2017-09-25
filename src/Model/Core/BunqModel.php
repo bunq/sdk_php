@@ -175,10 +175,12 @@ abstract class BunqModel implements JsonSerializable
             if (is_null($contents) || static::isTypeScalar($fieldType)) {
                 return $contents;
             } elseif (isset($matches[self::REGEX_MATCH_RESULT_IS_ARRAY])) {
+                /** @var BunqModel $modelClassNameQualified */
                 $modelClassNameQualified = ModelUtil::determineModelClassNameQualified($fieldType);
 
                 return $modelClassNameQualified::createListFromResponseArray($contents);
             } else {
+                /** @var BunqModel $modelClassNameQualified */
                 $modelClassNameQualified = ModelUtil::determineModelClassNameQualified($fieldType);
 
                 return $modelClassNameQualified::createFromResponseArray($contents);

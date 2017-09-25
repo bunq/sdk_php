@@ -63,6 +63,10 @@ class BunqResponse
      */
     public static function castFromBunqResponse(BunqResponse $bunqResponse): BunqResponse
     {
-        return new static($bunqResponse->getValue(), $bunqResponse->getHeaders(), $bunqResponse->getPagination());
+        return new static(
+            $bunqResponse->getValue(),
+            $bunqResponse->getHeaders(),
+            $bunqResponse->getPagination()
+        );
     }
 }
