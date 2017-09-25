@@ -1,7 +1,6 @@
 <?php
 namespace bunq\test;
 
-use bunq\Http\BunqResponse;
 use bunq\Http\BunqResponseRaw;
 use bunq\Model\BunqModel;
 use bunq\Model\BunqResponseInstallation;
@@ -13,6 +12,7 @@ use bunq\Model\Generated\UserCompany;
 use bunq\Model\Installation;
 use bunq\Util\FileUtil;
 use PHPUnit\Framework\TestCase;
+use ReflectionClass;
 
 /**
  * @author Gerben Oolbekkink <gerben@bunq.com>
@@ -68,13 +68,13 @@ class JsonParserTest extends TestCase
      *
      * @param string $class
      * @param string $method
-     * @param array $args
+     * @param mixed[] $args
      *
      * @return mixed
      */
-    private function callPrivateStaticMethod($class, $method, array $args)
+    private function callPrivateStaticMethod(string $class, string $method, array $args)
     {
-        $reflectionClass = new \ReflectionClass($class);
+        $reflectionClass = new ReflectionClass($class);
         $createFromJsonMethod = $reflectionClass->getMethod($method);
         $createFromJsonMethod->setAccessible(true);
 
@@ -125,7 +125,7 @@ class JsonParserTest extends TestCase
         $installationJson = FileUtil::getFileContents(__DIR__ . self::RESOURCE_INSTALLATION_JSON);
         /** @var BunqResponseInstallation $bunqResponseInstallation */
         $bunqResponseInstallation = $this->callPrivateStaticMethod(
-            BunqModel::class,
+            Installation::class,
             self::FUNCTION_CLASS_FROM_JSON,
             [new BunqResponseRaw($installationJson, [])]
         );

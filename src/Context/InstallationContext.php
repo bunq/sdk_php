@@ -41,7 +41,7 @@ class InstallationContext implements JsonSerializable
     }
 
     /**
-     * @param string[][] $installationContextJson
+     * @param mixed[] $installationContextJson
      * @return static
      */
     public static function restore(array $installationContextJson)

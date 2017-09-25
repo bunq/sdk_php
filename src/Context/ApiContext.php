@@ -185,7 +185,7 @@ class ApiContext
     }
 
     /**
-     * @param string[][] $contextJson
+     * @param mixed[] $contextJson
      *
      * @return string|null
      */
