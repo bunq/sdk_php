@@ -2,11 +2,11 @@
 namespace bunq\sdk\examples;
 
 use bunq\Context\ApiContext;
-use bunq\Model\Generated\MonetaryAccount;
+use bunq\Model\Generated\Endpoint\MonetaryAccount;
 use bunq\Model\Generated\Object\Amount;
 use bunq\Model\Generated\Object\Pointer;
-use bunq\Model\Generated\Payment;
-use bunq\Model\Generated\User;
+use bunq\Model\Generated\Endpoint\Payment;
+use bunq\Model\Generated\Endpoint\User;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 

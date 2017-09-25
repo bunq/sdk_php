@@ -2,7 +2,7 @@
 namespace bunq\Security;
 
 /**
- * Represents an OpenSSL keypair.
+ * Represents an OpenSSL key pair.
  *
  */
 class KeyPair

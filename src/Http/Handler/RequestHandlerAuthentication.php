@@ -1,7 +1,7 @@
 <?php
 namespace bunq\Http\Handler;
 
-use bunq\Model\Token;
+use bunq\Model\Core\Token;
 use Psr\Http\Message\RequestInterface;
 
 /**

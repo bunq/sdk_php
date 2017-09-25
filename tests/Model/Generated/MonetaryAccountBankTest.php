@@ -1,7 +1,7 @@
 <?php
 namespace bunq\test\Model\Generated;
 
-use bunq\Model\Generated\MonetaryAccountBank;
+use bunq\Model\Generated\Endpoint\MonetaryAccountBank;
 use bunq\test\BunqSdkTestBase;
 use bunq\test\Config;
 

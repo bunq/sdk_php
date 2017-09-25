@@ -1,11 +1,11 @@
 <?php
 namespace bunq\test\Model\Generated;
 
-use bunq\Model\Generated\ChatMessageText;
+use bunq\Model\Generated\Endpoint\ChatMessageText;
 use bunq\Model\Generated\Object\Amount;
 use bunq\Model\Generated\Object\Pointer;
-use bunq\Model\Generated\Payment;
-use bunq\Model\Generated\PaymentChat;
+use bunq\Model\Generated\Endpoint\Payment;
+use bunq\Model\Generated\Endpoint\PaymentChat;
 use bunq\test\BunqSdkTestBase;
 use bunq\test\Config;
 

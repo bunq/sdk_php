@@ -5,10 +5,10 @@ namespace bunq\sdk\examples;
  * This example shows using an encrypted endpoint to order a new card.
  */
 use bunq\Context\ApiContext;
-use bunq\Model\Generated\Card;
-use bunq\Model\Generated\CardDebit;
-use bunq\Model\Generated\MonetaryAccount;
-use bunq\Model\Generated\User;
+use bunq\Model\Generated\Endpoint\Card;
+use bunq\Model\Generated\Endpoint\CardDebit;
+use bunq\Model\Generated\Endpoint\MonetaryAccount;
+use bunq\Model\Generated\Endpoint\User;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 

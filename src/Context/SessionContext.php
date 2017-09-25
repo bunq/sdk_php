@@ -1,8 +1,8 @@
 <?php
 namespace bunq\Context;
 
-use bunq\Model\SessionServer;
-use bunq\Model\Token;
+use bunq\Model\Core\SessionServer;
+use bunq\Model\Core\Token;
 use DateTime;
 use JsonSerializable;
 

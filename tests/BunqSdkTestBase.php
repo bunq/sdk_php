@@ -4,7 +4,7 @@ namespace bunq\test;
 use bunq\Context\ApiContext;
 use bunq\Exception\ApiException;
 use bunq\Exception\BunqException;
-use bunq\Model\Generated\User;
+use bunq\Model\Generated\Endpoint\User;
 use bunq\Util\BunqEnumApiEnvironmentType;
 use PHPUnit\Framework\TestCase;
 

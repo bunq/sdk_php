@@ -3,8 +3,8 @@ namespace bunq\test\Model\Generated;
 
 use bunq\Context\ApiContext;
 use bunq\Model\Generated\Object\Amount;
-use bunq\Model\Generated\RequestInquiry;
-use bunq\Model\Generated\RequestResponse;
+use bunq\Model\Generated\Endpoint\RequestInquiry;
+use bunq\Model\Generated\Endpoint\RequestResponse;
 use bunq\test\BunqSdkTestBase;
 use bunq\test\Config;
 

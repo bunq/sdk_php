@@ -2,8 +2,8 @@
 namespace bunq\sdk\examples;
 
 use bunq\Context\ApiContext;
-use bunq\Model\Generated\User;
-use bunq\Model\Generated\UserCompany;
+use bunq\Model\Generated\Endpoint\User;
+use bunq\Model\Generated\Endpoint\UserCompany;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 

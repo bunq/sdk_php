@@ -1,7 +1,7 @@
 <?php
 namespace bunq\test\Model\Generated;
 
-use bunq\Model\Generated\Session;
+use bunq\Model\Generated\Endpoint\Session;
 use bunq\test\BunqSdkTestBase;
 
 /**

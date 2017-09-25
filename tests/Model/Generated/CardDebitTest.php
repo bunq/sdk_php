@@ -1,11 +1,11 @@
 <?php
 namespace bunq\test\Model\Generated;
 
-use bunq\Model\Generated\Card;
-use bunq\Model\Generated\CardDebit;
-use bunq\Model\Generated\CardName;
+use bunq\Model\Generated\Endpoint\Card;
+use bunq\Model\Generated\Endpoint\CardDebit;
+use bunq\Model\Generated\Endpoint\CardName;
 use bunq\Model\Generated\Object\Pointer;
-use bunq\Model\Generated\User;
+use bunq\Model\Generated\Endpoint\User;
 use bunq\test\BunqSdkTestBase;
 use bunq\test\Config;
 

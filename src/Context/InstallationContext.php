@@ -1,7 +1,7 @@
 <?php
 namespace bunq\Context;
 
-use bunq\Model\Token;
+use bunq\Model\Core\Token;
 use bunq\Security\KeyPair;
 use bunq\Security\PrivateKey;
 use bunq\Security\PublicKey;

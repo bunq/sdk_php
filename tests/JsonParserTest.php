@@ -2,14 +2,14 @@
 namespace bunq\test;
 
 use bunq\Http\BunqResponseRaw;
-use bunq\Model\BunqModel;
-use bunq\Model\BunqResponseInstallation;
-use bunq\Model\Generated\BunqResponseInt;
-use bunq\Model\Generated\BunqResponseString;
-use bunq\Model\Generated\BunqResponseUserCompany;
+use bunq\Model\Core\BunqModel;
+use bunq\Model\Core\BunqResponseInstallation;
+use bunq\Model\Generated\Endpoint\BunqResponseInt;
+use bunq\Model\Generated\Endpoint\BunqResponseString;
+use bunq\Model\Generated\Endpoint\BunqResponseUserCompany;
 use bunq\Model\Generated\Object\Amount;
-use bunq\Model\Generated\UserCompany;
-use bunq\Model\Installation;
+use bunq\Model\Generated\Endpoint\UserCompany;
+use bunq\Model\Core\Installation;
 use bunq\Util\FileUtil;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;

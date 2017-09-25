@@ -2,8 +2,8 @@
 namespace bunq\test\Model\Generated;
 
 use bunq\Http\ApiClient;
-use bunq\Model\Generated\AttachmentPublic;
-use bunq\Model\Generated\AttachmentPublicContent;
+use bunq\Model\Generated\Endpoint\AttachmentPublic;
+use bunq\Model\Generated\Endpoint\AttachmentPublicContent;
 use bunq\test\BunqSdkTestBase;
 use bunq\test\Config;
 use bunq\Util\FileUtil;

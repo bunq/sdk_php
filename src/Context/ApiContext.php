@@ -2,11 +2,11 @@
 namespace bunq\Context;
 
 use bunq\Exception\BunqException;
-use bunq\Model\Generated\DeviceServer;
-use bunq\Model\Generated\Session;
-use bunq\Model\Installation;
-use bunq\Model\SessionServer;
-use bunq\Model\Token;
+use bunq\Model\Generated\Endpoint\DeviceServer;
+use bunq\Model\Generated\Endpoint\Session;
+use bunq\Model\Core\Installation;
+use bunq\Model\Core\SessionServer;
+use bunq\Model\Core\Token;
 use bunq\Security\KeyPair;
 use bunq\Util\BunqEnumApiEnvironmentType;
 use bunq\Util\FileUtil;
