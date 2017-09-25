@@ -42,7 +42,7 @@ class AttachmentTab extends BunqModel
     /**
      * @param int $id
      */
-    public function setId($id)
+    public function setId(int $id)
     {
         $this->id = $id;
     }
@@ -60,7 +60,7 @@ class AttachmentTab extends BunqModel
     /**
      * @param string $description
      */
-    public function setDescription($description)
+    public function setDescription(string $description)
     {
         $this->description = $description;
     }
@@ -78,7 +78,7 @@ class AttachmentTab extends BunqModel
     /**
      * @param string $contentType
      */
-    public function setContentType($contentType)
+    public function setContentType(string $contentType)
     {
         $this->contentType = $contentType;
     }

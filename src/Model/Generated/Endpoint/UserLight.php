@@ -332,7 +332,7 @@ class UserLight extends BunqModel
     /**
      * @param int $id
      */
-    public function setId($id)
+    public function setId(int $id)
     {
         $this->id = $id;
     }
@@ -350,7 +350,7 @@ class UserLight extends BunqModel
     /**
      * @param string $created
      */
-    public function setCreated($created)
+    public function setCreated(string $created)
     {
         $this->created = $created;
     }
@@ -368,7 +368,7 @@ class UserLight extends BunqModel
     /**
      * @param string $updated
      */
-    public function setUpdated($updated)
+    public function setUpdated(string $updated)
     {
         $this->updated = $updated;
     }
@@ -386,7 +386,7 @@ class UserLight extends BunqModel
     /**
      * @param string $publicUuid
      */
-    public function setPublicUuid($publicUuid)
+    public function setPublicUuid(string $publicUuid)
     {
         $this->publicUuid = $publicUuid;
     }
@@ -404,7 +404,7 @@ class UserLight extends BunqModel
     /**
      * @param string $firstName
      */
-    public function setFirstName($firstName)
+    public function setFirstName(string $firstName)
     {
         $this->firstName = $firstName;
     }
@@ -422,7 +422,7 @@ class UserLight extends BunqModel
     /**
      * @param string $middleName
      */
-    public function setMiddleName($middleName)
+    public function setMiddleName(string $middleName)
     {
         $this->middleName = $middleName;
     }
@@ -440,7 +440,7 @@ class UserLight extends BunqModel
     /**
      * @param string $lastName
      */
-    public function setLastName($lastName)
+    public function setLastName(string $lastName)
     {
         $this->lastName = $lastName;
     }
@@ -458,7 +458,7 @@ class UserLight extends BunqModel
     /**
      * @param string $legalName
      */
-    public function setLegalName($legalName)
+    public function setLegalName(string $legalName)
     {
         $this->legalName = $legalName;
     }
@@ -476,7 +476,7 @@ class UserLight extends BunqModel
     /**
      * @param string $displayName
      */
-    public function setDisplayName($displayName)
+    public function setDisplayName(string $displayName)
     {
         $this->displayName = $displayName;
     }
@@ -494,7 +494,7 @@ class UserLight extends BunqModel
     /**
      * @param string $publicNickName
      */
-    public function setPublicNickName($publicNickName)
+    public function setPublicNickName(string $publicNickName)
     {
         $this->publicNickName = $publicNickName;
     }
@@ -512,7 +512,7 @@ class UserLight extends BunqModel
     /**
      * @param Pointer[] $alias
      */
-    public function setAlias(array$alias)
+    public function setAlias(array $alias)
     {
         $this->alias = $alias;
     }
@@ -530,7 +530,7 @@ class UserLight extends BunqModel
     /**
      * @param string $socialSecurityNumber
      */
-    public function setSocialSecurityNumber($socialSecurityNumber)
+    public function setSocialSecurityNumber(string $socialSecurityNumber)
     {
         $this->socialSecurityNumber = $socialSecurityNumber;
     }
@@ -548,7 +548,7 @@ class UserLight extends BunqModel
     /**
      * @param TaxResident[] $taxResident
      */
-    public function setTaxResident(array$taxResident)
+    public function setTaxResident(array $taxResident)
     {
         $this->taxResident = $taxResident;
     }
@@ -566,7 +566,7 @@ class UserLight extends BunqModel
     /**
      * @param string $documentType
      */
-    public function setDocumentType($documentType)
+    public function setDocumentType(string $documentType)
     {
         $this->documentType = $documentType;
     }
@@ -584,7 +584,7 @@ class UserLight extends BunqModel
     /**
      * @param string $documentNumber
      */
-    public function setDocumentNumber($documentNumber)
+    public function setDocumentNumber(string $documentNumber)
     {
         $this->documentNumber = $documentNumber;
     }
@@ -603,7 +603,7 @@ class UserLight extends BunqModel
     /**
      * @param string $documentCountryOfIssuance
      */
-    public function setDocumentCountryOfIssuance($documentCountryOfIssuance)
+    public function setDocumentCountryOfIssuance(string $documentCountryOfIssuance)
     {
         $this->documentCountryOfIssuance = $documentCountryOfIssuance;
     }
@@ -657,7 +657,7 @@ class UserLight extends BunqModel
     /**
      * @param string $dateOfBirth
      */
-    public function setDateOfBirth($dateOfBirth)
+    public function setDateOfBirth(string $dateOfBirth)
     {
         $this->dateOfBirth = $dateOfBirth;
     }
@@ -675,7 +675,7 @@ class UserLight extends BunqModel
     /**
      * @param string $placeOfBirth
      */
-    public function setPlaceOfBirth($placeOfBirth)
+    public function setPlaceOfBirth(string $placeOfBirth)
     {
         $this->placeOfBirth = $placeOfBirth;
     }
@@ -694,7 +694,7 @@ class UserLight extends BunqModel
     /**
      * @param string $countryOfBirth
      */
-    public function setCountryOfBirth($countryOfBirth)
+    public function setCountryOfBirth(string $countryOfBirth)
     {
         $this->countryOfBirth = $countryOfBirth;
     }
@@ -712,7 +712,7 @@ class UserLight extends BunqModel
     /**
      * @param string $nationality
      */
-    public function setNationality($nationality)
+    public function setNationality(string $nationality)
     {
         $this->nationality = $nationality;
     }
@@ -731,7 +731,7 @@ class UserLight extends BunqModel
     /**
      * @param string $language
      */
-    public function setLanguage($language)
+    public function setLanguage(string $language)
     {
         $this->language = $language;
     }
@@ -750,7 +750,7 @@ class UserLight extends BunqModel
     /**
      * @param string $region
      */
-    public function setRegion($region)
+    public function setRegion(string $region)
     {
         $this->region = $region;
     }
@@ -768,7 +768,7 @@ class UserLight extends BunqModel
     /**
      * @param string $gender
      */
-    public function setGender($gender)
+    public function setGender(string $gender)
     {
         $this->gender = $gender;
     }
@@ -804,7 +804,7 @@ class UserLight extends BunqModel
     /**
      * @param string $versionTermsOfService
      */
-    public function setVersionTermsOfService($versionTermsOfService)
+    public function setVersionTermsOfService(string $versionTermsOfService)
     {
         $this->versionTermsOfService = $versionTermsOfService;
     }
@@ -823,7 +823,7 @@ class UserLight extends BunqModel
     /**
      * @param string $status
      */
-    public function setStatus($status)
+    public function setStatus(string $status)
     {
         $this->status = $status;
     }
@@ -842,7 +842,7 @@ class UserLight extends BunqModel
     /**
      * @param string $subStatus
      */
-    public function setSubStatus($subStatus)
+    public function setSubStatus(string $subStatus)
     {
         $this->subStatus = $subStatus;
     }
@@ -860,7 +860,7 @@ class UserLight extends BunqModel
     /**
      * @param int $sessionTimeout
      */
-    public function setSessionTimeout($sessionTimeout)
+    public function setSessionTimeout(int $sessionTimeout)
     {
         $this->sessionTimeout = $sessionTimeout;
     }
@@ -898,7 +898,7 @@ class UserLight extends BunqModel
     /**
      * @param NotificationFilter[] $notificationFilters
      */
-    public function setNotificationFilters(array$notificationFilters)
+    public function setNotificationFilters(array $notificationFilters)
     {
         $this->notificationFilters = $notificationFilters;
     }

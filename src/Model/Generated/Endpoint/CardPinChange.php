@@ -138,7 +138,7 @@ class CardPinChange extends BunqModel
     /**
      * @param int $id
      */
-    public function setId($id)
+    public function setId(int $id)
     {
         $this->id = $id;
     }
@@ -193,7 +193,7 @@ class CardPinChange extends BunqModel
     /**
      * @param string $timeRequest
      */
-    public function setTimeRequest($timeRequest)
+    public function setTimeRequest(string $timeRequest)
     {
         $this->timeRequest = $timeRequest;
     }
@@ -211,7 +211,7 @@ class CardPinChange extends BunqModel
     /**
      * @param string $timeAccept
      */
-    public function setTimeAccept($timeAccept)
+    public function setTimeAccept(string $timeAccept)
     {
         $this->timeAccept = $timeAccept;
     }
@@ -230,7 +230,7 @@ class CardPinChange extends BunqModel
     /**
      * @param string $status
      */
-    public function setStatus($status)
+    public function setStatus(string $status)
     {
         $this->status = $status;
     }

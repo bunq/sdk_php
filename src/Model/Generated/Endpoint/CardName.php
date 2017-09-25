@@ -78,7 +78,7 @@ class CardName extends BunqModel
     /**
      * @param string[] $possibleCardNameArray
      */
-    public function setPossibleCardNameArray(array$possibleCardNameArray)
+    public function setPossibleCardNameArray(array $possibleCardNameArray)
     {
         $this->possibleCardNameArray = $possibleCardNameArray;
     }

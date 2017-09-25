@@ -84,7 +84,7 @@ class DevicePhone extends BunqModel
     /**
      * @param int $id
      */
-    public function setId($id)
+    public function setId(int $id)
     {
         $this->id = $id;
     }
@@ -102,7 +102,7 @@ class DevicePhone extends BunqModel
     /**
      * @param string $created
      */
-    public function setCreated($created)
+    public function setCreated(string $created)
     {
         $this->created = $created;
     }
@@ -120,7 +120,7 @@ class DevicePhone extends BunqModel
     /**
      * @param string $updated
      */
-    public function setUpdated($updated)
+    public function setUpdated(string $updated)
     {
         $this->updated = $updated;
     }
@@ -138,7 +138,7 @@ class DevicePhone extends BunqModel
     /**
      * @param string $description
      */
-    public function setDescription($description)
+    public function setDescription(string $description)
     {
         $this->description = $description;
     }
@@ -156,7 +156,7 @@ class DevicePhone extends BunqModel
     /**
      * @param string $phoneNumber
      */
-    public function setPhoneNumber($phoneNumber)
+    public function setPhoneNumber(string $phoneNumber)
     {
         $this->phoneNumber = $phoneNumber;
     }
@@ -174,7 +174,7 @@ class DevicePhone extends BunqModel
     /**
      * @param string $os
      */
-    public function setOs($os)
+    public function setOs(string $os)
     {
         $this->os = $os;
     }
@@ -192,7 +192,7 @@ class DevicePhone extends BunqModel
     /**
      * @param string $status
      */
-    public function setStatus($status)
+    public function setStatus(string $status)
     {
         $this->status = $status;
     }

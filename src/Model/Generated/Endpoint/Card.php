@@ -279,7 +279,7 @@ class Card extends BunqModel
     /**
      * @param int $id
      */
-    public function setId($id)
+    public function setId(int $id)
     {
         $this->id = $id;
     }
@@ -297,7 +297,7 @@ class Card extends BunqModel
     /**
      * @param string $created
      */
-    public function setCreated($created)
+    public function setCreated(string $created)
     {
         $this->created = $created;
     }
@@ -315,7 +315,7 @@ class Card extends BunqModel
     /**
      * @param string $updated
      */
-    public function setUpdated($updated)
+    public function setUpdated(string $updated)
     {
         $this->updated = $updated;
     }
@@ -333,7 +333,7 @@ class Card extends BunqModel
     /**
      * @param string $publicUuid
      */
-    public function setPublicUuid($publicUuid)
+    public function setPublicUuid(string $publicUuid)
     {
         $this->publicUuid = $publicUuid;
     }
@@ -351,7 +351,7 @@ class Card extends BunqModel
     /**
      * @param string $secondLine
      */
-    public function setSecondLine($secondLine)
+    public function setSecondLine(string $secondLine)
     {
         $this->secondLine = $secondLine;
     }
@@ -370,7 +370,7 @@ class Card extends BunqModel
     /**
      * @param string $status
      */
-    public function setStatus($status)
+    public function setStatus(string $status)
     {
         $this->status = $status;
     }
@@ -388,7 +388,7 @@ class Card extends BunqModel
     /**
      * @param string $subStatus
      */
-    public function setSubStatus($subStatus)
+    public function setSubStatus(string $subStatus)
     {
         $this->subStatus = $subStatus;
     }
@@ -408,7 +408,7 @@ class Card extends BunqModel
     /**
      * @param string $orderStatus
      */
-    public function setOrderStatus($orderStatus)
+    public function setOrderStatus(string $orderStatus)
     {
         $this->orderStatus = $orderStatus;
     }
@@ -426,7 +426,7 @@ class Card extends BunqModel
     /**
      * @param string $expiryDate
      */
-    public function setExpiryDate($expiryDate)
+    public function setExpiryDate(string $expiryDate)
     {
         $this->expiryDate = $expiryDate;
     }
@@ -444,7 +444,7 @@ class Card extends BunqModel
     /**
      * @param string $nameOnCard
      */
-    public function setNameOnCard($nameOnCard)
+    public function setNameOnCard(string $nameOnCard)
     {
         $this->nameOnCard = $nameOnCard;
     }
@@ -462,7 +462,7 @@ class Card extends BunqModel
     /**
      * @param string $primaryAccountNumberFourDigit
      */
-    public function setPrimaryAccountNumberFourDigit($primaryAccountNumberFourDigit)
+    public function setPrimaryAccountNumberFourDigit(string $primaryAccountNumberFourDigit)
     {
         $this->primaryAccountNumberFourDigit = $primaryAccountNumberFourDigit;
     }
@@ -482,7 +482,7 @@ class Card extends BunqModel
     /**
      * @param CardLimit[] $limit
      */
-    public function setLimit(array$limit)
+    public function setLimit(array $limit)
     {
         $this->limit = $limit;
     }
@@ -518,7 +518,7 @@ class Card extends BunqModel
     /**
      * @param CardCountryPermission[] $countryPermission
      */
-    public function setCountryPermission(array$countryPermission)
+    public function setCountryPermission(array $countryPermission)
     {
         $this->countryPermission = $countryPermission;
     }
@@ -574,7 +574,7 @@ class Card extends BunqModel
     /**
      * @param CardPinAssignment[] $pinCodeAssignment
      */
-    public function setPinCodeAssignment(array$pinCodeAssignment)
+    public function setPinCodeAssignment(array $pinCodeAssignment)
     {
         $this->pinCodeAssignment = $pinCodeAssignment;
     }
@@ -593,7 +593,7 @@ class Card extends BunqModel
     /**
      * @param int $monetaryAccountIdFallback
      */
-    public function setMonetaryAccountIdFallback($monetaryAccountIdFallback)
+    public function setMonetaryAccountIdFallback(int $monetaryAccountIdFallback)
     {
         $this->monetaryAccountIdFallback = $monetaryAccountIdFallback;
     }

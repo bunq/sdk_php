@@ -166,7 +166,7 @@ class ExportAnnualOverview extends BunqModel
     /**
      * @param int $id
      */
-    public function setId($id)
+    public function setId(int $id)
     {
         $this->id = $id;
     }
@@ -184,7 +184,7 @@ class ExportAnnualOverview extends BunqModel
     /**
      * @param string $created
      */
-    public function setCreated($created)
+    public function setCreated(string $created)
     {
         $this->created = $created;
     }
@@ -202,7 +202,7 @@ class ExportAnnualOverview extends BunqModel
     /**
      * @param string $updated
      */
-    public function setUpdated($updated)
+    public function setUpdated(string $updated)
     {
         $this->updated = $updated;
     }
@@ -220,7 +220,7 @@ class ExportAnnualOverview extends BunqModel
     /**
      * @param int $year
      */
-    public function setYear($year)
+    public function setYear(int $year)
     {
         $this->year = $year;
     }

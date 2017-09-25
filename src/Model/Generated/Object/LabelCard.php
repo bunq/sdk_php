@@ -63,7 +63,7 @@ class LabelCard extends BunqModel
     /**
      * @param string $uuid
      */
-    public function setUuid($uuid)
+    public function setUuid(string $uuid)
     {
         $this->uuid = $uuid;
     }
@@ -81,7 +81,7 @@ class LabelCard extends BunqModel
     /**
      * @param string $type
      */
-    public function setType($type)
+    public function setType(string $type)
     {
         $this->type = $type;
     }
@@ -99,7 +99,7 @@ class LabelCard extends BunqModel
     /**
      * @param string $secondLine
      */
-    public function setSecondLine($secondLine)
+    public function setSecondLine(string $secondLine)
     {
         $this->secondLine = $secondLine;
     }
@@ -117,7 +117,7 @@ class LabelCard extends BunqModel
     /**
      * @param string $expiryDate
      */
-    public function setExpiryDate($expiryDate)
+    public function setExpiryDate(string $expiryDate)
     {
         $this->expiryDate = $expiryDate;
     }
@@ -135,7 +135,7 @@ class LabelCard extends BunqModel
     /**
      * @param string $status
      */
-    public function setStatus($status)
+    public function setStatus(string $status)
     {
         $this->status = $status;
     }

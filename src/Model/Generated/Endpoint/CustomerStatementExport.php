@@ -225,7 +225,7 @@ class CustomerStatementExport extends BunqModel
     /**
      * @param int $id
      */
-    public function setId($id)
+    public function setId(int $id)
     {
         $this->id = $id;
     }
@@ -243,7 +243,7 @@ class CustomerStatementExport extends BunqModel
     /**
      * @param string $created
      */
-    public function setCreated($created)
+    public function setCreated(string $created)
     {
         $this->created = $created;
     }
@@ -261,7 +261,7 @@ class CustomerStatementExport extends BunqModel
     /**
      * @param string $updated
      */
-    public function setUpdated($updated)
+    public function setUpdated(string $updated)
     {
         $this->updated = $updated;
     }
@@ -279,7 +279,7 @@ class CustomerStatementExport extends BunqModel
     /**
      * @param string $dateStart
      */
-    public function setDateStart($dateStart)
+    public function setDateStart(string $dateStart)
     {
         $this->dateStart = $dateStart;
     }
@@ -297,7 +297,7 @@ class CustomerStatementExport extends BunqModel
     /**
      * @param string $dateEnd
      */
-    public function setDateEnd($dateEnd)
+    public function setDateEnd(string $dateEnd)
     {
         $this->dateEnd = $dateEnd;
     }
@@ -315,7 +315,7 @@ class CustomerStatementExport extends BunqModel
     /**
      * @param string $status
      */
-    public function setStatus($status)
+    public function setStatus(string $status)
     {
         $this->status = $status;
     }
@@ -333,7 +333,7 @@ class CustomerStatementExport extends BunqModel
     /**
      * @param int $statementNumber
      */
-    public function setStatementNumber($statementNumber)
+    public function setStatementNumber(int $statementNumber)
     {
         $this->statementNumber = $statementNumber;
     }
@@ -351,7 +351,7 @@ class CustomerStatementExport extends BunqModel
     /**
      * @param string $statementFormat
      */
-    public function setStatementFormat($statementFormat)
+    public function setStatementFormat(string $statementFormat)
     {
         $this->statementFormat = $statementFormat;
     }
@@ -369,7 +369,7 @@ class CustomerStatementExport extends BunqModel
     /**
      * @param string $regionalFormat
      */
-    public function setRegionalFormat($regionalFormat)
+    public function setRegionalFormat(string $regionalFormat)
     {
         $this->regionalFormat = $regionalFormat;
     }

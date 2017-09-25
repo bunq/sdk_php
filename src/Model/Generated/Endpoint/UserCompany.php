@@ -327,7 +327,7 @@ class UserCompany extends BunqModel
     /**
      * @param int $id
      */
-    public function setId($id)
+    public function setId(int $id)
     {
         $this->id = $id;
     }
@@ -345,7 +345,7 @@ class UserCompany extends BunqModel
     /**
      * @param string $created
      */
-    public function setCreated($created)
+    public function setCreated(string $created)
     {
         $this->created = $created;
     }
@@ -363,7 +363,7 @@ class UserCompany extends BunqModel
     /**
      * @param string $updated
      */
-    public function setUpdated($updated)
+    public function setUpdated(string $updated)
     {
         $this->updated = $updated;
     }
@@ -381,7 +381,7 @@ class UserCompany extends BunqModel
     /**
      * @param string $publicUuid
      */
-    public function setPublicUuid($publicUuid)
+    public function setPublicUuid(string $publicUuid)
     {
         $this->publicUuid = $publicUuid;
     }
@@ -399,7 +399,7 @@ class UserCompany extends BunqModel
     /**
      * @param string $name
      */
-    public function setName($name)
+    public function setName(string $name)
     {
         $this->name = $name;
     }
@@ -417,7 +417,7 @@ class UserCompany extends BunqModel
     /**
      * @param string $displayName
      */
-    public function setDisplayName($displayName)
+    public function setDisplayName(string $displayName)
     {
         $this->displayName = $displayName;
     }
@@ -435,7 +435,7 @@ class UserCompany extends BunqModel
     /**
      * @param string $publicNickName
      */
-    public function setPublicNickName($publicNickName)
+    public function setPublicNickName(string $publicNickName)
     {
         $this->publicNickName = $publicNickName;
     }
@@ -453,7 +453,7 @@ class UserCompany extends BunqModel
     /**
      * @param Pointer[] $alias
      */
-    public function setAlias(array$alias)
+    public function setAlias(array $alias)
     {
         $this->alias = $alias;
     }
@@ -471,7 +471,7 @@ class UserCompany extends BunqModel
     /**
      * @param string $chamberOfCommerceNumber
      */
-    public function setChamberOfCommerceNumber($chamberOfCommerceNumber)
+    public function setChamberOfCommerceNumber(string $chamberOfCommerceNumber)
     {
         $this->chamberOfCommerceNumber = $chamberOfCommerceNumber;
     }
@@ -489,7 +489,7 @@ class UserCompany extends BunqModel
     /**
      * @param string $typeOfBusinessEntity
      */
-    public function setTypeOfBusinessEntity($typeOfBusinessEntity)
+    public function setTypeOfBusinessEntity(string $typeOfBusinessEntity)
     {
         $this->typeOfBusinessEntity = $typeOfBusinessEntity;
     }
@@ -507,7 +507,7 @@ class UserCompany extends BunqModel
     /**
      * @param string $sectorOfIndustry
      */
-    public function setSectorOfIndustry($sectorOfIndustry)
+    public function setSectorOfIndustry(string $sectorOfIndustry)
     {
         $this->sectorOfIndustry = $sectorOfIndustry;
     }
@@ -525,7 +525,7 @@ class UserCompany extends BunqModel
     /**
      * @param string $counterBankIban
      */
-    public function setCounterBankIban($counterBankIban)
+    public function setCounterBankIban(string $counterBankIban)
     {
         $this->counterBankIban = $counterBankIban;
     }
@@ -597,7 +597,7 @@ class UserCompany extends BunqModel
     /**
      * @param string $versionTermsOfService
      */
-    public function setVersionTermsOfService($versionTermsOfService)
+    public function setVersionTermsOfService(string $versionTermsOfService)
     {
         $this->versionTermsOfService = $versionTermsOfService;
     }
@@ -634,7 +634,7 @@ class UserCompany extends BunqModel
     /**
      * @param string $language
      */
-    public function setLanguage($language)
+    public function setLanguage(string $language)
     {
         $this->language = $language;
     }
@@ -652,7 +652,7 @@ class UserCompany extends BunqModel
     /**
      * @param string $country
      */
-    public function setCountry($country)
+    public function setCountry(string $country)
     {
         $this->country = $country;
     }
@@ -671,7 +671,7 @@ class UserCompany extends BunqModel
     /**
      * @param string $region
      */
-    public function setRegion($region)
+    public function setRegion(string $region)
     {
         $this->region = $region;
     }
@@ -690,7 +690,7 @@ class UserCompany extends BunqModel
     /**
      * @param Ubo[] $ubo
      */
-    public function setUbo(array$ubo)
+    public function setUbo(array $ubo)
     {
         $this->ubo = $ubo;
     }
@@ -708,7 +708,7 @@ class UserCompany extends BunqModel
     /**
      * @param string $status
      */
-    public function setStatus($status)
+    public function setStatus(string $status)
     {
         $this->status = $status;
     }
@@ -728,7 +728,7 @@ class UserCompany extends BunqModel
     /**
      * @param string $subStatus
      */
-    public function setSubStatus($subStatus)
+    public function setSubStatus(string $subStatus)
     {
         $this->subStatus = $subStatus;
     }
@@ -746,7 +746,7 @@ class UserCompany extends BunqModel
     /**
      * @param int $sessionTimeout
      */
-    public function setSessionTimeout($sessionTimeout)
+    public function setSessionTimeout(int $sessionTimeout)
     {
         $this->sessionTimeout = $sessionTimeout;
     }
@@ -784,7 +784,7 @@ class UserCompany extends BunqModel
     /**
      * @param NotificationFilter[] $notificationFilters
      */
-    public function setNotificationFilters(array$notificationFilters)
+    public function setNotificationFilters(array $notificationFilters)
     {
         $this->notificationFilters = $notificationFilters;
     }
@@ -838,7 +838,7 @@ class UserCompany extends BunqModel
     /**
      * @param BillingContractSubscription[] $billingContract
      */
-    public function setBillingContract(array$billingContract)
+    public function setBillingContract(array $billingContract)
     {
         $this->billingContract = $billingContract;
     }

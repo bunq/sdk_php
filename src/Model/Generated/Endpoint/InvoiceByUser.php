@@ -207,7 +207,7 @@ class InvoiceByUser extends BunqModel
     /**
      * @param int $id
      */
-    public function setId($id)
+    public function setId(int $id)
     {
         $this->id = $id;
     }
@@ -225,7 +225,7 @@ class InvoiceByUser extends BunqModel
     /**
      * @param string $created
      */
-    public function setCreated($created)
+    public function setCreated(string $created)
     {
         $this->created = $created;
     }
@@ -243,7 +243,7 @@ class InvoiceByUser extends BunqModel
     /**
      * @param string $updated
      */
-    public function setUpdated($updated)
+    public function setUpdated(string $updated)
     {
         $this->updated = $updated;
     }
@@ -261,7 +261,7 @@ class InvoiceByUser extends BunqModel
     /**
      * @param string $invoiceDate
      */
-    public function setInvoiceDate($invoiceDate)
+    public function setInvoiceDate(string $invoiceDate)
     {
         $this->invoiceDate = $invoiceDate;
     }
@@ -279,7 +279,7 @@ class InvoiceByUser extends BunqModel
     /**
      * @param string $invoiceNumber
      */
-    public function setInvoiceNumber($invoiceNumber)
+    public function setInvoiceNumber(string $invoiceNumber)
     {
         $this->invoiceNumber = $invoiceNumber;
     }
@@ -297,7 +297,7 @@ class InvoiceByUser extends BunqModel
     /**
      * @param string $status
      */
-    public function setStatus($status)
+    public function setStatus(string $status)
     {
         $this->status = $status;
     }
@@ -315,7 +315,7 @@ class InvoiceByUser extends BunqModel
     /**
      * @param InvoiceItemGroup[] $group
      */
-    public function setGroup(array$group)
+    public function setGroup(array $group)
     {
         $this->group = $group;
     }
@@ -460,7 +460,7 @@ class InvoiceByUser extends BunqModel
     /**
      * @param string $chamberOfCommerceNumber
      */
-    public function setChamberOfCommerceNumber($chamberOfCommerceNumber)
+    public function setChamberOfCommerceNumber(string $chamberOfCommerceNumber)
     {
         $this->chamberOfCommerceNumber = $chamberOfCommerceNumber;
     }
@@ -478,7 +478,7 @@ class InvoiceByUser extends BunqModel
     /**
      * @param string $vatNumber
      */
-    public function setVatNumber($vatNumber)
+    public function setVatNumber(string $vatNumber)
     {
         $this->vatNumber = $vatNumber;
     }

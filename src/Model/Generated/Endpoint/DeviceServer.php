@@ -177,7 +177,7 @@ class DeviceServer extends BunqModel
     /**
      * @param int $id
      */
-    public function setId($id)
+    public function setId(int $id)
     {
         $this->id = $id;
     }
@@ -195,7 +195,7 @@ class DeviceServer extends BunqModel
     /**
      * @param string $created
      */
-    public function setCreated($created)
+    public function setCreated(string $created)
     {
         $this->created = $created;
     }
@@ -213,7 +213,7 @@ class DeviceServer extends BunqModel
     /**
      * @param string $updated
      */
-    public function setUpdated($updated)
+    public function setUpdated(string $updated)
     {
         $this->updated = $updated;
     }
@@ -231,7 +231,7 @@ class DeviceServer extends BunqModel
     /**
      * @param string $description
      */
-    public function setDescription($description)
+    public function setDescription(string $description)
     {
         $this->description = $description;
     }
@@ -249,7 +249,7 @@ class DeviceServer extends BunqModel
     /**
      * @param string $ip
      */
-    public function setIp($ip)
+    public function setIp(string $ip)
     {
         $this->ip = $ip;
     }
@@ -268,7 +268,7 @@ class DeviceServer extends BunqModel
     /**
      * @param string $status
      */
-    public function setStatus($status)
+    public function setStatus(string $status)
     {
         $this->status = $status;
     }

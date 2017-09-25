@@ -138,7 +138,7 @@ class SchedulePaymentBatch extends BunqModel
     /**
      * @param SchedulePaymentEntry[] $payments
      */
-    public function setPayments(array$payments)
+    public function setPayments(array $payments)
     {
         $this->payments = $payments;
     }

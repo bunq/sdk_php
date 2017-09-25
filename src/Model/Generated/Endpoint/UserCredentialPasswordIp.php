@@ -142,7 +142,7 @@ class UserCredentialPasswordIp extends BunqModel
     /**
      * @param int $id
      */
-    public function setId($id)
+    public function setId(int $id)
     {
         $this->id = $id;
     }
@@ -160,7 +160,7 @@ class UserCredentialPasswordIp extends BunqModel
     /**
      * @param string $created
      */
-    public function setCreated($created)
+    public function setCreated(string $created)
     {
         $this->created = $created;
     }
@@ -178,7 +178,7 @@ class UserCredentialPasswordIp extends BunqModel
     /**
      * @param string $updated
      */
-    public function setUpdated($updated)
+    public function setUpdated(string $updated)
     {
         $this->updated = $updated;
     }
@@ -196,7 +196,7 @@ class UserCredentialPasswordIp extends BunqModel
     /**
      * @param string $status
      */
-    public function setStatus($status)
+    public function setStatus(string $status)
     {
         $this->status = $status;
     }
@@ -214,7 +214,7 @@ class UserCredentialPasswordIp extends BunqModel
     /**
      * @param string $expiryTime
      */
-    public function setExpiryTime($expiryTime)
+    public function setExpiryTime(string $expiryTime)
     {
         $this->expiryTime = $expiryTime;
     }
@@ -232,7 +232,7 @@ class UserCredentialPasswordIp extends BunqModel
     /**
      * @param string $tokenValue
      */
-    public function setTokenValue($tokenValue)
+    public function setTokenValue(string $tokenValue)
     {
         $this->tokenValue = $tokenValue;
     }

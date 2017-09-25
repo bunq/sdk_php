@@ -37,7 +37,7 @@ class ChatMessageContentStatusMembership extends BunqModel
     /**
      * @param string $action
      */
-    public function setAction($action)
+    public function setAction(string $action)
     {
         $this->action = $action;
     }

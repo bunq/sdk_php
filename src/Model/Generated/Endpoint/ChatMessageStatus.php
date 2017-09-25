@@ -72,7 +72,7 @@ class ChatMessageStatus extends BunqModel
     /**
      * @param int $id
      */
-    public function setId($id)
+    public function setId(int $id)
     {
         $this->id = $id;
     }
@@ -90,7 +90,7 @@ class ChatMessageStatus extends BunqModel
     /**
      * @param string $created
      */
-    public function setCreated($created)
+    public function setCreated(string $created)
     {
         $this->created = $created;
     }
@@ -108,7 +108,7 @@ class ChatMessageStatus extends BunqModel
     /**
      * @param string $updated
      */
-    public function setUpdated($updated)
+    public function setUpdated(string $updated)
     {
         $this->updated = $updated;
     }
@@ -126,7 +126,7 @@ class ChatMessageStatus extends BunqModel
     /**
      * @param int $conversationId
      */
-    public function setConversationId($conversationId)
+    public function setConversationId(int $conversationId)
     {
         $this->conversationId = $conversationId;
     }

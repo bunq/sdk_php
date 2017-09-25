@@ -226,7 +226,7 @@ class IdealMerchantTransaction extends BunqModel
     /**
      * @param int $monetaryAccountId
      */
-    public function setMonetaryAccountId($monetaryAccountId)
+    public function setMonetaryAccountId(int $monetaryAccountId)
     {
         $this->monetaryAccountId = $monetaryAccountId;
     }
@@ -317,7 +317,7 @@ class IdealMerchantTransaction extends BunqModel
     /**
      * @param string $expiration
      */
-    public function setExpiration($expiration)
+    public function setExpiration(string $expiration)
     {
         $this->expiration = $expiration;
     }
@@ -335,7 +335,7 @@ class IdealMerchantTransaction extends BunqModel
     /**
      * @param string $issuer
      */
-    public function setIssuer($issuer)
+    public function setIssuer(string $issuer)
     {
         $this->issuer = $issuer;
     }
@@ -353,7 +353,7 @@ class IdealMerchantTransaction extends BunqModel
     /**
      * @param string $issuerName
      */
-    public function setIssuerName($issuerName)
+    public function setIssuerName(string $issuerName)
     {
         $this->issuerName = $issuerName;
     }
@@ -371,7 +371,7 @@ class IdealMerchantTransaction extends BunqModel
     /**
      * @param string $issuerAuthenticationUrl
      */
-    public function setIssuerAuthenticationUrl($issuerAuthenticationUrl)
+    public function setIssuerAuthenticationUrl(string $issuerAuthenticationUrl)
     {
         $this->issuerAuthenticationUrl = $issuerAuthenticationUrl;
     }
@@ -389,7 +389,7 @@ class IdealMerchantTransaction extends BunqModel
     /**
      * @param string $purchaseIdentifier
      */
-    public function setPurchaseIdentifier($purchaseIdentifier)
+    public function setPurchaseIdentifier(string $purchaseIdentifier)
     {
         $this->purchaseIdentifier = $purchaseIdentifier;
     }
@@ -407,7 +407,7 @@ class IdealMerchantTransaction extends BunqModel
     /**
      * @param string $status
      */
-    public function setStatus($status)
+    public function setStatus(string $status)
     {
         $this->status = $status;
     }
@@ -425,7 +425,7 @@ class IdealMerchantTransaction extends BunqModel
     /**
      * @param string $statusTimestamp
      */
-    public function setStatusTimestamp($statusTimestamp)
+    public function setStatusTimestamp(string $statusTimestamp)
     {
         $this->statusTimestamp = $statusTimestamp;
     }
@@ -443,7 +443,7 @@ class IdealMerchantTransaction extends BunqModel
     /**
      * @param string $transactionIdentifier
      */
-    public function setTransactionIdentifier($transactionIdentifier)
+    public function setTransactionIdentifier(string $transactionIdentifier)
     {
         $this->transactionIdentifier = $transactionIdentifier;
     }
@@ -461,7 +461,7 @@ class IdealMerchantTransaction extends BunqModel
     /**
      * @param bool $allowChat
      */
-    public function setAllowChat($allowChat)
+    public function setAllowChat(bool $allowChat)
     {
         $this->allowChat = $allowChat;
     }

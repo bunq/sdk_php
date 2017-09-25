@@ -70,7 +70,7 @@ class InvoiceItemGroup extends BunqModel
     /**
      * @param string $type
      */
-    public function setType($type)
+    public function setType(string $type)
     {
         $this->type = $type;
     }
@@ -88,7 +88,7 @@ class InvoiceItemGroup extends BunqModel
     /**
      * @param string $typeDescription
      */
-    public function setTypeDescription($typeDescription)
+    public function setTypeDescription(string $typeDescription)
     {
         $this->typeDescription = $typeDescription;
     }
@@ -106,7 +106,7 @@ class InvoiceItemGroup extends BunqModel
     /**
      * @param string $typeDescriptionTranslated
      */
-    public function setTypeDescriptionTranslated($typeDescriptionTranslated)
+    public function setTypeDescriptionTranslated(string $typeDescriptionTranslated)
     {
         $this->typeDescriptionTranslated = $typeDescriptionTranslated;
     }
@@ -124,7 +124,7 @@ class InvoiceItemGroup extends BunqModel
     /**
      * @param string $instanceDescription
      */
-    public function setInstanceDescription($instanceDescription)
+    public function setInstanceDescription(string $instanceDescription)
     {
         $this->instanceDescription = $instanceDescription;
     }

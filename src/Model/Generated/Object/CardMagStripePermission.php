@@ -28,7 +28,7 @@ class CardMagStripePermission extends BunqModel
     /**
      * @param string $expiryTime
      */
-    public function setExpiryTime($expiryTime)
+    public function setExpiryTime(string $expiryTime)
     {
         $this->expiryTime = $expiryTime;
     }

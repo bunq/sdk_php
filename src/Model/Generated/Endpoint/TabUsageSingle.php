@@ -360,7 +360,7 @@ class TabUsageSingle extends BunqModel
     /**
      * @param string $uuid
      */
-    public function setUuid($uuid)
+    public function setUuid(string $uuid)
     {
         $this->uuid = $uuid;
     }
@@ -378,7 +378,7 @@ class TabUsageSingle extends BunqModel
     /**
      * @param string $created
      */
-    public function setCreated($created)
+    public function setCreated(string $created)
     {
         $this->created = $created;
     }
@@ -396,7 +396,7 @@ class TabUsageSingle extends BunqModel
     /**
      * @param string $updated
      */
-    public function setUpdated($updated)
+    public function setUpdated(string $updated)
     {
         $this->updated = $updated;
     }
@@ -414,7 +414,7 @@ class TabUsageSingle extends BunqModel
     /**
      * @param string $merchantReference
      */
-    public function setMerchantReference($merchantReference)
+    public function setMerchantReference(string $merchantReference)
     {
         $this->merchantReference = $merchantReference;
     }
@@ -432,7 +432,7 @@ class TabUsageSingle extends BunqModel
     /**
      * @param string $description
      */
-    public function setDescription($description)
+    public function setDescription(string $description)
     {
         $this->description = $description;
     }
@@ -451,7 +451,7 @@ class TabUsageSingle extends BunqModel
     /**
      * @param string $status
      */
-    public function setStatus($status)
+    public function setStatus(string $status)
     {
         $this->status = $status;
     }
@@ -506,7 +506,7 @@ class TabUsageSingle extends BunqModel
     /**
      * @param string $qrCodeToken
      */
-    public function setQrCodeToken($qrCodeToken)
+    public function setQrCodeToken(string $qrCodeToken)
     {
         $this->qrCodeToken = $qrCodeToken;
     }
@@ -525,7 +525,7 @@ class TabUsageSingle extends BunqModel
     /**
      * @param string $tabUrl
      */
-    public function setTabUrl($tabUrl)
+    public function setTabUrl(string $tabUrl)
     {
         $this->tabUrl = $tabUrl;
     }
@@ -562,7 +562,7 @@ class TabUsageSingle extends BunqModel
     /**
      * @param bool $minimumAge
      */
-    public function setMinimumAge($minimumAge)
+    public function setMinimumAge(bool $minimumAge)
     {
         $this->minimumAge = $minimumAge;
     }
@@ -581,7 +581,7 @@ class TabUsageSingle extends BunqModel
     /**
      * @param string $requireAddress
      */
-    public function setRequireAddress($requireAddress)
+    public function setRequireAddress(string $requireAddress)
     {
         $this->requireAddress = $requireAddress;
     }
@@ -599,7 +599,7 @@ class TabUsageSingle extends BunqModel
     /**
      * @param string $redirectUrl
      */
-    public function setRedirectUrl($redirectUrl)
+    public function setRedirectUrl(string $redirectUrl)
     {
         $this->redirectUrl = $redirectUrl;
     }
@@ -617,7 +617,7 @@ class TabUsageSingle extends BunqModel
     /**
      * @param string $expiration
      */
-    public function setExpiration($expiration)
+    public function setExpiration(string $expiration)
     {
         $this->expiration = $expiration;
     }
@@ -671,7 +671,7 @@ class TabUsageSingle extends BunqModel
     /**
      * @param TabItem[] $tabItem
      */
-    public function setTabItem(array$tabItem)
+    public function setTabItem(array $tabItem)
     {
         $this->tabItem = $tabItem;
     }
@@ -690,7 +690,7 @@ class TabUsageSingle extends BunqModel
     /**
      * @param BunqId[] $tabAttachment
      */
-    public function setTabAttachment(array$tabAttachment)
+    public function setTabAttachment(array $tabAttachment)
     {
         $this->tabAttachment = $tabAttachment;
     }

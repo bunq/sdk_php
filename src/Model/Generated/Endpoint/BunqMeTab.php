@@ -219,7 +219,7 @@ class BunqMeTab extends BunqModel
     /**
      * @param int $id
      */
-    public function setId($id)
+    public function setId(int $id)
     {
         $this->id = $id;
     }
@@ -237,7 +237,7 @@ class BunqMeTab extends BunqModel
     /**
      * @param string $created
      */
-    public function setCreated($created)
+    public function setCreated(string $created)
     {
         $this->created = $created;
     }
@@ -255,7 +255,7 @@ class BunqMeTab extends BunqModel
     /**
      * @param string $updated
      */
-    public function setUpdated($updated)
+    public function setUpdated(string $updated)
     {
         $this->updated = $updated;
     }
@@ -273,7 +273,7 @@ class BunqMeTab extends BunqModel
     /**
      * @param string $timeExpiry
      */
-    public function setTimeExpiry($timeExpiry)
+    public function setTimeExpiry(string $timeExpiry)
     {
         $this->timeExpiry = $timeExpiry;
     }
@@ -291,7 +291,7 @@ class BunqMeTab extends BunqModel
     /**
      * @param int $monetaryAccountId
      */
-    public function setMonetaryAccountId($monetaryAccountId)
+    public function setMonetaryAccountId(int $monetaryAccountId)
     {
         $this->monetaryAccountId = $monetaryAccountId;
     }
@@ -310,7 +310,7 @@ class BunqMeTab extends BunqModel
     /**
      * @param string $status
      */
-    public function setStatus($status)
+    public function setStatus(string $status)
     {
         $this->status = $status;
     }
@@ -328,7 +328,7 @@ class BunqMeTab extends BunqModel
     /**
      * @param string $bunqmeTabShareUrl
      */
-    public function setBunqmeTabShareUrl($bunqmeTabShareUrl)
+    public function setBunqmeTabShareUrl(string $bunqmeTabShareUrl)
     {
         $this->bunqmeTabShareUrl = $bunqmeTabShareUrl;
     }
@@ -364,7 +364,7 @@ class BunqMeTab extends BunqModel
     /**
      * @param BunqMeTabResultInquiry[] $resultInquiries
      */
-    public function setResultInquiries(array$resultInquiries)
+    public function setResultInquiries(array $resultInquiries)
     {
         $this->resultInquiries = $resultInquiries;
     }

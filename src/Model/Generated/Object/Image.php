@@ -49,7 +49,7 @@ class Image extends BunqModel
     /**
      * @param string $attachmentPublicUuid
      */
-    public function setAttachmentPublicUuid($attachmentPublicUuid)
+    public function setAttachmentPublicUuid(string $attachmentPublicUuid)
     {
         $this->attachmentPublicUuid = $attachmentPublicUuid;
     }
@@ -67,7 +67,7 @@ class Image extends BunqModel
     /**
      * @param string $contentType
      */
-    public function setContentType($contentType)
+    public function setContentType(string $contentType)
     {
         $this->contentType = $contentType;
     }
@@ -85,7 +85,7 @@ class Image extends BunqModel
     /**
      * @param int $height
      */
-    public function setHeight($height)
+    public function setHeight(int $height)
     {
         $this->height = $height;
     }
@@ -103,7 +103,7 @@ class Image extends BunqModel
     /**
      * @param int $width
      */
-    public function setWidth($width)
+    public function setWidth(int $width)
     {
         $this->width = $width;
     }

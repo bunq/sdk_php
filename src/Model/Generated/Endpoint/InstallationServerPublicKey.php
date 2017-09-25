@@ -75,7 +75,7 @@ class InstallationServerPublicKey extends BunqModel
     /**
      * @param string $serverPublicKey
      */
-    public function setServerPublicKey($serverPublicKey)
+    public function setServerPublicKey(string $serverPublicKey)
     {
         $this->serverPublicKey = $serverPublicKey;
     }

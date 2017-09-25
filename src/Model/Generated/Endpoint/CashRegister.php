@@ -242,7 +242,7 @@ class CashRegister extends BunqModel
     /**
      * @param int $id
      */
-    public function setId($id)
+    public function setId(int $id)
     {
         $this->id = $id;
     }
@@ -260,7 +260,7 @@ class CashRegister extends BunqModel
     /**
      * @param string $created
      */
-    public function setCreated($created)
+    public function setCreated(string $created)
     {
         $this->created = $created;
     }
@@ -278,7 +278,7 @@ class CashRegister extends BunqModel
     /**
      * @param string $updated
      */
-    public function setUpdated($updated)
+    public function setUpdated(string $updated)
     {
         $this->updated = $updated;
     }
@@ -296,7 +296,7 @@ class CashRegister extends BunqModel
     /**
      * @param string $name
      */
-    public function setName($name)
+    public function setName(string $name)
     {
         $this->name = $name;
     }
@@ -315,7 +315,7 @@ class CashRegister extends BunqModel
     /**
      * @param string $status
      */
-    public function setStatus($status)
+    public function setStatus(string $status)
     {
         $this->status = $status;
     }
@@ -370,7 +370,7 @@ class CashRegister extends BunqModel
     /**
      * @param NotificationFilter[] $notificationFilters
      */
-    public function setNotificationFilters(array$notificationFilters)
+    public function setNotificationFilters(array $notificationFilters)
     {
         $this->notificationFilters = $notificationFilters;
     }
@@ -388,7 +388,7 @@ class CashRegister extends BunqModel
     /**
      * @param TabTextWaitingScreen[] $tabTextWaitingScreen
      */
-    public function setTabTextWaitingScreen(array$tabTextWaitingScreen)
+    public function setTabTextWaitingScreen(array $tabTextWaitingScreen)
     {
         $this->tabTextWaitingScreen = $tabTextWaitingScreen;
     }

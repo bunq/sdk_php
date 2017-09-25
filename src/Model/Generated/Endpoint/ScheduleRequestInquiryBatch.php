@@ -59,7 +59,7 @@ class ScheduleRequestInquiryBatch extends BunqModel
     /**
      * @param ScheduleRequestInquiryEntry[] $requestInquiries
      */
-    public function setRequestInquiries(array$requestInquiries)
+    public function setRequestInquiries(array $requestInquiries)
     {
         $this->requestInquiries = $requestInquiries;
     }

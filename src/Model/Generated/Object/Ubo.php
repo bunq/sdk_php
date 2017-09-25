@@ -42,7 +42,7 @@ class Ubo extends BunqModel
     /**
      * @param string $name
      */
-    public function setName($name)
+    public function setName(string $name)
     {
         $this->name = $name;
     }
@@ -60,7 +60,7 @@ class Ubo extends BunqModel
     /**
      * @param string $dateOfBirth
      */
-    public function setDateOfBirth($dateOfBirth)
+    public function setDateOfBirth(string $dateOfBirth)
     {
         $this->dateOfBirth = $dateOfBirth;
     }
@@ -78,7 +78,7 @@ class Ubo extends BunqModel
     /**
      * @param string $nationality
      */
-    public function setNationality($nationality)
+    public function setNationality(string $nationality)
     {
         $this->nationality = $nationality;
     }

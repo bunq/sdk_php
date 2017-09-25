@@ -172,7 +172,7 @@ class CertificatePinned extends BunqModel
     /**
      * @param string $certificateChain
      */
-    public function setCertificateChain($certificateChain)
+    public function setCertificateChain(string $certificateChain)
     {
         $this->certificateChain = $certificateChain;
     }
@@ -190,7 +190,7 @@ class CertificatePinned extends BunqModel
     /**
      * @param int $id
      */
-    public function setId($id)
+    public function setId(int $id)
     {
         $this->id = $id;
     }

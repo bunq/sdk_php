@@ -45,7 +45,7 @@ class TaxResident extends BunqModel
     /**
      * @param string $country
      */
-    public function setCountry($country)
+    public function setCountry(string $country)
     {
         $this->country = $country;
     }
@@ -63,7 +63,7 @@ class TaxResident extends BunqModel
     /**
      * @param string $taxNumber
      */
-    public function setTaxNumber($taxNumber)
+    public function setTaxNumber(string $taxNumber)
     {
         $this->taxNumber = $taxNumber;
     }

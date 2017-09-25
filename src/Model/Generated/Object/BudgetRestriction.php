@@ -55,7 +55,7 @@ class BudgetRestriction extends BunqModel
     /**
      * @param string $frequency
      */
-    public function setFrequency($frequency)
+    public function setFrequency(string $frequency)
     {
         $this->frequency = $frequency;
     }

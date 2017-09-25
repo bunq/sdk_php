@@ -71,7 +71,7 @@ class MonetaryAccountProfileFill extends BunqModel
     /**
      * @param string $status
      */
-    public function setStatus($status)
+    public function setStatus(string $status)
     {
         $this->status = $status;
     }
@@ -126,7 +126,7 @@ class MonetaryAccountProfileFill extends BunqModel
     /**
      * @param string $methodFill
      */
-    public function setMethodFill($methodFill)
+    public function setMethodFill(string $methodFill)
     {
         $this->methodFill = $methodFill;
     }

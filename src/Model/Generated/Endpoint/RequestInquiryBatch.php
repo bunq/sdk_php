@@ -180,7 +180,7 @@ class RequestInquiryBatch extends BunqModel
     /**
      * @param RequestInquiry[] $requestInquiries
      */
-    public function setRequestInquiries(array$requestInquiries)
+    public function setRequestInquiries(array $requestInquiries)
     {
         $this->requestInquiries = $requestInquiries;
     }

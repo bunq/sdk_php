@@ -224,7 +224,7 @@ class DraftPayment extends BunqModel
     /**
      * @param int $id
      */
-    public function setId($id)
+    public function setId(int $id)
     {
         $this->id = $id;
     }
@@ -242,7 +242,7 @@ class DraftPayment extends BunqModel
     /**
      * @param int $monetaryAccountId
      */
-    public function setMonetaryAccountId($monetaryAccountId)
+    public function setMonetaryAccountId(int $monetaryAccountId)
     {
         $this->monetaryAccountId = $monetaryAccountId;
     }
@@ -278,7 +278,7 @@ class DraftPayment extends BunqModel
     /**
      * @param DraftPaymentResponse[] $responses
      */
-    public function setResponses(array$responses)
+    public function setResponses(array $responses)
     {
         $this->responses = $responses;
     }
@@ -296,7 +296,7 @@ class DraftPayment extends BunqModel
     /**
      * @param string $status
      */
-    public function setStatus($status)
+    public function setStatus(string $status)
     {
         $this->status = $status;
     }
@@ -314,7 +314,7 @@ class DraftPayment extends BunqModel
     /**
      * @param string $type
      */
-    public function setType($type)
+    public function setType(string $type)
     {
         $this->type = $type;
     }
@@ -332,7 +332,7 @@ class DraftPayment extends BunqModel
     /**
      * @param DraftPaymentEntry[] $entries
      */
-    public function setEntries(array$entries)
+    public function setEntries(array $entries)
     {
         $this->entries = $entries;
     }

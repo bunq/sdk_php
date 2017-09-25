@@ -86,7 +86,7 @@ class Address extends BunqModel
     /**
      * @param string $street
      */
-    public function setStreet($street)
+    public function setStreet(string $street)
     {
         $this->street = $street;
     }
@@ -104,7 +104,7 @@ class Address extends BunqModel
     /**
      * @param string $houseNumber
      */
-    public function setHouseNumber($houseNumber)
+    public function setHouseNumber(string $houseNumber)
     {
         $this->houseNumber = $houseNumber;
     }
@@ -122,7 +122,7 @@ class Address extends BunqModel
     /**
      * @param string $poBox
      */
-    public function setPoBox($poBox)
+    public function setPoBox(string $poBox)
     {
         $this->poBox = $poBox;
     }
@@ -140,7 +140,7 @@ class Address extends BunqModel
     /**
      * @param string $postalCode
      */
-    public function setPostalCode($postalCode)
+    public function setPostalCode(string $postalCode)
     {
         $this->postalCode = $postalCode;
     }
@@ -158,7 +158,7 @@ class Address extends BunqModel
     /**
      * @param string $city
      */
-    public function setCity($city)
+    public function setCity(string $city)
     {
         $this->city = $city;
     }
@@ -176,7 +176,7 @@ class Address extends BunqModel
     /**
      * @param string $country
      */
-    public function setCountry($country)
+    public function setCountry(string $country)
     {
         $this->country = $country;
     }
@@ -194,7 +194,7 @@ class Address extends BunqModel
     /**
      * @param string $province
      */
-    public function setProvince($province)
+    public function setProvince(string $province)
     {
         $this->province = $province;
     }

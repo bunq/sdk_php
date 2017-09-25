@@ -83,7 +83,7 @@ class ShareDetailPayment extends BunqModel
     /**
      * @param bool $makePayments
      */
-    public function setMakePayments($makePayments)
+    public function setMakePayments(bool $makePayments)
     {
         $this->makePayments = $makePayments;
     }
@@ -102,7 +102,7 @@ class ShareDetailPayment extends BunqModel
     /**
      * @param bool $makeDraftPayments
      */
-    public function setMakeDraftPayments($makeDraftPayments)
+    public function setMakeDraftPayments(bool $makeDraftPayments)
     {
         $this->makeDraftPayments = $makeDraftPayments;
     }
@@ -121,7 +121,7 @@ class ShareDetailPayment extends BunqModel
     /**
      * @param bool $viewBalance
      */
-    public function setViewBalance($viewBalance)
+    public function setViewBalance(bool $viewBalance)
     {
         $this->viewBalance = $viewBalance;
     }
@@ -140,7 +140,7 @@ class ShareDetailPayment extends BunqModel
     /**
      * @param bool $viewOldEvents
      */
-    public function setViewOldEvents($viewOldEvents)
+    public function setViewOldEvents(bool $viewOldEvents)
     {
         $this->viewOldEvents = $viewOldEvents;
     }
@@ -159,7 +159,7 @@ class ShareDetailPayment extends BunqModel
     /**
      * @param bool $viewNewEvents
      */
-    public function setViewNewEvents($viewNewEvents)
+    public function setViewNewEvents(bool $viewNewEvents)
     {
         $this->viewNewEvents = $viewNewEvents;
     }

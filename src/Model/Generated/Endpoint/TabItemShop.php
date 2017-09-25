@@ -263,7 +263,7 @@ class TabItemShop extends BunqModel
     /**
      * @param int $id
      */
-    public function setId($id)
+    public function setId(int $id)
     {
         $this->id = $id;
     }
@@ -281,7 +281,7 @@ class TabItemShop extends BunqModel
     /**
      * @param string $description
      */
-    public function setDescription($description)
+    public function setDescription(string $description)
     {
         $this->description = $description;
     }
@@ -299,7 +299,7 @@ class TabItemShop extends BunqModel
     /**
      * @param string $eanCode
      */
-    public function setEanCode($eanCode)
+    public function setEanCode(string $eanCode)
     {
         $this->eanCode = $eanCode;
     }
@@ -336,7 +336,7 @@ class TabItemShop extends BunqModel
     /**
      * @param AttachmentTab[] $tabAttachment
      */
-    public function setTabAttachment(array$tabAttachment)
+    public function setTabAttachment(array $tabAttachment)
     {
         $this->tabAttachment = $tabAttachment;
     }
@@ -354,7 +354,7 @@ class TabItemShop extends BunqModel
     /**
      * @param float $quantity
      */
-    public function setQuantity($quantity)
+    public function setQuantity(float $quantity)
     {
         $this->quantity = $quantity;
     }

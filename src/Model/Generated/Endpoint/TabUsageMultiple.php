@@ -347,7 +347,7 @@ class TabUsageMultiple extends BunqModel
     /**
      * @param string $uuid
      */
-    public function setUuid($uuid)
+    public function setUuid(string $uuid)
     {
         $this->uuid = $uuid;
     }
@@ -365,7 +365,7 @@ class TabUsageMultiple extends BunqModel
     /**
      * @param string $created
      */
-    public function setCreated($created)
+    public function setCreated(string $created)
     {
         $this->created = $created;
     }
@@ -383,7 +383,7 @@ class TabUsageMultiple extends BunqModel
     /**
      * @param string $updated
      */
-    public function setUpdated($updated)
+    public function setUpdated(string $updated)
     {
         $this->updated = $updated;
     }
@@ -401,7 +401,7 @@ class TabUsageMultiple extends BunqModel
     /**
      * @param string $description
      */
-    public function setDescription($description)
+    public function setDescription(string $description)
     {
         $this->description = $description;
     }
@@ -419,7 +419,7 @@ class TabUsageMultiple extends BunqModel
     /**
      * @param string $status
      */
-    public function setStatus($status)
+    public function setStatus(string $status)
     {
         $this->status = $status;
     }
@@ -456,7 +456,7 @@ class TabUsageMultiple extends BunqModel
     /**
      * @param string $qrCodeToken
      */
-    public function setQrCodeToken($qrCodeToken)
+    public function setQrCodeToken(string $qrCodeToken)
     {
         $this->qrCodeToken = $qrCodeToken;
     }
@@ -475,7 +475,7 @@ class TabUsageMultiple extends BunqModel
     /**
      * @param string $tabUrl
      */
-    public function setTabUrl($tabUrl)
+    public function setTabUrl(string $tabUrl)
     {
         $this->tabUrl = $tabUrl;
     }
@@ -512,7 +512,7 @@ class TabUsageMultiple extends BunqModel
     /**
      * @param bool $minimumAge
      */
-    public function setMinimumAge($minimumAge)
+    public function setMinimumAge(bool $minimumAge)
     {
         $this->minimumAge = $minimumAge;
     }
@@ -531,7 +531,7 @@ class TabUsageMultiple extends BunqModel
     /**
      * @param string $requireAddress
      */
-    public function setRequireAddress($requireAddress)
+    public function setRequireAddress(string $requireAddress)
     {
         $this->requireAddress = $requireAddress;
     }
@@ -549,7 +549,7 @@ class TabUsageMultiple extends BunqModel
     /**
      * @param string $redirectUrl
      */
-    public function setRedirectUrl($redirectUrl)
+    public function setRedirectUrl(string $redirectUrl)
     {
         $this->redirectUrl = $redirectUrl;
     }
@@ -567,7 +567,7 @@ class TabUsageMultiple extends BunqModel
     /**
      * @param string $expiration
      */
-    public function setExpiration($expiration)
+    public function setExpiration(string $expiration)
     {
         $this->expiration = $expiration;
     }
@@ -621,7 +621,7 @@ class TabUsageMultiple extends BunqModel
     /**
      * @param TabItem[] $tabItem
      */
-    public function setTabItem(array$tabItem)
+    public function setTabItem(array $tabItem)
     {
         $this->tabItem = $tabItem;
     }
@@ -640,7 +640,7 @@ class TabUsageMultiple extends BunqModel
     /**
      * @param BunqId[] $tabAttachment
      */
-    public function setTabAttachment(array$tabAttachment)
+    public function setTabAttachment(array $tabAttachment)
     {
         $this->tabAttachment = $tabAttachment;
     }

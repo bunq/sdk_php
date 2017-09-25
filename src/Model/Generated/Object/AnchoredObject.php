@@ -2,6 +2,26 @@
 namespace bunq\Model\Generated\Object;
 
 use bunq\Model\Core\BunqModel;
+use bunq\Model\Generated\Endpoint\CardDebit;
+use bunq\Model\Generated\Endpoint\CardPinChange;
+use bunq\Model\Generated\Endpoint\CardResult;
+use bunq\Model\Generated\Endpoint\DraftPayment;
+use bunq\Model\Generated\Endpoint\IdealMerchantTransaction;
+use bunq\Model\Generated\Endpoint\Invoice;
+use bunq\Model\Generated\Endpoint\Payment;
+use bunq\Model\Generated\Endpoint\PaymentBatch;
+use bunq\Model\Generated\Endpoint\PromotionDisplay;
+use bunq\Model\Generated\Endpoint\RequestInquiry;
+use bunq\Model\Generated\Endpoint\RequestInquiryBatch;
+use bunq\Model\Generated\Endpoint\RequestResponse;
+use bunq\Model\Generated\Endpoint\ScheduleInstance;
+use bunq\Model\Generated\Endpoint\SchedulePayment;
+use bunq\Model\Generated\Endpoint\SchedulePaymentBatch;
+use bunq\Model\Generated\Endpoint\ScheduleRequestInquiry;
+use bunq\Model\Generated\Endpoint\ScheduleRequestInquiryBatch;
+use bunq\Model\Generated\Endpoint\ShareInviteBankInquiry;
+use bunq\Model\Generated\Endpoint\ShareInviteBankResponse;
+use bunq\Model\Generated\Endpoint\UserCredentialPasswordIp;
 
 /**
  * @generated

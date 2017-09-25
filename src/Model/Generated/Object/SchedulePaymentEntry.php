@@ -149,7 +149,7 @@ class SchedulePaymentEntry extends BunqModel
     /**
      * @param string $description
      */
-    public function setDescription($description)
+    public function setDescription(string $description)
     {
         $this->description = $description;
     }
@@ -167,7 +167,7 @@ class SchedulePaymentEntry extends BunqModel
     /**
      * @param AttachmentMonetaryAccountPayment[] $attachment
      */
-    public function setAttachment(array$attachment)
+    public function setAttachment(array $attachment)
     {
         $this->attachment = $attachment;
     }
@@ -185,7 +185,7 @@ class SchedulePaymentEntry extends BunqModel
     /**
      * @param string $merchantReference
      */
-    public function setMerchantReference($merchantReference)
+    public function setMerchantReference(string $merchantReference)
     {
         $this->merchantReference = $merchantReference;
     }

@@ -49,7 +49,7 @@ class Geolocation extends BunqModel
     /**
      * @param float $latitude
      */
-    public function setLatitude($latitude)
+    public function setLatitude(float $latitude)
     {
         $this->latitude = $latitude;
     }
@@ -67,7 +67,7 @@ class Geolocation extends BunqModel
     /**
      * @param float $longitude
      */
-    public function setLongitude($longitude)
+    public function setLongitude(float $longitude)
     {
         $this->longitude = $longitude;
     }
@@ -85,7 +85,7 @@ class Geolocation extends BunqModel
     /**
      * @param float $altitude
      */
-    public function setAltitude($altitude)
+    public function setAltitude(float $altitude)
     {
         $this->altitude = $altitude;
     }
@@ -103,7 +103,7 @@ class Geolocation extends BunqModel
     /**
      * @param float $radius
      */
-    public function setRadius($radius)
+    public function setRadius(float $radius)
     {
         $this->radius = $radius;
     }

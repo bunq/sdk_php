@@ -63,7 +63,7 @@ class MonetaryAccountProfileDrain extends BunqModel
     /**
      * @param string $status
      */
-    public function setStatus($status)
+    public function setStatus(string $status)
     {
         $this->status = $status;
     }

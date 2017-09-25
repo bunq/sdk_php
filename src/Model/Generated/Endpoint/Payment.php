@@ -318,7 +318,7 @@ class Payment extends BunqModel
     /**
      * @param int $id
      */
-    public function setId($id)
+    public function setId(int $id)
     {
         $this->id = $id;
     }
@@ -336,7 +336,7 @@ class Payment extends BunqModel
     /**
      * @param string $created
      */
-    public function setCreated($created)
+    public function setCreated(string $created)
     {
         $this->created = $created;
     }
@@ -355,7 +355,7 @@ class Payment extends BunqModel
     /**
      * @param string $updated
      */
-    public function setUpdated($updated)
+    public function setUpdated(string $updated)
     {
         $this->updated = $updated;
     }
@@ -374,7 +374,7 @@ class Payment extends BunqModel
     /**
      * @param int $monetaryAccountId
      */
-    public function setMonetaryAccountId($monetaryAccountId)
+    public function setMonetaryAccountId(int $monetaryAccountId)
     {
         $this->monetaryAccountId = $monetaryAccountId;
     }
@@ -452,7 +452,7 @@ class Payment extends BunqModel
     /**
      * @param string $description
      */
-    public function setDescription($description)
+    public function setDescription(string $description)
     {
         $this->description = $description;
     }
@@ -471,7 +471,7 @@ class Payment extends BunqModel
     /**
      * @param string $type
      */
-    public function setType($type)
+    public function setType(string $type)
     {
         $this->type = $type;
     }
@@ -490,7 +490,7 @@ class Payment extends BunqModel
     /**
      * @param string $subType
      */
-    public function setSubType($subType)
+    public function setSubType(string $subType)
     {
         $this->subType = $subType;
     }
@@ -508,7 +508,7 @@ class Payment extends BunqModel
     /**
      * @param string $bunqtoStatus
      */
-    public function setBunqtoStatus($bunqtoStatus)
+    public function setBunqtoStatus(string $bunqtoStatus)
     {
         $this->bunqtoStatus = $bunqtoStatus;
     }
@@ -526,7 +526,7 @@ class Payment extends BunqModel
     /**
      * @param string $bunqtoSubStatus
      */
-    public function setBunqtoSubStatus($bunqtoSubStatus)
+    public function setBunqtoSubStatus(string $bunqtoSubStatus)
     {
         $this->bunqtoSubStatus = $bunqtoSubStatus;
     }
@@ -544,7 +544,7 @@ class Payment extends BunqModel
     /**
      * @param string $bunqtoShareUrl
      */
-    public function setBunqtoShareUrl($bunqtoShareUrl)
+    public function setBunqtoShareUrl(string $bunqtoShareUrl)
     {
         $this->bunqtoShareUrl = $bunqtoShareUrl;
     }
@@ -562,7 +562,7 @@ class Payment extends BunqModel
     /**
      * @param string $bunqtoExpiry
      */
-    public function setBunqtoExpiry($bunqtoExpiry)
+    public function setBunqtoExpiry(string $bunqtoExpiry)
     {
         $this->bunqtoExpiry = $bunqtoExpiry;
     }
@@ -580,7 +580,7 @@ class Payment extends BunqModel
     /**
      * @param string $bunqtoTimeResponded
      */
-    public function setBunqtoTimeResponded($bunqtoTimeResponded)
+    public function setBunqtoTimeResponded(string $bunqtoTimeResponded)
     {
         $this->bunqtoTimeResponded = $bunqtoTimeResponded;
     }
@@ -598,7 +598,7 @@ class Payment extends BunqModel
     /**
      * @param AttachmentMonetaryAccountPayment[] $attachment
      */
-    public function setAttachment(array$attachment)
+    public function setAttachment(array $attachment)
     {
         $this->attachment = $attachment;
     }
@@ -616,7 +616,7 @@ class Payment extends BunqModel
     /**
      * @param string $merchantReference
      */
-    public function setMerchantReference($merchantReference)
+    public function setMerchantReference(string $merchantReference)
     {
         $this->merchantReference = $merchantReference;
     }
@@ -634,7 +634,7 @@ class Payment extends BunqModel
     /**
      * @param int $batchId
      */
-    public function setBatchId($batchId)
+    public function setBatchId(int $batchId)
     {
         $this->batchId = $batchId;
     }
@@ -652,7 +652,7 @@ class Payment extends BunqModel
     /**
      * @param int $scheduledId
      */
-    public function setScheduledId($scheduledId)
+    public function setScheduledId(int $scheduledId)
     {
         $this->scheduledId = $scheduledId;
     }
@@ -724,7 +724,7 @@ class Payment extends BunqModel
     /**
      * @param bool $allowChat
      */
-    public function setAllowChat($allowChat)
+    public function setAllowChat(bool $allowChat)
     {
         $this->allowChat = $allowChat;
     }

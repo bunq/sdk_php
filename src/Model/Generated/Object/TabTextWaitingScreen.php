@@ -45,7 +45,7 @@ class TabTextWaitingScreen extends BunqModel
     /**
      * @param string $language
      */
-    public function setLanguage($language)
+    public function setLanguage(string $language)
     {
         $this->language = $language;
     }
@@ -63,7 +63,7 @@ class TabTextWaitingScreen extends BunqModel
     /**
      * @param string $description
      */
-    public function setDescription($description)
+    public function setDescription(string $description)
     {
         $this->description = $description;
     }

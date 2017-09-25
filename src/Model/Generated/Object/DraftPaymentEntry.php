@@ -100,7 +100,7 @@ class DraftPaymentEntry extends BunqModel
     /**
      * @param int $id
      */
-    public function setId($id)
+    public function setId(int $id)
     {
         $this->id = $id;
     }
@@ -176,7 +176,7 @@ class DraftPaymentEntry extends BunqModel
     /**
      * @param string $description
      */
-    public function setDescription($description)
+    public function setDescription(string $description)
     {
         $this->description = $description;
     }
@@ -194,7 +194,7 @@ class DraftPaymentEntry extends BunqModel
     /**
      * @param string $merchantReference
      */
-    public function setMerchantReference($merchantReference)
+    public function setMerchantReference(string $merchantReference)
     {
         $this->merchantReference = $merchantReference;
     }
@@ -212,7 +212,7 @@ class DraftPaymentEntry extends BunqModel
     /**
      * @param string $type
      */
-    public function setType($type)
+    public function setType(string $type)
     {
         $this->type = $type;
     }
@@ -230,7 +230,7 @@ class DraftPaymentEntry extends BunqModel
     /**
      * @param AttachmentMonetaryAccountPayment[] $attachment
      */
-    public function setAttachment(array$attachment)
+    public function setAttachment(array $attachment)
     {
         $this->attachment = $attachment;
     }

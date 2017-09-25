@@ -65,7 +65,7 @@ class NotificationFilter extends BunqModel
     /**
      * @param string $notificationDeliveryMethod
      */
-    public function setNotificationDeliveryMethod($notificationDeliveryMethod)
+    public function setNotificationDeliveryMethod(string $notificationDeliveryMethod)
     {
         $this->notificationDeliveryMethod = $notificationDeliveryMethod;
     }
@@ -85,7 +85,7 @@ class NotificationFilter extends BunqModel
     /**
      * @param string $notificationTarget
      */
-    public function setNotificationTarget($notificationTarget)
+    public function setNotificationTarget(string $notificationTarget)
     {
         $this->notificationTarget = $notificationTarget;
     }
@@ -108,7 +108,7 @@ class NotificationFilter extends BunqModel
     /**
      * @param string $category
      */
-    public function setCategory($category)
+    public function setCategory(string $category)
     {
         $this->category = $category;
     }

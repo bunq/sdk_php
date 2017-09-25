@@ -174,7 +174,7 @@ class ScheduleInstance extends BunqModel
     /**
      * @param string $state
      */
-    public function setState($state)
+    public function setState(string $state)
     {
         $this->state = $state;
     }
@@ -192,7 +192,7 @@ class ScheduleInstance extends BunqModel
     /**
      * @param string $timeStart
      */
-    public function setTimeStart($timeStart)
+    public function setTimeStart(string $timeStart)
     {
         $this->timeStart = $timeStart;
     }
@@ -210,7 +210,7 @@ class ScheduleInstance extends BunqModel
     /**
      * @param string $timeEnd
      */
-    public function setTimeEnd($timeEnd)
+    public function setTimeEnd(string $timeEnd)
     {
         $this->timeEnd = $timeEnd;
     }
@@ -229,7 +229,7 @@ class ScheduleInstance extends BunqModel
     /**
      * @param Error[] $errorMessage
      */
-    public function setErrorMessage(array$errorMessage)
+    public function setErrorMessage(array $errorMessage)
     {
         $this->errorMessage = $errorMessage;
     }

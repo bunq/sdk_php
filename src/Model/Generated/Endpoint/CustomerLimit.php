@@ -94,7 +94,7 @@ class CustomerLimit extends BunqModel
     /**
      * @param int $limitMonetaryAccount
      */
-    public function setLimitMonetaryAccount($limitMonetaryAccount)
+    public function setLimitMonetaryAccount(int $limitMonetaryAccount)
     {
         $this->limitMonetaryAccount = $limitMonetaryAccount;
     }
@@ -112,7 +112,7 @@ class CustomerLimit extends BunqModel
     /**
      * @param int $limitCardDebitMaestro
      */
-    public function setLimitCardDebitMaestro($limitCardDebitMaestro)
+    public function setLimitCardDebitMaestro(int $limitCardDebitMaestro)
     {
         $this->limitCardDebitMaestro = $limitCardDebitMaestro;
     }
@@ -130,7 +130,7 @@ class CustomerLimit extends BunqModel
     /**
      * @param int $limitCardDebitMastercard
      */
-    public function setLimitCardDebitMastercard($limitCardDebitMastercard)
+    public function setLimitCardDebitMastercard(int $limitCardDebitMastercard)
     {
         $this->limitCardDebitMastercard = $limitCardDebitMastercard;
     }
@@ -148,7 +148,7 @@ class CustomerLimit extends BunqModel
     /**
      * @param int $limitCardDebitReplacement
      */
-    public function setLimitCardDebitReplacement($limitCardDebitReplacement)
+    public function setLimitCardDebitReplacement(int $limitCardDebitReplacement)
     {
         $this->limitCardDebitReplacement = $limitCardDebitReplacement;
     }

@@ -209,7 +209,7 @@ class CardResult extends BunqModel
     /**
      * @param int $monetaryAccountId
      */
-    public function setMonetaryAccountId($monetaryAccountId)
+    public function setMonetaryAccountId(int $monetaryAccountId)
     {
         $this->monetaryAccountId = $monetaryAccountId;
     }
@@ -227,7 +227,7 @@ class CardResult extends BunqModel
     /**
      * @param int $cardId
      */
-    public function setCardId($cardId)
+    public function setCardId(int $cardId)
     {
         $this->cardId = $cardId;
     }
@@ -281,7 +281,7 @@ class CardResult extends BunqModel
     /**
      * @param string $decision
      */
-    public function setDecision($decision)
+    public function setDecision(string $decision)
     {
         $this->decision = $decision;
     }
@@ -299,7 +299,7 @@ class CardResult extends BunqModel
     /**
      * @param string $decisionDescription
      */
-    public function setDecisionDescription($decisionDescription)
+    public function setDecisionDescription(string $decisionDescription)
     {
         $this->decisionDescription = $decisionDescription;
     }
@@ -318,7 +318,7 @@ class CardResult extends BunqModel
     /**
      * @param string $decisionDescriptionTranslated
      */
-    public function setDecisionDescriptionTranslated($decisionDescriptionTranslated)
+    public function setDecisionDescriptionTranslated(string $decisionDescriptionTranslated)
     {
         $this->decisionDescriptionTranslated = $decisionDescriptionTranslated;
     }
@@ -336,7 +336,7 @@ class CardResult extends BunqModel
     /**
      * @param string $description
      */
-    public function setDescription($description)
+    public function setDescription(string $description)
     {
         $this->description = $description;
     }
@@ -354,7 +354,7 @@ class CardResult extends BunqModel
     /**
      * @param string $messageType
      */
-    public function setMessageType($messageType)
+    public function setMessageType(string $messageType)
     {
         $this->messageType = $messageType;
     }
@@ -372,7 +372,7 @@ class CardResult extends BunqModel
     /**
      * @param string $authorisationType
      */
-    public function setAuthorisationType($authorisationType)
+    public function setAuthorisationType(string $authorisationType)
     {
         $this->authorisationType = $authorisationType;
     }
@@ -390,7 +390,7 @@ class CardResult extends BunqModel
     /**
      * @param string $city
      */
-    public function setCity($city)
+    public function setCity(string $city)
     {
         $this->city = $city;
     }
@@ -463,7 +463,7 @@ class CardResult extends BunqModel
     /**
      * @param string $reservationStatus
      */
-    public function setReservationStatus($reservationStatus)
+    public function setReservationStatus(string $reservationStatus)
     {
         $this->reservationStatus = $reservationStatus;
     }
@@ -481,7 +481,7 @@ class CardResult extends BunqModel
     /**
      * @param string $reservationExpiryTime
      */
-    public function setReservationExpiryTime($reservationExpiryTime)
+    public function setReservationExpiryTime(string $reservationExpiryTime)
     {
         $this->reservationExpiryTime = $reservationExpiryTime;
     }

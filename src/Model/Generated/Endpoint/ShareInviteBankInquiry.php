@@ -326,7 +326,7 @@ class ShareInviteBankInquiry extends BunqModel
     /**
      * @param int $monetaryAccountId
      */
-    public function setMonetaryAccountId($monetaryAccountId)
+    public function setMonetaryAccountId(int $monetaryAccountId)
     {
         $this->monetaryAccountId = $monetaryAccountId;
     }
@@ -344,7 +344,7 @@ class ShareInviteBankInquiry extends BunqModel
     /**
      * @param int $draftShareInviteBankId
      */
-    public function setDraftShareInviteBankId($draftShareInviteBankId)
+    public function setDraftShareInviteBankId(int $draftShareInviteBankId)
     {
         $this->draftShareInviteBankId = $draftShareInviteBankId;
     }
@@ -382,7 +382,7 @@ class ShareInviteBankInquiry extends BunqModel
     /**
      * @param string $status
      */
-    public function setStatus($status)
+    public function setStatus(string $status)
     {
         $this->status = $status;
     }
@@ -400,7 +400,7 @@ class ShareInviteBankInquiry extends BunqModel
     /**
      * @param string $startDate
      */
-    public function setStartDate($startDate)
+    public function setStartDate(string $startDate)
     {
         $this->startDate = $startDate;
     }
@@ -418,7 +418,7 @@ class ShareInviteBankInquiry extends BunqModel
     /**
      * @param string $endDate
      */
-    public function setEndDate($endDate)
+    public function setEndDate(string $endDate)
     {
         $this->endDate = $endDate;
     }
@@ -436,7 +436,7 @@ class ShareInviteBankInquiry extends BunqModel
     /**
      * @param int $id
      */
-    public function setId($id)
+    public function setId(int $id)
     {
         $this->id = $id;
     }

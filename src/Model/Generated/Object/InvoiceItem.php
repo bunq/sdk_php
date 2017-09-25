@@ -84,7 +84,7 @@ class InvoiceItem extends BunqModel
     /**
      * @param string $billingDate
      */
-    public function setBillingDate($billingDate)
+    public function setBillingDate(string $billingDate)
     {
         $this->billingDate = $billingDate;
     }
@@ -102,7 +102,7 @@ class InvoiceItem extends BunqModel
     /**
      * @param string $typeDescription
      */
-    public function setTypeDescription($typeDescription)
+    public function setTypeDescription(string $typeDescription)
     {
         $this->typeDescription = $typeDescription;
     }
@@ -120,7 +120,7 @@ class InvoiceItem extends BunqModel
     /**
      * @param string $typeDescriptionTranslated
      */
-    public function setTypeDescriptionTranslated($typeDescriptionTranslated)
+    public function setTypeDescriptionTranslated(string $typeDescriptionTranslated)
     {
         $this->typeDescriptionTranslated = $typeDescriptionTranslated;
     }
@@ -174,7 +174,7 @@ class InvoiceItem extends BunqModel
     /**
      * @param float $vat
      */
-    public function setVat($vat)
+    public function setVat(float $vat)
     {
         $this->vat = $vat;
     }
@@ -192,7 +192,7 @@ class InvoiceItem extends BunqModel
     /**
      * @param float $quantity
      */
-    public function setQuantity($quantity)
+    public function setQuantity(float $quantity)
     {
         $this->quantity = $quantity;
     }

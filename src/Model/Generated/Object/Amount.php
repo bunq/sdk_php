@@ -45,7 +45,7 @@ class Amount extends BunqModel
     /**
      * @param string $value
      */
-    public function setValue($value)
+    public function setValue(string $value)
     {
         $this->value = $value;
     }
@@ -63,7 +63,7 @@ class Amount extends BunqModel
     /**
      * @param string $currency
      */
-    public function setCurrency($currency)
+    public function setCurrency(string $currency)
     {
         $this->currency = $currency;
     }

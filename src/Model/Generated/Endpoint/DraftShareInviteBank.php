@@ -228,7 +228,7 @@ class DraftShareInviteBank extends BunqModel
     /**
      * @param string $status
      */
-    public function setStatus($status)
+    public function setStatus(string $status)
     {
         $this->status = $status;
     }
@@ -246,7 +246,7 @@ class DraftShareInviteBank extends BunqModel
     /**
      * @param string $expiration
      */
-    public function setExpiration($expiration)
+    public function setExpiration(string $expiration)
     {
         $this->expiration = $expiration;
     }
@@ -264,7 +264,7 @@ class DraftShareInviteBank extends BunqModel
     /**
      * @param int $shareInviteBankResponseId
      */
-    public function setShareInviteBankResponseId($shareInviteBankResponseId)
+    public function setShareInviteBankResponseId(int $shareInviteBankResponseId)
     {
         $this->shareInviteBankResponseId = $shareInviteBankResponseId;
     }
@@ -283,7 +283,7 @@ class DraftShareInviteBank extends BunqModel
     /**
      * @param string $draftShareUrl
      */
-    public function setDraftShareUrl($draftShareUrl)
+    public function setDraftShareUrl(string $draftShareUrl)
     {
         $this->draftShareUrl = $draftShareUrl;
     }
@@ -319,7 +319,7 @@ class DraftShareInviteBank extends BunqModel
     /**
      * @param int $id
      */
-    public function setId($id)
+    public function setId(int $id)
     {
         $this->id = $id;
     }

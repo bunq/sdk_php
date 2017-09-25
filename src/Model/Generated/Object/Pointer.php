@@ -52,7 +52,7 @@ class Pointer extends BunqModel
     /**
      * @param string $type
      */
-    public function setType($type)
+    public function setType(string $type)
     {
         $this->type = $type;
     }
@@ -70,7 +70,7 @@ class Pointer extends BunqModel
     /**
      * @param string $value
      */
-    public function setValue($value)
+    public function setValue(string $value)
     {
         $this->value = $value;
     }
@@ -88,7 +88,7 @@ class Pointer extends BunqModel
     /**
      * @param string $name
      */
-    public function setName($name)
+    public function setName(string $name)
     {
         $this->name = $name;
     }

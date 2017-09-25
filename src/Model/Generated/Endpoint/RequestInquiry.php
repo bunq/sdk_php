@@ -365,7 +365,7 @@ class RequestInquiry extends BunqModel
     /**
      * @param int $id
      */
-    public function setId($id)
+    public function setId(int $id)
     {
         $this->id = $id;
     }
@@ -383,7 +383,7 @@ class RequestInquiry extends BunqModel
     /**
      * @param string $created
      */
-    public function setCreated($created)
+    public function setCreated(string $created)
     {
         $this->created = $created;
     }
@@ -401,7 +401,7 @@ class RequestInquiry extends BunqModel
     /**
      * @param string $updated
      */
-    public function setUpdated($updated)
+    public function setUpdated(string $updated)
     {
         $this->updated = $updated;
     }
@@ -419,7 +419,7 @@ class RequestInquiry extends BunqModel
     /**
      * @param string $timeResponded
      */
-    public function setTimeResponded($timeResponded)
+    public function setTimeResponded(string $timeResponded)
     {
         $this->timeResponded = $timeResponded;
     }
@@ -437,7 +437,7 @@ class RequestInquiry extends BunqModel
     /**
      * @param string $timeExpiry
      */
-    public function setTimeExpiry($timeExpiry)
+    public function setTimeExpiry(string $timeExpiry)
     {
         $this->timeExpiry = $timeExpiry;
     }
@@ -455,7 +455,7 @@ class RequestInquiry extends BunqModel
     /**
      * @param int $monetaryAccountId
      */
-    public function setMonetaryAccountId($monetaryAccountId)
+    public function setMonetaryAccountId(int $monetaryAccountId)
     {
         $this->monetaryAccountId = $monetaryAccountId;
     }
@@ -566,7 +566,7 @@ class RequestInquiry extends BunqModel
     /**
      * @param string $description
      */
-    public function setDescription($description)
+    public function setDescription(string $description)
     {
         $this->description = $description;
     }
@@ -585,7 +585,7 @@ class RequestInquiry extends BunqModel
     /**
      * @param string $merchantReference
      */
-    public function setMerchantReference($merchantReference)
+    public function setMerchantReference(string $merchantReference)
     {
         $this->merchantReference = $merchantReference;
     }
@@ -603,7 +603,7 @@ class RequestInquiry extends BunqModel
     /**
      * @param BunqId[] $attachment
      */
-    public function setAttachment(array$attachment)
+    public function setAttachment(array $attachment)
     {
         $this->attachment = $attachment;
     }
@@ -621,7 +621,7 @@ class RequestInquiry extends BunqModel
     /**
      * @param string $status
      */
-    public function setStatus($status)
+    public function setStatus(string $status)
     {
         $this->status = $status;
     }
@@ -639,7 +639,7 @@ class RequestInquiry extends BunqModel
     /**
      * @param int $batchId
      */
-    public function setBatchId($batchId)
+    public function setBatchId(int $batchId)
     {
         $this->batchId = $batchId;
     }
@@ -657,7 +657,7 @@ class RequestInquiry extends BunqModel
     /**
      * @param int $scheduledId
      */
-    public function setScheduledId($scheduledId)
+    public function setScheduledId(int $scheduledId)
     {
         $this->scheduledId = $scheduledId;
     }
@@ -675,7 +675,7 @@ class RequestInquiry extends BunqModel
     /**
      * @param int $minimumAge
      */
-    public function setMinimumAge($minimumAge)
+    public function setMinimumAge(int $minimumAge)
     {
         $this->minimumAge = $minimumAge;
     }
@@ -693,7 +693,7 @@ class RequestInquiry extends BunqModel
     /**
      * @param string $requireAddress
      */
-    public function setRequireAddress($requireAddress)
+    public function setRequireAddress(string $requireAddress)
     {
         $this->requireAddress = $requireAddress;
     }
@@ -711,7 +711,7 @@ class RequestInquiry extends BunqModel
     /**
      * @param string $bunqmeShareUrl
      */
-    public function setBunqmeShareUrl($bunqmeShareUrl)
+    public function setBunqmeShareUrl(string $bunqmeShareUrl)
     {
         $this->bunqmeShareUrl = $bunqmeShareUrl;
     }
@@ -730,7 +730,7 @@ class RequestInquiry extends BunqModel
     /**
      * @param string $redirectUrl
      */
-    public function setRedirectUrl($redirectUrl)
+    public function setRedirectUrl(string $redirectUrl)
     {
         $this->redirectUrl = $redirectUrl;
     }
@@ -804,7 +804,7 @@ class RequestInquiry extends BunqModel
     /**
      * @param bool $allowChat
      */
-    public function setAllowChat($allowChat)
+    public function setAllowChat(bool $allowChat)
     {
         $this->allowChat = $allowChat;
     }

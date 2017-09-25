@@ -214,7 +214,7 @@ class ScheduleRequestInquiryEntry extends BunqModel
     /**
      * @param string $description
      */
-    public function setDescription($description)
+    public function setDescription(string $description)
     {
         $this->description = $description;
     }
@@ -233,7 +233,7 @@ class ScheduleRequestInquiryEntry extends BunqModel
     /**
      * @param string $merchantReference
      */
-    public function setMerchantReference($merchantReference)
+    public function setMerchantReference(string $merchantReference)
     {
         $this->merchantReference = $merchantReference;
     }
@@ -269,7 +269,7 @@ class ScheduleRequestInquiryEntry extends BunqModel
     /**
      * @param int $minimumAge
      */
-    public function setMinimumAge($minimumAge)
+    public function setMinimumAge(int $minimumAge)
     {
         $this->minimumAge = $minimumAge;
     }
@@ -287,7 +287,7 @@ class ScheduleRequestInquiryEntry extends BunqModel
     /**
      * @param string $requireAddress
      */
-    public function setRequireAddress($requireAddress)
+    public function setRequireAddress(string $requireAddress)
     {
         $this->requireAddress = $requireAddress;
     }
@@ -305,7 +305,7 @@ class ScheduleRequestInquiryEntry extends BunqModel
     /**
      * @param bool $allowBunqme
      */
-    public function setAllowBunqme($allowBunqme)
+    public function setAllowBunqme(bool $allowBunqme)
     {
         $this->allowBunqme = $allowBunqme;
     }
@@ -324,7 +324,7 @@ class ScheduleRequestInquiryEntry extends BunqModel
     /**
      * @param string $redirectUrl
      */
-    public function setRedirectUrl($redirectUrl)
+    public function setRedirectUrl(string $redirectUrl)
     {
         $this->redirectUrl = $redirectUrl;
     }

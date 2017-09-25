@@ -224,7 +224,7 @@ class TokenQrRequestIdeal extends BunqModel
     /**
      * @param string $timeResponded
      */
-    public function setTimeResponded($timeResponded)
+    public function setTimeResponded(string $timeResponded)
     {
         $this->timeResponded = $timeResponded;
     }
@@ -242,7 +242,7 @@ class TokenQrRequestIdeal extends BunqModel
     /**
      * @param string $timeExpiry
      */
-    public function setTimeExpiry($timeExpiry)
+    public function setTimeExpiry(string $timeExpiry)
     {
         $this->timeExpiry = $timeExpiry;
     }
@@ -260,7 +260,7 @@ class TokenQrRequestIdeal extends BunqModel
     /**
      * @param int $monetaryAccountId
      */
-    public function setMonetaryAccountId($monetaryAccountId)
+    public function setMonetaryAccountId(int $monetaryAccountId)
     {
         $this->monetaryAccountId = $monetaryAccountId;
     }
@@ -353,7 +353,7 @@ class TokenQrRequestIdeal extends BunqModel
     /**
      * @param string $description
      */
-    public function setDescription($description)
+    public function setDescription(string $description)
     {
         $this->description = $description;
     }
@@ -371,7 +371,7 @@ class TokenQrRequestIdeal extends BunqModel
     /**
      * @param Attachment[] $attachment
      */
-    public function setAttachment(array$attachment)
+    public function setAttachment(array $attachment)
     {
         $this->attachment = $attachment;
     }
@@ -389,7 +389,7 @@ class TokenQrRequestIdeal extends BunqModel
     /**
      * @param string $status
      */
-    public function setStatus($status)
+    public function setStatus(string $status)
     {
         $this->status = $status;
     }
@@ -407,7 +407,7 @@ class TokenQrRequestIdeal extends BunqModel
     /**
      * @param int $minimumAge
      */
-    public function setMinimumAge($minimumAge)
+    public function setMinimumAge(int $minimumAge)
     {
         $this->minimumAge = $minimumAge;
     }
@@ -425,7 +425,7 @@ class TokenQrRequestIdeal extends BunqModel
     /**
      * @param string $requireAddress
      */
-    public function setRequireAddress($requireAddress)
+    public function setRequireAddress(string $requireAddress)
     {
         $this->requireAddress = $requireAddress;
     }
@@ -500,7 +500,7 @@ class TokenQrRequestIdeal extends BunqModel
     /**
      * @param string $redirectUrl
      */
-    public function setRedirectUrl($redirectUrl)
+    public function setRedirectUrl(string $redirectUrl)
     {
         $this->redirectUrl = $redirectUrl;
     }
@@ -518,7 +518,7 @@ class TokenQrRequestIdeal extends BunqModel
     /**
      * @param string $type
      */
-    public function setType($type)
+    public function setType(string $type)
     {
         $this->type = $type;
     }
@@ -536,7 +536,7 @@ class TokenQrRequestIdeal extends BunqModel
     /**
      * @param string $subType
      */
-    public function setSubType($subType)
+    public function setSubType(string $subType)
     {
         $this->subType = $subType;
     }
@@ -554,7 +554,7 @@ class TokenQrRequestIdeal extends BunqModel
     /**
      * @param bool $allowChat
      */
-    public function setAllowChat($allowChat)
+    public function setAllowChat(bool $allowChat)
     {
         $this->allowChat = $allowChat;
     }
@@ -572,7 +572,7 @@ class TokenQrRequestIdeal extends BunqModel
     /**
      * @param int $eligibleWhitelistId
      */
-    public function setEligibleWhitelistId($eligibleWhitelistId)
+    public function setEligibleWhitelistId(int $eligibleWhitelistId)
     {
         $this->eligibleWhitelistId = $eligibleWhitelistId;
     }

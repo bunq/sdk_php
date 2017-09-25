@@ -42,7 +42,7 @@ class AttachmentPublic extends BunqModel
     /**
      * @param string $uuid
      */
-    public function setUuid($uuid)
+    public function setUuid(string $uuid)
     {
         $this->uuid = $uuid;
     }
@@ -60,7 +60,7 @@ class AttachmentPublic extends BunqModel
     /**
      * @param string $description
      */
-    public function setDescription($description)
+    public function setDescription(string $description)
     {
         $this->description = $description;
     }
@@ -78,7 +78,7 @@ class AttachmentPublic extends BunqModel
     /**
      * @param string $contentType
      */
-    public function setContentType($contentType)
+    public function setContentType(string $contentType)
     {
         $this->contentType = $contentType;
     }

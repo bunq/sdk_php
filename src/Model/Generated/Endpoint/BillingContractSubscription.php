@@ -148,7 +148,7 @@ class BillingContractSubscription extends BunqModel
     /**
      * @param int $id
      */
-    public function setId($id)
+    public function setId(int $id)
     {
         $this->id = $id;
     }
@@ -166,7 +166,7 @@ class BillingContractSubscription extends BunqModel
     /**
      * @param string $created
      */
-    public function setCreated($created)
+    public function setCreated(string $created)
     {
         $this->created = $created;
     }
@@ -184,7 +184,7 @@ class BillingContractSubscription extends BunqModel
     /**
      * @param string $updated
      */
-    public function setUpdated($updated)
+    public function setUpdated(string $updated)
     {
         $this->updated = $updated;
     }
@@ -202,7 +202,7 @@ class BillingContractSubscription extends BunqModel
     /**
      * @param string $contractDateStart
      */
-    public function setContractDateStart($contractDateStart)
+    public function setContractDateStart(string $contractDateStart)
     {
         $this->contractDateStart = $contractDateStart;
     }
@@ -220,7 +220,7 @@ class BillingContractSubscription extends BunqModel
     /**
      * @param string $contractDateEnd
      */
-    public function setContractDateEnd($contractDateEnd)
+    public function setContractDateEnd(string $contractDateEnd)
     {
         $this->contractDateEnd = $contractDateEnd;
     }
@@ -238,7 +238,7 @@ class BillingContractSubscription extends BunqModel
     /**
      * @param int $contractVersion
      */
-    public function setContractVersion($contractVersion)
+    public function setContractVersion(int $contractVersion)
     {
         $this->contractVersion = $contractVersion;
     }
@@ -258,7 +258,7 @@ class BillingContractSubscription extends BunqModel
     /**
      * @param string $subscriptionType
      */
-    public function setSubscriptionType($subscriptionType)
+    public function setSubscriptionType(string $subscriptionType)
     {
         $this->subscriptionType = $subscriptionType;
     }

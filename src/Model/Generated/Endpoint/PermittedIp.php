@@ -170,7 +170,7 @@ class PermittedIp extends BunqModel
     /**
      * @param string $ip
      */
-    public function setIp($ip)
+    public function setIp(string $ip)
     {
         $this->ip = $ip;
     }
@@ -190,7 +190,7 @@ class PermittedIp extends BunqModel
     /**
      * @param string $status
      */
-    public function setStatus($status)
+    public function setStatus(string $status)
     {
         $this->status = $status;
     }
