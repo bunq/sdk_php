@@ -108,7 +108,9 @@ class DraftShareInviteBank extends BunqModel
             $customHeaders
         );
 
-        return static::processForId($responseRaw);
+        return BunqResponseInt::castFromBunqResponse(
+            static::processForId($responseRaw)
+        );
     }
 
     /**
@@ -133,7 +135,9 @@ class DraftShareInviteBank extends BunqModel
             $customHeaders
         );
 
-        return static::fromJson($responseRaw, self::OBJECT_TYPE);
+        return BunqResponseDraftShareInviteBank::castFromBunqResponse(
+            static::fromJson($responseRaw, self::OBJECT_TYPE)
+        );
     }
 
     /**
@@ -160,7 +164,9 @@ class DraftShareInviteBank extends BunqModel
             $customHeaders
         );
 
-        return static::fromJson($responseRaw, self::OBJECT_TYPE);
+        return BunqResponseDraftShareInviteBank::castFromBunqResponse(
+            static::fromJson($responseRaw, self::OBJECT_TYPE)
+        );
     }
 
     /**
@@ -186,7 +192,9 @@ class DraftShareInviteBank extends BunqModel
             $customHeaders
         );
 
-        return static::fromJsonList($responseRaw, self::OBJECT_TYPE);
+        return BunqResponseDraftShareInviteBankList::castFromBunqResponse(
+            static::fromJsonList($responseRaw, self::OBJECT_TYPE)
+        );
     }
 
     /**

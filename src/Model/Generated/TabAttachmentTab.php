@@ -75,7 +75,9 @@ class TabAttachmentTab extends BunqModel
             $customHeaders
         );
 
-        return static::fromJson($responseRaw, self::OBJECT_TYPE);
+        return BunqResponseTabAttachmentTab::castFromBunqResponse(
+            static::fromJson($responseRaw, self::OBJECT_TYPE)
+        );
     }
 
     /**

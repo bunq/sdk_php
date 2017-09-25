@@ -64,7 +64,9 @@ class Tab extends BunqModel
             $customHeaders
         );
 
-        return static::fromJson($responseRaw);
+        return BunqResponseTab::castFromBunqResponse(
+            static::fromJson($responseRaw)
+        );
     }
 
     /**
@@ -94,7 +96,9 @@ class Tab extends BunqModel
             $customHeaders
         );
 
-        return static::fromJsonList($responseRaw);
+        return BunqResponseTabList::castFromBunqResponse(
+            static::fromJsonList($responseRaw)
+        );
     }
 
     /**

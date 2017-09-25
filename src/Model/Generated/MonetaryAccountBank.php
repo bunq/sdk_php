@@ -226,7 +226,9 @@ class MonetaryAccountBank extends BunqModel
             $customHeaders
         );
 
-        return static::processForId($responseRaw);
+        return BunqResponseInt::castFromBunqResponse(
+            static::processForId($responseRaw)
+        );
     }
 
     /**
@@ -251,7 +253,9 @@ class MonetaryAccountBank extends BunqModel
             $customHeaders
         );
 
-        return static::fromJson($responseRaw, self::OBJECT_TYPE);
+        return BunqResponseMonetaryAccountBank::castFromBunqResponse(
+            static::fromJson($responseRaw, self::OBJECT_TYPE)
+        );
     }
 
     /**
@@ -277,7 +281,9 @@ class MonetaryAccountBank extends BunqModel
             $customHeaders
         );
 
-        return static::processForId($responseRaw);
+        return BunqResponseInt::castFromBunqResponse(
+            static::processForId($responseRaw)
+        );
     }
 
     /**
@@ -305,7 +311,9 @@ class MonetaryAccountBank extends BunqModel
             $customHeaders
         );
 
-        return static::fromJsonList($responseRaw, self::OBJECT_TYPE);
+        return BunqResponseMonetaryAccountBankList::castFromBunqResponse(
+            static::fromJsonList($responseRaw, self::OBJECT_TYPE)
+        );
     }
 
     /**

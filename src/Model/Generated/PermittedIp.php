@@ -70,7 +70,9 @@ class PermittedIp extends BunqModel
             $customHeaders
         );
 
-        return static::fromJson($responseRaw, self::OBJECT_TYPE);
+        return BunqResponsePermittedIp::castFromBunqResponse(
+            static::fromJson($responseRaw, self::OBJECT_TYPE)
+        );
     }
 
     /**
@@ -94,7 +96,9 @@ class PermittedIp extends BunqModel
             $customHeaders
         );
 
-        return static::processForId($responseRaw);
+        return BunqResponseInt::castFromBunqResponse(
+            static::processForId($responseRaw)
+        );
     }
 
     /**
@@ -121,7 +125,9 @@ class PermittedIp extends BunqModel
             $customHeaders
         );
 
-        return static::fromJsonList($responseRaw, self::OBJECT_TYPE);
+        return BunqResponsePermittedIpList::castFromBunqResponse(
+            static::fromJsonList($responseRaw, self::OBJECT_TYPE)
+        );
     }
 
     /**
@@ -146,7 +152,9 @@ class PermittedIp extends BunqModel
             $customHeaders
         );
 
-        return static::processForId($responseRaw);
+        return BunqResponseInt::castFromBunqResponse(
+            static::processForId($responseRaw)
+        );
     }
 
     /**

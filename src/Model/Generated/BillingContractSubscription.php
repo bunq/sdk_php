@@ -100,7 +100,9 @@ class BillingContractSubscription extends BunqModel
             $customHeaders
         );
 
-        return static::fromJson($responseRaw, self::OBJECT_TYPE);
+        return BunqResponseBillingContractSubscription::castFromBunqResponse(
+            static::fromJson($responseRaw, self::OBJECT_TYPE)
+        );
     }
 
     /**
@@ -128,7 +130,9 @@ class BillingContractSubscription extends BunqModel
             $customHeaders
         );
 
-        return static::fromJsonList($responseRaw, self::OBJECT_TYPE);
+        return BunqResponseBillingContractSubscriptionList::castFromBunqResponse(
+            static::fromJsonList($responseRaw, self::OBJECT_TYPE)
+        );
     }
 
     /**

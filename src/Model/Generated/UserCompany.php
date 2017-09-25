@@ -282,7 +282,9 @@ class UserCompany extends BunqModel
             $customHeaders
         );
 
-        return static::fromJson($responseRaw, self::OBJECT_TYPE);
+        return BunqResponseUserCompany::castFromBunqResponse(
+            static::fromJson($responseRaw, self::OBJECT_TYPE)
+        );
     }
 
     /**
@@ -307,7 +309,9 @@ class UserCompany extends BunqModel
             $customHeaders
         );
 
-        return static::processForId($responseRaw);
+        return BunqResponseInt::castFromBunqResponse(
+            static::processForId($responseRaw)
+        );
     }
 
     /**

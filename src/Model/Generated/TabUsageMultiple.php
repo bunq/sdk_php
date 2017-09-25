@@ -204,7 +204,9 @@ class TabUsageMultiple extends BunqModel
             $customHeaders
         );
 
-        return static::processForUuid($responseRaw);
+        return BunqResponseString::castFromBunqResponse(
+            static::processForUuid($responseRaw)
+        );
     }
 
     /**
@@ -237,7 +239,9 @@ class TabUsageMultiple extends BunqModel
             $customHeaders
         );
 
-        return static::processForUuid($responseRaw);
+        return BunqResponseString::castFromBunqResponse(
+            static::processForUuid($responseRaw)
+        );
     }
 
     /**
@@ -264,7 +268,9 @@ class TabUsageMultiple extends BunqModel
             $customHeaders
         );
 
-        return new BunqResponse(null, $responseRaw->getHeaders());
+        return BunqResponseNull::castFromBunqResponse(
+            new BunqResponse(null, $responseRaw->getHeaders())
+        );
     }
 
     /**
@@ -291,7 +297,9 @@ class TabUsageMultiple extends BunqModel
             $customHeaders
         );
 
-        return static::fromJson($responseRaw, self::OBJECT_TYPE);
+        return BunqResponseTabUsageMultiple::castFromBunqResponse(
+            static::fromJson($responseRaw, self::OBJECT_TYPE)
+        );
     }
 
     /**
@@ -321,7 +329,9 @@ class TabUsageMultiple extends BunqModel
             $customHeaders
         );
 
-        return static::fromJsonList($responseRaw, self::OBJECT_TYPE);
+        return BunqResponseTabUsageMultipleList::castFromBunqResponse(
+            static::fromJsonList($responseRaw, self::OBJECT_TYPE)
+        );
     }
 
     /**

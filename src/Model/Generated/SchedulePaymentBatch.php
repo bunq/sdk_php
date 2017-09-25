@@ -68,7 +68,9 @@ class SchedulePaymentBatch extends BunqModel
             $customHeaders
         );
 
-        return static::processForId($responseRaw);
+        return BunqResponseInt::castFromBunqResponse(
+            static::processForId($responseRaw)
+        );
     }
 
     /**
@@ -93,7 +95,9 @@ class SchedulePaymentBatch extends BunqModel
             $customHeaders
         );
 
-        return static::processForId($responseRaw);
+        return BunqResponseInt::castFromBunqResponse(
+            static::processForId($responseRaw)
+        );
     }
 
     /**
@@ -116,7 +120,9 @@ class SchedulePaymentBatch extends BunqModel
             $customHeaders
         );
 
-        return new BunqResponse(null, $responseRaw->getHeaders());
+        return BunqResponseNull::castFromBunqResponse(
+            new BunqResponse(null, $responseRaw->getHeaders())
+        );
     }
 
     /**

@@ -55,4 +55,14 @@ class BunqResponse
     {
         return $this->pagination;
     }
+
+    /**
+     * @param BunqResponse $bunqResponse
+     *
+     * @return static
+     */
+    public static function castFromBunqResponse(BunqResponse $bunqResponse): BunqResponse
+    {
+        return new static($bunqResponse->getValue(), $bunqResponse->getHeaders(), $bunqResponse->getPagination());
+    }
 }

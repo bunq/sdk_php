@@ -54,6 +54,8 @@ class TabQrCodeContent extends BunqModel
             $customHeaders
         );
 
-        return new BunqResponse($responseRaw->getBodyString(), $responseRaw->getHeaders());
+        return BunqResponseString::castFromBunqResponse(
+            new BunqResponse($responseRaw->getBodyString(), $responseRaw->getHeaders())
+        );
     }
 }

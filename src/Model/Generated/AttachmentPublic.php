@@ -88,7 +88,9 @@ class AttachmentPublic extends BunqModel
             $customHeaders
         );
 
-        return static::processForUuid($responseRaw);
+        return BunqResponseString::castFromBunqResponse(
+            static::processForUuid($responseRaw)
+        );
     }
 
     /**
@@ -114,7 +116,9 @@ class AttachmentPublic extends BunqModel
             $customHeaders
         );
 
-        return static::fromJson($responseRaw, self::OBJECT_TYPE);
+        return BunqResponseAttachmentPublic::castFromBunqResponse(
+            static::fromJson($responseRaw, self::OBJECT_TYPE)
+        );
     }
 
     /**

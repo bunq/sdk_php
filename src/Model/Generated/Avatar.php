@@ -69,7 +69,9 @@ class Avatar extends BunqModel
             $customHeaders
         );
 
-        return static::processForUuid($responseRaw);
+        return BunqResponseString::castFromBunqResponse(
+            static::processForUuid($responseRaw)
+        );
     }
 
     /**
@@ -91,7 +93,9 @@ class Avatar extends BunqModel
             $customHeaders
         );
 
-        return static::fromJson($responseRaw, self::OBJECT_TYPE);
+        return BunqResponseAvatar::castFromBunqResponse(
+            static::fromJson($responseRaw, self::OBJECT_TYPE)
+        );
     }
 
     /**

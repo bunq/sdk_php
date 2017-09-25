@@ -70,7 +70,9 @@ class CertificatePinned extends BunqModel
             $customHeaders
         );
 
-        return static::processForId($responseRaw);
+        return BunqResponseInt::castFromBunqResponse(
+            static::processForId($responseRaw)
+        );
     }
 
     /**
@@ -94,7 +96,9 @@ class CertificatePinned extends BunqModel
             $customHeaders
         );
 
-        return new BunqResponse(null, $responseRaw->getHeaders());
+        return BunqResponseNull::castFromBunqResponse(
+            new BunqResponse(null, $responseRaw->getHeaders())
+        );
     }
 
     /**
@@ -122,7 +126,9 @@ class CertificatePinned extends BunqModel
             $customHeaders
         );
 
-        return static::fromJsonList($responseRaw, self::OBJECT_TYPE);
+        return BunqResponseCertificatePinnedList::castFromBunqResponse(
+            static::fromJsonList($responseRaw, self::OBJECT_TYPE)
+        );
     }
 
     /**
@@ -147,7 +153,9 @@ class CertificatePinned extends BunqModel
             $customHeaders
         );
 
-        return static::fromJson($responseRaw, self::OBJECT_TYPE);
+        return BunqResponseCertificatePinned::castFromBunqResponse(
+            static::fromJson($responseRaw, self::OBJECT_TYPE)
+        );
     }
 
     /**

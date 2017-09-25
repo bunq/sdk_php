@@ -56,7 +56,9 @@ class Device extends BunqModel
             $customHeaders
         );
 
-        return static::fromJson($responseRaw);
+        return BunqResponseDevice::castFromBunqResponse(
+            static::fromJson($responseRaw)
+        );
     }
 
     /**
@@ -84,7 +86,9 @@ class Device extends BunqModel
             $customHeaders
         );
 
-        return static::fromJsonList($responseRaw);
+        return BunqResponseDeviceList::castFromBunqResponse(
+            static::fromJsonList($responseRaw)
+        );
     }
 
     /**

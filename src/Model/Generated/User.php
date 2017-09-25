@@ -61,7 +61,9 @@ class User extends BunqModel
             $customHeaders
         );
 
-        return static::fromJson($responseRaw);
+        return BunqResponseUser::castFromBunqResponse(
+            static::fromJson($responseRaw)
+        );
     }
 
     /**
@@ -88,7 +90,9 @@ class User extends BunqModel
             $customHeaders
         );
 
-        return static::fromJsonList($responseRaw);
+        return BunqResponseUserList::castFromBunqResponse(
+            static::fromJsonList($responseRaw)
+        );
     }
 
     /**

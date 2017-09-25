@@ -70,7 +70,9 @@ class SchedulePayment extends BunqModel
             $customHeaders
         );
 
-        return static::processForId($responseRaw);
+        return BunqResponseInt::castFromBunqResponse(
+            static::processForId($responseRaw)
+        );
     }
 
     /**
@@ -93,7 +95,9 @@ class SchedulePayment extends BunqModel
             $customHeaders
         );
 
-        return new BunqResponse(null, $responseRaw->getHeaders());
+        return BunqResponseNull::castFromBunqResponse(
+            new BunqResponse(null, $responseRaw->getHeaders())
+        );
     }
 
     /**
@@ -117,7 +121,9 @@ class SchedulePayment extends BunqModel
             $customHeaders
         );
 
-        return static::fromJson($responseRaw, self::OBJECT_TYPE);
+        return BunqResponseSchedulePayment::castFromBunqResponse(
+            static::fromJson($responseRaw, self::OBJECT_TYPE)
+        );
     }
 
     /**
@@ -144,7 +150,9 @@ class SchedulePayment extends BunqModel
             $customHeaders
         );
 
-        return static::fromJsonList($responseRaw, self::OBJECT_TYPE);
+        return BunqResponseSchedulePaymentList::castFromBunqResponse(
+            static::fromJsonList($responseRaw, self::OBJECT_TYPE)
+        );
     }
 
     /**
@@ -169,7 +177,9 @@ class SchedulePayment extends BunqModel
             $customHeaders
         );
 
-        return static::processForId($responseRaw);
+        return BunqResponseInt::castFromBunqResponse(
+            static::processForId($responseRaw)
+        );
     }
 
     /**

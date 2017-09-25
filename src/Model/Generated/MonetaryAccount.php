@@ -55,7 +55,9 @@ class MonetaryAccount extends BunqModel
             $customHeaders
         );
 
-        return static::fromJson($responseRaw);
+        return BunqResponseMonetaryAccount::castFromBunqResponse(
+            static::fromJson($responseRaw)
+        );
     }
 
     /**
@@ -83,7 +85,9 @@ class MonetaryAccount extends BunqModel
             $customHeaders
         );
 
-        return static::fromJsonList($responseRaw);
+        return BunqResponseMonetaryAccountList::castFromBunqResponse(
+            static::fromJsonList($responseRaw)
+        );
     }
 
     /**

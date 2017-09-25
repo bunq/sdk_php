@@ -57,7 +57,9 @@ class ChatConversation extends BunqModel
             $customHeaders
         );
 
-        return static::fromJsonList($responseRaw);
+        return BunqResponseChatConversationList::castFromBunqResponse(
+            static::fromJsonList($responseRaw)
+        );
     }
 
     /**
@@ -80,7 +82,9 @@ class ChatConversation extends BunqModel
             $customHeaders
         );
 
-        return static::fromJson($responseRaw);
+        return BunqResponseChatConversation::castFromBunqResponse(
+            static::fromJson($responseRaw)
+        );
     }
 
     /**

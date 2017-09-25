@@ -43,6 +43,8 @@ class Session extends BunqModel
             $customHeaders
         );
 
-        return new BunqResponse(null, $responseRaw->getHeaders());
+        return BunqResponseNull::castFromBunqResponse(
+            new BunqResponse(null, $responseRaw->getHeaders())
+        );
     }
 }

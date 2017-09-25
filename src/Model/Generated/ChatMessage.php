@@ -64,7 +64,9 @@ class ChatMessage extends BunqModel
             $customHeaders
         );
 
-        return static::fromJsonList($responseRaw);
+        return BunqResponseChatMessageList::castFromBunqResponse(
+            static::fromJsonList($responseRaw)
+        );
     }
 
     /**
