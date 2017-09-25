@@ -28,12 +28,12 @@ class ExceptionFactory
     const INDEX_FIRST = 0;
 
     /**
-     * @param array $messages
+     * @param string[] $messages
      * @param int $responseCode
      *
      * @return ApiException
      */
-    public static function createExceptionForResponse($messages, $responseCode)
+    public static function createExceptionForResponse(array $messages, int $responseCode): ApiException
     {
         $errorMessage = static::generateErrorMessage($responseCode, $messages);
 

@@ -13,11 +13,10 @@ class ApiException extends Exception
     private $responseCode;
 
     /**
-     * ApiException constructor.
-     *
+     * @param string $message
      * @param int $responseCode
      */
-    public function __construct($message, $responseCode)
+    public function __construct(string $message, int $responseCode)
     {
         $this->responseCode = $responseCode;
 
