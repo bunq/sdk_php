@@ -22,7 +22,6 @@ const INDEX_FIRST = 0;
 $apiContext = ApiContext::restore(ApiContext::FILENAME_CONFIG_DEFAULT);
 
 // Retrieve the active user.
-/** @var User[] $users */
 $users = User::listing($apiContext)->getValue();
 $user = $users[INDEX_FIRST]->getUserCompany();
 $userId = $user->getId();
@@ -36,7 +35,6 @@ $userCompanyMap = [
 UserCompany::update($apiContext, $userCompanyMap, $userId);
 
 // You can retrieve the UserCompany again with the id.
-/** @var UserCompany $userCompany */
 $userCompany = UserCompany::get($apiContext, $userId)->getValue();
 
 vprintf(MESSAGE_USER_COMPANY_NICKNAME, [$userCompany->getPublicNickName()]);

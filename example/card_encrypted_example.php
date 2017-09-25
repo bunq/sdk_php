@@ -34,12 +34,10 @@ $apiContext = ApiContext::restore(ApiContext::FILENAME_CONFIG_DEFAULT);
 
 
 // Retrieve the active user.
-/** @var User[] $users */
 $users = User::listing($apiContext)->getValue();
 $userId = $users[INDEX_FIRST]->getUserCompany()->getId();
 
 // Retrieve the first monetary account of the active user.
-/** @var MonetaryAccount[] $monetaryAccounts */
 $monetaryAccounts = MonetaryAccount::listing($apiContext, $userId)->getValue();
 $monetaryAccount = $monetaryAccounts[INDEX_FIRST]->getMonetaryAccountBank();
 
@@ -65,7 +63,6 @@ $cardDebitMap = [
 $cardId = CardDebit::create($apiContext, $cardDebitMap, $userId)->getValue();
 
 // List all cards for this user.
-/** @var Card[] $cards */
 $cards = Card::listing($apiContext, $userId)->getValue();
 
 // Print information for each card.

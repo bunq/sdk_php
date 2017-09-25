@@ -72,7 +72,6 @@ class AvatarTest extends BunqSdkTestBase
         ];
         $avatarUuid = Avatar::create(static::getApiContext(), $avatarMap)->getValue();
 
-        /** @var Avatar $attachmentUuidAfter */
         $attachmentUuidAfter = Avatar::get(static::getApiContext(), $avatarUuid)->getValue();
         $imageInfoArray = $attachmentUuidAfter->getImage();
         $attachmentPublicUuid = $imageInfoArray[self::INDEX_FIRST]->getAttachmentPublicUuid();

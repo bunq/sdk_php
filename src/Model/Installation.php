@@ -3,7 +3,6 @@ namespace bunq\Model;
 
 use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
-use bunq\Http\BunqResponse;
 
 /**
  * Once you have created an Installation and a DeviceServer with that Installation, then you are
@@ -49,7 +48,7 @@ class Installation extends BunqModel
      * @param ApiContext $apiContext
      * @param string $clientPublicKey
      *
-     * @return BunqResponse<Installation>
+     * @return BunqResponseInstallation
      */
     public static function create(ApiContext $apiContext, $clientPublicKey)
     {
@@ -58,7 +57,9 @@ class Installation extends BunqModel
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->post(self::ENDPOINT_URL_POST, $installation->jsonSerialize(), []);
 
-        return static::classFromJson(Installation::class, $responseRaw);
+        return BunqResponseInstallation::castFromBunqResponse(
+            static::classFromJson($responseRaw)
+        );
     }
 
     /**

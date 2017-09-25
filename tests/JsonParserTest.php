@@ -4,6 +4,10 @@ namespace bunq\test;
 use bunq\Http\BunqResponse;
 use bunq\Http\BunqResponseRaw;
 use bunq\Model\BunqModel;
+use bunq\Model\BunqResponseInstallation;
+use bunq\Model\Generated\BunqResponseInt;
+use bunq\Model\Generated\BunqResponseString;
+use bunq\Model\Generated\BunqResponseUserCompany;
 use bunq\Model\Generated\Object\Amount;
 use bunq\Model\Generated\UserCompany;
 use bunq\Model\Installation;
@@ -48,7 +52,7 @@ class JsonParserTest extends TestCase
      */
     public function testCreateIdFromJson()
     {
-        /** @var BunqResponse $bunqResponseId */
+        /** @var BunqResponseInt $bunqResponseId */
         $bunqResponseId = $this->callPrivateStaticMethod(
             BunqModel::class,
             self::FUNCTION_PROCESS_FOR_ID,
@@ -82,7 +86,7 @@ class JsonParserTest extends TestCase
      */
     public function testCreateUuidFromJson()
     {
-        /** @var BunqResponse $bunqResponseUuid */
+        /** @var BunqResponseString $bunqResponseUuid */
         $bunqResponseUuid = $this->callPrivateStaticMethod(
             BunqModel::class,
             self::FUNCTION_PROCESS_FOR_UUID,
@@ -99,13 +103,12 @@ class JsonParserTest extends TestCase
     public function testCreateFromJson()
     {
         $userCompanyJson = FileUtil::getFileContents(__DIR__ . self::RESOURCE_USER_COMPANY_JSON);
-        /** @var BunqResponse $bunqResponseUserCompany */
+        /** @var BunqResponseUserCompany $bunqResponseUserCompany */
         $bunqResponseUserCompany = $this->callPrivateStaticMethod(
             UserCompany::class,
             self::FUNCTION_FROM_JSON,
             [new BunqResponseRaw($userCompanyJson, []), UserCompany::OBJECT_TYPE]
         );
-        /** @var UserCompany $userCompany */
         $userCompany = $bunqResponseUserCompany->getValue();
 
         static::assertInstanceOf(UserCompany::class, $userCompany);
@@ -120,16 +123,12 @@ class JsonParserTest extends TestCase
     public function testCreateClassFormJson()
     {
         $installationJson = FileUtil::getFileContents(__DIR__ . self::RESOURCE_INSTALLATION_JSON);
-        /** @var BunqResponse $bunqResponseInstallation */
+        /** @var BunqResponseInstallation $bunqResponseInstallation */
         $bunqResponseInstallation = $this->callPrivateStaticMethod(
             BunqModel::class,
             self::FUNCTION_CLASS_FROM_JSON,
-            [
-                Installation::class,
-                new BunqResponseRaw($installationJson, []),
-            ]
+            [new BunqResponseRaw($installationJson, [])]
         );
-        /** @var Installation $installation */
         $installation = $bunqResponseInstallation->getValue();
 
         static::assertInstanceOf(Installation::class, $installation);

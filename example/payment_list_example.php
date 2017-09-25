@@ -27,7 +27,6 @@ const INDEX_FIRST = 0;
 const PAGE_SIZE = 3;
 
 $apiContext = ApiContext::restore(ApiContext::FILENAME_CONFIG_DEFAULT);
-/** @var User[] $users */
 $users = User::listing($apiContext)->getValue();
 $apiContext->save();
 $userContainer = $users[INDEX_FIRST];
@@ -42,7 +41,6 @@ if (!is_null($userContainer->getUserLight())) {
 
 $userId = $user->getId();
 
-/** @var MonetaryAccount[] $monetaryAccounts */
 $monetaryAccounts = MonetaryAccount::listing($apiContext, $userId)->getValue();
 $monetaryAccount = $monetaryAccounts[INDEX_FIRST]->getMonetaryAccountBank();
 $monetaryAccountId = $monetaryAccount->getId();
@@ -57,7 +55,6 @@ $paymentsResponse = Payment::listing(
     $paginationCountOnly->getUrlParamsCountOnly()
 );
 
-/** @var Payment[] $payments */
 $payments = $paymentsResponse->getValue();
 
 echo MESSAGE_LATEST_PAGE_IDS . PHP_EOL;
@@ -71,7 +68,6 @@ $pagination = $paymentsResponse->getPagination();
 if ($pagination->hasPreviousPage()) {
     echo MESSAGE_SECOND_LATEST_PAGE_IDS . PHP_EOL;
 
-    /** @var Payment[] $previousPayments */
     $previousPayments = Payment::listing(
         $apiContext,
         $userId,

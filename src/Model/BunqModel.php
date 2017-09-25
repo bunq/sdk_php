@@ -199,20 +199,16 @@ abstract class BunqModel implements JsonSerializable
     }
 
     /**
-     * @param string $class
      * @param BunqResponseRaw $responseRaw
      *
      * @return BunqResponse
      */
-    protected static function classFromJson($class, BunqResponseRaw $responseRaw)
+    protected static function classFromJson(BunqResponseRaw $responseRaw)
     {
-        assert(is_subclass_of($class, BunqModel::class));
-        /** @var BunqModel $class */
-
         $json = $responseRaw->getBodyString();
         $response = ModelUtil::deserializeResponseArray($json)[self::FIELD_RESPONSE];
         $formattedResponseArray = ModelUtil::formatResponseArray($response);
-        $value = $class::createFromResponseArray($formattedResponseArray);
+        $value = static::createFromResponseArray($formattedResponseArray);
 
         return new BunqResponse($value, $responseRaw->getHeaders());
     }
