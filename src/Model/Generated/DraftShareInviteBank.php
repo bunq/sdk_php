@@ -94,7 +94,7 @@ class DraftShareInviteBank extends BunqModel
      * @param int $userId
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<int>
+     * @return BunqResponseInt
      */
     public static function create(ApiContext $apiContext, array $requestMap, $userId, array $customHeaders = [])
     {
@@ -119,7 +119,7 @@ class DraftShareInviteBank extends BunqModel
      * @param int $draftShareInviteBankId
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<DraftShareInviteBank>
+     * @return BunqResponseDraftShareInviteBank
      */
     public static function get(ApiContext $apiContext, $userId, $draftShareInviteBankId, array $customHeaders = [])
     {
@@ -133,7 +133,7 @@ class DraftShareInviteBank extends BunqModel
             $customHeaders
         );
 
-        return static::fromJson($responseRaw);
+        return static::fromJson($responseRaw, self::OBJECT_TYPE);
     }
 
     /**
@@ -146,7 +146,7 @@ class DraftShareInviteBank extends BunqModel
      * @param int $draftShareInviteBankId
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<BunqResponse<DraftShareInviteBank>>
+     * @return BunqResponseDraftShareInviteBank
      */
     public static function update(ApiContext $apiContext, array $requestMap, $userId, $draftShareInviteBankId, array $customHeaders = [])
     {
@@ -160,7 +160,7 @@ class DraftShareInviteBank extends BunqModel
             $customHeaders
         );
 
-        return static::fromJson($responseRaw);
+        return static::fromJson($responseRaw, self::OBJECT_TYPE);
     }
 
     /**
@@ -172,7 +172,7 @@ class DraftShareInviteBank extends BunqModel
      * @param string[] $params
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<BunqModel[]|DraftShareInviteBank[]>
+     * @return BunqResponseDraftShareInviteBankList
      */
     public static function listing(ApiContext $apiContext, $userId, array $params = [], array $customHeaders = [])
     {

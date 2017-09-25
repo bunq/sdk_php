@@ -60,7 +60,7 @@ class AttachmentMonetaryAccount extends BunqModel
      * @param int $monetaryAccountId
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<int>
+     * @return BunqResponseInt
      */
     public static function create(ApiContext $apiContext, $requestBytes, $userId, $monetaryAccountId, array $customHeaders = [])
     {

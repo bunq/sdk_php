@@ -55,7 +55,7 @@ class Avatar extends BunqModel
      * @param mixed[] $requestMap
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<string>
+     * @return BunqResponseString
      */
     public static function create(ApiContext $apiContext, array $requestMap, array $customHeaders = [])
     {
@@ -77,7 +77,7 @@ class Avatar extends BunqModel
      * @param string $avatarUuid
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<Avatar>
+     * @return BunqResponseAvatar
      */
     public static function get(ApiContext $apiContext, $avatarUuid, array $customHeaders = [])
     {
@@ -91,7 +91,7 @@ class Avatar extends BunqModel
             $customHeaders
         );
 
-        return static::fromJson($responseRaw);
+        return static::fromJson($responseRaw, self::OBJECT_TYPE);
     }
 
     /**

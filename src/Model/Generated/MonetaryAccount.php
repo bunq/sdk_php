@@ -41,7 +41,7 @@ class MonetaryAccount extends BunqModel
      * @param int $monetaryAccountId
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<MonetaryAccount>
+     * @return BunqResponseMonetaryAccount
      */
     public static function get(ApiContext $apiContext, $userId, $monetaryAccountId, array $customHeaders = [])
     {
@@ -69,7 +69,7 @@ class MonetaryAccount extends BunqModel
      * @param string[] $params
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<BunqModel[]|MonetaryAccount[]>
+     * @return BunqResponseMonetaryAccountList
      */
     public static function listing(ApiContext $apiContext, $userId, array $params = [], array $customHeaders = [])
     {

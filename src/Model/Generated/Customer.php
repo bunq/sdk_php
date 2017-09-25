@@ -67,7 +67,7 @@ class Customer extends BunqModel
      * @param string[] $params
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<BunqModel[]|Customer[]>
+     * @return BunqResponseCustomerList
      */
     public static function listing(ApiContext $apiContext, $userId, array $params = [], array $customHeaders = [])
     {
@@ -90,7 +90,7 @@ class Customer extends BunqModel
      * @param int $customerId
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<Customer>
+     * @return BunqResponseCustomer
      */
     public static function get(ApiContext $apiContext, $userId, $customerId, array $customHeaders = [])
     {
@@ -104,7 +104,7 @@ class Customer extends BunqModel
             $customHeaders
         );
 
-        return static::fromJson($responseRaw);
+        return static::fromJson($responseRaw, self::OBJECT_TYPE);
     }
 
     /**
@@ -114,7 +114,7 @@ class Customer extends BunqModel
      * @param int $customerId
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<int>
+     * @return BunqResponseInt
      */
     public static function update(ApiContext $apiContext, array $requestMap, $userId, $customerId, array $customHeaders = [])
     {

@@ -245,7 +245,7 @@ class RequestInquiry extends BunqModel
      * @param int $monetaryAccountId
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<int>
+     * @return BunqResponseInt
      */
     public static function create(ApiContext $apiContext, array $requestMap, $userId, $monetaryAccountId, array $customHeaders = [])
     {
@@ -272,7 +272,7 @@ class RequestInquiry extends BunqModel
      * @param int $requestInquiryId
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<BunqResponse<RequestInquiry>>
+     * @return BunqResponseRequestInquiry
      */
     public static function update(ApiContext $apiContext, array $requestMap, $userId, $monetaryAccountId, $requestInquiryId, array $customHeaders = [])
     {
@@ -286,7 +286,7 @@ class RequestInquiry extends BunqModel
             $customHeaders
         );
 
-        return static::fromJson($responseRaw);
+        return static::fromJson($responseRaw, self::OBJECT_TYPE);
     }
 
     /**
@@ -301,7 +301,7 @@ class RequestInquiry extends BunqModel
      * @param string[] $params
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<BunqModel[]|RequestInquiry[]>
+     * @return BunqResponseRequestInquiryList
      */
     public static function listing(ApiContext $apiContext, $userId, $monetaryAccountId, array $params = [], array $customHeaders = [])
     {
@@ -327,7 +327,7 @@ class RequestInquiry extends BunqModel
      * @param int $requestInquiryId
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<RequestInquiry>
+     * @return BunqResponseRequestInquiry
      */
     public static function get(ApiContext $apiContext, $userId, $monetaryAccountId, $requestInquiryId, array $customHeaders = [])
     {
@@ -341,7 +341,7 @@ class RequestInquiry extends BunqModel
             $customHeaders
         );
 
-        return static::fromJson($responseRaw);
+        return static::fromJson($responseRaw, self::OBJECT_TYPE);
     }
 
     /**

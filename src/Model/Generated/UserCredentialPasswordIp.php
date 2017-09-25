@@ -82,7 +82,7 @@ class UserCredentialPasswordIp extends BunqModel
      * @param int $userCredentialPasswordIpId
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<UserCredentialPasswordIp>
+     * @return BunqResponseUserCredentialPasswordIp
      */
     public static function get(ApiContext $apiContext, $userId, $userCredentialPasswordIpId, array $customHeaders = [])
     {
@@ -96,7 +96,7 @@ class UserCredentialPasswordIp extends BunqModel
             $customHeaders
         );
 
-        return static::fromJson($responseRaw);
+        return static::fromJson($responseRaw, self::OBJECT_TYPE);
     }
 
     /**
@@ -108,7 +108,7 @@ class UserCredentialPasswordIp extends BunqModel
      * @param string[] $params
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<BunqModel[]|UserCredentialPasswordIp[]>
+     * @return BunqResponseUserCredentialPasswordIpList
      */
     public static function listing(ApiContext $apiContext, $userId, array $params = [], array $customHeaders = [])
     {

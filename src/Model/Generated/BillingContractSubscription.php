@@ -86,7 +86,7 @@ class BillingContractSubscription extends BunqModel
      * @param int $userId
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<BunqResponse<BillingContractSubscription>>
+     * @return BunqResponseBillingContractSubscription
      */
     public static function create(ApiContext $apiContext, array $requestMap, $userId, array $customHeaders = [])
     {
@@ -100,7 +100,7 @@ class BillingContractSubscription extends BunqModel
             $customHeaders
         );
 
-        return static::fromJson($responseRaw);
+        return static::fromJson($responseRaw, self::OBJECT_TYPE);
     }
 
     /**
@@ -114,7 +114,7 @@ class BillingContractSubscription extends BunqModel
      * @param string[] $params
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<BunqModel[]|BillingContractSubscription[]>
+     * @return BunqResponseBillingContractSubscriptionList
      */
     public static function listing(ApiContext $apiContext, $userId, array $params = [], array $customHeaders = [])
     {

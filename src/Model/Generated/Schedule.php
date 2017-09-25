@@ -33,7 +33,7 @@ class Schedule extends BunqModel
      * @param int $scheduleId
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<Schedule>
+     * @return BunqResponseSchedule
      */
     public static function get(ApiContext $apiContext, $userId, $monetaryAccountId, $scheduleId, array $customHeaders = [])
     {
@@ -47,7 +47,7 @@ class Schedule extends BunqModel
             $customHeaders
         );
 
-        return static::fromJson($responseRaw);
+        return static::fromJson($responseRaw, self::OBJECT_TYPE);
     }
 
     /**
@@ -66,7 +66,7 @@ class Schedule extends BunqModel
      * @param string[] $params
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<BunqModel[]|Schedule[]>
+     * @return BunqResponseScheduleList
      */
     public static function listing(ApiContext $apiContext, $userId, $monetaryAccountId, array $params = [], array $customHeaders = [])
     {

@@ -62,7 +62,7 @@ class CustomerLimit extends BunqModel
      * @param string[] $params
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<BunqModel[]|CustomerLimit[]>
+     * @return BunqResponseCustomerLimitList
      */
     public static function listing(ApiContext $apiContext, $userId, array $params = [], array $customHeaders = [])
     {

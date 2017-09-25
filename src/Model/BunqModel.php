@@ -26,6 +26,8 @@ abstract class BunqModel implements JsonSerializable
      */
     const FIELD_RESPONSE = 'Response';
     const FIELD_PAGINATION = 'Pagination';
+    const FIELD_ID = 'Id';
+    const FIELD_UUID = 'Uuid';
 
     /**
      * Regex constants.
@@ -36,9 +38,9 @@ abstract class BunqModel implements JsonSerializable
     const REGEX_MATCH_RESULT_IS_ARRAY = 2;
 
     /**
-     * Array count constants.
+     * Index of the very first item in an array.
      */
-    const COUNT_ONE = 1;
+    const INDEX_FIRST = 0;
 
     /**
      * Type constants.
@@ -223,43 +225,26 @@ abstract class BunqModel implements JsonSerializable
     protected static function processForId(BunqResponseRaw $responseRaw)
     {
         /** @var Id $id */
-        $id = Id::fromJson($responseRaw)->getValue();
+        $id = Id::fromJson($responseRaw, self::FIELD_ID)->getValue();
 
         return new BunqResponse($id->getId(), $responseRaw->getHeaders());
     }
 
     /**
      * @param BunqResponseRaw $responseRaw
+     * @param string|null $wrapper
      *
      * @return BunqResponse
      * @throws BunqException   When the result is not expected.
      */
-    protected static function fromJson(BunqResponseRaw $responseRaw)
+    protected static function fromJson(BunqResponseRaw $responseRaw, string $wrapper = null)
     {
         $json = $responseRaw->getBodyString();
-        $response = ModelUtil::deserializeResponseArray($json)[self::FIELD_RESPONSE];
-        $bunqModelList = [];
+        $responseArray = ModelUtil::deserializeResponseArray($json);
+        $response = $responseArray[self::FIELD_RESPONSE];
+        $value = static::createListFromResponseArray($response, $wrapper);
 
-        foreach ($response as $modelPropertyArray) {
-            $value = self::determineJsonResponseValue($modelPropertyArray);
-            $bunqModelList[] = static::createFromResponseArray($value);
-        }
-
-        if (count($bunqModelList) === self::COUNT_ONE) {
-            return new BunqResponse(current($bunqModelList), $responseRaw->getHeaders());
-        } else {
-            throw new BunqException(self::ERROR_UNEXPECTED_RESULT, [count($bunqModelList)]);
-        }
-    }
-
-    /**
-     * @param mixed[] $responseArray
-     *
-     * @return mixed[]
-     */
-    private static function determineJsonResponseValue(array $responseArray)
-    {
-        return current($responseArray);
+        return new BunqResponse($value[self::INDEX_FIRST], $responseRaw->getHeaders());
     }
 
     /**
@@ -270,7 +255,7 @@ abstract class BunqModel implements JsonSerializable
     protected static function processForUuid(BunqResponseRaw $responseRaw)
     {
         /** @var Uuid $uuid */
-        $uuid = Uuid::fromJson($responseRaw)->getValue();
+        $uuid = Uuid::fromJson($responseRaw, self::FIELD_UUID)->getValue();
 
         return new BunqResponse($uuid->getUuid(), $responseRaw->getHeaders());
     }

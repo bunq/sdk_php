@@ -40,7 +40,7 @@ class TabQrCodeContent extends BunqModel
      * @param string $tabUuid
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<string>
+     * @return BunqResponseString
      */
     public static function listing(ApiContext $apiContext, $userId, $monetaryAccountId, $cashRegisterId, $tabUuid, array $customHeaders = [])
     {

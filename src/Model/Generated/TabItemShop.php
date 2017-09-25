@@ -107,7 +107,7 @@ class TabItemShop extends BunqModel
      * @param string $tabUuid
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<int>
+     * @return BunqResponseInt
      */
     public static function create(ApiContext $apiContext, array $requestMap, $userId, $monetaryAccountId, $cashRegisterId, $tabUuid, array $customHeaders = [])
     {
@@ -136,7 +136,7 @@ class TabItemShop extends BunqModel
      * @param int $tabItemShopId
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<int>
+     * @return BunqResponseInt
      */
     public static function update(ApiContext $apiContext, array $requestMap, $userId, $monetaryAccountId, $cashRegisterId, $tabUuid, $tabItemShopId, array $customHeaders = [])
     {
@@ -165,7 +165,7 @@ class TabItemShop extends BunqModel
      * @param string $tabUuid
      * @param int $tabItemShopId
      *
-     * @return BunqResponse<null>
+     * @return BunqResponseNull
      */
     public static function delete(ApiContext $apiContext, $userId, $monetaryAccountId, $cashRegisterId, $tabUuid, $tabItemShopId, array $customHeaders = [])
     {
@@ -195,7 +195,7 @@ class TabItemShop extends BunqModel
      * @param string[] $params
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<BunqModel[]|TabItemShop[]>
+     * @return BunqResponseTabItemShopList
      */
     public static function listing(ApiContext $apiContext, $userId, $monetaryAccountId, $cashRegisterId, $tabUuid, array $params = [], array $customHeaders = [])
     {
@@ -223,7 +223,7 @@ class TabItemShop extends BunqModel
      * @param int $tabItemShopId
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<TabItemShop>
+     * @return BunqResponseTabItemShop
      */
     public static function get(ApiContext $apiContext, $userId, $monetaryAccountId, $cashRegisterId, $tabUuid, $tabItemShopId, array $customHeaders = [])
     {
@@ -237,7 +237,7 @@ class TabItemShop extends BunqModel
             $customHeaders
         );
 
-        return static::fromJson($responseRaw);
+        return static::fromJson($responseRaw, self::OBJECT_TYPE);
     }
 
     /**

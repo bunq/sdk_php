@@ -158,7 +158,7 @@ class Invoice extends BunqModel
      * @param string[] $params
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<BunqModel[]|Invoice[]>
+     * @return BunqResponseInvoiceList
      */
     public static function listing(ApiContext $apiContext, $userId, $monetaryAccountId, array $params = [], array $customHeaders = [])
     {
@@ -182,7 +182,7 @@ class Invoice extends BunqModel
      * @param int $invoiceId
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<Invoice>
+     * @return BunqResponseInvoice
      */
     public static function get(ApiContext $apiContext, $userId, $monetaryAccountId, $invoiceId, array $customHeaders = [])
     {
@@ -196,7 +196,7 @@ class Invoice extends BunqModel
             $customHeaders
         );
 
-        return static::fromJson($responseRaw);
+        return static::fromJson($responseRaw, self::OBJECT_TYPE);
     }
 
     /**

@@ -174,7 +174,7 @@ class CardDebit extends BunqModel
      * @param int $userId
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<BunqResponse<CardDebit>>
+     * @return BunqResponseCardDebit
      */
     public static function create(ApiContext $apiContext, array $requestMap, $userId, array $customHeaders = [])
     {
@@ -189,7 +189,7 @@ class CardDebit extends BunqModel
             $customHeaders
         );
 
-        return static::fromJson($responseRaw);
+        return static::fromJson($responseRaw, self::OBJECT_TYPE);
     }
 
     /**

@@ -61,7 +61,7 @@ class TabAttachmentTab extends BunqModel
      * @param int $tabAttachmentTabId
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<TabAttachmentTab>
+     * @return BunqResponseTabAttachmentTab
      */
     public static function get(ApiContext $apiContext, $tabUuid, $tabAttachmentTabId, array $customHeaders = [])
     {
@@ -75,7 +75,7 @@ class TabAttachmentTab extends BunqModel
             $customHeaders
         );
 
-        return static::fromJson($responseRaw);
+        return static::fromJson($responseRaw, self::OBJECT_TYPE);
     }
 
     /**

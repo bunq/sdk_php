@@ -50,7 +50,7 @@ class Tab extends BunqModel
      * @param string $tabUuid
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<Tab>
+     * @return BunqResponseTab
      */
     public static function get(ApiContext $apiContext, $userId, $monetaryAccountId, $cashRegisterId, $tabUuid, array $customHeaders = [])
     {
@@ -80,7 +80,7 @@ class Tab extends BunqModel
      * @param string[] $params
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<BunqModel[]|Tab[]>
+     * @return BunqResponseTabList
      */
     public static function listing(ApiContext $apiContext, $userId, $monetaryAccountId, $cashRegisterId, array $params = [], array $customHeaders = [])
     {

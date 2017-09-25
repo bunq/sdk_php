@@ -46,7 +46,7 @@ class ChatMessageAttachment extends BunqModel
      * @param int $chatConversationId
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<int>
+     * @return BunqResponseInt
      */
     public static function create(ApiContext $apiContext, array $requestMap, $userId, $chatConversationId, array $customHeaders = [])
     {

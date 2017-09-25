@@ -131,7 +131,7 @@ class ShareInviteBankInquiry extends BunqModel
      * @param int $monetaryAccountId
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<int>
+     * @return BunqResponseInt
      */
     public static function create(ApiContext $apiContext, array $requestMap, $userId, $monetaryAccountId, array $customHeaders = [])
     {
@@ -157,7 +157,7 @@ class ShareInviteBankInquiry extends BunqModel
      * @param int $shareInviteBankInquiryId
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<ShareInviteBankInquiry>
+     * @return BunqResponseShareInviteBankInquiry
      */
     public static function get(ApiContext $apiContext, $userId, $monetaryAccountId, $shareInviteBankInquiryId, array $customHeaders = [])
     {
@@ -171,7 +171,7 @@ class ShareInviteBankInquiry extends BunqModel
             $customHeaders
         );
 
-        return static::fromJson($responseRaw);
+        return static::fromJson($responseRaw, self::OBJECT_TYPE);
     }
 
     /**
@@ -185,7 +185,7 @@ class ShareInviteBankInquiry extends BunqModel
      * @param int $shareInviteBankInquiryId
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<BunqResponse<ShareInviteBankInquiry>>
+     * @return BunqResponseShareInviteBankInquiry
      */
     public static function update(ApiContext $apiContext, array $requestMap, $userId, $monetaryAccountId, $shareInviteBankInquiryId, array $customHeaders = [])
     {
@@ -199,7 +199,7 @@ class ShareInviteBankInquiry extends BunqModel
             $customHeaders
         );
 
-        return static::fromJson($responseRaw);
+        return static::fromJson($responseRaw, self::OBJECT_TYPE);
     }
 
     /**
@@ -216,7 +216,7 @@ class ShareInviteBankInquiry extends BunqModel
      * @param string[] $params
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<BunqModel[]|ShareInviteBankInquiry[]>
+     * @return BunqResponseShareInviteBankInquiryList
      */
     public static function listing(ApiContext $apiContext, $userId, $monetaryAccountId, array $params = [], array $customHeaders = [])
     {

@@ -37,7 +37,7 @@ class CashRegisterQrCodeContent extends BunqModel
      * @param int $qrCodeId
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<string>
+     * @return BunqResponseString
      */
     public static function listing(ApiContext $apiContext, $userId, $monetaryAccountId, $cashRegisterId, $qrCodeId, array $customHeaders = [])
     {

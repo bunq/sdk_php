@@ -120,7 +120,7 @@ class CashRegister extends BunqModel
      * @param int $monetaryAccountId
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<int>
+     * @return BunqResponseInt
      */
     public static function create(ApiContext $apiContext, array $requestMap, $userId, $monetaryAccountId, array $customHeaders = [])
     {
@@ -146,7 +146,7 @@ class CashRegister extends BunqModel
      * @param int $cashRegisterId
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<CashRegister>
+     * @return BunqResponseCashRegister
      */
     public static function get(ApiContext $apiContext, $userId, $monetaryAccountId, $cashRegisterId, array $customHeaders = [])
     {
@@ -160,7 +160,7 @@ class CashRegister extends BunqModel
             $customHeaders
         );
 
-        return static::fromJson($responseRaw);
+        return static::fromJson($responseRaw, self::OBJECT_TYPE);
     }
 
     /**
@@ -175,7 +175,7 @@ class CashRegister extends BunqModel
      * @param int $cashRegisterId
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<int>
+     * @return BunqResponseInt
      */
     public static function update(ApiContext $apiContext, array $requestMap, $userId, $monetaryAccountId, $cashRegisterId, array $customHeaders = [])
     {
@@ -204,7 +204,7 @@ class CashRegister extends BunqModel
      * @param string[] $params
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<BunqModel[]|CashRegister[]>
+     * @return BunqResponseCashRegisterList
      */
     public static function listing(ApiContext $apiContext, $userId, $monetaryAccountId, array $params = [], array $customHeaders = [])
     {

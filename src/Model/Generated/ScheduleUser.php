@@ -39,7 +39,7 @@ class ScheduleUser extends BunqModel
      * @param string[] $params
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<BunqModel[]|ScheduleUser[]>
+     * @return BunqResponseScheduleUserList
      */
     public static function listing(ApiContext $apiContext, $userId, array $params = [], array $customHeaders = [])
     {

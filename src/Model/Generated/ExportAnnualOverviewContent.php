@@ -36,7 +36,7 @@ class ExportAnnualOverviewContent extends BunqModel
      * @param int $exportAnnualOverviewId
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<string>
+     * @return BunqResponseString
      */
     public static function listing(ApiContext $apiContext, $userId, $exportAnnualOverviewId, array $customHeaders = [])
     {

@@ -103,7 +103,7 @@ class JsonParserTest extends TestCase
         $bunqResponseUserCompany = $this->callPrivateStaticMethod(
             UserCompany::class,
             self::FUNCTION_FROM_JSON,
-            [new BunqResponseRaw($userCompanyJson, [])]
+            [new BunqResponseRaw($userCompanyJson, []), UserCompany::OBJECT_TYPE]
         );
         /** @var UserCompany $userCompany */
         $userCompany = $bunqResponseUserCompany->getValue();

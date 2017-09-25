@@ -51,7 +51,7 @@ class TabResultInquiry extends BunqModel
      * @param int $tabResultInquiryId
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<TabResultInquiry>
+     * @return BunqResponseTabResultInquiry
      */
     public static function get(ApiContext $apiContext, $userId, $monetaryAccountId, $cashRegisterId, $tabUuid, $tabResultInquiryId, array $customHeaders = [])
     {
@@ -65,7 +65,7 @@ class TabResultInquiry extends BunqModel
             $customHeaders
         );
 
-        return static::fromJson($responseRaw);
+        return static::fromJson($responseRaw, self::OBJECT_TYPE);
     }
 
     /**
@@ -82,7 +82,7 @@ class TabResultInquiry extends BunqModel
      * @param string[] $params
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<BunqModel[]|TabResultInquiry[]>
+     * @return BunqResponseTabResultInquiryList
      */
     public static function listing(ApiContext $apiContext, $userId, $monetaryAccountId, $cashRegisterId, $tabUuid, array $params = [], array $customHeaders = [])
     {

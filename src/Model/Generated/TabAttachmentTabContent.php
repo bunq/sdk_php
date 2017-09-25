@@ -35,7 +35,7 @@ class TabAttachmentTabContent extends BunqModel
      * @param int $attachmentId
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<string>
+     * @return BunqResponseString
      */
     public static function listing(ApiContext $apiContext, $tabUuid, $attachmentId, array $customHeaders = [])
     {

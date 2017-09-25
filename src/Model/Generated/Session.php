@@ -30,7 +30,7 @@ class Session extends BunqModel
      * @param string[] $customHeaders
      * @param int $sessionId
      *
-     * @return BunqResponse<null>
+     * @return BunqResponseNull
      */
     public static function delete(ApiContext $apiContext, $sessionId, array $customHeaders = [])
     {

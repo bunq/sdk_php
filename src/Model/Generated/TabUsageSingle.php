@@ -206,7 +206,7 @@ class TabUsageSingle extends BunqModel
      * @param int $cashRegisterId
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<string>
+     * @return BunqResponseString
      */
     public static function create(ApiContext $apiContext, array $requestMap, $userId, $monetaryAccountId, $cashRegisterId, array $customHeaders = [])
     {
@@ -237,7 +237,7 @@ class TabUsageSingle extends BunqModel
      * @param string $tabUsageSingleUuid
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<string>
+     * @return BunqResponseString
      */
     public static function update(ApiContext $apiContext, array $requestMap, $userId, $monetaryAccountId, $cashRegisterId, $tabUsageSingleUuid, array $customHeaders = [])
     {
@@ -264,7 +264,7 @@ class TabUsageSingle extends BunqModel
      * @param int $cashRegisterId
      * @param string $tabUsageSingleUuid
      *
-     * @return BunqResponse<null>
+     * @return BunqResponseNull
      */
     public static function delete(ApiContext $apiContext, $userId, $monetaryAccountId, $cashRegisterId, $tabUsageSingleUuid, array $customHeaders = [])
     {
@@ -290,7 +290,7 @@ class TabUsageSingle extends BunqModel
      * @param string $tabUsageSingleUuid
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<TabUsageSingle>
+     * @return BunqResponseTabUsageSingle
      */
     public static function get(ApiContext $apiContext, $userId, $monetaryAccountId, $cashRegisterId, $tabUsageSingleUuid, array $customHeaders = [])
     {
@@ -304,7 +304,7 @@ class TabUsageSingle extends BunqModel
             $customHeaders
         );
 
-        return static::fromJson($responseRaw);
+        return static::fromJson($responseRaw, self::OBJECT_TYPE);
     }
 
     /**
@@ -320,7 +320,7 @@ class TabUsageSingle extends BunqModel
      * @param string[] $params
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<BunqModel[]|TabUsageSingle[]>
+     * @return BunqResponseTabUsageSingleList
      */
     public static function listing(ApiContext $apiContext, $userId, $monetaryAccountId, $cashRegisterId, array $params = [], array $customHeaders = [])
     {

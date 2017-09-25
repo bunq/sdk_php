@@ -77,7 +77,7 @@ class ExportAnnualOverview extends BunqModel
      * @param int $userId
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<int>
+     * @return BunqResponseInt
      */
     public static function create(ApiContext $apiContext, array $requestMap, $userId, array $customHeaders = [])
     {
@@ -102,7 +102,7 @@ class ExportAnnualOverview extends BunqModel
      * @param int $exportAnnualOverviewId
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<ExportAnnualOverview>
+     * @return BunqResponseExportAnnualOverview
      */
     public static function get(ApiContext $apiContext, $userId, $exportAnnualOverviewId, array $customHeaders = [])
     {
@@ -116,7 +116,7 @@ class ExportAnnualOverview extends BunqModel
             $customHeaders
         );
 
-        return static::fromJson($responseRaw);
+        return static::fromJson($responseRaw, self::OBJECT_TYPE);
     }
 
     /**
@@ -130,7 +130,7 @@ class ExportAnnualOverview extends BunqModel
      * @param string[] $params
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<BunqModel[]|ExportAnnualOverview[]>
+     * @return BunqResponseExportAnnualOverviewList
      */
     public static function listing(ApiContext $apiContext, $userId, array $params = [], array $customHeaders = [])
     {

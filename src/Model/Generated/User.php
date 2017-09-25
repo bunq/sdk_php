@@ -47,7 +47,7 @@ class User extends BunqModel
      * @param int $userId
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<User>
+     * @return BunqResponseUser
      */
     public static function get(ApiContext $apiContext, $userId, array $customHeaders = [])
     {
@@ -74,7 +74,7 @@ class User extends BunqModel
      * @param string[] $params
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<BunqModel[]|User[]>
+     * @return BunqResponseUserList
      */
     public static function listing(ApiContext $apiContext, array $params = [], array $customHeaders = [])
     {

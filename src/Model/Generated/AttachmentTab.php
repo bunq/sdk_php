@@ -76,7 +76,7 @@ class AttachmentTab extends BunqModel
      * @param int $monetaryAccountId
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<int>
+     * @return BunqResponseInt
      */
     public static function create(ApiContext $apiContext, $requestBytes, $userId, $monetaryAccountId, array $customHeaders = [])
     {
@@ -104,7 +104,7 @@ class AttachmentTab extends BunqModel
      * @param int $attachmentTabId
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<AttachmentTab>
+     * @return BunqResponseAttachmentTab
      */
     public static function get(ApiContext $apiContext, $userId, $monetaryAccountId, $attachmentTabId, array $customHeaders = [])
     {
@@ -118,7 +118,7 @@ class AttachmentTab extends BunqModel
             $customHeaders
         );
 
-        return static::fromJson($responseRaw);
+        return static::fromJson($responseRaw, self::OBJECT_TYPE);
     }
 
     /**

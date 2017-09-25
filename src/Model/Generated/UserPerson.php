@@ -294,7 +294,7 @@ class UserPerson extends BunqModel
      * @param int $userPersonId
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<UserPerson>
+     * @return BunqResponseUserPerson
      */
     public static function get(ApiContext $apiContext, $userPersonId, array $customHeaders = [])
     {
@@ -308,7 +308,7 @@ class UserPerson extends BunqModel
             $customHeaders
         );
 
-        return static::fromJson($responseRaw);
+        return static::fromJson($responseRaw, self::OBJECT_TYPE);
     }
 
     /**
@@ -319,7 +319,7 @@ class UserPerson extends BunqModel
      * @param int $userPersonId
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<int>
+     * @return BunqResponseInt
      */
     public static function update(ApiContext $apiContext, array $requestMap, $userPersonId, array $customHeaders = [])
     {

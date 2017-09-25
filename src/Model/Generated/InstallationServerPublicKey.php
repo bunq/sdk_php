@@ -43,7 +43,7 @@ class InstallationServerPublicKey extends BunqModel
      * @param string[] $params
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<BunqModel[]|InstallationServerPublicKey[]>
+     * @return BunqResponseInstallationServerPublicKeyList
      */
     public static function listing(ApiContext $apiContext, $installationId, array $params = [], array $customHeaders = [])
     {

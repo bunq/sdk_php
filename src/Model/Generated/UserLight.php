@@ -300,7 +300,7 @@ class UserLight extends BunqModel
      * @param int $userLightId
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<UserLight>
+     * @return BunqResponseUserLight
      */
     public static function get(ApiContext $apiContext, $userLightId, array $customHeaders = [])
     {
@@ -314,7 +314,7 @@ class UserLight extends BunqModel
             $customHeaders
         );
 
-        return static::fromJson($responseRaw);
+        return static::fromJson($responseRaw, self::OBJECT_TYPE);
     }
 
     /**

@@ -90,7 +90,7 @@ class DeviceServer extends BunqModel
      * @param mixed[] $requestMap
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<int>
+     * @return BunqResponseInt
      */
     public static function create(ApiContext $apiContext, array $requestMap, array $customHeaders = [])
     {
@@ -114,7 +114,7 @@ class DeviceServer extends BunqModel
      * @param int $deviceServerId
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<DeviceServer>
+     * @return BunqResponseDeviceServer
      */
     public static function get(ApiContext $apiContext, $deviceServerId, array $customHeaders = [])
     {
@@ -128,7 +128,7 @@ class DeviceServer extends BunqModel
             $customHeaders
         );
 
-        return static::fromJson($responseRaw);
+        return static::fromJson($responseRaw, self::OBJECT_TYPE);
     }
 
     /**
@@ -141,7 +141,7 @@ class DeviceServer extends BunqModel
      * @param string[] $params
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<BunqModel[]|DeviceServer[]>
+     * @return BunqResponseDeviceServerList
      */
     public static function listing(ApiContext $apiContext, array $params = [], array $customHeaders = [])
     {

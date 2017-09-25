@@ -38,7 +38,7 @@ class DraftShareInviteBankQrCodeContent extends BunqModel
      * @param int $draftShareInviteBankId
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<string>
+     * @return BunqResponseString
      */
     public static function listing(ApiContext $apiContext, $userId, $draftShareInviteBankId, array $customHeaders = [])
     {

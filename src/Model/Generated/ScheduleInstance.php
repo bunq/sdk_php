@@ -83,7 +83,7 @@ class ScheduleInstance extends BunqModel
      * @param int $scheduleInstanceId
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<ScheduleInstance>
+     * @return BunqResponseScheduleInstance
      */
     public static function get(ApiContext $apiContext, $userId, $monetaryAccountId, $scheduleId, $scheduleInstanceId, array $customHeaders = [])
     {
@@ -97,7 +97,7 @@ class ScheduleInstance extends BunqModel
             $customHeaders
         );
 
-        return static::fromJson($responseRaw);
+        return static::fromJson($responseRaw, self::OBJECT_TYPE);
     }
 
     /**
@@ -109,7 +109,7 @@ class ScheduleInstance extends BunqModel
      * @param int $scheduleInstanceId
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<int>
+     * @return BunqResponseInt
      */
     public static function update(ApiContext $apiContext, array $requestMap, $userId, $monetaryAccountId, $scheduleId, $scheduleInstanceId, array $customHeaders = [])
     {
@@ -137,7 +137,7 @@ class ScheduleInstance extends BunqModel
      * @param string[] $params
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<BunqModel[]|ScheduleInstance[]>
+     * @return BunqResponseScheduleInstanceList
      */
     public static function listing(ApiContext $apiContext, $userId, $monetaryAccountId, $scheduleId, array $params = [], array $customHeaders = [])
     {

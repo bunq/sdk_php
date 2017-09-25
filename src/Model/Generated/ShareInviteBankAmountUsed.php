@@ -38,7 +38,7 @@ class ShareInviteBankAmountUsed extends BunqModel
      * @param int $shareInviteBankInquiryId
      * @param int $shareInviteBankAmountUsedId
      *
-     * @return BunqResponse<null>
+     * @return BunqResponseNull
      */
     public static function delete(ApiContext $apiContext, $userId, $monetaryAccountId, $shareInviteBankInquiryId, $shareInviteBankAmountUsedId, array $customHeaders = [])
     {

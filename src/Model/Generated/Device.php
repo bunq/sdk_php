@@ -42,7 +42,7 @@ class Device extends BunqModel
      * @param int $deviceId
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<Device>
+     * @return BunqResponseDevice
      */
     public static function get(ApiContext $apiContext, $deviceId, array $customHeaders = [])
     {
@@ -70,7 +70,7 @@ class Device extends BunqModel
      * @param string[] $params
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<BunqModel[]|Device[]>
+     * @return BunqResponseDeviceList
      */
     public static function listing(ApiContext $apiContext, array $params = [], array $customHeaders = [])
     {

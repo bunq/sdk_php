@@ -54,7 +54,7 @@ class SchedulePaymentBatch extends BunqModel
      * @param int $monetaryAccountId
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<int>
+     * @return BunqResponseInt
      */
     public static function create(ApiContext $apiContext, array $requestMap, $userId, $monetaryAccountId, array $customHeaders = [])
     {
@@ -79,7 +79,7 @@ class SchedulePaymentBatch extends BunqModel
      * @param int $schedulePaymentBatchId
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<int>
+     * @return BunqResponseInt
      */
     public static function update(ApiContext $apiContext, array $requestMap, $userId, $monetaryAccountId, $schedulePaymentBatchId, array $customHeaders = [])
     {
@@ -103,7 +103,7 @@ class SchedulePaymentBatch extends BunqModel
      * @param int $monetaryAccountId
      * @param int $schedulePaymentBatchId
      *
-     * @return BunqResponse<null>
+     * @return BunqResponseNull
      */
     public static function delete(ApiContext $apiContext, $userId, $monetaryAccountId, $schedulePaymentBatchId, array $customHeaders = [])
     {

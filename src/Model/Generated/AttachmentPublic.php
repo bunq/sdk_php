@@ -73,7 +73,7 @@ class AttachmentPublic extends BunqModel
      * @param string $requestBytes
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<string>
+     * @return BunqResponseString
      */
     public static function create(ApiContext $apiContext, $requestBytes, array $customHeaders = [])
     {
@@ -100,7 +100,7 @@ class AttachmentPublic extends BunqModel
      * @param string $attachmentPublicUuid
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<AttachmentPublic>
+     * @return BunqResponseAttachmentPublic
      */
     public static function get(ApiContext $apiContext, $attachmentPublicUuid, array $customHeaders = [])
     {
@@ -114,7 +114,7 @@ class AttachmentPublic extends BunqModel
             $customHeaders
         );
 
-        return static::fromJson($responseRaw);
+        return static::fromJson($responseRaw, self::OBJECT_TYPE);
     }
 
     /**

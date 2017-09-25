@@ -36,7 +36,7 @@ class CustomerStatementExportContent extends BunqModel
      * @param int $customerStatementId
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<string>
+     * @return BunqResponseString
      */
     public static function listing(ApiContext $apiContext, $userId, $monetaryAccountId, $customerStatementId, array $customHeaders = [])
     {

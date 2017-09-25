@@ -56,7 +56,7 @@ class CertificatePinned extends BunqModel
      * @param int $userId
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<int>
+     * @return BunqResponseInt
      */
     public static function create(ApiContext $apiContext, array $requestMap, $userId, array $customHeaders = [])
     {
@@ -81,7 +81,7 @@ class CertificatePinned extends BunqModel
      * @param int $userId
      * @param int $certificatePinnedId
      *
-     * @return BunqResponse<null>
+     * @return BunqResponseNull
      */
     public static function delete(ApiContext $apiContext, $userId, $certificatePinnedId, array $customHeaders = [])
     {
@@ -108,7 +108,7 @@ class CertificatePinned extends BunqModel
      * @param string[] $params
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<BunqModel[]|CertificatePinned[]>
+     * @return BunqResponseCertificatePinnedList
      */
     public static function listing(ApiContext $apiContext, $userId, array $params = [], array $customHeaders = [])
     {
@@ -133,7 +133,7 @@ class CertificatePinned extends BunqModel
      * @param int $certificatePinnedId
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<CertificatePinned>
+     * @return BunqResponseCertificatePinned
      */
     public static function get(ApiContext $apiContext, $userId, $certificatePinnedId, array $customHeaders = [])
     {
@@ -147,7 +147,7 @@ class CertificatePinned extends BunqModel
             $customHeaders
         );
 
-        return static::fromJson($responseRaw);
+        return static::fromJson($responseRaw, self::OBJECT_TYPE);
     }
 
     /**

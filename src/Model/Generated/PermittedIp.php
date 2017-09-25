@@ -56,7 +56,7 @@ class PermittedIp extends BunqModel
      * @param int $permittedIpId
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<PermittedIp>
+     * @return BunqResponsePermittedIp
      */
     public static function get(ApiContext $apiContext, $userId, $credentialPasswordIpId, $permittedIpId, array $customHeaders = [])
     {
@@ -70,7 +70,7 @@ class PermittedIp extends BunqModel
             $customHeaders
         );
 
-        return static::fromJson($responseRaw);
+        return static::fromJson($responseRaw, self::OBJECT_TYPE);
     }
 
     /**
@@ -80,7 +80,7 @@ class PermittedIp extends BunqModel
      * @param int $credentialPasswordIpId
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<int>
+     * @return BunqResponseInt
      */
     public static function create(ApiContext $apiContext, array $requestMap, $userId, $credentialPasswordIpId, array $customHeaders = [])
     {
@@ -107,7 +107,7 @@ class PermittedIp extends BunqModel
      * @param string[] $params
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<BunqModel[]|PermittedIp[]>
+     * @return BunqResponsePermittedIpList
      */
     public static function listing(ApiContext $apiContext, $userId, $credentialPasswordIpId, array $params = [], array $customHeaders = [])
     {
@@ -132,7 +132,7 @@ class PermittedIp extends BunqModel
      * @param int $permittedIpId
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<int>
+     * @return BunqResponseInt
      */
     public static function update(ApiContext $apiContext, array $requestMap, $userId, $credentialPasswordIpId, $permittedIpId, array $customHeaders = [])
     {

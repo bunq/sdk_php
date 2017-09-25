@@ -90,7 +90,7 @@ class CashRegisterQrCode extends BunqModel
      * @param int $cashRegisterId
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<int>
+     * @return BunqResponseInt
      */
     public static function create(ApiContext $apiContext, array $requestMap, $userId, $monetaryAccountId, $cashRegisterId, array $customHeaders = [])
     {
@@ -119,7 +119,7 @@ class CashRegisterQrCode extends BunqModel
      * @param int $cashRegisterQrCodeId
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<int>
+     * @return BunqResponseInt
      */
     public static function update(ApiContext $apiContext, array $requestMap, $userId, $monetaryAccountId, $cashRegisterId, $cashRegisterQrCodeId, array $customHeaders = [])
     {
@@ -147,7 +147,7 @@ class CashRegisterQrCode extends BunqModel
      * @param int $cashRegisterQrCodeId
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<CashRegisterQrCode>
+     * @return BunqResponseCashRegisterQrCode
      */
     public static function get(ApiContext $apiContext, $userId, $monetaryAccountId, $cashRegisterId, $cashRegisterQrCodeId, array $customHeaders = [])
     {
@@ -161,7 +161,7 @@ class CashRegisterQrCode extends BunqModel
             $customHeaders
         );
 
-        return static::fromJson($responseRaw);
+        return static::fromJson($responseRaw, self::OBJECT_TYPE);
     }
 
     /**
@@ -177,7 +177,7 @@ class CashRegisterQrCode extends BunqModel
      * @param string[] $params
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<BunqModel[]|CashRegisterQrCode[]>
+     * @return BunqResponseCashRegisterQrCodeList
      */
     public static function listing(ApiContext $apiContext, $userId, $monetaryAccountId, $cashRegisterId, array $params = [], array $customHeaders = [])
     {

@@ -35,7 +35,7 @@ class AttachmentPublicContent extends BunqModel
      * @param string $attachmentPublicUuid
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<string>
+     * @return BunqResponseString
      */
     public static function listing(ApiContext $apiContext, $attachmentPublicUuid, array $customHeaders = [])
     {

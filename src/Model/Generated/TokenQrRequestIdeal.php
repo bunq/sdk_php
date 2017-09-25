@@ -192,7 +192,7 @@ class TokenQrRequestIdeal extends BunqModel
      * @param int $userId
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<BunqResponse<TokenQrRequestIdeal>>
+     * @return BunqResponseTokenQrRequestIdeal
      */
     public static function create(ApiContext $apiContext, array $requestMap, $userId, array $customHeaders = [])
     {
@@ -206,7 +206,7 @@ class TokenQrRequestIdeal extends BunqModel
             $customHeaders
         );
 
-        return static::fromJson($responseRaw);
+        return static::fromJson($responseRaw, self::OBJECT_TYPE);
     }
 
     /**

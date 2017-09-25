@@ -189,7 +189,7 @@ class Card extends BunqModel
      * @param int $cardId
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<BunqResponse<Card>>
+     * @return BunqResponseCard
      */
     public static function update(ApiContext $apiContext, array $requestMap, $userId, $cardId, array $customHeaders = [])
     {
@@ -204,7 +204,7 @@ class Card extends BunqModel
             $customHeaders
         );
 
-        return static::fromJson($responseRaw);
+        return static::fromJson($responseRaw, self::OBJECT_TYPE);
     }
 
     /**
@@ -215,7 +215,7 @@ class Card extends BunqModel
      * @param int $cardId
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<Card>
+     * @return BunqResponseCard
      */
     public static function get(ApiContext $apiContext, $userId, $cardId, array $customHeaders = [])
     {
@@ -229,7 +229,7 @@ class Card extends BunqModel
             $customHeaders
         );
 
-        return static::fromJson($responseRaw);
+        return static::fromJson($responseRaw, self::OBJECT_TYPE);
     }
 
     /**
@@ -243,7 +243,7 @@ class Card extends BunqModel
      * @param string[] $params
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<BunqModel[]|Card[]>
+     * @return BunqResponseCardList
      */
     public static function listing(ApiContext $apiContext, $userId, array $params = [], array $customHeaders = [])
     {

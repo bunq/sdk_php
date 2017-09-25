@@ -5,7 +5,6 @@ use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
 use bunq\Http\BunqResponse;
 use bunq\Model\BunqModel;
-use bunq\Model\Generated\Object\LabelUser;
 
 /**
  * Endpoint for retrieving the messages that are part of a conversation.
@@ -25,60 +24,19 @@ class ChatMessage extends BunqModel
     const OBJECT_TYPE = 'ChatMessage';
 
     /**
-     * The id of the message.
-     *
-     * @var int
+     * @var ChatMessageAnnouncement
      */
-    protected $id;
+    protected $chatMessageAnnouncement;
 
     /**
-     * The timestamp when the message was created.
-     *
-     * @var string
+     * @var ChatMessageStatus
      */
-    protected $created;
+    protected $chatMessageStatus;
 
     /**
-     * The timestamp when the message was last updated.
-     *
-     * @var string
+     * @var ChatMessageUser
      */
-    protected $updated;
-
-    /**
-     * The id of the conversation this message belongs to.
-     *
-     * @var int
-     */
-    protected $conversationId;
-
-    /**
-     * The id of the ticket this message is linked with, if any.
-     *
-     * @var int
-     */
-    protected $ticketId;
-
-    /**
-     * The user who initiated the action that caused this message to appear.
-     *
-     * @var LabelUser
-     */
-    protected $creator;
-
-    /**
-     * The user displayed as the sender of this message.
-     *
-     * @var LabelUser
-     */
-    protected $displayedSender;
-
-    /**
-     * The content of this message.
-     *
-     * @var BunqModel
-     */
-    protected $content;
+    protected $chatMessageUser;
 
     /**
      * Get all the messages that are part of a specific conversation.
@@ -92,7 +50,7 @@ class ChatMessage extends BunqModel
      * @param string[] $params
      * @param string[] $customHeaders
      *
-     * @return BunqResponse<BunqModel[]|ChatMessage[]>
+     * @return BunqResponseChatMessageList
      */
     public static function listing(ApiContext $apiContext, $userId, $chatConversationId, array $params = [], array $customHeaders = [])
     {
@@ -106,150 +64,54 @@ class ChatMessage extends BunqModel
             $customHeaders
         );
 
-        return static::fromJsonList($responseRaw, self::OBJECT_TYPE);
+        return static::fromJsonList($responseRaw);
     }
 
     /**
-     * The id of the message.
-     *
-     * @return int
+     * @return ChatMessageAnnouncement
      */
-    public function getId()
+    public function getChatMessageAnnouncement()
     {
-        return $this->id;
+        return $this->chatMessageAnnouncement;
     }
 
     /**
-     * @param int $id
+     * @param ChatMessageAnnouncement $chatMessageAnnouncement
      */
-    public function setId($id)
+    public function setChatMessageAnnouncement(ChatMessageAnnouncement $chatMessageAnnouncement)
     {
-        $this->id = $id;
+        $this->chatMessageAnnouncement = $chatMessageAnnouncement;
     }
 
     /**
-     * The timestamp when the message was created.
-     *
-     * @return string
+     * @return ChatMessageStatus
      */
-    public function getCreated()
+    public function getChatMessageStatus()
     {
-        return $this->created;
+        return $this->chatMessageStatus;
     }
 
     /**
-     * @param string $created
+     * @param ChatMessageStatus $chatMessageStatus
      */
-    public function setCreated($created)
+    public function setChatMessageStatus(ChatMessageStatus $chatMessageStatus)
     {
-        $this->created = $created;
+        $this->chatMessageStatus = $chatMessageStatus;
     }
 
     /**
-     * The timestamp when the message was last updated.
-     *
-     * @return string
+     * @return ChatMessageUser
      */
-    public function getUpdated()
+    public function getChatMessageUser()
     {
-        return $this->updated;
+        return $this->chatMessageUser;
     }
 
     /**
-     * @param string $updated
+     * @param ChatMessageUser $chatMessageUser
      */
-    public function setUpdated($updated)
+    public function setChatMessageUser(ChatMessageUser $chatMessageUser)
     {
-        $this->updated = $updated;
-    }
-
-    /**
-     * The id of the conversation this message belongs to.
-     *
-     * @return int
-     */
-    public function getConversationId()
-    {
-        return $this->conversationId;
-    }
-
-    /**
-     * @param int $conversationId
-     */
-    public function setConversationId($conversationId)
-    {
-        $this->conversationId = $conversationId;
-    }
-
-    /**
-     * The id of the ticket this message is linked with, if any.
-     *
-     * @return int
-     */
-    public function getTicketId()
-    {
-        return $this->ticketId;
-    }
-
-    /**
-     * @param int $ticketId
-     */
-    public function setTicketId($ticketId)
-    {
-        $this->ticketId = $ticketId;
-    }
-
-    /**
-     * The user who initiated the action that caused this message to appear.
-     *
-     * @return LabelUser
-     */
-    public function getCreator()
-    {
-        return $this->creator;
-    }
-
-    /**
-     * @param LabelUser $creator
-     */
-    public function setCreator(LabelUser $creator)
-    {
-        $this->creator = $creator;
-    }
-
-    /**
-     * The user displayed as the sender of this message.
-     *
-     * @return LabelUser
-     */
-    public function getDisplayedSender()
-    {
-        return $this->displayedSender;
-    }
-
-    /**
-     * @param LabelUser $displayedSender
-     */
-    public function setDisplayedSender(LabelUser $displayedSender)
-    {
-        $this->displayedSender = $displayedSender;
-    }
-
-    /**
-     * The content of this message.
-     *
-     * @return BunqModel
-     */
-    public function getContent()
-    {
-        return $this->content;
-    }
-
-    /**
-     * @param BunqModel $content
-     */
-    public function setContent(BunqModel $content)
-    {
-        $this->content = $content;
+        $this->chatMessageUser = $chatMessageUser;
     }
 }
