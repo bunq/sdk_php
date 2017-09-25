@@ -70,7 +70,7 @@ class Pagination
     /**
      * @param string[] $paginationResponse
      *
-     * @return string[]
+     * @return string[]|null[]
      */
     private static function parsePaginationBody(array $paginationResponse)
     {

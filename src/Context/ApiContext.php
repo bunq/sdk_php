@@ -62,7 +62,7 @@ class ApiContext
     /** @var string */
     protected $apiKey;
 
-    /** @var SessionContext */
+    /** @var SessionContext|null */
     protected $sessionContext;
 
     /** @var InstallationContext */
@@ -167,6 +167,23 @@ class ApiContext
     }
 
     /**
+     * @param $fileName
+     *
+     * @return string
+     * @throws BunqException When the context couldn't be loaded from the given location.
+     */
+    private static function getContextJsonString($fileName)
+    {
+        $jsonString = FileUtil::getFileContents($fileName);
+
+        if ($jsonString === false) {
+            throw new BunqException(self::ERROR_CONTEXT_FILE_NOT_FOUND, [$fileName]);
+        }
+
+        return $jsonString;
+    }
+
+    /**
      * @param string $jsonString
      *
      * @return ApiContext
@@ -199,23 +216,6 @@ class ApiContext
     }
 
     /**
-     * @param $fileName
-     *
-     * @return string
-     * @throws BunqException When the context couldn't be loaded from the given location.
-     */
-    private static function getContextJsonString($fileName)
-    {
-        $jsonString = FileUtil::getFileContents($fileName);
-
-        if ($jsonString === false) {
-            throw new BunqException(self::ERROR_CONTEXT_FILE_NOT_FOUND, [$fileName]);
-        }
-
-        return $jsonString;
-    }
-
-    /**
      * @return Uri
      */
     public function determineBaseUri()
@@ -244,12 +244,12 @@ class ApiContext
     }
 
     /**
-     * Closes the current session and opens a new one.
+     * Closes the current session.
      */
-    public function resetSession()
+    public function closeSession()
     {
+        Session::delete($this, self::SESSION_ID_DUMMY);
         $this->dropSessionContext();
-        $this->initializeSessionContext();
     }
 
     /**
@@ -259,16 +259,6 @@ class ApiContext
     {
         $this->sessionContext = null;
     }
-
-    /**
-     * Closes the current session.
-     */
-    public function closeSession()
-    {
-        Session::delete($this, self::SESSION_ID_DUMMY);
-        $this->dropSessionContext();
-    }
-
 
     /**
      * Check if current time is too close to the saved session expiry time and reset session if
@@ -288,7 +278,16 @@ class ApiContext
     }
 
     /**
-     * @return Token
+     * Closes the current session and opens a new one.
+     */
+    public function resetSession()
+    {
+        $this->dropSessionContext();
+        $this->initializeSessionContext();
+    }
+
+    /**
+     * @return Token|null
      */
     public function getSessionToken()
     {
@@ -347,7 +346,7 @@ class ApiContext
     }
 
     /**
-     * @return SessionContext
+     * @return SessionContext|null
      */
     public function getSessionContext()
     {
