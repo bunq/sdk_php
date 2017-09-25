@@ -233,3 +233,7 @@ Please do not forget to set the `_API_KEY` constant in
 
 Information regarding the test cases can be found in the [README.md](./tests/README.md)
 located in [test](/tests).
+
+## Exceptions
+The SDK can raise multiple exceptions. For an overview of these exceptions please
+take a look at [EXCEPTIONS.md](./src/Exception/EXCEPTION.md)
