@@ -50,7 +50,7 @@ class DraftShareInviteBankEntry extends BunqModel
     /**
      * @param ShareDetail $shareDetail
      */
-    public function setShareDetail(ShareDetail $shareDetail)
+    public function setShareDetail($shareDetail)
     {
         $this->shareDetail = $shareDetail;
     }
@@ -68,7 +68,7 @@ class DraftShareInviteBankEntry extends BunqModel
     /**
      * @param string $startDate
      */
-    public function setStartDate(string $startDate)
+    public function setStartDate($startDate)
     {
         $this->startDate = $startDate;
     }
@@ -86,7 +86,7 @@ class DraftShareInviteBankEntry extends BunqModel
     /**
      * @param string $endDate
      */
-    public function setEndDate(string $endDate)
+    public function setEndDate($endDate)
     {
         $this->endDate = $endDate;
     }

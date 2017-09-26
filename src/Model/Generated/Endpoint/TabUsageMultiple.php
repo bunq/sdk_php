@@ -317,7 +317,7 @@ class TabUsageMultiple extends BunqModel
      *
      * @return BunqResponseTabUsageMultipleList
      */
-    public static function listing(ApiContext $apiContext, int $userId, int $monetaryAccountId, int $cashRegisterId, array $params = [], array $customHeaders = [])
+    public static function listing(ApiContext $apiContext, int $userId, int $monetaryAccountId, int $cashRegisterId, array $params = [], array $customHeaders = []): BunqResponseTabUsageMultipleList
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(
@@ -347,7 +347,7 @@ class TabUsageMultiple extends BunqModel
     /**
      * @param string $uuid
      */
-    public function setUuid(string $uuid)
+    public function setUuid($uuid)
     {
         $this->uuid = $uuid;
     }
@@ -365,7 +365,7 @@ class TabUsageMultiple extends BunqModel
     /**
      * @param string $created
      */
-    public function setCreated(string $created)
+    public function setCreated($created)
     {
         $this->created = $created;
     }
@@ -383,7 +383,7 @@ class TabUsageMultiple extends BunqModel
     /**
      * @param string $updated
      */
-    public function setUpdated(string $updated)
+    public function setUpdated($updated)
     {
         $this->updated = $updated;
     }
@@ -401,7 +401,7 @@ class TabUsageMultiple extends BunqModel
     /**
      * @param string $description
      */
-    public function setDescription(string $description)
+    public function setDescription($description)
     {
         $this->description = $description;
     }
@@ -419,7 +419,7 @@ class TabUsageMultiple extends BunqModel
     /**
      * @param string $status
      */
-    public function setStatus(string $status)
+    public function setStatus($status)
     {
         $this->status = $status;
     }
@@ -437,7 +437,7 @@ class TabUsageMultiple extends BunqModel
     /**
      * @param Amount $amountTotal
      */
-    public function setAmountTotal(Amount $amountTotal)
+    public function setAmountTotal($amountTotal)
     {
         $this->amountTotal = $amountTotal;
     }
@@ -456,7 +456,7 @@ class TabUsageMultiple extends BunqModel
     /**
      * @param string $qrCodeToken
      */
-    public function setQrCodeToken(string $qrCodeToken)
+    public function setQrCodeToken($qrCodeToken)
     {
         $this->qrCodeToken = $qrCodeToken;
     }
@@ -475,7 +475,7 @@ class TabUsageMultiple extends BunqModel
     /**
      * @param string $tabUrl
      */
-    public function setTabUrl(string $tabUrl)
+    public function setTabUrl($tabUrl)
     {
         $this->tabUrl = $tabUrl;
     }
@@ -494,7 +494,7 @@ class TabUsageMultiple extends BunqModel
     /**
      * @param TabVisibility $visibility
      */
-    public function setVisibility(TabVisibility $visibility)
+    public function setVisibility($visibility)
     {
         $this->visibility = $visibility;
     }
@@ -512,7 +512,7 @@ class TabUsageMultiple extends BunqModel
     /**
      * @param bool $minimumAge
      */
-    public function setMinimumAge(bool $minimumAge)
+    public function setMinimumAge($minimumAge)
     {
         $this->minimumAge = $minimumAge;
     }
@@ -531,7 +531,7 @@ class TabUsageMultiple extends BunqModel
     /**
      * @param string $requireAddress
      */
-    public function setRequireAddress(string $requireAddress)
+    public function setRequireAddress($requireAddress)
     {
         $this->requireAddress = $requireAddress;
     }
@@ -549,7 +549,7 @@ class TabUsageMultiple extends BunqModel
     /**
      * @param string $redirectUrl
      */
-    public function setRedirectUrl(string $redirectUrl)
+    public function setRedirectUrl($redirectUrl)
     {
         $this->redirectUrl = $redirectUrl;
     }
@@ -567,7 +567,7 @@ class TabUsageMultiple extends BunqModel
     /**
      * @param string $expiration
      */
-    public function setExpiration(string $expiration)
+    public function setExpiration($expiration)
     {
         $this->expiration = $expiration;
     }
@@ -585,7 +585,7 @@ class TabUsageMultiple extends BunqModel
     /**
      * @param LabelMonetaryAccount $alias
      */
-    public function setAlias(LabelMonetaryAccount $alias)
+    public function setAlias($alias)
     {
         $this->alias = $alias;
     }
@@ -603,7 +603,7 @@ class TabUsageMultiple extends BunqModel
     /**
      * @param Geolocation $cashRegisterLocation
      */
-    public function setCashRegisterLocation(Geolocation $cashRegisterLocation)
+    public function setCashRegisterLocation($cashRegisterLocation)
     {
         $this->cashRegisterLocation = $cashRegisterLocation;
     }
@@ -621,7 +621,7 @@ class TabUsageMultiple extends BunqModel
     /**
      * @param TabItem[] $tabItem
      */
-    public function setTabItem(array $tabItem)
+    public function setTabItem($tabItem)
     {
         $this->tabItem = $tabItem;
     }
@@ -640,7 +640,7 @@ class TabUsageMultiple extends BunqModel
     /**
      * @param BunqId[] $tabAttachment
      */
-    public function setTabAttachment(array $tabAttachment)
+    public function setTabAttachment($tabAttachment)
     {
         $this->tabAttachment = $tabAttachment;
     }

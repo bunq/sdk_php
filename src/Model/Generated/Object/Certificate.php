@@ -36,7 +36,7 @@ class Certificate extends BunqModel
     /**
      * @param string $certificate
      */
-    public function setCertificate(string $certificate)
+    public function setCertificate($certificate)
     {
         $this->certificate = $certificate;
     }

@@ -38,7 +38,7 @@ class ChatMessageContentAnchorEvent extends BunqModel
     /**
      * @param AnchoredObject $anchoredObject
      */
-    public function setAnchoredObject(AnchoredObject $anchoredObject)
+    public function setAnchoredObject($anchoredObject)
     {
         $this->anchoredObject = $anchoredObject;
     }

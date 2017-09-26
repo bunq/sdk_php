@@ -69,7 +69,7 @@ class Customer extends BunqModel
      *
      * @return BunqResponseCustomerList
      */
-    public static function listing(ApiContext $apiContext, int $userId, array $params = [], array $customHeaders = [])
+    public static function listing(ApiContext $apiContext, int $userId, array $params = [], array $customHeaders = []): BunqResponseCustomerList
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(
@@ -150,7 +150,7 @@ class Customer extends BunqModel
     /**
      * @param int $id
      */
-    public function setId(int $id)
+    public function setId($id)
     {
         $this->id = $id;
     }
@@ -168,7 +168,7 @@ class Customer extends BunqModel
     /**
      * @param string $created
      */
-    public function setCreated(string $created)
+    public function setCreated($created)
     {
         $this->created = $created;
     }
@@ -186,7 +186,7 @@ class Customer extends BunqModel
     /**
      * @param string $updated
      */
-    public function setUpdated(string $updated)
+    public function setUpdated($updated)
     {
         $this->updated = $updated;
     }
@@ -204,7 +204,7 @@ class Customer extends BunqModel
     /**
      * @param string $billingAccountId
      */
-    public function setBillingAccountId(string $billingAccountId)
+    public function setBillingAccountId($billingAccountId)
     {
         $this->billingAccountId = $billingAccountId;
     }

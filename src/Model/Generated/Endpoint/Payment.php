@@ -288,7 +288,7 @@ class Payment extends BunqModel
      *
      * @return BunqResponsePaymentList
      */
-    public static function listing(ApiContext $apiContext, int $userId, int $monetaryAccountId, array $params = [], array $customHeaders = [])
+    public static function listing(ApiContext $apiContext, int $userId, int $monetaryAccountId, array $params = [], array $customHeaders = []): BunqResponsePaymentList
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(
@@ -318,7 +318,7 @@ class Payment extends BunqModel
     /**
      * @param int $id
      */
-    public function setId(int $id)
+    public function setId($id)
     {
         $this->id = $id;
     }
@@ -336,7 +336,7 @@ class Payment extends BunqModel
     /**
      * @param string $created
      */
-    public function setCreated(string $created)
+    public function setCreated($created)
     {
         $this->created = $created;
     }
@@ -355,7 +355,7 @@ class Payment extends BunqModel
     /**
      * @param string $updated
      */
-    public function setUpdated(string $updated)
+    public function setUpdated($updated)
     {
         $this->updated = $updated;
     }
@@ -374,7 +374,7 @@ class Payment extends BunqModel
     /**
      * @param int $monetaryAccountId
      */
-    public function setMonetaryAccountId(int $monetaryAccountId)
+    public function setMonetaryAccountId($monetaryAccountId)
     {
         $this->monetaryAccountId = $monetaryAccountId;
     }
@@ -394,7 +394,7 @@ class Payment extends BunqModel
     /**
      * @param Amount $amount
      */
-    public function setAmount(Amount $amount)
+    public function setAmount($amount)
     {
         $this->amount = $amount;
     }
@@ -413,7 +413,7 @@ class Payment extends BunqModel
     /**
      * @param LabelMonetaryAccount $alias
      */
-    public function setAlias(LabelMonetaryAccount $alias)
+    public function setAlias($alias)
     {
         $this->alias = $alias;
     }
@@ -432,7 +432,7 @@ class Payment extends BunqModel
     /**
      * @param LabelMonetaryAccount $counterpartyAlias
      */
-    public function setCounterpartyAlias(LabelMonetaryAccount $counterpartyAlias)
+    public function setCounterpartyAlias($counterpartyAlias)
     {
         $this->counterpartyAlias = $counterpartyAlias;
     }
@@ -452,7 +452,7 @@ class Payment extends BunqModel
     /**
      * @param string $description
      */
-    public function setDescription(string $description)
+    public function setDescription($description)
     {
         $this->description = $description;
     }
@@ -471,7 +471,7 @@ class Payment extends BunqModel
     /**
      * @param string $type
      */
-    public function setType(string $type)
+    public function setType($type)
     {
         $this->type = $type;
     }
@@ -490,7 +490,7 @@ class Payment extends BunqModel
     /**
      * @param string $subType
      */
-    public function setSubType(string $subType)
+    public function setSubType($subType)
     {
         $this->subType = $subType;
     }
@@ -508,7 +508,7 @@ class Payment extends BunqModel
     /**
      * @param string $bunqtoStatus
      */
-    public function setBunqtoStatus(string $bunqtoStatus)
+    public function setBunqtoStatus($bunqtoStatus)
     {
         $this->bunqtoStatus = $bunqtoStatus;
     }
@@ -526,7 +526,7 @@ class Payment extends BunqModel
     /**
      * @param string $bunqtoSubStatus
      */
-    public function setBunqtoSubStatus(string $bunqtoSubStatus)
+    public function setBunqtoSubStatus($bunqtoSubStatus)
     {
         $this->bunqtoSubStatus = $bunqtoSubStatus;
     }
@@ -544,7 +544,7 @@ class Payment extends BunqModel
     /**
      * @param string $bunqtoShareUrl
      */
-    public function setBunqtoShareUrl(string $bunqtoShareUrl)
+    public function setBunqtoShareUrl($bunqtoShareUrl)
     {
         $this->bunqtoShareUrl = $bunqtoShareUrl;
     }
@@ -562,7 +562,7 @@ class Payment extends BunqModel
     /**
      * @param string $bunqtoExpiry
      */
-    public function setBunqtoExpiry(string $bunqtoExpiry)
+    public function setBunqtoExpiry($bunqtoExpiry)
     {
         $this->bunqtoExpiry = $bunqtoExpiry;
     }
@@ -580,7 +580,7 @@ class Payment extends BunqModel
     /**
      * @param string $bunqtoTimeResponded
      */
-    public function setBunqtoTimeResponded(string $bunqtoTimeResponded)
+    public function setBunqtoTimeResponded($bunqtoTimeResponded)
     {
         $this->bunqtoTimeResponded = $bunqtoTimeResponded;
     }
@@ -598,7 +598,7 @@ class Payment extends BunqModel
     /**
      * @param AttachmentMonetaryAccountPayment[] $attachment
      */
-    public function setAttachment(array $attachment)
+    public function setAttachment($attachment)
     {
         $this->attachment = $attachment;
     }
@@ -616,7 +616,7 @@ class Payment extends BunqModel
     /**
      * @param string $merchantReference
      */
-    public function setMerchantReference(string $merchantReference)
+    public function setMerchantReference($merchantReference)
     {
         $this->merchantReference = $merchantReference;
     }
@@ -634,7 +634,7 @@ class Payment extends BunqModel
     /**
      * @param int $batchId
      */
-    public function setBatchId(int $batchId)
+    public function setBatchId($batchId)
     {
         $this->batchId = $batchId;
     }
@@ -652,7 +652,7 @@ class Payment extends BunqModel
     /**
      * @param int $scheduledId
      */
-    public function setScheduledId(int $scheduledId)
+    public function setScheduledId($scheduledId)
     {
         $this->scheduledId = $scheduledId;
     }
@@ -670,7 +670,7 @@ class Payment extends BunqModel
     /**
      * @param Address $addressShipping
      */
-    public function setAddressShipping(Address $addressShipping)
+    public function setAddressShipping($addressShipping)
     {
         $this->addressShipping = $addressShipping;
     }
@@ -688,7 +688,7 @@ class Payment extends BunqModel
     /**
      * @param Address $addressBilling
      */
-    public function setAddressBilling(Address $addressBilling)
+    public function setAddressBilling($addressBilling)
     {
         $this->addressBilling = $addressBilling;
     }
@@ -706,7 +706,7 @@ class Payment extends BunqModel
     /**
      * @param Geolocation $geolocation
      */
-    public function setGeolocation(Geolocation $geolocation)
+    public function setGeolocation($geolocation)
     {
         $this->geolocation = $geolocation;
     }
@@ -724,7 +724,7 @@ class Payment extends BunqModel
     /**
      * @param bool $allowChat
      */
-    public function setAllowChat(bool $allowChat)
+    public function setAllowChat($allowChat)
     {
         $this->allowChat = $allowChat;
     }

@@ -28,7 +28,7 @@ class ChatMessageContentGeolocation extends BunqModel
     /**
      * @param Geolocation $geolocation
      */
-    public function setGeolocation(Geolocation $geolocation)
+    public function setGeolocation($geolocation)
     {
         $this->geolocation = $geolocation;
     }

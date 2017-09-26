@@ -64,7 +64,7 @@ class CustomerLimit extends BunqModel
      *
      * @return BunqResponseCustomerLimitList
      */
-    public static function listing(ApiContext $apiContext, int $userId, array $params = [], array $customHeaders = [])
+    public static function listing(ApiContext $apiContext, int $userId, array $params = [], array $customHeaders = []): BunqResponseCustomerLimitList
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(
@@ -94,7 +94,7 @@ class CustomerLimit extends BunqModel
     /**
      * @param int $limitMonetaryAccount
      */
-    public function setLimitMonetaryAccount(int $limitMonetaryAccount)
+    public function setLimitMonetaryAccount($limitMonetaryAccount)
     {
         $this->limitMonetaryAccount = $limitMonetaryAccount;
     }
@@ -112,7 +112,7 @@ class CustomerLimit extends BunqModel
     /**
      * @param int $limitCardDebitMaestro
      */
-    public function setLimitCardDebitMaestro(int $limitCardDebitMaestro)
+    public function setLimitCardDebitMaestro($limitCardDebitMaestro)
     {
         $this->limitCardDebitMaestro = $limitCardDebitMaestro;
     }
@@ -130,7 +130,7 @@ class CustomerLimit extends BunqModel
     /**
      * @param int $limitCardDebitMastercard
      */
-    public function setLimitCardDebitMastercard(int $limitCardDebitMastercard)
+    public function setLimitCardDebitMastercard($limitCardDebitMastercard)
     {
         $this->limitCardDebitMastercard = $limitCardDebitMastercard;
     }
@@ -148,7 +148,7 @@ class CustomerLimit extends BunqModel
     /**
      * @param int $limitCardDebitReplacement
      */
-    public function setLimitCardDebitReplacement(int $limitCardDebitReplacement)
+    public function setLimitCardDebitReplacement($limitCardDebitReplacement)
     {
         $this->limitCardDebitReplacement = $limitCardDebitReplacement;
     }

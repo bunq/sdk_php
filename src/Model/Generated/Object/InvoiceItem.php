@@ -84,7 +84,7 @@ class InvoiceItem extends BunqModel
     /**
      * @param string $billingDate
      */
-    public function setBillingDate(string $billingDate)
+    public function setBillingDate($billingDate)
     {
         $this->billingDate = $billingDate;
     }
@@ -102,7 +102,7 @@ class InvoiceItem extends BunqModel
     /**
      * @param string $typeDescription
      */
-    public function setTypeDescription(string $typeDescription)
+    public function setTypeDescription($typeDescription)
     {
         $this->typeDescription = $typeDescription;
     }
@@ -120,7 +120,7 @@ class InvoiceItem extends BunqModel
     /**
      * @param string $typeDescriptionTranslated
      */
-    public function setTypeDescriptionTranslated(string $typeDescriptionTranslated)
+    public function setTypeDescriptionTranslated($typeDescriptionTranslated)
     {
         $this->typeDescriptionTranslated = $typeDescriptionTranslated;
     }
@@ -138,7 +138,7 @@ class InvoiceItem extends BunqModel
     /**
      * @param Amount $unitVatExclusive
      */
-    public function setUnitVatExclusive(Amount $unitVatExclusive)
+    public function setUnitVatExclusive($unitVatExclusive)
     {
         $this->unitVatExclusive = $unitVatExclusive;
     }
@@ -156,7 +156,7 @@ class InvoiceItem extends BunqModel
     /**
      * @param Amount $unitVatInclusive
      */
-    public function setUnitVatInclusive(Amount $unitVatInclusive)
+    public function setUnitVatInclusive($unitVatInclusive)
     {
         $this->unitVatInclusive = $unitVatInclusive;
     }
@@ -174,7 +174,7 @@ class InvoiceItem extends BunqModel
     /**
      * @param float $vat
      */
-    public function setVat(float $vat)
+    public function setVat($vat)
     {
         $this->vat = $vat;
     }
@@ -192,7 +192,7 @@ class InvoiceItem extends BunqModel
     /**
      * @param float $quantity
      */
-    public function setQuantity(float $quantity)
+    public function setQuantity($quantity)
     {
         $this->quantity = $quantity;
     }
@@ -210,7 +210,7 @@ class InvoiceItem extends BunqModel
     /**
      * @param Amount $totalVatExclusive
      */
-    public function setTotalVatExclusive(Amount $totalVatExclusive)
+    public function setTotalVatExclusive($totalVatExclusive)
     {
         $this->totalVatExclusive = $totalVatExclusive;
     }
@@ -228,7 +228,7 @@ class InvoiceItem extends BunqModel
     /**
      * @param Amount $totalVatInclusive
      */
-    public function setTotalVatInclusive(Amount $totalVatInclusive)
+    public function setTotalVatInclusive($totalVatInclusive)
     {
         $this->totalVatInclusive = $totalVatInclusive;
     }

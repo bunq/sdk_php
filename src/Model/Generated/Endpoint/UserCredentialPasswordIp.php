@@ -112,7 +112,7 @@ class UserCredentialPasswordIp extends BunqModel
      *
      * @return BunqResponseUserCredentialPasswordIpList
      */
-    public static function listing(ApiContext $apiContext, int $userId, array $params = [], array $customHeaders = [])
+    public static function listing(ApiContext $apiContext, int $userId, array $params = [], array $customHeaders = []): BunqResponseUserCredentialPasswordIpList
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(
@@ -142,7 +142,7 @@ class UserCredentialPasswordIp extends BunqModel
     /**
      * @param int $id
      */
-    public function setId(int $id)
+    public function setId($id)
     {
         $this->id = $id;
     }
@@ -160,7 +160,7 @@ class UserCredentialPasswordIp extends BunqModel
     /**
      * @param string $created
      */
-    public function setCreated(string $created)
+    public function setCreated($created)
     {
         $this->created = $created;
     }
@@ -178,7 +178,7 @@ class UserCredentialPasswordIp extends BunqModel
     /**
      * @param string $updated
      */
-    public function setUpdated(string $updated)
+    public function setUpdated($updated)
     {
         $this->updated = $updated;
     }
@@ -196,7 +196,7 @@ class UserCredentialPasswordIp extends BunqModel
     /**
      * @param string $status
      */
-    public function setStatus(string $status)
+    public function setStatus($status)
     {
         $this->status = $status;
     }
@@ -214,7 +214,7 @@ class UserCredentialPasswordIp extends BunqModel
     /**
      * @param string $expiryTime
      */
-    public function setExpiryTime(string $expiryTime)
+    public function setExpiryTime($expiryTime)
     {
         $this->expiryTime = $expiryTime;
     }
@@ -232,7 +232,7 @@ class UserCredentialPasswordIp extends BunqModel
     /**
      * @param string $tokenValue
      */
-    public function setTokenValue(string $tokenValue)
+    public function setTokenValue($tokenValue)
     {
         $this->tokenValue = $tokenValue;
     }
@@ -251,7 +251,7 @@ class UserCredentialPasswordIp extends BunqModel
     /**
      * @param PermittedDevice $permittedDevice
      */
-    public function setPermittedDevice(PermittedDevice $permittedDevice)
+    public function setPermittedDevice($permittedDevice)
     {
         $this->permittedDevice = $permittedDevice;
     }

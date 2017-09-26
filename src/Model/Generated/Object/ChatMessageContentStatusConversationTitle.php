@@ -28,7 +28,7 @@ class ChatMessageContentStatusConversationTitle extends BunqModel
     /**
      * @param string $title
      */
-    public function setTitle(string $title)
+    public function setTitle($title)
     {
         $this->title = $title;
     }

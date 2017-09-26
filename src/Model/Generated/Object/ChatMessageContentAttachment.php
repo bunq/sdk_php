@@ -28,7 +28,7 @@ class ChatMessageContentAttachment extends BunqModel
     /**
      * @param Attachment $attachment
      */
-    public function setAttachment(Attachment $attachment)
+    public function setAttachment($attachment)
     {
         $this->attachment = $attachment;
     }

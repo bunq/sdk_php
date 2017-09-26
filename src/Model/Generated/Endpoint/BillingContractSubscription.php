@@ -118,7 +118,7 @@ class BillingContractSubscription extends BunqModel
      *
      * @return BunqResponseBillingContractSubscriptionList
      */
-    public static function listing(ApiContext $apiContext, int $userId, array $params = [], array $customHeaders = [])
+    public static function listing(ApiContext $apiContext, int $userId, array $params = [], array $customHeaders = []): BunqResponseBillingContractSubscriptionList
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(
@@ -148,7 +148,7 @@ class BillingContractSubscription extends BunqModel
     /**
      * @param int $id
      */
-    public function setId(int $id)
+    public function setId($id)
     {
         $this->id = $id;
     }
@@ -166,7 +166,7 @@ class BillingContractSubscription extends BunqModel
     /**
      * @param string $created
      */
-    public function setCreated(string $created)
+    public function setCreated($created)
     {
         $this->created = $created;
     }
@@ -184,7 +184,7 @@ class BillingContractSubscription extends BunqModel
     /**
      * @param string $updated
      */
-    public function setUpdated(string $updated)
+    public function setUpdated($updated)
     {
         $this->updated = $updated;
     }
@@ -202,7 +202,7 @@ class BillingContractSubscription extends BunqModel
     /**
      * @param string $contractDateStart
      */
-    public function setContractDateStart(string $contractDateStart)
+    public function setContractDateStart($contractDateStart)
     {
         $this->contractDateStart = $contractDateStart;
     }
@@ -220,7 +220,7 @@ class BillingContractSubscription extends BunqModel
     /**
      * @param string $contractDateEnd
      */
-    public function setContractDateEnd(string $contractDateEnd)
+    public function setContractDateEnd($contractDateEnd)
     {
         $this->contractDateEnd = $contractDateEnd;
     }
@@ -238,7 +238,7 @@ class BillingContractSubscription extends BunqModel
     /**
      * @param int $contractVersion
      */
-    public function setContractVersion(int $contractVersion)
+    public function setContractVersion($contractVersion)
     {
         $this->contractVersion = $contractVersion;
     }
@@ -258,7 +258,7 @@ class BillingContractSubscription extends BunqModel
     /**
      * @param string $subscriptionType
      */
-    public function setSubscriptionType(string $subscriptionType)
+    public function setSubscriptionType($subscriptionType)
     {
         $this->subscriptionType = $subscriptionType;
     }

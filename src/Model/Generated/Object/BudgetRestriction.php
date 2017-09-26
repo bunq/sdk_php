@@ -36,7 +36,7 @@ class BudgetRestriction extends BunqModel
     /**
      * @param Amount $amount
      */
-    public function setAmount(Amount $amount)
+    public function setAmount($amount)
     {
         $this->amount = $amount;
     }
@@ -55,7 +55,7 @@ class BudgetRestriction extends BunqModel
     /**
      * @param string $frequency
      */
-    public function setFrequency(string $frequency)
+    public function setFrequency($frequency)
     {
         $this->frequency = $frequency;
     }

@@ -52,7 +52,7 @@ class ChatMessage extends BunqModel
      *
      * @return BunqResponseChatMessageList
      */
-    public static function listing(ApiContext $apiContext, int $userId, int $chatConversationId, array $params = [], array $customHeaders = [])
+    public static function listing(ApiContext $apiContext, int $userId, int $chatConversationId, array $params = [], array $customHeaders = []): BunqResponseChatMessageList
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(
@@ -80,7 +80,7 @@ class ChatMessage extends BunqModel
     /**
      * @param ChatMessageAnnouncement $chatMessageAnnouncement
      */
-    public function setChatMessageAnnouncement(ChatMessageAnnouncement $chatMessageAnnouncement)
+    public function setChatMessageAnnouncement($chatMessageAnnouncement)
     {
         $this->chatMessageAnnouncement = $chatMessageAnnouncement;
     }
@@ -96,7 +96,7 @@ class ChatMessage extends BunqModel
     /**
      * @param ChatMessageStatus $chatMessageStatus
      */
-    public function setChatMessageStatus(ChatMessageStatus $chatMessageStatus)
+    public function setChatMessageStatus($chatMessageStatus)
     {
         $this->chatMessageStatus = $chatMessageStatus;
     }
@@ -112,7 +112,7 @@ class ChatMessage extends BunqModel
     /**
      * @param ChatMessageUser $chatMessageUser
      */
-    public function setChatMessageUser(ChatMessageUser $chatMessageUser)
+    public function setChatMessageUser($chatMessageUser)
     {
         $this->chatMessageUser = $chatMessageUser;
     }

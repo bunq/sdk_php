@@ -68,7 +68,7 @@ class LabelUser extends BunqModel
     /**
      * @param string $uuid
      */
-    public function setUuid(string $uuid)
+    public function setUuid($uuid)
     {
         $this->uuid = $uuid;
     }
@@ -86,7 +86,7 @@ class LabelUser extends BunqModel
     /**
      * @param Avatar $avatar
      */
-    public function setAvatar(Avatar $avatar)
+    public function setAvatar($avatar)
     {
         $this->avatar = $avatar;
     }
@@ -104,7 +104,7 @@ class LabelUser extends BunqModel
     /**
      * @param string $publicNickName
      */
-    public function setPublicNickName(string $publicNickName)
+    public function setPublicNickName($publicNickName)
     {
         $this->publicNickName = $publicNickName;
     }
@@ -122,7 +122,7 @@ class LabelUser extends BunqModel
     /**
      * @param string $displayName
      */
-    public function setDisplayName(string $displayName)
+    public function setDisplayName($displayName)
     {
         $this->displayName = $displayName;
     }
@@ -140,7 +140,7 @@ class LabelUser extends BunqModel
     /**
      * @param string $country
      */
-    public function setCountry(string $country)
+    public function setCountry($country)
     {
         $this->country = $country;
     }

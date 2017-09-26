@@ -50,7 +50,7 @@ class CardPinAssignment extends BunqModel
     /**
      * @param string $type
      */
-    public function setType(string $type)
+    public function setType($type)
     {
         $this->type = $type;
     }
@@ -68,7 +68,7 @@ class CardPinAssignment extends BunqModel
     /**
      * @param string $monetaryAccountId
      */
-    public function setMonetaryAccountId(string $monetaryAccountId)
+    public function setMonetaryAccountId($monetaryAccountId)
     {
         $this->monetaryAccountId = $monetaryAccountId;
     }

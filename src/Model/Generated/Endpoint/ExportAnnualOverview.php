@@ -136,7 +136,7 @@ class ExportAnnualOverview extends BunqModel
      *
      * @return BunqResponseExportAnnualOverviewList
      */
-    public static function listing(ApiContext $apiContext, int $userId, array $params = [], array $customHeaders = [])
+    public static function listing(ApiContext $apiContext, int $userId, array $params = [], array $customHeaders = []): BunqResponseExportAnnualOverviewList
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(
@@ -166,7 +166,7 @@ class ExportAnnualOverview extends BunqModel
     /**
      * @param int $id
      */
-    public function setId(int $id)
+    public function setId($id)
     {
         $this->id = $id;
     }
@@ -184,7 +184,7 @@ class ExportAnnualOverview extends BunqModel
     /**
      * @param string $created
      */
-    public function setCreated(string $created)
+    public function setCreated($created)
     {
         $this->created = $created;
     }
@@ -202,7 +202,7 @@ class ExportAnnualOverview extends BunqModel
     /**
      * @param string $updated
      */
-    public function setUpdated(string $updated)
+    public function setUpdated($updated)
     {
         $this->updated = $updated;
     }
@@ -220,7 +220,7 @@ class ExportAnnualOverview extends BunqModel
     /**
      * @param int $year
      */
-    public function setYear(int $year)
+    public function setYear($year)
     {
         $this->year = $year;
     }
@@ -238,7 +238,7 @@ class ExportAnnualOverview extends BunqModel
     /**
      * @param LabelUser $aliasUser
      */
-    public function setAliasUser(LabelUser $aliasUser)
+    public function setAliasUser($aliasUser)
     {
         $this->aliasUser = $aliasUser;
     }

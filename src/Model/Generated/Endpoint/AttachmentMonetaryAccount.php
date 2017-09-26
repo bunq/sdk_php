@@ -93,7 +93,7 @@ class AttachmentMonetaryAccount extends BunqModel
     /**
      * @param Attachment $attachment
      */
-    public function setAttachment(Attachment $attachment)
+    public function setAttachment($attachment)
     {
         $this->attachment = $attachment;
     }
@@ -111,7 +111,7 @@ class AttachmentMonetaryAccount extends BunqModel
     /**
      * @param int $id
      */
-    public function setId(int $id)
+    public function setId($id)
     {
         $this->id = $id;
     }

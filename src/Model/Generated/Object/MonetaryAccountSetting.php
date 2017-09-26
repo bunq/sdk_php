@@ -44,7 +44,7 @@ class MonetaryAccountSetting extends BunqModel
     /**
      * @param string $color
      */
-    public function setColor(string $color)
+    public function setColor($color)
     {
         $this->color = $color;
     }
@@ -63,7 +63,7 @@ class MonetaryAccountSetting extends BunqModel
     /**
      * @param string $defaultAvatarStatus
      */
-    public function setDefaultAvatarStatus(string $defaultAvatarStatus)
+    public function setDefaultAvatarStatus($defaultAvatarStatus)
     {
         $this->defaultAvatarStatus = $defaultAvatarStatus;
     }
@@ -82,7 +82,7 @@ class MonetaryAccountSetting extends BunqModel
     /**
      * @param string $restrictionChat
      */
-    public function setRestrictionChat(string $restrictionChat)
+    public function setRestrictionChat($restrictionChat)
     {
         $this->restrictionChat = $restrictionChat;
     }

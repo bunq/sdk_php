@@ -71,7 +71,7 @@ class MonetaryAccountProfileFill extends BunqModel
     /**
      * @param string $status
      */
-    public function setStatus(string $status)
+    public function setStatus($status)
     {
         $this->status = $status;
     }
@@ -89,7 +89,7 @@ class MonetaryAccountProfileFill extends BunqModel
     /**
      * @param Amount $balancePreferred
      */
-    public function setBalancePreferred(Amount $balancePreferred)
+    public function setBalancePreferred($balancePreferred)
     {
         $this->balancePreferred = $balancePreferred;
     }
@@ -107,7 +107,7 @@ class MonetaryAccountProfileFill extends BunqModel
     /**
      * @param Amount $balanceThresholdLow
      */
-    public function setBalanceThresholdLow(Amount $balanceThresholdLow)
+    public function setBalanceThresholdLow($balanceThresholdLow)
     {
         $this->balanceThresholdLow = $balanceThresholdLow;
     }
@@ -126,7 +126,7 @@ class MonetaryAccountProfileFill extends BunqModel
     /**
      * @param string $methodFill
      */
-    public function setMethodFill(string $methodFill)
+    public function setMethodFill($methodFill)
     {
         $this->methodFill = $methodFill;
     }
@@ -144,7 +144,7 @@ class MonetaryAccountProfileFill extends BunqModel
     /**
      * @param Issuer $issuer
      */
-    public function setIssuer(Issuer $issuer)
+    public function setIssuer($issuer)
     {
         $this->issuer = $issuer;
     }

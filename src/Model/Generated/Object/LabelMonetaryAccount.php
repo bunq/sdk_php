@@ -84,7 +84,7 @@ class LabelMonetaryAccount extends BunqModel
     /**
      * @param string $iban
      */
-    public function setIban(string $iban)
+    public function setIban($iban)
     {
         $this->iban = $iban;
     }
@@ -102,7 +102,7 @@ class LabelMonetaryAccount extends BunqModel
     /**
      * @param string $displayName
      */
-    public function setDisplayName(string $displayName)
+    public function setDisplayName($displayName)
     {
         $this->displayName = $displayName;
     }
@@ -120,7 +120,7 @@ class LabelMonetaryAccount extends BunqModel
     /**
      * @param Avatar $avatar
      */
-    public function setAvatar(Avatar $avatar)
+    public function setAvatar($avatar)
     {
         $this->avatar = $avatar;
     }
@@ -138,7 +138,7 @@ class LabelMonetaryAccount extends BunqModel
     /**
      * @param LabelUser $labelUser
      */
-    public function setLabelUser(LabelUser $labelUser)
+    public function setLabelUser($labelUser)
     {
         $this->labelUser = $labelUser;
     }
@@ -156,7 +156,7 @@ class LabelMonetaryAccount extends BunqModel
     /**
      * @param string $country
      */
-    public function setCountry(string $country)
+    public function setCountry($country)
     {
         $this->country = $country;
     }
@@ -174,7 +174,7 @@ class LabelMonetaryAccount extends BunqModel
     /**
      * @param Pointer $bunqMe
      */
-    public function setBunqMe(Pointer $bunqMe)
+    public function setBunqMe($bunqMe)
     {
         $this->bunqMe = $bunqMe;
     }
@@ -192,7 +192,7 @@ class LabelMonetaryAccount extends BunqModel
     /**
      * @param bool $isLight
      */
-    public function setIsLight(bool $isLight)
+    public function setIsLight($isLight)
     {
         $this->isLight = $isLight;
     }
@@ -210,7 +210,7 @@ class LabelMonetaryAccount extends BunqModel
     /**
      * @param string $swiftBic
      */
-    public function setSwiftBic(string $swiftBic)
+    public function setSwiftBic($swiftBic)
     {
         $this->swiftBic = $swiftBic;
     }
@@ -228,7 +228,7 @@ class LabelMonetaryAccount extends BunqModel
     /**
      * @param string $swiftAccountNumber
      */
-    public function setSwiftAccountNumber(string $swiftAccountNumber)
+    public function setSwiftAccountNumber($swiftAccountNumber)
     {
         $this->swiftAccountNumber = $swiftAccountNumber;
     }

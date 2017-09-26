@@ -50,7 +50,7 @@ class CardCountryPermission extends BunqModel
     /**
      * @param int $id
      */
-    public function setId(int $id)
+    public function setId($id)
     {
         $this->id = $id;
     }
@@ -68,7 +68,7 @@ class CardCountryPermission extends BunqModel
     /**
      * @param string $country
      */
-    public function setCountry(string $country)
+    public function setCountry($country)
     {
         $this->country = $country;
     }
@@ -86,7 +86,7 @@ class CardCountryPermission extends BunqModel
     /**
      * @param string $expiryTime
      */
-    public function setExpiryTime(string $expiryTime)
+    public function setExpiryTime($expiryTime)
     {
         $this->expiryTime = $expiryTime;
     }

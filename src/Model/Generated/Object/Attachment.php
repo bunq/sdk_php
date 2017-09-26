@@ -35,7 +35,7 @@ class Attachment extends BunqModel
     /**
      * @param string $description
      */
-    public function setDescription(string $description)
+    public function setDescription($description)
     {
         $this->description = $description;
     }
@@ -53,7 +53,7 @@ class Attachment extends BunqModel
     /**
      * @param string $contentType
      */
-    public function setContentType(string $contentType)
+    public function setContentType($contentType)
     {
         $this->contentType = $contentType;
     }

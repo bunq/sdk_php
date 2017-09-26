@@ -152,7 +152,7 @@ class InvoiceByUser extends BunqModel
      *
      * @return BunqResponseInvoiceByUserList
      */
-    public static function listing(ApiContext $apiContext, int $userId, array $params = [], array $customHeaders = [])
+    public static function listing(ApiContext $apiContext, int $userId, array $params = [], array $customHeaders = []): BunqResponseInvoiceByUserList
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(
@@ -207,7 +207,7 @@ class InvoiceByUser extends BunqModel
     /**
      * @param int $id
      */
-    public function setId(int $id)
+    public function setId($id)
     {
         $this->id = $id;
     }
@@ -225,7 +225,7 @@ class InvoiceByUser extends BunqModel
     /**
      * @param string $created
      */
-    public function setCreated(string $created)
+    public function setCreated($created)
     {
         $this->created = $created;
     }
@@ -243,7 +243,7 @@ class InvoiceByUser extends BunqModel
     /**
      * @param string $updated
      */
-    public function setUpdated(string $updated)
+    public function setUpdated($updated)
     {
         $this->updated = $updated;
     }
@@ -261,7 +261,7 @@ class InvoiceByUser extends BunqModel
     /**
      * @param string $invoiceDate
      */
-    public function setInvoiceDate(string $invoiceDate)
+    public function setInvoiceDate($invoiceDate)
     {
         $this->invoiceDate = $invoiceDate;
     }
@@ -279,7 +279,7 @@ class InvoiceByUser extends BunqModel
     /**
      * @param string $invoiceNumber
      */
-    public function setInvoiceNumber(string $invoiceNumber)
+    public function setInvoiceNumber($invoiceNumber)
     {
         $this->invoiceNumber = $invoiceNumber;
     }
@@ -297,7 +297,7 @@ class InvoiceByUser extends BunqModel
     /**
      * @param string $status
      */
-    public function setStatus(string $status)
+    public function setStatus($status)
     {
         $this->status = $status;
     }
@@ -315,7 +315,7 @@ class InvoiceByUser extends BunqModel
     /**
      * @param InvoiceItemGroup[] $group
      */
-    public function setGroup(array $group)
+    public function setGroup($group)
     {
         $this->group = $group;
     }
@@ -333,7 +333,7 @@ class InvoiceByUser extends BunqModel
     /**
      * @param Amount $totalVatInclusive
      */
-    public function setTotalVatInclusive(Amount $totalVatInclusive)
+    public function setTotalVatInclusive($totalVatInclusive)
     {
         $this->totalVatInclusive = $totalVatInclusive;
     }
@@ -351,7 +351,7 @@ class InvoiceByUser extends BunqModel
     /**
      * @param Amount $totalVatExclusive
      */
-    public function setTotalVatExclusive(Amount $totalVatExclusive)
+    public function setTotalVatExclusive($totalVatExclusive)
     {
         $this->totalVatExclusive = $totalVatExclusive;
     }
@@ -369,7 +369,7 @@ class InvoiceByUser extends BunqModel
     /**
      * @param Amount $totalVat
      */
-    public function setTotalVat(Amount $totalVat)
+    public function setTotalVat($totalVat)
     {
         $this->totalVat = $totalVat;
     }
@@ -388,7 +388,7 @@ class InvoiceByUser extends BunqModel
     /**
      * @param LabelMonetaryAccount $alias
      */
-    public function setAlias(LabelMonetaryAccount $alias)
+    public function setAlias($alias)
     {
         $this->alias = $alias;
     }
@@ -406,7 +406,7 @@ class InvoiceByUser extends BunqModel
     /**
      * @param Address $address
      */
-    public function setAddress(Address $address)
+    public function setAddress($address)
     {
         $this->address = $address;
     }
@@ -424,7 +424,7 @@ class InvoiceByUser extends BunqModel
     /**
      * @param LabelMonetaryAccount $counterpartyAlias
      */
-    public function setCounterpartyAlias(LabelMonetaryAccount $counterpartyAlias)
+    public function setCounterpartyAlias($counterpartyAlias)
     {
         $this->counterpartyAlias = $counterpartyAlias;
     }
@@ -442,7 +442,7 @@ class InvoiceByUser extends BunqModel
     /**
      * @param Address $counterpartyAddress
      */
-    public function setCounterpartyAddress(Address $counterpartyAddress)
+    public function setCounterpartyAddress($counterpartyAddress)
     {
         $this->counterpartyAddress = $counterpartyAddress;
     }
@@ -460,7 +460,7 @@ class InvoiceByUser extends BunqModel
     /**
      * @param string $chamberOfCommerceNumber
      */
-    public function setChamberOfCommerceNumber(string $chamberOfCommerceNumber)
+    public function setChamberOfCommerceNumber($chamberOfCommerceNumber)
     {
         $this->chamberOfCommerceNumber = $chamberOfCommerceNumber;
     }
@@ -478,7 +478,7 @@ class InvoiceByUser extends BunqModel
     /**
      * @param string $vatNumber
      */
-    public function setVatNumber(string $vatNumber)
+    public function setVatNumber($vatNumber)
     {
         $this->vatNumber = $vatNumber;
     }

@@ -138,7 +138,7 @@ class SchedulePayment extends BunqModel
      *
      * @return BunqResponseSchedulePaymentList
      */
-    public static function listing(ApiContext $apiContext, int $userId, int $monetaryAccountId, array $params = [], array $customHeaders = [])
+    public static function listing(ApiContext $apiContext, int $userId, int $monetaryAccountId, array $params = [], array $customHeaders = []): BunqResponseSchedulePaymentList
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(
@@ -195,7 +195,7 @@ class SchedulePayment extends BunqModel
     /**
      * @param SchedulePaymentEntry $payment
      */
-    public function setPayment(SchedulePaymentEntry $payment)
+    public function setPayment($payment)
     {
         $this->payment = $payment;
     }
@@ -213,7 +213,7 @@ class SchedulePayment extends BunqModel
     /**
      * @param Schedule $schedule
      */
-    public function setSchedule(Schedule $schedule)
+    public function setSchedule($schedule)
     {
         $this->schedule = $schedule;
     }

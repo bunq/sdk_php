@@ -166,7 +166,7 @@ class DraftPayment extends BunqModel
      *
      * @return BunqResponseDraftPaymentList
      */
-    public static function listing(ApiContext $apiContext, int $userId, int $monetaryAccountId, array $params = [], array $customHeaders = [])
+    public static function listing(ApiContext $apiContext, int $userId, int $monetaryAccountId, array $params = [], array $customHeaders = []): BunqResponseDraftPaymentList
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(
@@ -224,7 +224,7 @@ class DraftPayment extends BunqModel
     /**
      * @param int $id
      */
-    public function setId(int $id)
+    public function setId($id)
     {
         $this->id = $id;
     }
@@ -242,7 +242,7 @@ class DraftPayment extends BunqModel
     /**
      * @param int $monetaryAccountId
      */
-    public function setMonetaryAccountId(int $monetaryAccountId)
+    public function setMonetaryAccountId($monetaryAccountId)
     {
         $this->monetaryAccountId = $monetaryAccountId;
     }
@@ -260,7 +260,7 @@ class DraftPayment extends BunqModel
     /**
      * @param LabelUser $userAliasCreated
      */
-    public function setUserAliasCreated(LabelUser $userAliasCreated)
+    public function setUserAliasCreated($userAliasCreated)
     {
         $this->userAliasCreated = $userAliasCreated;
     }
@@ -278,7 +278,7 @@ class DraftPayment extends BunqModel
     /**
      * @param DraftPaymentResponse[] $responses
      */
-    public function setResponses(array $responses)
+    public function setResponses($responses)
     {
         $this->responses = $responses;
     }
@@ -296,7 +296,7 @@ class DraftPayment extends BunqModel
     /**
      * @param string $status
      */
-    public function setStatus(string $status)
+    public function setStatus($status)
     {
         $this->status = $status;
     }
@@ -314,7 +314,7 @@ class DraftPayment extends BunqModel
     /**
      * @param string $type
      */
-    public function setType(string $type)
+    public function setType($type)
     {
         $this->type = $type;
     }
@@ -332,7 +332,7 @@ class DraftPayment extends BunqModel
     /**
      * @param DraftPaymentEntry[] $entries
      */
-    public function setEntries(array $entries)
+    public function setEntries($entries)
     {
         $this->entries = $entries;
     }
@@ -351,7 +351,7 @@ class DraftPayment extends BunqModel
     /**
      * @param BunqModel $object
      */
-    public function setObject(BunqModel $object)
+    public function setObject($object)
     {
         $this->object = $object;
     }

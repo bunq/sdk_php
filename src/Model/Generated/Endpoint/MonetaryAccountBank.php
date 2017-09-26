@@ -299,7 +299,7 @@ class MonetaryAccountBank extends BunqModel
      *
      * @return BunqResponseMonetaryAccountBankList
      */
-    public static function listing(ApiContext $apiContext, int $userId, array $params = [], array $customHeaders = [])
+    public static function listing(ApiContext $apiContext, int $userId, array $params = [], array $customHeaders = []): BunqResponseMonetaryAccountBankList
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(
@@ -329,7 +329,7 @@ class MonetaryAccountBank extends BunqModel
     /**
      * @param int $id
      */
-    public function setId(int $id)
+    public function setId($id)
     {
         $this->id = $id;
     }
@@ -347,7 +347,7 @@ class MonetaryAccountBank extends BunqModel
     /**
      * @param string $created
      */
-    public function setCreated(string $created)
+    public function setCreated($created)
     {
         $this->created = $created;
     }
@@ -365,7 +365,7 @@ class MonetaryAccountBank extends BunqModel
     /**
      * @param string $updated
      */
-    public function setUpdated(string $updated)
+    public function setUpdated($updated)
     {
         $this->updated = $updated;
     }
@@ -383,7 +383,7 @@ class MonetaryAccountBank extends BunqModel
     /**
      * @param Avatar $avatar
      */
-    public function setAvatar(Avatar $avatar)
+    public function setAvatar($avatar)
     {
         $this->avatar = $avatar;
     }
@@ -402,7 +402,7 @@ class MonetaryAccountBank extends BunqModel
     /**
      * @param string $currency
      */
-    public function setCurrency(string $currency)
+    public function setCurrency($currency)
     {
         $this->currency = $currency;
     }
@@ -420,7 +420,7 @@ class MonetaryAccountBank extends BunqModel
     /**
      * @param string $description
      */
-    public function setDescription(string $description)
+    public function setDescription($description)
     {
         $this->description = $description;
     }
@@ -440,7 +440,7 @@ class MonetaryAccountBank extends BunqModel
     /**
      * @param Amount $dailyLimit
      */
-    public function setDailyLimit(Amount $dailyLimit)
+    public function setDailyLimit($dailyLimit)
     {
         $this->dailyLimit = $dailyLimit;
     }
@@ -458,7 +458,7 @@ class MonetaryAccountBank extends BunqModel
     /**
      * @param Amount $dailySpent
      */
-    public function setDailySpent(Amount $dailySpent)
+    public function setDailySpent($dailySpent)
     {
         $this->dailySpent = $dailySpent;
     }
@@ -476,7 +476,7 @@ class MonetaryAccountBank extends BunqModel
     /**
      * @param Amount $overdraftLimit
      */
-    public function setOverdraftLimit(Amount $overdraftLimit)
+    public function setOverdraftLimit($overdraftLimit)
     {
         $this->overdraftLimit = $overdraftLimit;
     }
@@ -494,7 +494,7 @@ class MonetaryAccountBank extends BunqModel
     /**
      * @param Amount $balance
      */
-    public function setBalance(Amount $balance)
+    public function setBalance($balance)
     {
         $this->balance = $balance;
     }
@@ -512,7 +512,7 @@ class MonetaryAccountBank extends BunqModel
     /**
      * @param Pointer[] $alias
      */
-    public function setAlias(array $alias)
+    public function setAlias($alias)
     {
         $this->alias = $alias;
     }
@@ -530,7 +530,7 @@ class MonetaryAccountBank extends BunqModel
     /**
      * @param string $publicUuid
      */
-    public function setPublicUuid(string $publicUuid)
+    public function setPublicUuid($publicUuid)
     {
         $this->publicUuid = $publicUuid;
     }
@@ -549,7 +549,7 @@ class MonetaryAccountBank extends BunqModel
     /**
      * @param string $status
      */
-    public function setStatus(string $status)
+    public function setStatus($status)
     {
         $this->status = $status;
     }
@@ -570,7 +570,7 @@ class MonetaryAccountBank extends BunqModel
     /**
      * @param string $subStatus
      */
-    public function setSubStatus(string $subStatus)
+    public function setSubStatus($subStatus)
     {
         $this->subStatus = $subStatus;
     }
@@ -589,7 +589,7 @@ class MonetaryAccountBank extends BunqModel
     /**
      * @param string $reason
      */
-    public function setReason(string $reason)
+    public function setReason($reason)
     {
         $this->reason = $reason;
     }
@@ -608,7 +608,7 @@ class MonetaryAccountBank extends BunqModel
     /**
      * @param string $reasonDescription
      */
-    public function setReasonDescription(string $reasonDescription)
+    public function setReasonDescription($reasonDescription)
     {
         $this->reasonDescription = $reasonDescription;
     }
@@ -626,7 +626,7 @@ class MonetaryAccountBank extends BunqModel
     /**
      * @param int $userId
      */
-    public function setUserId(int $userId)
+    public function setUserId($userId)
     {
         $this->userId = $userId;
     }
@@ -644,7 +644,7 @@ class MonetaryAccountBank extends BunqModel
     /**
      * @param MonetaryAccountProfile $monetaryAccountProfile
      */
-    public function setMonetaryAccountProfile(MonetaryAccountProfile $monetaryAccountProfile)
+    public function setMonetaryAccountProfile($monetaryAccountProfile)
     {
         $this->monetaryAccountProfile = $monetaryAccountProfile;
     }
@@ -663,7 +663,7 @@ class MonetaryAccountBank extends BunqModel
     /**
      * @param NotificationFilter[] $notificationFilters
      */
-    public function setNotificationFilters(array $notificationFilters)
+    public function setNotificationFilters($notificationFilters)
     {
         $this->notificationFilters = $notificationFilters;
     }
@@ -681,7 +681,7 @@ class MonetaryAccountBank extends BunqModel
     /**
      * @param MonetaryAccountSetting $setting
      */
-    public function setSetting(MonetaryAccountSetting $setting)
+    public function setSetting($setting)
     {
         $this->setting = $setting;
     }

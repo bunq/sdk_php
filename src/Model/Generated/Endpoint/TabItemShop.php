@@ -203,7 +203,7 @@ class TabItemShop extends BunqModel
      *
      * @return BunqResponseTabItemShopList
      */
-    public static function listing(ApiContext $apiContext, int $userId, int $monetaryAccountId, int $cashRegisterId, string $tabUuid, array $params = [], array $customHeaders = [])
+    public static function listing(ApiContext $apiContext, int $userId, int $monetaryAccountId, int $cashRegisterId, string $tabUuid, array $params = [], array $customHeaders = []): BunqResponseTabItemShopList
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(
@@ -263,7 +263,7 @@ class TabItemShop extends BunqModel
     /**
      * @param int $id
      */
-    public function setId(int $id)
+    public function setId($id)
     {
         $this->id = $id;
     }
@@ -281,7 +281,7 @@ class TabItemShop extends BunqModel
     /**
      * @param string $description
      */
-    public function setDescription(string $description)
+    public function setDescription($description)
     {
         $this->description = $description;
     }
@@ -299,7 +299,7 @@ class TabItemShop extends BunqModel
     /**
      * @param string $eanCode
      */
-    public function setEanCode(string $eanCode)
+    public function setEanCode($eanCode)
     {
         $this->eanCode = $eanCode;
     }
@@ -318,7 +318,7 @@ class TabItemShop extends BunqModel
     /**
      * @param AttachmentPublic $avatarAttachment
      */
-    public function setAvatarAttachment(AttachmentPublic $avatarAttachment)
+    public function setAvatarAttachment($avatarAttachment)
     {
         $this->avatarAttachment = $avatarAttachment;
     }
@@ -336,7 +336,7 @@ class TabItemShop extends BunqModel
     /**
      * @param AttachmentTab[] $tabAttachment
      */
-    public function setTabAttachment(array $tabAttachment)
+    public function setTabAttachment($tabAttachment)
     {
         $this->tabAttachment = $tabAttachment;
     }
@@ -354,7 +354,7 @@ class TabItemShop extends BunqModel
     /**
      * @param float $quantity
      */
-    public function setQuantity(float $quantity)
+    public function setQuantity($quantity)
     {
         $this->quantity = $quantity;
     }
@@ -372,7 +372,7 @@ class TabItemShop extends BunqModel
     /**
      * @param Amount $amount
      */
-    public function setAmount(Amount $amount)
+    public function setAmount($amount)
     {
         $this->amount = $amount;
     }

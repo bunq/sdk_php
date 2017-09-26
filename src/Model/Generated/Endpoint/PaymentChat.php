@@ -132,7 +132,7 @@ class PaymentChat extends BunqModel
      *
      * @return BunqResponsePaymentChatList
      */
-    public static function listing(ApiContext $apiContext, int $userId, int $monetaryAccountId, int $paymentId, array $params = [], array $customHeaders = [])
+    public static function listing(ApiContext $apiContext, int $userId, int $monetaryAccountId, int $paymentId, array $params = [], array $customHeaders = []): BunqResponsePaymentChatList
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(
@@ -162,7 +162,7 @@ class PaymentChat extends BunqModel
     /**
      * @param int $id
      */
-    public function setId(int $id)
+    public function setId($id)
     {
         $this->id = $id;
     }
@@ -180,7 +180,7 @@ class PaymentChat extends BunqModel
     /**
      * @param string $created
      */
-    public function setCreated(string $created)
+    public function setCreated($created)
     {
         $this->created = $created;
     }
@@ -198,7 +198,7 @@ class PaymentChat extends BunqModel
     /**
      * @param string $updated
      */
-    public function setUpdated(string $updated)
+    public function setUpdated($updated)
     {
         $this->updated = $updated;
     }
@@ -216,7 +216,7 @@ class PaymentChat extends BunqModel
     /**
      * @param int $unreadMessageCount
      */
-    public function setUnreadMessageCount(int $unreadMessageCount)
+    public function setUnreadMessageCount($unreadMessageCount)
     {
         $this->unreadMessageCount = $unreadMessageCount;
     }

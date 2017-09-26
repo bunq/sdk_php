@@ -91,7 +91,7 @@ class IdealMerchantTransaction extends BunqModel
     protected $issuerName;
 
     /**
-     * The URL to visit to
+     * The URL to visit to 
      *
      * @var string
      */
@@ -196,7 +196,7 @@ class IdealMerchantTransaction extends BunqModel
      *
      * @return BunqResponseIdealMerchantTransactionList
      */
-    public static function listing(ApiContext $apiContext, int $userId, int $monetaryAccountId, array $params = [], array $customHeaders = [])
+    public static function listing(ApiContext $apiContext, int $userId, int $monetaryAccountId, array $params = [], array $customHeaders = []): BunqResponseIdealMerchantTransactionList
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(
@@ -226,7 +226,7 @@ class IdealMerchantTransaction extends BunqModel
     /**
      * @param int $monetaryAccountId
      */
-    public function setMonetaryAccountId(int $monetaryAccountId)
+    public function setMonetaryAccountId($monetaryAccountId)
     {
         $this->monetaryAccountId = $monetaryAccountId;
     }
@@ -244,7 +244,7 @@ class IdealMerchantTransaction extends BunqModel
     /**
      * @param LabelMonetaryAccount $alias
      */
-    public function setAlias(LabelMonetaryAccount $alias)
+    public function setAlias($alias)
     {
         $this->alias = $alias;
     }
@@ -262,7 +262,7 @@ class IdealMerchantTransaction extends BunqModel
     /**
      * @param LabelMonetaryAccount $counterpartyAlias
      */
-    public function setCounterpartyAlias(LabelMonetaryAccount $counterpartyAlias)
+    public function setCounterpartyAlias($counterpartyAlias)
     {
         $this->counterpartyAlias = $counterpartyAlias;
     }
@@ -281,7 +281,7 @@ class IdealMerchantTransaction extends BunqModel
     /**
      * @param Amount $amountGuaranteed
      */
-    public function setAmountGuaranteed(Amount $amountGuaranteed)
+    public function setAmountGuaranteed($amountGuaranteed)
     {
         $this->amountGuaranteed = $amountGuaranteed;
     }
@@ -299,7 +299,7 @@ class IdealMerchantTransaction extends BunqModel
     /**
      * @param Amount $amountRequested
      */
-    public function setAmountRequested(Amount $amountRequested)
+    public function setAmountRequested($amountRequested)
     {
         $this->amountRequested = $amountRequested;
     }
@@ -317,7 +317,7 @@ class IdealMerchantTransaction extends BunqModel
     /**
      * @param string $expiration
      */
-    public function setExpiration(string $expiration)
+    public function setExpiration($expiration)
     {
         $this->expiration = $expiration;
     }
@@ -335,7 +335,7 @@ class IdealMerchantTransaction extends BunqModel
     /**
      * @param string $issuer
      */
-    public function setIssuer(string $issuer)
+    public function setIssuer($issuer)
     {
         $this->issuer = $issuer;
     }
@@ -353,13 +353,13 @@ class IdealMerchantTransaction extends BunqModel
     /**
      * @param string $issuerName
      */
-    public function setIssuerName(string $issuerName)
+    public function setIssuerName($issuerName)
     {
         $this->issuerName = $issuerName;
     }
 
     /**
-     * The URL to visit to
+     * The URL to visit to 
      *
      * @return string
      */
@@ -371,7 +371,7 @@ class IdealMerchantTransaction extends BunqModel
     /**
      * @param string $issuerAuthenticationUrl
      */
-    public function setIssuerAuthenticationUrl(string $issuerAuthenticationUrl)
+    public function setIssuerAuthenticationUrl($issuerAuthenticationUrl)
     {
         $this->issuerAuthenticationUrl = $issuerAuthenticationUrl;
     }
@@ -389,7 +389,7 @@ class IdealMerchantTransaction extends BunqModel
     /**
      * @param string $purchaseIdentifier
      */
-    public function setPurchaseIdentifier(string $purchaseIdentifier)
+    public function setPurchaseIdentifier($purchaseIdentifier)
     {
         $this->purchaseIdentifier = $purchaseIdentifier;
     }
@@ -407,7 +407,7 @@ class IdealMerchantTransaction extends BunqModel
     /**
      * @param string $status
      */
-    public function setStatus(string $status)
+    public function setStatus($status)
     {
         $this->status = $status;
     }
@@ -425,7 +425,7 @@ class IdealMerchantTransaction extends BunqModel
     /**
      * @param string $statusTimestamp
      */
-    public function setStatusTimestamp(string $statusTimestamp)
+    public function setStatusTimestamp($statusTimestamp)
     {
         $this->statusTimestamp = $statusTimestamp;
     }
@@ -443,7 +443,7 @@ class IdealMerchantTransaction extends BunqModel
     /**
      * @param string $transactionIdentifier
      */
-    public function setTransactionIdentifier(string $transactionIdentifier)
+    public function setTransactionIdentifier($transactionIdentifier)
     {
         $this->transactionIdentifier = $transactionIdentifier;
     }
@@ -461,7 +461,7 @@ class IdealMerchantTransaction extends BunqModel
     /**
      * @param bool $allowChat
      */
-    public function setAllowChat(bool $allowChat)
+    public function setAllowChat($allowChat)
     {
         $this->allowChat = $allowChat;
     }

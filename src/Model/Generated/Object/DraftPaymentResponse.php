@@ -35,7 +35,7 @@ class DraftPaymentResponse extends BunqModel
     /**
      * @param string $status
      */
-    public function setStatus(string $status)
+    public function setStatus($status)
     {
         $this->status = $status;
     }
@@ -53,7 +53,7 @@ class DraftPaymentResponse extends BunqModel
     /**
      * @param LabelUser $userAliasCreated
      */
-    public function setUserAliasCreated(LabelUser $userAliasCreated)
+    public function setUserAliasCreated($userAliasCreated)
     {
         $this->userAliasCreated = $userAliasCreated;
     }

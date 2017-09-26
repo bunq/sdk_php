@@ -179,7 +179,7 @@ class CardResult extends BunqModel
      *
      * @return BunqResponseCardResultList
      */
-    public static function listing(ApiContext $apiContext, int $userId, int $monetaryAccountId, array $params = [], array $customHeaders = [])
+    public static function listing(ApiContext $apiContext, int $userId, int $monetaryAccountId, array $params = [], array $customHeaders = []): BunqResponseCardResultList
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(
@@ -209,7 +209,7 @@ class CardResult extends BunqModel
     /**
      * @param int $monetaryAccountId
      */
-    public function setMonetaryAccountId(int $monetaryAccountId)
+    public function setMonetaryAccountId($monetaryAccountId)
     {
         $this->monetaryAccountId = $monetaryAccountId;
     }
@@ -227,7 +227,7 @@ class CardResult extends BunqModel
     /**
      * @param int $cardId
      */
-    public function setCardId(int $cardId)
+    public function setCardId($cardId)
     {
         $this->cardId = $cardId;
     }
@@ -245,7 +245,7 @@ class CardResult extends BunqModel
     /**
      * @param Amount $amountOriginal
      */
-    public function setAmountOriginal(Amount $amountOriginal)
+    public function setAmountOriginal($amountOriginal)
     {
         $this->amountOriginal = $amountOriginal;
     }
@@ -263,7 +263,7 @@ class CardResult extends BunqModel
     /**
      * @param Amount $amountFinal
      */
-    public function setAmountFinal(Amount $amountFinal)
+    public function setAmountFinal($amountFinal)
     {
         $this->amountFinal = $amountFinal;
     }
@@ -281,7 +281,7 @@ class CardResult extends BunqModel
     /**
      * @param string $decision
      */
-    public function setDecision(string $decision)
+    public function setDecision($decision)
     {
         $this->decision = $decision;
     }
@@ -299,7 +299,7 @@ class CardResult extends BunqModel
     /**
      * @param string $decisionDescription
      */
-    public function setDecisionDescription(string $decisionDescription)
+    public function setDecisionDescription($decisionDescription)
     {
         $this->decisionDescription = $decisionDescription;
     }
@@ -318,7 +318,7 @@ class CardResult extends BunqModel
     /**
      * @param string $decisionDescriptionTranslated
      */
-    public function setDecisionDescriptionTranslated(string $decisionDescriptionTranslated)
+    public function setDecisionDescriptionTranslated($decisionDescriptionTranslated)
     {
         $this->decisionDescriptionTranslated = $decisionDescriptionTranslated;
     }
@@ -336,7 +336,7 @@ class CardResult extends BunqModel
     /**
      * @param string $description
      */
-    public function setDescription(string $description)
+    public function setDescription($description)
     {
         $this->description = $description;
     }
@@ -354,7 +354,7 @@ class CardResult extends BunqModel
     /**
      * @param string $messageType
      */
-    public function setMessageType(string $messageType)
+    public function setMessageType($messageType)
     {
         $this->messageType = $messageType;
     }
@@ -372,7 +372,7 @@ class CardResult extends BunqModel
     /**
      * @param string $authorisationType
      */
-    public function setAuthorisationType(string $authorisationType)
+    public function setAuthorisationType($authorisationType)
     {
         $this->authorisationType = $authorisationType;
     }
@@ -390,7 +390,7 @@ class CardResult extends BunqModel
     /**
      * @param string $city
      */
-    public function setCity(string $city)
+    public function setCity($city)
     {
         $this->city = $city;
     }
@@ -409,7 +409,7 @@ class CardResult extends BunqModel
     /**
      * @param LabelMonetaryAccount $alias
      */
-    public function setAlias(LabelMonetaryAccount $alias)
+    public function setAlias($alias)
     {
         $this->alias = $alias;
     }
@@ -427,7 +427,7 @@ class CardResult extends BunqModel
     /**
      * @param LabelMonetaryAccount $counterpartyAlias
      */
-    public function setCounterpartyAlias(LabelMonetaryAccount $counterpartyAlias)
+    public function setCounterpartyAlias($counterpartyAlias)
     {
         $this->counterpartyAlias = $counterpartyAlias;
     }
@@ -445,7 +445,7 @@ class CardResult extends BunqModel
     /**
      * @param LabelCard $labelCard
      */
-    public function setLabelCard(LabelCard $labelCard)
+    public function setLabelCard($labelCard)
     {
         $this->labelCard = $labelCard;
     }
@@ -463,7 +463,7 @@ class CardResult extends BunqModel
     /**
      * @param string $reservationStatus
      */
-    public function setReservationStatus(string $reservationStatus)
+    public function setReservationStatus($reservationStatus)
     {
         $this->reservationStatus = $reservationStatus;
     }
@@ -481,7 +481,7 @@ class CardResult extends BunqModel
     /**
      * @param string $reservationExpiryTime
      */
-    public function setReservationExpiryTime(string $reservationExpiryTime)
+    public function setReservationExpiryTime($reservationExpiryTime)
     {
         $this->reservationExpiryTime = $reservationExpiryTime;
     }

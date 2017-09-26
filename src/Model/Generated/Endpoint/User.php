@@ -78,7 +78,7 @@ class User extends BunqModel
      *
      * @return BunqResponseUserList
      */
-    public static function listing(ApiContext $apiContext, array $params = [], array $customHeaders = [])
+    public static function listing(ApiContext $apiContext, array $params = [], array $customHeaders = []): BunqResponseUserList
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(
@@ -106,7 +106,7 @@ class User extends BunqModel
     /**
      * @param UserLight $userLight
      */
-    public function setUserLight(UserLight $userLight)
+    public function setUserLight($userLight)
     {
         $this->userLight = $userLight;
     }
@@ -122,7 +122,7 @@ class User extends BunqModel
     /**
      * @param UserPerson $userPerson
      */
-    public function setUserPerson(UserPerson $userPerson)
+    public function setUserPerson($userPerson)
     {
         $this->userPerson = $userPerson;
     }
@@ -138,7 +138,7 @@ class User extends BunqModel
     /**
      * @param UserCompany $userCompany
      */
-    public function setUserCompany(UserCompany $userCompany)
+    public function setUserCompany($userCompany)
     {
         $this->userCompany = $userCompany;
     }

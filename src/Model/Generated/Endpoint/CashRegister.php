@@ -212,7 +212,7 @@ class CashRegister extends BunqModel
      *
      * @return BunqResponseCashRegisterList
      */
-    public static function listing(ApiContext $apiContext, int $userId, int $monetaryAccountId, array $params = [], array $customHeaders = [])
+    public static function listing(ApiContext $apiContext, int $userId, int $monetaryAccountId, array $params = [], array $customHeaders = []): BunqResponseCashRegisterList
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(
@@ -242,7 +242,7 @@ class CashRegister extends BunqModel
     /**
      * @param int $id
      */
-    public function setId(int $id)
+    public function setId($id)
     {
         $this->id = $id;
     }
@@ -260,7 +260,7 @@ class CashRegister extends BunqModel
     /**
      * @param string $created
      */
-    public function setCreated(string $created)
+    public function setCreated($created)
     {
         $this->created = $created;
     }
@@ -278,7 +278,7 @@ class CashRegister extends BunqModel
     /**
      * @param string $updated
      */
-    public function setUpdated(string $updated)
+    public function setUpdated($updated)
     {
         $this->updated = $updated;
     }
@@ -296,7 +296,7 @@ class CashRegister extends BunqModel
     /**
      * @param string $name
      */
-    public function setName(string $name)
+    public function setName($name)
     {
         $this->name = $name;
     }
@@ -315,7 +315,7 @@ class CashRegister extends BunqModel
     /**
      * @param string $status
      */
-    public function setStatus(string $status)
+    public function setStatus($status)
     {
         $this->status = $status;
     }
@@ -333,7 +333,7 @@ class CashRegister extends BunqModel
     /**
      * @param Avatar $avatar
      */
-    public function setAvatar(Avatar $avatar)
+    public function setAvatar($avatar)
     {
         $this->avatar = $avatar;
     }
@@ -351,7 +351,7 @@ class CashRegister extends BunqModel
     /**
      * @param Geolocation $location
      */
-    public function setLocation(Geolocation $location)
+    public function setLocation($location)
     {
         $this->location = $location;
     }
@@ -370,7 +370,7 @@ class CashRegister extends BunqModel
     /**
      * @param NotificationFilter[] $notificationFilters
      */
-    public function setNotificationFilters(array $notificationFilters)
+    public function setNotificationFilters($notificationFilters)
     {
         $this->notificationFilters = $notificationFilters;
     }
@@ -388,7 +388,7 @@ class CashRegister extends BunqModel
     /**
      * @param TabTextWaitingScreen[] $tabTextWaitingScreen
      */
-    public function setTabTextWaitingScreen(array $tabTextWaitingScreen)
+    public function setTabTextWaitingScreen($tabTextWaitingScreen)
     {
         $this->tabTextWaitingScreen = $tabTextWaitingScreen;
     }

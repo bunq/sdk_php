@@ -37,7 +37,7 @@ class ChatMessageContentStatusMembership extends BunqModel
     /**
      * @param string $action
      */
-    public function setAction(string $action)
+    public function setAction($action)
     {
         $this->action = $action;
     }
@@ -55,7 +55,7 @@ class ChatMessageContentStatusMembership extends BunqModel
     /**
      * @param LabelUser $member
      */
-    public function setMember(LabelUser $member)
+    public function setMember($member)
     {
         $this->member = $member;
     }

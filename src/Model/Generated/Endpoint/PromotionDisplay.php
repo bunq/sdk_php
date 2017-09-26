@@ -123,7 +123,7 @@ class PromotionDisplay extends BunqModel
     /**
      * @param int $id
      */
-    public function setId(int $id)
+    public function setId($id)
     {
         $this->id = $id;
     }
@@ -141,7 +141,7 @@ class PromotionDisplay extends BunqModel
     /**
      * @param LabelMonetaryAccount $counterpartyAlias
      */
-    public function setCounterpartyAlias(LabelMonetaryAccount $counterpartyAlias)
+    public function setCounterpartyAlias($counterpartyAlias)
     {
         $this->counterpartyAlias = $counterpartyAlias;
     }
@@ -159,7 +159,7 @@ class PromotionDisplay extends BunqModel
     /**
      * @param string $eventDescription
      */
-    public function setEventDescription(string $eventDescription)
+    public function setEventDescription($eventDescription)
     {
         $this->eventDescription = $eventDescription;
     }
@@ -177,7 +177,7 @@ class PromotionDisplay extends BunqModel
     /**
      * @param string $status
      */
-    public function setStatus(string $status)
+    public function setStatus($status)
     {
         $this->status = $status;
     }

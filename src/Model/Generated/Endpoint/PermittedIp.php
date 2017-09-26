@@ -113,7 +113,7 @@ class PermittedIp extends BunqModel
      *
      * @return BunqResponsePermittedIpList
      */
-    public static function listing(ApiContext $apiContext, int $userId, int $credentialPasswordIpId, array $params = [], array $customHeaders = [])
+    public static function listing(ApiContext $apiContext, int $userId, int $credentialPasswordIpId, array $params = [], array $customHeaders = []): BunqResponsePermittedIpList
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(
@@ -170,7 +170,7 @@ class PermittedIp extends BunqModel
     /**
      * @param string $ip
      */
-    public function setIp(string $ip)
+    public function setIp($ip)
     {
         $this->ip = $ip;
     }
@@ -190,7 +190,7 @@ class PermittedIp extends BunqModel
     /**
      * @param string $status
      */
-    public function setStatus(string $status)
+    public function setStatus($status)
     {
         $this->status = $status;
     }

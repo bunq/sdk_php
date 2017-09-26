@@ -207,7 +207,7 @@ class CardDebit extends BunqModel
     /**
      * @param int $id
      */
-    public function setId(int $id)
+    public function setId($id)
     {
         $this->id = $id;
     }
@@ -225,7 +225,7 @@ class CardDebit extends BunqModel
     /**
      * @param string $created
      */
-    public function setCreated(string $created)
+    public function setCreated($created)
     {
         $this->created = $created;
     }
@@ -243,7 +243,7 @@ class CardDebit extends BunqModel
     /**
      * @param string $updated
      */
-    public function setUpdated(string $updated)
+    public function setUpdated($updated)
     {
         $this->updated = $updated;
     }
@@ -261,7 +261,7 @@ class CardDebit extends BunqModel
     /**
      * @param string $publicUuid
      */
-    public function setPublicUuid(string $publicUuid)
+    public function setPublicUuid($publicUuid)
     {
         $this->publicUuid = $publicUuid;
     }
@@ -279,7 +279,7 @@ class CardDebit extends BunqModel
     /**
      * @param string $secondLine
      */
-    public function setSecondLine(string $secondLine)
+    public function setSecondLine($secondLine)
     {
         $this->secondLine = $secondLine;
     }
@@ -297,7 +297,7 @@ class CardDebit extends BunqModel
     /**
      * @param string $nameOnCard
      */
-    public function setNameOnCard(string $nameOnCard)
+    public function setNameOnCard($nameOnCard)
     {
         $this->nameOnCard = $nameOnCard;
     }
@@ -315,7 +315,7 @@ class CardDebit extends BunqModel
     /**
      * @param string $primaryAccountNumberFourDigit
      */
-    public function setPrimaryAccountNumberFourDigit(string $primaryAccountNumberFourDigit)
+    public function setPrimaryAccountNumberFourDigit($primaryAccountNumberFourDigit)
     {
         $this->primaryAccountNumberFourDigit = $primaryAccountNumberFourDigit;
     }
@@ -334,7 +334,7 @@ class CardDebit extends BunqModel
     /**
      * @param string $status
      */
-    public function setStatus(string $status)
+    public function setStatus($status)
     {
         $this->status = $status;
     }
@@ -353,7 +353,7 @@ class CardDebit extends BunqModel
     /**
      * @param string $orderStatus
      */
-    public function setOrderStatus(string $orderStatus)
+    public function setOrderStatus($orderStatus)
     {
         $this->orderStatus = $orderStatus;
     }
@@ -371,7 +371,7 @@ class CardDebit extends BunqModel
     /**
      * @param string $expiryDate
      */
-    public function setExpiryDate(string $expiryDate)
+    public function setExpiryDate($expiryDate)
     {
         $this->expiryDate = $expiryDate;
     }
@@ -390,7 +390,7 @@ class CardDebit extends BunqModel
     /**
      * @param CardLimit[] $limit
      */
-    public function setLimit(array $limit)
+    public function setLimit($limit)
     {
         $this->limit = $limit;
     }
@@ -408,7 +408,7 @@ class CardDebit extends BunqModel
     /**
      * @param CardCountryPermission[] $countryPermission
      */
-    public function setCountryPermission(array $countryPermission)
+    public function setCountryPermission($countryPermission)
     {
         $this->countryPermission = $countryPermission;
     }
@@ -427,7 +427,7 @@ class CardDebit extends BunqModel
     /**
      * @param LabelMonetaryAccount $labelMonetaryAccountOrdered
      */
-    public function setLabelMonetaryAccountOrdered(LabelMonetaryAccount $labelMonetaryAccountOrdered)
+    public function setLabelMonetaryAccountOrdered($labelMonetaryAccountOrdered)
     {
         $this->labelMonetaryAccountOrdered = $labelMonetaryAccountOrdered;
     }
@@ -446,7 +446,7 @@ class CardDebit extends BunqModel
     /**
      * @param LabelMonetaryAccount $labelMonetaryAccountCurrent
      */
-    public function setLabelMonetaryAccountCurrent(LabelMonetaryAccount $labelMonetaryAccountCurrent)
+    public function setLabelMonetaryAccountCurrent($labelMonetaryAccountCurrent)
     {
         $this->labelMonetaryAccountCurrent = $labelMonetaryAccountCurrent;
     }
@@ -464,7 +464,7 @@ class CardDebit extends BunqModel
     /**
      * @param LabelUser $alias
      */
-    public function setAlias(LabelUser $alias)
+    public function setAlias($alias)
     {
         $this->alias = $alias;
     }
@@ -482,7 +482,7 @@ class CardDebit extends BunqModel
     /**
      * @param CardPinAssignment[] $pinCodeAssignment
      */
-    public function setPinCodeAssignment(array $pinCodeAssignment)
+    public function setPinCodeAssignment($pinCodeAssignment)
     {
         $this->pinCodeAssignment = $pinCodeAssignment;
     }
@@ -501,7 +501,7 @@ class CardDebit extends BunqModel
     /**
      * @param int $monetaryAccountIdFallback
      */
-    public function setMonetaryAccountIdFallback(int $monetaryAccountIdFallback)
+    public function setMonetaryAccountIdFallback($monetaryAccountIdFallback)
     {
         $this->monetaryAccountIdFallback = $monetaryAccountIdFallback;
     }

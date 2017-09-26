@@ -141,7 +141,7 @@ class PaymentBatch extends BunqModel
      *
      * @return BunqResponsePaymentBatchList
      */
-    public static function listing(ApiContext $apiContext, int $userId, int $monetaryAccountId, array $params = [], array $customHeaders = [])
+    public static function listing(ApiContext $apiContext, int $userId, int $monetaryAccountId, array $params = [], array $customHeaders = []): BunqResponsePaymentBatchList
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(
@@ -171,7 +171,7 @@ class PaymentBatch extends BunqModel
     /**
      * @param Payment[] $payments
      */
-    public function setPayments(array $payments)
+    public function setPayments($payments)
     {
         $this->payments = $payments;
     }

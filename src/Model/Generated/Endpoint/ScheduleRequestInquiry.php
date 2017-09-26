@@ -50,7 +50,7 @@ class ScheduleRequestInquiry extends BunqModel
     /**
      * @param ScheduleRequestInquiryEntry $requestInquiry
      */
-    public function setRequestInquiry(ScheduleRequestInquiryEntry $requestInquiry)
+    public function setRequestInquiry($requestInquiry)
     {
         $this->requestInquiry = $requestInquiry;
     }
@@ -68,7 +68,7 @@ class ScheduleRequestInquiry extends BunqModel
     /**
      * @param Schedule $schedule
      */
-    public function setSchedule(Schedule $schedule)
+    public function setSchedule($schedule)
     {
         $this->schedule = $schedule;
     }

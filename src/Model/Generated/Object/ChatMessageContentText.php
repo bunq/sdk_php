@@ -28,7 +28,7 @@ class ChatMessageContentText extends BunqModel
     /**
      * @param string $text
      */
-    public function setText(string $text)
+    public function setText($text)
     {
         $this->text = $text;
     }

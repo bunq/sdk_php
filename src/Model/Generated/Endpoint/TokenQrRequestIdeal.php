@@ -224,7 +224,7 @@ class TokenQrRequestIdeal extends BunqModel
     /**
      * @param string $timeResponded
      */
-    public function setTimeResponded(string $timeResponded)
+    public function setTimeResponded($timeResponded)
     {
         $this->timeResponded = $timeResponded;
     }
@@ -242,7 +242,7 @@ class TokenQrRequestIdeal extends BunqModel
     /**
      * @param string $timeExpiry
      */
-    public function setTimeExpiry(string $timeExpiry)
+    public function setTimeExpiry($timeExpiry)
     {
         $this->timeExpiry = $timeExpiry;
     }
@@ -260,7 +260,7 @@ class TokenQrRequestIdeal extends BunqModel
     /**
      * @param int $monetaryAccountId
      */
-    public function setMonetaryAccountId(int $monetaryAccountId)
+    public function setMonetaryAccountId($monetaryAccountId)
     {
         $this->monetaryAccountId = $monetaryAccountId;
     }
@@ -278,7 +278,7 @@ class TokenQrRequestIdeal extends BunqModel
     /**
      * @param Amount $amountInquired
      */
-    public function setAmountInquired(Amount $amountInquired)
+    public function setAmountInquired($amountInquired)
     {
         $this->amountInquired = $amountInquired;
     }
@@ -296,7 +296,7 @@ class TokenQrRequestIdeal extends BunqModel
     /**
      * @param Amount $amountResponded
      */
-    public function setAmountResponded(Amount $amountResponded)
+    public function setAmountResponded($amountResponded)
     {
         $this->amountResponded = $amountResponded;
     }
@@ -315,7 +315,7 @@ class TokenQrRequestIdeal extends BunqModel
     /**
      * @param LabelMonetaryAccount $alias
      */
-    public function setAlias(LabelMonetaryAccount $alias)
+    public function setAlias($alias)
     {
         $this->alias = $alias;
     }
@@ -334,7 +334,7 @@ class TokenQrRequestIdeal extends BunqModel
     /**
      * @param LabelMonetaryAccount $counterpartyAlias
      */
-    public function setCounterpartyAlias(LabelMonetaryAccount $counterpartyAlias)
+    public function setCounterpartyAlias($counterpartyAlias)
     {
         $this->counterpartyAlias = $counterpartyAlias;
     }
@@ -353,7 +353,7 @@ class TokenQrRequestIdeal extends BunqModel
     /**
      * @param string $description
      */
-    public function setDescription(string $description)
+    public function setDescription($description)
     {
         $this->description = $description;
     }
@@ -371,7 +371,7 @@ class TokenQrRequestIdeal extends BunqModel
     /**
      * @param Attachment[] $attachment
      */
-    public function setAttachment(array $attachment)
+    public function setAttachment($attachment)
     {
         $this->attachment = $attachment;
     }
@@ -389,7 +389,7 @@ class TokenQrRequestIdeal extends BunqModel
     /**
      * @param string $status
      */
-    public function setStatus(string $status)
+    public function setStatus($status)
     {
         $this->status = $status;
     }
@@ -407,7 +407,7 @@ class TokenQrRequestIdeal extends BunqModel
     /**
      * @param int $minimumAge
      */
-    public function setMinimumAge(int $minimumAge)
+    public function setMinimumAge($minimumAge)
     {
         $this->minimumAge = $minimumAge;
     }
@@ -425,7 +425,7 @@ class TokenQrRequestIdeal extends BunqModel
     /**
      * @param string $requireAddress
      */
-    public function setRequireAddress(string $requireAddress)
+    public function setRequireAddress($requireAddress)
     {
         $this->requireAddress = $requireAddress;
     }
@@ -444,7 +444,7 @@ class TokenQrRequestIdeal extends BunqModel
     /**
      * @param Address $addressShipping
      */
-    public function setAddressShipping(Address $addressShipping)
+    public function setAddressShipping($addressShipping)
     {
         $this->addressShipping = $addressShipping;
     }
@@ -463,7 +463,7 @@ class TokenQrRequestIdeal extends BunqModel
     /**
      * @param Address $addressBilling
      */
-    public function setAddressBilling(Address $addressBilling)
+    public function setAddressBilling($addressBilling)
     {
         $this->addressBilling = $addressBilling;
     }
@@ -481,7 +481,7 @@ class TokenQrRequestIdeal extends BunqModel
     /**
      * @param Geolocation $geolocation
      */
-    public function setGeolocation(Geolocation $geolocation)
+    public function setGeolocation($geolocation)
     {
         $this->geolocation = $geolocation;
     }
@@ -500,7 +500,7 @@ class TokenQrRequestIdeal extends BunqModel
     /**
      * @param string $redirectUrl
      */
-    public function setRedirectUrl(string $redirectUrl)
+    public function setRedirectUrl($redirectUrl)
     {
         $this->redirectUrl = $redirectUrl;
     }
@@ -518,7 +518,7 @@ class TokenQrRequestIdeal extends BunqModel
     /**
      * @param string $type
      */
-    public function setType(string $type)
+    public function setType($type)
     {
         $this->type = $type;
     }
@@ -536,7 +536,7 @@ class TokenQrRequestIdeal extends BunqModel
     /**
      * @param string $subType
      */
-    public function setSubType(string $subType)
+    public function setSubType($subType)
     {
         $this->subType = $subType;
     }
@@ -554,7 +554,7 @@ class TokenQrRequestIdeal extends BunqModel
     /**
      * @param bool $allowChat
      */
-    public function setAllowChat(bool $allowChat)
+    public function setAllowChat($allowChat)
     {
         $this->allowChat = $allowChat;
     }
@@ -572,7 +572,7 @@ class TokenQrRequestIdeal extends BunqModel
     /**
      * @param int $eligibleWhitelistId
      */
-    public function setEligibleWhitelistId(int $eligibleWhitelistId)
+    public function setEligibleWhitelistId($eligibleWhitelistId)
     {
         $this->eligibleWhitelistId = $eligibleWhitelistId;
     }

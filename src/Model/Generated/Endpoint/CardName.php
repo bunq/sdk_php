@@ -47,7 +47,7 @@ class CardName extends BunqModel
      *
      * @return BunqResponseCardNameList
      */
-    public static function listing(ApiContext $apiContext, int $userId, array $params = [], array $customHeaders = [])
+    public static function listing(ApiContext $apiContext, int $userId, array $params = [], array $customHeaders = []): BunqResponseCardNameList
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(
@@ -78,7 +78,7 @@ class CardName extends BunqModel
     /**
      * @param string[] $possibleCardNameArray
      */
-    public function setPossibleCardNameArray(array $possibleCardNameArray)
+    public function setPossibleCardNameArray($possibleCardNameArray)
     {
         $this->possibleCardNameArray = $possibleCardNameArray;
     }

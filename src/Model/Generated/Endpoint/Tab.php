@@ -84,7 +84,7 @@ class Tab extends BunqModel
      *
      * @return BunqResponseTabList
      */
-    public static function listing(ApiContext $apiContext, int $userId, int $monetaryAccountId, int $cashRegisterId, array $params = [], array $customHeaders = [])
+    public static function listing(ApiContext $apiContext, int $userId, int $monetaryAccountId, int $cashRegisterId, array $params = [], array $customHeaders = []): BunqResponseTabList
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(
@@ -112,7 +112,7 @@ class Tab extends BunqModel
     /**
      * @param TabUsageSingle $tabUsageSingle
      */
-    public function setTabUsageSingle(TabUsageSingle $tabUsageSingle)
+    public function setTabUsageSingle($tabUsageSingle)
     {
         $this->tabUsageSingle = $tabUsageSingle;
     }
@@ -128,7 +128,7 @@ class Tab extends BunqModel
     /**
      * @param TabUsageMultiple $tabUsageMultiple
      */
-    public function setTabUsageMultiple(TabUsageMultiple $tabUsageMultiple)
+    public function setTabUsageMultiple($tabUsageMultiple)
     {
         $this->tabUsageMultiple = $tabUsageMultiple;
     }

@@ -249,7 +249,7 @@ class Card extends BunqModel
      *
      * @return BunqResponseCardList
      */
-    public static function listing(ApiContext $apiContext, int $userId, array $params = [], array $customHeaders = [])
+    public static function listing(ApiContext $apiContext, int $userId, array $params = [], array $customHeaders = []): BunqResponseCardList
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(
@@ -279,7 +279,7 @@ class Card extends BunqModel
     /**
      * @param int $id
      */
-    public function setId(int $id)
+    public function setId($id)
     {
         $this->id = $id;
     }
@@ -297,7 +297,7 @@ class Card extends BunqModel
     /**
      * @param string $created
      */
-    public function setCreated(string $created)
+    public function setCreated($created)
     {
         $this->created = $created;
     }
@@ -315,7 +315,7 @@ class Card extends BunqModel
     /**
      * @param string $updated
      */
-    public function setUpdated(string $updated)
+    public function setUpdated($updated)
     {
         $this->updated = $updated;
     }
@@ -333,7 +333,7 @@ class Card extends BunqModel
     /**
      * @param string $publicUuid
      */
-    public function setPublicUuid(string $publicUuid)
+    public function setPublicUuid($publicUuid)
     {
         $this->publicUuid = $publicUuid;
     }
@@ -351,7 +351,7 @@ class Card extends BunqModel
     /**
      * @param string $secondLine
      */
-    public function setSecondLine(string $secondLine)
+    public function setSecondLine($secondLine)
     {
         $this->secondLine = $secondLine;
     }
@@ -370,7 +370,7 @@ class Card extends BunqModel
     /**
      * @param string $status
      */
-    public function setStatus(string $status)
+    public function setStatus($status)
     {
         $this->status = $status;
     }
@@ -388,7 +388,7 @@ class Card extends BunqModel
     /**
      * @param string $subStatus
      */
-    public function setSubStatus(string $subStatus)
+    public function setSubStatus($subStatus)
     {
         $this->subStatus = $subStatus;
     }
@@ -408,7 +408,7 @@ class Card extends BunqModel
     /**
      * @param string $orderStatus
      */
-    public function setOrderStatus(string $orderStatus)
+    public function setOrderStatus($orderStatus)
     {
         $this->orderStatus = $orderStatus;
     }
@@ -426,7 +426,7 @@ class Card extends BunqModel
     /**
      * @param string $expiryDate
      */
-    public function setExpiryDate(string $expiryDate)
+    public function setExpiryDate($expiryDate)
     {
         $this->expiryDate = $expiryDate;
     }
@@ -444,7 +444,7 @@ class Card extends BunqModel
     /**
      * @param string $nameOnCard
      */
-    public function setNameOnCard(string $nameOnCard)
+    public function setNameOnCard($nameOnCard)
     {
         $this->nameOnCard = $nameOnCard;
     }
@@ -462,7 +462,7 @@ class Card extends BunqModel
     /**
      * @param string $primaryAccountNumberFourDigit
      */
-    public function setPrimaryAccountNumberFourDigit(string $primaryAccountNumberFourDigit)
+    public function setPrimaryAccountNumberFourDigit($primaryAccountNumberFourDigit)
     {
         $this->primaryAccountNumberFourDigit = $primaryAccountNumberFourDigit;
     }
@@ -482,7 +482,7 @@ class Card extends BunqModel
     /**
      * @param CardLimit[] $limit
      */
-    public function setLimit(array $limit)
+    public function setLimit($limit)
     {
         $this->limit = $limit;
     }
@@ -500,7 +500,7 @@ class Card extends BunqModel
     /**
      * @param CardMagStripePermission $magStripePermission
      */
-    public function setMagStripePermission(CardMagStripePermission $magStripePermission)
+    public function setMagStripePermission($magStripePermission)
     {
         $this->magStripePermission = $magStripePermission;
     }
@@ -518,7 +518,7 @@ class Card extends BunqModel
     /**
      * @param CardCountryPermission[] $countryPermission
      */
-    public function setCountryPermission(array $countryPermission)
+    public function setCountryPermission($countryPermission)
     {
         $this->countryPermission = $countryPermission;
     }
@@ -537,7 +537,7 @@ class Card extends BunqModel
     /**
      * @param LabelMonetaryAccount $labelMonetaryAccountOrdered
      */
-    public function setLabelMonetaryAccountOrdered(LabelMonetaryAccount $labelMonetaryAccountOrdered)
+    public function setLabelMonetaryAccountOrdered($labelMonetaryAccountOrdered)
     {
         $this->labelMonetaryAccountOrdered = $labelMonetaryAccountOrdered;
     }
@@ -556,7 +556,7 @@ class Card extends BunqModel
     /**
      * @param LabelMonetaryAccount $labelMonetaryAccountCurrent
      */
-    public function setLabelMonetaryAccountCurrent(LabelMonetaryAccount $labelMonetaryAccountCurrent)
+    public function setLabelMonetaryAccountCurrent($labelMonetaryAccountCurrent)
     {
         $this->labelMonetaryAccountCurrent = $labelMonetaryAccountCurrent;
     }
@@ -574,7 +574,7 @@ class Card extends BunqModel
     /**
      * @param CardPinAssignment[] $pinCodeAssignment
      */
-    public function setPinCodeAssignment(array $pinCodeAssignment)
+    public function setPinCodeAssignment($pinCodeAssignment)
     {
         $this->pinCodeAssignment = $pinCodeAssignment;
     }
@@ -593,7 +593,7 @@ class Card extends BunqModel
     /**
      * @param int $monetaryAccountIdFallback
      */
-    public function setMonetaryAccountIdFallback(int $monetaryAccountIdFallback)
+    public function setMonetaryAccountIdFallback($monetaryAccountIdFallback)
     {
         $this->monetaryAccountIdFallback = $monetaryAccountIdFallback;
     }

@@ -35,7 +35,7 @@ class PermittedDevice extends BunqModel
     /**
      * @param string $description
      */
-    public function setDescription(string $description)
+    public function setDescription($description)
     {
         $this->description = $description;
     }
@@ -53,7 +53,7 @@ class PermittedDevice extends BunqModel
     /**
      * @param string $ip
      */
-    public function setIp(string $ip)
+    public function setIp($ip)
     {
         $this->ip = $ip;
     }

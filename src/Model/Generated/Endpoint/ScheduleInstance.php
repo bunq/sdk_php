@@ -143,7 +143,7 @@ class ScheduleInstance extends BunqModel
      *
      * @return BunqResponseScheduleInstanceList
      */
-    public static function listing(ApiContext $apiContext, int $userId, int $monetaryAccountId, int $scheduleId, array $params = [], array $customHeaders = [])
+    public static function listing(ApiContext $apiContext, int $userId, int $monetaryAccountId, int $scheduleId, array $params = [], array $customHeaders = []): BunqResponseScheduleInstanceList
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(
@@ -174,7 +174,7 @@ class ScheduleInstance extends BunqModel
     /**
      * @param string $state
      */
-    public function setState(string $state)
+    public function setState($state)
     {
         $this->state = $state;
     }
@@ -192,7 +192,7 @@ class ScheduleInstance extends BunqModel
     /**
      * @param string $timeStart
      */
-    public function setTimeStart(string $timeStart)
+    public function setTimeStart($timeStart)
     {
         $this->timeStart = $timeStart;
     }
@@ -210,7 +210,7 @@ class ScheduleInstance extends BunqModel
     /**
      * @param string $timeEnd
      */
-    public function setTimeEnd(string $timeEnd)
+    public function setTimeEnd($timeEnd)
     {
         $this->timeEnd = $timeEnd;
     }
@@ -229,7 +229,7 @@ class ScheduleInstance extends BunqModel
     /**
      * @param Error[] $errorMessage
      */
-    public function setErrorMessage(array $errorMessage)
+    public function setErrorMessage($errorMessage)
     {
         $this->errorMessage = $errorMessage;
     }
@@ -247,7 +247,7 @@ class ScheduleInstance extends BunqModel
     /**
      * @param BunqModel $scheduledObject
      */
-    public function setScheduledObject(BunqModel $scheduledObject)
+    public function setScheduledObject($scheduledObject)
     {
         $this->scheduledObject = $scheduledObject;
     }
@@ -265,7 +265,7 @@ class ScheduleInstance extends BunqModel
     /**
      * @param BunqModel $resultObject
      */
-    public function setResultObject(BunqModel $resultObject)
+    public function setResultObject($resultObject)
     {
         $this->resultObject = $resultObject;
     }

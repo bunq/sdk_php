@@ -35,7 +35,7 @@ class Error extends BunqModel
     /**
      * @param string $errorDescription
      */
-    public function setErrorDescription(string $errorDescription)
+    public function setErrorDescription($errorDescription)
     {
         $this->errorDescription = $errorDescription;
     }
@@ -53,7 +53,7 @@ class Error extends BunqModel
     /**
      * @param string $errorDescriptionTranslated
      */
-    public function setErrorDescriptionTranslated(string $errorDescriptionTranslated)
+    public function setErrorDescriptionTranslated($errorDescriptionTranslated)
     {
         $this->errorDescriptionTranslated = $errorDescriptionTranslated;
     }

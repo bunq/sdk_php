@@ -43,7 +43,7 @@ class Issuer extends BunqModel
     /**
      * @param string $bic
      */
-    public function setBic(string $bic)
+    public function setBic($bic)
     {
         $this->bic = $bic;
     }
@@ -61,7 +61,7 @@ class Issuer extends BunqModel
     /**
      * @param string $name
      */
-    public function setName(string $name)
+    public function setName($name)
     {
         $this->name = $name;
     }

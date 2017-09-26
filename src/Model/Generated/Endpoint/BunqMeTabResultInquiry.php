@@ -37,7 +37,7 @@ class BunqMeTabResultInquiry extends BunqModel
     /**
      * @param Payment $payment
      */
-    public function setPayment(Payment $payment)
+    public function setPayment($payment)
     {
         $this->payment = $payment;
     }

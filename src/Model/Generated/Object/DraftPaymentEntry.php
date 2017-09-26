@@ -100,7 +100,7 @@ class DraftPaymentEntry extends BunqModel
     /**
      * @param int $id
      */
-    public function setId(int $id)
+    public function setId($id)
     {
         $this->id = $id;
     }
@@ -118,7 +118,7 @@ class DraftPaymentEntry extends BunqModel
     /**
      * @param Amount $amount
      */
-    public function setAmount(Amount $amount)
+    public function setAmount($amount)
     {
         $this->amount = $amount;
     }
@@ -137,7 +137,7 @@ class DraftPaymentEntry extends BunqModel
     /**
      * @param LabelMonetaryAccount $alias
      */
-    public function setAlias(LabelMonetaryAccount $alias)
+    public function setAlias($alias)
     {
         $this->alias = $alias;
     }
@@ -156,7 +156,7 @@ class DraftPaymentEntry extends BunqModel
     /**
      * @param LabelMonetaryAccount $counterpartyAlias
      */
-    public function setCounterpartyAlias(LabelMonetaryAccount $counterpartyAlias)
+    public function setCounterpartyAlias($counterpartyAlias)
     {
         $this->counterpartyAlias = $counterpartyAlias;
     }
@@ -176,7 +176,7 @@ class DraftPaymentEntry extends BunqModel
     /**
      * @param string $description
      */
-    public function setDescription(string $description)
+    public function setDescription($description)
     {
         $this->description = $description;
     }
@@ -194,7 +194,7 @@ class DraftPaymentEntry extends BunqModel
     /**
      * @param string $merchantReference
      */
-    public function setMerchantReference(string $merchantReference)
+    public function setMerchantReference($merchantReference)
     {
         $this->merchantReference = $merchantReference;
     }
@@ -212,7 +212,7 @@ class DraftPaymentEntry extends BunqModel
     /**
      * @param string $type
      */
-    public function setType(string $type)
+    public function setType($type)
     {
         $this->type = $type;
     }
@@ -230,7 +230,7 @@ class DraftPaymentEntry extends BunqModel
     /**
      * @param AttachmentMonetaryAccountPayment[] $attachment
      */
-    public function setAttachment(array $attachment)
+    public function setAttachment($attachment)
     {
         $this->attachment = $attachment;
     }

@@ -224,7 +224,7 @@ class ShareInviteBankInquiry extends BunqModel
      *
      * @return BunqResponseShareInviteBankInquiryList
      */
-    public static function listing(ApiContext $apiContext, int $userId, int $monetaryAccountId, array $params = [], array $customHeaders = [])
+    public static function listing(ApiContext $apiContext, int $userId, int $monetaryAccountId, array $params = [], array $customHeaders = []): BunqResponseShareInviteBankInquiryList
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(
@@ -254,7 +254,7 @@ class ShareInviteBankInquiry extends BunqModel
     /**
      * @param LabelMonetaryAccount $alias
      */
-    public function setAlias(LabelMonetaryAccount $alias)
+    public function setAlias($alias)
     {
         $this->alias = $alias;
     }
@@ -272,7 +272,7 @@ class ShareInviteBankInquiry extends BunqModel
     /**
      * @param LabelUser $userAliasCreated
      */
-    public function setUserAliasCreated(LabelUser $userAliasCreated)
+    public function setUserAliasCreated($userAliasCreated)
     {
         $this->userAliasCreated = $userAliasCreated;
     }
@@ -290,7 +290,7 @@ class ShareInviteBankInquiry extends BunqModel
     /**
      * @param LabelUser $userAliasRevoked
      */
-    public function setUserAliasRevoked(LabelUser $userAliasRevoked)
+    public function setUserAliasRevoked($userAliasRevoked)
     {
         $this->userAliasRevoked = $userAliasRevoked;
     }
@@ -308,7 +308,7 @@ class ShareInviteBankInquiry extends BunqModel
     /**
      * @param LabelUser $counterUserAlias
      */
-    public function setCounterUserAlias(LabelUser $counterUserAlias)
+    public function setCounterUserAlias($counterUserAlias)
     {
         $this->counterUserAlias = $counterUserAlias;
     }
@@ -326,7 +326,7 @@ class ShareInviteBankInquiry extends BunqModel
     /**
      * @param int $monetaryAccountId
      */
-    public function setMonetaryAccountId(int $monetaryAccountId)
+    public function setMonetaryAccountId($monetaryAccountId)
     {
         $this->monetaryAccountId = $monetaryAccountId;
     }
@@ -344,7 +344,7 @@ class ShareInviteBankInquiry extends BunqModel
     /**
      * @param int $draftShareInviteBankId
      */
-    public function setDraftShareInviteBankId(int $draftShareInviteBankId)
+    public function setDraftShareInviteBankId($draftShareInviteBankId)
     {
         $this->draftShareInviteBankId = $draftShareInviteBankId;
     }
@@ -362,7 +362,7 @@ class ShareInviteBankInquiry extends BunqModel
     /**
      * @param ShareDetail $shareDetail
      */
-    public function setShareDetail(ShareDetail $shareDetail)
+    public function setShareDetail($shareDetail)
     {
         $this->shareDetail = $shareDetail;
     }
@@ -382,7 +382,7 @@ class ShareInviteBankInquiry extends BunqModel
     /**
      * @param string $status
      */
-    public function setStatus(string $status)
+    public function setStatus($status)
     {
         $this->status = $status;
     }
@@ -400,7 +400,7 @@ class ShareInviteBankInquiry extends BunqModel
     /**
      * @param string $startDate
      */
-    public function setStartDate(string $startDate)
+    public function setStartDate($startDate)
     {
         $this->startDate = $startDate;
     }
@@ -418,7 +418,7 @@ class ShareInviteBankInquiry extends BunqModel
     /**
      * @param string $endDate
      */
-    public function setEndDate(string $endDate)
+    public function setEndDate($endDate)
     {
         $this->endDate = $endDate;
     }
@@ -436,7 +436,7 @@ class ShareInviteBankInquiry extends BunqModel
     /**
      * @param int $id
      */
-    public function setId(int $id)
+    public function setId($id)
     {
         $this->id = $id;
     }

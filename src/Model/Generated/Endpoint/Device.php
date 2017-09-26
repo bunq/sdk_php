@@ -74,7 +74,7 @@ class Device extends BunqModel
      *
      * @return BunqResponseDeviceList
      */
-    public static function listing(ApiContext $apiContext, array $params = [], array $customHeaders = [])
+    public static function listing(ApiContext $apiContext, array $params = [], array $customHeaders = []): BunqResponseDeviceList
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(
@@ -102,7 +102,7 @@ class Device extends BunqModel
     /**
      * @param DevicePhone $devicePhone
      */
-    public function setDevicePhone(DevicePhone $devicePhone)
+    public function setDevicePhone($devicePhone)
     {
         $this->devicePhone = $devicePhone;
     }
@@ -118,7 +118,7 @@ class Device extends BunqModel
     /**
      * @param DeviceServer $deviceServer
      */
-    public function setDeviceServer(DeviceServer $deviceServer)
+    public function setDeviceServer($deviceServer)
     {
         $this->deviceServer = $deviceServer;
     }

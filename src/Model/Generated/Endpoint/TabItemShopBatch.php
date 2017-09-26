@@ -78,7 +78,7 @@ class TabItemShopBatch extends BunqModel
     /**
      * @param TabItemShop[] $tabItems
      */
-    public function setTabItems(array $tabItems)
+    public function setTabItems($tabItems)
     {
         $this->tabItems = $tabItems;
     }

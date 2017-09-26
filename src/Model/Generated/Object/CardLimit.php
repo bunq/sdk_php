@@ -62,7 +62,7 @@ class CardLimit extends BunqModel
     /**
      * @param int $id
      */
-    public function setId(int $id)
+    public function setId($id)
     {
         $this->id = $id;
     }
@@ -80,7 +80,7 @@ class CardLimit extends BunqModel
     /**
      * @param string $dailyLimit
      */
-    public function setDailyLimit(string $dailyLimit)
+    public function setDailyLimit($dailyLimit)
     {
         $this->dailyLimit = $dailyLimit;
     }
@@ -98,7 +98,7 @@ class CardLimit extends BunqModel
     /**
      * @param string $currency
      */
-    public function setCurrency(string $currency)
+    public function setCurrency($currency)
     {
         $this->currency = $currency;
     }
@@ -117,7 +117,7 @@ class CardLimit extends BunqModel
     /**
      * @param string $type
      */
-    public function setType(string $type)
+    public function setType($type)
     {
         $this->type = $type;
     }

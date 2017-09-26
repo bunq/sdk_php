@@ -93,7 +93,7 @@ class TabAttachmentTab extends BunqModel
     /**
      * @param int $id
      */
-    public function setId(int $id)
+    public function setId($id)
     {
         $this->id = $id;
     }
@@ -111,7 +111,7 @@ class TabAttachmentTab extends BunqModel
     /**
      * @param string $created
      */
-    public function setCreated(string $created)
+    public function setCreated($created)
     {
         $this->created = $created;
     }
@@ -129,7 +129,7 @@ class TabAttachmentTab extends BunqModel
     /**
      * @param string $updated
      */
-    public function setUpdated(string $updated)
+    public function setUpdated($updated)
     {
         $this->updated = $updated;
     }
@@ -147,7 +147,7 @@ class TabAttachmentTab extends BunqModel
     /**
      * @param Attachment $attachment
      */
-    public function setAttachment(Attachment $attachment)
+    public function setAttachment($attachment)
     {
         $this->attachment = $attachment;
     }

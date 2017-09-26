@@ -147,7 +147,7 @@ class DeviceServer extends BunqModel
      *
      * @return BunqResponseDeviceServerList
      */
-    public static function listing(ApiContext $apiContext, array $params = [], array $customHeaders = [])
+    public static function listing(ApiContext $apiContext, array $params = [], array $customHeaders = []): BunqResponseDeviceServerList
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(
@@ -177,7 +177,7 @@ class DeviceServer extends BunqModel
     /**
      * @param int $id
      */
-    public function setId(int $id)
+    public function setId($id)
     {
         $this->id = $id;
     }
@@ -195,7 +195,7 @@ class DeviceServer extends BunqModel
     /**
      * @param string $created
      */
-    public function setCreated(string $created)
+    public function setCreated($created)
     {
         $this->created = $created;
     }
@@ -213,7 +213,7 @@ class DeviceServer extends BunqModel
     /**
      * @param string $updated
      */
-    public function setUpdated(string $updated)
+    public function setUpdated($updated)
     {
         $this->updated = $updated;
     }
@@ -231,7 +231,7 @@ class DeviceServer extends BunqModel
     /**
      * @param string $description
      */
-    public function setDescription(string $description)
+    public function setDescription($description)
     {
         $this->description = $description;
     }
@@ -249,7 +249,7 @@ class DeviceServer extends BunqModel
     /**
      * @param string $ip
      */
-    public function setIp(string $ip)
+    public function setIp($ip)
     {
         $this->ip = $ip;
     }
@@ -268,7 +268,7 @@ class DeviceServer extends BunqModel
     /**
      * @param string $status
      */
-    public function setStatus(string $status)
+    public function setStatus($status)
     {
         $this->status = $status;
     }

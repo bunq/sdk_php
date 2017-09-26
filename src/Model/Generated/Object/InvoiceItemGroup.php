@@ -70,7 +70,7 @@ class InvoiceItemGroup extends BunqModel
     /**
      * @param string $type
      */
-    public function setType(string $type)
+    public function setType($type)
     {
         $this->type = $type;
     }
@@ -88,7 +88,7 @@ class InvoiceItemGroup extends BunqModel
     /**
      * @param string $typeDescription
      */
-    public function setTypeDescription(string $typeDescription)
+    public function setTypeDescription($typeDescription)
     {
         $this->typeDescription = $typeDescription;
     }
@@ -106,7 +106,7 @@ class InvoiceItemGroup extends BunqModel
     /**
      * @param string $typeDescriptionTranslated
      */
-    public function setTypeDescriptionTranslated(string $typeDescriptionTranslated)
+    public function setTypeDescriptionTranslated($typeDescriptionTranslated)
     {
         $this->typeDescriptionTranslated = $typeDescriptionTranslated;
     }
@@ -124,7 +124,7 @@ class InvoiceItemGroup extends BunqModel
     /**
      * @param string $instanceDescription
      */
-    public function setInstanceDescription(string $instanceDescription)
+    public function setInstanceDescription($instanceDescription)
     {
         $this->instanceDescription = $instanceDescription;
     }
@@ -142,7 +142,7 @@ class InvoiceItemGroup extends BunqModel
     /**
      * @param Amount $productVatExclusive
      */
-    public function setProductVatExclusive(Amount $productVatExclusive)
+    public function setProductVatExclusive($productVatExclusive)
     {
         $this->productVatExclusive = $productVatExclusive;
     }
@@ -160,7 +160,7 @@ class InvoiceItemGroup extends BunqModel
     /**
      * @param Amount $productVatInclusive
      */
-    public function setProductVatInclusive(Amount $productVatInclusive)
+    public function setProductVatInclusive($productVatInclusive)
     {
         $this->productVatInclusive = $productVatInclusive;
     }
@@ -178,7 +178,7 @@ class InvoiceItemGroup extends BunqModel
     /**
      * @param InvoiceItem $item
      */
-    public function setItem(InvoiceItem $item)
+    public function setItem($item)
     {
         $this->item = $item;
     }

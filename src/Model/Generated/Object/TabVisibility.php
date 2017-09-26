@@ -53,7 +53,7 @@ class TabVisibility extends BunqModel
     /**
      * @param bool $cashRegisterQrCode
      */
-    public function setCashRegisterQrCode(bool $cashRegisterQrCode)
+    public function setCashRegisterQrCode($cashRegisterQrCode)
     {
         $this->cashRegisterQrCode = $cashRegisterQrCode;
     }
@@ -72,7 +72,7 @@ class TabVisibility extends BunqModel
     /**
      * @param bool $tabQrCode
      */
-    public function setTabQrCode(bool $tabQrCode)
+    public function setTabQrCode($tabQrCode)
     {
         $this->tabQrCode = $tabQrCode;
     }
@@ -90,7 +90,7 @@ class TabVisibility extends BunqModel
     /**
      * @param Geolocation $location
      */
-    public function setLocation(Geolocation $location)
+    public function setLocation($location)
     {
         $this->location = $location;
     }

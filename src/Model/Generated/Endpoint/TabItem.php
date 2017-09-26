@@ -82,7 +82,7 @@ class TabItem extends BunqModel
     /**
      * @param int $id
      */
-    public function setId(int $id)
+    public function setId($id)
     {
         $this->id = $id;
     }
@@ -100,7 +100,7 @@ class TabItem extends BunqModel
     /**
      * @param string $description
      */
-    public function setDescription(string $description)
+    public function setDescription($description)
     {
         $this->description = $description;
     }
@@ -118,7 +118,7 @@ class TabItem extends BunqModel
     /**
      * @param string $eanCode
      */
-    public function setEanCode(string $eanCode)
+    public function setEanCode($eanCode)
     {
         $this->eanCode = $eanCode;
     }
@@ -137,7 +137,7 @@ class TabItem extends BunqModel
     /**
      * @param AttachmentPublic $avatarAttachment
      */
-    public function setAvatarAttachment(AttachmentPublic $avatarAttachment)
+    public function setAvatarAttachment($avatarAttachment)
     {
         $this->avatarAttachment = $avatarAttachment;
     }
@@ -155,7 +155,7 @@ class TabItem extends BunqModel
     /**
      * @param AttachmentTab[] $tabAttachment
      */
-    public function setTabAttachment(array $tabAttachment)
+    public function setTabAttachment($tabAttachment)
     {
         $this->tabAttachment = $tabAttachment;
     }
@@ -174,7 +174,7 @@ class TabItem extends BunqModel
     /**
      * @param string $quantity
      */
-    public function setQuantity(string $quantity)
+    public function setQuantity($quantity)
     {
         $this->quantity = $quantity;
     }
@@ -192,7 +192,7 @@ class TabItem extends BunqModel
     /**
      * @param Amount $amount
      */
-    public function setAmount(Amount $amount)
+    public function setAmount($amount)
     {
         $this->amount = $amount;
     }

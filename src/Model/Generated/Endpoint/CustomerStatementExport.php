@@ -170,7 +170,7 @@ class CustomerStatementExport extends BunqModel
      *
      * @return BunqResponseCustomerStatementExportList
      */
-    public static function listing(ApiContext $apiContext, int $userId, int $monetaryAccountId, array $params = [], array $customHeaders = [])
+    public static function listing(ApiContext $apiContext, int $userId, int $monetaryAccountId, array $params = [], array $customHeaders = []): BunqResponseCustomerStatementExportList
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(
@@ -225,7 +225,7 @@ class CustomerStatementExport extends BunqModel
     /**
      * @param int $id
      */
-    public function setId(int $id)
+    public function setId($id)
     {
         $this->id = $id;
     }
@@ -243,7 +243,7 @@ class CustomerStatementExport extends BunqModel
     /**
      * @param string $created
      */
-    public function setCreated(string $created)
+    public function setCreated($created)
     {
         $this->created = $created;
     }
@@ -261,7 +261,7 @@ class CustomerStatementExport extends BunqModel
     /**
      * @param string $updated
      */
-    public function setUpdated(string $updated)
+    public function setUpdated($updated)
     {
         $this->updated = $updated;
     }
@@ -279,7 +279,7 @@ class CustomerStatementExport extends BunqModel
     /**
      * @param string $dateStart
      */
-    public function setDateStart(string $dateStart)
+    public function setDateStart($dateStart)
     {
         $this->dateStart = $dateStart;
     }
@@ -297,7 +297,7 @@ class CustomerStatementExport extends BunqModel
     /**
      * @param string $dateEnd
      */
-    public function setDateEnd(string $dateEnd)
+    public function setDateEnd($dateEnd)
     {
         $this->dateEnd = $dateEnd;
     }
@@ -315,7 +315,7 @@ class CustomerStatementExport extends BunqModel
     /**
      * @param string $status
      */
-    public function setStatus(string $status)
+    public function setStatus($status)
     {
         $this->status = $status;
     }
@@ -333,7 +333,7 @@ class CustomerStatementExport extends BunqModel
     /**
      * @param int $statementNumber
      */
-    public function setStatementNumber(int $statementNumber)
+    public function setStatementNumber($statementNumber)
     {
         $this->statementNumber = $statementNumber;
     }
@@ -351,7 +351,7 @@ class CustomerStatementExport extends BunqModel
     /**
      * @param string $statementFormat
      */
-    public function setStatementFormat(string $statementFormat)
+    public function setStatementFormat($statementFormat)
     {
         $this->statementFormat = $statementFormat;
     }
@@ -369,7 +369,7 @@ class CustomerStatementExport extends BunqModel
     /**
      * @param string $regionalFormat
      */
-    public function setRegionalFormat(string $regionalFormat)
+    public function setRegionalFormat($regionalFormat)
     {
         $this->regionalFormat = $regionalFormat;
     }
@@ -387,7 +387,7 @@ class CustomerStatementExport extends BunqModel
     /**
      * @param LabelMonetaryAccount $aliasMonetaryAccount
      */
-    public function setAliasMonetaryAccount(LabelMonetaryAccount $aliasMonetaryAccount)
+    public function setAliasMonetaryAccount($aliasMonetaryAccount)
     {
         $this->aliasMonetaryAccount = $aliasMonetaryAccount;
     }

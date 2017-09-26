@@ -139,7 +139,7 @@ class AnchoredObject extends BunqModel
     /**
      * @param CardDebit $cardDebit
      */
-    public function setCardDebit(CardDebit $cardDebit)
+    public function setCardDebit($cardDebit)
     {
         $this->cardDebit = $cardDebit;
     }
@@ -155,7 +155,7 @@ class AnchoredObject extends BunqModel
     /**
      * @param CardPinChange $cardPinChange
      */
-    public function setCardPinChange(CardPinChange $cardPinChange)
+    public function setCardPinChange($cardPinChange)
     {
         $this->cardPinChange = $cardPinChange;
     }
@@ -171,7 +171,7 @@ class AnchoredObject extends BunqModel
     /**
      * @param CardResult $cardResult
      */
-    public function setCardResult(CardResult $cardResult)
+    public function setCardResult($cardResult)
     {
         $this->cardResult = $cardResult;
     }
@@ -187,7 +187,7 @@ class AnchoredObject extends BunqModel
     /**
      * @param DraftPayment $draftPayment
      */
-    public function setDraftPayment(DraftPayment $draftPayment)
+    public function setDraftPayment($draftPayment)
     {
         $this->draftPayment = $draftPayment;
     }
@@ -203,7 +203,7 @@ class AnchoredObject extends BunqModel
     /**
      * @param IdealMerchantTransaction $idealMerchantTransaction
      */
-    public function setIdealMerchantTransaction(IdealMerchantTransaction $idealMerchantTransaction)
+    public function setIdealMerchantTransaction($idealMerchantTransaction)
     {
         $this->idealMerchantTransaction = $idealMerchantTransaction;
     }
@@ -219,7 +219,7 @@ class AnchoredObject extends BunqModel
     /**
      * @param Invoice $invoice
      */
-    public function setInvoice(Invoice $invoice)
+    public function setInvoice($invoice)
     {
         $this->invoice = $invoice;
     }
@@ -235,7 +235,7 @@ class AnchoredObject extends BunqModel
     /**
      * @param Payment $payment
      */
-    public function setPayment(Payment $payment)
+    public function setPayment($payment)
     {
         $this->payment = $payment;
     }
@@ -251,7 +251,7 @@ class AnchoredObject extends BunqModel
     /**
      * @param PaymentBatch $paymentBatch
      */
-    public function setPaymentBatch(PaymentBatch $paymentBatch)
+    public function setPaymentBatch($paymentBatch)
     {
         $this->paymentBatch = $paymentBatch;
     }
@@ -267,7 +267,7 @@ class AnchoredObject extends BunqModel
     /**
      * @param PromotionDisplay $promotionDisplay
      */
-    public function setPromotionDisplay(PromotionDisplay $promotionDisplay)
+    public function setPromotionDisplay($promotionDisplay)
     {
         $this->promotionDisplay = $promotionDisplay;
     }
@@ -283,7 +283,7 @@ class AnchoredObject extends BunqModel
     /**
      * @param RequestInquiryBatch $requestInquiryBatch
      */
-    public function setRequestInquiryBatch(RequestInquiryBatch $requestInquiryBatch)
+    public function setRequestInquiryBatch($requestInquiryBatch)
     {
         $this->requestInquiryBatch = $requestInquiryBatch;
     }
@@ -299,7 +299,7 @@ class AnchoredObject extends BunqModel
     /**
      * @param RequestInquiry $requestInquiry
      */
-    public function setRequestInquiry(RequestInquiry $requestInquiry)
+    public function setRequestInquiry($requestInquiry)
     {
         $this->requestInquiry = $requestInquiry;
     }
@@ -315,7 +315,7 @@ class AnchoredObject extends BunqModel
     /**
      * @param RequestResponse $requestResponse
      */
-    public function setRequestResponse(RequestResponse $requestResponse)
+    public function setRequestResponse($requestResponse)
     {
         $this->requestResponse = $requestResponse;
     }
@@ -331,7 +331,7 @@ class AnchoredObject extends BunqModel
     /**
      * @param SchedulePaymentBatch $scheduledPaymentBatch
      */
-    public function setScheduledPaymentBatch(SchedulePaymentBatch $scheduledPaymentBatch)
+    public function setScheduledPaymentBatch($scheduledPaymentBatch)
     {
         $this->scheduledPaymentBatch = $scheduledPaymentBatch;
     }
@@ -347,7 +347,7 @@ class AnchoredObject extends BunqModel
     /**
      * @param SchedulePayment $scheduledPayment
      */
-    public function setScheduledPayment(SchedulePayment $scheduledPayment)
+    public function setScheduledPayment($scheduledPayment)
     {
         $this->scheduledPayment = $scheduledPayment;
     }
@@ -363,7 +363,7 @@ class AnchoredObject extends BunqModel
     /**
      * @param ScheduleRequestInquiryBatch $scheduledRequestInquiryBatch
      */
-    public function setScheduledRequestInquiryBatch(ScheduleRequestInquiryBatch $scheduledRequestInquiryBatch)
+    public function setScheduledRequestInquiryBatch($scheduledRequestInquiryBatch)
     {
         $this->scheduledRequestInquiryBatch = $scheduledRequestInquiryBatch;
     }
@@ -379,7 +379,7 @@ class AnchoredObject extends BunqModel
     /**
      * @param ScheduleRequestInquiry $scheduledRequestInquiry
      */
-    public function setScheduledRequestInquiry(ScheduleRequestInquiry $scheduledRequestInquiry)
+    public function setScheduledRequestInquiry($scheduledRequestInquiry)
     {
         $this->scheduledRequestInquiry = $scheduledRequestInquiry;
     }
@@ -395,7 +395,7 @@ class AnchoredObject extends BunqModel
     /**
      * @param ScheduleInstance $scheduledInstance
      */
-    public function setScheduledInstance(ScheduleInstance $scheduledInstance)
+    public function setScheduledInstance($scheduledInstance)
     {
         $this->scheduledInstance = $scheduledInstance;
     }
@@ -411,7 +411,7 @@ class AnchoredObject extends BunqModel
     /**
      * @param ShareInviteBankInquiry $shareInviteBankInquiry
      */
-    public function setShareInviteBankInquiry(ShareInviteBankInquiry $shareInviteBankInquiry)
+    public function setShareInviteBankInquiry($shareInviteBankInquiry)
     {
         $this->shareInviteBankInquiry = $shareInviteBankInquiry;
     }
@@ -427,7 +427,7 @@ class AnchoredObject extends BunqModel
     /**
      * @param ShareInviteBankResponse $shareInviteBankResponse
      */
-    public function setShareInviteBankResponse(ShareInviteBankResponse $shareInviteBankResponse)
+    public function setShareInviteBankResponse($shareInviteBankResponse)
     {
         $this->shareInviteBankResponse = $shareInviteBankResponse;
     }
@@ -443,7 +443,7 @@ class AnchoredObject extends BunqModel
     /**
      * @param UserCredentialPasswordIp $userCredentialPasswordIp
      */
-    public function setUserCredentialPasswordIp(UserCredentialPasswordIp $userCredentialPasswordIp)
+    public function setUserCredentialPasswordIp($userCredentialPasswordIp)
     {
         $this->userCredentialPasswordIp = $userCredentialPasswordIp;
     }

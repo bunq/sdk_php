@@ -54,7 +54,7 @@ class ChatMessageContent extends BunqModel
     /**
      * @param ChatMessageContentAnchorEvent $chatMessageContentAnchorEvent
      */
-    public function setChatMessageContentAnchorEvent(ChatMessageContentAnchorEvent $chatMessageContentAnchorEvent)
+    public function setChatMessageContentAnchorEvent($chatMessageContentAnchorEvent)
     {
         $this->chatMessageContentAnchorEvent = $chatMessageContentAnchorEvent;
     }
@@ -70,7 +70,7 @@ class ChatMessageContent extends BunqModel
     /**
      * @param ChatMessageContentAttachment $chatMessageContentAttachment
      */
-    public function setChatMessageContentAttachment(ChatMessageContentAttachment $chatMessageContentAttachment)
+    public function setChatMessageContentAttachment($chatMessageContentAttachment)
     {
         $this->chatMessageContentAttachment = $chatMessageContentAttachment;
     }
@@ -86,7 +86,7 @@ class ChatMessageContent extends BunqModel
     /**
      * @param ChatMessageContentGeolocation $chatMessageContentGeolocation
      */
-    public function setChatMessageContentGeolocation(ChatMessageContentGeolocation $chatMessageContentGeolocation)
+    public function setChatMessageContentGeolocation($chatMessageContentGeolocation)
     {
         $this->chatMessageContentGeolocation = $chatMessageContentGeolocation;
     }
@@ -103,7 +103,7 @@ class ChatMessageContent extends BunqModel
      * @param ChatMessageContentStatusConversationTitle
      * $chatMessageContentStatusConversationTitle
      */
-    public function setChatMessageContentStatusConversationTitle(ChatMessageContentStatusConversationTitle $chatMessageContentStatusConversationTitle)
+    public function setChatMessageContentStatusConversationTitle($chatMessageContentStatusConversationTitle)
     {
         $this->chatMessageContentStatusConversationTitle = $chatMessageContentStatusConversationTitle;
     }
@@ -120,7 +120,7 @@ class ChatMessageContent extends BunqModel
      * @param ChatMessageContentStatusConversation
      * $chatMessageContentStatusConversation
      */
-    public function setChatMessageContentStatusConversation(ChatMessageContentStatusConversation $chatMessageContentStatusConversation)
+    public function setChatMessageContentStatusConversation($chatMessageContentStatusConversation)
     {
         $this->chatMessageContentStatusConversation = $chatMessageContentStatusConversation;
     }
@@ -137,7 +137,7 @@ class ChatMessageContent extends BunqModel
      * @param ChatMessageContentStatusMembership
      * $chatMessageContentStatusMembership
      */
-    public function setChatMessageContentStatusMembership(ChatMessageContentStatusMembership $chatMessageContentStatusMembership)
+    public function setChatMessageContentStatusMembership($chatMessageContentStatusMembership)
     {
         $this->chatMessageContentStatusMembership = $chatMessageContentStatusMembership;
     }
@@ -153,7 +153,7 @@ class ChatMessageContent extends BunqModel
     /**
      * @param ChatMessageContentText $chatMessageContentText
      */
-    public function setChatMessageContentText(ChatMessageContentText $chatMessageContentText)
+    public function setChatMessageContentText($chatMessageContentText)
     {
         $this->chatMessageContentText = $chatMessageContentText;
     }

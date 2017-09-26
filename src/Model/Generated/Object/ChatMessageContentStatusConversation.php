@@ -28,7 +28,7 @@ class ChatMessageContentStatusConversation extends BunqModel
     /**
      * @param string $action
      */
-    public function setAction(string $action)
+    public function setAction($action)
     {
         $this->action = $action;
     }

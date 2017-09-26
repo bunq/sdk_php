@@ -114,7 +114,7 @@ class CertificatePinned extends BunqModel
      *
      * @return BunqResponseCertificatePinnedList
      */
-    public static function listing(ApiContext $apiContext, int $userId, array $params = [], array $customHeaders = [])
+    public static function listing(ApiContext $apiContext, int $userId, array $params = [], array $customHeaders = []): BunqResponseCertificatePinnedList
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(
@@ -172,7 +172,7 @@ class CertificatePinned extends BunqModel
     /**
      * @param string $certificateChain
      */
-    public function setCertificateChain(string $certificateChain)
+    public function setCertificateChain($certificateChain)
     {
         $this->certificateChain = $certificateChain;
     }
@@ -190,7 +190,7 @@ class CertificatePinned extends BunqModel
     /**
      * @param int $id
      */
-    public function setId(int $id)
+    public function setId($id)
     {
         $this->id = $id;
     }

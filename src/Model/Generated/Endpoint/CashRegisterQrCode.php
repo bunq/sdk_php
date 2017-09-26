@@ -185,7 +185,7 @@ class CashRegisterQrCode extends BunqModel
      *
      * @return BunqResponseCashRegisterQrCodeList
      */
-    public static function listing(ApiContext $apiContext, int $userId, int $monetaryAccountId, int $cashRegisterId, array $params = [], array $customHeaders = [])
+    public static function listing(ApiContext $apiContext, int $userId, int $monetaryAccountId, int $cashRegisterId, array $params = [], array $customHeaders = []): BunqResponseCashRegisterQrCodeList
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(
@@ -216,7 +216,7 @@ class CashRegisterQrCode extends BunqModel
     /**
      * @param int $id
      */
-    public function setId(int $id)
+    public function setId($id)
     {
         $this->id = $id;
     }
@@ -234,7 +234,7 @@ class CashRegisterQrCode extends BunqModel
     /**
      * @param string $created
      */
-    public function setCreated(string $created)
+    public function setCreated($created)
     {
         $this->created = $created;
     }
@@ -252,7 +252,7 @@ class CashRegisterQrCode extends BunqModel
     /**
      * @param string $updated
      */
-    public function setUpdated(string $updated)
+    public function setUpdated($updated)
     {
         $this->updated = $updated;
     }
@@ -272,7 +272,7 @@ class CashRegisterQrCode extends BunqModel
     /**
      * @param string $status
      */
-    public function setStatus(string $status)
+    public function setStatus($status)
     {
         $this->status = $status;
     }
@@ -290,7 +290,7 @@ class CashRegisterQrCode extends BunqModel
     /**
      * @param CashRegister $cashRegister
      */
-    public function setCashRegister(CashRegister $cashRegister)
+    public function setCashRegister($cashRegister)
     {
         $this->cashRegister = $cashRegister;
     }
@@ -308,7 +308,7 @@ class CashRegisterQrCode extends BunqModel
     /**
      * @param Tab $tabObject
      */
-    public function setTabObject(Tab $tabObject)
+    public function setTabObject($tabObject)
     {
         $this->tabObject = $tabObject;
     }

@@ -91,7 +91,7 @@ class BunqMeTabEntry extends BunqModel
     /**
      * @param string $uuid
      */
-    public function setUuid(string $uuid)
+    public function setUuid($uuid)
     {
         $this->uuid = $uuid;
     }
@@ -109,7 +109,7 @@ class BunqMeTabEntry extends BunqModel
     /**
      * @param Amount $amountInquired
      */
-    public function setAmountInquired(Amount $amountInquired)
+    public function setAmountInquired($amountInquired)
     {
         $this->amountInquired = $amountInquired;
     }
@@ -128,7 +128,7 @@ class BunqMeTabEntry extends BunqModel
     /**
      * @param LabelMonetaryAccount $alias
      */
-    public function setAlias(LabelMonetaryAccount $alias)
+    public function setAlias($alias)
     {
         $this->alias = $alias;
     }
@@ -146,7 +146,7 @@ class BunqMeTabEntry extends BunqModel
     /**
      * @param string $description
      */
-    public function setDescription(string $description)
+    public function setDescription($description)
     {
         $this->description = $description;
     }
@@ -165,7 +165,7 @@ class BunqMeTabEntry extends BunqModel
     /**
      * @param string $status
      */
-    public function setStatus(string $status)
+    public function setStatus($status)
     {
         $this->status = $status;
     }
@@ -183,7 +183,7 @@ class BunqMeTabEntry extends BunqModel
     /**
      * @param string $redirectUrl
      */
-    public function setRedirectUrl(string $redirectUrl)
+    public function setRedirectUrl($redirectUrl)
     {
         $this->redirectUrl = $redirectUrl;
     }
@@ -201,7 +201,7 @@ class BunqMeTabEntry extends BunqModel
     /**
      * @param BunqMeMerchantAvailable[] $merchantAvailable
      */
-    public function setMerchantAvailable(array $merchantAvailable)
+    public function setMerchantAvailable($merchantAvailable)
     {
         $this->merchantAvailable = $merchantAvailable;
     }

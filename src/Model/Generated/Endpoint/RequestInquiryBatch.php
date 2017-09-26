@@ -150,7 +150,7 @@ class RequestInquiryBatch extends BunqModel
      *
      * @return BunqResponseRequestInquiryBatchList
      */
-    public static function listing(ApiContext $apiContext, int $userId, int $monetaryAccountId, array $params = [], array $customHeaders = [])
+    public static function listing(ApiContext $apiContext, int $userId, int $monetaryAccountId, array $params = [], array $customHeaders = []): BunqResponseRequestInquiryBatchList
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(
@@ -180,7 +180,7 @@ class RequestInquiryBatch extends BunqModel
     /**
      * @param RequestInquiry[] $requestInquiries
      */
-    public function setRequestInquiries(array $requestInquiries)
+    public function setRequestInquiries($requestInquiries)
     {
         $this->requestInquiries = $requestInquiries;
     }
@@ -198,7 +198,7 @@ class RequestInquiryBatch extends BunqModel
     /**
      * @param Amount $totalAmountInquired
      */
-    public function setTotalAmountInquired(Amount $totalAmountInquired)
+    public function setTotalAmountInquired($totalAmountInquired)
     {
         $this->totalAmountInquired = $totalAmountInquired;
     }

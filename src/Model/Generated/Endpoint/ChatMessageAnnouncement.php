@@ -72,7 +72,7 @@ class ChatMessageAnnouncement extends BunqModel
     /**
      * @param int $id
      */
-    public function setId(int $id)
+    public function setId($id)
     {
         $this->id = $id;
     }
@@ -90,7 +90,7 @@ class ChatMessageAnnouncement extends BunqModel
     /**
      * @param string $created
      */
-    public function setCreated(string $created)
+    public function setCreated($created)
     {
         $this->created = $created;
     }
@@ -108,7 +108,7 @@ class ChatMessageAnnouncement extends BunqModel
     /**
      * @param string $updated
      */
-    public function setUpdated(string $updated)
+    public function setUpdated($updated)
     {
         $this->updated = $updated;
     }
@@ -126,7 +126,7 @@ class ChatMessageAnnouncement extends BunqModel
     /**
      * @param int $conversationId
      */
-    public function setConversationId(int $conversationId)
+    public function setConversationId($conversationId)
     {
         $this->conversationId = $conversationId;
     }
@@ -144,7 +144,7 @@ class ChatMessageAnnouncement extends BunqModel
     /**
      * @param LabelUser $creator
      */
-    public function setCreator(LabelUser $creator)
+    public function setCreator($creator)
     {
         $this->creator = $creator;
     }
@@ -162,7 +162,7 @@ class ChatMessageAnnouncement extends BunqModel
     /**
      * @param ChatMessageContent $content
      */
-    public function setContent(ChatMessageContent $content)
+    public function setContent($content)
     {
         $this->content = $content;
     }

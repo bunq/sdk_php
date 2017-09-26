@@ -56,7 +56,7 @@ class ChatConversationSupportExternal extends BunqModel
     /**
      * @param int $id
      */
-    public function setId(int $id)
+    public function setId($id)
     {
         $this->id = $id;
     }
@@ -74,7 +74,7 @@ class ChatConversationSupportExternal extends BunqModel
     /**
      * @param string $created
      */
-    public function setCreated(string $created)
+    public function setCreated($created)
     {
         $this->created = $created;
     }
@@ -92,7 +92,7 @@ class ChatConversationSupportExternal extends BunqModel
     /**
      * @param string $updated
      */
-    public function setUpdated(string $updated)
+    public function setUpdated($updated)
     {
         $this->updated = $updated;
     }
@@ -110,7 +110,7 @@ class ChatConversationSupportExternal extends BunqModel
     /**
      * @param ChatMessage $lastMessage
      */
-    public function setLastMessage(ChatMessage $lastMessage)
+    public function setLastMessage($lastMessage)
     {
         $this->lastMessage = $lastMessage;
     }

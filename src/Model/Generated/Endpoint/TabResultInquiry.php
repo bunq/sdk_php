@@ -86,7 +86,7 @@ class TabResultInquiry extends BunqModel
      *
      * @return BunqResponseTabResultInquiryList
      */
-    public static function listing(ApiContext $apiContext, int $userId, int $monetaryAccountId, int $cashRegisterId, string $tabUuid, array $params = [], array $customHeaders = [])
+    public static function listing(ApiContext $apiContext, int $userId, int $monetaryAccountId, int $cashRegisterId, string $tabUuid, array $params = [], array $customHeaders = []): BunqResponseTabResultInquiryList
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(
@@ -116,7 +116,7 @@ class TabResultInquiry extends BunqModel
     /**
      * @param Tab $tab
      */
-    public function setTab(Tab $tab)
+    public function setTab($tab)
     {
         $this->tab = $tab;
     }
@@ -134,7 +134,7 @@ class TabResultInquiry extends BunqModel
     /**
      * @param Payment $payment
      */
-    public function setPayment(Payment $payment)
+    public function setPayment($payment)
     {
         $this->payment = $payment;
     }

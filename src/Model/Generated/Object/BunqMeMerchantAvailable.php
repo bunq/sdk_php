@@ -35,7 +35,7 @@ class BunqMeMerchantAvailable extends BunqModel
     /**
      * @param string $merchantType
      */
-    public function setMerchantType(string $merchantType)
+    public function setMerchantType($merchantType)
     {
         $this->merchantType = $merchantType;
     }
@@ -53,7 +53,7 @@ class BunqMeMerchantAvailable extends BunqModel
     /**
      * @param bool $available
      */
-    public function setAvailable(bool $available)
+    public function setAvailable($available)
     {
         $this->available = $available;
     }

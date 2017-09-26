@@ -56,7 +56,7 @@ class ShareDetail extends BunqModel
     /**
      * @param ShareDetailPayment $payment
      */
-    public function setPayment(ShareDetailPayment $payment)
+    public function setPayment($payment)
     {
         $this->payment = $payment;
     }
@@ -75,7 +75,7 @@ class ShareDetail extends BunqModel
     /**
      * @param ShareDetailReadOnly $readOnly
      */
-    public function setReadOnly(ShareDetailReadOnly $readOnly)
+    public function setReadOnly($readOnly)
     {
         $this->readOnly = $readOnly;
     }
@@ -94,7 +94,7 @@ class ShareDetail extends BunqModel
     /**
      * @param ShareDetailDraftPayment $draftPayment
      */
-    public function setDraftPayment(ShareDetailDraftPayment $draftPayment)
+    public function setDraftPayment($draftPayment)
     {
         $this->draftPayment = $draftPayment;
     }

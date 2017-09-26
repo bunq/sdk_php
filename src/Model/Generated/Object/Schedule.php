@@ -77,7 +77,7 @@ class Schedule extends BunqModel
     /**
      * @param string $timeStart
      */
-    public function setTimeStart(string $timeStart)
+    public function setTimeStart($timeStart)
     {
         $this->timeStart = $timeStart;
     }
@@ -95,7 +95,7 @@ class Schedule extends BunqModel
     /**
      * @param string $timeEnd
      */
-    public function setTimeEnd(string $timeEnd)
+    public function setTimeEnd($timeEnd)
     {
         $this->timeEnd = $timeEnd;
     }
@@ -114,7 +114,7 @@ class Schedule extends BunqModel
     /**
      * @param string $recurrenceUnit
      */
-    public function setRecurrenceUnit(string $recurrenceUnit)
+    public function setRecurrenceUnit($recurrenceUnit)
     {
         $this->recurrenceUnit = $recurrenceUnit;
     }
@@ -133,7 +133,7 @@ class Schedule extends BunqModel
     /**
      * @param int $recurrenceSize
      */
-    public function setRecurrenceSize(int $recurrenceSize)
+    public function setRecurrenceSize($recurrenceSize)
     {
         $this->recurrenceSize = $recurrenceSize;
     }
@@ -151,7 +151,7 @@ class Schedule extends BunqModel
     /**
      * @param string $status
      */
-    public function setStatus(string $status)
+    public function setStatus($status)
     {
         $this->status = $status;
     }
@@ -169,7 +169,7 @@ class Schedule extends BunqModel
     /**
      * @param BunqModel $object
      */
-    public function setObject(BunqModel $object)
+    public function setObject($object)
     {
         $this->object = $object;
     }

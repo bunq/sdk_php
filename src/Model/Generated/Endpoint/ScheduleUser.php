@@ -41,7 +41,7 @@ class ScheduleUser extends BunqModel
      *
      * @return BunqResponseScheduleUserList
      */
-    public static function listing(ApiContext $apiContext, int $userId, array $params = [], array $customHeaders = [])
+    public static function listing(ApiContext $apiContext, int $userId, array $params = [], array $customHeaders = []): BunqResponseScheduleUserList
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(

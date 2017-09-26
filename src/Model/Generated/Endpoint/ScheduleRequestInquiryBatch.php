@@ -59,7 +59,7 @@ class ScheduleRequestInquiryBatch extends BunqModel
     /**
      * @param ScheduleRequestInquiryEntry[] $requestInquiries
      */
-    public function setRequestInquiries(array $requestInquiries)
+    public function setRequestInquiries($requestInquiries)
     {
         $this->requestInquiries = $requestInquiries;
     }
@@ -77,7 +77,7 @@ class ScheduleRequestInquiryBatch extends BunqModel
     /**
      * @param Schedule $schedule
      */
-    public function setSchedule(Schedule $schedule)
+    public function setSchedule($schedule)
     {
         $this->schedule = $schedule;
     }
@@ -95,7 +95,7 @@ class ScheduleRequestInquiryBatch extends BunqModel
     /**
      * @param Amount $totalAmountInquired
      */
-    public function setTotalAmountInquired(Amount $totalAmountInquired)
+    public function setTotalAmountInquired($totalAmountInquired)
     {
         $this->totalAmountInquired = $totalAmountInquired;
     }

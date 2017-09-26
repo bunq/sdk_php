@@ -51,7 +51,7 @@ class MonetaryAccountProfile extends BunqModel
     /**
      * @param MonetaryAccountProfileFill $profileFill
      */
-    public function setProfileFill(MonetaryAccountProfileFill $profileFill)
+    public function setProfileFill($profileFill)
     {
         $this->profileFill = $profileFill;
     }
@@ -69,7 +69,7 @@ class MonetaryAccountProfile extends BunqModel
     /**
      * @param MonetaryAccountProfileDrain $profileDrain
      */
-    public function setProfileDrain(MonetaryAccountProfileDrain $profileDrain)
+    public function setProfileDrain($profileDrain)
     {
         $this->profileDrain = $profileDrain;
     }

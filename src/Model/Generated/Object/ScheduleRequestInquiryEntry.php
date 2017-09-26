@@ -139,7 +139,7 @@ class ScheduleRequestInquiryEntry extends BunqModel
     /**
      * @param Amount $amountInquired
      */
-    public function setAmountInquired(Amount $amountInquired)
+    public function setAmountInquired($amountInquired)
     {
         $this->amountInquired = $amountInquired;
     }
@@ -158,7 +158,7 @@ class ScheduleRequestInquiryEntry extends BunqModel
     /**
      * @param LabelUser $userAliasCreated
      */
-    public function setUserAliasCreated(LabelUser $userAliasCreated)
+    public function setUserAliasCreated($userAliasCreated)
     {
         $this->userAliasCreated = $userAliasCreated;
     }
@@ -177,7 +177,7 @@ class ScheduleRequestInquiryEntry extends BunqModel
     /**
      * @param LabelUser $userAliasRevoked
      */
-    public function setUserAliasRevoked(LabelUser $userAliasRevoked)
+    public function setUserAliasRevoked($userAliasRevoked)
     {
         $this->userAliasRevoked = $userAliasRevoked;
     }
@@ -196,7 +196,7 @@ class ScheduleRequestInquiryEntry extends BunqModel
     /**
      * @param LabelMonetaryAccount $counterpartyAlias
      */
-    public function setCounterpartyAlias(LabelMonetaryAccount $counterpartyAlias)
+    public function setCounterpartyAlias($counterpartyAlias)
     {
         $this->counterpartyAlias = $counterpartyAlias;
     }
@@ -214,7 +214,7 @@ class ScheduleRequestInquiryEntry extends BunqModel
     /**
      * @param string $description
      */
-    public function setDescription(string $description)
+    public function setDescription($description)
     {
         $this->description = $description;
     }
@@ -233,7 +233,7 @@ class ScheduleRequestInquiryEntry extends BunqModel
     /**
      * @param string $merchantReference
      */
-    public function setMerchantReference(string $merchantReference)
+    public function setMerchantReference($merchantReference)
     {
         $this->merchantReference = $merchantReference;
     }
@@ -251,7 +251,7 @@ class ScheduleRequestInquiryEntry extends BunqModel
     /**
      * @param AttachmentScheduleRequestInquiryEntry $attachment
      */
-    public function setAttachment(AttachmentScheduleRequestInquiryEntry $attachment)
+    public function setAttachment($attachment)
     {
         $this->attachment = $attachment;
     }
@@ -269,7 +269,7 @@ class ScheduleRequestInquiryEntry extends BunqModel
     /**
      * @param int $minimumAge
      */
-    public function setMinimumAge(int $minimumAge)
+    public function setMinimumAge($minimumAge)
     {
         $this->minimumAge = $minimumAge;
     }
@@ -287,7 +287,7 @@ class ScheduleRequestInquiryEntry extends BunqModel
     /**
      * @param string $requireAddress
      */
-    public function setRequireAddress(string $requireAddress)
+    public function setRequireAddress($requireAddress)
     {
         $this->requireAddress = $requireAddress;
     }
@@ -305,7 +305,7 @@ class ScheduleRequestInquiryEntry extends BunqModel
     /**
      * @param bool $allowBunqme
      */
-    public function setAllowBunqme(bool $allowBunqme)
+    public function setAllowBunqme($allowBunqme)
     {
         $this->allowBunqme = $allowBunqme;
     }
@@ -324,7 +324,7 @@ class ScheduleRequestInquiryEntry extends BunqModel
     /**
      * @param string $redirectUrl
      */
-    public function setRedirectUrl(string $redirectUrl)
+    public function setRedirectUrl($redirectUrl)
     {
         $this->redirectUrl = $redirectUrl;
     }

@@ -82,7 +82,7 @@ class CardPinChange extends BunqModel
      *
      * @return BunqResponseCardPinChangeList
      */
-    public static function listing(ApiContext $apiContext, int $userId, int $cardId, array $params = [], array $customHeaders = [])
+    public static function listing(ApiContext $apiContext, int $userId, int $cardId, array $params = [], array $customHeaders = []): BunqResponseCardPinChangeList
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(
@@ -138,7 +138,7 @@ class CardPinChange extends BunqModel
     /**
      * @param int $id
      */
-    public function setId(int $id)
+    public function setId($id)
     {
         $this->id = $id;
     }
@@ -156,7 +156,7 @@ class CardPinChange extends BunqModel
     /**
      * @param LabelCard $labelCard
      */
-    public function setLabelCard(LabelCard $labelCard)
+    public function setLabelCard($labelCard)
     {
         $this->labelCard = $labelCard;
     }
@@ -175,7 +175,7 @@ class CardPinChange extends BunqModel
     /**
      * @param LabelMonetaryAccount $labelMonetaryAccountCurrent
      */
-    public function setLabelMonetaryAccountCurrent(LabelMonetaryAccount $labelMonetaryAccountCurrent)
+    public function setLabelMonetaryAccountCurrent($labelMonetaryAccountCurrent)
     {
         $this->labelMonetaryAccountCurrent = $labelMonetaryAccountCurrent;
     }
@@ -193,7 +193,7 @@ class CardPinChange extends BunqModel
     /**
      * @param string $timeRequest
      */
-    public function setTimeRequest(string $timeRequest)
+    public function setTimeRequest($timeRequest)
     {
         $this->timeRequest = $timeRequest;
     }
@@ -211,7 +211,7 @@ class CardPinChange extends BunqModel
     /**
      * @param string $timeAccept
      */
-    public function setTimeAccept(string $timeAccept)
+    public function setTimeAccept($timeAccept)
     {
         $this->timeAccept = $timeAccept;
     }
@@ -230,7 +230,7 @@ class CardPinChange extends BunqModel
     /**
      * @param string $status
      */
-    public function setStatus(string $status)
+    public function setStatus($status)
     {
         $this->status = $status;
     }

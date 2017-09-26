@@ -163,7 +163,7 @@ class BunqMeTab extends BunqModel
      *
      * @return BunqResponseBunqMeTabList
      */
-    public static function listing(ApiContext $apiContext, int $userId, int $monetaryAccountId, array $params = [], array $customHeaders = [])
+    public static function listing(ApiContext $apiContext, int $userId, int $monetaryAccountId, array $params = [], array $customHeaders = []): BunqResponseBunqMeTabList
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(
@@ -219,7 +219,7 @@ class BunqMeTab extends BunqModel
     /**
      * @param int $id
      */
-    public function setId(int $id)
+    public function setId($id)
     {
         $this->id = $id;
     }
@@ -237,7 +237,7 @@ class BunqMeTab extends BunqModel
     /**
      * @param string $created
      */
-    public function setCreated(string $created)
+    public function setCreated($created)
     {
         $this->created = $created;
     }
@@ -255,7 +255,7 @@ class BunqMeTab extends BunqModel
     /**
      * @param string $updated
      */
-    public function setUpdated(string $updated)
+    public function setUpdated($updated)
     {
         $this->updated = $updated;
     }
@@ -273,7 +273,7 @@ class BunqMeTab extends BunqModel
     /**
      * @param string $timeExpiry
      */
-    public function setTimeExpiry(string $timeExpiry)
+    public function setTimeExpiry($timeExpiry)
     {
         $this->timeExpiry = $timeExpiry;
     }
@@ -291,7 +291,7 @@ class BunqMeTab extends BunqModel
     /**
      * @param int $monetaryAccountId
      */
-    public function setMonetaryAccountId(int $monetaryAccountId)
+    public function setMonetaryAccountId($monetaryAccountId)
     {
         $this->monetaryAccountId = $monetaryAccountId;
     }
@@ -310,7 +310,7 @@ class BunqMeTab extends BunqModel
     /**
      * @param string $status
      */
-    public function setStatus(string $status)
+    public function setStatus($status)
     {
         $this->status = $status;
     }
@@ -328,7 +328,7 @@ class BunqMeTab extends BunqModel
     /**
      * @param string $bunqmeTabShareUrl
      */
-    public function setBunqmeTabShareUrl(string $bunqmeTabShareUrl)
+    public function setBunqmeTabShareUrl($bunqmeTabShareUrl)
     {
         $this->bunqmeTabShareUrl = $bunqmeTabShareUrl;
     }
@@ -346,7 +346,7 @@ class BunqMeTab extends BunqModel
     /**
      * @param BunqMeTabEntry $bunqmeTabEntry
      */
-    public function setBunqmeTabEntry(BunqMeTabEntry $bunqmeTabEntry)
+    public function setBunqmeTabEntry($bunqmeTabEntry)
     {
         $this->bunqmeTabEntry = $bunqmeTabEntry;
     }
@@ -364,7 +364,7 @@ class BunqMeTab extends BunqModel
     /**
      * @param BunqMeTabResultInquiry[] $resultInquiries
      */
-    public function setResultInquiries(array $resultInquiries)
+    public function setResultInquiries($resultInquiries)
     {
         $this->resultInquiries = $resultInquiries;
     }

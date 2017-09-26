@@ -50,7 +50,7 @@ class Avatar extends BunqModel
     /**
      * @param string $uuid
      */
-    public function setUuid(string $uuid)
+    public function setUuid($uuid)
     {
         $this->uuid = $uuid;
     }
@@ -68,7 +68,7 @@ class Avatar extends BunqModel
     /**
      * @param string $anchorUuid
      */
-    public function setAnchorUuid(string $anchorUuid)
+    public function setAnchorUuid($anchorUuid)
     {
         $this->anchorUuid = $anchorUuid;
     }
@@ -86,7 +86,7 @@ class Avatar extends BunqModel
     /**
      * @param Image[] $image
      */
-    public function setImage(array $image)
+    public function setImage($image)
     {
         $this->image = $image;
     }
