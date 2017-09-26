@@ -49,7 +49,10 @@ abstract class BunqModel implements JsonSerializable
     const SCALAR_TYPE_BOOL = 'bool';
     const SCALAR_TYPE_INT = 'int';
     const SCALAR_TYPE_FLOAT = 'float';
-
+    /**
+     * @var string[]
+     */
+    protected static $fieldNameOverrideMap = [];
     /**
      * Set of the PHP scalar types. Mimicking a constant, and therefore should be used with self::.
      *
@@ -63,18 +66,15 @@ abstract class BunqModel implements JsonSerializable
     ];
 
     /**
-     * @var string[]
-     */
-    protected static $fieldNameOverrideMap = [];
-
-    /**
      * @param BunqResponseRaw $responseRaw
      * @param string $wrapper
      *
      * @return BunqResponse
      */
-    protected static function fromJsonList(BunqResponseRaw $responseRaw, $wrapper = null)
-    {
+    protected static function fromJsonList(
+        BunqResponseRaw $responseRaw,
+        string $wrapper = null
+    ): BunqResponse {
         $json = $responseRaw->getBodyString();
         $responseArray = ModelUtil::deserializeResponseArray($json);
         $response = $responseArray[self::FIELD_RESPONSE];
@@ -90,8 +90,10 @@ abstract class BunqModel implements JsonSerializable
      *
      * @return BunqModel[]
      */
-    protected static function createListFromResponseArray(array $responseArray, $wrapper = null)
-    {
+    protected static function createListFromResponseArray(
+        array $responseArray,
+        string $wrapper = null
+    ): array {
         $list = [];
 
         foreach ($responseArray as $className => $element) {
@@ -107,7 +109,7 @@ abstract class BunqModel implements JsonSerializable
      *
      * @return BunqModel|null
      */
-    protected static function createFromResponseArray(array $responseArray, $wrapper = null)
+    protected static function createFromResponseArray(array $responseArray, string $wrapper = null)
     {
         if (is_string($wrapper)) {
             $responseArray = $responseArray[$wrapper];
@@ -125,7 +127,7 @@ abstract class BunqModel implements JsonSerializable
      *
      * @return BunqModel
      */
-    private static function createInstanceFromResponseArray(array $responseArray)
+    private static function createInstanceFromResponseArray(array $responseArray): BunqModel
     {
         $classDefinition = new \ReflectionClass(static::class);
         /** @var BunqModel $instance */
@@ -148,7 +150,7 @@ abstract class BunqModel implements JsonSerializable
      *
      * @return string
      */
-    private static function determineResponseFieldName($fieldNameRaw)
+    private static function determineResponseFieldName(string $fieldNameRaw): string
     {
         $fieldNameOverrideMapFlipped = array_flip(static::$fieldNameOverrideMap);
 
@@ -195,7 +197,7 @@ abstract class BunqModel implements JsonSerializable
      *
      * @return bool
      */
-    private static function isTypeScalar($type)
+    private static function isTypeScalar(string $type): bool
     {
         return isset(self::$scalarTypes[$type]);
     }
@@ -205,7 +207,7 @@ abstract class BunqModel implements JsonSerializable
      *
      * @return BunqResponse
      */
-    protected static function classFromJson(BunqResponseRaw $responseRaw)
+    protected static function classFromJson(BunqResponseRaw $responseRaw): BunqResponse
     {
         $json = $responseRaw->getBodyString();
         $response = ModelUtil::deserializeResponseArray($json)[self::FIELD_RESPONSE];
@@ -220,9 +222,8 @@ abstract class BunqModel implements JsonSerializable
      *
      * @return BunqResponse
      */
-    protected static function processForId(BunqResponseRaw $responseRaw)
+    protected static function processForId(BunqResponseRaw $responseRaw): BunqResponse
     {
-        /** @var Id $id */
         $id = Id::fromJson($responseRaw, self::FIELD_ID)->getValue();
 
         return new BunqResponse($id->getId(), $responseRaw->getHeaders());
@@ -233,9 +234,9 @@ abstract class BunqModel implements JsonSerializable
      * @param string|null $wrapper
      *
      * @return BunqResponse
-     * @throws BunqException   When the result is not expected.
+     * @throws BunqException when the result is not expected.
      */
-    protected static function fromJson(BunqResponseRaw $responseRaw, string $wrapper = null)
+    protected static function fromJson(BunqResponseRaw $responseRaw, string $wrapper = null): BunqResponse
     {
         $json = $responseRaw->getBodyString();
         $responseArray = ModelUtil::deserializeResponseArray($json);
@@ -250,9 +251,8 @@ abstract class BunqModel implements JsonSerializable
      *
      * @return BunqResponse
      */
-    protected static function processForUuid(BunqResponseRaw $responseRaw)
+    protected static function processForUuid(BunqResponseRaw $responseRaw): BunqResponse
     {
-        /** @var Uuid $uuid */
         $uuid = Uuid::fromJson($responseRaw, self::FIELD_UUID)->getValue();
 
         return new BunqResponse($uuid->getUuid(), $responseRaw->getHeaders());
@@ -261,7 +261,7 @@ abstract class BunqModel implements JsonSerializable
     /**
      * @return mixed[]
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): array
     {
         $array = [];
 
@@ -276,7 +276,7 @@ abstract class BunqModel implements JsonSerializable
     /**
      * @return ReflectionProperty[]
      */
-    private function getNonStaticProperties()
+    private function getNonStaticProperties(): array
     {
         $reflectionClass = new ReflectionClass($this);
 
@@ -291,7 +291,7 @@ abstract class BunqModel implements JsonSerializable
      *
      * @return string
      */
-    private static function determineRequestFieldName(ReflectionProperty $property)
+    private static function determineRequestFieldName(ReflectionProperty $property): string
     {
         $fieldName = ModelUtil::camelCaseToSnakeCase($property->getName());
 

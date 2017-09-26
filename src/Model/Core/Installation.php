@@ -24,22 +24,30 @@ class Installation extends BunqModel
      */
     const ENDPOINT_URL_POST = 'installation';
 
-    /** @var string */
+    /**
+     * @var string
+     */
     protected $clientPublicKey;
 
-    /** @var Id */
+    /**
+     * @var Id
+     */
     protected $id;
 
-    /** @var Token */
+    /**
+     * @var Token
+     */
     protected $token;
 
-    /** @var ServerPublicKey */
+    /**
+     * @var ServerPublicKey
+     */
     protected $serverPublicKey;
 
     /**
      * @param string $clientPublicKey
      */
-    public function __construct($clientPublicKey = null)
+    public function __construct(string $clientPublicKey = null)
     {
         $this->clientPublicKey = $clientPublicKey;
     }
@@ -50,8 +58,10 @@ class Installation extends BunqModel
      *
      * @return BunqResponseInstallation
      */
-    public static function create(ApiContext $apiContext, $clientPublicKey)
-    {
+    public static function create(
+        ApiContext $apiContext,
+        string $clientPublicKey
+    ): BunqResponseInstallation {
         $installation = new static($clientPublicKey);
 
         $apiClient = new ApiClient($apiContext);
@@ -65,7 +75,7 @@ class Installation extends BunqModel
     /**
      * @return Id
      */
-    public function getId()
+    public function getId(): Id
     {
         return $this->id;
     }
@@ -73,7 +83,7 @@ class Installation extends BunqModel
     /**
      * @return Token
      */
-    public function getToken()
+    public function getToken(): Token
     {
         return $this->token;
     }
@@ -81,7 +91,7 @@ class Installation extends BunqModel
     /**
      * @return ServerPublicKey
      */
-    public function getServerPublicKey()
+    public function getServerPublicKey(): ServerPublicKey
     {
         return $this->serverPublicKey;
     }
@@ -89,7 +99,7 @@ class Installation extends BunqModel
     /**
      * @return string[]
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): array
     {
         return [
             self::FIELD_CLIENT_PUBLIC_KEY => $this->clientPublicKey,

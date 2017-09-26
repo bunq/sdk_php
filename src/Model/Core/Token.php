@@ -5,22 +5,30 @@ namespace bunq\Model\Core;
  */
 class Token extends BunqModel
 {
-    /** @var int */
+    /**
+     * @var int
+     */
     protected $id;
 
-    /** @var string */
+    /**
+     * @var string
+     */
     protected $created;
 
-    /** @var string */
+    /**
+     * @var string
+     */
     protected $updated;
 
-    /** @var string */
+    /**
+     * @var string
+     */
     protected $token;
 
     /**
      * @param string $token
      */
-    public function __construct($token = null)
+    public function __construct(string $token = null)
     {
         $this->token = $token;
     }
@@ -28,7 +36,7 @@ class Token extends BunqModel
     /**
      * @return string
      */
-    public function getToken()
+    public function getToken(): string
     {
         return $this->token;
     }

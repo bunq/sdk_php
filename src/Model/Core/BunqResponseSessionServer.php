@@ -10,7 +10,7 @@ class BunqResponseSessionServer extends BunqResponse
     /**
      * @return SessionServer
      */
-    public function getValue()
+    public function getValue(): SessionServer
     {
         return parent::getValue();
     }

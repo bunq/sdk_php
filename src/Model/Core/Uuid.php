@@ -5,13 +5,15 @@ namespace bunq\Model\Core;
  */
 class Uuid extends BunqModel
 {
-    /** @var string */
+    /**
+     * @var string
+     */
     protected $uuid;
 
     /**
      * @return string
      */
-    public function getUuid()
+    public function getUuid(): string
     {
         return $this->uuid;
     }

@@ -10,7 +10,7 @@ class BunqResponseInstallation extends BunqResponse
     /**
      * @return Installation
      */
-    public function getValue()
+    public function getValue(): Installation
     {
         return parent::getValue();
     }

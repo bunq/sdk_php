@@ -45,7 +45,7 @@ class SessionServer extends BunqModel
      *
      * @return BunqResponseSessionServer
      */
-    public static function create(ApiContext $apiContext)
+    public static function create(ApiContext $apiContext): BunqResponseSessionServer
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->post(
@@ -66,7 +66,7 @@ class SessionServer extends BunqModel
      *
      * @return Token
      */
-    public function getSessionToken()
+    public function getSessionToken(): Token
     {
         return $this->token;
     }
@@ -74,7 +74,7 @@ class SessionServer extends BunqModel
     /**
      * @return UserCompany
      */
-    public function getUserCompany()
+    public function getUserCompany(): UserCompany
     {
         return $this->userCompany;
     }
@@ -82,7 +82,7 @@ class SessionServer extends BunqModel
     /**
      * @return UserPerson
      */
-    public function getUserPerson()
+    public function getUserPerson(): UserPerson
     {
         return $this->userPerson;
     }
