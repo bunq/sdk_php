@@ -52,7 +52,6 @@ $paymentMap = [
 $paymentId = Payment::create($apiContext, $paymentMap, $userId, $monetaryAccountId)->getValue();
 
 // Retrieve the payment.
-/** @var Payment $payment */
 $payment = Payment::get($apiContext, $userId, $monetaryAccountId, $paymentId)->getValue();
 
 vprintf(MESSAGE_MONETARY_ACCOUNT_NAME, [$payment->getAlias()->getDisplayName()]);

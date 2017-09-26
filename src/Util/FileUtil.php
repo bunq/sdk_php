@@ -13,12 +13,12 @@ class FileUtil
     const ERROR_FILE_DOES_NOT_EXIST = 'The requested file "%s" does not exist.';
 
     /**
-     * @param $fileName
+     * @param string $fileName
      *
      * @return string|bool
-     * @throws BunqException    If the requested file does not exist.
+     * @throws BunqException when the requested file does not exist.
      */
-    public static function getFileContents($fileName)
+    public static function getFileContents(string $fileName)
     {
         if (is_file($fileName)) {
             return file_get_contents($fileName);

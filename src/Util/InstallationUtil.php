@@ -56,7 +56,6 @@ final class InstallationUtil
     const PREG_MATCH_SUCCESS = 1;
 
     /**
-     *
      */
     public static function interactiveInstall()
     {
@@ -87,7 +86,10 @@ final class InstallationUtil
             $description = static::readLine(self::PROMPT_DESCRIPTION, self::ERROR_EMPTY_DESCRIPTION);
             $permittedIpsInput = static::readLineOrNull(self::PROMPT_PERMITTED_IPS);
             $permittedIps = static::formatIps($permittedIpsInput);
-            $methodRegisterDevice = static::createAccessibleReflectionMethod(ApiContext::class, self::METHOD_REGISTER_DEVICE);
+            $methodRegisterDevice = static::createAccessibleReflectionMethod(
+                ApiContext::class,
+                self::METHOD_REGISTER_DEVICE
+            );
             $methodRegisterDevice->invoke($context, $description, $permittedIps);
 
             $methodInitializeSessionContext = static::createAccessibleReflectionMethod(
@@ -113,7 +115,7 @@ final class InstallationUtil
     /**
      * @return ApiContext
      */
-    private static function createApiContextWithoutConstructor()
+    private static function createApiContextWithoutConstructor(): ApiContext
     {
         $contextReflection = new ReflectionClass(ApiContext::class);
         /** @var ApiContext $context */
@@ -127,9 +129,8 @@ final class InstallationUtil
      * @param string $errorMessage
      *
      * @return string
-     * @throws BunqException
      */
-    private static function readLine($promptMessage, $errorMessage)
+    private static function readLine(string $promptMessage, string $errorMessage): string
     {
         $input = readline($promptMessage);
 
@@ -147,7 +148,7 @@ final class InstallationUtil
      * @param string $propertyName
      * @param mixed $value
      */
-    private static function setPrivateProperty($object, $propertyName, $value)
+    private static function setPrivateProperty($object, string $propertyName, $value)
     {
         $propertyEnvironmentInput = new ReflectionProperty(get_class($object), $propertyName);
         $propertyEnvironmentInput->setAccessible(true);
@@ -155,25 +156,11 @@ final class InstallationUtil
     }
 
     /**
-     * @param string $class
-     * @param string $methodName
-     *
-     * @return ReflectionMethod
-     */
-    private static function createAccessibleReflectionMethod($class, $methodName)
-    {
-        $method = new ReflectionMethod($class, $methodName);
-        $method->setAccessible(true);
-
-        return $method;
-    }
-
-    /**
      * @param string $promptMessage
      *
      * @return null|string
      */
-    private static function readLineOrNull($promptMessage)
+    private static function readLineOrNull(string $promptMessage)
     {
         $input = readline($promptMessage);
 
@@ -185,11 +172,25 @@ final class InstallationUtil
     }
 
     /**
+     * @param string $class
+     * @param string $methodName
+     *
+     * @return ReflectionMethod
+     */
+    private static function createAccessibleReflectionMethod(string $class, string $methodName)
+    {
+        $method = new ReflectionMethod($class, $methodName);
+        $method->setAccessible(true);
+
+        return $method;
+    }
+
+    /**
      * @param $permittedIpsInput
      *
-     * @return array
+     * @return string[]
      */
-    private static function formatIps($permittedIpsInput)
+    private static function formatIps(string $permittedIpsInput): array
     {
         if (is_null($permittedIpsInput)) {
             $permittedIps = [];
@@ -207,16 +208,16 @@ final class InstallationUtil
     }
 
     /**
-     * @param string $permittedIp
+     * @param string $ip
      *
-     * @throws BunqException
+     * @throws BunqException when the IP address is invalid
      */
-    private static function assertIpIsValid($permittedIp)
+    private static function assertIpIsValid(string $ip)
     {
-        if (preg_match(self::REGEX_IP, $permittedIp) === self::PREG_MATCH_SUCCESS) {
+        if (preg_match(self::REGEX_IP, $ip) === self::PREG_MATCH_SUCCESS) {
             // Ip address is valid
         } else {
-            throw new BunqException(self::ERROR_INVALID_IP_ADDRESS, [$permittedIp]);
+            throw new BunqException(self::ERROR_INVALID_IP_ADDRESS, [$ip]);
         }
     }
 }
