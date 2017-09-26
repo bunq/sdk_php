@@ -2,10 +2,10 @@
 namespace bunq\test\Model\Generated\Endpoint;
 
 use bunq\Model\Generated\Endpoint\ChatMessageText;
-use bunq\Model\Generated\Object\Amount;
-use bunq\Model\Generated\Object\Pointer;
 use bunq\Model\Generated\Endpoint\Payment;
 use bunq\Model\Generated\Endpoint\PaymentChat;
+use bunq\Model\Generated\Object\Amount;
+use bunq\Model\Generated\Object\Pointer;
 use bunq\test\BunqSdkTestBase;
 use bunq\test\Config;
 

@@ -84,7 +84,7 @@ class AvatarTest extends BunqSdkTestBase
     /**
      * @return string
      */
-    private function getFileContentsOfAttachment()
+    private function getFileContentsOfAttachment(): string
     {
         $path = __DIR__ . self::PATH_ATTACHMENT . static::$attachmentPathIn;
 

@@ -1,9 +1,9 @@
 <?php
 namespace bunq\test\Model\Generated\Endpoint;
 
-use bunq\Model\Generated\Object\Amount;
 use bunq\Model\Generated\Endpoint\TabItemShop;
 use bunq\Model\Generated\Endpoint\TabUsageSingle;
+use bunq\Model\Generated\Object\Amount;
 use bunq\test\BunqSdkTestBase;
 use bunq\test\Config;
 

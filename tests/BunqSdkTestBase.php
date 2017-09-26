@@ -57,7 +57,7 @@ class BunqSdkTestBase extends TestCase
     /**
      * @return ApiContext
      */
-    protected static function createApiContext()
+    protected static function createApiContext(): ApiContext
     {
         return ApiContext::create(
             BunqEnumApiEnvironmentType::SANDBOX(),
@@ -70,7 +70,7 @@ class BunqSdkTestBase extends TestCase
     /**
      * @return ApiContext
      */
-    protected static function getApiContext()
+    protected static function getApiContext(): ApiContext
     {
         return static::$apiContext;
     }

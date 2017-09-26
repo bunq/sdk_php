@@ -2,9 +2,9 @@
 namespace bunq\test\Model\Generated\Endpoint;
 
 use bunq\Context\ApiContext;
-use bunq\Model\Generated\Object\Amount;
 use bunq\Model\Generated\Endpoint\RequestInquiry;
 use bunq\Model\Generated\Endpoint\RequestResponse;
+use bunq\Model\Generated\Object\Amount;
 use bunq\test\BunqSdkTestBase;
 use bunq\test\Config;
 
@@ -85,7 +85,7 @@ class RequestInquiryTest extends BunqSdkTestBase
     /**
      * @param ApiContext $apiContext
      */
-    private function sendRequest($apiContext)
+    private function sendRequest(ApiContext $apiContext)
     {
         $requestMap = [
             RequestInquiry::FIELD_AMOUNT_INQUIRED => new Amount(
@@ -104,7 +104,7 @@ class RequestInquiryTest extends BunqSdkTestBase
      * @param ApiContext $apiContext
      * @param int $requestResponseId
      */
-    private function acceptRequest($apiContext, $requestResponseId)
+    private function acceptRequest(ApiContext $apiContext, int $requestResponseId)
     {
         $responseMap = [
             RequestResponse::FIELD_STATUS => self::REQUEST_STATUS_ACCEPTED,

@@ -70,7 +70,7 @@ class DraftShareInviteBankQrCodeContentTest extends BunqSdkTestBase
      *
      * @return int
      */
-    private function createConnect($apiContext)
+    private function createConnect(ApiContext $apiContext): int
     {
         $readOnly = new ShareDetailReadOnly(true, true, true);
         $shareDetail = new ShareDetail();
@@ -89,7 +89,7 @@ class DraftShareInviteBankQrCodeContentTest extends BunqSdkTestBase
      *
      * @return string
      */
-    private function getQrContent($apiContext, $draftShareId)
+    private function getQrContent(ApiContext $apiContext, int $draftShareId): string
     {
         return DraftShareInviteBankQrCodeContent::listing($apiContext, static::$userId, $draftShareId)->getValue();
     }
