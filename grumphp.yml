@@ -7,7 +7,7 @@ parameters:
     ignore_unstaged_changes: false
     process_async_limit: 10
     process_async_wait: 1000
-    process_timeout: 60
+    process_timeout: 120
     stop_on_failure: true
     ascii:
         failed: ~
