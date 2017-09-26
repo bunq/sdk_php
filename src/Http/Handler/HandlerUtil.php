@@ -16,7 +16,7 @@ class HandlerUtil
      *
      * @return callable
      */
-    public static function applyRequestHandler(RequestHandlerBase $requestHandler)
+    public static function applyRequestHandler(RequestHandlerBase $requestHandler): callable
     {
         return function (callable $handler) use ($requestHandler) {
             return function ($request, array $options) use ($handler, $requestHandler) {
@@ -33,7 +33,7 @@ class HandlerUtil
      *
      * @return callable
      */
-    public static function applyResponseHandler(ResponseHandlerBase $responseHandler)
+    public static function applyResponseHandler(ResponseHandlerBase $responseHandler): callable
     {
         return function (callable $handler) use ($responseHandler) {
             return function (RequestInterface $request, array $options) use ($handler, $responseHandler) {

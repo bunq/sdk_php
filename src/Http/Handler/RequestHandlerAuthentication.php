@@ -31,7 +31,7 @@ class RequestHandlerAuthentication extends RequestHandlerBase
      *
      * @return RequestInterface
      */
-    public function execute(RequestInterface $request)
+    public function execute(RequestInterface $request): RequestInterface
     {
         if (is_null($this->sessionToken)) {
             return $request;

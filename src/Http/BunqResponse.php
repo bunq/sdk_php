@@ -43,7 +43,7 @@ class BunqResponse
     /**
      * @return string[]
      */
-    public function getHeaders()
+    public function getHeaders(): array
     {
         return $this->headers;
     }

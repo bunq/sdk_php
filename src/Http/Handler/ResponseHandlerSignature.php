@@ -51,9 +51,9 @@ class ResponseHandlerSignature extends ResponseHandlerBase
      * @param ResponseInterface $response
      *
      * @return ResponseInterface
-     * @throws SecurityException
+     * @throws SecurityException when the response verification fails.
      */
-    public function execute(ResponseInterface $response)
+    public function execute(ResponseInterface $response): ResponseInterface
     {
         if ($response->getStatusCode() === self::STATUS_CODE_OK) {
             if (is_null($this->publicKeyServer)) {

@@ -12,5 +12,5 @@ abstract class ResponseHandlerBase extends HandlerBase
      *
      * @return ResponseInterface
      */
-    abstract public function execute(ResponseInterface $response);
+    abstract public function execute(ResponseInterface $response): ResponseInterface;
 }
