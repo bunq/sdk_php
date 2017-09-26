@@ -91,7 +91,7 @@ class IdealMerchantTransaction extends BunqModel
     protected $issuerName;
 
     /**
-     * The URL to visit to 
+     * The URL to visit to
      *
      * @var string
      */
@@ -359,7 +359,7 @@ class IdealMerchantTransaction extends BunqModel
     }
 
     /**
-     * The URL to visit to 
+     * The URL to visit to
      *
      * @return string
      */
