@@ -19,13 +19,19 @@ class InstallationContext implements JsonSerializable
     const FIELD_PUBLIC_KEY_CLIENT = 'public_key_client';
     const FIELD_PUBLIC_KEY_SERVER = 'public_key_server';
 
-    /** @var Token */
+    /**
+     * @var Token
+     */
     protected $installationToken;
 
-    /** @var KeyPair */
+    /**
+     * @var KeyPair
+     */
     protected $keyPairClient;
 
-    /** @var PublicKey */
+    /**
+     * @var PublicKey
+     */
     protected $publicKeyServer;
 
     /**
@@ -44,7 +50,7 @@ class InstallationContext implements JsonSerializable
      * @param mixed[] $installationContextJson
      * @return static
      */
-    public static function restore(array $installationContextJson)
+    public static function restore(array $installationContextJson): InstallationContext
     {
         return new static(
             new Token($installationContextJson[self::FIELD_TOKEN]),
@@ -59,7 +65,7 @@ class InstallationContext implements JsonSerializable
     /**
      * return string[]
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): array
     {
         return [
             self::FIELD_TOKEN => $this->getInstallationToken()->getToken(),
@@ -72,7 +78,7 @@ class InstallationContext implements JsonSerializable
     /**
      * @return Token
      */
-    public function getInstallationToken()
+    public function getInstallationToken(): Token
     {
         return $this->installationToken;
     }
@@ -80,7 +86,7 @@ class InstallationContext implements JsonSerializable
     /**
      * @return KeyPair
      */
-    public function getKeyPairClient()
+    public function getKeyPairClient(): KeyPair
     {
         return $this->keyPairClient;
     }
@@ -88,7 +94,7 @@ class InstallationContext implements JsonSerializable
     /**
      * @return PublicKey
      */
-    public function getPublicKeyServer()
+    public function getPublicKeyServer(): PublicKey
     {
         return $this->publicKeyServer;
     }

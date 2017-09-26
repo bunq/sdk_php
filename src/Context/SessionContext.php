@@ -24,10 +24,14 @@ class SessionContext implements JsonSerializable
     const MICROSECONDS_IN_SECOND = 1000000;
     const FORMAT_MICROSECONDS = '%06d';
 
-    /** @var Token */
+    /**
+     * @var Token
+     */
     protected $sessionToken;
 
-    /** @var DateTime */
+    /**
+     * @var DateTime
+     */
     protected $expiryTime;
 
     /**
@@ -41,7 +45,7 @@ class SessionContext implements JsonSerializable
      *
      * @return static
      */
-    public static function create(SessionServer $sessionServer)
+    public static function create(SessionServer $sessionServer): SessionContext
     {
         $sessionContext = new static();
         $sessionContext->sessionToken = $sessionServer->getSessionToken();
@@ -55,7 +59,7 @@ class SessionContext implements JsonSerializable
      *
      * @return DateTime
      */
-    private static function calculateExpiryTime(SessionServer $sessionServer)
+    private static function calculateExpiryTime(SessionServer $sessionServer): DateTime
     {
         $expiryTime = microtime(true) + static::getSessionTimeout($sessionServer);
 
@@ -67,7 +71,7 @@ class SessionContext implements JsonSerializable
      *
      * @return int
      */
-    private static function getSessionTimeout(SessionServer $sessionServer)
+    private static function getSessionTimeout(SessionServer $sessionServer): int
     {
         if (is_null($sessionServer->getUserCompany())) {
             return $sessionServer->getUserPerson()->getSessionTimeout();
@@ -81,7 +85,7 @@ class SessionContext implements JsonSerializable
      *
      * @return DateTime
      */
-    private static function microtimeToDateTime($microtime)
+    private static function microtimeToDateTime(float $microtime): DateTime
     {
         $microseconds = ($microtime - floor($microtime)) * self::MICROSECONDS_IN_SECOND;
         $microsecondsFormatted = sprintf(self::FORMAT_MICROSECONDS, $microseconds);
@@ -95,7 +99,7 @@ class SessionContext implements JsonSerializable
      *
      * @return static
      */
-    public static function restore(array $sessionContextBody)
+    public static function restore(array $sessionContextBody): SessionContext
     {
         $sessionContext = new static();
         $sessionContext->sessionToken = new Token($sessionContextBody[self::FIELD_TOKEN]);
@@ -110,7 +114,7 @@ class SessionContext implements JsonSerializable
     /**
      * @return string[]
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): array
     {
         return [
             self::FIELD_TOKEN => $this->getSessionToken()->getToken(),
@@ -121,7 +125,7 @@ class SessionContext implements JsonSerializable
     /**
      * @return Token
      */
-    public function getSessionToken()
+    public function getSessionToken(): Token
     {
         return $this->sessionToken;
     }
@@ -129,7 +133,7 @@ class SessionContext implements JsonSerializable
     /**
      * @return DateTime
      */
-    public function getExpiryTime()
+    public function getExpiryTime(): DateTime
     {
         return $this->expiryTime;
     }
