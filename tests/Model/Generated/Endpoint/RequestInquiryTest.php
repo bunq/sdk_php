@@ -1,5 +1,5 @@
 <?php
-namespace bunq\test\Model\Generated;
+namespace bunq\test\Model\Generated\Endpoint;
 
 use bunq\Context\ApiContext;
 use bunq\Model\Generated\Object\Amount;

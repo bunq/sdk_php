@@ -1,5 +1,5 @@
 <?php
-namespace bunq\test\Model\Generated;
+namespace bunq\test\Model\Generated\Endpoint;
 
 use bunq\Http\ApiClient;
 use bunq\Model\Generated\Endpoint\AttachmentPublic;
