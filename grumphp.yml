@@ -31,7 +31,7 @@ parameters:
             triggered_by: ['php']
         phpcpd:
             directory: '.'
-            exclude: ['vendor']
+            exclude: ['vendor', 'src/Model/Generated']
             names_exclude: []
             fuzzy: false
             min_lines: 5
