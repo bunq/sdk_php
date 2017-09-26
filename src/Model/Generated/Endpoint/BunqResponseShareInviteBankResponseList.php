@@ -10,7 +10,7 @@ class BunqResponseShareInviteBankResponseList extends BunqResponse
     /**
      * @return ShareInviteBankResponse[]
      */
-    public function getValue()
+    public function getValue(): array
     {
         return parent::getValue();
     }

@@ -214,7 +214,7 @@ class MonetaryAccountBank extends BunqModel
      *
      * @return BunqResponseInt
      */
-    public static function create(ApiContext $apiContext, array $requestMap, $userId, array $customHeaders = [])
+    public static function create(ApiContext $apiContext, array $requestMap, int $userId, array $customHeaders = []): BunqResponseInt
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->post(
@@ -241,7 +241,7 @@ class MonetaryAccountBank extends BunqModel
      *
      * @return BunqResponseMonetaryAccountBank
      */
-    public static function get(ApiContext $apiContext, $userId, $monetaryAccountBankId, array $customHeaders = [])
+    public static function get(ApiContext $apiContext, int $userId, int $monetaryAccountBankId, array $customHeaders = []): BunqResponseMonetaryAccountBank
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(
@@ -269,7 +269,7 @@ class MonetaryAccountBank extends BunqModel
      *
      * @return BunqResponseInt
      */
-    public static function update(ApiContext $apiContext, array $requestMap, $userId, $monetaryAccountBankId, array $customHeaders = [])
+    public static function update(ApiContext $apiContext, array $requestMap, int $userId, int $monetaryAccountBankId, array $customHeaders = []): BunqResponseInt
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->put(
@@ -299,7 +299,7 @@ class MonetaryAccountBank extends BunqModel
      *
      * @return BunqResponseMonetaryAccountBankList
      */
-    public static function listing(ApiContext $apiContext, $userId, array $params = [], array $customHeaders = [])
+    public static function listing(ApiContext $apiContext, int $userId, array $params = [], array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(

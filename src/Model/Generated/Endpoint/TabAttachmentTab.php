@@ -63,7 +63,7 @@ class TabAttachmentTab extends BunqModel
      *
      * @return BunqResponseTabAttachmentTab
      */
-    public static function get(ApiContext $apiContext, $tabUuid, $tabAttachmentTabId, array $customHeaders = [])
+    public static function get(ApiContext $apiContext, string $tabUuid, int $tabAttachmentTabId, array $customHeaders = []): BunqResponseTabAttachmentTab
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(

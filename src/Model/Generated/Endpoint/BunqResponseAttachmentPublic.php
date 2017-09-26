@@ -10,7 +10,7 @@ class BunqResponseAttachmentPublic extends BunqResponse
     /**
      * @return AttachmentPublic
      */
-    public function getValue()
+    public function getValue(): AttachmentPublic
     {
         return parent::getValue();
     }

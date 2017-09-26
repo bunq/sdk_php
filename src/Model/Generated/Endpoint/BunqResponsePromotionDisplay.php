@@ -10,7 +10,7 @@ class BunqResponsePromotionDisplay extends BunqResponse
     /**
      * @return PromotionDisplay
      */
-    public function getValue()
+    public function getValue(): PromotionDisplay
     {
         return parent::getValue();
     }

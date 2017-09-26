@@ -10,7 +10,7 @@ class BunqResponseRequestResponse extends BunqResponse
     /**
      * @return RequestResponse
      */
-    public function getValue()
+    public function getValue(): RequestResponse
     {
         return parent::getValue();
     }

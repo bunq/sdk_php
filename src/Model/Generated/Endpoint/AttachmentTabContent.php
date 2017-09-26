@@ -38,7 +38,7 @@ class AttachmentTabContent extends BunqModel
      *
      * @return BunqResponseString
      */
-    public static function listing(ApiContext $apiContext, $userId, $monetaryAccountId, $attachmentTabId, array $customHeaders = [])
+    public static function listing(ApiContext $apiContext, int $userId, int $monetaryAccountId, int $attachmentTabId, array $customHeaders = []): BunqResponseString
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(

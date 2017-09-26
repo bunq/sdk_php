@@ -191,7 +191,7 @@ class Card extends BunqModel
      *
      * @return BunqResponseCard
      */
-    public static function update(ApiContext $apiContext, array $requestMap, $userId, $cardId, array $customHeaders = [])
+    public static function update(ApiContext $apiContext, array $requestMap, int $userId, int $cardId, array $customHeaders = []): BunqResponseCard
     {
         $apiClient = new ApiClient($apiContext);
         $apiClient->enableEncryption();
@@ -219,7 +219,7 @@ class Card extends BunqModel
      *
      * @return BunqResponseCard
      */
-    public static function get(ApiContext $apiContext, $userId, $cardId, array $customHeaders = [])
+    public static function get(ApiContext $apiContext, int $userId, int $cardId, array $customHeaders = []): BunqResponseCard
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(
@@ -249,7 +249,7 @@ class Card extends BunqModel
      *
      * @return BunqResponseCardList
      */
-    public static function listing(ApiContext $apiContext, $userId, array $params = [], array $customHeaders = [])
+    public static function listing(ApiContext $apiContext, int $userId, array $params = [], array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(

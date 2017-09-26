@@ -10,7 +10,7 @@ class BunqResponseCustomerStatementExport extends BunqResponse
     /**
      * @return CustomerStatementExport
      */
-    public function getValue()
+    public function getValue(): CustomerStatementExport
     {
         return parent::getValue();
     }

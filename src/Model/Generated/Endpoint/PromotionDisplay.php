@@ -67,7 +67,7 @@ class PromotionDisplay extends BunqModel
      *
      * @return BunqResponsePromotionDisplay
      */
-    public static function get(ApiContext $apiContext, $userId, $promotionDisplayId, array $customHeaders = [])
+    public static function get(ApiContext $apiContext, int $userId, int $promotionDisplayId, array $customHeaders = []): BunqResponsePromotionDisplay
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(
@@ -93,7 +93,7 @@ class PromotionDisplay extends BunqModel
      *
      * @return BunqResponseInt
      */
-    public static function update(ApiContext $apiContext, array $requestMap, $userId, $promotionDisplayId, array $customHeaders = [])
+    public static function update(ApiContext $apiContext, array $requestMap, int $userId, int $promotionDisplayId, array $customHeaders = []): BunqResponseInt
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->put(

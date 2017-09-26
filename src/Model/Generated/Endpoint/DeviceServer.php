@@ -92,7 +92,7 @@ class DeviceServer extends BunqModel
      *
      * @return BunqResponseInt
      */
-    public static function create(ApiContext $apiContext, array $requestMap, array $customHeaders = [])
+    public static function create(ApiContext $apiContext, array $requestMap, array $customHeaders = []): BunqResponseInt
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->post(
@@ -118,7 +118,7 @@ class DeviceServer extends BunqModel
      *
      * @return BunqResponseDeviceServer
      */
-    public static function get(ApiContext $apiContext, $deviceServerId, array $customHeaders = [])
+    public static function get(ApiContext $apiContext, int $deviceServerId, array $customHeaders = []): BunqResponseDeviceServer
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(

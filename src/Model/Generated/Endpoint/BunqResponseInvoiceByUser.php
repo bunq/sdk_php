@@ -10,7 +10,7 @@ class BunqResponseInvoiceByUser extends BunqResponse
     /**
      * @return InvoiceByUser
      */
-    public function getValue()
+    public function getValue(): InvoiceByUser
     {
         return parent::getValue();
     }

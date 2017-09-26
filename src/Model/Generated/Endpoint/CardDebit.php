@@ -176,7 +176,7 @@ class CardDebit extends BunqModel
      *
      * @return BunqResponseCardDebit
      */
-    public static function create(ApiContext $apiContext, array $requestMap, $userId, array $customHeaders = [])
+    public static function create(ApiContext $apiContext, array $requestMap, int $userId, array $customHeaders = []): BunqResponseCardDebit
     {
         $apiClient = new ApiClient($apiContext);
         $apiClient->enableEncryption();

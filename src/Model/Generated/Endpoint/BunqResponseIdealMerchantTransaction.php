@@ -10,7 +10,7 @@ class BunqResponseIdealMerchantTransaction extends BunqResponse
     /**
      * @return IdealMerchantTransaction
      */
-    public function getValue()
+    public function getValue(): IdealMerchantTransaction
     {
         return parent::getValue();
     }

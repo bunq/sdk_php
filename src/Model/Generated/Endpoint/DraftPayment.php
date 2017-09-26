@@ -106,7 +106,7 @@ class DraftPayment extends BunqModel
      *
      * @return BunqResponseInt
      */
-    public static function create(ApiContext $apiContext, array $requestMap, $userId, $monetaryAccountId, array $customHeaders = [])
+    public static function create(ApiContext $apiContext, array $requestMap, int $userId, int $monetaryAccountId, array $customHeaders = []): BunqResponseInt
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->post(
@@ -135,7 +135,7 @@ class DraftPayment extends BunqModel
      *
      * @return BunqResponseInt
      */
-    public static function update(ApiContext $apiContext, array $requestMap, $userId, $monetaryAccountId, $draftPaymentId, array $customHeaders = [])
+    public static function update(ApiContext $apiContext, array $requestMap, int $userId, int $monetaryAccountId, int $draftPaymentId, array $customHeaders = []): BunqResponseInt
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->put(
@@ -166,7 +166,7 @@ class DraftPayment extends BunqModel
      *
      * @return BunqResponseDraftPaymentList
      */
-    public static function listing(ApiContext $apiContext, $userId, $monetaryAccountId, array $params = [], array $customHeaders = [])
+    public static function listing(ApiContext $apiContext, int $userId, int $monetaryAccountId, array $params = [], array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(
@@ -194,7 +194,7 @@ class DraftPayment extends BunqModel
      *
      * @return BunqResponseDraftPayment
      */
-    public static function get(ApiContext $apiContext, $userId, $monetaryAccountId, $draftPaymentId, array $customHeaders = [])
+    public static function get(ApiContext $apiContext, int $userId, int $monetaryAccountId, int $draftPaymentId, array $customHeaders = []): BunqResponseDraftPayment
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(

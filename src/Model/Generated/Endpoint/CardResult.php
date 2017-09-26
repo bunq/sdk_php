@@ -150,7 +150,7 @@ class CardResult extends BunqModel
      *
      * @return BunqResponseCardResult
      */
-    public static function get(ApiContext $apiContext, $userId, $monetaryAccountId, $cardResultId, array $customHeaders = [])
+    public static function get(ApiContext $apiContext, int $userId, int $monetaryAccountId, int $cardResultId, array $customHeaders = []): BunqResponseCardResult
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(
@@ -179,7 +179,7 @@ class CardResult extends BunqModel
      *
      * @return BunqResponseCardResultList
      */
-    public static function listing(ApiContext $apiContext, $userId, $monetaryAccountId, array $params = [], array $customHeaders = [])
+    public static function listing(ApiContext $apiContext, int $userId, int $monetaryAccountId, array $params = [], array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(

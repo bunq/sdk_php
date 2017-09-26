@@ -10,7 +10,7 @@ class BunqResponseUserCredentialPasswordIpList extends BunqResponse
     /**
      * @return UserCredentialPasswordIp[]
      */
-    public function getValue()
+    public function getValue(): array
     {
         return parent::getValue();
     }

@@ -70,7 +70,7 @@ class PaymentChat extends BunqModel
      *
      * @return BunqResponseInt
      */
-    public static function create(ApiContext $apiContext, array $requestMap, $userId, $monetaryAccountId, $paymentId, array $customHeaders = [])
+    public static function create(ApiContext $apiContext, array $requestMap, int $userId, int $monetaryAccountId, int $paymentId, array $customHeaders = []): BunqResponseInt
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->post(
@@ -100,7 +100,7 @@ class PaymentChat extends BunqModel
      *
      * @return BunqResponsePaymentChat
      */
-    public static function update(ApiContext $apiContext, array $requestMap, $userId, $monetaryAccountId, $paymentId, $paymentChatId, array $customHeaders = [])
+    public static function update(ApiContext $apiContext, array $requestMap, int $userId, int $monetaryAccountId, int $paymentId, int $paymentChatId, array $customHeaders = []): BunqResponsePaymentChat
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->put(
@@ -132,7 +132,7 @@ class PaymentChat extends BunqModel
      *
      * @return BunqResponsePaymentChatList
      */
-    public static function listing(ApiContext $apiContext, $userId, $monetaryAccountId, $paymentId, array $params = [], array $customHeaders = [])
+    public static function listing(ApiContext $apiContext, int $userId, int $monetaryAccountId, int $paymentId, array $params = [], array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(

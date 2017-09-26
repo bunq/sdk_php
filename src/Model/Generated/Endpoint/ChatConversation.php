@@ -45,7 +45,7 @@ class ChatConversation extends BunqModel
      *
      * @return BunqResponseChatConversationList
      */
-    public static function listing(ApiContext $apiContext, $userId, array $params = [], array $customHeaders = [])
+    public static function listing(ApiContext $apiContext, int $userId, array $params = [], array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(
@@ -70,7 +70,7 @@ class ChatConversation extends BunqModel
      *
      * @return BunqResponseChatConversation
      */
-    public static function get(ApiContext $apiContext, $userId, $chatConversationId, array $customHeaders = [])
+    public static function get(ApiContext $apiContext, int $userId, int $chatConversationId, array $customHeaders = []): BunqResponseChatConversation
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(

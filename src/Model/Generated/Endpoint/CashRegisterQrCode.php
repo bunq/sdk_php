@@ -92,7 +92,7 @@ class CashRegisterQrCode extends BunqModel
      *
      * @return BunqResponseInt
      */
-    public static function create(ApiContext $apiContext, array $requestMap, $userId, $monetaryAccountId, $cashRegisterId, array $customHeaders = [])
+    public static function create(ApiContext $apiContext, array $requestMap, int $userId, int $monetaryAccountId, int $cashRegisterId, array $customHeaders = []): BunqResponseInt
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->post(
@@ -123,7 +123,7 @@ class CashRegisterQrCode extends BunqModel
      *
      * @return BunqResponseInt
      */
-    public static function update(ApiContext $apiContext, array $requestMap, $userId, $monetaryAccountId, $cashRegisterId, $cashRegisterQrCodeId, array $customHeaders = [])
+    public static function update(ApiContext $apiContext, array $requestMap, int $userId, int $monetaryAccountId, int $cashRegisterId, int $cashRegisterQrCodeId, array $customHeaders = []): BunqResponseInt
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->put(
@@ -153,7 +153,7 @@ class CashRegisterQrCode extends BunqModel
      *
      * @return BunqResponseCashRegisterQrCode
      */
-    public static function get(ApiContext $apiContext, $userId, $monetaryAccountId, $cashRegisterId, $cashRegisterQrCodeId, array $customHeaders = [])
+    public static function get(ApiContext $apiContext, int $userId, int $monetaryAccountId, int $cashRegisterId, int $cashRegisterQrCodeId, array $customHeaders = []): BunqResponseCashRegisterQrCode
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(
@@ -185,7 +185,7 @@ class CashRegisterQrCode extends BunqModel
      *
      * @return BunqResponseCashRegisterQrCodeList
      */
-    public static function listing(ApiContext $apiContext, $userId, $monetaryAccountId, $cashRegisterId, array $params = [], array $customHeaders = [])
+    public static function listing(ApiContext $apiContext, int $userId, int $monetaryAccountId, int $cashRegisterId, array $params = [], array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(

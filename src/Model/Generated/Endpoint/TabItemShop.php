@@ -109,7 +109,7 @@ class TabItemShop extends BunqModel
      *
      * @return BunqResponseInt
      */
-    public static function create(ApiContext $apiContext, array $requestMap, $userId, $monetaryAccountId, $cashRegisterId, $tabUuid, array $customHeaders = [])
+    public static function create(ApiContext $apiContext, array $requestMap, int $userId, int $monetaryAccountId, int $cashRegisterId, string $tabUuid, array $customHeaders = []): BunqResponseInt
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->post(
@@ -140,7 +140,7 @@ class TabItemShop extends BunqModel
      *
      * @return BunqResponseInt
      */
-    public static function update(ApiContext $apiContext, array $requestMap, $userId, $monetaryAccountId, $cashRegisterId, $tabUuid, $tabItemShopId, array $customHeaders = [])
+    public static function update(ApiContext $apiContext, array $requestMap, int $userId, int $monetaryAccountId, int $cashRegisterId, string $tabUuid, int $tabItemShopId, array $customHeaders = []): BunqResponseInt
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->put(
@@ -171,7 +171,7 @@ class TabItemShop extends BunqModel
      *
      * @return BunqResponseNull
      */
-    public static function delete(ApiContext $apiContext, $userId, $monetaryAccountId, $cashRegisterId, $tabUuid, $tabItemShopId, array $customHeaders = [])
+    public static function delete(ApiContext $apiContext, int $userId, int $monetaryAccountId, int $cashRegisterId, string $tabUuid, int $tabItemShopId, array $customHeaders = []): BunqResponseNull
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->delete(
@@ -203,7 +203,7 @@ class TabItemShop extends BunqModel
      *
      * @return BunqResponseTabItemShopList
      */
-    public static function listing(ApiContext $apiContext, $userId, $monetaryAccountId, $cashRegisterId, $tabUuid, array $params = [], array $customHeaders = [])
+    public static function listing(ApiContext $apiContext, int $userId, int $monetaryAccountId, int $cashRegisterId, string $tabUuid, array $params = [], array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(
@@ -233,7 +233,7 @@ class TabItemShop extends BunqModel
      *
      * @return BunqResponseTabItemShop
      */
-    public static function get(ApiContext $apiContext, $userId, $monetaryAccountId, $cashRegisterId, $tabUuid, $tabItemShopId, array $customHeaders = [])
+    public static function get(ApiContext $apiContext, int $userId, int $monetaryAccountId, int $cashRegisterId, string $tabUuid, int $tabItemShopId, array $customHeaders = []): BunqResponseTabItemShop
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(

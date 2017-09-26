@@ -10,7 +10,7 @@ class BunqResponseRequestInquiryChatList extends BunqResponse
     /**
      * @return RequestInquiryChat[]
      */
-    public function getValue()
+    public function getValue(): array
     {
         return parent::getValue();
     }

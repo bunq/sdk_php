@@ -160,7 +160,7 @@ class Invoice extends BunqModel
      *
      * @return BunqResponseInvoiceList
      */
-    public static function listing(ApiContext $apiContext, $userId, $monetaryAccountId, array $params = [], array $customHeaders = [])
+    public static function listing(ApiContext $apiContext, int $userId, int $monetaryAccountId, array $params = [], array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(
@@ -186,7 +186,7 @@ class Invoice extends BunqModel
      *
      * @return BunqResponseInvoice
      */
-    public static function get(ApiContext $apiContext, $userId, $monetaryAccountId, $invoiceId, array $customHeaders = [])
+    public static function get(ApiContext $apiContext, int $userId, int $monetaryAccountId, int $invoiceId, array $customHeaders = []): BunqResponseInvoice
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(

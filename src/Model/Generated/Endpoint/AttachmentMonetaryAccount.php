@@ -62,7 +62,7 @@ class AttachmentMonetaryAccount extends BunqModel
      *
      * @return BunqResponseInt
      */
-    public static function create(ApiContext $apiContext, $requestBytes, $userId, $monetaryAccountId, array $customHeaders = [])
+    public static function create(ApiContext $apiContext, string $requestBytes, int $userId, int $monetaryAccountId, array $customHeaders = []): BunqResponseInt
     {
         $apiClient = new ApiClient($apiContext);
         $apiClient->enableBinary();

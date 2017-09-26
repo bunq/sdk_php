@@ -75,7 +75,7 @@ class AttachmentPublic extends BunqModel
      *
      * @return BunqResponseString
      */
-    public static function create(ApiContext $apiContext, $requestBytes, array $customHeaders = [])
+    public static function create(ApiContext $apiContext, string $requestBytes, array $customHeaders = []): BunqResponseString
     {
         $apiClient = new ApiClient($apiContext);
         $apiClient->enableBinary();
@@ -104,7 +104,7 @@ class AttachmentPublic extends BunqModel
      *
      * @return BunqResponseAttachmentPublic
      */
-    public static function get(ApiContext $apiContext, $attachmentPublicUuid, array $customHeaders = [])
+    public static function get(ApiContext $apiContext, string $attachmentPublicUuid, array $customHeaders = []): BunqResponseAttachmentPublic
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(

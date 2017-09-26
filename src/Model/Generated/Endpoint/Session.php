@@ -32,7 +32,7 @@ class Session extends BunqModel
      *
      * @return BunqResponseNull
      */
-    public static function delete(ApiContext $apiContext, $sessionId, array $customHeaders = [])
+    public static function delete(ApiContext $apiContext, int $sessionId, array $customHeaders = []): BunqResponseNull
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->delete(

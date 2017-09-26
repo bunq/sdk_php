@@ -10,7 +10,7 @@ class BunqResponsePaymentBatch extends BunqResponse
     /**
      * @return PaymentBatch
      */
-    public function getValue()
+    public function getValue(): PaymentBatch
     {
         return parent::getValue();
     }

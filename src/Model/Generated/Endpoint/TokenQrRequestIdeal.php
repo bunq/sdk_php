@@ -194,7 +194,7 @@ class TokenQrRequestIdeal extends BunqModel
      *
      * @return BunqResponseTokenQrRequestIdeal
      */
-    public static function create(ApiContext $apiContext, array $requestMap, $userId, array $customHeaders = [])
+    public static function create(ApiContext $apiContext, array $requestMap, int $userId, array $customHeaders = []): BunqResponseTokenQrRequestIdeal
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->post(

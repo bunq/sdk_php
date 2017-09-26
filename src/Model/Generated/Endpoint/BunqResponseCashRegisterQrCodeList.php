@@ -10,7 +10,7 @@ class BunqResponseCashRegisterQrCodeList extends BunqResponse
     /**
      * @return CashRegisterQrCode[]
      */
-    public function getValue()
+    public function getValue(): array
     {
         return parent::getValue();
     }

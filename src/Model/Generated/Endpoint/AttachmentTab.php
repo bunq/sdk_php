@@ -78,7 +78,7 @@ class AttachmentTab extends BunqModel
      *
      * @return BunqResponseInt
      */
-    public static function create(ApiContext $apiContext, $requestBytes, $userId, $monetaryAccountId, array $customHeaders = [])
+    public static function create(ApiContext $apiContext, string $requestBytes, int $userId, int $monetaryAccountId, array $customHeaders = []): BunqResponseInt
     {
         $apiClient = new ApiClient($apiContext);
         $apiClient->enableBinary();
@@ -108,7 +108,7 @@ class AttachmentTab extends BunqModel
      *
      * @return BunqResponseAttachmentTab
      */
-    public static function get(ApiContext $apiContext, $userId, $monetaryAccountId, $attachmentTabId, array $customHeaders = [])
+    public static function get(ApiContext $apiContext, int $userId, int $monetaryAccountId, int $attachmentTabId, array $customHeaders = []): BunqResponseAttachmentTab
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(

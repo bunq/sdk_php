@@ -52,7 +52,7 @@ class Tab extends BunqModel
      *
      * @return BunqResponseTab
      */
-    public static function get(ApiContext $apiContext, $userId, $monetaryAccountId, $cashRegisterId, $tabUuid, array $customHeaders = [])
+    public static function get(ApiContext $apiContext, int $userId, int $monetaryAccountId, int $cashRegisterId, string $tabUuid, array $customHeaders = []): BunqResponseTab
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(
@@ -84,7 +84,7 @@ class Tab extends BunqModel
      *
      * @return BunqResponseTabList
      */
-    public static function listing(ApiContext $apiContext, $userId, $monetaryAccountId, $cashRegisterId, array $params = [], array $customHeaders = [])
+    public static function listing(ApiContext $apiContext, int $userId, int $monetaryAccountId, int $cashRegisterId, array $params = [], array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(

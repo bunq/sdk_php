@@ -56,7 +56,7 @@ class SchedulePaymentBatch extends BunqModel
      *
      * @return BunqResponseInt
      */
-    public static function create(ApiContext $apiContext, array $requestMap, $userId, $monetaryAccountId, array $customHeaders = [])
+    public static function create(ApiContext $apiContext, array $requestMap, int $userId, int $monetaryAccountId, array $customHeaders = []): BunqResponseInt
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->post(
@@ -83,7 +83,7 @@ class SchedulePaymentBatch extends BunqModel
      *
      * @return BunqResponseInt
      */
-    public static function update(ApiContext $apiContext, array $requestMap, $userId, $monetaryAccountId, $schedulePaymentBatchId, array $customHeaders = [])
+    public static function update(ApiContext $apiContext, array $requestMap, int $userId, int $monetaryAccountId, int $schedulePaymentBatchId, array $customHeaders = []): BunqResponseInt
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->put(
@@ -109,7 +109,7 @@ class SchedulePaymentBatch extends BunqModel
      *
      * @return BunqResponseNull
      */
-    public static function delete(ApiContext $apiContext, $userId, $monetaryAccountId, $schedulePaymentBatchId, array $customHeaders = [])
+    public static function delete(ApiContext $apiContext, int $userId, int $monetaryAccountId, int $schedulePaymentBatchId, array $customHeaders = []): BunqResponseNull
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->delete(

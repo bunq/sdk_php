@@ -96,7 +96,7 @@ class DraftShareInviteBank extends BunqModel
      *
      * @return BunqResponseInt
      */
-    public static function create(ApiContext $apiContext, array $requestMap, $userId, array $customHeaders = [])
+    public static function create(ApiContext $apiContext, array $requestMap, int $userId, array $customHeaders = []): BunqResponseInt
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->post(
@@ -123,7 +123,7 @@ class DraftShareInviteBank extends BunqModel
      *
      * @return BunqResponseDraftShareInviteBank
      */
-    public static function get(ApiContext $apiContext, $userId, $draftShareInviteBankId, array $customHeaders = [])
+    public static function get(ApiContext $apiContext, int $userId, int $draftShareInviteBankId, array $customHeaders = []): BunqResponseDraftShareInviteBank
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(
@@ -152,7 +152,7 @@ class DraftShareInviteBank extends BunqModel
      *
      * @return BunqResponseDraftShareInviteBank
      */
-    public static function update(ApiContext $apiContext, array $requestMap, $userId, $draftShareInviteBankId, array $customHeaders = [])
+    public static function update(ApiContext $apiContext, array $requestMap, int $userId, int $draftShareInviteBankId, array $customHeaders = []): BunqResponseDraftShareInviteBank
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->put(
@@ -180,7 +180,7 @@ class DraftShareInviteBank extends BunqModel
      *
      * @return BunqResponseDraftShareInviteBankList
      */
-    public static function listing(ApiContext $apiContext, $userId, array $params = [], array $customHeaders = [])
+    public static function listing(ApiContext $apiContext, int $userId, array $params = [], array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(

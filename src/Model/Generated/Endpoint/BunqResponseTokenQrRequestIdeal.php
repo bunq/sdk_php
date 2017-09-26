@@ -10,7 +10,7 @@ class BunqResponseTokenQrRequestIdeal extends BunqResponse
     /**
      * @return TokenQrRequestIdeal
      */
-    public function getValue()
+    public function getValue(): TokenQrRequestIdeal
     {
         return parent::getValue();
     }

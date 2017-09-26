@@ -85,7 +85,7 @@ class ScheduleInstance extends BunqModel
      *
      * @return BunqResponseScheduleInstance
      */
-    public static function get(ApiContext $apiContext, $userId, $monetaryAccountId, $scheduleId, $scheduleInstanceId, array $customHeaders = [])
+    public static function get(ApiContext $apiContext, int $userId, int $monetaryAccountId, int $scheduleId, int $scheduleInstanceId, array $customHeaders = []): BunqResponseScheduleInstance
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(
@@ -113,7 +113,7 @@ class ScheduleInstance extends BunqModel
      *
      * @return BunqResponseInt
      */
-    public static function update(ApiContext $apiContext, array $requestMap, $userId, $monetaryAccountId, $scheduleId, $scheduleInstanceId, array $customHeaders = [])
+    public static function update(ApiContext $apiContext, array $requestMap, int $userId, int $monetaryAccountId, int $scheduleId, int $scheduleInstanceId, array $customHeaders = []): BunqResponseInt
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->put(
@@ -143,7 +143,7 @@ class ScheduleInstance extends BunqModel
      *
      * @return BunqResponseScheduleInstanceList
      */
-    public static function listing(ApiContext $apiContext, $userId, $monetaryAccountId, $scheduleId, array $params = [], array $customHeaders = [])
+    public static function listing(ApiContext $apiContext, int $userId, int $monetaryAccountId, int $scheduleId, array $params = [], array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(

@@ -44,7 +44,7 @@ class Device extends BunqModel
      *
      * @return BunqResponseDevice
      */
-    public static function get(ApiContext $apiContext, $deviceId, array $customHeaders = [])
+    public static function get(ApiContext $apiContext, int $deviceId, array $customHeaders = []): BunqResponseDevice
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(

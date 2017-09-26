@@ -52,7 +52,7 @@ class ChatMessage extends BunqModel
      *
      * @return BunqResponseChatMessageList
      */
-    public static function listing(ApiContext $apiContext, $userId, $chatConversationId, array $params = [], array $customHeaders = [])
+    public static function listing(ApiContext $apiContext, int $userId, int $chatConversationId, array $params = [], array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(

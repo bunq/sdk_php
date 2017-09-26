@@ -58,7 +58,7 @@ class CertificatePinned extends BunqModel
      *
      * @return BunqResponseInt
      */
-    public static function create(ApiContext $apiContext, array $requestMap, $userId, array $customHeaders = [])
+    public static function create(ApiContext $apiContext, array $requestMap, int $userId, array $customHeaders = []): BunqResponseInt
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->post(
@@ -85,7 +85,7 @@ class CertificatePinned extends BunqModel
      *
      * @return BunqResponseNull
      */
-    public static function delete(ApiContext $apiContext, $userId, $certificatePinnedId, array $customHeaders = [])
+    public static function delete(ApiContext $apiContext, int $userId, int $certificatePinnedId, array $customHeaders = []): BunqResponseNull
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->delete(
@@ -114,7 +114,7 @@ class CertificatePinned extends BunqModel
      *
      * @return BunqResponseCertificatePinnedList
      */
-    public static function listing(ApiContext $apiContext, $userId, array $params = [], array $customHeaders = [])
+    public static function listing(ApiContext $apiContext, int $userId, array $params = [], array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(
@@ -141,7 +141,7 @@ class CertificatePinned extends BunqModel
      *
      * @return BunqResponseCertificatePinned
      */
-    public static function get(ApiContext $apiContext, $userId, $certificatePinnedId, array $customHeaders = [])
+    public static function get(ApiContext $apiContext, int $userId, int $certificatePinnedId, array $customHeaders = []): BunqResponseCertificatePinned
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(

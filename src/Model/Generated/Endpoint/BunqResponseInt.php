@@ -10,7 +10,7 @@ class BunqResponseInt extends BunqResponse
     /**
      * @return int
      */
-    public function getValue()
+    public function getValue(): int
     {
         return parent::getValue();
     }

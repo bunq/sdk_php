@@ -10,7 +10,7 @@ class BunqResponseTabItemShopList extends BunqResponse
     /**
      * @return TabItemShop[]
      */
-    public function getValue()
+    public function getValue(): array
     {
         return parent::getValue();
     }

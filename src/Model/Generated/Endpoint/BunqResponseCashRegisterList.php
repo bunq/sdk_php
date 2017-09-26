@@ -10,7 +10,7 @@ class BunqResponseCashRegisterList extends BunqResponse
     /**
      * @return CashRegister[]
      */
-    public function getValue()
+    public function getValue(): array
     {
         return parent::getValue();
     }

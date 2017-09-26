@@ -10,7 +10,7 @@ class BunqResponseMonetaryAccountBankList extends BunqResponse
     /**
      * @return MonetaryAccountBank[]
      */
-    public function getValue()
+    public function getValue(): array
     {
         return parent::getValue();
     }

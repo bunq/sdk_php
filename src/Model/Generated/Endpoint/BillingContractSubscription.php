@@ -88,7 +88,7 @@ class BillingContractSubscription extends BunqModel
      *
      * @return BunqResponseBillingContractSubscription
      */
-    public static function create(ApiContext $apiContext, array $requestMap, $userId, array $customHeaders = [])
+    public static function create(ApiContext $apiContext, array $requestMap, int $userId, array $customHeaders = []): BunqResponseBillingContractSubscription
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->post(
@@ -118,7 +118,7 @@ class BillingContractSubscription extends BunqModel
      *
      * @return BunqResponseBillingContractSubscriptionList
      */
-    public static function listing(ApiContext $apiContext, $userId, array $params = [], array $customHeaders = [])
+    public static function listing(ApiContext $apiContext, int $userId, array $params = [], array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(

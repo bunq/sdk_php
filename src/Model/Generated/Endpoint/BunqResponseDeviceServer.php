@@ -10,7 +10,7 @@ class BunqResponseDeviceServer extends BunqResponse
     /**
      * @return DeviceServer
      */
-    public function getValue()
+    public function getValue(): DeviceServer
     {
         return parent::getValue();
     }

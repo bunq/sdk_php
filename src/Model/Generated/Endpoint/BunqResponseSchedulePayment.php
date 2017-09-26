@@ -10,7 +10,7 @@ class BunqResponseSchedulePayment extends BunqResponse
     /**
      * @return SchedulePayment
      */
-    public function getValue()
+    public function getValue(): SchedulePayment
     {
         return parent::getValue();
     }

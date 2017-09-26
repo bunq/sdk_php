@@ -10,7 +10,7 @@ class BunqResponseCardPinChangeList extends BunqResponse
     /**
      * @return CardPinChange[]
      */
-    public function getValue()
+    public function getValue(): array
     {
         return parent::getValue();
     }

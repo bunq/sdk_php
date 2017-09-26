@@ -10,7 +10,7 @@ class BunqResponseScheduleInstance extends BunqResponse
     /**
      * @return ScheduleInstance
      */
-    public function getValue()
+    public function getValue(): ScheduleInstance
     {
         return parent::getValue();
     }

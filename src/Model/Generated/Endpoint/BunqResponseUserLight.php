@@ -10,7 +10,7 @@ class BunqResponseUserLight extends BunqResponse
     /**
      * @return UserLight
      */
-    public function getValue()
+    public function getValue(): UserLight
     {
         return parent::getValue();
     }

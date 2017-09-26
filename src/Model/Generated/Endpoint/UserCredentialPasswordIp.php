@@ -84,7 +84,7 @@ class UserCredentialPasswordIp extends BunqModel
      *
      * @return BunqResponseUserCredentialPasswordIp
      */
-    public static function get(ApiContext $apiContext, $userId, $userCredentialPasswordIpId, array $customHeaders = [])
+    public static function get(ApiContext $apiContext, int $userId, int $userCredentialPasswordIpId, array $customHeaders = []): BunqResponseUserCredentialPasswordIp
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(
@@ -112,7 +112,7 @@ class UserCredentialPasswordIp extends BunqModel
      *
      * @return BunqResponseUserCredentialPasswordIpList
      */
-    public static function listing(ApiContext $apiContext, $userId, array $params = [], array $customHeaders = [])
+    public static function listing(ApiContext $apiContext, int $userId, array $params = [], array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(

@@ -39,7 +39,7 @@ class CashRegisterQrCodeContent extends BunqModel
      *
      * @return BunqResponseString
      */
-    public static function listing(ApiContext $apiContext, $userId, $monetaryAccountId, $cashRegisterId, $qrCodeId, array $customHeaders = [])
+    public static function listing(ApiContext $apiContext, int $userId, int $monetaryAccountId, int $cashRegisterId, int $qrCodeId, array $customHeaders = []): BunqResponseString
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(

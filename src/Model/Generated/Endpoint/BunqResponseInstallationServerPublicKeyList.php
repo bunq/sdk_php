@@ -10,7 +10,7 @@ class BunqResponseInstallationServerPublicKeyList extends BunqResponse
     /**
      * @return InstallationServerPublicKey[]
      */
-    public function getValue()
+    public function getValue(): array
     {
         return parent::getValue();
     }

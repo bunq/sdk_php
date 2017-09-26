@@ -133,7 +133,7 @@ class ShareInviteBankInquiry extends BunqModel
      *
      * @return BunqResponseInt
      */
-    public static function create(ApiContext $apiContext, array $requestMap, $userId, $monetaryAccountId, array $customHeaders = [])
+    public static function create(ApiContext $apiContext, array $requestMap, int $userId, int $monetaryAccountId, array $customHeaders = []): BunqResponseInt
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->post(
@@ -161,7 +161,7 @@ class ShareInviteBankInquiry extends BunqModel
      *
      * @return BunqResponseShareInviteBankInquiry
      */
-    public static function get(ApiContext $apiContext, $userId, $monetaryAccountId, $shareInviteBankInquiryId, array $customHeaders = [])
+    public static function get(ApiContext $apiContext, int $userId, int $monetaryAccountId, int $shareInviteBankInquiryId, array $customHeaders = []): BunqResponseShareInviteBankInquiry
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(
@@ -191,7 +191,7 @@ class ShareInviteBankInquiry extends BunqModel
      *
      * @return BunqResponseShareInviteBankInquiry
      */
-    public static function update(ApiContext $apiContext, array $requestMap, $userId, $monetaryAccountId, $shareInviteBankInquiryId, array $customHeaders = [])
+    public static function update(ApiContext $apiContext, array $requestMap, int $userId, int $monetaryAccountId, int $shareInviteBankInquiryId, array $customHeaders = []): BunqResponseShareInviteBankInquiry
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->put(
@@ -224,7 +224,7 @@ class ShareInviteBankInquiry extends BunqModel
      *
      * @return BunqResponseShareInviteBankInquiryList
      */
-    public static function listing(ApiContext $apiContext, $userId, $monetaryAccountId, array $params = [], array $customHeaders = [])
+    public static function listing(ApiContext $apiContext, int $userId, int $monetaryAccountId, array $params = [], array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(

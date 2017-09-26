@@ -208,7 +208,7 @@ class TabUsageSingle extends BunqModel
      *
      * @return BunqResponseString
      */
-    public static function create(ApiContext $apiContext, array $requestMap, $userId, $monetaryAccountId, $cashRegisterId, array $customHeaders = [])
+    public static function create(ApiContext $apiContext, array $requestMap, int $userId, int $monetaryAccountId, int $cashRegisterId, array $customHeaders = []): BunqResponseString
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->post(
@@ -241,7 +241,7 @@ class TabUsageSingle extends BunqModel
      *
      * @return BunqResponseString
      */
-    public static function update(ApiContext $apiContext, array $requestMap, $userId, $monetaryAccountId, $cashRegisterId, $tabUsageSingleUuid, array $customHeaders = [])
+    public static function update(ApiContext $apiContext, array $requestMap, int $userId, int $monetaryAccountId, int $cashRegisterId, string $tabUsageSingleUuid, array $customHeaders = []): BunqResponseString
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->put(
@@ -270,7 +270,7 @@ class TabUsageSingle extends BunqModel
      *
      * @return BunqResponseNull
      */
-    public static function delete(ApiContext $apiContext, $userId, $monetaryAccountId, $cashRegisterId, $tabUsageSingleUuid, array $customHeaders = [])
+    public static function delete(ApiContext $apiContext, int $userId, int $monetaryAccountId, int $cashRegisterId, string $tabUsageSingleUuid, array $customHeaders = []): BunqResponseNull
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->delete(
@@ -298,7 +298,7 @@ class TabUsageSingle extends BunqModel
      *
      * @return BunqResponseTabUsageSingle
      */
-    public static function get(ApiContext $apiContext, $userId, $monetaryAccountId, $cashRegisterId, $tabUsageSingleUuid, array $customHeaders = [])
+    public static function get(ApiContext $apiContext, int $userId, int $monetaryAccountId, int $cashRegisterId, string $tabUsageSingleUuid, array $customHeaders = []): BunqResponseTabUsageSingle
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(
@@ -330,7 +330,7 @@ class TabUsageSingle extends BunqModel
      *
      * @return BunqResponseTabUsageSingleList
      */
-    public static function listing(ApiContext $apiContext, $userId, $monetaryAccountId, $cashRegisterId, array $params = [], array $customHeaders = [])
+    public static function listing(ApiContext $apiContext, int $userId, int $monetaryAccountId, int $cashRegisterId, array $params = [], array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(

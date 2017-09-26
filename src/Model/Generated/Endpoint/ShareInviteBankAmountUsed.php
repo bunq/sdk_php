@@ -40,7 +40,7 @@ class ShareInviteBankAmountUsed extends BunqModel
      *
      * @return BunqResponseNull
      */
-    public static function delete(ApiContext $apiContext, $userId, $monetaryAccountId, $shareInviteBankInquiryId, $shareInviteBankAmountUsedId, array $customHeaders = [])
+    public static function delete(ApiContext $apiContext, int $userId, int $monetaryAccountId, int $shareInviteBankInquiryId, int $shareInviteBankAmountUsedId, array $customHeaders = []): BunqResponseNull
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->delete(

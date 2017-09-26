@@ -10,7 +10,7 @@ class BunqResponseTabResultInquiry extends BunqResponse
     /**
      * @return TabResultInquiry
      */
-    public function getValue()
+    public function getValue(): TabResultInquiry
     {
         return parent::getValue();
     }

@@ -10,7 +10,7 @@ class BunqResponseChatMessageList extends BunqResponse
     /**
      * @return ChatMessage[]
      */
-    public function getValue()
+    public function getValue(): array
     {
         return parent::getValue();
     }

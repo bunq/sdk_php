@@ -192,7 +192,7 @@ class TabUsageMultiple extends BunqModel
      *
      * @return BunqResponseString
      */
-    public static function create(ApiContext $apiContext, array $requestMap, $userId, $monetaryAccountId, $cashRegisterId, array $customHeaders = [])
+    public static function create(ApiContext $apiContext, array $requestMap, int $userId, int $monetaryAccountId, int $cashRegisterId, array $customHeaders = []): BunqResponseString
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->post(
@@ -227,7 +227,7 @@ class TabUsageMultiple extends BunqModel
      *
      * @return BunqResponseString
      */
-    public static function update(ApiContext $apiContext, array $requestMap, $userId, $monetaryAccountId, $cashRegisterId, $tabUsageMultipleUuid, array $customHeaders = [])
+    public static function update(ApiContext $apiContext, array $requestMap, int $userId, int $monetaryAccountId, int $cashRegisterId, string $tabUsageMultipleUuid, array $customHeaders = []): BunqResponseString
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->put(
@@ -257,7 +257,7 @@ class TabUsageMultiple extends BunqModel
      *
      * @return BunqResponseNull
      */
-    public static function delete(ApiContext $apiContext, $userId, $monetaryAccountId, $cashRegisterId, $tabUsageMultipleUuid, array $customHeaders = [])
+    public static function delete(ApiContext $apiContext, int $userId, int $monetaryAccountId, int $cashRegisterId, string $tabUsageMultipleUuid, array $customHeaders = []): BunqResponseNull
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->delete(
@@ -285,7 +285,7 @@ class TabUsageMultiple extends BunqModel
      *
      * @return BunqResponseTabUsageMultiple
      */
-    public static function get(ApiContext $apiContext, $userId, $monetaryAccountId, $cashRegisterId, $tabUsageMultipleUuid, array $customHeaders = [])
+    public static function get(ApiContext $apiContext, int $userId, int $monetaryAccountId, int $cashRegisterId, string $tabUsageMultipleUuid, array $customHeaders = []): BunqResponseTabUsageMultiple
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(
@@ -317,7 +317,7 @@ class TabUsageMultiple extends BunqModel
      *
      * @return BunqResponseTabUsageMultipleList
      */
-    public static function listing(ApiContext $apiContext, $userId, $monetaryAccountId, $cashRegisterId, array $params = [], array $customHeaders = [])
+    public static function listing(ApiContext $apiContext, int $userId, int $monetaryAccountId, int $cashRegisterId, array $params = [], array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(

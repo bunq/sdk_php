@@ -10,7 +10,7 @@ class BunqResponseExportAnnualOverviewList extends BunqResponse
     /**
      * @return ExportAnnualOverview[]
      */
-    public function getValue()
+    public function getValue(): array
     {
         return parent::getValue();
     }

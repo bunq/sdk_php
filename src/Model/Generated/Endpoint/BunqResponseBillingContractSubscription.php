@@ -10,7 +10,7 @@ class BunqResponseBillingContractSubscription extends BunqResponse
     /**
      * @return BillingContractSubscription
      */
-    public function getValue()
+    public function getValue(): BillingContractSubscription
     {
         return parent::getValue();
     }

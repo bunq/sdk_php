@@ -10,7 +10,7 @@ class BunqResponseCertificatePinned extends BunqResponse
     /**
      * @return CertificatePinned
      */
-    public function getValue()
+    public function getValue(): CertificatePinned
     {
         return parent::getValue();
     }

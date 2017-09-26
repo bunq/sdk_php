@@ -116,7 +116,7 @@ class ShareInviteBankResponse extends BunqModel
      *
      * @return BunqResponseShareInviteBankResponse
      */
-    public static function get(ApiContext $apiContext, $userId, $shareInviteBankResponseId, array $customHeaders = [])
+    public static function get(ApiContext $apiContext, int $userId, int $shareInviteBankResponseId, array $customHeaders = []): BunqResponseShareInviteBankResponse
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(
@@ -144,7 +144,7 @@ class ShareInviteBankResponse extends BunqModel
      *
      * @return BunqResponseShareInviteBankResponse
      */
-    public static function update(ApiContext $apiContext, array $requestMap, $userId, $shareInviteBankResponseId, array $customHeaders = [])
+    public static function update(ApiContext $apiContext, array $requestMap, int $userId, int $shareInviteBankResponseId, array $customHeaders = []): BunqResponseShareInviteBankResponse
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->put(
@@ -174,7 +174,7 @@ class ShareInviteBankResponse extends BunqModel
      *
      * @return BunqResponseShareInviteBankResponseList
      */
-    public static function listing(ApiContext $apiContext, $userId, array $params = [], array $customHeaders = [])
+    public static function listing(ApiContext $apiContext, int $userId, array $params = [], array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(

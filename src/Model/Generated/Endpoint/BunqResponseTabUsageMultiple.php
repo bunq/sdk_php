@@ -10,7 +10,7 @@ class BunqResponseTabUsageMultiple extends BunqResponse
     /**
      * @return TabUsageMultiple
      */
-    public function getValue()
+    public function getValue(): TabUsageMultiple
     {
         return parent::getValue();
     }

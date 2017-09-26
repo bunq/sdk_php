@@ -45,7 +45,7 @@ class InstallationServerPublicKey extends BunqModel
      *
      * @return BunqResponseInstallationServerPublicKeyList
      */
-    public static function listing(ApiContext $apiContext, $installationId, array $params = [], array $customHeaders = [])
+    public static function listing(ApiContext $apiContext, int $installationId, array $params = [], array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(

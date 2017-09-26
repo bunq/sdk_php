@@ -40,7 +40,7 @@ class DraftShareInviteBankQrCodeContent extends BunqModel
      *
      * @return BunqResponseString
      */
-    public static function listing(ApiContext $apiContext, $userId, $draftShareInviteBankId, array $customHeaders = [])
+    public static function listing(ApiContext $apiContext, int $userId, int $draftShareInviteBankId, array $customHeaders = []): BunqResponseString
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(

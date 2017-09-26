@@ -10,7 +10,7 @@ class BunqResponseAvatar extends BunqResponse
     /**
      * @return Avatar
      */
-    public function getValue()
+    public function getValue(): Avatar
     {
         return parent::getValue();
     }

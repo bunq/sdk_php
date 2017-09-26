@@ -10,7 +10,7 @@ class BunqResponseBunqMeTab extends BunqResponse
     /**
      * @return BunqMeTab
      */
-    public function getValue()
+    public function getValue(): BunqMeTab
     {
         return parent::getValue();
     }

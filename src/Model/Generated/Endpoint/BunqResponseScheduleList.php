@@ -10,7 +10,7 @@ class BunqResponseScheduleList extends BunqResponse
     /**
      * @return Schedule[]
      */
-    public function getValue()
+    public function getValue(): array
     {
         return parent::getValue();
     }

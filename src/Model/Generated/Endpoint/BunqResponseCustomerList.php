@@ -10,7 +10,7 @@ class BunqResponseCustomerList extends BunqResponse
     /**
      * @return Customer[]
      */
-    public function getValue()
+    public function getValue(): array
     {
         return parent::getValue();
     }

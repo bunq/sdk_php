@@ -74,7 +74,7 @@ class RequestInquiryChat extends BunqModel
      *
      * @return BunqResponseInt
      */
-    public static function create(ApiContext $apiContext, array $requestMap, $userId, $monetaryAccountId, $requestInquiryId, array $customHeaders = [])
+    public static function create(ApiContext $apiContext, array $requestMap, int $userId, int $monetaryAccountId, int $requestInquiryId, array $customHeaders = []): BunqResponseInt
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->post(
@@ -104,7 +104,7 @@ class RequestInquiryChat extends BunqModel
      *
      * @return BunqResponseRequestInquiryChat
      */
-    public static function update(ApiContext $apiContext, array $requestMap, $userId, $monetaryAccountId, $requestInquiryId, $requestInquiryChatId, array $customHeaders = [])
+    public static function update(ApiContext $apiContext, array $requestMap, int $userId, int $monetaryAccountId, int $requestInquiryId, int $requestInquiryChatId, array $customHeaders = []): BunqResponseRequestInquiryChat
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->put(
@@ -136,7 +136,7 @@ class RequestInquiryChat extends BunqModel
      *
      * @return BunqResponseRequestInquiryChatList
      */
-    public static function listing(ApiContext $apiContext, $userId, $monetaryAccountId, $requestInquiryId, array $params = [], array $customHeaders = [])
+    public static function listing(ApiContext $apiContext, int $userId, int $monetaryAccountId, int $requestInquiryId, array $params = [], array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(

@@ -302,7 +302,7 @@ class UserLight extends BunqModel
      *
      * @return BunqResponseUserLight
      */
-    public static function get(ApiContext $apiContext, $userLightId, array $customHeaders = [])
+    public static function get(ApiContext $apiContext, int $userLightId, array $customHeaders = []): BunqResponseUserLight
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(

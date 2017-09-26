@@ -10,7 +10,7 @@ class BunqResponseRequestInquiryBatchList extends BunqResponse
     /**
      * @return RequestInquiryBatch[]
      */
-    public function getValue()
+    public function getValue(): array
     {
         return parent::getValue();
     }

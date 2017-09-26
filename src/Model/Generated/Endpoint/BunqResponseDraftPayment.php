@@ -10,7 +10,7 @@ class BunqResponseDraftPayment extends BunqResponse
     /**
      * @return DraftPayment
      */
-    public function getValue()
+    public function getValue(): DraftPayment
     {
         return parent::getValue();
     }

@@ -10,7 +10,7 @@ class BunqResponseTabUsageSingleList extends BunqResponse
     /**
      * @return TabUsageSingle[]
      */
-    public function getValue()
+    public function getValue(): array
     {
         return parent::getValue();
     }

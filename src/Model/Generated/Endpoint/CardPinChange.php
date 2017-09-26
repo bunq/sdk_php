@@ -82,7 +82,7 @@ class CardPinChange extends BunqModel
      *
      * @return BunqResponseCardPinChangeList
      */
-    public static function listing(ApiContext $apiContext, $userId, $cardId, array $params = [], array $customHeaders = [])
+    public static function listing(ApiContext $apiContext, int $userId, int $cardId, array $params = [], array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(
@@ -108,7 +108,7 @@ class CardPinChange extends BunqModel
      *
      * @return BunqResponseCardPinChange
      */
-    public static function get(ApiContext $apiContext, $userId, $cardId, $cardPinChangeId, array $customHeaders = [])
+    public static function get(ApiContext $apiContext, int $userId, int $cardId, int $cardPinChangeId, array $customHeaders = []): BunqResponseCardPinChange
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(

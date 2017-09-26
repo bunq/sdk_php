@@ -58,7 +58,7 @@ class PermittedIp extends BunqModel
      *
      * @return BunqResponsePermittedIp
      */
-    public static function get(ApiContext $apiContext, $userId, $credentialPasswordIpId, $permittedIpId, array $customHeaders = [])
+    public static function get(ApiContext $apiContext, int $userId, int $credentialPasswordIpId, int $permittedIpId, array $customHeaders = []): BunqResponsePermittedIp
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(
@@ -84,7 +84,7 @@ class PermittedIp extends BunqModel
      *
      * @return BunqResponseInt
      */
-    public static function create(ApiContext $apiContext, array $requestMap, $userId, $credentialPasswordIpId, array $customHeaders = [])
+    public static function create(ApiContext $apiContext, array $requestMap, int $userId, int $credentialPasswordIpId, array $customHeaders = []): BunqResponseInt
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->post(
@@ -113,7 +113,7 @@ class PermittedIp extends BunqModel
      *
      * @return BunqResponsePermittedIpList
      */
-    public static function listing(ApiContext $apiContext, $userId, $credentialPasswordIpId, array $params = [], array $customHeaders = [])
+    public static function listing(ApiContext $apiContext, int $userId, int $credentialPasswordIpId, array $params = [], array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(
@@ -140,7 +140,7 @@ class PermittedIp extends BunqModel
      *
      * @return BunqResponseInt
      */
-    public static function update(ApiContext $apiContext, array $requestMap, $userId, $credentialPasswordIpId, $permittedIpId, array $customHeaders = [])
+    public static function update(ApiContext $apiContext, array $requestMap, int $userId, int $credentialPasswordIpId, int $permittedIpId, array $customHeaders = []): BunqResponseInt
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->put(

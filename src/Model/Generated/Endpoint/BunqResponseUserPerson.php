@@ -10,7 +10,7 @@ class BunqResponseUserPerson extends BunqResponse
     /**
      * @return UserPerson
      */
-    public function getValue()
+    public function getValue(): UserPerson
     {
         return parent::getValue();
     }

@@ -43,7 +43,7 @@ class MonetaryAccount extends BunqModel
      *
      * @return BunqResponseMonetaryAccount
      */
-    public static function get(ApiContext $apiContext, $userId, $monetaryAccountId, array $customHeaders = [])
+    public static function get(ApiContext $apiContext, int $userId, int $monetaryAccountId, array $customHeaders = []): BunqResponseMonetaryAccount
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(
@@ -73,7 +73,7 @@ class MonetaryAccount extends BunqModel
      *
      * @return BunqResponseMonetaryAccountList
      */
-    public static function listing(ApiContext $apiContext, $userId, array $params = [], array $customHeaders = [])
+    public static function listing(ApiContext $apiContext, int $userId, array $params = [], array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(

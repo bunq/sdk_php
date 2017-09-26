@@ -10,7 +10,7 @@ class BunqResponseCardResultList extends BunqResponse
     /**
      * @return CardResult[]
      */
-    public function getValue()
+    public function getValue(): array
     {
         return parent::getValue();
     }

@@ -10,7 +10,7 @@ class BunqResponsePaymentChat extends BunqResponse
     /**
      * @return PaymentChat
      */
-    public function getValue()
+    public function getValue(): PaymentChat
     {
         return parent::getValue();
     }

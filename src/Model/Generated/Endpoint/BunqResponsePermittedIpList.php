@@ -10,7 +10,7 @@ class BunqResponsePermittedIpList extends BunqResponse
     /**
      * @return PermittedIp[]
      */
-    public function getValue()
+    public function getValue(): array
     {
         return parent::getValue();
     }

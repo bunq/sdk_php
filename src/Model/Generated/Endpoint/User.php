@@ -49,7 +49,7 @@ class User extends BunqModel
      *
      * @return BunqResponseUser
      */
-    public static function get(ApiContext $apiContext, $userId, array $customHeaders = [])
+    public static function get(ApiContext $apiContext, int $userId, array $customHeaders = []): BunqResponseUser
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(

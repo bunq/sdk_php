@@ -57,7 +57,7 @@ class Avatar extends BunqModel
      *
      * @return BunqResponseString
      */
-    public static function create(ApiContext $apiContext, array $requestMap, array $customHeaders = [])
+    public static function create(ApiContext $apiContext, array $requestMap, array $customHeaders = []): BunqResponseString
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->post(
@@ -81,7 +81,7 @@ class Avatar extends BunqModel
      *
      * @return BunqResponseAvatar
      */
-    public static function get(ApiContext $apiContext, $avatarUuid, array $customHeaders = [])
+    public static function get(ApiContext $apiContext, string $avatarUuid, array $customHeaders = []): BunqResponseAvatar
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(

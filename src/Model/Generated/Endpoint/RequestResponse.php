@@ -240,7 +240,7 @@ class RequestResponse extends BunqModel
      *
      * @return BunqResponseRequestResponse
      */
-    public static function update(ApiContext $apiContext, array $requestMap, $userId, $monetaryAccountId, $requestResponseId, array $customHeaders = [])
+    public static function update(ApiContext $apiContext, array $requestMap, int $userId, int $monetaryAccountId, int $requestResponseId, array $customHeaders = []): BunqResponseRequestResponse
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->put(
@@ -271,7 +271,7 @@ class RequestResponse extends BunqModel
      *
      * @return BunqResponseRequestResponseList
      */
-    public static function listing(ApiContext $apiContext, $userId, $monetaryAccountId, array $params = [], array $customHeaders = [])
+    public static function listing(ApiContext $apiContext, int $userId, int $monetaryAccountId, array $params = [], array $customHeaders = [])
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(
@@ -299,7 +299,7 @@ class RequestResponse extends BunqModel
      *
      * @return BunqResponseRequestResponse
      */
-    public static function get(ApiContext $apiContext, $userId, $monetaryAccountId, $requestResponseId, array $customHeaders = [])
+    public static function get(ApiContext $apiContext, int $userId, int $monetaryAccountId, int $requestResponseId, array $customHeaders = []): BunqResponseRequestResponse
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->get(
