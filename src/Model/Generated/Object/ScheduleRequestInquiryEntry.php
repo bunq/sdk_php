@@ -33,7 +33,7 @@ class ScheduleRequestInquiryEntry extends BunqModel
     /**
      * The attachments attached to the payment.
      *
-     * @var AttachmentScheduleRequestInquiryEntry
+     * @var AttachmentScheduleRequestInquiryEntry[]
      */
     protected $attachment;
 
@@ -241,7 +241,7 @@ class ScheduleRequestInquiryEntry extends BunqModel
     /**
      * The attachments attached to the payment.
      *
-     * @return AttachmentScheduleRequestInquiryEntry
+     * @return AttachmentScheduleRequestInquiryEntry[]
      */
     public function getAttachment()
     {
@@ -249,7 +249,7 @@ class ScheduleRequestInquiryEntry extends BunqModel
     }
 
     /**
-     * @param AttachmentScheduleRequestInquiryEntry $attachment
+     * @param AttachmentScheduleRequestInquiryEntry[] $attachment
      */
     public function setAttachment($attachment)
     {

@@ -11,5 +11,6 @@ $users = User::listing($apiContext)->getValue();
 $apiContext->save();
 
 foreach ($users as $user) {
+    // If your user is UserPerson or UserLight, replace getUserCompany() with getUserPerson() or getUserLight()
     echo $user->getUserCompany()->getDisplayName();
 }

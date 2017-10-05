@@ -17,6 +17,7 @@ $apiContext = ApiContext::restore(ApiContext::FILENAME_CONFIG_DEFAULT);
 
 // Retrieve the active user.
 $users = User::listing($apiContext)->getValue();
+// If your user is UserPerson or UserLight, replace getUserCompany() with getUserPerson() or getUserLight()
 $userId = $users[INDEX_FIRST]->getUserCompany()->getId();
 
 // Retrieve all monetary accounts of the active user.

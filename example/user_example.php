@@ -23,6 +23,7 @@ $apiContext = ApiContext::restore(ApiContext::FILENAME_CONFIG_DEFAULT);
 
 // Retrieve the active user.
 $users = User::listing($apiContext)->getValue();
+// If your user is UserPerson or UserLight, replace getUserCompany() with getUserPerson() or getUserLight()
 $user = $users[INDEX_FIRST]->getUserCompany();
 $userId = $user->getId();
 

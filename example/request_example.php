@@ -36,6 +36,7 @@ $apiContext = ApiContext::restore(FILENAME_BUNQ_CONFIG);
 
 // Retrieve the active user.
 $users = User::listing($apiContext)->getValue();
+// If your user is UserPerson or UserLight, replace getUserCompany() with getUserPerson() or getUserLight()
 $userId = $users[INDEX_FIRST]->getUserCompany()->getId();
 
 // Retrieve the first monetary account of the active user.
