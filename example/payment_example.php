@@ -58,3 +58,6 @@ $paymentId = Payment::create($apiContext, $paymentMap, $userId, $monetaryAccount
 $payment = Payment::get($apiContext, $userId, $monetaryAccountId, $paymentId)->getValue();
 
 vprintf(MESSAGE_MONETARY_ACCOUNT_NAME, [$payment->getAlias()->getDisplayName()]);
+
+// Save the API context to account for all the changes that might have occurred to it during the example execution
+$apiContext->save(FILENAME_BUNQ_CONFIG);
