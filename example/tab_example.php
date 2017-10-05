@@ -8,12 +8,12 @@ use bunq\Model\Generated\Endpoint\AttachmentTab;
 use bunq\Model\Generated\Endpoint\Avatar;
 use bunq\Model\Generated\Endpoint\CashRegister;
 use bunq\Model\Generated\Endpoint\MonetaryAccount;
-use bunq\Model\Generated\Object\Amount;
-use bunq\Model\Generated\Object\Geolocation;
-use bunq\Model\Generated\Object\TabVisibility;
 use bunq\Model\Generated\Endpoint\TabItemShop;
 use bunq\Model\Generated\Endpoint\TabUsageSingle;
 use bunq\Model\Generated\Endpoint\User;
+use bunq\Model\Generated\Object\Amount;
+use bunq\Model\Generated\Object\Geolocation;
+use bunq\Model\Generated\Object\TabVisibility;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 

@@ -184,13 +184,11 @@ class ApiContext
      */
     private static function getContextJsonString(string $fileName): string
     {
-        $jsonString = FileUtil::getFileContents($fileName);
-
-        if ($jsonString === false) {
+        try {
+            return FileUtil::getFileContents($fileName);
+        } catch (BunqException $exception) {
             throw new BunqException(self::ERROR_CONTEXT_FILE_NOT_FOUND, [$fileName]);
         }
-
-        return $jsonString;
     }
 
     /**
