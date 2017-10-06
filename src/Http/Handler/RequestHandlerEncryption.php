@@ -40,9 +40,9 @@ class RequestHandlerEncryption extends RequestHandlerBase
     /**
      * @param RequestInterface $request
      *
-     * @return Request
+     * @return RequestInterface
      */
-    public function execute(RequestInterface $request)
+    public function execute(RequestInterface $request): RequestInterface
     {
         $body = $request->getBody()->getContents();
 
@@ -72,7 +72,7 @@ class RequestHandlerEncryption extends RequestHandlerBase
      *
      * @return string
      */
-    protected function determineBodyStringEncrypted($body, $aesKey, $iv)
+    protected function determineBodyStringEncrypted(string $body, string $aesKey, string $iv): string
     {
         return openssl_encrypt($body, self::AES_ENCRYPTION_METHOD, $aesKey, OPENSSL_PKCS1_PADDING, $iv);
     }
@@ -84,7 +84,7 @@ class RequestHandlerEncryption extends RequestHandlerBase
      *
      * @return string
      */
-    private function determineHmac($aesKey, $iv, $bodyString)
+    private function determineHmac(string $aesKey, string $iv, string $bodyString): string
     {
         $rawData = $iv . $bodyString;
 

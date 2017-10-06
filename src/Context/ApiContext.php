@@ -2,11 +2,11 @@
 namespace bunq\Context;
 
 use bunq\Exception\BunqException;
-use bunq\Model\Generated\DeviceServer;
-use bunq\Model\Generated\Session;
-use bunq\Model\Installation;
-use bunq\Model\SessionServer;
-use bunq\Model\Token;
+use bunq\Model\Core\Installation;
+use bunq\Model\Core\SessionServer;
+use bunq\Model\Core\Token;
+use bunq\Model\Generated\Endpoint\DeviceServer;
+use bunq\Model\Generated\Endpoint\Session;
 use bunq\Security\KeyPair;
 use bunq\Util\BunqEnumApiEnvironmentType;
 use bunq\Util\FileUtil;
@@ -56,19 +56,29 @@ class ApiContext
      */
     const FILENAME_CONFIG_DEFAULT = 'bunq.conf';
 
-    /** @var BunqEnumApiEnvironmentType */
+    /**
+     * @var BunqEnumApiEnvironmentType
+     */
     protected $environmentType;
 
-    /** @var string */
+    /**
+     * @var string
+     */
     protected $apiKey;
 
-    /** @var SessionContext */
+    /**
+     * @var SessionContext|null
+     */
     protected $sessionContext;
 
-    /** @var InstallationContext */
+    /**
+     * @var InstallationContext|null
+     */
     protected $installationContext;
 
-    /** @var string */
+    /**
+     * @var string
+     */
     protected $proxyUrl;
 
     /**
@@ -88,11 +98,11 @@ class ApiContext
      */
     public static function create(
         BunqEnumApiEnvironmentType $environmentType,
-        $apiKey,
-        $description,
+        string $apiKey,
+        string $description,
         array $permittedIps = [],
-        $proxyUrl = null
-    ) {
+        string $proxyUrl = null
+    ): ApiContext {
         $apiContext = new static();
         $apiContext->environmentType = $environmentType;
         $apiContext->apiKey = $apiKey;
@@ -106,7 +116,7 @@ class ApiContext
      * @param string $description
      * @param string[] $permittedIps
      */
-    private function initialize($description, array $permittedIps)
+    private function initialize(string $description, array $permittedIps)
     {
         $this->initializeInstallationContext();
         $this->registerDevice($description, $permittedIps);
@@ -118,13 +128,10 @@ class ApiContext
     private function initializeInstallationContext()
     {
         $keyPairClient = KeyPair::generate();
-
-        /** @var Installation $installation */
         $installation = Installation::create(
             $this,
             $keyPairClient->getPublicKey()->getKey()
         )->getValue();
-
         $this->installationContext = new InstallationContext(
             $installation->getToken(),
             $keyPairClient,
@@ -136,7 +143,7 @@ class ApiContext
      * @param string $description
      * @param string[] $permittedIps
      */
-    private function registerDevice($description, array $permittedIps)
+    private function registerDevice(string $description, array $permittedIps)
     {
         DeviceServer::create(
             $this,
@@ -153,7 +160,6 @@ class ApiContext
      */
     private function initializeSessionContext()
     {
-        /** @var SessionServer $sessionServer */
         $sessionServer = SessionServer::create($this)->getValue();
         $this->sessionContext = SessionContext::create($sessionServer);
     }
@@ -163,7 +169,7 @@ class ApiContext
      *
      * @return ApiContext
      */
-    public static function restore($fileName = self::FILENAME_CONFIG_DEFAULT)
+    public static function restore(string $fileName = self::FILENAME_CONFIG_DEFAULT): ApiContext
     {
         $contextJsonString = self::getContextJsonString($fileName);
 
@@ -171,11 +177,26 @@ class ApiContext
     }
 
     /**
+     * @param string $fileName
+     *
+     * @return string
+     * @throws BunqException When the context couldn't be loaded from the given location.
+     */
+    private static function getContextJsonString(string $fileName): string
+    {
+        try {
+            return FileUtil::getFileContents($fileName);
+        } catch (BunqException $exception) {
+            throw new BunqException(self::ERROR_CONTEXT_FILE_NOT_FOUND, [$fileName]);
+        }
+    }
+
+    /**
      * @param string $jsonString
      *
      * @return ApiContext
      */
-    public static function fromJson($jsonString)
+    public static function fromJson(string $jsonString): ApiContext
     {
         $apiContext = new static();
         $contextJson = \GuzzleHttp\json_decode($jsonString, true);
@@ -189,7 +210,7 @@ class ApiContext
     }
 
     /**
-     * @param string[][] $contextJson
+     * @param mixed[] $contextJson
      *
      * @return string|null
      */
@@ -203,35 +224,18 @@ class ApiContext
     }
 
     /**
-     * @param $fileName
-     *
-     * @return string
-     * @throws BunqException When the context couldn't be loaded from the given location.
-     */
-    private static function getContextJsonString($fileName)
-    {
-        $jsonString = FileUtil::getFileContents($fileName);
-
-        if ($jsonString === false) {
-            throw new BunqException(self::ERROR_CONTEXT_FILE_NOT_FOUND, [$fileName]);
-        }
-
-        return $jsonString;
-    }
-
-    /**
      * @return Uri
      */
-    public function determineBaseUri()
+    public function determineBaseUri(): Uri
     {
         return new Uri($this->determineBaseUriString());
     }
 
     /**
      * @return string
-     * @throws BunqException
+     * @throws BunqException when the environment type is not expected.
      */
-    private function determineBaseUriString()
+    private function determineBaseUriString(): string
     {
         if ($this->environmentType->getChoiceString() === BunqEnumApiEnvironmentType::CHOICE_PRODUCTION) {
             return self::BASE_URL_PRODUCTION;
@@ -248,23 +252,6 @@ class ApiContext
     }
 
     /**
-     * Closes the current session and opens a new one.
-     */
-    public function resetSession()
-    {
-        $this->dropSessionContext();
-        $this->initializeSessionContext();
-    }
-
-    /**
-     *
-     */
-    private function dropSessionContext()
-    {
-        $this->sessionContext = null;
-    }
-
-    /**
      * Closes the current session.
      */
     public function closeSession()
@@ -273,6 +260,12 @@ class ApiContext
         $this->dropSessionContext();
     }
 
+    /**
+     */
+    private function dropSessionContext()
+    {
+        $this->sessionContext = null;
+    }
 
     /**
      * Check if current time is too close to the saved session expiry time and reset session if
@@ -280,7 +273,7 @@ class ApiContext
      */
     public function ensureSessionActive()
     {
-        if ($this->sessionContext == null) {
+        if (is_null($this->sessionContext)) {
             return;
         }
 
@@ -292,7 +285,16 @@ class ApiContext
     }
 
     /**
-     * @return Token
+     * Closes the current session and opens a new one.
+     */
+    public function resetSession()
+    {
+        $this->dropSessionContext();
+        $this->initializeSessionContext();
+    }
+
+    /**
+     * @return Token|null
      */
     public function getSessionToken()
     {
@@ -310,7 +312,7 @@ class ApiContext
      *
      * @throws BunqException When the context couldn't be saved to the given location.
      */
-    public function save($fileName = self::FILENAME_CONFIG_DEFAULT)
+    public function save(string $fileName = self::FILENAME_CONFIG_DEFAULT)
     {
         $saved = file_put_contents($fileName, $this->toJson());
 
@@ -321,9 +323,9 @@ class ApiContext
 
     /**
      * @return string
-     * @throws BunqException When the context is incomplete.
+     * @throws BunqException when the context is incomplete.
      */
-    public function toJson()
+    public function toJson(): string
     {
         if (is_null($this->getInstallationContext())) {
             throw new BunqException(self::ERROR_CONTEXT_NOT_INSTALLED);
@@ -343,7 +345,7 @@ class ApiContext
     }
 
     /**
-     * @return InstallationContext
+     * @return InstallationContext|null
      */
     public function getInstallationContext()
     {
@@ -351,7 +353,7 @@ class ApiContext
     }
 
     /**
-     * @return SessionContext
+     * @return SessionContext|null
      */
     public function getSessionContext()
     {
@@ -361,7 +363,7 @@ class ApiContext
     /**
      * @return string
      */
-    public function getApiKey()
+    public function getApiKey(): string
     {
         return $this->apiKey;
     }
@@ -369,7 +371,7 @@ class ApiContext
     /**
      * @return BunqEnumApiEnvironmentType
      */
-    public function getEnvironmentType()
+    public function getEnvironmentType(): BunqEnumApiEnvironmentType
     {
         return $this->environmentType;
     }

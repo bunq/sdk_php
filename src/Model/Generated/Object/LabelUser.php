@@ -1,7 +1,7 @@
 <?php
 namespace bunq\Model\Generated\Object;
 
-use bunq\Model\BunqModel;
+use bunq\Model\Core\BunqModel;
 
 /**
  * @generated
@@ -86,7 +86,7 @@ class LabelUser extends BunqModel
     /**
      * @param Avatar $avatar
      */
-    public function setAvatar(Avatar $avatar)
+    public function setAvatar($avatar)
     {
         $this->avatar = $avatar;
     }

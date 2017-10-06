@@ -42,7 +42,8 @@
         "phpro/grumphp": "^0.11.6",
         "phpstan/phpstan": "^0.8",
         "phpunit/phpunit": "^5.7",
-        "sensiolabs/security-checker": "^4.1"
+        "sensiolabs/security-checker": "^4.1",
+        "sebastian/phpcpd": "^3.0"
     },
     "bin": [
         "bin/bunq-install"

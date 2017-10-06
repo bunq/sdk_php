@@ -1,7 +1,7 @@
 <?php
 namespace bunq\Model\Generated\Object;
 
-use bunq\Model\BunqModel;
+use bunq\Model\Core\BunqModel;
 
 /**
  * @generated
@@ -86,7 +86,7 @@ class Avatar extends BunqModel
     /**
      * @param Image[] $image
      */
-    public function setImage(array$image)
+    public function setImage($image)
     {
         $this->image = $image;
     }

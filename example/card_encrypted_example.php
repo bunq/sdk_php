@@ -5,10 +5,10 @@ namespace bunq\sdk\examples;
  * This example shows using an encrypted endpoint to order a new card.
  */
 use bunq\Context\ApiContext;
-use bunq\Model\Generated\Card;
-use bunq\Model\Generated\CardDebit;
-use bunq\Model\Generated\MonetaryAccount;
-use bunq\Model\Generated\User;
+use bunq\Model\Generated\Endpoint\Card;
+use bunq\Model\Generated\Endpoint\CardDebit;
+use bunq\Model\Generated\Endpoint\MonetaryAccount;
+use bunq\Model\Generated\Endpoint\User;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
@@ -34,12 +34,11 @@ $apiContext = ApiContext::restore(ApiContext::FILENAME_CONFIG_DEFAULT);
 
 
 // Retrieve the active user.
-/** @var User[] $users */
 $users = User::listing($apiContext)->getValue();
+// If your user is UserPerson or UserLight, replace getUserCompany() with getUserPerson() or getUserLight()
 $userId = $users[INDEX_FIRST]->getUserCompany()->getId();
 
 // Retrieve the first monetary account of the active user.
-/** @var MonetaryAccount[] $monetaryAccounts */
 $monetaryAccounts = MonetaryAccount::listing($apiContext, $userId)->getValue();
 $monetaryAccount = $monetaryAccounts[INDEX_FIRST]->getMonetaryAccountBank();
 
@@ -65,7 +64,6 @@ $cardDebitMap = [
 $cardId = CardDebit::create($apiContext, $cardDebitMap, $userId)->getValue();
 
 // List all cards for this user.
-/** @var Card[] $cards */
 $cards = Card::listing($apiContext, $userId)->getValue();
 
 // Print information for each card.

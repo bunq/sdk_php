@@ -1,7 +1,7 @@
 <?php
 namespace bunq\Model\Generated\Object;
 
-use bunq\Model\BunqModel;
+use bunq\Model\Core\BunqModel;
 
 /**
  * @generated
@@ -91,7 +91,7 @@ class SchedulePaymentEntry extends BunqModel
     /**
      * @param Amount $amount
      */
-    public function setAmount(Amount $amount)
+    public function setAmount($amount)
     {
         $this->amount = $amount;
     }
@@ -110,7 +110,7 @@ class SchedulePaymentEntry extends BunqModel
     /**
      * @param LabelMonetaryAccount $alias
      */
-    public function setAlias(LabelMonetaryAccount $alias)
+    public function setAlias($alias)
     {
         $this->alias = $alias;
     }
@@ -129,7 +129,7 @@ class SchedulePaymentEntry extends BunqModel
     /**
      * @param LabelMonetaryAccount $counterpartyAlias
      */
-    public function setCounterpartyAlias(LabelMonetaryAccount $counterpartyAlias)
+    public function setCounterpartyAlias($counterpartyAlias)
     {
         $this->counterpartyAlias = $counterpartyAlias;
     }
@@ -167,7 +167,7 @@ class SchedulePaymentEntry extends BunqModel
     /**
      * @param AttachmentMonetaryAccountPayment[] $attachment
      */
-    public function setAttachment(array$attachment)
+    public function setAttachment($attachment)
     {
         $this->attachment = $attachment;
     }

@@ -1,7 +1,7 @@
 <?php
 namespace bunq\Model\Generated\Object;
 
-use bunq\Model\BunqModel;
+use bunq\Model\Core\BunqModel;
 
 /**
  * @generated
@@ -81,7 +81,7 @@ class MonetaryAccountProfileDrain extends BunqModel
     /**
      * @param Amount $balancePreferred
      */
-    public function setBalancePreferred(Amount $balancePreferred)
+    public function setBalancePreferred($balancePreferred)
     {
         $this->balancePreferred = $balancePreferred;
     }
@@ -99,7 +99,7 @@ class MonetaryAccountProfileDrain extends BunqModel
     /**
      * @param Amount $balanceThresholdHigh
      */
-    public function setBalanceThresholdHigh(Amount $balanceThresholdHigh)
+    public function setBalanceThresholdHigh($balanceThresholdHigh)
     {
         $this->balanceThresholdHigh = $balanceThresholdHigh;
     }
@@ -117,7 +117,7 @@ class MonetaryAccountProfileDrain extends BunqModel
     /**
      * @param LabelMonetaryAccount $savingsAccountAlias
      */
-    public function setSavingsAccountAlias(LabelMonetaryAccount $savingsAccountAlias)
+    public function setSavingsAccountAlias($savingsAccountAlias)
     {
         $this->savingsAccountAlias = $savingsAccountAlias;
     }

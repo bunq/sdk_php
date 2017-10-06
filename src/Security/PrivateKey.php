@@ -11,7 +11,7 @@ class PrivateKey
     protected $key;
 
     /**
-     * @param $key
+     * @param resource $key
      */
     public function __construct($key)
     {
@@ -23,7 +23,7 @@ class PrivateKey
      *
      * @return string
      */
-    public function sign($dataToSign)
+    public function sign(string $dataToSign): string
     {
         openssl_sign($dataToSign, $signature, $this->getKey(), OPENSSL_ALGO_SHA256);
 
@@ -31,21 +31,20 @@ class PrivateKey
     }
 
     /**
-     * @return string
-     */
-    public function export()
-    {
-        openssl_pkey_export($this->getKey(), $privateKeyString);
-
-        return $privateKeyString;
-    }
-
-
-    /**
      * @return resource
      */
     public function getKey()
     {
         return $this->key;
+    }
+
+    /**
+     * @return string
+     */
+    public function export(): string
+    {
+        openssl_pkey_export($this->getKey(), $privateKeyString);
+
+        return $privateKeyString;
     }
 }

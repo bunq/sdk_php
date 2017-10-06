@@ -2,12 +2,12 @@
 namespace bunq\sdk\examples;
 
 use bunq\Context\ApiContext;
-use bunq\Model\Generated\MonetaryAccount;
+use bunq\Model\Generated\Endpoint\MonetaryAccount;
+use bunq\Model\Generated\Endpoint\Payment;
+use bunq\Model\Generated\Endpoint\PaymentBatch;
+use bunq\Model\Generated\Endpoint\User;
 use bunq\Model\Generated\Object\Amount;
 use bunq\Model\Generated\Object\Pointer;
-use bunq\Model\Generated\Payment;
-use bunq\Model\Generated\PaymentBatch;
-use bunq\Model\Generated\User;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
@@ -31,12 +31,11 @@ const INDEX_FIRST = 0;
 $apiContext = ApiContext::restore(ApiContext::FILENAME_CONFIG_DEFAULT);
 
 // Retrieve the active user.
-/** @var User[] $users */
 $users = User::listing($apiContext)->getValue();
+// If your user is UserPerson or UserLight, replace getUserCompany() with getUserPerson() or getUserLight()
 $userId = $users[INDEX_FIRST]->getUserCompany()->getId();
 
 // Retrieve the first monetary account of the active user.
-/** @var MonetaryAccount[] $monetaryAccounts */
 $monetaryAccounts = MonetaryAccount::listing($apiContext, $userId)->getValue();
 $monetaryAccountId = $monetaryAccounts[INDEX_FIRST]->getMonetaryAccountBank()->getId();
 
@@ -55,7 +54,6 @@ $payments = [
 $paymentBatchId = PaymentBatch::create($apiContext, $payments, $userId, $monetaryAccountId)->getValue();
 
 // Retrieve all payments in the payment batch.
-/** @var PaymentBatch $paymentBatch */
 $paymentBatch = PaymentBatch::get($apiContext, $userId, $monetaryAccountId, $paymentBatchId)->getValue();
 $payments = $paymentBatch->getPayments();
 

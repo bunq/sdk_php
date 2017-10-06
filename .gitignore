@@ -78,3 +78,6 @@ vendor/
 tmp/
 
 .DS_STORE
+
+# PhpCs
+.php_cs*

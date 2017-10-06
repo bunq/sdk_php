@@ -55,7 +55,7 @@ class Config
     /**
      * @return mixed[]
      */
-    private static function getConfigFile()
+    private static function getConfigFile(): array
     {
         return json_decode(FileUtil::getFileContents(__DIR__ . self::CONFIG_PATH), true);
     }
@@ -85,7 +85,7 @@ class Config
     /**
      * @return int
      */
-    public static function getMonetaryAccountId2()
+    public static function getMonetaryAccountId2(): int
     {
         return static::getConfigFile()[self::FIELD_MONETARY_ACCOUNT_ID2];
     }
@@ -93,7 +93,7 @@ class Config
     /**
      * @return int
      */
-    public static function getCashRegisterId()
+    public static function getCashRegisterId(): int
     {
         return static::getConfigFile()[self::FIELD_TAB_USAGE_SINGLE_TEST][self::FIELD_CASH_REGISTER_ID];
     }
@@ -101,7 +101,7 @@ class Config
     /**
      * @return int
      */
-    public static function getMonetaryAccountId()
+    public static function getMonetaryAccountId(): int
     {
         return static::getConfigFile()[self::FIELD_MONETARY_ACCOUNT_ID];
     }
@@ -109,7 +109,7 @@ class Config
     /**
      * @return int
      */
-    public static function getUserId()
+    public static function getUserId(): int
     {
         return static::getConfigFile()[self::FIELD_USER_ID];
     }
@@ -117,7 +117,7 @@ class Config
     /**
      * @return string
      */
-    public static function getApiKey()
+    public static function getApiKey(): string
     {
         return static::getConfigFile()[self::FIELD_API_KEY];
     }
@@ -125,7 +125,7 @@ class Config
     /**
      * @return string
      */
-    public static function getAttachmentContentType()
+    public static function getAttachmentContentType(): string
     {
         return static::getConfigFile()[self::FIELD_ATTACHMENT_PUBLIC_TEST][self::FIELD_CONTENT_TYPE];
     }
@@ -133,7 +133,7 @@ class Config
     /**
      * @return string
      */
-    public static function getAttachmentPathIn()
+    public static function getAttachmentPathIn(): string
     {
         return static::getConfigFile()[self::FIELD_ATTACHMENT_PUBLIC_TEST][self::FIELD_ATTACHMENT_PATH_IN];
     }
@@ -141,7 +141,7 @@ class Config
     /**
      * @return string
      */
-    public static function getAttachmentDescription()
+    public static function getAttachmentDescription(): string
     {
         return static::getConfigFile()[self::FIELD_ATTACHMENT_PUBLIC_TEST][self::FIELD_ATTACHMENT_DESCRIPTION];
     }

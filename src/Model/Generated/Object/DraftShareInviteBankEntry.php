@@ -1,7 +1,7 @@
 <?php
 namespace bunq\Model\Generated\Object;
 
-use bunq\Model\BunqModel;
+use bunq\Model\Core\BunqModel;
 
 /**
  * @generated
@@ -50,7 +50,7 @@ class DraftShareInviteBankEntry extends BunqModel
     /**
      * @param ShareDetail $shareDetail
      */
-    public function setShareDetail(ShareDetail $shareDetail)
+    public function setShareDetail($shareDetail)
     {
         $this->shareDetail = $shareDetail;
     }

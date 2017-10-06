@@ -1,7 +1,7 @@
 <?php
 namespace bunq\Model\Generated\Object;
 
-use bunq\Model\BunqModel;
+use bunq\Model\Core\BunqModel;
 
 /**
  * @generated
@@ -142,7 +142,7 @@ class InvoiceItemGroup extends BunqModel
     /**
      * @param Amount $productVatExclusive
      */
-    public function setProductVatExclusive(Amount $productVatExclusive)
+    public function setProductVatExclusive($productVatExclusive)
     {
         $this->productVatExclusive = $productVatExclusive;
     }
@@ -160,7 +160,7 @@ class InvoiceItemGroup extends BunqModel
     /**
      * @param Amount $productVatInclusive
      */
-    public function setProductVatInclusive(Amount $productVatInclusive)
+    public function setProductVatInclusive($productVatInclusive)
     {
         $this->productVatInclusive = $productVatInclusive;
     }
@@ -178,7 +178,7 @@ class InvoiceItemGroup extends BunqModel
     /**
      * @param InvoiceItem $item
      */
-    public function setItem(InvoiceItem $item)
+    public function setItem($item)
     {
         $this->item = $item;
     }

@@ -96,16 +96,24 @@ class ApiClient
      */
     const GLUE_HEADER_VALUE = ',';
 
-    /** @var Client */
+    /**
+     * @var Client
+     */
     protected $httpClient;
 
-    /** @var ApiContext */
+    /**
+     * @var ApiContext
+     */
     protected $apiContext;
 
-    /** @var bool */
+    /**
+     * @var bool
+     */
     protected $isBinary;
 
-    /** @var bool */
+    /**
+     * @var bool
+     */
     protected $isEncrypted;
 
     /**
@@ -137,7 +145,7 @@ class ApiClient
      *
      * @return BunqResponseRaw
      */
-    public function get($uri, array $params, array $customHeaders)
+    public function get(string $uri, array $params, array $customHeaders): BunqResponseRaw
     {
         return $this->request(self::METHOD_GET, $uri, [], $params, $customHeaders);
     }
@@ -151,8 +159,13 @@ class ApiClient
      *
      * @return BunqResponseRaw
      */
-    private function request($method, $uri, $body, array $params, array $customHeaders)
-    {
+    private function request(
+        string $method,
+        string $uri,
+        $body,
+        array $params,
+        array $customHeaders
+    ): BunqResponseRaw {
         $this->initialize();
 
         $response = $this->httpClient->request(
@@ -199,7 +212,7 @@ class ApiClient
     /**
      * @return HandlerStack
      */
-    private function determineMiddleware()
+    private function determineMiddleware(): HandlerStack
     {
         $handlerStack = HandlerStack::create();
 
@@ -228,9 +241,9 @@ class ApiClient
 
     /**
      * @return string
-     * @throws BunqException
+     * @throws BunqException when the environment type is unknown.
      */
-    private function determinePinnedServerPublicKey()
+    private function determinePinnedServerPublicKey(): string
     {
         $environmentType = $this->apiContext->getEnvironmentType();
 
@@ -254,7 +267,7 @@ class ApiClient
      *
      * @return Uri
      */
-    private function determineUriFull($uri, $params)
+    private function determineUriFull(string $uri, array $params): Uri
     {
         $basePath = $this->apiContext->determineBaseUri()->getPath();
 
@@ -265,12 +278,12 @@ class ApiClient
     }
 
     /**
-     * @param mixed[]|string $body
+     * @param mixed[][]|string $body
      * @param string[] $customHeaders
      *
      * @return mixed[]
      */
-    private function determineRequestOptions($body, array $customHeaders)
+    private function determineRequestOptions($body, array $customHeaders): array
     {
         $headers = array_merge($this->determineDefaultHeaders(), $customHeaders);
 
@@ -285,7 +298,7 @@ class ApiClient
     /**
      * @return string[][]
      */
-    protected function determineDefaultHeaders()
+    protected function determineDefaultHeaders(): array
     {
         return [
             self::HEADER_CACHE_CONTROL => [self::HEADER_CACHE_CONTROL_DEFAULT],
@@ -298,11 +311,11 @@ class ApiClient
     }
 
     /**
-     * @param mixed $body
+     * @param mixed[][]|string $body
      *
      * @return string
      */
-    protected function determineBodyString($body)
+    protected function determineBodyString($body): string
     {
         if ($this->isBinary) {
             return $body;
@@ -320,7 +333,7 @@ class ApiClient
      *
      * @return BunqResponseRaw
      */
-    private function createBunqResponseRaw($response)
+    private function createBunqResponseRaw(ResponseInterface $response): BunqResponseRaw
     {
         $headers = [];
 
@@ -333,24 +346,24 @@ class ApiClient
 
     /**
      * @param string $uri
-     * @param mixed[]|string $body
+     * @param mixed[][]|string $body
      * @param string[] $customHeaders
      *
      * @return BunqResponseRaw
      */
-    public function post($uri, $body, array $customHeaders)
+    public function post(string $uri, $body, array $customHeaders): BunqResponseRaw
     {
         return $this->request(self::METHOD_POST, $uri, $body, [], $customHeaders);
     }
 
     /**
      * @param string $uri
-     * @param mixed[]|string $body
+     * @param mixed[][]|string $body
      * @param string[] $customHeaders
      *
      * @return BunqResponseRaw
      */
-    public function put($uri, array $body, array $customHeaders)
+    public function put(string $uri, $body, array $customHeaders): BunqResponseRaw
     {
         return $this->request(self::METHOD_PUT, $uri, $body, [], $customHeaders);
     }

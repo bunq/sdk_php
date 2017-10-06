@@ -2,7 +2,7 @@
 namespace bunq\Util;
 
 use bunq\Exception\BunqException;
-use bunq\Model\BunqModel;
+use bunq\Model\Core\BunqModel;
 
 /**
  */
@@ -19,9 +19,9 @@ class ModelUtil
     /**
      * Qualified type format.
      */
-    const FORMAT_QUALIFIED_MODEL_TYPE = 'bunq\\Model\\Generated\\%s';
+    const FORMAT_QUALIFIED_MODEL_TYPE = 'bunq\\Model\\Generated\\Endpoint\\%s';
     const FORMAT_QUALIFIED_OBJECT_TYPE = 'bunq\\Model\\Generated\\Object\\%s';
-    const FORMAT_QUALIFIED_OVERRIDE_TYPE = 'bunq\\Model\\%s';
+    const FORMAT_QUALIFIED_OVERRIDE_TYPE = 'bunq\\Model\\Core\\%s';
 
     /**
      * Error constants.
@@ -33,7 +33,7 @@ class ModelUtil
      *
      * @return mixed[]
      */
-    public static function deserializeResponseArray($json)
+    public static function deserializeResponseArray(string $json): array
     {
         return \GuzzleHttp\json_decode($json, true);
     }
@@ -41,10 +41,10 @@ class ModelUtil
     /**
      * @param string $model
      *
-     * @return BunqModel
-     * @throws BunqException
+     * @return string
+     * @throws BunqException when the model is not defined.
      */
-    public static function determineModelClassNameQualified($model)
+    public static function determineModelClassNameQualified(string $model): string
     {
         $classNameOverride = vsprintf(self::FORMAT_QUALIFIED_OVERRIDE_TYPE, [$model]);
         $classNameModel = vsprintf(self::FORMAT_QUALIFIED_MODEL_TYPE, [$model]);
@@ -66,10 +66,9 @@ class ModelUtil
      *
      * @return bool
      */
-    private static function isClassSubClassOfBunqModel($className)
+    private static function isClassSubClassOfBunqModel(string $className): bool
     {
-        return class_exists($className)
-            && is_subclass_of($className, BunqModel::class);
+        return class_exists($className) && is_subclass_of($className, BunqModel::class);
     }
 
     /**
@@ -77,7 +76,7 @@ class ModelUtil
      *
      * @return mixed[]
      */
-    public static function formatResponseArray($array)
+    public static function formatResponseArray(array $array): array
     {
         $formattedArray = [];
 
@@ -94,7 +93,7 @@ class ModelUtil
      *
      * @return string
      */
-    public static function snakeCaseToCamelCase($field)
+    public static function snakeCaseToCamelCase(string $field): string
     {
         return lcfirst(str_replace(
             self::DELIMITER_UNDERSCORE,
@@ -108,7 +107,7 @@ class ModelUtil
      *
      * @return string
      */
-    public static function camelCaseToSnakeCase($field)
+    public static function camelCaseToSnakeCase(string $field): string
     {
         return strtolower(preg_replace(self::REGEX_CAPITAL, self::REPLACEMENT_UNDERSCORE, $field));
     }

@@ -1,7 +1,7 @@
 <?php
 namespace bunq\Model\Generated\Object;
 
-use bunq\Model\BunqModel;
+use bunq\Model\Core\BunqModel;
 
 /**
  * @generated
@@ -36,7 +36,7 @@ class BudgetRestriction extends BunqModel
     /**
      * @param Amount $amount
      */
-    public function setAmount(Amount $amount)
+    public function setAmount($amount)
     {
         $this->amount = $amount;
     }

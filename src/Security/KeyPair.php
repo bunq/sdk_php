@@ -2,7 +2,7 @@
 namespace bunq\Security;
 
 /**
- * Represents an OpenSSL keypair.
+ * Represents an OpenSSL key pair.
  *
  */
 class KeyPair
@@ -21,16 +21,30 @@ class KeyPair
     const PRIVATE_KEY_LENGTH = 2048;
     const PRIVATE_KEY_ALGORITHM = "sha512";
 
-    /** @var PrivateKey */
+    /**
+     * @var PrivateKey
+     */
     protected $privateKey;
 
-    /** @var PublicKey */
+    /**
+     * @var PublicKey
+     */
     protected $publicKey;
+
+    /**
+     * @param PrivateKey $privateKey
+     * @param PublicKey $publicKey
+     */
+    public function __construct(PrivateKey $privateKey, PublicKey $publicKey)
+    {
+        $this->privateKey = $privateKey;
+        $this->publicKey = $publicKey;
+    }
 
     /**
      * @return static
      */
-    public static function generate()
+    public static function generate(): KeyPair
     {
         $opensslKeyPair = openssl_pkey_new([
             self::FIELD_KEY_ALGORITHM => self::PRIVATE_KEY_ALGORITHM,
@@ -46,28 +60,18 @@ class KeyPair
     }
 
     /**
-     * @param PrivateKey $privateKey
-     * @param PublicKey $publicKey
+     * @return PrivateKey
      */
-    public function __construct(PrivateKey $privateKey, PublicKey $publicKey)
+    public function getPrivateKey(): PrivateKey
     {
-        $this->privateKey = $privateKey;
-        $this->publicKey = $publicKey;
+        return $this->privateKey;
     }
 
     /**
      * @return PublicKey
      */
-    public function getPublicKey()
+    public function getPublicKey(): PublicKey
     {
         return $this->publicKey;
-    }
-
-    /**
-     * @return PrivateKey
-     */
-    public function getPrivateKey()
-    {
-        return $this->privateKey;
     }
 }

@@ -1,7 +1,7 @@
 <?php
 namespace bunq\Model\Generated\Object;
 
-use bunq\Model\BunqModel;
+use bunq\Model\Core\BunqModel;
 
 /**
  * @generated
@@ -89,7 +89,7 @@ class MonetaryAccountProfileFill extends BunqModel
     /**
      * @param Amount $balancePreferred
      */
-    public function setBalancePreferred(Amount $balancePreferred)
+    public function setBalancePreferred($balancePreferred)
     {
         $this->balancePreferred = $balancePreferred;
     }
@@ -107,7 +107,7 @@ class MonetaryAccountProfileFill extends BunqModel
     /**
      * @param Amount $balanceThresholdLow
      */
-    public function setBalanceThresholdLow(Amount $balanceThresholdLow)
+    public function setBalanceThresholdLow($balanceThresholdLow)
     {
         $this->balanceThresholdLow = $balanceThresholdLow;
     }
@@ -144,7 +144,7 @@ class MonetaryAccountProfileFill extends BunqModel
     /**
      * @param Issuer $issuer
      */
-    public function setIssuer(Issuer $issuer)
+    public function setIssuer($issuer)
     {
         $this->issuer = $issuer;
     }

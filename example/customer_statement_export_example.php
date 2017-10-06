@@ -2,9 +2,9 @@
 namespace bunq\sdk\examples;
 
 use bunq\Context\ApiContext;
-use bunq\Model\Generated\CustomerStatementExport;
-use bunq\Model\Generated\MonetaryAccount;
-use bunq\Model\Generated\User;
+use bunq\Model\Generated\Endpoint\CustomerStatementExport;
+use bunq\Model\Generated\Endpoint\MonetaryAccount;
+use bunq\Model\Generated\Endpoint\User;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
@@ -32,12 +32,11 @@ const SECONDS_IN_WEEK = 604800;
 $apiContext = ApiContext::restore();
 
 // Retrieve the active user.
-/** @var User[] $users */
 $users = User::listing($apiContext)->getValue();
+// If your user is UserPerson or UserLight, replace getUserCompany() with getUserPerson() or getUserLight()
 $userId = $users[INDEX_FIRST]->getUserCompany()->getId();
 
 // Retrieve the first monetary account of the active user.
-/** @var MonetaryAccount[] $monetaryAccounts */
 $monetaryAccounts = MonetaryAccount::listing($apiContext, $userId)->getValue();
 $monetaryAccountId = $monetaryAccounts[INDEX_FIRST]->getMonetaryAccountBank()->getId();
 

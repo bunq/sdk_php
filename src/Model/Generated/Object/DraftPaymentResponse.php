@@ -1,7 +1,7 @@
 <?php
 namespace bunq\Model\Generated\Object;
 
-use bunq\Model\BunqModel;
+use bunq\Model\Core\BunqModel;
 
 /**
  * @generated
@@ -53,7 +53,7 @@ class DraftPaymentResponse extends BunqModel
     /**
      * @param LabelUser $userAliasCreated
      */
-    public function setUserAliasCreated(LabelUser $userAliasCreated)
+    public function setUserAliasCreated($userAliasCreated)
     {
         $this->userAliasCreated = $userAliasCreated;
     }

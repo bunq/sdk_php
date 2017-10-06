@@ -1,7 +1,7 @@
 <?php
 namespace bunq\Model\Generated\Object;
 
-use bunq\Model\BunqModel;
+use bunq\Model\Core\BunqModel;
 
 /**
  * @generated
@@ -169,7 +169,7 @@ class Schedule extends BunqModel
     /**
      * @param BunqModel $object
      */
-    public function setObject(BunqModel $object)
+    public function setObject($object)
     {
         $this->object = $object;
     }

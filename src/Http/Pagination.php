@@ -30,22 +30,22 @@ class Pagination
     const FIELD_FUTURE_URL = 'future_url';
 
     /**
-     * @var int
+     * @var int|null
      */
     protected $olderId;
 
     /**
-     * @var int
+     * @var int|null
      */
     protected $newerId;
 
     /**
-     * @var int
+     * @var int|null
      */
     protected $futureId;
 
     /**
-     * @var int
+     * @var int|null
      */
     protected $count;
 
@@ -54,7 +54,7 @@ class Pagination
      *
      * @return static
      */
-    public static function restore(array $paginationJson)
+    public static function restore(array $paginationJson): Pagination
     {
         $paginationBody = static::parsePaginationBody($paginationJson);
 
@@ -70,7 +70,7 @@ class Pagination
     /**
      * @param string[] $paginationResponse
      *
-     * @return string[]
+     * @return string[]|null[]
      */
     private static function parsePaginationBody(array $paginationResponse)
     {
@@ -114,10 +114,10 @@ class Pagination
      */
     private static function updatePaginationBodyIdFieldFromResponseField(
         array &$paginationBody,
-        $idField,
+        string $idField,
         array $response,
-        $responseField,
-        $responseParam
+        string $responseField,
+        string $responseParam
     ) {
         $url = $response[$responseField];
 
@@ -133,33 +133,33 @@ class Pagination
     }
 
     /**
-     * @param int $olderId
+     * @param int|null $olderId
      */
-    public function setOlderId($olderId)
+    public function setOlderId(int $olderId = null)
     {
         $this->olderId = $olderId;
     }
 
     /**
-     * @param int $newerId
+     * @param int|null $newerId
      */
-    public function setNewerId($newerId)
+    public function setNewerId(int $newerId = null)
     {
         $this->newerId = $newerId;
     }
 
     /**
-     * @param int $futureId
+     * @param int|null $futureId
      */
-    public function setFutureId($futureId)
+    public function setFutureId(int $futureId = null)
     {
         $this->futureId = $futureId;
     }
 
     /**
-     * @param int $count
+     * @param int|null $count
      */
-    public function setCount($count)
+    public function setCount(int $count = null)
     {
         $this->count = $count;
     }
@@ -167,7 +167,7 @@ class Pagination
     /**
      * @return string[]
      */
-    public function getUrlParamsNextPage()
+    public function getUrlParamsNextPage(): array
     {
         $this->assertHasNextPage();
 
@@ -204,7 +204,7 @@ class Pagination
     /**
      * @return bool
      */
-    public function hasNextPageAssured()
+    public function hasNextPageAssured(): bool
     {
         return !is_null($this->newerId);
     }
@@ -221,10 +221,9 @@ class Pagination
 
     /**
      * @return string[]
-     *
      * @throws BunqException When there is no previous page.
      */
-    public function getUrlParamsPreviousPage()
+    public function getUrlParamsPreviousPage(): array
     {
         $this->assertHasPreviousPage();
 
@@ -249,7 +248,7 @@ class Pagination
     /**
      * @return bool
      */
-    public function hasPreviousPage()
+    public function hasPreviousPage(): bool
     {
         return !is_null($this->olderId);
     }
@@ -257,7 +256,7 @@ class Pagination
     /**
      * @return string[]
      */
-    public function getUrlParamsCountOnly()
+    public function getUrlParamsCountOnly(): array
     {
         $params = [];
         $this->addCountToParamsIfNeeded($params);
@@ -266,7 +265,7 @@ class Pagination
     }
 
     /**
-     * @return int
+     * @return int|null
      */
     public function getOlderId()
     {
@@ -274,7 +273,7 @@ class Pagination
     }
 
     /**
-     * @return int
+     * @return int|null
      */
     public function getNewerId()
     {
@@ -282,7 +281,7 @@ class Pagination
     }
 
     /**
-     * @return int
+     * @return int|null
      */
     public function getFutureId()
     {
@@ -290,7 +289,7 @@ class Pagination
     }
 
     /**
-     * @return int
+     * @return int|null
      */
     public function getCount()
     {

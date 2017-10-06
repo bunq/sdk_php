@@ -41,9 +41,9 @@ class ResponseHandlerError extends ResponseHandlerBase
      * @param ResponseInterface $response
      *
      * @return ResponseInterface
-     * @throws ApiException
+     * @throws ApiException when something goes wrong on the API side.
      */
-    public function execute(ResponseInterface $response)
+    public function execute(ResponseInterface $response): ResponseInterface
     {
         $contentType = $response->getHeaderLine(self::HEADER_CONTENT_TYPE);
 
