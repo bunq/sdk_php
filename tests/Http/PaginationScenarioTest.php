@@ -3,9 +3,9 @@ namespace bunq\test\Http;
 
 use bunq\Http\BunqResponse;
 use bunq\Http\Pagination;
+use bunq\Model\Generated\Endpoint\Payment;
 use bunq\Model\Generated\Object\Amount;
 use bunq\Model\Generated\Object\Pointer;
-use bunq\Model\Generated\Payment;
 use bunq\test\BunqSdkTestBase;
 use bunq\test\Config;
 

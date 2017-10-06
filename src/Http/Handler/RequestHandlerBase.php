@@ -12,5 +12,5 @@ abstract class RequestHandlerBase extends HandlerBase
      *
      * @return RequestInterface
      */
-    abstract public function execute(RequestInterface $request);
+    abstract public function execute(RequestInterface $request): RequestInterface;
 }

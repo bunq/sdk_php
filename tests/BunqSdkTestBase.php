@@ -4,7 +4,7 @@ namespace bunq\test;
 use bunq\Context\ApiContext;
 use bunq\Exception\ApiException;
 use bunq\Exception\BunqException;
-use bunq\Model\Generated\User;
+use bunq\Model\Generated\Endpoint\User;
 use bunq\Util\BunqEnumApiEnvironmentType;
 use PHPUnit\Framework\TestCase;
 
@@ -55,7 +55,7 @@ class BunqSdkTestBase extends TestCase
     /**
      * @return ApiContext
      */
-    protected static function createApiContext()
+    protected static function createApiContext(): ApiContext
     {
         return ApiContext::create(
             BunqEnumApiEnvironmentType::SANDBOX(),
@@ -68,7 +68,7 @@ class BunqSdkTestBase extends TestCase
     /**
      * @return ApiContext
      */
-    protected static function getApiContext()
+    protected static function getApiContext(): ApiContext
     {
         return static::$apiContext;
     }

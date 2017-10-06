@@ -37,7 +37,9 @@ class RequestHandlerSignature extends RequestHandlerBase
      */
     const DELIMITER_URL_QUERY = '?';
 
-    /** @var PrivateKey */
+    /**
+     * @var PrivateKey
+     */
     protected $privateKey;
 
     /**
@@ -53,7 +55,7 @@ class RequestHandlerSignature extends RequestHandlerBase
      *
      * @return RequestInterface
      */
-    public function execute(RequestInterface $request)
+    public function execute(RequestInterface $request): RequestInterface
     {
         if ($request->getUri()->getPath() === self::ENDPOINT_INSTALLATION) {
             return $request;
@@ -73,16 +75,16 @@ class RequestHandlerSignature extends RequestHandlerBase
      * @param UriInterface $uri
      * @param string $method
      * @param string $body
-     * @param array $headers
+     * @param string[] $headers
      *
      * @return string
      */
     protected function determineRequestSignature(
         UriInterface $uri,
-        $method,
-        $body,
+        string $method,
+        string $body,
         array $headers
-    ) {
+    ): string {
         $dataToSign =
             $method . self::REQUEST_METHOD_PATH_SEPARATOR . $this->getPathWithQuery($uri) .
             $this->determineHeaderStringForSignedRequest($headers) .
@@ -97,7 +99,7 @@ class RequestHandlerSignature extends RequestHandlerBase
      *
      * @return string
      */
-    private function getPathWithQuery(UriInterface $uri)
+    private function getPathWithQuery(UriInterface $uri): string
     {
         $uriString = $uri->getPath();
 
@@ -113,7 +115,7 @@ class RequestHandlerSignature extends RequestHandlerBase
      *
      * @return string
      */
-    public function determineHeaderStringForSignedRequest(array $headers)
+    public function determineHeaderStringForSignedRequest(array $headers): string
     {
         $signedDataHeaderString = self::SIGNED_DATA_EMPTY_STRING;
         ksort($headers);
@@ -144,7 +146,7 @@ class RequestHandlerSignature extends RequestHandlerBase
      *
      * @return string
      */
-    private function determineHeaderStringLine($headerName, array $headerValue)
+    private function determineHeaderStringLine(string $headerName, array $headerValue): string
     {
         return vsprintf(self::FORMAT_HEADER, [$headerName, implode(self::HEADER_SEPARATOR, $headerValue)]);
     }

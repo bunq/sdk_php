@@ -1,7 +1,7 @@
 <?php
 namespace bunq\Model\Generated\Object;
 
-use bunq\Model\BunqModel;
+use bunq\Model\Core\BunqModel;
 
 /**
  * @generated
@@ -58,6 +58,20 @@ class LabelMonetaryAccount extends BunqModel
     protected $isLight;
 
     /**
+     * The BIC used for a SWIFT payment.
+     *
+     * @var string
+     */
+    protected $swiftBic;
+
+    /**
+     * The account number used for a SWIFT payment. May or may not be an IBAN.
+     *
+     * @var string
+     */
+    protected $swiftAccountNumber;
+
+    /**
      * The IBAN of the monetary account.
      *
      * @return string
@@ -106,7 +120,7 @@ class LabelMonetaryAccount extends BunqModel
     /**
      * @param Avatar $avatar
      */
-    public function setAvatar(Avatar $avatar)
+    public function setAvatar($avatar)
     {
         $this->avatar = $avatar;
     }
@@ -124,7 +138,7 @@ class LabelMonetaryAccount extends BunqModel
     /**
      * @param LabelUser $labelUser
      */
-    public function setLabelUser(LabelUser $labelUser)
+    public function setLabelUser($labelUser)
     {
         $this->labelUser = $labelUser;
     }
@@ -160,7 +174,7 @@ class LabelMonetaryAccount extends BunqModel
     /**
      * @param Pointer $bunqMe
      */
-    public function setBunqMe(Pointer $bunqMe)
+    public function setBunqMe($bunqMe)
     {
         $this->bunqMe = $bunqMe;
     }
@@ -181,5 +195,41 @@ class LabelMonetaryAccount extends BunqModel
     public function setIsLight($isLight)
     {
         $this->isLight = $isLight;
+    }
+
+    /**
+     * The BIC used for a SWIFT payment.
+     *
+     * @return string
+     */
+    public function getSwiftBic()
+    {
+        return $this->swiftBic;
+    }
+
+    /**
+     * @param string $swiftBic
+     */
+    public function setSwiftBic($swiftBic)
+    {
+        $this->swiftBic = $swiftBic;
+    }
+
+    /**
+     * The account number used for a SWIFT payment. May or may not be an IBAN.
+     *
+     * @return string
+     */
+    public function getSwiftAccountNumber()
+    {
+        return $this->swiftAccountNumber;
+    }
+
+    /**
+     * @param string $swiftAccountNumber
+     */
+    public function setSwiftAccountNumber($swiftAccountNumber)
+    {
+        $this->swiftAccountNumber = $swiftAccountNumber;
     }
 }

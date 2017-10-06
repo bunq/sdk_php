@@ -1,7 +1,7 @@
 <?php
 namespace bunq\Model\Generated\Object;
 
-use bunq\Model\BunqModel;
+use bunq\Model\Core\BunqModel;
 
 /**
  * @generated
@@ -177,7 +177,7 @@ class ShareDetailPayment extends BunqModel
     /**
      * @param BudgetRestriction $budget
      */
-    public function setBudget(BudgetRestriction $budget)
+    public function setBudget($budget)
     {
         $this->budget = $budget;
     }

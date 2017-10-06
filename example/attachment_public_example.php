@@ -3,8 +3,8 @@ namespace bunq\sdk\examples;
 
 use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
-use bunq\Model\Generated\AttachmentPublic;
-use bunq\Model\Generated\AttachmentPublicContent;
+use bunq\Model\Generated\Endpoint\AttachmentPublic;
+use bunq\Model\Generated\Endpoint\AttachmentPublicContent;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 

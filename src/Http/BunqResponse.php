@@ -33,6 +33,20 @@ class BunqResponse
     }
 
     /**
+     * @param BunqResponse $bunqResponse
+     *
+     * @return static
+     */
+    public static function castFromBunqResponse(BunqResponse $bunqResponse): BunqResponse
+    {
+        return new static(
+            $bunqResponse->getValue(),
+            $bunqResponse->getHeaders(),
+            $bunqResponse->getPagination()
+        );
+    }
+
+    /**
      * @return mixed
      */
     public function getValue()
@@ -43,7 +57,7 @@ class BunqResponse
     /**
      * @return string[]
      */
-    public function getHeaders()
+    public function getHeaders(): array
     {
         return $this->headers;
     }

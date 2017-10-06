@@ -22,7 +22,7 @@ final class BunqEnumApiEnvironmentType extends BunqEnum
     /**
      * @return BunqEnumApiEnvironmentType
      */
-    public static function PRODUCTION()
+    public static function PRODUCTION(): BunqEnumApiEnvironmentType
     {
         return new static(self::CHOICE_PRODUCTION);
     }
@@ -30,7 +30,7 @@ final class BunqEnumApiEnvironmentType extends BunqEnum
     /**
      * @return BunqEnumApiEnvironmentType
      */
-    public static function SANDBOX()
+    public static function SANDBOX(): BunqEnumApiEnvironmentType
     {
         return new static(self::CHOICE_SANDBOX);
     }

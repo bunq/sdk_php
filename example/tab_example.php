@@ -3,17 +3,17 @@ namespace bunq\sdk\examples;
 
 use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
-use bunq\Model\Generated\AttachmentPublic;
-use bunq\Model\Generated\AttachmentTab;
-use bunq\Model\Generated\Avatar;
-use bunq\Model\Generated\CashRegister;
-use bunq\Model\Generated\MonetaryAccount;
+use bunq\Model\Generated\Endpoint\AttachmentPublic;
+use bunq\Model\Generated\Endpoint\AttachmentTab;
+use bunq\Model\Generated\Endpoint\Avatar;
+use bunq\Model\Generated\Endpoint\CashRegister;
+use bunq\Model\Generated\Endpoint\MonetaryAccount;
+use bunq\Model\Generated\Endpoint\TabItemShop;
+use bunq\Model\Generated\Endpoint\TabUsageSingle;
+use bunq\Model\Generated\Endpoint\User;
 use bunq\Model\Generated\Object\Amount;
 use bunq\Model\Generated\Object\Geolocation;
 use bunq\Model\Generated\Object\TabVisibility;
-use bunq\Model\Generated\TabItemShop;
-use bunq\Model\Generated\TabUsageSingle;
-use bunq\Model\Generated\User;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
@@ -72,12 +72,11 @@ const INDEX_FIRST = 0;
 $apiContext = ApiContext::restore(ApiContext::FILENAME_CONFIG_DEFAULT);
 
 // Retrieve the active user.
-/** @var User[] $users */
 $users = User::listing($apiContext)->getValue();
+// If your user is UserPerson or UserLight, replace getUserCompany() with getUserPerson() or getUserLight()
 $userId = $users[INDEX_FIRST]->getUserCompany()->getId();
 
 // Retrieve the first monetary account of the active user.
-/** @var MonetaryAccount[] $monetaryAccounts */
 $monetaryAccounts = MonetaryAccount::listing($apiContext, $userId)->getValue();
 $monetaryAccountId = $monetaryAccounts[INDEX_FIRST]->getMonetaryAccountBank()->getId();
 
@@ -172,7 +171,6 @@ TabUsageSingle::update(
     $tabUsageSingleUuid
 );
 
-/** @var TabUsageSingle[] $tabUsageSingleArray */
 $tabUsageSingleArray = TabUsageSingle::listing($apiContext, $userId, $monetaryAccountId, $cashRegisterId)->getValue();
 
 foreach ($tabUsageSingleArray as $tabUsageSingle) {

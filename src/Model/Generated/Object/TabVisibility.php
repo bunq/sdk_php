@@ -1,7 +1,7 @@
 <?php
 namespace bunq\Model\Generated\Object;
 
-use bunq\Model\BunqModel;
+use bunq\Model\Core\BunqModel;
 
 /**
  * @generated
@@ -90,7 +90,7 @@ class TabVisibility extends BunqModel
     /**
      * @param Geolocation $location
      */
-    public function setLocation(Geolocation $location)
+    public function setLocation($location)
     {
         $this->location = $location;
     }
