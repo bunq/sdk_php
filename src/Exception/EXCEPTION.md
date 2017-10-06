@@ -37,7 +37,9 @@ class ApiException extends Exception
      * @param int $responseCode
      */
     public function __construct(string $message, int $responseCode)
-    {}
+    {
+        //Some hidden code
+    }
 
     /**
      * @return int
