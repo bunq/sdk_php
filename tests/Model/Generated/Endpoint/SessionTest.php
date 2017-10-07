@@ -16,6 +16,11 @@ class SessionTest extends BunqSdkTestBase
     const SESSION_ID_DUMMY = 0;
 
     /**
+     * Full name of context config file to use for testing.
+     */
+    const FILENAME_CONTEXT_CONFIG = __DIR__ . '/../bunq-test.conf';
+
+    /**
      * Delete's the current session.
      *
      * This test has no assertion as of its testing to see if the code runs without errors.
@@ -31,6 +36,6 @@ class SessionTest extends BunqSdkTestBase
      */
     public static function tearDownAfterClass()
     {
-        static::ensureApiContextValid();
+        unlink(static::FILENAME_CONTEXT_CONFIG);
     }
 }
