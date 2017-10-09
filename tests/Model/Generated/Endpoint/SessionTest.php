@@ -21,6 +21,11 @@ class SessionTest extends BunqSdkTestBase
     const FILENAME_CONTEXT_CONFIG = __DIR__ . '/../bunq-test.conf';
 
     /**
+     * The amount of secconds to sleep to prevent the api from returning a 429.
+     */
+    const SECONDS_TO_SLEEP = 2;
+
+    /**
      * Delete's the current session.
      *
      * This test has no assertion as of its testing to see if the code runs without errors.
@@ -36,6 +41,10 @@ class SessionTest extends BunqSdkTestBase
      */
     public static function tearDownAfterClass()
     {
-        unlink(static::FILENAME_CONTEXT_CONFIG);
+        $apiContext = static::getApiContext();
+
+        sleep(self::SECONDS_TO_SLEEP);
+        $apiContext->resetSession();
+        $apiContext->save(self::FILENAME_CONTEXT_CONFIG);
     }
 }

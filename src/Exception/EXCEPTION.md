@@ -1,7 +1,7 @@
 ## Exceptions
 When you make a request via the SDK, there is a chance of request failing
 due to various reasons. When such a failure happens, an exception
-corresponding to the error occurred is raised.
+corresponding to the error occurred is thrown.
 
 
 ----
@@ -51,7 +51,7 @@ class ApiException extends Exception
 }
 ```
 The `Exception` class which is being extended has an `getMessage()` method which is `final` and therefore cannot be
-overwritten.
+overridden.
  
 This means that each exception will have a response code and an error message
 related to the specific error returned by API.
@@ -75,7 +75,7 @@ try{
     //Make a call that might fail
     $apiContext = ApiContext::create(BunqEnumApiEnvironmentType::SANDBOX(), API_KEY, DEVICE_DESCRIPTION);
 } catch (BadRequestException $error){
-    //Do something if exception is thrown.
+    // Do something if exception is thrown.
     echo $error->getResponseCode() . PHP_EOL;
     echo $error->getMessage() . PHP_EOL;
 }
