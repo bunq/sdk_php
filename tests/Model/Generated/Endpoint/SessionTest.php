@@ -38,6 +38,7 @@ class SessionTest extends BunqSdkTestBase
     }
 
     /**
+     * Resets the session context after this test has ran.
      */
     public static function tearDownAfterClass()
     {
