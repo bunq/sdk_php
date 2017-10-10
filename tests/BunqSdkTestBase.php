@@ -42,9 +42,7 @@ class BunqSdkTestBase extends TestCase
     {
         try {
             $apiContext = ApiContext::restore(static::FILENAME_CONTEXT_CONFIG);
-            User::listing($apiContext);
-        } catch (ApiException $exception) {
-            $apiContext = self::createApiContext();
+            $apiContext->ensureSessionActive();
         } catch (BunqException $exception) {
             $apiContext = self::createApiContext();
         }

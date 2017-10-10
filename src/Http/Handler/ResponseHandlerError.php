@@ -3,6 +3,7 @@
 namespace bunq\Http\Handler;
 
 use bunq\Exception\ApiException;
+use bunq\Exception\ExceptionFactory;
 use Psr\Http\Message\ResponseInterface;
 
 /**
@@ -10,27 +11,10 @@ use Psr\Http\Message\ResponseInterface;
 class ResponseHandlerError extends ResponseHandlerBase
 {
     /**
-     * Error constants.
-     */
-    const ERROR_UNKNOWN = 'An error occurred with status code "%d" and message "%s"';
-    const ERROR_FROM_JSON = 'An unexpected error occurred with status code "%d" and message "%s"';
-
-    /**
-     * Header constants.
-     */
-    const HEADER_CONTENT_TYPE = 'Content-Type';
-    const HEADER_CONTENT_TYPE_APPLICATION_JSON = 'application/json';
-
-    /**
      * Field constants.
      */
     const FIELD_ERROR = 'Error';
     const FIELD_ERROR_DESCRIPTION = 'error_description';
-
-    /**
-     * Formatting constants.
-     */
-    const SEPERATOR_ERROR = ', ';
 
     /**
      * Http status code constants.
@@ -45,37 +29,47 @@ class ResponseHandlerError extends ResponseHandlerBase
      */
     public function execute(ResponseInterface $response): ResponseInterface
     {
-        $contentType = $response->getHeaderLine(self::HEADER_CONTENT_TYPE);
-
-        if ($response->getStatusCode() === self::STATUS_CODE_OK) {
-            return $response;
-        } else {
-            if ($contentType === self::HEADER_CONTENT_TYPE_APPLICATION_JSON) {
-                $responseBody = $response->getBody();
-                $responseJson = \GuzzleHttp\json_decode($responseBody, true);
-
-                $errorDescriptions = [];
-
-                foreach ($responseJson[self::FIELD_ERROR] as $error) {
-                    $errorDescriptions[] = $error[self::FIELD_ERROR_DESCRIPTION];
-                }
-
-                throw new ApiException(
-                    self::ERROR_FROM_JSON,
-                    [
-                        $response->getStatusCode(),
-                        implode(self::SEPERATOR_ERROR, $errorDescriptions),
-                    ]
-                );
-            } else {
-                throw new ApiException(
-                    self::ERROR_UNKNOWN,
-                    [
-                        $response->getStatusCode(),
-                        $response->getBody(),
-                    ]
-                );
-            }
+        if ($response->getStatusCode() !== self::STATUS_CODE_OK){
+            throw ExceptionFactory::createExceptionForResponse(
+                $this->fetchErrorMessages($response),
+                $response->getStatusCode()
+            );
         }
+
+        return $response;
+    }
+
+    /**
+     * @param ResponseInterface $response
+     *
+     * @return string[]
+     */
+    private function fetchErrorMessages(ResponseInterface $response): array
+    {
+        $responseBody = $response->getBody();
+        $responseBodyInJson = json_decode($responseBody, true);
+
+        if ($responseBodyInJson != false){
+            return $this->fetchErrorDescriptions($responseBodyInJson);
+        }else{
+            return [$responseBody];
+        }
+    }
+
+    /**
+     * @param string[] $errorArray
+     *
+     * @return string[]
+     */
+    private function fetchErrorDescriptions(array $errorArray): array
+    {
+        $errorDescriptions = [];
+
+        foreach ($errorArray[self::FIELD_ERROR] as $error){
+            $description = $error[self::FIELD_ERROR_DESCRIPTION];
+            $errorDescriptions[] = $description;
+        }
+
+        return $errorDescriptions;
     }
 }
