@@ -38,7 +38,7 @@ class ApiException extends Exception
      */
     public function __construct(string $message, int $responseCode)
     {
-        //Some hidden code
+        // Some hidden code
     }
 
     /**
@@ -72,7 +72,7 @@ const API_KEY = 'Some invalid API key ';
 const DEVICE_DESCRIPTION = 'This will cause BadRequestException to be thrown.';
 
 try{
-    //Make a call that might fail
+    // Make a call that might fail
     $apiContext = ApiContext::create(BunqEnumApiEnvironmentType::SANDBOX(), API_KEY, DEVICE_DESCRIPTION);
 } catch (BadRequestException $error){
     // Do something if exception is thrown.
