@@ -17,8 +17,6 @@ use bunq\Model\Generated\Endpoint\RequestResponse;
 use bunq\Model\Generated\Endpoint\ScheduleInstance;
 use bunq\Model\Generated\Endpoint\SchedulePayment;
 use bunq\Model\Generated\Endpoint\SchedulePaymentBatch;
-use bunq\Model\Generated\Endpoint\ScheduleRequestInquiry;
-use bunq\Model\Generated\Endpoint\ScheduleRequestInquiryBatch;
 use bunq\Model\Generated\Endpoint\ShareInviteBankInquiry;
 use bunq\Model\Generated\Endpoint\ShareInviteBankResponse;
 use bunq\Model\Generated\Endpoint\UserCredentialPasswordIp;
@@ -97,16 +95,6 @@ class AnchoredObject extends BunqModel
      * @var SchedulePayment
      */
     protected $scheduledPayment;
-
-    /**
-     * @var ScheduleRequestInquiryBatch
-     */
-    protected $scheduledRequestInquiryBatch;
-
-    /**
-     * @var ScheduleRequestInquiry
-     */
-    protected $scheduledRequestInquiry;
 
     /**
      * @var ScheduleInstance
@@ -350,38 +338,6 @@ class AnchoredObject extends BunqModel
     public function setScheduledPayment($scheduledPayment)
     {
         $this->scheduledPayment = $scheduledPayment;
-    }
-
-    /**
-     * @return ScheduleRequestInquiryBatch
-     */
-    public function getScheduledRequestInquiryBatch()
-    {
-        return $this->scheduledRequestInquiryBatch;
-    }
-
-    /**
-     * @param ScheduleRequestInquiryBatch $scheduledRequestInquiryBatch
-     */
-    public function setScheduledRequestInquiryBatch($scheduledRequestInquiryBatch)
-    {
-        $this->scheduledRequestInquiryBatch = $scheduledRequestInquiryBatch;
-    }
-
-    /**
-     * @return ScheduleRequestInquiry
-     */
-    public function getScheduledRequestInquiry()
-    {
-        return $this->scheduledRequestInquiry;
-    }
-
-    /**
-     * @param ScheduleRequestInquiry $scheduledRequestInquiry
-     */
-    public function setScheduledRequestInquiry($scheduledRequestInquiry)
-    {
-        $this->scheduledRequestInquiry = $scheduledRequestInquiry;
     }
 
     /**
