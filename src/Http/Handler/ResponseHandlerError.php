@@ -49,7 +49,7 @@ class ResponseHandlerError extends ResponseHandlerBase
         $responseBody = $response->getBody();
         $responseBodyInJson = json_decode($responseBody, true);
 
-        if ($responseBodyInJson != false){
+        if ($responseBodyInJson !== false){
             return $this->fetchErrorDescriptions($responseBodyInJson);
         }else{
             return [$responseBody];
