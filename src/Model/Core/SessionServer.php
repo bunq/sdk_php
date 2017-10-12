@@ -74,7 +74,7 @@ class SessionServer extends BunqModel
     /**
      * @return UserCompany
      */
-    public function getUserCompany(): UserCompany
+    public function getUserCompany()
     {
         return $this->userCompany;
     }
@@ -82,7 +82,7 @@ class SessionServer extends BunqModel
     /**
      * @return UserPerson
      */
-    public function getUserPerson(): UserPerson
+    public function getUserPerson()
     {
         return $this->userPerson;
     }
