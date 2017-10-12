@@ -273,17 +273,15 @@ class ApiContext
      */
     public function ensureSessionActive()
     {
-        if (!is_null($this->sessionContext) && $this->isExpired()) {
+        if (!is_null($this->sessionContext) && $this->isSessionExpired()) {
             $this->resetSession();
         }
     }
 
     /**
-     * Checks if the session has expired
-     *
      * @return bool
      */
-    public function isExpired()
+    public function isSessionExpired(): bool
     {
         $timeExpiry = $this->sessionContext->getExpiryTime()->getTimestamp();
 
