@@ -273,7 +273,7 @@ class ApiContext
      */
     public function ensureSessionActive()
     {
-        if (!is_null($this->sessionContext) && $this->isSessionExpired()) {
+        if ($this->isSessionExpired()) {
             $this->resetSession();
         }
     }
@@ -283,9 +283,14 @@ class ApiContext
      */
     public function isSessionExpired(): bool
     {
-        $timeExpiry = $this->sessionContext->getExpiryTime()->getTimestamp();
+        if (is_null($this->sessionContext)){
+            return false;
+        }
 
-        return is_null($this->sessionContext) || $timeExpiry - time() < self::TIME_TO_SESSION_EXPIRY_MINIMUM_SECONDS;
+        $timeExpiry = $this->sessionContext->getExpiryTime()->getTimestamp();
+        $timeToExpiry = $timeExpiry - time();
+
+        return $timeToExpiry < self::TIME_TO_SESSION_EXPIRY_MINIMUM_SECONDS;
     }
 
     /**
