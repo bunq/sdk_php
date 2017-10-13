@@ -273,7 +273,7 @@ class ApiContext
      */
     public function ensureSessionActive()
     {
-        if ($this->isSessionExpired()) {
+        if ($this->isSessionActive()) {
             $this->resetSession();
         }
     }
@@ -281,7 +281,7 @@ class ApiContext
     /**
      * @return bool
      */
-    public function isSessionExpired(): bool
+    public function isSessionActive(): bool
     {
         if (is_null($this->sessionContext)){
             return false;
