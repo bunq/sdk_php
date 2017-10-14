@@ -273,7 +273,7 @@ class ApiContext
      */
     public function ensureSessionActive()
     {
-        if ($this->isSessionActive()) {
+        if (!$this->isSessionActive()) {
             $this->resetSession();
         }
     }
@@ -290,7 +290,7 @@ class ApiContext
         $timeExpiry = $this->sessionContext->getExpiryTime()->getTimestamp();
         $timeToExpiry = $timeExpiry - time();
 
-        return $timeToExpiry < self::TIME_TO_SESSION_EXPIRY_MINIMUM_SECONDS;
+        return $timeToExpiry > self::TIME_TO_SESSION_EXPIRY_MINIMUM_SECONDS;
     }
 
     /**

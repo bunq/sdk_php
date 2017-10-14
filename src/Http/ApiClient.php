@@ -13,12 +13,26 @@ use bunq\Util\BunqEnumApiEnvironmentType;
 use GuzzleHttp\Client;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Uri;
+use phpDocumentor\Reflection\Types\Self_;
 use Psr\Http\Message\ResponseInterface;
 
 /**
  */
 class ApiClient
 {
+    /**
+     * These are the endpoints where there is no need to have an active session for the request
+     * to succeed.
+     */
+    const SESSION_SERVER_URL = "session-server";
+    const DEVICE_SERVER_URL = "device-server";
+    const INSTALLATION_URL = "installation";
+
+    const URLS_TO_NOT_ENSURE_ACTIVE_SESSION = [
+        self::INSTALLATION_URL,
+        self::DEVICE_SERVER_URL,
+        self::SESSION_SERVER_URL];
+
     /**
      * Error constants.
      */
@@ -166,7 +180,7 @@ class ApiClient
         array $params,
         array $customHeaders
     ): BunqResponseRaw {
-        $this->initialize();
+        $this->initialize($uri);
 
         $response = $this->httpClient->request(
             $method,
@@ -179,9 +193,12 @@ class ApiClient
 
     /**
      */
-    private function initialize()
+    private function initialize(string $uri)
     {
-        $this->apiContext->ensureSessionActive();
+        if (!in_array($uri, self::URLS_TO_NOT_ENSURE_ACTIVE_SESSION, true)) {
+            $this->apiContext->ensureSessionActive();
+        }
+
         $this->initializeHttpClient();
     }
 
