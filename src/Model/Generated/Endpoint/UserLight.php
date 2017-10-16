@@ -17,7 +17,7 @@ use bunq\Model\Generated\Object\TaxResident;
  *
  * @generated
  */
-class UserLight extends BunqModel
+class UserLight extends BunqModel implements UserInterface
 {
     /**
      * Field constants.

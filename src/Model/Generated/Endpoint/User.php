@@ -3,7 +3,6 @@ namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
-use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 
 /**
@@ -141,5 +140,21 @@ class User extends BunqModel
     public function setUserCompany($userCompany)
     {
         $this->userCompany = $userCompany;
+    }
+
+    /**
+     * @return UserInterface
+     */
+    public function getGenericUser(): UserInterface
+    {
+        if ($this->getUserCompany()) {
+            return $this->getUserCompany();
+        }
+
+        if ($this->getUserLight()) {
+            return $this->getUserLight();
+        }
+
+        return $this->getUserPerson();
     }
 }
