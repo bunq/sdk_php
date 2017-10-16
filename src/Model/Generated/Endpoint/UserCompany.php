@@ -18,7 +18,7 @@ use bunq\Model\Generated\Object\Ubo;
  *
  * @generated
  */
-class UserCompany extends BunqModel
+class UserCompany extends BunqModel implements UserInterface
 {
     /**
      * Field constants.
