@@ -21,17 +21,17 @@ use Psr\Http\Message\ResponseInterface;
 class ApiClient
 {
     /**
-     * These are the endpoints where there is no need to have an active session for the request
-     * to succeed.
+     * Endpoints not requiring active session for the request to succeed
      */
-    const SESSION_SERVER_URL = "session-server";
-    const DEVICE_SERVER_URL = "device-server";
-    const INSTALLATION_URL = "installation";
 
-    const URLS_TO_NOT_ENSURE_ACTIVE_SESSION = [
-        self::INSTALLATION_URL,
-        self::DEVICE_SERVER_URL,
-        self::SESSION_SERVER_URL];
+    const URIS_NOT_REQUIRING_ACTIVE_SESSION = [
+        self::INSTALLATION_URL => true,
+        self::DEVICE_SERVER_URL => true,
+        self::SESSION_SERVER_URL => true,
+    ];
+    const SESSION_SERVER_URL = 'session-server';
+    const DEVICE_SERVER_URL = 'device-server';
+    const INSTALLATION_URL = 'installation';
 
     /**
      * Error constants.
@@ -195,7 +195,7 @@ class ApiClient
      */
     private function initialize(string $uri)
     {
-        if (!in_array($uri, self::URLS_TO_NOT_ENSURE_ACTIVE_SESSION, true)) {
+        if (!isset(self::URIS_NOT_REQUIRING_ACTIVE_SESSION[$uri])) {
             $this->apiContext->ensureSessionActive();
         }
 
