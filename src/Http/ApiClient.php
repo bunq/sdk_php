@@ -21,17 +21,16 @@ use Psr\Http\Message\ResponseInterface;
 class ApiClient
 {
     /**
-     * Endpoints not requiring active session for the request to succeed
+     * Endpoints not requiring active session for the request to succeed.
      */
-
     const URIS_NOT_REQUIRING_ACTIVE_SESSION = [
-        self::INSTALLATION_URL => true,
         self::DEVICE_SERVER_URL => true,
+        self::INSTALLATION_URL => true,
         self::SESSION_SERVER_URL => true,
     ];
-    const SESSION_SERVER_URL = 'session-server';
     const DEVICE_SERVER_URL = 'device-server';
     const INSTALLATION_URL = 'installation';
+    const SESSION_SERVER_URL = 'session-server';
 
     /**
      * Error constants.
