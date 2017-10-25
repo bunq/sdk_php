@@ -18,7 +18,7 @@ use bunq\Model\Generated\Object\Pointer;
  * that can be updated are the description, the daily limit and the avatar
  * of the account.<br/><br/>Notification filters can be set on a monetary
  * account level to receive callbacks. For more information check the <a
- * href="/api/2/page/callbacks">dedicated callbacks page</a>.
+ * href="/api/1/page/callbacks">dedicated callbacks page</a>.
  *
  * @generated
  */
