@@ -26,6 +26,27 @@ class CardGeneratedCvc2 extends BunqModel
     const OBJECT_TYPE = 'CardGeneratedCvc2';
 
     /**
+     * The id of the cvc code.
+     *
+     * @var int
+     */
+    protected $id;
+
+    /**
+     * The timestamp of the cvc code's creation.
+     *
+     * @var string
+     */
+    protected $created;
+
+    /**
+     * The timestamp of the cvc code's last update.
+     *
+     * @var string
+     */
+    protected $updated;
+
+    /**
      * The cvc2 code.
      *
      * @var string
@@ -132,6 +153,60 @@ class CardGeneratedCvc2 extends BunqModel
         return BunqResponseCardGeneratedCvc2List::castFromBunqResponse(
             static::fromJsonList($responseRaw, self::OBJECT_TYPE)
         );
+    }
+
+    /**
+     * The id of the cvc code.
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * The timestamp of the cvc code's creation.
+     *
+     * @return string
+     */
+    public function getCreated()
+    {
+        return $this->created;
+    }
+
+    /**
+     * @param string $created
+     */
+    public function setCreated($created)
+    {
+        $this->created = $created;
+    }
+
+    /**
+     * The timestamp of the cvc code's last update.
+     *
+     * @return string
+     */
+    public function getUpdated()
+    {
+        return $this->updated;
+    }
+
+    /**
+     * @param string $updated
+     */
+    public function setUpdated($updated)
+    {
+        $this->updated = $updated;
     }
 
     /**
