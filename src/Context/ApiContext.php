@@ -273,15 +273,24 @@ class ApiContext
      */
     public function ensureSessionActive()
     {
-        if (is_null($this->sessionContext)) {
-            return;
+        if (!$this->isSessionActive()) {
+            $this->resetSession();
+        }
+    }
+
+    /**
+     * @return bool
+     */
+    public function isSessionActive(): bool
+    {
+        if (is_null($this->sessionContext)){
+            return false;
         }
 
         $timeExpiry = $this->sessionContext->getExpiryTime()->getTimestamp();
+        $timeToExpiry = $timeExpiry - time();
 
-        if ($timeExpiry - time() < self::TIME_TO_SESSION_EXPIRY_MINIMUM_SECONDS) {
-            $this->resetSession();
-        }
+        return $timeToExpiry > self::TIME_TO_SESSION_EXPIRY_MINIMUM_SECONDS;
     }
 
     /**

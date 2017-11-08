@@ -11,9 +11,14 @@ use bunq\Model\Generated\Object\NotificationFilter;
 use bunq\Model\Generated\Object\TabTextWaitingScreen;
 
 /**
- * CashRegisters act as an point of sale. They have a specific name and
- * avatar, and optionally a location. A CashRegister is used to create Tabs.
- * A CashRegister can have an QR code that links to one of its Tabs.
+ * CashRegisters are virtual points of sale. They have a specific name and
+ * avatar, and optionally, a location.<br/>With a CashRegister you can
+ * create a Tab and then use a QR code to receive payments.<br/>Check out
+ * our Quickstart example to learn how you can easily <a
+ * href="/api/1/page/usecase-tab-payment">create Tab
+ * payments</a>.<br/><br/>Notification filters can be set on a CashRegister
+ * to receive callbacks. For more information check the <a
+ * href="/api/1/page/callbacks">dedicated callbacks page</a>.
  *
  * @generated
  */

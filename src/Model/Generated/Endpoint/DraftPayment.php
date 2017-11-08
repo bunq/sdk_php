@@ -5,6 +5,7 @@ use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
 use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
+use bunq\Model\Generated\Object\DraftPaymentAnchorObject;
 use bunq\Model\Generated\Object\DraftPaymentEntry;
 use bunq\Model\Generated\Object\DraftPaymentResponse;
 use bunq\Model\Generated\Object\LabelUser;
@@ -39,7 +40,7 @@ class DraftPayment extends BunqModel
     const OBJECT_TYPE = 'DraftPayment';
 
     /**
-     * The id of the DraftPayment.
+     * The id of the created DrafPayment.
      *
      * @var int
      */
@@ -91,7 +92,7 @@ class DraftPayment extends BunqModel
      * The Payment or PaymentBatch. This will only be present after the
      * DraftPayment has been accepted.
      *
-     * @var BunqModel
+     * @var DraftPaymentAnchorObject
      */
     protected $object;
 
@@ -212,7 +213,7 @@ class DraftPayment extends BunqModel
     }
 
     /**
-     * The id of the DraftPayment.
+     * The id of the created DrafPayment.
      *
      * @return int
      */
@@ -341,7 +342,7 @@ class DraftPayment extends BunqModel
      * The Payment or PaymentBatch. This will only be present after the
      * DraftPayment has been accepted.
      *
-     * @return BunqModel
+     * @return DraftPaymentAnchorObject
      */
     public function getObject()
     {
@@ -349,7 +350,7 @@ class DraftPayment extends BunqModel
     }
 
     /**
-     * @param BunqModel $object
+     * @param DraftPaymentAnchorObject $object
      */
     public function setObject($object)
     {

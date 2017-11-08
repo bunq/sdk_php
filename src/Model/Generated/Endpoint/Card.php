@@ -72,6 +72,13 @@ class Card extends BunqModel
     protected $publicUuid;
 
     /**
+     * The type of the card. Can be MAESTRO, MASTERCARD.
+     *
+     * @var string
+     */
+    protected $type;
+
+    /**
      * The second line of text on the card
      *
      * @var string
@@ -336,6 +343,24 @@ class Card extends BunqModel
     public function setPublicUuid($publicUuid)
     {
         $this->publicUuid = $publicUuid;
+    }
+
+    /**
+     * The type of the card. Can be MAESTRO, MASTERCARD.
+     *
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * @param string $type
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
     }
 
     /**
