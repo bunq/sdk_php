@@ -11,6 +11,8 @@ use bunq\Model\Generated\Endpoint\MasterCardAction;
 use bunq\Model\Generated\Endpoint\MonetaryAccountBank;
 use bunq\Model\Generated\Endpoint\Payment;
 use bunq\Model\Generated\Endpoint\PaymentBatch;
+use bunq\Model\Generated\Endpoint\RequestInquiry;
+use bunq\Model\Generated\Endpoint\RequestResponse;
 use bunq\Model\Generated\Object\NotificationUrl;
 use bunq\test\BunqSdkTestBase;
 use bunq\Util\FileUtil;
@@ -31,6 +33,8 @@ class NotificationUrlTest extends BunqSdkTestBase
     const GET_MASTER_CARD_ACTION = 'getMasterCardAction';
     const GET_MONETARY_ACCOUNT_BANK = 'getMonetaryAccountBank';
     const GET_PAYMENT_BATCH = 'getPaymentBatch';
+    const GET_REQUEST_INQUIRY = 'getRequestInquiry';
+    const GET_REQUEST_RESPONSE = 'getRequestResponse';
 
     /**
      * Assertion errors.
@@ -51,6 +55,8 @@ class NotificationUrlTest extends BunqSdkTestBase
     const JSON_PATH_MASTER_CARD_ACTION_MODEL = self::BASE_PATH_JSON_MODEL . '/MasterCardAction.json';
     const JSON_PATH_MONETARY_ACCOUNT_BANK_MODEL = self::BASE_PATH_JSON_MODEL . '/MonetaryAccountBank.json';
     const JSON_PATH_PAYMENT_BATCH_MODEL = self::BASE_PATH_JSON_MODEL . '/PaymentBatch.json';
+    const JSON_PATH_REQUEST_INQUIRY_MODEL = self::BASE_PATH_JSON_MODEL . '/RequestInquiry.json';
+    const JSON_PATH_REQUEST_RESPONSE_MODEL = self::BASE_PATH_JSON_MODEL . '/RequestResponse.json';
 
     /**
      * Model root key.
@@ -109,6 +115,28 @@ class NotificationUrlTest extends BunqSdkTestBase
             self::JSON_PATH_PAYMENT_BATCH_MODEL,
             PaymentBatch::class,
             self::GET_PAYMENT_BATCH
+        );
+    }
+
+    /**
+     */
+    public function testRequestResponse()
+    {
+        $this->executeTest(
+            self::JSON_PATH_REQUEST_RESPONSE_MODEL,
+            RequestResponse::class,
+            self::GET_REQUEST_RESPONSE
+        );
+    }
+
+    /**
+     */
+    public function testRequestInquiryModel()
+    {
+        $this->executeTest(
+            self::JSON_PATH_REQUEST_INQUIRY_MODEL,
+            RequestInquiry::class,
+            self::GET_REQUEST_INQUIRY
         );
     }
     public function testMasterCardAction()
