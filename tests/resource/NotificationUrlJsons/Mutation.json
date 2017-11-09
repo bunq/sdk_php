@@ -1,6 +1,6 @@
 {
     "NotificationUrl": {
-        "target_url|tu": "nope",
+        "target_url": "nope",
         "category": "MUTATION",
         "event_type": "MUTATION_CREATED",
         "object": {

@@ -1,5 +1,5 @@
 {"NotificationUrl": {
-        "target_url": "https:\/\/develop.bunq.com\/callback.php?email=khellemun@bunq.com",
+        "target_url": "nope",
         "category": "DRAFT_PAYMENT",
         "event_type": "DRAFT_PAYMENT_ACCEPTED",
         "object": {

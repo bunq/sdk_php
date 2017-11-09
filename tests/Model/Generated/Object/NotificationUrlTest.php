@@ -7,6 +7,7 @@ use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Endpoint\BunqMeTab;
 use bunq\Model\Generated\Endpoint\ChatMessage;
 use bunq\Model\Generated\Endpoint\DraftPayment;
+use bunq\Model\Generated\Endpoint\MasterCardAction;
 use bunq\Model\Generated\Endpoint\Payment;
 use bunq\Model\Generated\Object\NotificationUrl;
 use bunq\test\BunqSdkTestBase;
@@ -25,12 +26,15 @@ class NotificationUrlTest extends BunqSdkTestBase
     const GET_BUNQ_ME_TAB = 'getBunqMeTab';
     const GET_CHAT_MESSAGE = 'getChatMessage';
     const GET_DRAFT_PAYMENT = 'getDraftPayment';
+    const GET_MASTER_CARD_ACTION = 'getMasterCardAction';
 
     /**
      * Assertion errors.
      */
     const ASSERT_SHOULD_NOT_REACH_THIS_CODE_ERROR = 'Something super weird just happen';
     const ASSERT_JSON_DECODE_ERROR = 'Might be that the JSON file is not a valid json.';
+    const ASSERT_OBJECT_IS_NULL_ERROR = 'Object seems to be null.';
+
 
     /**
      * Model json paths constants.
@@ -40,6 +44,7 @@ class NotificationUrlTest extends BunqSdkTestBase
     const JSON_PATH_BUNQ_ME_TAB_MODEL = self::BASE_PATH_JSON_MODEL . '/BunqMeTab.json';
     const JSON_PATH_CHAT_MESSAGE_MODEL = self::BASE_PATH_JSON_MODEL . '/ChatMessage.json';
     const JSON_PATH_DRAFT_PAYMENT_MODEL = self::BASE_PATH_JSON_MODEL . '/DraftPayment.json';
+    const JSON_PATH_MASTER_CARD_ACTION_MODEL = self::BASE_PATH_JSON_MODEL . '/MasterCardAction.json';
 
     /**
      * Model root key.
@@ -79,6 +84,18 @@ class NotificationUrlTest extends BunqSdkTestBase
         $this->executeTest(self::JSON_PATH_BUNQ_ME_TAB_MODEL, BunqMeTab::class, self::GET_BUNQ_ME_TAB);
     }
 
+
+    /**
+     */
+    public function testMasterCardAction()
+    {
+        $this->executeTest(
+            self::JSON_PATH_MASTER_CARD_ACTION_MODEL,
+            MasterCardAction::class,
+            self::GET_MASTER_CARD_ACTION
+        );
+    }
+
     ///**
     // */
     //public function testChatMessageModel()
@@ -106,7 +123,7 @@ class NotificationUrlTest extends BunqSdkTestBase
         $notificationUrl = NotificationUrl::fromJsonToModel($notificationObject);
         $notificationUrl = self::assertInstanceOfNotificationUrl($notificationUrl);
 
-        static::assertNotNull($notificationUrl->getObject());
+        static::assertNotNull($notificationUrl->getObject(), self::ASSERT_OBJECT_IS_NULL_ERROR);
 
         return $notificationUrl;
     }
