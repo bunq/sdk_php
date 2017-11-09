@@ -15,6 +15,8 @@ use bunq\Model\Generated\Endpoint\RequestInquiry;
 use bunq\Model\Generated\Endpoint\RequestResponse;
 use bunq\Model\Generated\Endpoint\ScheduleInstance;
 use bunq\Model\Generated\Endpoint\SchedulePayment;
+use bunq\Model\Generated\Endpoint\ShareInviteBankInquiry;
+use bunq\Model\Generated\Endpoint\ShareInviteBankResponse;
 use bunq\Model\Generated\Object\NotificationUrl;
 use bunq\test\BunqSdkTestBase;
 use bunq\Util\FileUtil;
@@ -39,6 +41,8 @@ class NotificationUrlTest extends BunqSdkTestBase
     const GET_REQUEST_RESPONSE = 'getRequestResponse';
     const GET_SCHEDULE_PAYMENT = 'getScheduledPayment';
     const GET_SCHEDULE_INSTANCE = 'getScheduledInstance';
+    const GET_SHARE_INVITE_BANK_INQUIRY = 'getShareInviteBankInquiry';
+    const GET_SHARE_INVITE_BANK_RESPONSE = 'getShareInviteBankResponse';
 
     /**
      * Assertion errors.
@@ -63,6 +67,8 @@ class NotificationUrlTest extends BunqSdkTestBase
     const JSON_PATH_REQUEST_RESPONSE_MODEL = self::BASE_PATH_JSON_MODEL . '/RequestResponse.json';
     const JSON_PATH_SCHEDULE_PAYMENT_MODEL = self::BASE_PATH_JSON_MODEL . '/ScheduledPayment.json';
     const JSON_PATH_SCHEDULE_INSTANCE_MODEL = self::BASE_PATH_JSON_MODEL . '/ScheduledInstance.json';
+    const JSON_PATH_SHARE_INVITE_BANK_INQUIRY_MODEL = self::BASE_PATH_JSON_MODEL . '/ShareInviteBankInquiry.json';
+    const JSON_PATH_SHARE_INVITE_BANK_RESPONSE_MODEL = self::BASE_PATH_JSON_MODEL . '/ShareInviteBankResponse.json';
 
     /**
      * Model root key.
@@ -157,6 +163,16 @@ class NotificationUrlTest extends BunqSdkTestBase
         );
     }
     
+    /**
+     */
+    public function testShareInviteBankResponse()
+    {
+        $this->executeTest(
+            self::JSON_PATH_SHARE_INVITE_BANK_RESPONSE_MODEL,
+            ShareInviteBankResponse::class,
+            self::GET_SHARE_INVITE_BANK_RESPONSE
+        );
+    }
 
     /**
      */
@@ -168,6 +184,20 @@ class NotificationUrlTest extends BunqSdkTestBase
             self::GET_SCHEDULE_INSTANCE
         );
     }
+
+    /**
+     */
+    public function testShareInviteBankInquiry()
+    {
+        $this->executeTest(
+            self::JSON_PATH_SHARE_INVITE_BANK_INQUIRY_MODEL,
+            ShareInviteBankInquiry::class,
+            self::GET_SHARE_INVITE_BANK_INQUIRY
+        );
+    }
+
+    /**
+     */
     public function testMasterCardAction()
     {
         $this->executeTest(
