@@ -28,7 +28,7 @@ class NotificationUrlTest extends BunqSdkTestBase
     const GET_CHAT_MESSAGE_ANNOUNCEMENT = 'getChatMessageAnnouncement';
     const GET_DRAFT_PAYMENT = 'getDraftPayment';
     const GET_MASTER_CARD_ACTION = 'getMasterCardAction';
-    const GET_MONETARY_ACCOUNT_BANK = 'getMonetaryAccount';
+    const GET_MONETARY_ACCOUNT_BANK = 'getMonetaryAccountBank';
 
     /**
      * Assertion errors.
@@ -87,10 +87,9 @@ class NotificationUrlTest extends BunqSdkTestBase
         $this->executeTest(self::JSON_PATH_BUNQ_ME_TAB_MODEL, BunqMeTab::class, self::GET_BUNQ_ME_TAB);
     }
 
-
     /**
      */
-    public function testGetMonetaryAccount()
+    public function testGetMonetaryAccountModel()
     {
         $this->executeTest(
             self::JSON_PATH_MONETARY_ACCOUNT_BANK_MODEL,
