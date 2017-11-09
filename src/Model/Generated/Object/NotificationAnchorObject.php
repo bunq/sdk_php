@@ -6,24 +6,27 @@ use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Endpoint\BunqMeTab;
 use bunq\Model\Generated\Endpoint\BunqMeTabResultInquiry;
 use bunq\Model\Generated\Endpoint\BunqMeTabResultResponse;
-use bunq\Model\Generated\Endpoint\ChatMessage;
+use bunq\Model\Generated\Endpoint\ChatMessageAnnouncement;
+use bunq\Model\Generated\Endpoint\ChatMessageStatus;
+use bunq\Model\Generated\Endpoint\ChatMessageUser;
 use bunq\Model\Generated\Endpoint\DraftPayment;
 use bunq\Model\Generated\Endpoint\IdealMerchantTransaction;
 use bunq\Model\Generated\Endpoint\Invoice;
 use bunq\Model\Generated\Endpoint\MasterCardAction;
-use bunq\Model\Generated\Endpoint\MonetaryAccount;
+use bunq\Model\Generated\Endpoint\MonetaryAccountBank;
 use bunq\Model\Generated\Endpoint\Payment;
 use bunq\Model\Generated\Endpoint\PaymentBatch;
 use bunq\Model\Generated\Endpoint\RequestInquiry;
 use bunq\Model\Generated\Endpoint\RequestInquiryBatch;
 use bunq\Model\Generated\Endpoint\RequestResponse;
-use bunq\Model\Generated\Endpoint\Schedule;
 use bunq\Model\Generated\Endpoint\ScheduleInstance;
+use bunq\Model\Generated\Endpoint\SchedulePayment;
 use bunq\Model\Generated\Endpoint\ShareInviteBankInquiry;
 use bunq\Model\Generated\Endpoint\ShareInviteBankResponse;
 use bunq\Model\Generated\Endpoint\TabResultInquiry;
 use bunq\Model\Generated\Endpoint\TabResultResponse;
-use bunq\Model\Generated\Endpoint\User;
+use bunq\Model\Generated\Endpoint\UserCompany;
+use bunq\Model\Generated\Endpoint\UserPerson;
 
 /**
  * @generated
@@ -51,9 +54,19 @@ class NotificationAnchorObject extends BunqModel
     protected $bunqMeTabResultResponse;
 
     /**
-     * @var ChatMessage
+     * @var ChatMessageStatus
      */
-    protected $chatMessage;
+    protected $chatMessageStatus;
+
+    /**
+     * @var ChatMessageUser
+     */
+    protected $chatMessageUser;
+
+    /**
+     * @var ChatMessageAnnouncement
+     */
+    protected $chatMessageAnnouncement;
 
     /**
      * @var DraftPayment
@@ -76,9 +89,9 @@ class NotificationAnchorObject extends BunqModel
     protected $masterCardAction;
 
     /**
-     * @var MonetaryAccount
+     * @var MonetaryAccountBank
      */
-    protected $monetaryAccount;
+    protected $monetaryAccountBank;
 
     /**
      * @var Payment
@@ -116,9 +129,9 @@ class NotificationAnchorObject extends BunqModel
     protected $shareInviteBankResponse;
 
     /**
-     * @var Schedule
+     * @var SchedulePayment
      */
-    protected $schedule;
+    protected $scheduledPayment;
 
     /**
      * @var ScheduleInstance
@@ -136,9 +149,14 @@ class NotificationAnchorObject extends BunqModel
     protected $tabResultResponse;
 
     /**
-     * @var User
+     * @var UserPerson
      */
-    protected $user;
+    protected $userPerson;
+
+    /**
+     * @var UserCompany
+     */
+    protected $userCompany;
 
     /**
      * @return BunqMeTab
@@ -189,19 +207,51 @@ class NotificationAnchorObject extends BunqModel
     }
 
     /**
-     * @return ChatMessage
+     * @return ChatMessageStatus
      */
-    public function getChatMessage()
+    public function getChatMessageStatus()
     {
-        return $this->chatMessage;
+        return $this->chatMessageStatus;
     }
 
     /**
-     * @param ChatMessage $chatMessage
+     * @param ChatMessageStatus $chatMessageStatus
      */
-    public function setChatMessage($chatMessage)
+    public function setChatMessageStatus($chatMessageStatus)
     {
-        $this->chatMessage = $chatMessage;
+        $this->chatMessageStatus = $chatMessageStatus;
+    }
+
+    /**
+     * @return ChatMessageUser
+     */
+    public function getChatMessageUser()
+    {
+        return $this->chatMessageUser;
+    }
+
+    /**
+     * @param ChatMessageUser $chatMessageUser
+     */
+    public function setChatMessageUser($chatMessageUser)
+    {
+        $this->chatMessageUser = $chatMessageUser;
+    }
+
+    /**
+     * @return ChatMessageAnnouncement
+     */
+    public function getChatMessageAnnouncement()
+    {
+        return $this->chatMessageAnnouncement;
+    }
+
+    /**
+     * @param ChatMessageAnnouncement $chatMessageAnnouncement
+     */
+    public function setChatMessageAnnouncement($chatMessageAnnouncement)
+    {
+        $this->chatMessageAnnouncement = $chatMessageAnnouncement;
     }
 
     /**
@@ -269,19 +319,19 @@ class NotificationAnchorObject extends BunqModel
     }
 
     /**
-     * @return MonetaryAccount
+     * @return MonetaryAccountBank
      */
-    public function getMonetaryAccount()
+    public function getMonetaryAccountBank()
     {
-        return $this->monetaryAccount;
+        return $this->monetaryAccountBank;
     }
 
     /**
-     * @param MonetaryAccount $monetaryAccount
+     * @param MonetaryAccountBank $monetaryAccountBank
      */
-    public function setMonetaryAccount($monetaryAccount)
+    public function setMonetaryAccountBank($monetaryAccountBank)
     {
-        $this->monetaryAccount = $monetaryAccount;
+        $this->monetaryAccountBank = $monetaryAccountBank;
     }
 
     /**
@@ -397,19 +447,19 @@ class NotificationAnchorObject extends BunqModel
     }
 
     /**
-     * @return Schedule
+     * @return SchedulePayment
      */
-    public function getSchedule()
+    public function getScheduledPayment()
     {
-        return $this->schedule;
+        return $this->scheduledPayment;
     }
 
     /**
-     * @param Schedule $schedule
+     * @param SchedulePayment $scheduledPayment
      */
-    public function setSchedule($schedule)
+    public function setScheduledPayment($scheduledPayment)
     {
-        $this->schedule = $schedule;
+        $this->scheduledPayment = $scheduledPayment;
     }
 
     /**
@@ -461,19 +511,35 @@ class NotificationAnchorObject extends BunqModel
     }
 
     /**
-     * @return User
+     * @return UserPerson
      */
-    public function getUser()
+    public function getUserPerson()
     {
-        return $this->user;
+        return $this->userPerson;
     }
 
     /**
-     * @param User $user
+     * @param UserPerson $userPerson
      */
-    public function setUser($user)
+    public function setUserPerson($userPerson)
     {
-        $this->user = $user;
+        $this->userPerson = $userPerson;
+    }
+
+    /**
+     * @return UserCompany
+     */
+    public function getUserCompany()
+    {
+        return $this->userCompany;
+    }
+
+    /**
+     * @param UserCompany $userCompany
+     */
+    public function setUserCompany($userCompany)
+    {
+        $this->userCompany = $userCompany;
     }
 
     /**
@@ -494,8 +560,16 @@ class NotificationAnchorObject extends BunqModel
             return $this->bunqMeTabResultResponse;
         }
 
-        if (!is_null($this->chatMessage)) {
-            return $this->chatMessage;
+        if (!is_null($this->chatMessageStatus)) {
+            return $this->chatMessageStatus;
+        }
+
+        if (!is_null($this->chatMessageUser)) {
+            return $this->chatMessageUser;
+        }
+
+        if (!is_null($this->chatMessageAnnouncement)) {
+            return $this->chatMessageAnnouncement;
         }
 
         if (!is_null($this->draftPayment)) {
@@ -514,8 +588,8 @@ class NotificationAnchorObject extends BunqModel
             return $this->masterCardAction;
         }
 
-        if (!is_null($this->monetaryAccount)) {
-            return $this->monetaryAccount;
+        if (!is_null($this->monetaryAccountBank)) {
+            return $this->monetaryAccountBank;
         }
 
         if (!is_null($this->payment)) {
@@ -546,8 +620,8 @@ class NotificationAnchorObject extends BunqModel
             return $this->shareInviteBankResponse;
         }
 
-        if (!is_null($this->schedule)) {
-            return $this->schedule;
+        if (!is_null($this->scheduledPayment)) {
+            return $this->scheduledPayment;
         }
 
         if (!is_null($this->scheduledInstance)) {
@@ -562,8 +636,12 @@ class NotificationAnchorObject extends BunqModel
             return $this->tabResultResponse;
         }
 
-        if (!is_null($this->user)) {
-            return $this->user;
+        if (!is_null($this->userPerson)) {
+            return $this->userPerson;
+        }
+
+        if (!is_null($this->userCompany)) {
+            return $this->userCompany;
         }
 
         throw new BunqException(self::ERROR_NULL_FIELDS);
