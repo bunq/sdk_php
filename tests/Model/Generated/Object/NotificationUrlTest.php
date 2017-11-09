@@ -8,6 +8,7 @@ use bunq\Model\Generated\Endpoint\BunqMeTab;
 use bunq\Model\Generated\Endpoint\ChatMessage;
 use bunq\Model\Generated\Endpoint\DraftPayment;
 use bunq\Model\Generated\Endpoint\MasterCardAction;
+use bunq\Model\Generated\Endpoint\MonetaryAccountBank;
 use bunq\Model\Generated\Endpoint\Payment;
 use bunq\Model\Generated\Object\NotificationUrl;
 use bunq\test\BunqSdkTestBase;
@@ -27,6 +28,7 @@ class NotificationUrlTest extends BunqSdkTestBase
     const GET_CHAT_MESSAGE = 'getChatMessage';
     const GET_DRAFT_PAYMENT = 'getDraftPayment';
     const GET_MASTER_CARD_ACTION = 'getMasterCardAction';
+    const GET_MONETARY_ACCOUNT_BANK = 'getMonetaryAccount';
 
     /**
      * Assertion errors.
@@ -45,6 +47,7 @@ class NotificationUrlTest extends BunqSdkTestBase
     const JSON_PATH_CHAT_MESSAGE_MODEL = self::BASE_PATH_JSON_MODEL . '/ChatMessage.json';
     const JSON_PATH_DRAFT_PAYMENT_MODEL = self::BASE_PATH_JSON_MODEL . '/DraftPayment.json';
     const JSON_PATH_MASTER_CARD_ACTION_MODEL = self::BASE_PATH_JSON_MODEL . '/MasterCardAction.json';
+    const JSON_PATH_MONETARY_ACCOUNT_BANK_MODEL = self::BASE_PATH_JSON_MODEL . '/MonetaryAccountBank.json';
 
     /**
      * Model root key.
@@ -84,6 +87,17 @@ class NotificationUrlTest extends BunqSdkTestBase
         $this->executeTest(self::JSON_PATH_BUNQ_ME_TAB_MODEL, BunqMeTab::class, self::GET_BUNQ_ME_TAB);
     }
 
+
+    /**
+     */
+    public function testGetMonetaryAccount()
+    {
+        $this->executeTest(
+            self::JSON_PATH_MONETARY_ACCOUNT_BANK_MODEL,
+            MonetaryAccountBank::class,
+            self::GET_MONETARY_ACCOUNT_BANK
+        );
+    }
 
     /**
      */
