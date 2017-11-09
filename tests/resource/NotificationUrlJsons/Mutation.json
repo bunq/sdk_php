@@ -1,5 +1,6 @@
-{"NotificationUrl": {
-        "target_url": "https:\/\/develop.bunq.com\/callback.php?email=khellemun@bunq.com",
+{
+    "NotificationUrl": {
+        "target_url|tu": "nope",
         "category": "MUTATION",
         "event_type": "MUTATION_CREATED",
         "object": {

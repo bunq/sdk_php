@@ -4,6 +4,7 @@ namespace bunq\test\Model\Object;
 
 use bunq\Exception\BunqException;
 use bunq\Model\Core\BunqModel;
+use bunq\Model\Generated\Endpoint\BunqMeTab;
 use bunq\Model\Generated\Endpoint\Payment;
 use bunq\Model\Generated\Object\NotificationUrl;
 use bunq\test\BunqSdkTestBase;
@@ -20,11 +21,12 @@ class NotificationUrlTest extends BunqSdkTestBase
      */
     const BASE_PATH_JSON_MODEL =  __DIR__ . '/../../../resource/NotificationUrlJsons';
     const JSON_PATH_MUTATION_MODEL = self::BASE_PATH_JSON_MODEL . '/Mutation.json';
+    const JSON_PATH_BUNQ_ME_TAB_MODEL = self::BASE_PATH_JSON_MODEL . '/BunqMeTab.json';
 
     /**
      * Model root key.
      */
-    const KEY_NOTFICATION_URL_MODEL = 'NotificationUrl';
+    const KEY_NOTIFICATION_URL_MODEL = 'NotificationUrl';
     const KEY_MUTATION_MODEL = '';
 
     /**
@@ -32,10 +34,7 @@ class NotificationUrlTest extends BunqSdkTestBase
     public function testMutationModel()
     {
         $jsonString = FileUtil::getFileContents(self::JSON_PATH_MUTATION_MODEL);
-        $json = json_decode($jsonString, true);
-        $notificationObject = $this->getNotificationObjectAsString($json);
-        $notificationUrl = NotificationUrl::fromJsonToModel($notificationObject);
-        $notificationUrl = self::assertInstanceOfNotificationUrl($notificationUrl);
+        $notificationUrl = $this->getNotificationUrlFromJson($jsonString);
 
         $paymentModel = $notificationUrl->getObject()->getPayment();
         $referencedPaymentModel = $notificationUrl->getObject()->getReferencedObject();
@@ -43,6 +42,36 @@ class NotificationUrlTest extends BunqSdkTestBase
         $this->assetReferencedModelIsNotNull($paymentModel);
         $this->assetReferencedModelIsNotNull($referencedPaymentModel);
         static::assertInstanceOf(Payment::class, $referencedPaymentModel);
+    }
+
+    /**
+     */
+    public function testBunqMeTabModel()
+    {
+        $jsonString = FileUtil::getFileContents(self::JSON_PATH_BUNQ_ME_TAB_MODEL);
+        $notificationUrl = $this->getNotificationUrlFromJson($jsonString);
+
+        $bunqMeTabModel = $notificationUrl->getObject()->getBunqMeTab();
+        $referencedBunqMeTabModel = $notificationUrl->getObject()->getReferencedObject();
+
+        $this->assetReferencedModelIsNotNull($bunqMeTabModel);
+        $this->assetReferencedModelIsNotNull($referencedBunqMeTabModel);
+        static::assertInstanceOf(BunqMeTab::class, $referencedBunqMeTabModel);
+    }
+
+    /**
+     * @param string $jsonString
+     *
+     * @return NotificationUrl
+     */
+    private function getNotificationUrlFromJson(string $jsonString): NotificationUrl
+    {
+        $json = json_decode($jsonString, true);
+        static::assertNotNull($json, 'Might be that the JSON file is not a valid json.');
+        $notificationObject = $this->getNotificationObjectAsString($json);
+        $notificationUrl = NotificationUrl::fromJsonToModel($notificationObject);
+
+        return self::assertInstanceOfNotificationUrl($notificationUrl);
     }
 
     /**
@@ -79,7 +108,7 @@ class NotificationUrlTest extends BunqSdkTestBase
     {
         $this->assertJsonIsNotificationUrlJson($json);
 
-        return json_encode($json[self::KEY_NOTFICATION_URL_MODEL]);
+        return json_encode($json[self::KEY_NOTIFICATION_URL_MODEL]);
     }
 
     /**
@@ -87,6 +116,6 @@ class NotificationUrlTest extends BunqSdkTestBase
      */
     private function assertJsonIsNotificationUrlJson(array $json)
     {
-        static::assertArrayHasKey(self::KEY_NOTFICATION_URL_MODEL, $json);
+        static::assertArrayHasKey(self::KEY_NOTIFICATION_URL_MODEL, $json);
     }
 }
