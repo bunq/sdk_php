@@ -6,6 +6,7 @@ use bunq\Http\ApiClient;
 use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Object\Error;
+use bunq\Model\Generated\Object\ScheduleAnchorObject;
 
 /**
  * view for reading, updating and listing the scheduled instance.
@@ -62,16 +63,16 @@ class ScheduleInstance extends BunqModel
     protected $errorMessage;
 
     /**
-     * The scheduled object.
+     * The scheduled object. (Payment, PaymentBatch)
      *
-     * @var BunqModel
+     * @var ScheduleAnchorObject
      */
     protected $scheduledObject;
 
     /**
-     * The result object of this schedule instance. (payment, payment batch)
+     * The result object of this schedule instance. (Payment, PaymentBatch)
      *
-     * @var BunqModel
+     * @var ScheduleAnchorObject
      */
     protected $resultObject;
 
@@ -235,9 +236,9 @@ class ScheduleInstance extends BunqModel
     }
 
     /**
-     * The scheduled object.
+     * The scheduled object. (Payment, PaymentBatch)
      *
-     * @return BunqModel
+     * @return ScheduleAnchorObject
      */
     public function getScheduledObject()
     {
@@ -245,7 +246,7 @@ class ScheduleInstance extends BunqModel
     }
 
     /**
-     * @param BunqModel $scheduledObject
+     * @param ScheduleAnchorObject $scheduledObject
      */
     public function setScheduledObject($scheduledObject)
     {
@@ -253,9 +254,9 @@ class ScheduleInstance extends BunqModel
     }
 
     /**
-     * The result object of this schedule instance. (payment, payment batch)
+     * The result object of this schedule instance. (Payment, PaymentBatch)
      *
-     * @return BunqModel
+     * @return ScheduleAnchorObject
      */
     public function getResultObject()
     {
@@ -263,7 +264,7 @@ class ScheduleInstance extends BunqModel
     }
 
     /**
-     * @param BunqModel $resultObject
+     * @param ScheduleAnchorObject $resultObject
      */
     public function setResultObject($resultObject)
     {

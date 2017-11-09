@@ -46,9 +46,9 @@ class Schedule extends BunqModel
     protected $status;
 
     /**
-     * The scheduled object.
+     * The scheduled object. (Payment, PaymentBatch)
      *
-     * @var BunqModel
+     * @var ScheduleAnchorObject
      */
     protected $object;
 
@@ -157,9 +157,9 @@ class Schedule extends BunqModel
     }
 
     /**
-     * The scheduled object.
+     * The scheduled object. (Payment, PaymentBatch)
      *
-     * @return BunqModel
+     * @return ScheduleAnchorObject
      */
     public function getObject()
     {
@@ -167,7 +167,7 @@ class Schedule extends BunqModel
     }
 
     /**
-     * @param BunqModel $object
+     * @param ScheduleAnchorObject $object
      */
     public function setObject($object)
     {
