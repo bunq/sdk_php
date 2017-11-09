@@ -13,6 +13,8 @@ use bunq\Model\Generated\Endpoint\Payment;
 use bunq\Model\Generated\Endpoint\PaymentBatch;
 use bunq\Model\Generated\Endpoint\RequestInquiry;
 use bunq\Model\Generated\Endpoint\RequestResponse;
+use bunq\Model\Generated\Endpoint\ScheduleInstance;
+use bunq\Model\Generated\Endpoint\SchedulePayment;
 use bunq\Model\Generated\Object\NotificationUrl;
 use bunq\test\BunqSdkTestBase;
 use bunq\Util\FileUtil;
@@ -35,6 +37,8 @@ class NotificationUrlTest extends BunqSdkTestBase
     const GET_PAYMENT_BATCH = 'getPaymentBatch';
     const GET_REQUEST_INQUIRY = 'getRequestInquiry';
     const GET_REQUEST_RESPONSE = 'getRequestResponse';
+    const GET_SCHEDULE_PAYMENT = 'getScheduledPayment';
+    const GET_SCHEDULE_INSTANCE = 'getScheduledInstance';
 
     /**
      * Assertion errors.
@@ -57,6 +61,8 @@ class NotificationUrlTest extends BunqSdkTestBase
     const JSON_PATH_PAYMENT_BATCH_MODEL = self::BASE_PATH_JSON_MODEL . '/PaymentBatch.json';
     const JSON_PATH_REQUEST_INQUIRY_MODEL = self::BASE_PATH_JSON_MODEL . '/RequestInquiry.json';
     const JSON_PATH_REQUEST_RESPONSE_MODEL = self::BASE_PATH_JSON_MODEL . '/RequestResponse.json';
+    const JSON_PATH_SCHEDULE_PAYMENT_MODEL = self::BASE_PATH_JSON_MODEL . '/ScheduledPayment.json';
+    const JSON_PATH_SCHEDULE_INSTANCE_MODEL = self::BASE_PATH_JSON_MODEL . '/ScheduledInstance.json';
 
     /**
      * Model root key.
@@ -137,6 +143,29 @@ class NotificationUrlTest extends BunqSdkTestBase
             self::JSON_PATH_REQUEST_INQUIRY_MODEL,
             RequestInquiry::class,
             self::GET_REQUEST_INQUIRY
+        );
+    }
+
+    /**
+     */
+    public function testSchedulePaymentModel()
+    {
+        $this->executeTest(
+            self::JSON_PATH_SCHEDULE_PAYMENT_MODEL,
+            SchedulePayment::class,
+            self::GET_SCHEDULE_PAYMENT
+        );
+    }
+    
+
+    /**
+     */
+    public function testScheduledInstance()
+    {
+        $this->executeTest(
+            self::JSON_PATH_SCHEDULE_INSTANCE_MODEL,
+            ScheduleInstance::class,
+            self::GET_SCHEDULE_INSTANCE
         );
     }
     public function testMasterCardAction()
