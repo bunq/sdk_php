@@ -14,11 +14,6 @@ use bunq\Model\Core\BunqModel;
 class PaymentChat extends BunqModel
 {
     /**
-     * Field constants.
-     */
-    const FIELD_LAST_READ_MESSAGE_ID = 'last_read_message_id';
-
-    /**
      * Endpoint constants.
      */
     const ENDPOINT_URL_CREATE = 'user/%s/monetary-account/%s/payment/%s/chat';
@@ -26,9 +21,14 @@ class PaymentChat extends BunqModel
     const ENDPOINT_URL_LISTING = 'user/%s/monetary-account/%s/payment/%s/chat';
 
     /**
+     * Field constants.
+     */
+    const FIELD_LAST_READ_MESSAGE_ID = 'last_read_message_id';
+
+    /**
      * Object type.
      */
-    const OBJECT_TYPE = 'ChatConversationPayment';
+    const OBJECT_TYPE = 'PaymentChat';
 
     /**
      * The id of the chat conversation.

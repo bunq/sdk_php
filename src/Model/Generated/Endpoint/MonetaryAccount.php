@@ -18,6 +18,11 @@ use bunq\Model\Core\BunqModel;
 class MonetaryAccount extends BunqModel
 {
     /**
+     * Error constants.
+     */
+    const ERROR_NULL_FIELDS = 'All fields of an extended model or object are null.';
+
+    /**
      * Endpoint constants.
      */
     const ENDPOINT_URL_READ = 'user/%s/monetary-account/%s';
@@ -104,5 +109,18 @@ class MonetaryAccount extends BunqModel
     public function setMonetaryAccountBank($monetaryAccountBank)
     {
         $this->monetaryAccountBank = $monetaryAccountBank;
+    }
+
+    /**
+     * @return BunqModel
+     * @throws BunqException
+     */
+    public function getReferencedObject()
+    {
+        if (!is_null($this->monetaryAccountBank)) {
+            return $this->monetaryAccountBank;
+        }
+
+        throw new BunqException(self::ERROR_NULL_FIELDS);
     }
 }

@@ -16,17 +16,17 @@ use bunq\Model\Generated\Object\LabelMonetaryAccount;
 class IdealMerchantTransaction extends BunqModel
 {
     /**
-     * Field constants.
-     */
-    const FIELD_AMOUNT_REQUESTED = 'amount_requested';
-    const FIELD_ISSUER = 'issuer';
-
-    /**
      * Endpoint constants.
      */
     const ENDPOINT_URL_CREATE = 'user/%s/monetary-account/%s/ideal-merchant-transaction';
     const ENDPOINT_URL_READ = 'user/%s/monetary-account/%s/ideal-merchant-transaction/%s';
     const ENDPOINT_URL_LISTING = 'user/%s/monetary-account/%s/ideal-merchant-transaction';
+
+    /**
+     * Field constants.
+     */
+    const FIELD_AMOUNT_REQUESTED = 'amount_requested';
+    const FIELD_ISSUER = 'issuer';
 
     /**
      * Object type.
@@ -91,7 +91,7 @@ class IdealMerchantTransaction extends BunqModel
     protected $issuerName;
 
     /**
-     * The URL to visit to 
+     * The URL to visit to
      *
      * @var string
      */
@@ -359,7 +359,7 @@ class IdealMerchantTransaction extends BunqModel
     }
 
     /**
-     * The URL to visit to 
+     * The URL to visit to
      *
      * @return string
      */

@@ -15,18 +15,18 @@ use bunq\Model\Core\BunqModel;
 class PaymentBatch extends BunqModel
 {
     /**
-     * Field constants.
-     */
-    const FIELD_PAYMENTS = 'payments';
-    const FIELD_BUNQTO_STATUS = 'bunqto_status';
-
-    /**
      * Endpoint constants.
      */
     const ENDPOINT_URL_CREATE = 'user/%s/monetary-account/%s/payment-batch';
     const ENDPOINT_URL_UPDATE = 'user/%s/monetary-account/%s/payment-batch/%s';
     const ENDPOINT_URL_READ = 'user/%s/monetary-account/%s/payment-batch/%s';
     const ENDPOINT_URL_LISTING = 'user/%s/monetary-account/%s/payment-batch';
+
+    /**
+     * Field constants.
+     */
+    const FIELD_PAYMENTS = 'payments';
+    const FIELD_BUNQTO_STATUS = 'bunqto_status';
 
     /**
      * Object type.

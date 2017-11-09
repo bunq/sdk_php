@@ -24,7 +24,7 @@ class CardName extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'CardUserNameArray';
+    const OBJECT_TYPE = 'CardName';
 
     /**
      * All possible variations (of suitable length) of user's legal name for the

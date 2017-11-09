@@ -16,17 +16,17 @@ use bunq\Model\Core\BunqModel;
 class CertificatePinned extends BunqModel
 {
     /**
-     * Field constants.
-     */
-    const FIELD_CERTIFICATE_CHAIN = 'certificate_chain';
-
-    /**
      * Endpoint constants.
      */
     const ENDPOINT_URL_CREATE = 'user/%s/certificate-pinned';
     const ENDPOINT_URL_DELETE = 'user/%s/certificate-pinned/%s';
     const ENDPOINT_URL_LISTING = 'user/%s/certificate-pinned';
     const ENDPOINT_URL_READ = 'user/%s/certificate-pinned/%s';
+
+    /**
+     * Field constants.
+     */
+    const FIELD_CERTIFICATE_CHAIN = 'certificate_chain';
 
     /**
      * Object type.

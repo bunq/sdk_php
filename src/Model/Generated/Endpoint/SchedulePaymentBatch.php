@@ -16,17 +16,17 @@ use bunq\Model\Generated\Object\SchedulePaymentEntry;
 class SchedulePaymentBatch extends BunqModel
 {
     /**
-     * Field constants.
-     */
-    const FIELD_PAYMENTS = 'payments';
-    const FIELD_SCHEDULE = 'schedule';
-
-    /**
      * Endpoint constants.
      */
     const ENDPOINT_URL_CREATE = 'user/%s/monetary-account/%s/schedule-payment-batch';
     const ENDPOINT_URL_UPDATE = 'user/%s/monetary-account/%s/schedule-payment-batch/%s';
     const ENDPOINT_URL_DELETE = 'user/%s/monetary-account/%s/schedule-payment-batch/%s';
+
+    /**
+     * Field constants.
+     */
+    const FIELD_PAYMENTS = 'payments';
+    const FIELD_SCHEDULE = 'schedule';
 
     /**
      * Object type.

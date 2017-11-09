@@ -21,6 +21,11 @@ use bunq\Model\Generated\Object\LabelUser;
 class CardDebit extends BunqModel
 {
     /**
+     * Endpoint constants.
+     */
+    const ENDPOINT_URL_CREATE = 'user/%s/card-debit';
+
+    /**
      * Field constants.
      */
     const FIELD_SECOND_LINE = 'second_line';
@@ -30,11 +35,6 @@ class CardDebit extends BunqModel
     const FIELD_TYPE = 'type';
     const FIELD_PIN_CODE_ASSIGNMENT = 'pin_code_assignment';
     const FIELD_MONETARY_ACCOUNT_ID_FALLBACK = 'monetary_account_id_fallback';
-
-    /**
-     * Endpoint constants.
-     */
-    const ENDPOINT_URL_CREATE = 'user/%s/card-debit';
 
     /**
      * Object type.

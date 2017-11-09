@@ -15,7 +15,7 @@ class ChatMessageAnnouncement extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'ChatMessageUser';
+    const OBJECT_TYPE = 'ChatMessageAnnouncement';
 
     /**
      * The id of the message.

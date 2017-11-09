@@ -23,6 +23,12 @@ use bunq\Model\Generated\Object\TaxResident;
 class UserPerson extends BunqModel
 {
     /**
+     * Endpoint constants.
+     */
+    const ENDPOINT_URL_READ = 'user-person/%s';
+    const ENDPOINT_URL_UPDATE = 'user-person/%s';
+
+    /**
      * Field constants.
      */
     const FIELD_FIRST_NAME = 'first_name';
@@ -52,12 +58,6 @@ class UserPerson extends BunqModel
     const FIELD_DAILY_LIMIT_WITHOUT_CONFIRMATION_LOGIN = 'daily_limit_without_confirmation_login';
     const FIELD_COUNTER_BANK_IBAN = 'counter_bank_iban';
     const FIELD_NOTIFICATION_FILTERS = 'notification_filters';
-
-    /**
-     * Endpoint constants.
-     */
-    const ENDPOINT_URL_READ = 'user-person/%s';
-    const ENDPOINT_URL_UPDATE = 'user-person/%s';
 
     /**
      * Object type.

@@ -20,6 +20,11 @@ use bunq\Model\Generated\Object\TaxResident;
 class UserLight extends BunqModel
 {
     /**
+     * Endpoint constants.
+     */
+    const ENDPOINT_URL_READ = 'user-light/%s';
+
+    /**
      * Field constants.
      */
     const FIELD_FIRST_NAME = 'first_name';
@@ -52,14 +57,9 @@ class UserLight extends BunqModel
     const FIELD_NOTIFICATION_FILTERS = 'notification_filters';
 
     /**
-     * Endpoint constants.
-     */
-    const ENDPOINT_URL_READ = 'user-light/%s';
-
-    /**
      * Object type.
      */
-    const OBJECT_TYPE = 'UserPerson';
+    const OBJECT_TYPE = 'UserLight';
 
     /**
      * The id of the user.

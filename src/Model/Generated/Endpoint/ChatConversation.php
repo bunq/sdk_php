@@ -14,6 +14,11 @@ use bunq\Model\Core\BunqModel;
 class ChatConversation extends BunqModel
 {
     /**
+     * Error constants.
+     */
+    const ERROR_NULL_FIELDS = 'All fields of an extended model or object are null.';
+
+    /**
      * Endpoint constants.
      */
     const ENDPOINT_URL_LISTING = 'user/%s/chat-conversation';
@@ -117,5 +122,22 @@ class ChatConversation extends BunqModel
     public function setChatConversationReference($chatConversationReference)
     {
         $this->chatConversationReference = $chatConversationReference;
+    }
+
+    /**
+     * @return BunqModel
+     * @throws BunqException
+     */
+    public function getReferencedObject()
+    {
+        if (!is_null($this->supportConversationExternal)) {
+            return $this->supportConversationExternal;
+        }
+
+        if (!is_null($this->chatConversationReference)) {
+            return $this->chatConversationReference;
+        }
+
+        throw new BunqException(self::ERROR_NULL_FIELDS);
     }
 }

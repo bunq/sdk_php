@@ -14,20 +14,20 @@ use bunq\Model\Core\BunqModel;
 class ChatMessageText extends BunqModel
 {
     /**
+     * Endpoint constants.
+     */
+    const ENDPOINT_URL_CREATE = 'user/%s/chat-conversation/%s/message-text';
+
+    /**
      * Field constants.
      */
     const FIELD_CLIENT_MESSAGE_UUID = 'client_message_uuid';
     const FIELD_TEXT = 'text';
 
     /**
-     * Endpoint constants.
-     */
-    const ENDPOINT_URL_CREATE = 'user/%s/chat-conversation/%s/message-text';
-
-    /**
      * Object type.
      */
-    const OBJECT_TYPE = 'Id';
+    const OBJECT_TYPE = 'ChatMessageText';
 
     /**
      * The id of the newly created chat message.

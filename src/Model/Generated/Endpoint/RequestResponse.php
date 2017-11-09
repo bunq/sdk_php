@@ -23,19 +23,19 @@ use bunq\Model\Generated\Object\LabelMonetaryAccount;
 class RequestResponse extends BunqModel
 {
     /**
+     * Endpoint constants.
+     */
+    const ENDPOINT_URL_UPDATE = 'user/%s/monetary-account/%s/request-response/%s';
+    const ENDPOINT_URL_LISTING = 'user/%s/monetary-account/%s/request-response';
+    const ENDPOINT_URL_READ = 'user/%s/monetary-account/%s/request-response/%s';
+
+    /**
      * Field constants.
      */
     const FIELD_AMOUNT_RESPONDED = 'amount_responded';
     const FIELD_STATUS = 'status';
     const FIELD_ADDRESS_SHIPPING = 'address_shipping';
     const FIELD_ADDRESS_BILLING = 'address_billing';
-
-    /**
-     * Endpoint constants.
-     */
-    const ENDPOINT_URL_UPDATE = 'user/%s/monetary-account/%s/request-response/%s';
-    const ENDPOINT_URL_LISTING = 'user/%s/monetary-account/%s/request-response';
-    const ENDPOINT_URL_READ = 'user/%s/monetary-account/%s/request-response/%s';
 
     /**
      * Object type.

@@ -15,16 +15,16 @@ use bunq\Model\Generated\Object\Error;
 class ScheduleInstance extends BunqModel
 {
     /**
-     * Field constants.
-     */
-    const FIELD_STATE = 'state';
-
-    /**
      * Endpoint constants.
      */
     const ENDPOINT_URL_READ = 'user/%s/monetary-account/%s/schedule/%s/schedule-instance/%s';
     const ENDPOINT_URL_UPDATE = 'user/%s/monetary-account/%s/schedule/%s/schedule-instance/%s';
     const ENDPOINT_URL_LISTING = 'user/%s/monetary-account/%s/schedule/%s/schedule-instance';
+
+    /**
+     * Field constants.
+     */
+    const FIELD_STATE = 'state';
 
     /**
      * Object type.

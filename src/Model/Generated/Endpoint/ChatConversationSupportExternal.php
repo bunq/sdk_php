@@ -13,7 +13,7 @@ class ChatConversationSupportExternal extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'SupportConversationExternal';
+    const OBJECT_TYPE = 'ChatConversationSupportExternal';
 
     /**
      * The id of this conversation.

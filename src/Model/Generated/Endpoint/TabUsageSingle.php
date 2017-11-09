@@ -27,6 +27,15 @@ use bunq\Model\Generated\Object\TabVisibility;
 class TabUsageSingle extends BunqModel
 {
     /**
+     * Endpoint constants.
+     */
+    const ENDPOINT_URL_CREATE = 'user/%s/monetary-account/%s/cash-register/%s/tab-usage-single';
+    const ENDPOINT_URL_UPDATE = 'user/%s/monetary-account/%s/cash-register/%s/tab-usage-single/%s';
+    const ENDPOINT_URL_DELETE = 'user/%s/monetary-account/%s/cash-register/%s/tab-usage-single/%s';
+    const ENDPOINT_URL_READ = 'user/%s/monetary-account/%s/cash-register/%s/tab-usage-single/%s';
+    const ENDPOINT_URL_LISTING = 'user/%s/monetary-account/%s/cash-register/%s/tab-usage-single';
+
+    /**
      * Field constants.
      */
     const FIELD_MERCHANT_REFERENCE = 'merchant_reference';
@@ -42,15 +51,6 @@ class TabUsageSingle extends BunqModel
     const FIELD_VISIBILITY = 'visibility';
     const FIELD_EXPIRATION = 'expiration';
     const FIELD_TAB_ATTACHMENT = 'tab_attachment';
-
-    /**
-     * Endpoint constants.
-     */
-    const ENDPOINT_URL_CREATE = 'user/%s/monetary-account/%s/cash-register/%s/tab-usage-single';
-    const ENDPOINT_URL_UPDATE = 'user/%s/monetary-account/%s/cash-register/%s/tab-usage-single/%s';
-    const ENDPOINT_URL_DELETE = 'user/%s/monetary-account/%s/cash-register/%s/tab-usage-single/%s';
-    const ENDPOINT_URL_READ = 'user/%s/monetary-account/%s/cash-register/%s/tab-usage-single/%s';
-    const ENDPOINT_URL_LISTING = 'user/%s/monetary-account/%s/cash-register/%s/tab-usage-single';
 
     /**
      * Object type.

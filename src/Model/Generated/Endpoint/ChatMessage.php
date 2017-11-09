@@ -14,6 +14,11 @@ use bunq\Model\Core\BunqModel;
 class ChatMessage extends BunqModel
 {
     /**
+     * Error constants.
+     */
+    const ERROR_NULL_FIELDS = 'All fields of an extended model or object are null.';
+
+    /**
      * Endpoint constants.
      */
     const ENDPOINT_URL_LISTING = 'user/%s/chat-conversation/%s/message';
@@ -115,5 +120,26 @@ class ChatMessage extends BunqModel
     public function setChatMessageUser($chatMessageUser)
     {
         $this->chatMessageUser = $chatMessageUser;
+    }
+
+    /**
+     * @return BunqModel
+     * @throws BunqException
+     */
+    public function getReferencedObject()
+    {
+        if (!is_null($this->chatMessageAnnouncement)) {
+            return $this->chatMessageAnnouncement;
+        }
+
+        if (!is_null($this->chatMessageStatus)) {
+            return $this->chatMessageStatus;
+        }
+
+        if (!is_null($this->chatMessageUser)) {
+            return $this->chatMessageUser;
+        }
+
+        throw new BunqException(self::ERROR_NULL_FIELDS);
     }
 }

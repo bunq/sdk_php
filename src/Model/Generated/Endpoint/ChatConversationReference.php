@@ -13,7 +13,7 @@ class ChatConversationReference extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'SupportConversationReference';
+    const OBJECT_TYPE = 'ChatConversationReference';
 
     /**
      * The id of this conversation.

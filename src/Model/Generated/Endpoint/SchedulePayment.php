@@ -16,12 +16,6 @@ use bunq\Model\Generated\Object\SchedulePaymentEntry;
 class SchedulePayment extends BunqModel
 {
     /**
-     * Field constants.
-     */
-    const FIELD_PAYMENT = 'payment';
-    const FIELD_SCHEDULE = 'schedule';
-
-    /**
      * Endpoint constants.
      */
     const ENDPOINT_URL_CREATE = 'user/%s/monetary-account/%s/schedule-payment';
@@ -29,6 +23,12 @@ class SchedulePayment extends BunqModel
     const ENDPOINT_URL_READ = 'user/%s/monetary-account/%s/schedule-payment/%s';
     const ENDPOINT_URL_LISTING = 'user/%s/monetary-account/%s/schedule-payment';
     const ENDPOINT_URL_UPDATE = 'user/%s/monetary-account/%s/schedule-payment/%s';
+
+    /**
+     * Field constants.
+     */
+    const FIELD_PAYMENT = 'payment';
+    const FIELD_SCHEDULE = 'schedule';
 
     /**
      * Object type.

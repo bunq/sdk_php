@@ -14,15 +14,15 @@ use bunq\Model\Core\BunqModel;
 class BillingContractSubscription extends BunqModel
 {
     /**
-     * Field constants.
-     */
-    const FIELD_SUBSCRIPTION_TYPE = 'subscription_type';
-
-    /**
      * Endpoint constants.
      */
     const ENDPOINT_URL_CREATE = 'user/%s/billing-contract-subscription';
     const ENDPOINT_URL_LISTING = 'user/%s/billing-contract-subscription';
+
+    /**
+     * Field constants.
+     */
+    const FIELD_SUBSCRIPTION_TYPE = 'subscription_type';
 
     /**
      * Object type.

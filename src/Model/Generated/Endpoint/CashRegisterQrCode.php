@@ -17,11 +17,6 @@ use bunq\Model\Core\BunqModel;
 class CashRegisterQrCode extends BunqModel
 {
     /**
-     * Field constants.
-     */
-    const FIELD_STATUS = 'status';
-
-    /**
      * Endpoint constants.
      */
     const ENDPOINT_URL_CREATE = 'user/%s/monetary-account/%s/cash-register/%s/qr-code';
@@ -30,9 +25,14 @@ class CashRegisterQrCode extends BunqModel
     const ENDPOINT_URL_LISTING = 'user/%s/monetary-account/%s/cash-register/%s/qr-code';
 
     /**
+     * Field constants.
+     */
+    const FIELD_STATUS = 'status';
+
+    /**
      * Object type.
      */
-    const OBJECT_TYPE = 'TokenQrCashRegister';
+    const OBJECT_TYPE = 'CashRegisterQrCode';
 
     /**
      * The id of the created QR code. Use this id to get the RAW content of the

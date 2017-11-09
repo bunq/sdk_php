@@ -19,6 +19,13 @@ use bunq\Model\Generated\Object\LabelMonetaryAccount;
 class Card extends BunqModel
 {
     /**
+     * Endpoint constants.
+     */
+    const ENDPOINT_URL_UPDATE = 'user/%s/card/%s';
+    const ENDPOINT_URL_READ = 'user/%s/card/%s';
+    const ENDPOINT_URL_LISTING = 'user/%s/card';
+
+    /**
      * Field constants.
      */
     const FIELD_PIN_CODE = 'pin_code';
@@ -32,16 +39,9 @@ class Card extends BunqModel
     const FIELD_MONETARY_ACCOUNT_ID_FALLBACK = 'monetary_account_id_fallback';
 
     /**
-     * Endpoint constants.
-     */
-    const ENDPOINT_URL_UPDATE = 'user/%s/card/%s';
-    const ENDPOINT_URL_READ = 'user/%s/card/%s';
-    const ENDPOINT_URL_LISTING = 'user/%s/card';
-
-    /**
      * Object type.
      */
-    const OBJECT_TYPE = 'CardDebit';
+    const OBJECT_TYPE = 'Card';
 
     /**
      * The id of the card.

@@ -19,16 +19,16 @@ use bunq\Model\Generated\Object\ShareDetail;
 class ShareInviteBankResponse extends BunqModel
 {
     /**
-     * Field constants.
-     */
-    const FIELD_STATUS = 'status';
-
-    /**
      * Endpoint constants.
      */
     const ENDPOINT_URL_READ = 'user/%s/share-invite-bank-response/%s';
     const ENDPOINT_URL_UPDATE = 'user/%s/share-invite-bank-response/%s';
     const ENDPOINT_URL_LISTING = 'user/%s/share-invite-bank-response';
+
+    /**
+     * Field constants.
+     */
+    const FIELD_STATUS = 'status';
 
     /**
      * Object type.
@@ -72,17 +72,21 @@ class ShareInviteBankResponse extends BunqModel
     protected $shareDetail;
 
     /**
-     * The status of the share. Can be ACCEPTED (other user scans the QR and
-     * accepts the share), REVOKED (other user scans the QR but denies the
-     * share), CANCELLED (other user cancels an existing share), EXPIRED (other
-     * user did not react before expiration), PENDING (share is waiting for
-     * reply by the other user) or REJECTED (share initiated by other user but
-     * rejected). Once the share's status becomes REVOKED, CANCELLED, EXPIRED or
-     * REJECTED, its status can no longer be updated.
+     * The status of the share. Can be PENDING, REVOKED (the user deletes the
+     * share inquiry before it's accepted), ACCEPTED, CANCELLED (the user
+     * deletes an active share) or CANCELLATION_PENDING, CANCELLATION_ACCEPTED,
+     * CANCELLATION_REJECTED (for canceling mutual connects)
      *
      * @var string
      */
     protected $status;
+
+    /**
+     * The share type: STANDARD.
+     *
+     * @var string
+     */
+    protected $shareType;
 
     /**
      * The start date of this share.
@@ -283,13 +287,10 @@ class ShareInviteBankResponse extends BunqModel
     }
 
     /**
-     * The status of the share. Can be ACCEPTED (other user scans the QR and
-     * accepts the share), REVOKED (other user scans the QR but denies the
-     * share), CANCELLED (other user cancels an existing share), EXPIRED (other
-     * user did not react before expiration), PENDING (share is waiting for
-     * reply by the other user) or REJECTED (share initiated by other user but
-     * rejected). Once the share's status becomes REVOKED, CANCELLED, EXPIRED or
-     * REJECTED, its status can no longer be updated.
+     * The status of the share. Can be PENDING, REVOKED (the user deletes the
+     * share inquiry before it's accepted), ACCEPTED, CANCELLED (the user
+     * deletes an active share) or CANCELLATION_PENDING, CANCELLATION_ACCEPTED,
+     * CANCELLATION_REJECTED (for canceling mutual connects)
      *
      * @return string
      */
@@ -304,6 +305,24 @@ class ShareInviteBankResponse extends BunqModel
     public function setStatus($status)
     {
         $this->status = $status;
+    }
+
+    /**
+     * The share type: STANDARD.
+     *
+     * @return string
+     */
+    public function getShareType()
+    {
+        return $this->shareType;
+    }
+
+    /**
+     * @param string $shareType
+     */
+    public function setShareType($shareType)
+    {
+        $this->shareType = $shareType;
     }
 
     /**

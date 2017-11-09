@@ -15,6 +15,11 @@ use bunq\Model\Core\BunqModel;
 class Device extends BunqModel
 {
     /**
+     * Error constants.
+     */
+    const ERROR_NULL_FIELDS = 'All fields of an extended model or object are null.';
+
+    /**
      * Endpoint constants.
      */
     const ENDPOINT_URL_READ = 'device/%s';
@@ -121,5 +126,22 @@ class Device extends BunqModel
     public function setDeviceServer($deviceServer)
     {
         $this->deviceServer = $deviceServer;
+    }
+
+    /**
+     * @return BunqModel
+     * @throws BunqException
+     */
+    public function getReferencedObject()
+    {
+        if (!is_null($this->devicePhone)) {
+            return $this->devicePhone;
+        }
+
+        if (!is_null($this->deviceServer)) {
+            return $this->deviceServer;
+        }
+
+        throw new BunqException(self::ERROR_NULL_FIELDS);
     }
 }

@@ -25,6 +25,14 @@ use bunq\Model\Generated\Object\LabelUser;
 class RequestInquiry extends BunqModel
 {
     /**
+     * Endpoint constants.
+     */
+    const ENDPOINT_URL_CREATE = 'user/%s/monetary-account/%s/request-inquiry';
+    const ENDPOINT_URL_UPDATE = 'user/%s/monetary-account/%s/request-inquiry/%s';
+    const ENDPOINT_URL_LISTING = 'user/%s/monetary-account/%s/request-inquiry';
+    const ENDPOINT_URL_READ = 'user/%s/monetary-account/%s/request-inquiry/%s';
+
+    /**
      * Field constants.
      */
     const FIELD_AMOUNT_INQUIRED = 'amount_inquired';
@@ -40,14 +48,6 @@ class RequestInquiry extends BunqModel
     const FIELD_ALLOW_AMOUNT_HIGHER = 'allow_amount_higher';
     const FIELD_ALLOW_BUNQME = 'allow_bunqme';
     const FIELD_REDIRECT_URL = 'redirect_url';
-
-    /**
-     * Endpoint constants.
-     */
-    const ENDPOINT_URL_CREATE = 'user/%s/monetary-account/%s/request-inquiry';
-    const ENDPOINT_URL_UPDATE = 'user/%s/monetary-account/%s/request-inquiry/%s';
-    const ENDPOINT_URL_LISTING = 'user/%s/monetary-account/%s/request-inquiry';
-    const ENDPOINT_URL_READ = 'user/%s/monetary-account/%s/request-inquiry/%s';
 
     /**
      * Object type.

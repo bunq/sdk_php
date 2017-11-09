@@ -19,19 +19,19 @@ use bunq\Model\Generated\Object\LabelUser;
 class DraftShareInviteBank extends BunqModel
 {
     /**
-     * Field constants.
-     */
-    const FIELD_STATUS = 'status';
-    const FIELD_EXPIRATION = 'expiration';
-    const FIELD_DRAFT_SHARE_SETTINGS = 'draft_share_settings';
-
-    /**
      * Endpoint constants.
      */
     const ENDPOINT_URL_CREATE = 'user/%s/draft-share-invite-bank';
     const ENDPOINT_URL_READ = 'user/%s/draft-share-invite-bank/%s';
     const ENDPOINT_URL_UPDATE = 'user/%s/draft-share-invite-bank/%s';
     const ENDPOINT_URL_LISTING = 'user/%s/draft-share-invite-bank';
+
+    /**
+     * Field constants.
+     */
+    const FIELD_STATUS = 'status';
+    const FIELD_EXPIRATION = 'expiration';
+    const FIELD_DRAFT_SHARE_SETTINGS = 'draft_share_settings';
 
     /**
      * Object type.

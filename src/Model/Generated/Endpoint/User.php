@@ -15,6 +15,11 @@ use bunq\Model\Core\BunqModel;
 class User extends BunqModel
 {
     /**
+     * Error constants.
+     */
+    const ERROR_NULL_FIELDS = 'All fields of an extended model or object are null.';
+
+    /**
      * Endpoint constants.
      */
     const ENDPOINT_URL_READ = 'user/%s';
@@ -141,5 +146,26 @@ class User extends BunqModel
     public function setUserCompany($userCompany)
     {
         $this->userCompany = $userCompany;
+    }
+
+    /**
+     * @return BunqModel
+     * @throws BunqException
+     */
+    public function getReferencedObject()
+    {
+        if (!is_null($this->userLight)) {
+            return $this->userLight;
+        }
+
+        if (!is_null($this->userPerson)) {
+            return $this->userPerson;
+        }
+
+        if (!is_null($this->userCompany)) {
+            return $this->userCompany;
+        }
+
+        throw new BunqException(self::ERROR_NULL_FIELDS);
     }
 }
