@@ -1,5 +1,4 @@
-{
-    "NotificationUrl": {
+{"NotificationUrl": {
         "target_url": "nope",
         "category": "BUNQME_TAB",
         "event_type": "BUNQME_TAB_CREATED",

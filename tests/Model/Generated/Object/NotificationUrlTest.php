@@ -17,11 +17,18 @@ use bunq\Util\FileUtil;
 class NotificationUrlTest extends BunqSdkTestBase
 {
     /**
+     * Assertion errors.
+     */
+    const ASSERT_SHOULD_NOT_REACH_THIS_CODE_ERROR = 'Something super weird just happen';
+    const ASSERT_JSON_DECODE_ERROR = 'Might be that the JSON file is not a valid json.';
+
+    /**
      * Model json paths constants.
      */
     const BASE_PATH_JSON_MODEL =  __DIR__ . '/../../../resource/NotificationUrlJsons';
     const JSON_PATH_MUTATION_MODEL = self::BASE_PATH_JSON_MODEL . '/Mutation.json';
     const JSON_PATH_BUNQ_ME_TAB_MODEL = self::BASE_PATH_JSON_MODEL . '/BunqMeTab.json';
+    const JSON_PATH_CHAT_MESSAGE_MODEL = self::BASE_PATH_JSON_MODEL . '/ChatMessage.json';
 
     /**
      * Model root key.
@@ -60,6 +67,21 @@ class NotificationUrlTest extends BunqSdkTestBase
     }
 
     /**
+     */
+    public function testChatMessageModel()
+    {
+        $jsonString = FileUtil::getFileContents(self::JSON_PATH_CHAT_MESSAGE_MODEL);
+        $notificationUrl = $this->getNotificationUrlFromJson($jsonString);
+
+        $chatMessageModel = $notificationUrl->getObject()->getChatMessage();
+        $referencedChatMessageModel = $notificationUrl->getObject()->getReferencedObject();
+
+        $this->assetReferencedModelIsNotNull($chatMessageModel);
+        $this->assetReferencedModelIsNotNull($referencedChatMessageModel);
+        static::assertInstanceOf(BunqMeTab::class, $referencedChatMessageModel);
+    }
+
+    /**
      * @param string $jsonString
      *
      * @return NotificationUrl
@@ -67,7 +89,7 @@ class NotificationUrlTest extends BunqSdkTestBase
     private function getNotificationUrlFromJson(string $jsonString): NotificationUrl
     {
         $json = json_decode($jsonString, true);
-        static::assertNotNull($json, 'Might be that the JSON file is not a valid json.');
+        static::assertNotNull($json, self::ASSERT_JSON_DECODE_ERROR);
         $notificationObject = $this->getNotificationObjectAsString($json);
         $notificationUrl = NotificationUrl::fromJsonToModel($notificationObject);
 
@@ -96,7 +118,7 @@ class NotificationUrlTest extends BunqSdkTestBase
             return $model;
         }
 
-        throw new BunqException('Something super weird just happen');
+        throw new BunqException(self::ASSERT_SHOULD_NOT_REACH_THIS_CODE_ERROR);
     }
 
     /**

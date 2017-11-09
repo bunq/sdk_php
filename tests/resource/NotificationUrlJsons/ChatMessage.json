@@ -1,0 +1,21 @@
+{
+    "NotificationUrl": {
+        "target_url|tu": "nope",
+        "category|c": "BUNQME_TAB",
+        "event_type|et": "BUNQME_TAB_CREATED",
+        "object|o": {
+            "ChatMessageAnnouncement": {
+                "id|i": 30,
+                "created|ct": "2017-09-05 12:00:00.912674",
+                "updated|ut": "2017-09-05 12:00:00.912674",
+                "conversation_id|ci": 3,
+                "content|con": {
+                    "ChatMessageContentText": {
+                        "text|t": "Hey! You have failed to pay more than five direct debits over the past 30 days. Although such things can happen, please keep in mind that we might be forced to take measures if we get a lot of complaints about it. To help prevent this we summarised some information which might prove useful.\n\nRead more here. https:\/\/www.bunq.com\/en\/direct-debits\/\n\nPlease let us know if you have any further questions, we would love to help you out!"
+                    }
+                },
+                "client_message_uuid|cmu": null
+            }
+        }
+    }
+}
