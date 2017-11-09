@@ -5,7 +5,7 @@ namespace bunq\test\Model\Object;
 use bunq\Exception\BunqException;
 use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Endpoint\BunqMeTab;
-use bunq\Model\Generated\Endpoint\ChatMessage;
+use bunq\Model\Generated\Endpoint\ChatMessageAnnouncement;
 use bunq\Model\Generated\Endpoint\DraftPayment;
 use bunq\Model\Generated\Endpoint\MasterCardAction;
 use bunq\Model\Generated\Endpoint\MonetaryAccountBank;
@@ -25,7 +25,7 @@ class NotificationUrlTest extends BunqSdkTestBase
      */
     const GET_PAYMENT = 'getPayment';
     const GET_BUNQ_ME_TAB = 'getBunqMeTab';
-    const GET_CHAT_MESSAGE = 'getChatMessage';
+    const GET_CHAT_MESSAGE_ANNOUNCEMENT = 'getChatMessageAnnouncement';
     const GET_DRAFT_PAYMENT = 'getDraftPayment';
     const GET_MASTER_CARD_ACTION = 'getMasterCardAction';
     const GET_MONETARY_ACCOUNT_BANK = 'getMonetaryAccount';
@@ -44,7 +44,7 @@ class NotificationUrlTest extends BunqSdkTestBase
     const BASE_PATH_JSON_MODEL =  __DIR__ . '/../../../resource/NotificationUrlJsons';
     const JSON_PATH_MUTATION_MODEL = self::BASE_PATH_JSON_MODEL . '/Mutation.json';
     const JSON_PATH_BUNQ_ME_TAB_MODEL = self::BASE_PATH_JSON_MODEL . '/BunqMeTab.json';
-    const JSON_PATH_CHAT_MESSAGE_MODEL = self::BASE_PATH_JSON_MODEL . '/ChatMessage.json';
+    const JSON_PATH_CHAT_MESSAGE_ANNOUNCEMENT_MODEL = self::BASE_PATH_JSON_MODEL . '/ChatMessageAnnouncement.json';
     const JSON_PATH_DRAFT_PAYMENT_MODEL = self::BASE_PATH_JSON_MODEL . '/DraftPayment.json';
     const JSON_PATH_MASTER_CARD_ACTION_MODEL = self::BASE_PATH_JSON_MODEL . '/MasterCardAction.json';
     const JSON_PATH_MONETARY_ACCOUNT_BANK_MODEL = self::BASE_PATH_JSON_MODEL . '/MonetaryAccountBank.json';
@@ -110,12 +110,16 @@ class NotificationUrlTest extends BunqSdkTestBase
         );
     }
 
-    ///**
-    // */
-    //public function testChatMessageModel()
-    //{
-    //    $this->executeTest(self::JSON_PATH_CHAT_MESSAGE_MODEL, ChatMessage::class, self::GET_CHAT_MESSAGE);
-    //}
+    /**
+     */
+    public function testChatMessageAnnouncementModel()
+    {
+        $this->executeTest(
+            self::JSON_PATH_CHAT_MESSAGE_MODEL,
+            ChatMessageAnnouncement::class,
+            self::GET_CHAT_MESSAGE
+        );
+    }
 
     /**
      */
