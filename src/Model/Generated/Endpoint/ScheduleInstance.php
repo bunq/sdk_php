@@ -8,7 +8,6 @@ use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Object\Error;
 use bunq\Model\Generated\Object\ScheduleAnchorObject;
 use bunq\Model\Generated\Object\ScheduleInstanceAnchorObject;
-use bunq\Model\Generated\Object\ScheduleInstanceAnchorObject;
 
 /**
  * view for reading, updating and listing the scheduled instance.

@@ -5,7 +5,6 @@ use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
 use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
-use bunq\Model\Generated\Object\Schedule;
 use bunq\Model\Generated\Object\SchedulePaymentEntry;
 
 /**
