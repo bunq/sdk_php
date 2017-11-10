@@ -212,9 +212,9 @@ class NotificationUrlTest extends BunqSdkTestBase
     public function testChatMessageAnnouncementModel()
     {
         $this->executeTest(
-            self::JSON_PATH_CHAT_MESSAGE_MODEL,
+            self::JSON_PATH_CHAT_MESSAGE_ANNOUNCEMENT_MODEL,
             ChatMessageAnnouncement::class,
-            self::GET_CHAT_MESSAGE
+            self::GET_CHAT_MESSAGE_ANNOUNCEMENT
         );
     }
 
