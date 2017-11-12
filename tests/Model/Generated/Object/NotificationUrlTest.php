@@ -55,7 +55,7 @@ class NotificationUrlTest extends BunqSdkTestBase
     /**
      * Model json paths constants.
      */
-    const BASE_PATH_JSON_MODEL =  __DIR__ . '/../../../resource/NotificationUrlJsons';
+    const BASE_PATH_JSON_MODEL = __DIR__ . '/../../../Resource/NotificationUrlJsons';
     const JSON_PATH_MUTATION_MODEL = self::BASE_PATH_JSON_MODEL . '/Mutation.json';
     const JSON_PATH_BUNQ_ME_TAB_MODEL = self::BASE_PATH_JSON_MODEL . '/BunqMeTab.json';
     const JSON_PATH_CHAT_MESSAGE_ANNOUNCEMENT_MODEL = self::BASE_PATH_JSON_MODEL . '/ChatMessageAnnouncement.json';
