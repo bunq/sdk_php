@@ -1,5 +1,4 @@
 <?php
-
 namespace bunq\test\Model\Object;
 
 use bunq\Exception\BunqException;
@@ -47,10 +46,9 @@ class NotificationUrlTest extends BunqSdkTestBase
     /**
      * Assertion errors.
      */
-    const ASSERT_SHOULD_NOT_REACH_THIS_CODE_ERROR = 'Something super weird just happen';
-    const ASSERT_JSON_DECODE_ERROR = 'Might be that the JSON file is not a valid json.';
-    const ASSERT_OBJECT_IS_NULL_ERROR = 'Object seems to be null.';
-
+    const ASSERT_SHOULD_NOT_REACH_THIS_CODE_ERROR = 'Congratulations you\'ve reached unreachable code.';
+    const ASSERT_JSON_DECODE_ERROR = 'Error accorded while decoding the JSON file.';
+    const ASSERT_OBJECT_IS_NULL_ERROR = 'The field object of NotificationUrl is null.';
 
     /**
      * Model json paths constants.
@@ -74,45 +72,55 @@ class NotificationUrlTest extends BunqSdkTestBase
      * Model root key.
      */
     const KEY_NOTIFICATION_URL_MODEL = 'NotificationUrl';
-    const KEY_MUTATION_MODEL = '';
 
     /**
-     * @param string $fileName
-     * @param string $className
-     * @param string $getterName
+     * @param string $expectedJsonFileName
+     * @param string $classNameExpected
+     * @param string $referencedObjectGetterName
      */
-    private function executeTest(string $fileName, string $className, string $getterName)
-    {
-        $jsonString = FileUtil::getFileContents($fileName);
-        $notificationUrl = $this->getNotificationUrlFromJson($jsonString);
+    private function executeNotificationUrlTest(
+        string $expectedJsonFileName,
+        string $classNameExpected,
+        string $referencedObjectGetterName
+    ) {
+        $jsonExpectedString = FileUtil::getFileContents($expectedJsonFileName);
+        $notificationUrl = $this->getNotificationUrlFromJson($jsonExpectedString);
 
-        $model = $notificationUrl->getObject()->$getterName();
+        $model = $notificationUrl->getObject()->$referencedObjectGetterName();
         $referencedModel = $notificationUrl->getObject()->getReferencedObject();
 
         static::assertNotNull($model);
         static::assertNotNull($referencedModel);
-        static::assertInstanceOf($className, $referencedModel);
+        static::assertInstanceOf($classNameExpected, $referencedModel);
     }
 
     /**
      */
     public function testMutationModel()
     {
-        $this->executeTest(self::JSON_PATH_MUTATION_MODEL, Payment::class, self::GET_PAYMENT);
+        $this->executeNotificationUrlTest(
+            self::JSON_PATH_MUTATION_MODEL,
+            Payment::class,
+            self::GET_PAYMENT
+        );
     }
 
     /**
      */
     public function testBunqMeTabModel()
     {
-        $this->executeTest(self::JSON_PATH_BUNQ_ME_TAB_MODEL, BunqMeTab::class, self::GET_BUNQ_ME_TAB);
+        $this->executeNotificationUrlTest(
+            self::JSON_PATH_BUNQ_ME_TAB_MODEL,
+            BunqMeTab::class,
+            self::GET_BUNQ_ME_TAB
+        );
     }
 
     /**
      */
     public function testGetMonetaryAccountModel()
     {
-        $this->executeTest(
+        $this->executeNotificationUrlTest(
             self::JSON_PATH_MONETARY_ACCOUNT_BANK_MODEL,
             MonetaryAccountBank::class,
             self::GET_MONETARY_ACCOUNT_BANK
@@ -123,7 +131,7 @@ class NotificationUrlTest extends BunqSdkTestBase
      */
     public function testPaymentBatchModel()
     {
-        $this->executeTest(
+        $this->executeNotificationUrlTest(
             self::JSON_PATH_PAYMENT_BATCH_MODEL,
             PaymentBatch::class,
             self::GET_PAYMENT_BATCH
@@ -134,7 +142,7 @@ class NotificationUrlTest extends BunqSdkTestBase
      */
     public function testRequestResponse()
     {
-        $this->executeTest(
+        $this->executeNotificationUrlTest(
             self::JSON_PATH_REQUEST_RESPONSE_MODEL,
             RequestResponse::class,
             self::GET_REQUEST_RESPONSE
@@ -145,7 +153,7 @@ class NotificationUrlTest extends BunqSdkTestBase
      */
     public function testRequestInquiryModel()
     {
-        $this->executeTest(
+        $this->executeNotificationUrlTest(
             self::JSON_PATH_REQUEST_INQUIRY_MODEL,
             RequestInquiry::class,
             self::GET_REQUEST_INQUIRY
@@ -156,7 +164,7 @@ class NotificationUrlTest extends BunqSdkTestBase
      */
     public function testSchedulePaymentModel()
     {
-        $this->executeTest(
+        $this->executeNotificationUrlTest(
             self::JSON_PATH_SCHEDULE_PAYMENT_MODEL,
             SchedulePayment::class,
             self::GET_SCHEDULE_PAYMENT
@@ -167,7 +175,7 @@ class NotificationUrlTest extends BunqSdkTestBase
      */
     public function testShareInviteBankResponse()
     {
-        $this->executeTest(
+        $this->executeNotificationUrlTest(
             self::JSON_PATH_SHARE_INVITE_BANK_RESPONSE_MODEL,
             ShareInviteBankResponse::class,
             self::GET_SHARE_INVITE_BANK_RESPONSE
@@ -178,7 +186,7 @@ class NotificationUrlTest extends BunqSdkTestBase
      */
     public function testScheduledInstance()
     {
-        $this->executeTest(
+        $this->executeNotificationUrlTest(
             self::JSON_PATH_SCHEDULE_INSTANCE_MODEL,
             ScheduleInstance::class,
             self::GET_SCHEDULE_INSTANCE
@@ -189,7 +197,7 @@ class NotificationUrlTest extends BunqSdkTestBase
      */
     public function testShareInviteBankInquiry()
     {
-        $this->executeTest(
+        $this->executeNotificationUrlTest(
             self::JSON_PATH_SHARE_INVITE_BANK_INQUIRY_MODEL,
             ShareInviteBankInquiry::class,
             self::GET_SHARE_INVITE_BANK_INQUIRY
@@ -200,7 +208,7 @@ class NotificationUrlTest extends BunqSdkTestBase
      */
     public function testMasterCardAction()
     {
-        $this->executeTest(
+        $this->executeNotificationUrlTest(
             self::JSON_PATH_MASTER_CARD_ACTION_MODEL,
             MasterCardAction::class,
             self::GET_MASTER_CARD_ACTION
@@ -211,7 +219,7 @@ class NotificationUrlTest extends BunqSdkTestBase
      */
     public function testChatMessageAnnouncementModel()
     {
-        $this->executeTest(
+        $this->executeNotificationUrlTest(
             self::JSON_PATH_CHAT_MESSAGE_ANNOUNCEMENT_MODEL,
             ChatMessageAnnouncement::class,
             self::GET_CHAT_MESSAGE_ANNOUNCEMENT
@@ -222,7 +230,11 @@ class NotificationUrlTest extends BunqSdkTestBase
      */
     public function testDraftPaymentModel()
     {
-        $this->executeTest(self::JSON_PATH_DRAFT_PAYMENT_MODEL, DraftPayment::class, self::GET_DRAFT_PAYMENT);
+        $this->executeNotificationUrlTest(
+            self::JSON_PATH_DRAFT_PAYMENT_MODEL,
+            DraftPayment::class,
+            self::GET_DRAFT_PAYMENT
+        );
     }
 
     /**
@@ -233,9 +245,11 @@ class NotificationUrlTest extends BunqSdkTestBase
     private function getNotificationUrlFromJson(string $jsonString): NotificationUrl
     {
         $json = json_decode($jsonString, true);
+
         static::assertNotNull($json, self::ASSERT_JSON_DECODE_ERROR);
-        $notificationObject = $this->getNotificationObjectAsString($json);
-        $notificationUrl = NotificationUrl::fromJsonToModel($notificationObject);
+
+        $notificationObject = $this->getNotificationObjectJsonString($json);
+        $notificationUrl = NotificationUrl::createFromJsonString($notificationObject);
         $notificationUrl = self::assertInstanceOfNotificationUrl($notificationUrl);
 
         static::assertNotNull($notificationUrl->getObject(), self::ASSERT_OBJECT_IS_NULL_ERROR);
@@ -261,11 +275,11 @@ class NotificationUrlTest extends BunqSdkTestBase
     }
 
     /**
-     * @param array $json
+     * @param string[] $json
      *
      * @return string
      */
-    private function getNotificationObjectAsString(array $json)
+    private function getNotificationObjectJsonString(array $json)
     {
         $this->assertJsonIsNotificationUrlJson($json);
 
@@ -273,7 +287,7 @@ class NotificationUrlTest extends BunqSdkTestBase
     }
 
     /**
-     * @param array $json
+     * @param string[] $json
      */
     private function assertJsonIsNotificationUrlJson(array $json)
     {
