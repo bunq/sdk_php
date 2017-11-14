@@ -32,7 +32,7 @@ are also tested :thumbs_up:.
 ## Configuration
 
 To run the tests you must first setup the test configuration JSON. The example
-of a configuration file is located at [`tests/Resource/config.example.json`](Resource/config.example.json).
+of a configuration file is located at [`tests/Resource/config.example.json`](./Resource/config.example.json).
 In order to make use of the configuration file, please copy the example to the
 same directory, fill in your sandbox user data and rename the copy to config.json.
 ## Execution
