@@ -2,6 +2,7 @@
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Context\ApiContext;
+use bunq\exception\BunqException;
 use bunq\Http\ApiClient;
 use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
@@ -29,11 +30,6 @@ class Device extends BunqModel
      * Object type.
      */
     const OBJECT_TYPE = 'Device';
-
-    /**
-     * @var DevicePhone
-     */
-    protected $devicePhone;
 
     /**
      * @var DeviceServer
@@ -97,22 +93,6 @@ class Device extends BunqModel
     }
 
     /**
-     * @return DevicePhone
-     */
-    public function getDevicePhone()
-    {
-        return $this->devicePhone;
-    }
-
-    /**
-     * @param DevicePhone $devicePhone
-     */
-    public function setDevicePhone($devicePhone)
-    {
-        $this->devicePhone = $devicePhone;
-    }
-
-    /**
      * @return DeviceServer
      */
     public function getDeviceServer()
@@ -134,10 +114,6 @@ class Device extends BunqModel
      */
     public function getReferencedObject()
     {
-        if (!is_null($this->devicePhone)) {
-            return $this->devicePhone;
-        }
-
         if (!is_null($this->deviceServer)) {
             return $this->deviceServer;
         }
