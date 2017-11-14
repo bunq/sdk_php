@@ -73,27 +73,6 @@ class NotificationUrlTest extends BunqSdkTestBase
     const KEY_NOTIFICATION_URL_MODEL = 'NotificationUrl';
 
     /**
-     * @param string $expectedJsonFileName
-     * @param string $classNameExpected
-     * @param string $referencedObjectGetterName
-     */
-    private function executeNotificationUrlTest(
-        string $expectedJsonFileName,
-        string $classNameExpected,
-        string $referencedObjectGetterName
-    ) {
-        $jsonExpectedString = FileUtil::getFileContents($expectedJsonFileName);
-        $notificationUrl = $this->getNotificationUrlFromJson($jsonExpectedString);
-
-        $model = $notificationUrl->getObject()->$referencedObjectGetterName();
-        $referencedModel = $notificationUrl->getObject()->getReferencedObject();
-
-        static::assertNotNull($model);
-        static::assertNotNull($referencedModel);
-        static::assertInstanceOf($classNameExpected, $referencedModel);
-    }
-
-    /**
      */
     public function testMutationModel()
     {
@@ -125,7 +104,7 @@ class NotificationUrlTest extends BunqSdkTestBase
             self::GETTER_MONETARY_ACCOUNT_BANK
         );
     }
-
+    
     /**
      */
     public function testPaymentBatchModel()
@@ -169,7 +148,7 @@ class NotificationUrlTest extends BunqSdkTestBase
             self::GETTER_SCHEDULE_PAYMENT
         );
     }
-    
+
     /**
      */
     public function testShareInviteBankResponse()
@@ -237,6 +216,27 @@ class NotificationUrlTest extends BunqSdkTestBase
     }
 
     /**
+     * @param string $expectedJsonFileName
+     * @param string $classNameExpected
+     * @param string $referencedObjectGetterName
+     */
+    private function executeNotificationUrlTest(
+        string $expectedJsonFileName,
+        string $classNameExpected,
+        string $referencedObjectGetterName
+    ) {
+        $jsonExpectedString = FileUtil::getFileContents($expectedJsonFileName);
+        $notificationUrl = $this->getNotificationUrlFromJson($jsonExpectedString);
+
+        $model = $notificationUrl->getObject()->$referencedObjectGetterName();
+        $referencedModel = $notificationUrl->getObject()->getReferencedObject();
+
+        static::assertNotNull($model);
+        static::assertNotNull($referencedModel);
+        static::assertInstanceOf($classNameExpected, $referencedModel);
+    }
+
+    /**
      * @param string $jsonString
      *
      * @return NotificationUrl
@@ -254,23 +254,6 @@ class NotificationUrlTest extends BunqSdkTestBase
         static::assertNotNull($notificationUrl->getObject(), self::ERROR_ASSERT_OBJECT_IS_NULL_ERROR);
 
         return $notificationUrl;
-    }
-
-    /**
-     * @param BunqModel $model
-     *
-     * @return NotificationUrl
-     * @throws BunqException
-     */
-    private function assertInstanceOfNotificationUrl(BunqModel $model): NotificationUrl
-    {
-        static::assertInstanceOf(NotificationUrl::class, $model);
-
-        if ($model instanceof NotificationUrl) {
-            return $model;
-        }
-
-        throw new BunqException(self::ASSERT_SHOULD_NOT_REACH_THIS_CODE_ERROR);
     }
 
     /**
