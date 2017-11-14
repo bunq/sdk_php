@@ -41,7 +41,7 @@ class Card extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'Card';
+    const OBJECT_TYPE = 'CardDebit';
 
     /**
      * The id of the card.
