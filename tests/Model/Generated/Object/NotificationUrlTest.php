@@ -101,7 +101,7 @@ class NotificationUrlTest extends BunqSdkTestBase
         $this->executeNotificationUrlTest(
             self::JSON_PATH_MUTATION_MODEL,
             Payment::class,
-            self::GET_PAYMENT
+            self::GETTER_PAYMENT
         );
     }
 
@@ -112,7 +112,7 @@ class NotificationUrlTest extends BunqSdkTestBase
         $this->executeNotificationUrlTest(
             self::JSON_PATH_BUNQ_ME_TAB_MODEL,
             BunqMeTab::class,
-            self::GET_BUNQ_ME_TAB
+            self::GETTER_BUNQ_ME_TAB
         );
     }
 
@@ -123,7 +123,7 @@ class NotificationUrlTest extends BunqSdkTestBase
         $this->executeNotificationUrlTest(
             self::JSON_PATH_MONETARY_ACCOUNT_BANK_MODEL,
             MonetaryAccountBank::class,
-            self::GET_MONETARY_ACCOUNT_BANK
+            self::GETTER_MONETARY_ACCOUNT_BANK
         );
     }
 
@@ -134,7 +134,7 @@ class NotificationUrlTest extends BunqSdkTestBase
         $this->executeNotificationUrlTest(
             self::JSON_PATH_PAYMENT_BATCH_MODEL,
             PaymentBatch::class,
-            self::GET_PAYMENT_BATCH
+            self::GETTER_PAYMENT_BATCH
         );
     }
 
@@ -145,7 +145,7 @@ class NotificationUrlTest extends BunqSdkTestBase
         $this->executeNotificationUrlTest(
             self::JSON_PATH_REQUEST_RESPONSE_MODEL,
             RequestResponse::class,
-            self::GET_REQUEST_RESPONSE
+            self::GETTER_REQUEST_RESPONSE
         );
     }
 
@@ -156,7 +156,7 @@ class NotificationUrlTest extends BunqSdkTestBase
         $this->executeNotificationUrlTest(
             self::JSON_PATH_REQUEST_INQUIRY_MODEL,
             RequestInquiry::class,
-            self::GET_REQUEST_INQUIRY
+            self::GETTER_REQUEST_INQUIRY
         );
     }
 
@@ -167,7 +167,7 @@ class NotificationUrlTest extends BunqSdkTestBase
         $this->executeNotificationUrlTest(
             self::JSON_PATH_SCHEDULE_PAYMENT_MODEL,
             SchedulePayment::class,
-            self::GET_SCHEDULE_PAYMENT
+            self::GETTER_SCHEDULE_PAYMENT
         );
     }
     
@@ -178,7 +178,7 @@ class NotificationUrlTest extends BunqSdkTestBase
         $this->executeNotificationUrlTest(
             self::JSON_PATH_SHARE_INVITE_BANK_RESPONSE_MODEL,
             ShareInviteBankResponse::class,
-            self::GET_SHARE_INVITE_BANK_RESPONSE
+            self::GETTER_SHARE_INVITE_BANK_RESPONSE
         );
     }
 
@@ -189,7 +189,7 @@ class NotificationUrlTest extends BunqSdkTestBase
         $this->executeNotificationUrlTest(
             self::JSON_PATH_SCHEDULE_INSTANCE_MODEL,
             ScheduleInstance::class,
-            self::GET_SCHEDULE_INSTANCE
+            self::GETTER_SCHEDULE_INSTANCE
         );
     }
 
@@ -200,7 +200,7 @@ class NotificationUrlTest extends BunqSdkTestBase
         $this->executeNotificationUrlTest(
             self::JSON_PATH_SHARE_INVITE_BANK_INQUIRY_MODEL,
             ShareInviteBankInquiry::class,
-            self::GET_SHARE_INVITE_BANK_INQUIRY
+            self::GETTER_SHARE_INVITE_BANK_INQUIRY
         );
     }
 
@@ -211,7 +211,7 @@ class NotificationUrlTest extends BunqSdkTestBase
         $this->executeNotificationUrlTest(
             self::JSON_PATH_MASTER_CARD_ACTION_MODEL,
             MasterCardAction::class,
-            self::GET_MASTER_CARD_ACTION
+            self::GETTER_MASTER_CARD_ACTION
         );
     }
 
@@ -222,7 +222,7 @@ class NotificationUrlTest extends BunqSdkTestBase
         $this->executeNotificationUrlTest(
             self::JSON_PATH_CHAT_MESSAGE_ANNOUNCEMENT_MODEL,
             ChatMessageAnnouncement::class,
-            self::GET_CHAT_MESSAGE_ANNOUNCEMENT
+            self::GETTER_CHAT_MESSAGE_ANNOUNCEMENT
         );
     }
 
@@ -233,7 +233,7 @@ class NotificationUrlTest extends BunqSdkTestBase
         $this->executeNotificationUrlTest(
             self::JSON_PATH_DRAFT_PAYMENT_MODEL,
             DraftPayment::class,
-            self::GET_DRAFT_PAYMENT
+            self::GETTER_DRAFT_PAYMENT
         );
     }
 
