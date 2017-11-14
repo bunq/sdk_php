@@ -46,9 +46,8 @@ class NotificationUrlTest extends BunqSdkTestBase
     /**
      * Assertion errors.
      */
-    const ASSERT_SHOULD_NOT_REACH_THIS_CODE_ERROR = 'Congratulations you\'ve reached unreachable code.';
-    const ASSERT_JSON_DECODE_ERROR = 'Error accorded while decoding the JSON file.';
-    const ASSERT_OBJECT_IS_NULL_ERROR = 'The field object of NotificationUrl is null.';
+    const ERROR_ASSERT_JSON_DECODE_ERROR = 'Error accorded while decoding the JSON file.';
+    const ERROR_ASSERT_OBJECT_IS_NULL_ERROR = 'The field object of NotificationUrl is null.';
 
     /**
      * Model json paths constants.
@@ -246,13 +245,13 @@ class NotificationUrlTest extends BunqSdkTestBase
     {
         $json = json_decode($jsonString, true);
 
-        static::assertNotNull($json, self::ASSERT_JSON_DECODE_ERROR);
+        static::assertNotNull($json, self::ERROR_ASSERT_JSON_DECODE_ERROR);
 
         $notificationObject = $this->getNotificationObjectJsonString($json);
         $notificationUrl = NotificationUrl::createFromJsonString($notificationObject);
         $notificationUrl = self::assertInstanceOfNotificationUrl($notificationUrl);
 
-        static::assertNotNull($notificationUrl->getObject(), self::ASSERT_OBJECT_IS_NULL_ERROR);
+        static::assertNotNull($notificationUrl->getObject(), self::ERROR_ASSERT_OBJECT_IS_NULL_ERROR);
 
         return $notificationUrl;
     }
@@ -292,5 +291,19 @@ class NotificationUrlTest extends BunqSdkTestBase
     private function assertJsonIsNotificationUrlJson(array $json)
     {
         static::assertArrayHasKey(self::KEY_NOTIFICATION_URL_MODEL, $json);
+    }
+
+    /**
+     * @param BunqModel $model
+     *
+     * @return NotificationUrl
+     */
+    private function assertInstanceOfNotificationUrl(BunqModel $model): NotificationUrl
+    {
+        static::assertInstanceOf(NotificationUrl::class, $model);
+
+        /* @var NotificationUrl $model */
+
+        return $model;
     }
 }
