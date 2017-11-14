@@ -24,7 +24,7 @@ class UserCredentialPasswordIp extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'UserCredentialPasswordIp';
+    const OBJECT_TYPE = 'CredentialPasswordIp';
 
     /**
      * The id of the credential.

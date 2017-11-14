@@ -15,7 +15,7 @@ class ChatMessageStatus extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'ChatMessageStatus';
+    const OBJECT_TYPE = 'ChatMessageUser';
 
     /**
      * The id of the message.

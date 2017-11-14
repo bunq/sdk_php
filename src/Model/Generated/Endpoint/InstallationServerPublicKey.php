@@ -23,7 +23,7 @@ class InstallationServerPublicKey extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'InstallationServerPublicKey';
+    const OBJECT_TYPE = 'ServerPublicKey';
 
     /**
      * The server's public key for this Installation.

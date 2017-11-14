@@ -27,7 +27,7 @@ class ChatMessageText extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'ChatMessageText';
+    const OBJECT_TYPE = 'Id';
 
     /**
      * The id of the newly created chat message.

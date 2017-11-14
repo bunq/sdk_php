@@ -26,7 +26,7 @@ class InvoiceByUser extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'InvoiceByUser';
+    const OBJECT_TYPE = 'Invoice';
 
     /**
      * The id of the invoice object.

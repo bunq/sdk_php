@@ -32,7 +32,7 @@ class CashRegisterQrCode extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'CashRegisterQrCode';
+    const OBJECT_TYPE = 'TokenQrCashRegister';
 
     /**
      * The id of the created QR code. Use this id to get the RAW content of the

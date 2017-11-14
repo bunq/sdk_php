@@ -44,7 +44,7 @@ class TabItemShop extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'TabItemShop';
+    const OBJECT_TYPE = 'TabItem';
 
     /**
      * The id of the created TabItem.
