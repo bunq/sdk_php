@@ -29,19 +29,19 @@ class NotificationUrlTest extends BunqSdkTestBase
     /**
      * Getter string constants
      */
-    const GET_PAYMENT = 'getPayment';
-    const GET_BUNQ_ME_TAB = 'getBunqMeTab';
-    const GET_CHAT_MESSAGE_ANNOUNCEMENT = 'getChatMessageAnnouncement';
-    const GET_DRAFT_PAYMENT = 'getDraftPayment';
-    const GET_MASTER_CARD_ACTION = 'getMasterCardAction';
-    const GET_MONETARY_ACCOUNT_BANK = 'getMonetaryAccountBank';
-    const GET_PAYMENT_BATCH = 'getPaymentBatch';
-    const GET_REQUEST_INQUIRY = 'getRequestInquiry';
-    const GET_REQUEST_RESPONSE = 'getRequestResponse';
-    const GET_SCHEDULE_PAYMENT = 'getScheduledPayment';
-    const GET_SCHEDULE_INSTANCE = 'getScheduledInstance';
-    const GET_SHARE_INVITE_BANK_INQUIRY = 'getShareInviteBankInquiry';
-    const GET_SHARE_INVITE_BANK_RESPONSE = 'getShareInviteBankResponse';
+    const GETTER_PAYMENT = 'getPayment';
+    const GETTER_BUNQ_ME_TAB = 'getBunqMeTab';
+    const GETTER_CHAT_MESSAGE_ANNOUNCEMENT = 'getChatMessageAnnouncement';
+    const GETTER_DRAFT_PAYMENT = 'getDraftPayment';
+    const GETTER_MASTER_CARD_ACTION = 'getMasterCardAction';
+    const GETTER_MONETARY_ACCOUNT_BANK = 'getMonetaryAccountBank';
+    const GETTER_PAYMENT_BATCH = 'getPaymentBatch';
+    const GETTER_REQUEST_INQUIRY = 'getRequestInquiry';
+    const GETTER_REQUEST_RESPONSE = 'getRequestResponse';
+    const GETTER_SCHEDULE_PAYMENT = 'getScheduledPayment';
+    const GETTER_SCHEDULE_INSTANCE = 'getScheduledInstance';
+    const GETTER_SHARE_INVITE_BANK_INQUIRY = 'getShareInviteBankInquiry';
+    const GETTER_SHARE_INVITE_BANK_RESPONSE = 'getShareInviteBankResponse';
 
     /**
      * Assertion errors.
