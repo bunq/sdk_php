@@ -17,17 +17,17 @@ use bunq\Model\Generated\Object\Attachment;
 class AttachmentTab extends BunqModel
 {
     /**
+     * Endpoint constants.
+     */
+    const ENDPOINT_URL_CREATE = 'user/%s/monetary-account/%s/attachment-tab';
+    const ENDPOINT_URL_READ = 'user/%s/monetary-account/%s/attachment-tab/%s';
+
+    /**
      * Binary constants.
      */
     const FIELD_BODY = ApiClient::FIELD_BODY;
     const FIELD_CONTENT_TYPE = ApiClient::FIELD_CONTENT_TYPE;
     const FIELD_DESCRIPTION = ApiClient::FIELD_DESCRIPTION;
-
-    /**
-     * Endpoint constants.
-     */
-    const ENDPOINT_URL_CREATE = 'user/%s/monetary-account/%s/attachment-tab';
-    const ENDPOINT_URL_READ = 'user/%s/monetary-account/%s/attachment-tab/%s';
 
     /**
      * Object type.

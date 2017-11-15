@@ -16,19 +16,19 @@ use bunq\Model\Generated\Object\Amount;
 class RequestInquiryBatch extends BunqModel
 {
     /**
-     * Field constants.
-     */
-    const FIELD_REQUEST_INQUIRIES = 'request_inquiries';
-    const FIELD_STATUS = 'status';
-    const FIELD_TOTAL_AMOUNT_INQUIRED = 'total_amount_inquired';
-
-    /**
      * Endpoint constants.
      */
     const ENDPOINT_URL_CREATE = 'user/%s/monetary-account/%s/request-inquiry-batch';
     const ENDPOINT_URL_UPDATE = 'user/%s/monetary-account/%s/request-inquiry-batch/%s';
     const ENDPOINT_URL_READ = 'user/%s/monetary-account/%s/request-inquiry-batch/%s';
     const ENDPOINT_URL_LISTING = 'user/%s/monetary-account/%s/request-inquiry-batch';
+
+    /**
+     * Field constants.
+     */
+    const FIELD_REQUEST_INQUIRIES = 'request_inquiries';
+    const FIELD_STATUS = 'status';
+    const FIELD_TOTAL_AMOUNT_INQUIRED = 'total_amount_inquired';
 
     /**
      * Object type.

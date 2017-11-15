@@ -18,16 +18,16 @@ use bunq\Model\Core\BunqModel;
 class RequestInquiryChat extends BunqModel
 {
     /**
-     * Field constants.
-     */
-    const FIELD_LAST_READ_MESSAGE_ID = 'last_read_message_id';
-
-    /**
      * Endpoint constants.
      */
     const ENDPOINT_URL_CREATE = 'user/%s/monetary-account/%s/request-inquiry/%s/chat';
     const ENDPOINT_URL_UPDATE = 'user/%s/monetary-account/%s/request-inquiry/%s/chat/%s';
     const ENDPOINT_URL_LISTING = 'user/%s/monetary-account/%s/request-inquiry/%s/chat';
+
+    /**
+     * Field constants.
+     */
+    const FIELD_LAST_READ_MESSAGE_ID = 'last_read_message_id';
 
     /**
      * Object type.

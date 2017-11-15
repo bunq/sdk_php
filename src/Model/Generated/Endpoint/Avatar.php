@@ -21,15 +21,15 @@ use bunq\Model\Generated\Object\Image;
 class Avatar extends BunqModel
 {
     /**
-     * Field constants.
-     */
-    const FIELD_ATTACHMENT_PUBLIC_UUID = 'attachment_public_uuid';
-
-    /**
      * Endpoint constants.
      */
     const ENDPOINT_URL_CREATE = 'avatar';
     const ENDPOINT_URL_READ = 'avatar/%s';
+
+    /**
+     * Field constants.
+     */
+    const FIELD_ATTACHMENT_PUBLIC_UUID = 'attachment_public_uuid';
 
     /**
      * Object type.

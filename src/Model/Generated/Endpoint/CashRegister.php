@@ -25,6 +25,14 @@ use bunq\Model\Generated\Object\TabTextWaitingScreen;
 class CashRegister extends BunqModel
 {
     /**
+     * Endpoint constants.
+     */
+    const ENDPOINT_URL_CREATE = 'user/%s/monetary-account/%s/cash-register';
+    const ENDPOINT_URL_READ = 'user/%s/monetary-account/%s/cash-register/%s';
+    const ENDPOINT_URL_UPDATE = 'user/%s/monetary-account/%s/cash-register/%s';
+    const ENDPOINT_URL_LISTING = 'user/%s/monetary-account/%s/cash-register';
+
+    /**
      * Field constants.
      */
     const FIELD_NAME = 'name';
@@ -33,14 +41,6 @@ class CashRegister extends BunqModel
     const FIELD_LOCATION = 'location';
     const FIELD_NOTIFICATION_FILTERS = 'notification_filters';
     const FIELD_TAB_TEXT_WAITING_SCREEN = 'tab_text_waiting_screen';
-
-    /**
-     * Endpoint constants.
-     */
-    const ENDPOINT_URL_CREATE = 'user/%s/monetary-account/%s/cash-register';
-    const ENDPOINT_URL_READ = 'user/%s/monetary-account/%s/cash-register/%s';
-    const ENDPOINT_URL_UPDATE = 'user/%s/monetary-account/%s/cash-register/%s';
-    const ENDPOINT_URL_LISTING = 'user/%s/monetary-account/%s/cash-register';
 
     /**
      * Object type.

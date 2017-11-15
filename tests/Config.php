@@ -12,7 +12,7 @@ class Config
     /**
      * The path where the config.json file is stored
      */
-    const CONFIG_PATH = '/resource/config.json';
+    const CONFIG_PATH = '/Resource/config.json';
 
     /**
      * Delimiter between the IP addresses in the PERMITTED_IPS field.

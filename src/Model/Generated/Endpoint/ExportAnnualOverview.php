@@ -17,16 +17,16 @@ use bunq\Model\Generated\Object\LabelUser;
 class ExportAnnualOverview extends BunqModel
 {
     /**
-     * Field constants.
-     */
-    const FIELD_YEAR = 'year';
-
-    /**
      * Endpoint constants.
      */
     const ENDPOINT_URL_CREATE = 'user/%s/export-annual-overview';
     const ENDPOINT_URL_READ = 'user/%s/export-annual-overview/%s';
     const ENDPOINT_URL_LISTING = 'user/%s/export-annual-overview';
+
+    /**
+     * Field constants.
+     */
+    const FIELD_YEAR = 'year';
 
     /**
      * Object type.

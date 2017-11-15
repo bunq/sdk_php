@@ -45,6 +45,13 @@ class CustomerLimit extends BunqModel
     protected $limitCardDebitMastercard;
 
     /**
+     * The limit of wildcards, e.g. Maestro or MasterCard cards.
+     *
+     * @var int
+     */
+    protected $limitCardDebitWildcard;
+
+    /**
      * The limit of free replacement cards.
      *
      * @var int
@@ -133,6 +140,24 @@ class CustomerLimit extends BunqModel
     public function setLimitCardDebitMastercard($limitCardDebitMastercard)
     {
         $this->limitCardDebitMastercard = $limitCardDebitMastercard;
+    }
+
+    /**
+     * The limit of wildcards, e.g. Maestro or MasterCard cards.
+     *
+     * @return int
+     */
+    public function getLimitCardDebitWildcard()
+    {
+        return $this->limitCardDebitWildcard;
+    }
+
+    /**
+     * @param int $limitCardDebitWildcard
+     */
+    public function setLimitCardDebitWildcard($limitCardDebitWildcard)
+    {
+        $this->limitCardDebitWildcard = $limitCardDebitWildcard;
     }
 
     /**

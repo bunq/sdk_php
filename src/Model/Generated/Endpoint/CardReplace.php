@@ -19,15 +19,15 @@ use bunq\Model\Core\BunqModel;
 class CardReplace extends BunqModel
 {
     /**
+     * Endpoint constants.
+     */
+    const ENDPOINT_URL_CREATE = 'user/%s/card/%s/replace';
+
+    /**
      * Field constants.
      */
     const FIELD_PIN_CODE = 'pin_code';
     const FIELD_SECOND_LINE = 'second_line';
-
-    /**
-     * Endpoint constants.
-     */
-    const ENDPOINT_URL_CREATE = 'user/%s/card/%s/replace';
 
     /**
      * Object type.

@@ -15,18 +15,18 @@ use bunq\Model\Core\BunqModel;
 class DeviceServer extends BunqModel
 {
     /**
-     * Field constants.
-     */
-    const FIELD_DESCRIPTION = 'description';
-    const FIELD_SECRET = 'secret';
-    const FIELD_PERMITTED_IPS = 'permitted_ips';
-
-    /**
      * Endpoint constants.
      */
     const ENDPOINT_URL_CREATE = 'device-server';
     const ENDPOINT_URL_READ = 'device-server/%s';
     const ENDPOINT_URL_LISTING = 'device-server';
+
+    /**
+     * Field constants.
+     */
+    const FIELD_DESCRIPTION = 'description';
+    const FIELD_SECRET = 'secret';
+    const FIELD_PERMITTED_IPS = 'permitted_ips';
 
     /**
      * Object type.

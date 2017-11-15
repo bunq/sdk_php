@@ -24,14 +24,14 @@ use bunq\Model\Generated\Object\LabelMonetaryAccount;
 class TokenQrRequestIdeal extends BunqModel
 {
     /**
-     * Field constants.
-     */
-    const FIELD_TOKEN = 'token';
-
-    /**
      * Endpoint constants.
      */
     const ENDPOINT_URL_CREATE = 'user/%s/token-qr-request-ideal';
+
+    /**
+     * Field constants.
+     */
+    const FIELD_TOKEN = 'token';
 
     /**
      * Object type.

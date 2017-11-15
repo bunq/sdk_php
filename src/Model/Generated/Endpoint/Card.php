@@ -19,6 +19,13 @@ use bunq\Model\Generated\Object\LabelMonetaryAccount;
 class Card extends BunqModel
 {
     /**
+     * Endpoint constants.
+     */
+    const ENDPOINT_URL_UPDATE = 'user/%s/card/%s';
+    const ENDPOINT_URL_READ = 'user/%s/card/%s';
+    const ENDPOINT_URL_LISTING = 'user/%s/card';
+
+    /**
      * Field constants.
      */
     const FIELD_PIN_CODE = 'pin_code';
@@ -30,13 +37,6 @@ class Card extends BunqModel
     const FIELD_MONETARY_ACCOUNT_CURRENT_ID = 'monetary_account_current_id';
     const FIELD_PIN_CODE_ASSIGNMENT = 'pin_code_assignment';
     const FIELD_MONETARY_ACCOUNT_ID_FALLBACK = 'monetary_account_id_fallback';
-
-    /**
-     * Endpoint constants.
-     */
-    const ENDPOINT_URL_UPDATE = 'user/%s/card/%s';
-    const ENDPOINT_URL_READ = 'user/%s/card/%s';
-    const ENDPOINT_URL_LISTING = 'user/%s/card';
 
     /**
      * Object type.
@@ -77,6 +77,13 @@ class Card extends BunqModel
      * @var string
      */
     protected $type;
+
+    /**
+     * The sub-type of the card.
+     *
+     * @var string
+     */
+    protected $subType;
 
     /**
      * The second line of text on the card
@@ -183,6 +190,14 @@ class Card extends BunqModel
      * @var int
      */
     protected $monetaryAccountIdFallback;
+
+    /**
+     * The country that is domestic to the card. Defaults to country of
+     * residence of user.
+     *
+     * @var string
+     */
+    protected $country;
 
     /**
      * Update the card details. Allow to change pin code, status, limits,
@@ -361,6 +376,24 @@ class Card extends BunqModel
     public function setType($type)
     {
         $this->type = $type;
+    }
+
+    /**
+     * The sub-type of the card.
+     *
+     * @return string
+     */
+    public function getSubType()
+    {
+        return $this->subType;
+    }
+
+    /**
+     * @param string $subType
+     */
+    public function setSubType($subType)
+    {
+        $this->subType = $subType;
     }
 
     /**
@@ -621,5 +654,24 @@ class Card extends BunqModel
     public function setMonetaryAccountIdFallback($monetaryAccountIdFallback)
     {
         $this->monetaryAccountIdFallback = $monetaryAccountIdFallback;
+    }
+
+    /**
+     * The country that is domestic to the card. Defaults to country of
+     * residence of user.
+     *
+     * @return string
+     */
+    public function getCountry()
+    {
+        return $this->country;
+    }
+
+    /**
+     * @param string $country
+     */
+    public function setCountry($country)
+    {
+        $this->country = $country;
     }
 }

@@ -1,6 +1,7 @@
 <?php
 namespace bunq\Model\Generated\Object;
 
+use bunq\exception\BunqException;
 use bunq\Model\Core\BunqModel;
 
 /**
@@ -8,6 +9,11 @@ use bunq\Model\Core\BunqModel;
  */
 class ChatMessageContent extends BunqModel
 {
+    /**
+     * Error constants.
+     */
+    const ERROR_NULL_FIELDS = 'All fields of an extended model or object are null.';
+
     /**
      * @var ChatMessageContentAnchorEvent
      */
@@ -156,5 +162,42 @@ class ChatMessageContent extends BunqModel
     public function setChatMessageContentText($chatMessageContentText)
     {
         $this->chatMessageContentText = $chatMessageContentText;
+    }
+
+    /**
+     * @return BunqModel
+     * @throws BunqException
+     */
+    public function getReferencedObject()
+    {
+        if (!is_null($this->chatMessageContentAnchorEvent)) {
+            return $this->chatMessageContentAnchorEvent;
+        }
+
+        if (!is_null($this->chatMessageContentAttachment)) {
+            return $this->chatMessageContentAttachment;
+        }
+
+        if (!is_null($this->chatMessageContentGeolocation)) {
+            return $this->chatMessageContentGeolocation;
+        }
+
+        if (!is_null($this->chatMessageContentStatusConversationTitle)) {
+            return $this->chatMessageContentStatusConversationTitle;
+        }
+
+        if (!is_null($this->chatMessageContentStatusConversation)) {
+            return $this->chatMessageContentStatusConversation;
+        }
+
+        if (!is_null($this->chatMessageContentStatusMembership)) {
+            return $this->chatMessageContentStatusMembership;
+        }
+
+        if (!is_null($this->chatMessageContentText)) {
+            return $this->chatMessageContentText;
+        }
+
+        throw new BunqException(self::ERROR_NULL_FIELDS);
     }
 }

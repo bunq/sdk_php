@@ -16,18 +16,18 @@ use bunq\Model\Core\BunqModel;
 class BunqMeTab extends BunqModel
 {
     /**
-     * Field constants.
-     */
-    const FIELD_BUNQME_TAB_ENTRY = 'bunqme_tab_entry';
-    const FIELD_STATUS = 'status';
-
-    /**
      * Endpoint constants.
      */
     const ENDPOINT_URL_CREATE = 'user/%s/monetary-account/%s/bunqme-tab';
     const ENDPOINT_URL_UPDATE = 'user/%s/monetary-account/%s/bunqme-tab/%s';
     const ENDPOINT_URL_LISTING = 'user/%s/monetary-account/%s/bunqme-tab';
     const ENDPOINT_URL_READ = 'user/%s/monetary-account/%s/bunqme-tab/%s';
+
+    /**
+     * Field constants.
+     */
+    const FIELD_BUNQME_TAB_ENTRY = 'bunqme_tab_entry';
+    const FIELD_STATUS = 'status';
 
     /**
      * Object type.

@@ -27,6 +27,15 @@ use bunq\Model\Generated\Object\TabVisibility;
 class TabUsageMultiple extends BunqModel
 {
     /**
+     * Endpoint constants.
+     */
+    const ENDPOINT_URL_CREATE = 'user/%s/monetary-account/%s/cash-register/%s/tab-usage-multiple';
+    const ENDPOINT_URL_UPDATE = 'user/%s/monetary-account/%s/cash-register/%s/tab-usage-multiple/%s';
+    const ENDPOINT_URL_DELETE = 'user/%s/monetary-account/%s/cash-register/%s/tab-usage-multiple/%s';
+    const ENDPOINT_URL_READ = 'user/%s/monetary-account/%s/cash-register/%s/tab-usage-multiple/%s';
+    const ENDPOINT_URL_LISTING = 'user/%s/monetary-account/%s/cash-register/%s/tab-usage-multiple';
+
+    /**
      * Field constants.
      */
     const FIELD_DESCRIPTION = 'description';
@@ -41,15 +50,6 @@ class TabUsageMultiple extends BunqModel
     const FIELD_VISIBILITY = 'visibility';
     const FIELD_EXPIRATION = 'expiration';
     const FIELD_TAB_ATTACHMENT = 'tab_attachment';
-
-    /**
-     * Endpoint constants.
-     */
-    const ENDPOINT_URL_CREATE = 'user/%s/monetary-account/%s/cash-register/%s/tab-usage-multiple';
-    const ENDPOINT_URL_UPDATE = 'user/%s/monetary-account/%s/cash-register/%s/tab-usage-multiple/%s';
-    const ENDPOINT_URL_DELETE = 'user/%s/monetary-account/%s/cash-register/%s/tab-usage-multiple/%s';
-    const ENDPOINT_URL_READ = 'user/%s/monetary-account/%s/cash-register/%s/tab-usage-multiple/%s';
-    const ENDPOINT_URL_LISTING = 'user/%s/monetary-account/%s/cash-register/%s/tab-usage-multiple';
 
     /**
      * Object type.

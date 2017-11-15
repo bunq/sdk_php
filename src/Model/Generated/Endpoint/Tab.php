@@ -2,6 +2,7 @@
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Context\ApiContext;
+use bunq\exception\BunqException;
 use bunq\Http\ApiClient;
 use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
@@ -19,6 +20,11 @@ use bunq\Model\Core\BunqModel;
  */
 class Tab extends BunqModel
 {
+    /**
+     * Error constants.
+     */
+    const ERROR_NULL_FIELDS = 'All fields of an extended model or object are null.';
+
     /**
      * Endpoint constants.
      */
@@ -131,5 +137,22 @@ class Tab extends BunqModel
     public function setTabUsageMultiple($tabUsageMultiple)
     {
         $this->tabUsageMultiple = $tabUsageMultiple;
+    }
+
+    /**
+     * @return BunqModel
+     * @throws BunqException
+     */
+    public function getReferencedObject()
+    {
+        if (!is_null($this->tabUsageSingle)) {
+            return $this->tabUsageSingle;
+        }
+
+        if (!is_null($this->tabUsageMultiple)) {
+            return $this->tabUsageMultiple;
+        }
+
+        throw new BunqException(self::ERROR_NULL_FIELDS);
     }
 }

@@ -36,8 +36,8 @@ class JsonParserTest extends TestCase
     /**
      * Resource location constants.
      */
-    const RESOURCE_INSTALLATION_JSON = '/resource/installation.json';
-    const RESOURCE_USER_COMPANY_JSON = '/resource/user_company.json';
+    const RESOURCE_INSTALLATION_JSON = '/Resource/installation.json';
+    const RESOURCE_USER_COMPANY_JSON = '/Resource/user_company.json';
 
     /**
      * Function constants.

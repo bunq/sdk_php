@@ -24,6 +24,13 @@ use bunq\Model\Generated\Object\LabelMonetaryAccount;
 class Payment extends BunqModel
 {
     /**
+     * Endpoint constants.
+     */
+    const ENDPOINT_URL_CREATE = 'user/%s/monetary-account/%s/payment';
+    const ENDPOINT_URL_READ = 'user/%s/monetary-account/%s/payment/%s';
+    const ENDPOINT_URL_LISTING = 'user/%s/monetary-account/%s/payment';
+
+    /**
      * Field constants.
      */
     const FIELD_AMOUNT = 'amount';
@@ -33,13 +40,6 @@ class Payment extends BunqModel
     const FIELD_MERCHANT_REFERENCE = 'merchant_reference';
     const FIELD_ALLOW_BUNQTO = 'allow_bunqto';
     const FIELD_BUNQTO_STATUS = 'bunqto_status';
-
-    /**
-     * Endpoint constants.
-     */
-    const ENDPOINT_URL_CREATE = 'user/%s/monetary-account/%s/payment';
-    const ENDPOINT_URL_READ = 'user/%s/monetary-account/%s/payment/%s';
-    const ENDPOINT_URL_LISTING = 'user/%s/monetary-account/%s/payment';
 
     /**
      * Object type.

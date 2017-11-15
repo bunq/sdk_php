@@ -14,14 +14,14 @@ use bunq\Model\Core\BunqModel;
 class TabItemShopBatch extends BunqModel
 {
     /**
-     * Field constants.
-     */
-    const FIELD_TAB_ITEMS = 'tab_items';
-
-    /**
      * Endpoint constants.
      */
     const ENDPOINT_URL_CREATE = 'user/%s/monetary-account/%s/cash-register/%s/tab/%s/tab-item-batch';
+
+    /**
+     * Field constants.
+     */
+    const FIELD_TAB_ITEMS = 'tab_items';
 
     /**
      * Object type.

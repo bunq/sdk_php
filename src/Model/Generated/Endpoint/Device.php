@@ -2,6 +2,7 @@
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Context\ApiContext;
+use bunq\exception\BunqException;
 use bunq\Http\ApiClient;
 use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
@@ -15,6 +16,11 @@ use bunq\Model\Core\BunqModel;
 class Device extends BunqModel
 {
     /**
+     * Error constants.
+     */
+    const ERROR_NULL_FIELDS = 'All fields of an extended model or object are null.';
+
+    /**
      * Endpoint constants.
      */
     const ENDPOINT_URL_READ = 'device/%s';
@@ -24,11 +30,6 @@ class Device extends BunqModel
      * Object type.
      */
     const OBJECT_TYPE = 'Device';
-
-    /**
-     * @var DevicePhone
-     */
-    protected $devicePhone;
 
     /**
      * @var DeviceServer
@@ -92,22 +93,6 @@ class Device extends BunqModel
     }
 
     /**
-     * @return DevicePhone
-     */
-    public function getDevicePhone()
-    {
-        return $this->devicePhone;
-    }
-
-    /**
-     * @param DevicePhone $devicePhone
-     */
-    public function setDevicePhone($devicePhone)
-    {
-        $this->devicePhone = $devicePhone;
-    }
-
-    /**
      * @return DeviceServer
      */
     public function getDeviceServer()
@@ -121,5 +106,18 @@ class Device extends BunqModel
     public function setDeviceServer($deviceServer)
     {
         $this->deviceServer = $deviceServer;
+    }
+
+    /**
+     * @return BunqModel
+     * @throws BunqException
+     */
+    public function getReferencedObject()
+    {
+        if (!is_null($this->deviceServer)) {
+            return $this->deviceServer;
+        }
+
+        throw new BunqException(self::ERROR_NULL_FIELDS);
     }
 }

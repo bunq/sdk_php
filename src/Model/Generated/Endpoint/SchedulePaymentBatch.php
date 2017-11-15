@@ -5,7 +5,6 @@ use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
 use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
-use bunq\Model\Generated\Object\Schedule;
 use bunq\Model\Generated\Object\SchedulePaymentEntry;
 
 /**
@@ -16,12 +15,6 @@ use bunq\Model\Generated\Object\SchedulePaymentEntry;
 class SchedulePaymentBatch extends BunqModel
 {
     /**
-     * Field constants.
-     */
-    const FIELD_PAYMENTS = 'payments';
-    const FIELD_SCHEDULE = 'schedule';
-
-    /**
      * Endpoint constants.
      */
     const ENDPOINT_URL_CREATE = 'user/%s/monetary-account/%s/schedule-payment-batch';
@@ -29,9 +22,15 @@ class SchedulePaymentBatch extends BunqModel
     const ENDPOINT_URL_DELETE = 'user/%s/monetary-account/%s/schedule-payment-batch/%s';
 
     /**
+     * Field constants.
+     */
+    const FIELD_PAYMENTS = 'payments';
+    const FIELD_SCHEDULE = 'schedule';
+
+    /**
      * Object type.
      */
-    const OBJECT_TYPE = 'SchedulePaymentBatch';
+    const OBJECT_TYPE = 'ScheduledPaymentBatch';
 
     /**
      * The payment details.
@@ -81,9 +80,9 @@ class SchedulePaymentBatch extends BunqModel
      * @param int $schedulePaymentBatchId
      * @param string[] $customHeaders
      *
-     * @return BunqResponseInt
+     * @return BunqResponseSchedulePaymentBatch
      */
-    public static function update(ApiContext $apiContext, array $requestMap, int $userId, int $monetaryAccountId, int $schedulePaymentBatchId, array $customHeaders = []): BunqResponseInt
+    public static function update(ApiContext $apiContext, array $requestMap, int $userId, int $monetaryAccountId, int $schedulePaymentBatchId, array $customHeaders = []): BunqResponseSchedulePaymentBatch
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->put(
@@ -95,8 +94,8 @@ class SchedulePaymentBatch extends BunqModel
             $customHeaders
         );
 
-        return BunqResponseInt::castFromBunqResponse(
-            static::processForId($responseRaw)
+        return BunqResponseSchedulePaymentBatch::castFromBunqResponse(
+            static::fromJson($responseRaw, self::OBJECT_TYPE)
         );
     }
 

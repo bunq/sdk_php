@@ -5,7 +5,6 @@ use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
 use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
-use bunq\Model\Generated\Object\Schedule;
 use bunq\Model\Generated\Object\SchedulePaymentEntry;
 
 /**
@@ -16,12 +15,6 @@ use bunq\Model\Generated\Object\SchedulePaymentEntry;
 class SchedulePayment extends BunqModel
 {
     /**
-     * Field constants.
-     */
-    const FIELD_PAYMENT = 'payment';
-    const FIELD_SCHEDULE = 'schedule';
-
-    /**
      * Endpoint constants.
      */
     const ENDPOINT_URL_CREATE = 'user/%s/monetary-account/%s/schedule-payment';
@@ -31,9 +24,15 @@ class SchedulePayment extends BunqModel
     const ENDPOINT_URL_UPDATE = 'user/%s/monetary-account/%s/schedule-payment/%s';
 
     /**
+     * Field constants.
+     */
+    const FIELD_PAYMENT = 'payment';
+    const FIELD_SCHEDULE = 'schedule';
+
+    /**
      * Object type.
      */
-    const OBJECT_TYPE = 'SchedulePayment';
+    const OBJECT_TYPE = 'ScheduledPayment';
 
     /**
      * The payment details.
@@ -163,9 +162,9 @@ class SchedulePayment extends BunqModel
      * @param int $schedulePaymentId
      * @param string[] $customHeaders
      *
-     * @return BunqResponseInt
+     * @return BunqResponseSchedulePayment
      */
-    public static function update(ApiContext $apiContext, array $requestMap, int $userId, int $monetaryAccountId, int $schedulePaymentId, array $customHeaders = []): BunqResponseInt
+    public static function update(ApiContext $apiContext, array $requestMap, int $userId, int $monetaryAccountId, int $schedulePaymentId, array $customHeaders = []): BunqResponseSchedulePayment
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->put(
@@ -177,8 +176,8 @@ class SchedulePayment extends BunqModel
             $customHeaders
         );
 
-        return BunqResponseInt::castFromBunqResponse(
-            static::processForId($responseRaw)
+        return BunqResponseSchedulePayment::castFromBunqResponse(
+            static::fromJson($responseRaw, self::OBJECT_TYPE)
         );
     }
 
