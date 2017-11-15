@@ -35,6 +35,7 @@ class CardDebit extends BunqModel
     const FIELD_TYPE = 'type';
     const FIELD_PIN_CODE_ASSIGNMENT = 'pin_code_assignment';
     const FIELD_MONETARY_ACCOUNT_ID_FALLBACK = 'monetary_account_id_fallback';
+    const FIELD_COUNTRY = 'country';
 
     /**
      * Object type.
@@ -75,6 +76,13 @@ class CardDebit extends BunqModel
      * @var string
      */
     protected $type;
+
+    /**
+     * The sub_type of card.
+     *
+     * @var string
+     */
+    protected $subType;
 
     /**
      * The second line of text on the card
@@ -172,6 +180,14 @@ class CardDebit extends BunqModel
      * @var int
      */
     protected $monetaryAccountIdFallback;
+
+    /**
+     * The country that is domestic to the card. Defaults to country of
+     * residence of user.
+     *
+     * @var string
+     */
+    protected $country;
 
     /**
      * Create a new debit card request.
@@ -289,6 +305,24 @@ class CardDebit extends BunqModel
     public function setType($type)
     {
         $this->type = $type;
+    }
+
+    /**
+     * The sub_type of card.
+     *
+     * @return string
+     */
+    public function getSubType()
+    {
+        return $this->subType;
+    }
+
+    /**
+     * @param string $subType
+     */
+    public function setSubType($subType)
+    {
+        $this->subType = $subType;
     }
 
     /**
@@ -529,5 +563,24 @@ class CardDebit extends BunqModel
     public function setMonetaryAccountIdFallback($monetaryAccountIdFallback)
     {
         $this->monetaryAccountIdFallback = $monetaryAccountIdFallback;
+    }
+
+    /**
+     * The country that is domestic to the card. Defaults to country of
+     * residence of user.
+     *
+     * @return string
+     */
+    public function getCountry()
+    {
+        return $this->country;
+    }
+
+    /**
+     * @param string $country
+     */
+    public function setCountry($country)
+    {
+        $this->country = $country;
     }
 }

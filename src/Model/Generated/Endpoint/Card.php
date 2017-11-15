@@ -79,6 +79,13 @@ class Card extends BunqModel
     protected $type;
 
     /**
+     * The sub-type of the card.
+     *
+     * @var string
+     */
+    protected $subType;
+
+    /**
      * The second line of text on the card
      *
      * @var string
@@ -183,6 +190,14 @@ class Card extends BunqModel
      * @var int
      */
     protected $monetaryAccountIdFallback;
+
+    /**
+     * The country that is domestic to the card. Defaults to country of
+     * residence of user.
+     *
+     * @var string
+     */
+    protected $country;
 
     /**
      * Update the card details. Allow to change pin code, status, limits,
@@ -361,6 +376,24 @@ class Card extends BunqModel
     public function setType($type)
     {
         $this->type = $type;
+    }
+
+    /**
+     * The sub-type of the card.
+     *
+     * @return string
+     */
+    public function getSubType()
+    {
+        return $this->subType;
+    }
+
+    /**
+     * @param string $subType
+     */
+    public function setSubType($subType)
+    {
+        $this->subType = $subType;
     }
 
     /**
@@ -621,5 +654,24 @@ class Card extends BunqModel
     public function setMonetaryAccountIdFallback($monetaryAccountIdFallback)
     {
         $this->monetaryAccountIdFallback = $monetaryAccountIdFallback;
+    }
+
+    /**
+     * The country that is domestic to the card. Defaults to country of
+     * residence of user.
+     *
+     * @return string
+     */
+    public function getCountry()
+    {
+        return $this->country;
+    }
+
+    /**
+     * @param string $country
+     */
+    public function setCountry($country)
+    {
+        $this->country = $country;
     }
 }
