@@ -27,6 +27,12 @@ use bunq\Util\FileUtil;
 class NotificationUrlTest extends BunqSdkTestBase
 {
     /**
+     * Assertion errors.
+     */
+    const ERROR_ASSERT_JSON_DECODE_ERROR = 'Error accorded while decoding the JSON file.';
+    const ERROR_ASSERT_OBJECT_IS_NULL_ERROR = 'The field object of NotificationUrl is null.';
+
+    /**
      * Getter string constants
      */
     const GETTER_PAYMENT = 'getPayment';
@@ -42,12 +48,6 @@ class NotificationUrlTest extends BunqSdkTestBase
     const GETTER_SCHEDULE_INSTANCE = 'getScheduledInstance';
     const GETTER_SHARE_INVITE_BANK_INQUIRY = 'getShareInviteBankInquiry';
     const GETTER_SHARE_INVITE_BANK_RESPONSE = 'getShareInviteBankResponse';
-
-    /**
-     * Assertion errors.
-     */
-    const ERROR_ASSERT_JSON_DECODE_ERROR = 'Error accorded while decoding the JSON file.';
-    const ERROR_ASSERT_OBJECT_IS_NULL_ERROR = 'The field object of NotificationUrl is null.';
 
     /**
      * Model json paths constants.
