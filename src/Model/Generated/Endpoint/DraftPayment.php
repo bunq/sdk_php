@@ -19,20 +19,20 @@ use bunq\Model\Generated\Object\LabelUser;
 class DraftPayment extends BunqModel
 {
     /**
-     * Field constants.
-     */
-    const FIELD_STATUS = 'status';
-    const FIELD_ENTRIES = 'entries';
-    const FIELD_PREVIOUS_UPDATED_TIMESTAMP = 'previous_updated_timestamp';
-    const FIELD_NUMBER_OF_REQUIRED_ACCEPTS = 'number_of_required_accepts';
-
-    /**
      * Endpoint constants.
      */
     const ENDPOINT_URL_CREATE = 'user/%s/monetary-account/%s/draft-payment';
     const ENDPOINT_URL_UPDATE = 'user/%s/monetary-account/%s/draft-payment/%s';
     const ENDPOINT_URL_LISTING = 'user/%s/monetary-account/%s/draft-payment';
     const ENDPOINT_URL_READ = 'user/%s/monetary-account/%s/draft-payment/%s';
+
+    /**
+     * Field constants.
+     */
+    const FIELD_STATUS = 'status';
+    const FIELD_ENTRIES = 'entries';
+    const FIELD_PREVIOUS_UPDATED_TIMESTAMP = 'previous_updated_timestamp';
+    const FIELD_NUMBER_OF_REQUIRED_ACCEPTS = 'number_of_required_accepts';
 
     /**
      * Object type.

@@ -23,6 +23,15 @@ use bunq\Model\Generated\Object\AttachmentTab;
 class TabItemShop extends BunqModel
 {
     /**
+     * Endpoint constants.
+     */
+    const ENDPOINT_URL_CREATE = 'user/%s/monetary-account/%s/cash-register/%s/tab/%s/tab-item';
+    const ENDPOINT_URL_UPDATE = 'user/%s/monetary-account/%s/cash-register/%s/tab/%s/tab-item/%s';
+    const ENDPOINT_URL_DELETE = 'user/%s/monetary-account/%s/cash-register/%s/tab/%s/tab-item/%s';
+    const ENDPOINT_URL_LISTING = 'user/%s/monetary-account/%s/cash-register/%s/tab/%s/tab-item';
+    const ENDPOINT_URL_READ = 'user/%s/monetary-account/%s/cash-register/%s/tab/%s/tab-item/%s';
+
+    /**
      * Field constants.
      */
     const FIELD_DESCRIPTION = 'description';
@@ -31,15 +40,6 @@ class TabItemShop extends BunqModel
     const FIELD_TAB_ATTACHMENT = 'tab_attachment';
     const FIELD_QUANTITY = 'quantity';
     const FIELD_AMOUNT = 'amount';
-
-    /**
-     * Endpoint constants.
-     */
-    const ENDPOINT_URL_CREATE = 'user/%s/monetary-account/%s/cash-register/%s/tab/%s/tab-item';
-    const ENDPOINT_URL_UPDATE = 'user/%s/monetary-account/%s/cash-register/%s/tab/%s/tab-item/%s';
-    const ENDPOINT_URL_DELETE = 'user/%s/monetary-account/%s/cash-register/%s/tab/%s/tab-item/%s';
-    const ENDPOINT_URL_LISTING = 'user/%s/monetary-account/%s/cash-register/%s/tab/%s/tab-item';
-    const ENDPOINT_URL_READ = 'user/%s/monetary-account/%s/cash-register/%s/tab/%s/tab-item/%s';
 
     /**
      * Object type.

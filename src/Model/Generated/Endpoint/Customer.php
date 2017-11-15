@@ -14,16 +14,16 @@ use bunq\Model\Core\BunqModel;
 class Customer extends BunqModel
 {
     /**
-     * Field constants.
-     */
-    const FIELD_BILLING_ACCOUNT_ID = 'billing_account_id';
-
-    /**
      * Endpoint constants.
      */
     const ENDPOINT_URL_LISTING = 'user/%s/customer';
     const ENDPOINT_URL_READ = 'user/%s/customer/%s';
     const ENDPOINT_URL_UPDATE = 'user/%s/customer/%s';
+
+    /**
+     * Field constants.
+     */
+    const FIELD_BILLING_ACCOUNT_ID = 'billing_account_id';
 
     /**
      * Object type.

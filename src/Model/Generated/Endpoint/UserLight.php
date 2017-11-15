@@ -20,6 +20,11 @@ use bunq\Model\Generated\Object\TaxResident;
 class UserLight extends BunqModel
 {
     /**
+     * Endpoint constants.
+     */
+    const ENDPOINT_URL_READ = 'user-light/%s';
+
+    /**
      * Field constants.
      */
     const FIELD_FIRST_NAME = 'first_name';
@@ -50,11 +55,6 @@ class UserLight extends BunqModel
     const FIELD_SESSION_TIMEOUT = 'session_timeout';
     const FIELD_DAILY_LIMIT_WITHOUT_CONFIRMATION_LOGIN = 'daily_limit_without_confirmation_login';
     const FIELD_NOTIFICATION_FILTERS = 'notification_filters';
-
-    /**
-     * Endpoint constants.
-     */
-    const ENDPOINT_URL_READ = 'user-light/%s';
 
     /**
      * Object type.

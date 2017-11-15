@@ -18,17 +18,17 @@ use bunq\Model\Generated\Object\LabelMonetaryAccount;
 class Invoice extends BunqModel
 {
     /**
+     * Endpoint constants.
+     */
+    const ENDPOINT_URL_LISTING = 'user/%s/monetary-account/%s/invoice';
+    const ENDPOINT_URL_READ = 'user/%s/monetary-account/%s/invoice/%s';
+
+    /**
      * Field constants.
      */
     const FIELD_STATUS = 'status';
     const FIELD_DESCRIPTION = 'description';
     const FIELD_EXTERNAL_URL = 'external_url';
-
-    /**
-     * Endpoint constants.
-     */
-    const ENDPOINT_URL_LISTING = 'user/%s/monetary-account/%s/invoice';
-    const ENDPOINT_URL_READ = 'user/%s/monetary-account/%s/invoice/%s';
 
     /**
      * Object type.

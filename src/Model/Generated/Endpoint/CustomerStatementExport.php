@@ -16,20 +16,20 @@ use bunq\Model\Generated\Object\LabelMonetaryAccount;
 class CustomerStatementExport extends BunqModel
 {
     /**
-     * Field constants.
-     */
-    const FIELD_STATEMENT_FORMAT = 'statement_format';
-    const FIELD_DATE_START = 'date_start';
-    const FIELD_DATE_END = 'date_end';
-    const FIELD_REGIONAL_FORMAT = 'regional_format';
-
-    /**
      * Endpoint constants.
      */
     const ENDPOINT_URL_CREATE = 'user/%s/monetary-account/%s/customer-statement';
     const ENDPOINT_URL_READ = 'user/%s/monetary-account/%s/customer-statement/%s';
     const ENDPOINT_URL_LISTING = 'user/%s/monetary-account/%s/customer-statement';
     const ENDPOINT_URL_DELETE = 'user/%s/monetary-account/%s/customer-statement/%s';
+
+    /**
+     * Field constants.
+     */
+    const FIELD_STATEMENT_FORMAT = 'statement_format';
+    const FIELD_DATE_START = 'date_start';
+    const FIELD_DATE_END = 'date_end';
+    const FIELD_REGIONAL_FORMAT = 'regional_format';
 
     /**
      * Object type.

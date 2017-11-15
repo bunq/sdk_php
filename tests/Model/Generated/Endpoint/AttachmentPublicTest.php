@@ -18,7 +18,7 @@ class AttachmentPublicTest extends BunqSdkTestBase
     /**
      *  Points to the folder where attachments are located.
      */
-    const PATH_ATTACHMENT = '/../../../resource/';
+    const PATH_ATTACHMENT = '/../../../Resource/';
 
     /**
      * @var string

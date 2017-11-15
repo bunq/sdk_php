@@ -6,6 +6,8 @@ use bunq\Http\ApiClient;
 use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Object\Error;
+use bunq\Model\Generated\Object\ScheduleAnchorObject;
+use bunq\Model\Generated\Object\ScheduleInstanceAnchorObject;
 
 /**
  * view for reading, updating and listing the scheduled instance.
@@ -15,11 +17,6 @@ use bunq\Model\Generated\Object\Error;
 class ScheduleInstance extends BunqModel
 {
     /**
-     * Field constants.
-     */
-    const FIELD_STATE = 'state';
-
-    /**
      * Endpoint constants.
      */
     const ENDPOINT_URL_READ = 'user/%s/monetary-account/%s/schedule/%s/schedule-instance/%s';
@@ -27,9 +24,14 @@ class ScheduleInstance extends BunqModel
     const ENDPOINT_URL_LISTING = 'user/%s/monetary-account/%s/schedule/%s/schedule-instance';
 
     /**
+     * Field constants.
+     */
+    const FIELD_STATE = 'state';
+
+    /**
      * Object type.
      */
-    const OBJECT_TYPE = 'ScheduleInstance';
+    const OBJECT_TYPE = 'ScheduledInstance';
 
     /**
      * The state of the scheduleInstance. (FINISHED_SUCCESSFULLY, RETRY,
@@ -62,16 +64,16 @@ class ScheduleInstance extends BunqModel
     protected $errorMessage;
 
     /**
-     * The scheduled object.
+     * The scheduled object. (Payment, PaymentBatch)
      *
-     * @var BunqModel
+     * @var ScheduleAnchorObject
      */
     protected $scheduledObject;
 
     /**
-     * The result object of this schedule instance. (payment, payment batch)
+     * The result object of this schedule instance. (Payment, PaymentBatch)
      *
-     * @var BunqModel
+     * @var ScheduleInstanceAnchorObject
      */
     protected $resultObject;
 
@@ -111,9 +113,9 @@ class ScheduleInstance extends BunqModel
      * @param int $scheduleInstanceId
      * @param string[] $customHeaders
      *
-     * @return BunqResponseInt
+     * @return BunqResponseScheduleInstance
      */
-    public static function update(ApiContext $apiContext, array $requestMap, int $userId, int $monetaryAccountId, int $scheduleId, int $scheduleInstanceId, array $customHeaders = []): BunqResponseInt
+    public static function update(ApiContext $apiContext, array $requestMap, int $userId, int $monetaryAccountId, int $scheduleId, int $scheduleInstanceId, array $customHeaders = []): BunqResponseScheduleInstance
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->put(
@@ -125,8 +127,8 @@ class ScheduleInstance extends BunqModel
             $customHeaders
         );
 
-        return BunqResponseInt::castFromBunqResponse(
-            static::processForId($responseRaw)
+        return BunqResponseScheduleInstance::castFromBunqResponse(
+            static::fromJson($responseRaw, self::OBJECT_TYPE)
         );
     }
 
@@ -235,9 +237,9 @@ class ScheduleInstance extends BunqModel
     }
 
     /**
-     * The scheduled object.
+     * The scheduled object. (Payment, PaymentBatch)
      *
-     * @return BunqModel
+     * @return ScheduleAnchorObject
      */
     public function getScheduledObject()
     {
@@ -245,7 +247,7 @@ class ScheduleInstance extends BunqModel
     }
 
     /**
-     * @param BunqModel $scheduledObject
+     * @param ScheduleAnchorObject $scheduledObject
      */
     public function setScheduledObject($scheduledObject)
     {
@@ -253,9 +255,9 @@ class ScheduleInstance extends BunqModel
     }
 
     /**
-     * The result object of this schedule instance. (payment, payment batch)
+     * The result object of this schedule instance. (Payment, PaymentBatch)
      *
-     * @return BunqModel
+     * @return ScheduleInstanceAnchorObject
      */
     public function getResultObject()
     {
@@ -263,7 +265,7 @@ class ScheduleInstance extends BunqModel
     }
 
     /**
-     * @param BunqModel $resultObject
+     * @param ScheduleInstanceAnchorObject $resultObject
      */
     public function setResultObject($resultObject)
     {

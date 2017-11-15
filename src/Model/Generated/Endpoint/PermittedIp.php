@@ -15,18 +15,18 @@ use bunq\Model\Core\BunqModel;
 class PermittedIp extends BunqModel
 {
     /**
-     * Field constants.
-     */
-    const FIELD_IP = 'ip';
-    const FIELD_STATUS = 'status';
-
-    /**
      * Endpoint constants.
      */
     const ENDPOINT_URL_READ = 'user/%s/credential-password-ip/%s/ip/%s';
     const ENDPOINT_URL_CREATE = 'user/%s/credential-password-ip/%s/ip';
     const ENDPOINT_URL_LISTING = 'user/%s/credential-password-ip/%s/ip';
     const ENDPOINT_URL_UPDATE = 'user/%s/credential-password-ip/%s/ip/%s';
+
+    /**
+     * Field constants.
+     */
+    const FIELD_IP = 'ip';
+    const FIELD_STATUS = 'status';
 
     /**
      * Object type.

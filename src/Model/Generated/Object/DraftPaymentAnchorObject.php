@@ -1,6 +1,7 @@
 <?php
 namespace bunq\Model\Generated\Object;
 
+use bunq\exception\BunqException;
 use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Endpoint\Payment;
 use bunq\Model\Generated\Endpoint\PaymentBatch;
@@ -10,6 +11,11 @@ use bunq\Model\Generated\Endpoint\PaymentBatch;
  */
 class DraftPaymentAnchorObject extends BunqModel
 {
+    /**
+     * Error constants.
+     */
+    const ERROR_NULL_FIELDS = 'All fields of an extended model or object are null.';
+
     /**
      * @var Payment
      */
@@ -50,5 +56,22 @@ class DraftPaymentAnchorObject extends BunqModel
     public function setPaymentBatch($paymentBatch)
     {
         $this->paymentBatch = $paymentBatch;
+    }
+
+    /**
+     * @return BunqModel
+     * @throws BunqException
+     */
+    public function getReferencedObject()
+    {
+        if (!is_null($this->payment)) {
+            return $this->payment;
+        }
+
+        if (!is_null($this->paymentBatch)) {
+            return $this->paymentBatch;
+        }
+
+        throw new BunqException(self::ERROR_NULL_FIELDS);
     }
 }

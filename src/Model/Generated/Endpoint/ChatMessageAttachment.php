@@ -14,15 +14,15 @@ use bunq\Model\Core\BunqModel;
 class ChatMessageAttachment extends BunqModel
 {
     /**
+     * Endpoint constants.
+     */
+    const ENDPOINT_URL_CREATE = 'user/%s/chat-conversation/%s/message-attachment';
+
+    /**
      * Field constants.
      */
     const FIELD_CLIENT_MESSAGE_UUID = 'client_message_uuid';
     const FIELD_ATTACHMENT = 'attachment';
-
-    /**
-     * Endpoint constants.
-     */
-    const ENDPOINT_URL_CREATE = 'user/%s/chat-conversation/%s/message-attachment';
 
     /**
      * Object type.

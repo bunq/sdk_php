@@ -25,6 +25,14 @@ use bunq\Model\Generated\Object\Pointer;
 class MonetaryAccountBank extends BunqModel
 {
     /**
+     * Endpoint constants.
+     */
+    const ENDPOINT_URL_CREATE = 'user/%s/monetary-account-bank';
+    const ENDPOINT_URL_READ = 'user/%s/monetary-account-bank/%s';
+    const ENDPOINT_URL_UPDATE = 'user/%s/monetary-account-bank/%s';
+    const ENDPOINT_URL_LISTING = 'user/%s/monetary-account-bank';
+
+    /**
      * Field constants.
      */
     const FIELD_CURRENCY = 'currency';
@@ -40,14 +48,6 @@ class MonetaryAccountBank extends BunqModel
     const FIELD_SHARE = 'share';
     const FIELD_NOTIFICATION_FILTERS = 'notification_filters';
     const FIELD_SETTING = 'setting';
-
-    /**
-     * Endpoint constants.
-     */
-    const ENDPOINT_URL_CREATE = 'user/%s/monetary-account-bank';
-    const ENDPOINT_URL_READ = 'user/%s/monetary-account-bank/%s';
-    const ENDPOINT_URL_UPDATE = 'user/%s/monetary-account-bank/%s';
-    const ENDPOINT_URL_LISTING = 'user/%s/monetary-account-bank';
 
     /**
      * Object type.

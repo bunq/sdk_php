@@ -24,6 +24,12 @@ use bunq\Model\Generated\Object\Ubo;
 class UserCompany extends BunqModel
 {
     /**
+     * Endpoint constants.
+     */
+    const ENDPOINT_URL_READ = 'user-company/%s';
+    const ENDPOINT_URL_UPDATE = 'user-company/%s';
+
+    /**
      * Field constants.
      */
     const FIELD_NAME = 'name';
@@ -42,12 +48,6 @@ class UserCompany extends BunqModel
     const FIELD_DAILY_LIMIT_WITHOUT_CONFIRMATION_LOGIN = 'daily_limit_without_confirmation_login';
     const FIELD_COUNTER_BANK_IBAN = 'counter_bank_iban';
     const FIELD_NOTIFICATION_FILTERS = 'notification_filters';
-
-    /**
-     * Endpoint constants.
-     */
-    const ENDPOINT_URL_READ = 'user-company/%s';
-    const ENDPOINT_URL_UPDATE = 'user-company/%s';
 
     /**
      * Object type.

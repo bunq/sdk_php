@@ -20,22 +20,23 @@ use bunq\Model\Generated\Object\ShareDetail;
 class ShareInviteBankInquiry extends BunqModel
 {
     /**
-     * Field constants.
-     */
-    const FIELD_COUNTER_USER_ALIAS = 'counter_user_alias';
-    const FIELD_DRAFT_SHARE_INVITE_BANK_ID = 'draft_share_invite_bank_id';
-    const FIELD_SHARE_DETAIL = 'share_detail';
-    const FIELD_STATUS = 'status';
-    const FIELD_START_DATE = 'start_date';
-    const FIELD_END_DATE = 'end_date';
-
-    /**
      * Endpoint constants.
      */
     const ENDPOINT_URL_CREATE = 'user/%s/monetary-account/%s/share-invite-bank-inquiry';
     const ENDPOINT_URL_READ = 'user/%s/monetary-account/%s/share-invite-bank-inquiry/%s';
     const ENDPOINT_URL_UPDATE = 'user/%s/monetary-account/%s/share-invite-bank-inquiry/%s';
     const ENDPOINT_URL_LISTING = 'user/%s/monetary-account/%s/share-invite-bank-inquiry';
+
+    /**
+     * Field constants.
+     */
+    const FIELD_COUNTER_USER_ALIAS = 'counter_user_alias';
+    const FIELD_DRAFT_SHARE_INVITE_BANK_ID = 'draft_share_invite_bank_id';
+    const FIELD_SHARE_DETAIL = 'share_detail';
+    const FIELD_STATUS = 'status';
+    const FIELD_SHARE_TYPE = 'share_type';
+    const FIELD_START_DATE = 'start_date';
+    const FIELD_END_DATE = 'end_date';
 
     /**
      * Object type.
@@ -93,12 +94,20 @@ class ShareInviteBankInquiry extends BunqModel
 
     /**
      * The status of the share. Can be PENDING, REVOKED (the user deletes the
-     * share inquiry before it's accepted) or CANCELLED (the user deletes an
-     * active share).
+     * share inquiry before it's accepted), ACCEPTED, CANCELLED (the user
+     * deletes an active share) or CANCELLATION_PENDING, CANCELLATION_ACCEPTED,
+     * CANCELLATION_REJECTED (for canceling mutual connects)
      *
      * @var string
      */
     protected $status;
+
+    /**
+     * The share type, either STANDARD or MUTUAL.
+     *
+     * @var string
+     */
+    protected $shareType;
 
     /**
      * The start date of this share.
@@ -369,8 +378,9 @@ class ShareInviteBankInquiry extends BunqModel
 
     /**
      * The status of the share. Can be PENDING, REVOKED (the user deletes the
-     * share inquiry before it's accepted) or CANCELLED (the user deletes an
-     * active share).
+     * share inquiry before it's accepted), ACCEPTED, CANCELLED (the user
+     * deletes an active share) or CANCELLATION_PENDING, CANCELLATION_ACCEPTED,
+     * CANCELLATION_REJECTED (for canceling mutual connects)
      *
      * @return string
      */
@@ -385,6 +395,24 @@ class ShareInviteBankInquiry extends BunqModel
     public function setStatus($status)
     {
         $this->status = $status;
+    }
+
+    /**
+     * The share type, either STANDARD or MUTUAL.
+     *
+     * @return string
+     */
+    public function getShareType()
+    {
+        return $this->shareType;
+    }
+
+    /**
+     * @param string $shareType
+     */
+    public function setShareType($shareType)
+    {
+        $this->shareType = $shareType;
     }
 
     /**

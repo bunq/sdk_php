@@ -16,15 +16,15 @@ use bunq\Model\Generated\Object\LabelMonetaryAccount;
 class PromotionDisplay extends BunqModel
 {
     /**
-     * Field constants.
-     */
-    const FIELD_STATUS = 'status';
-
-    /**
      * Endpoint constants.
      */
     const ENDPOINT_URL_READ = 'user/%s/promotion-display/%s';
     const ENDPOINT_URL_UPDATE = 'user/%s/promotion-display/%s';
+
+    /**
+     * Field constants.
+     */
+    const FIELD_STATUS = 'status';
 
     /**
      * Object type.

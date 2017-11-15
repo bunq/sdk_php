@@ -17,17 +17,17 @@ use bunq\Model\Core\BunqModel;
 class CashRegisterQrCode extends BunqModel
 {
     /**
-     * Field constants.
-     */
-    const FIELD_STATUS = 'status';
-
-    /**
      * Endpoint constants.
      */
     const ENDPOINT_URL_CREATE = 'user/%s/monetary-account/%s/cash-register/%s/qr-code';
     const ENDPOINT_URL_UPDATE = 'user/%s/monetary-account/%s/cash-register/%s/qr-code/%s';
     const ENDPOINT_URL_READ = 'user/%s/monetary-account/%s/cash-register/%s/qr-code/%s';
     const ENDPOINT_URL_LISTING = 'user/%s/monetary-account/%s/cash-register/%s/qr-code';
+
+    /**
+     * Field constants.
+     */
+    const FIELD_STATUS = 'status';
 
     /**
      * Object type.

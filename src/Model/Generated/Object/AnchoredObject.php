@@ -1,6 +1,7 @@
 <?php
 namespace bunq\Model\Generated\Object;
 
+use bunq\exception\BunqException;
 use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Endpoint\CardDebit;
 use bunq\Model\Generated\Endpoint\CardPinChange;
@@ -26,6 +27,11 @@ use bunq\Model\Generated\Endpoint\UserCredentialPasswordIp;
  */
 class AnchoredObject extends BunqModel
 {
+    /**
+     * Error constants.
+     */
+    const ERROR_NULL_FIELDS = 'All fields of an extended model or object are null.';
+
     /**
      * @var CardDebit
      */
@@ -402,5 +408,86 @@ class AnchoredObject extends BunqModel
     public function setUserCredentialPasswordIp($userCredentialPasswordIp)
     {
         $this->userCredentialPasswordIp = $userCredentialPasswordIp;
+    }
+
+    /**
+     * @return BunqModel
+     * @throws BunqException
+     */
+    public function getReferencedObject()
+    {
+        if (!is_null($this->cardDebit)) {
+            return $this->cardDebit;
+        }
+
+        if (!is_null($this->cardPinChange)) {
+            return $this->cardPinChange;
+        }
+
+        if (!is_null($this->cardResult)) {
+            return $this->cardResult;
+        }
+
+        if (!is_null($this->draftPayment)) {
+            return $this->draftPayment;
+        }
+
+        if (!is_null($this->idealMerchantTransaction)) {
+            return $this->idealMerchantTransaction;
+        }
+
+        if (!is_null($this->invoice)) {
+            return $this->invoice;
+        }
+
+        if (!is_null($this->payment)) {
+            return $this->payment;
+        }
+
+        if (!is_null($this->paymentBatch)) {
+            return $this->paymentBatch;
+        }
+
+        if (!is_null($this->promotionDisplay)) {
+            return $this->promotionDisplay;
+        }
+
+        if (!is_null($this->requestInquiryBatch)) {
+            return $this->requestInquiryBatch;
+        }
+
+        if (!is_null($this->requestInquiry)) {
+            return $this->requestInquiry;
+        }
+
+        if (!is_null($this->requestResponse)) {
+            return $this->requestResponse;
+        }
+
+        if (!is_null($this->scheduledPaymentBatch)) {
+            return $this->scheduledPaymentBatch;
+        }
+
+        if (!is_null($this->scheduledPayment)) {
+            return $this->scheduledPayment;
+        }
+
+        if (!is_null($this->scheduledInstance)) {
+            return $this->scheduledInstance;
+        }
+
+        if (!is_null($this->shareInviteBankInquiry)) {
+            return $this->shareInviteBankInquiry;
+        }
+
+        if (!is_null($this->shareInviteBankResponse)) {
+            return $this->shareInviteBankResponse;
+        }
+
+        if (!is_null($this->userCredentialPasswordIp)) {
+            return $this->userCredentialPasswordIp;
+        }
+
+        throw new BunqException(self::ERROR_NULL_FIELDS);
     }
 }
