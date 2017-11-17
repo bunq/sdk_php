@@ -125,11 +125,15 @@ abstract class BunqModel implements JsonSerializable
     /**
      * @param mixed[] $responseArray
      * @param string $wrapper
+     * @param int $depthCounter
      *
      * @return BunqModel|null
      */
-    protected static function createFromResponseArray(array $responseArray, string $wrapper = null)
-    {
+    protected static function createFromResponseArray(
+        array $responseArray,
+        string $wrapper = null,
+        int $depthCounter = null
+    ) {
         if (is_string($wrapper)) {
             $responseArray = $responseArray[$wrapper];
         }
