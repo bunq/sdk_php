@@ -87,9 +87,9 @@ abstract class BunqModel implements JsonSerializable
     /**
      * @param string $json
      *
-     * @return BunqModel
+     * @return static
      */
-    public static function createFromJsonString(string $json): BunqModel
+    public static function createFromJsonString(string $json)
     {
         $responseArray = ModelUtil::deserializeResponseArray($json);
 
