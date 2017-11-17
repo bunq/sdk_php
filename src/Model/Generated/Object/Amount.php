@@ -67,4 +67,20 @@ class Amount extends BunqModel
     {
         $this->currency = $currency;
     }
+
+    /**
+     * @return bool
+     */
+    public function areAllFieldsNull()
+    {
+        if (!is_null($this->value)) {
+            return false;
+        }
+
+        if (!is_null($this->currency)) {
+            return false;
+        }
+
+        return true;
+    }
 }

@@ -182,4 +182,40 @@ class InvoiceItemGroup extends BunqModel
     {
         $this->item = $item;
     }
+
+    /**
+     * @return bool
+     */
+    public function areAllFieldsNull()
+    {
+        if (!is_null($this->type)) {
+            return false;
+        }
+
+        if (!is_null($this->typeDescription)) {
+            return false;
+        }
+
+        if (!is_null($this->typeDescriptionTranslated)) {
+            return false;
+        }
+
+        if (!is_null($this->instanceDescription)) {
+            return false;
+        }
+
+        if (!is_null($this->productVatExclusive)) {
+            return false;
+        }
+
+        if (!is_null($this->productVatInclusive)) {
+            return false;
+        }
+
+        if (!is_null($this->item)) {
+            return false;
+        }
+
+        return true;
+    }
 }

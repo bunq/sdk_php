@@ -32,4 +32,16 @@ class ChatMessageContentText extends BunqModel
     {
         $this->text = $text;
     }
+
+    /**
+     * @return bool
+     */
+    public function areAllFieldsNull()
+    {
+        if (!is_null($this->text)) {
+            return false;
+        }
+
+        return true;
+    }
 }

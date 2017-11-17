@@ -272,4 +272,36 @@ class DeviceServer extends BunqModel
     {
         $this->status = $status;
     }
+
+    /**
+     * @return bool
+     */
+    public function areAllFieldsNull()
+    {
+        if (!is_null($this->id)) {
+            return false;
+        }
+
+        if (!is_null($this->created)) {
+            return false;
+        }
+
+        if (!is_null($this->updated)) {
+            return false;
+        }
+
+        if (!is_null($this->description)) {
+            return false;
+        }
+
+        if (!is_null($this->ip)) {
+            return false;
+        }
+
+        if (!is_null($this->status)) {
+            return false;
+        }
+
+        return true;
+    }
 }

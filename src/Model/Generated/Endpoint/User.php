@@ -169,4 +169,24 @@ class User extends BunqModel
 
         throw new BunqException(self::ERROR_NULL_FIELDS);
     }
+
+    /**
+     * @return bool
+     */
+    public function areAllFieldsNull()
+    {
+        if (!is_null($this->userLight)) {
+            return false;
+        }
+
+        if (!is_null($this->userPerson)) {
+            return false;
+        }
+
+        if (!is_null($this->userCompany)) {
+            return false;
+        }
+
+        return true;
+    }
 }

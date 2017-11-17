@@ -208,4 +208,28 @@ class Customer extends BunqModel
     {
         $this->billingAccountId = $billingAccountId;
     }
+
+    /**
+     * @return bool
+     */
+    public function areAllFieldsNull()
+    {
+        if (!is_null($this->id)) {
+            return false;
+        }
+
+        if (!is_null($this->created)) {
+            return false;
+        }
+
+        if (!is_null($this->updated)) {
+            return false;
+        }
+
+        if (!is_null($this->billingAccountId)) {
+            return false;
+        }
+
+        return true;
+    }
 }

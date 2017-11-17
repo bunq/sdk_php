@@ -583,4 +583,92 @@ class CardDebit extends BunqModel
     {
         $this->country = $country;
     }
+
+    /**
+     * @return bool
+     */
+    public function areAllFieldsNull()
+    {
+        if (!is_null($this->id)) {
+            return false;
+        }
+
+        if (!is_null($this->created)) {
+            return false;
+        }
+
+        if (!is_null($this->updated)) {
+            return false;
+        }
+
+        if (!is_null($this->publicUuid)) {
+            return false;
+        }
+
+        if (!is_null($this->type)) {
+            return false;
+        }
+
+        if (!is_null($this->subType)) {
+            return false;
+        }
+
+        if (!is_null($this->secondLine)) {
+            return false;
+        }
+
+        if (!is_null($this->nameOnCard)) {
+            return false;
+        }
+
+        if (!is_null($this->primaryAccountNumberFourDigit)) {
+            return false;
+        }
+
+        if (!is_null($this->status)) {
+            return false;
+        }
+
+        if (!is_null($this->orderStatus)) {
+            return false;
+        }
+
+        if (!is_null($this->expiryDate)) {
+            return false;
+        }
+
+        if (!is_null($this->limit)) {
+            return false;
+        }
+
+        if (!is_null($this->countryPermission)) {
+            return false;
+        }
+
+        if (!is_null($this->labelMonetaryAccountOrdered)) {
+            return false;
+        }
+
+        if (!is_null($this->labelMonetaryAccountCurrent)) {
+            return false;
+        }
+
+        if (!is_null($this->alias)) {
+            return false;
+        }
+
+        if (!is_null($this->pinCodeAssignment)) {
+            return false;
+        }
+
+        if (!is_null($this->monetaryAccountIdFallback)) {
+            return false;
+        }
+
+        if (!is_null($this->country)) {
+            return false;
+        }
+
+        return true;
+    }
 }

@@ -92,4 +92,24 @@ class Pointer extends BunqModel
     {
         $this->name = $name;
     }
+
+    /**
+     * @return bool
+     */
+    public function areAllFieldsNull()
+    {
+        if (!is_null($this->type)) {
+            return false;
+        }
+
+        if (!is_null($this->value)) {
+            return false;
+        }
+
+        if (!is_null($this->name)) {
+            return false;
+        }
+
+        return true;
+    }
 }

@@ -32,4 +32,16 @@ class CardMagStripePermission extends BunqModel
     {
         $this->expiryTime = $expiryTime;
     }
+
+    /**
+     * @return bool
+     */
+    public function areAllFieldsNull()
+    {
+        if (!is_null($this->expiryTime)) {
+            return false;
+        }
+
+        return true;
+    }
 }

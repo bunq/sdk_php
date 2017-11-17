@@ -59,4 +59,20 @@ class BudgetRestriction extends BunqModel
     {
         $this->frequency = $frequency;
     }
+
+    /**
+     * @return bool
+     */
+    public function areAllFieldsNull()
+    {
+        if (!is_null($this->amount)) {
+            return false;
+        }
+
+        if (!is_null($this->frequency)) {
+            return false;
+        }
+
+        return true;
+    }
 }

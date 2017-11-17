@@ -491,4 +491,76 @@ class Invoice extends BunqModel
     {
         $this->vatNumber = $vatNumber;
     }
+
+    /**
+     * @return bool
+     */
+    public function areAllFieldsNull()
+    {
+        if (!is_null($this->id)) {
+            return false;
+        }
+
+        if (!is_null($this->created)) {
+            return false;
+        }
+
+        if (!is_null($this->updated)) {
+            return false;
+        }
+
+        if (!is_null($this->invoiceDate)) {
+            return false;
+        }
+
+        if (!is_null($this->invoiceNumber)) {
+            return false;
+        }
+
+        if (!is_null($this->status)) {
+            return false;
+        }
+
+        if (!is_null($this->group)) {
+            return false;
+        }
+
+        if (!is_null($this->totalVatInclusive)) {
+            return false;
+        }
+
+        if (!is_null($this->totalVatExclusive)) {
+            return false;
+        }
+
+        if (!is_null($this->totalVat)) {
+            return false;
+        }
+
+        if (!is_null($this->alias)) {
+            return false;
+        }
+
+        if (!is_null($this->address)) {
+            return false;
+        }
+
+        if (!is_null($this->counterpartyAlias)) {
+            return false;
+        }
+
+        if (!is_null($this->counterpartyAddress)) {
+            return false;
+        }
+
+        if (!is_null($this->chamberOfCommerceNumber)) {
+            return false;
+        }
+
+        if (!is_null($this->vatNumber)) {
+            return false;
+        }
+
+        return true;
+    }
 }

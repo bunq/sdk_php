@@ -59,4 +59,20 @@ class ChatMessageContentStatusMembership extends BunqModel
     {
         $this->member = $member;
     }
+
+    /**
+     * @return bool
+     */
+    public function areAllFieldsNull()
+    {
+        if (!is_null($this->action)) {
+            return false;
+        }
+
+        if (!is_null($this->member)) {
+            return false;
+        }
+
+        return true;
+    }
 }

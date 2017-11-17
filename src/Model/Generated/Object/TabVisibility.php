@@ -94,4 +94,24 @@ class TabVisibility extends BunqModel
     {
         $this->location = $location;
     }
+
+    /**
+     * @return bool
+     */
+    public function areAllFieldsNull()
+    {
+        if (!is_null($this->cashRegisterQrCode)) {
+            return false;
+        }
+
+        if (!is_null($this->tabQrCode)) {
+            return false;
+        }
+
+        if (!is_null($this->location)) {
+            return false;
+        }
+
+        return true;
+    }
 }

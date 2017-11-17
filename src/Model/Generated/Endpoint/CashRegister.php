@@ -397,4 +397,48 @@ class CashRegister extends BunqModel
     {
         $this->tabTextWaitingScreen = $tabTextWaitingScreen;
     }
+
+    /**
+     * @return bool
+     */
+    public function areAllFieldsNull()
+    {
+        if (!is_null($this->id)) {
+            return false;
+        }
+
+        if (!is_null($this->created)) {
+            return false;
+        }
+
+        if (!is_null($this->updated)) {
+            return false;
+        }
+
+        if (!is_null($this->name)) {
+            return false;
+        }
+
+        if (!is_null($this->status)) {
+            return false;
+        }
+
+        if (!is_null($this->avatar)) {
+            return false;
+        }
+
+        if (!is_null($this->location)) {
+            return false;
+        }
+
+        if (!is_null($this->notificationFilters)) {
+            return false;
+        }
+
+        if (!is_null($this->tabTextWaitingScreen)) {
+            return false;
+        }
+
+        return true;
+    }
 }

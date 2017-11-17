@@ -845,4 +845,128 @@ class UserCompany extends BunqModel
     {
         $this->billingContract = $billingContract;
     }
+
+    /**
+     * @return bool
+     */
+    public function areAllFieldsNull()
+    {
+        if (!is_null($this->id)) {
+            return false;
+        }
+
+        if (!is_null($this->created)) {
+            return false;
+        }
+
+        if (!is_null($this->updated)) {
+            return false;
+        }
+
+        if (!is_null($this->publicUuid)) {
+            return false;
+        }
+
+        if (!is_null($this->name)) {
+            return false;
+        }
+
+        if (!is_null($this->displayName)) {
+            return false;
+        }
+
+        if (!is_null($this->publicNickName)) {
+            return false;
+        }
+
+        if (!is_null($this->alias)) {
+            return false;
+        }
+
+        if (!is_null($this->chamberOfCommerceNumber)) {
+            return false;
+        }
+
+        if (!is_null($this->typeOfBusinessEntity)) {
+            return false;
+        }
+
+        if (!is_null($this->sectorOfIndustry)) {
+            return false;
+        }
+
+        if (!is_null($this->counterBankIban)) {
+            return false;
+        }
+
+        if (!is_null($this->avatar)) {
+            return false;
+        }
+
+        if (!is_null($this->addressMain)) {
+            return false;
+        }
+
+        if (!is_null($this->addressPostal)) {
+            return false;
+        }
+
+        if (!is_null($this->versionTermsOfService)) {
+            return false;
+        }
+
+        if (!is_null($this->directorAlias)) {
+            return false;
+        }
+
+        if (!is_null($this->language)) {
+            return false;
+        }
+
+        if (!is_null($this->country)) {
+            return false;
+        }
+
+        if (!is_null($this->region)) {
+            return false;
+        }
+
+        if (!is_null($this->ubo)) {
+            return false;
+        }
+
+        if (!is_null($this->status)) {
+            return false;
+        }
+
+        if (!is_null($this->subStatus)) {
+            return false;
+        }
+
+        if (!is_null($this->sessionTimeout)) {
+            return false;
+        }
+
+        if (!is_null($this->dailyLimitWithoutConfirmationLogin)) {
+            return false;
+        }
+
+        if (!is_null($this->notificationFilters)) {
+            return false;
+        }
+
+        if (!is_null($this->customer)) {
+            return false;
+        }
+
+        if (!is_null($this->customerLimit)) {
+            return false;
+        }
+
+        if (!is_null($this->billingContract)) {
+            return false;
+        }
+
+        return true;
+    }
 }

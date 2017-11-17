@@ -43,6 +43,13 @@ abstract class BunqModel implements JsonSerializable
     const INDEX_FIRST = 0;
 
     /**
+     * Depth counter constants.
+     */
+    const DEPTH_COUNTER_BEGIN = 0;
+    const DEPTH_COUNTER_MAX = 2;
+    const DEPTH_COUNTER_INCREMENTER = 1;
+
+    /**
      * Type constants.
      */
     const SCALAR_TYPE_STRING = 'string';
@@ -98,8 +105,6 @@ abstract class BunqModel implements JsonSerializable
 
     /**
      * @return bool
-     *
-     * @throws BunqException
      */
     abstract protected function isAllFieldNull();
 
@@ -142,7 +147,7 @@ abstract class BunqModel implements JsonSerializable
             return null;
         }
 
-        if ($depthCounter === null) {
+        if (is_null($depthCounter)) {
             $depthCounter = self::DEPTH_COUNTER_BEGIN;
         }
 
@@ -157,7 +162,17 @@ abstract class BunqModel implements JsonSerializable
                     $reflectionClass = new ReflectionClass($fieldClass);
                     /** @var BunqModel $bunqModelSubClass */
                     $bunqModelSubClass = $reflectionClass->newInstanceWithoutConstructor();
-                    $model->$field = $bunqModelSubClass::createFromResponseArray($responseArray, null, $depthCounter++);
+                    $fieldContents = $bunqModelSubClass::createFromResponseArray(
+                        $responseArray,
+                        null,
+                        $depthCounter + self::DEPTH_COUNTER_INCREMENTER
+                    );
+
+                    if ($fieldContents->areAllFieldsNull()) {
+                        $model->{$field} = null;
+                    } else {
+                        $model->{$field} = $fieldContents;
+                    }
                 } catch (BunqException $exception) {
                     continue;
                 }

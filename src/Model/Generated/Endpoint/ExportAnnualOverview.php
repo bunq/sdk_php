@@ -242,4 +242,32 @@ class ExportAnnualOverview extends BunqModel
     {
         $this->aliasUser = $aliasUser;
     }
+
+    /**
+     * @return bool
+     */
+    public function areAllFieldsNull()
+    {
+        if (!is_null($this->id)) {
+            return false;
+        }
+
+        if (!is_null($this->created)) {
+            return false;
+        }
+
+        if (!is_null($this->updated)) {
+            return false;
+        }
+
+        if (!is_null($this->year)) {
+            return false;
+        }
+
+        if (!is_null($this->aliasUser)) {
+            return false;
+        }
+
+        return true;
+    }
 }

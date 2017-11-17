@@ -57,4 +57,12 @@ class ScheduleUser extends BunqModel
             static::fromJsonList($responseRaw, self::OBJECT_TYPE)
         );
     }
+
+    /**
+     * @return bool
+     */
+    public function areAllFieldsNull()
+    {
+        return true;
+    }
 }

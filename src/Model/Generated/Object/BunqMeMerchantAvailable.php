@@ -57,4 +57,20 @@ class BunqMeMerchantAvailable extends BunqModel
     {
         $this->available = $available;
     }
+
+    /**
+     * @return bool
+     */
+    public function areAllFieldsNull()
+    {
+        if (!is_null($this->merchantType)) {
+            return false;
+        }
+
+        if (!is_null($this->available)) {
+            return false;
+        }
+
+        return true;
+    }
 }

@@ -151,4 +151,28 @@ class TabAttachmentTab extends BunqModel
     {
         $this->attachment = $attachment;
     }
+
+    /**
+     * @return bool
+     */
+    public function areAllFieldsNull()
+    {
+        if (!is_null($this->id)) {
+            return false;
+        }
+
+        if (!is_null($this->created)) {
+            return false;
+        }
+
+        if (!is_null($this->updated)) {
+            return false;
+        }
+
+        if (!is_null($this->attachment)) {
+            return false;
+        }
+
+        return true;
+    }
 }

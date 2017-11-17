@@ -67,4 +67,20 @@ class TabTextWaitingScreen extends BunqModel
     {
         $this->description = $description;
     }
+
+    /**
+     * @return bool
+     */
+    public function areAllFieldsNull()
+    {
+        if (!is_null($this->language)) {
+            return false;
+        }
+
+        if (!is_null($this->description)) {
+            return false;
+        }
+
+        return true;
+    }
 }

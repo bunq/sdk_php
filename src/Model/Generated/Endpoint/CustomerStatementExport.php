@@ -391,4 +391,52 @@ class CustomerStatementExport extends BunqModel
     {
         $this->aliasMonetaryAccount = $aliasMonetaryAccount;
     }
+
+    /**
+     * @return bool
+     */
+    public function areAllFieldsNull()
+    {
+        if (!is_null($this->id)) {
+            return false;
+        }
+
+        if (!is_null($this->created)) {
+            return false;
+        }
+
+        if (!is_null($this->updated)) {
+            return false;
+        }
+
+        if (!is_null($this->dateStart)) {
+            return false;
+        }
+
+        if (!is_null($this->dateEnd)) {
+            return false;
+        }
+
+        if (!is_null($this->status)) {
+            return false;
+        }
+
+        if (!is_null($this->statementNumber)) {
+            return false;
+        }
+
+        if (!is_null($this->statementFormat)) {
+            return false;
+        }
+
+        if (!is_null($this->regionalFormat)) {
+            return false;
+        }
+
+        if (!is_null($this->aliasMonetaryAccount)) {
+            return false;
+        }
+
+        return true;
+    }
 }

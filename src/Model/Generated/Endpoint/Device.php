@@ -120,4 +120,16 @@ class Device extends BunqModel
 
         throw new BunqException(self::ERROR_NULL_FIELDS);
     }
+
+    /**
+     * @return bool
+     */
+    public function areAllFieldsNull()
+    {
+        if (!is_null($this->deviceServer)) {
+            return false;
+        }
+
+        return true;
+    }
 }

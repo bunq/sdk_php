@@ -17,4 +17,16 @@ class Uuid extends BunqModel
     {
         return $this->uuid;
     }
+
+    /**
+     * @return bool
+     */
+    protected function areAllFieldsNull()
+    {
+        if (!is_null($this->uuid)) {
+            return false;
+        }
+
+        return true;
+    }
 }

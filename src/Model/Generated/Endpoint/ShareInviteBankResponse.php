@@ -379,4 +379,52 @@ class ShareInviteBankResponse extends BunqModel
     {
         $this->description = $description;
     }
+
+    /**
+     * @return bool
+     */
+    public function areAllFieldsNull()
+    {
+        if (!is_null($this->counterAlias)) {
+            return false;
+        }
+
+        if (!is_null($this->userAliasCancelled)) {
+            return false;
+        }
+
+        if (!is_null($this->monetaryAccountId)) {
+            return false;
+        }
+
+        if (!is_null($this->draftShareInviteBankId)) {
+            return false;
+        }
+
+        if (!is_null($this->shareDetail)) {
+            return false;
+        }
+
+        if (!is_null($this->status)) {
+            return false;
+        }
+
+        if (!is_null($this->shareType)) {
+            return false;
+        }
+
+        if (!is_null($this->startDate)) {
+            return false;
+        }
+
+        if (!is_null($this->endDate)) {
+            return false;
+        }
+
+        if (!is_null($this->description)) {
+            return false;
+        }
+
+        return true;
+    }
 }

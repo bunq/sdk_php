@@ -666,4 +666,104 @@ class MasterCardAction extends BunqModel
     {
         $this->eligibleWhitelistId = $eligibleWhitelistId;
     }
+
+    /**
+     * @return bool
+     */
+    public function areAllFieldsNull()
+    {
+        if (!is_null($this->monetaryAccountId)) {
+            return false;
+        }
+
+        if (!is_null($this->cardId)) {
+            return false;
+        }
+
+        if (!is_null($this->amountLocal)) {
+            return false;
+        }
+
+        if (!is_null($this->amountBilling)) {
+            return false;
+        }
+
+        if (!is_null($this->amountOriginalLocal)) {
+            return false;
+        }
+
+        if (!is_null($this->amountOriginalBilling)) {
+            return false;
+        }
+
+        if (!is_null($this->amountFee)) {
+            return false;
+        }
+
+        if (!is_null($this->decision)) {
+            return false;
+        }
+
+        if (!is_null($this->decisionDescription)) {
+            return false;
+        }
+
+        if (!is_null($this->decisionDescriptionTranslated)) {
+            return false;
+        }
+
+        if (!is_null($this->description)) {
+            return false;
+        }
+
+        if (!is_null($this->authorisationStatus)) {
+            return false;
+        }
+
+        if (!is_null($this->authorisationType)) {
+            return false;
+        }
+
+        if (!is_null($this->panEntryModeUser)) {
+            return false;
+        }
+
+        if (!is_null($this->city)) {
+            return false;
+        }
+
+        if (!is_null($this->alias)) {
+            return false;
+        }
+
+        if (!is_null($this->counterpartyAlias)) {
+            return false;
+        }
+
+        if (!is_null($this->labelCard)) {
+            return false;
+        }
+
+        if (!is_null($this->tokenStatus)) {
+            return false;
+        }
+
+        if (!is_null($this->reservationExpiryTime)) {
+            return false;
+        }
+
+        if (!is_null($this->appliedLimit)) {
+            return false;
+        }
+
+        if (!is_null($this->allowChat)) {
+            return false;
+        }
+
+        if (!is_null($this->eligibleWhitelistId)) {
+            return false;
+        }
+
+        return true;
+    }
 }

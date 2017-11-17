@@ -234,4 +234,44 @@ class DraftPaymentEntry extends BunqModel
     {
         $this->attachment = $attachment;
     }
+
+    /**
+     * @return bool
+     */
+    public function areAllFieldsNull()
+    {
+        if (!is_null($this->id)) {
+            return false;
+        }
+
+        if (!is_null($this->amount)) {
+            return false;
+        }
+
+        if (!is_null($this->alias)) {
+            return false;
+        }
+
+        if (!is_null($this->counterpartyAlias)) {
+            return false;
+        }
+
+        if (!is_null($this->description)) {
+            return false;
+        }
+
+        if (!is_null($this->merchantReference)) {
+            return false;
+        }
+
+        if (!is_null($this->type)) {
+            return false;
+        }
+
+        if (!is_null($this->attachment)) {
+            return false;
+        }
+
+        return true;
+    }
 }

@@ -155,4 +155,20 @@ class Tab extends BunqModel
 
         throw new BunqException(self::ERROR_NULL_FIELDS);
     }
+
+    /**
+     * @return bool
+     */
+    public function areAllFieldsNull()
+    {
+        if (!is_null($this->tabUsageSingle)) {
+            return false;
+        }
+
+        if (!is_null($this->tabUsageMultiple)) {
+            return false;
+        }
+
+        return true;
+    }
 }

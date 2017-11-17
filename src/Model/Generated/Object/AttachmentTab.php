@@ -82,4 +82,24 @@ class AttachmentTab extends BunqModel
     {
         $this->contentType = $contentType;
     }
+
+    /**
+     * @return bool
+     */
+    public function areAllFieldsNull()
+    {
+        if (!is_null($this->id)) {
+            return false;
+        }
+
+        if (!is_null($this->description)) {
+            return false;
+        }
+
+        if (!is_null($this->contentType)) {
+            return false;
+        }
+
+        return true;
+    }
 }

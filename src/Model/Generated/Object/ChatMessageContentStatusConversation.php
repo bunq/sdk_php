@@ -32,4 +32,16 @@ class ChatMessageContentStatusConversation extends BunqModel
     {
         $this->action = $action;
     }
+
+    /**
+     * @return bool
+     */
+    public function areAllFieldsNull()
+    {
+        if (!is_null($this->action)) {
+            return false;
+        }
+
+        return true;
+    }
 }

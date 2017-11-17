@@ -32,4 +32,16 @@ class ChatMessageContentGeolocation extends BunqModel
     {
         $this->geolocation = $geolocation;
     }
+
+    /**
+     * @return bool
+     */
+    public function areAllFieldsNull()
+    {
+        if (!is_null($this->geolocation)) {
+            return false;
+        }
+
+        return true;
+    }
 }

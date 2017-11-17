@@ -55,4 +55,12 @@ class ShareInviteBankAmountUsed extends BunqModel
             new BunqResponse(null, $responseRaw->getHeaders())
         );
     }
+
+    /**
+     * @return bool
+     */
+    public function areAllFieldsNull()
+    {
+        return true;
+    }
 }

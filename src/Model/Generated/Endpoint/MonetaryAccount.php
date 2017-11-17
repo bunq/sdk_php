@@ -124,4 +124,16 @@ class MonetaryAccount extends BunqModel
 
         throw new BunqException(self::ERROR_NULL_FIELDS);
     }
+
+    /**
+     * @return bool
+     */
+    public function areAllFieldsNull()
+    {
+        if (!is_null($this->monetaryAccountBank)) {
+            return false;
+        }
+
+        return true;
+    }
 }

@@ -198,4 +198,40 @@ class Address extends BunqModel
     {
         $this->province = $province;
     }
+
+    /**
+     * @return bool
+     */
+    public function areAllFieldsNull()
+    {
+        if (!is_null($this->street)) {
+            return false;
+        }
+
+        if (!is_null($this->houseNumber)) {
+            return false;
+        }
+
+        if (!is_null($this->poBox)) {
+            return false;
+        }
+
+        if (!is_null($this->postalCode)) {
+            return false;
+        }
+
+        if (!is_null($this->city)) {
+            return false;
+        }
+
+        if (!is_null($this->country)) {
+            return false;
+        }
+
+        if (!is_null($this->province)) {
+            return false;
+        }
+
+        return true;
+    }
 }

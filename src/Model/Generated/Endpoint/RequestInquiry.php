@@ -808,4 +808,112 @@ class RequestInquiry extends BunqModel
     {
         $this->allowChat = $allowChat;
     }
+
+    /**
+     * @return bool
+     */
+    public function areAllFieldsNull()
+    {
+        if (!is_null($this->id)) {
+            return false;
+        }
+
+        if (!is_null($this->created)) {
+            return false;
+        }
+
+        if (!is_null($this->updated)) {
+            return false;
+        }
+
+        if (!is_null($this->timeResponded)) {
+            return false;
+        }
+
+        if (!is_null($this->timeExpiry)) {
+            return false;
+        }
+
+        if (!is_null($this->monetaryAccountId)) {
+            return false;
+        }
+
+        if (!is_null($this->amountInquired)) {
+            return false;
+        }
+
+        if (!is_null($this->amountResponded)) {
+            return false;
+        }
+
+        if (!is_null($this->userAliasCreated)) {
+            return false;
+        }
+
+        if (!is_null($this->userAliasRevoked)) {
+            return false;
+        }
+
+        if (!is_null($this->counterpartyAlias)) {
+            return false;
+        }
+
+        if (!is_null($this->description)) {
+            return false;
+        }
+
+        if (!is_null($this->merchantReference)) {
+            return false;
+        }
+
+        if (!is_null($this->attachment)) {
+            return false;
+        }
+
+        if (!is_null($this->status)) {
+            return false;
+        }
+
+        if (!is_null($this->batchId)) {
+            return false;
+        }
+
+        if (!is_null($this->scheduledId)) {
+            return false;
+        }
+
+        if (!is_null($this->minimumAge)) {
+            return false;
+        }
+
+        if (!is_null($this->requireAddress)) {
+            return false;
+        }
+
+        if (!is_null($this->bunqmeShareUrl)) {
+            return false;
+        }
+
+        if (!is_null($this->redirectUrl)) {
+            return false;
+        }
+
+        if (!is_null($this->addressShipping)) {
+            return false;
+        }
+
+        if (!is_null($this->addressBilling)) {
+            return false;
+        }
+
+        if (!is_null($this->geolocation)) {
+            return false;
+        }
+
+        if (!is_null($this->allowChat)) {
+            return false;
+        }
+
+        return true;
+    }
 }

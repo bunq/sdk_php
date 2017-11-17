@@ -79,4 +79,16 @@ class InstallationServerPublicKey extends BunqModel
     {
         $this->serverPublicKey = $serverPublicKey;
     }
+
+    /**
+     * @return bool
+     */
+    public function areAllFieldsNull()
+    {
+        if (!is_null($this->serverPublicKey)) {
+            return false;
+        }
+
+        return true;
+    }
 }

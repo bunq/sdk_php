@@ -255,4 +255,40 @@ class UserCredentialPasswordIp extends BunqModel
     {
         $this->permittedDevice = $permittedDevice;
     }
+
+    /**
+     * @return bool
+     */
+    public function areAllFieldsNull()
+    {
+        if (!is_null($this->id)) {
+            return false;
+        }
+
+        if (!is_null($this->created)) {
+            return false;
+        }
+
+        if (!is_null($this->updated)) {
+            return false;
+        }
+
+        if (!is_null($this->status)) {
+            return false;
+        }
+
+        if (!is_null($this->expiryTime)) {
+            return false;
+        }
+
+        if (!is_null($this->tokenValue)) {
+            return false;
+        }
+
+        if (!is_null($this->permittedDevice)) {
+            return false;
+        }
+
+        return true;
+    }
 }

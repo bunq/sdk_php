@@ -323,4 +323,40 @@ class DraftShareInviteBank extends BunqModel
     {
         $this->id = $id;
     }
+
+    /**
+     * @return bool
+     */
+    public function areAllFieldsNull()
+    {
+        if (!is_null($this->userAliasCreated)) {
+            return false;
+        }
+
+        if (!is_null($this->status)) {
+            return false;
+        }
+
+        if (!is_null($this->expiration)) {
+            return false;
+        }
+
+        if (!is_null($this->shareInviteBankResponseId)) {
+            return false;
+        }
+
+        if (!is_null($this->draftShareUrl)) {
+            return false;
+        }
+
+        if (!is_null($this->draftShareSettings)) {
+            return false;
+        }
+
+        if (!is_null($this->id)) {
+            return false;
+        }
+
+        return true;
+    }
 }

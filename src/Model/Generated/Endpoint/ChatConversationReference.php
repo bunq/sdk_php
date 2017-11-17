@@ -89,4 +89,24 @@ class ChatConversationReference extends BunqModel
     {
         $this->updated = $updated;
     }
+
+    /**
+     * @return bool
+     */
+    public function areAllFieldsNull()
+    {
+        if (!is_null($this->id)) {
+            return false;
+        }
+
+        if (!is_null($this->created)) {
+            return false;
+        }
+
+        if (!is_null($this->updated)) {
+            return false;
+        }
+
+        return true;
+    }
 }

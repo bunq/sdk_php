@@ -82,4 +82,24 @@ class Ubo extends BunqModel
     {
         $this->nationality = $nationality;
     }
+
+    /**
+     * @return bool
+     */
+    public function areAllFieldsNull()
+    {
+        if (!is_null($this->name)) {
+            return false;
+        }
+
+        if (!is_null($this->dateOfBirth)) {
+            return false;
+        }
+
+        if (!is_null($this->nationality)) {
+            return false;
+        }
+
+        return true;
+    }
 }

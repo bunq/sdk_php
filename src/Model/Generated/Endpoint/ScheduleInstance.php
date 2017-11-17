@@ -271,4 +271,36 @@ class ScheduleInstance extends BunqModel
     {
         $this->resultObject = $resultObject;
     }
+
+    /**
+     * @return bool
+     */
+    public function areAllFieldsNull()
+    {
+        if (!is_null($this->state)) {
+            return false;
+        }
+
+        if (!is_null($this->timeStart)) {
+            return false;
+        }
+
+        if (!is_null($this->timeEnd)) {
+            return false;
+        }
+
+        if (!is_null($this->errorMessage)) {
+            return false;
+        }
+
+        if (!is_null($this->scheduledObject)) {
+            return false;
+        }
+
+        if (!is_null($this->resultObject)) {
+            return false;
+        }
+
+        return true;
+    }
 }

@@ -143,4 +143,24 @@ class ChatMessage extends BunqModel
 
         throw new BunqException(self::ERROR_NULL_FIELDS);
     }
+
+    /**
+     * @return bool
+     */
+    public function areAllFieldsNull()
+    {
+        if (!is_null($this->chatMessageAnnouncement)) {
+            return false;
+        }
+
+        if (!is_null($this->chatMessageStatus)) {
+            return false;
+        }
+
+        if (!is_null($this->chatMessageUser)) {
+            return false;
+        }
+
+        return true;
+    }
 }

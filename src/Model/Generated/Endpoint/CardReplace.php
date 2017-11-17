@@ -87,4 +87,16 @@ class CardReplace extends BunqModel
     {
         $this->id = $id;
     }
+
+    /**
+     * @return bool
+     */
+    public function areAllFieldsNull()
+    {
+        if (!is_null($this->id)) {
+            return false;
+        }
+
+        return true;
+    }
 }

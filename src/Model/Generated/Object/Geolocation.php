@@ -107,4 +107,28 @@ class Geolocation extends BunqModel
     {
         $this->radius = $radius;
     }
+
+    /**
+     * @return bool
+     */
+    public function areAllFieldsNull()
+    {
+        if (!is_null($this->latitude)) {
+            return false;
+        }
+
+        if (!is_null($this->longitude)) {
+            return false;
+        }
+
+        if (!is_null($this->altitude)) {
+            return false;
+        }
+
+        if (!is_null($this->radius)) {
+            return false;
+        }
+
+        return true;
+    }
 }

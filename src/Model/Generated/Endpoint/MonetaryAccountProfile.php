@@ -73,4 +73,20 @@ class MonetaryAccountProfile extends BunqModel
     {
         $this->profileDrain = $profileDrain;
     }
+
+    /**
+     * @return bool
+     */
+    public function areAllFieldsNull()
+    {
+        if (!is_null($this->profileFill)) {
+            return false;
+        }
+
+        if (!is_null($this->profileDrain)) {
+            return false;
+        }
+
+        return true;
+    }
 }

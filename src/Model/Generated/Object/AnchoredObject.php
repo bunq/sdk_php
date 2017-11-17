@@ -490,4 +490,84 @@ class AnchoredObject extends BunqModel
 
         throw new BunqException(self::ERROR_NULL_FIELDS);
     }
+
+    /**
+     * @return bool
+     */
+    public function areAllFieldsNull()
+    {
+        if (!is_null($this->cardDebit)) {
+            return false;
+        }
+
+        if (!is_null($this->cardPinChange)) {
+            return false;
+        }
+
+        if (!is_null($this->cardResult)) {
+            return false;
+        }
+
+        if (!is_null($this->draftPayment)) {
+            return false;
+        }
+
+        if (!is_null($this->idealMerchantTransaction)) {
+            return false;
+        }
+
+        if (!is_null($this->invoice)) {
+            return false;
+        }
+
+        if (!is_null($this->payment)) {
+            return false;
+        }
+
+        if (!is_null($this->paymentBatch)) {
+            return false;
+        }
+
+        if (!is_null($this->promotionDisplay)) {
+            return false;
+        }
+
+        if (!is_null($this->requestInquiryBatch)) {
+            return false;
+        }
+
+        if (!is_null($this->requestInquiry)) {
+            return false;
+        }
+
+        if (!is_null($this->requestResponse)) {
+            return false;
+        }
+
+        if (!is_null($this->scheduledPaymentBatch)) {
+            return false;
+        }
+
+        if (!is_null($this->scheduledPayment)) {
+            return false;
+        }
+
+        if (!is_null($this->scheduledInstance)) {
+            return false;
+        }
+
+        if (!is_null($this->shareInviteBankInquiry)) {
+            return false;
+        }
+
+        if (!is_null($this->shareInviteBankResponse)) {
+            return false;
+        }
+
+        if (!is_null($this->userCredentialPasswordIp)) {
+            return false;
+        }
+
+        return true;
+    }
 }

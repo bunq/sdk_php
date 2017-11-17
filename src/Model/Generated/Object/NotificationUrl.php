@@ -91,4 +91,28 @@ class NotificationUrl extends BunqModel
     {
         $this->object = $object;
     }
+
+    /**
+     * @return bool
+     */
+    public function areAllFieldsNull()
+    {
+        if (!is_null($this->targetUrl)) {
+            return false;
+        }
+
+        if (!is_null($this->category)) {
+            return false;
+        }
+
+        if (!is_null($this->eventType)) {
+            return false;
+        }
+
+        if (!is_null($this->object)) {
+            return false;
+        }
+
+        return true;
+    }
 }

@@ -74,4 +74,20 @@ class DraftPaymentAnchorObject extends BunqModel
 
         throw new BunqException(self::ERROR_NULL_FIELDS);
     }
+
+    /**
+     * @return bool
+     */
+    public function areAllFieldsNull()
+    {
+        if (!is_null($this->payment)) {
+            return false;
+        }
+
+        if (!is_null($this->paymentBatch)) {
+            return false;
+        }
+
+        return true;
+    }
 }

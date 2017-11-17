@@ -194,4 +194,20 @@ class PermittedIp extends BunqModel
     {
         $this->status = $status;
     }
+
+    /**
+     * @return bool
+     */
+    public function areAllFieldsNull()
+    {
+        if (!is_null($this->ip)) {
+            return false;
+        }
+
+        if (!is_null($this->status)) {
+            return false;
+        }
+
+        return true;
+    }
 }

@@ -200,4 +200,40 @@ class ChatMessageContent extends BunqModel
 
         throw new BunqException(self::ERROR_NULL_FIELDS);
     }
+
+    /**
+     * @return bool
+     */
+    public function areAllFieldsNull()
+    {
+        if (!is_null($this->chatMessageContentAnchorEvent)) {
+            return false;
+        }
+
+        if (!is_null($this->chatMessageContentAttachment)) {
+            return false;
+        }
+
+        if (!is_null($this->chatMessageContentGeolocation)) {
+            return false;
+        }
+
+        if (!is_null($this->chatMessageContentStatusConversationTitle)) {
+            return false;
+        }
+
+        if (!is_null($this->chatMessageContentStatusConversation)) {
+            return false;
+        }
+
+        if (!is_null($this->chatMessageContentStatusMembership)) {
+            return false;
+        }
+
+        if (!is_null($this->chatMessageContentText)) {
+            return false;
+        }
+
+        return true;
+    }
 }

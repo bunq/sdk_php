@@ -262,4 +262,40 @@ class BillingContractSubscription extends BunqModel
     {
         $this->subscriptionType = $subscriptionType;
     }
+
+    /**
+     * @return bool
+     */
+    public function areAllFieldsNull()
+    {
+        if (!is_null($this->id)) {
+            return false;
+        }
+
+        if (!is_null($this->created)) {
+            return false;
+        }
+
+        if (!is_null($this->updated)) {
+            return false;
+        }
+
+        if (!is_null($this->contractDateStart)) {
+            return false;
+        }
+
+        if (!is_null($this->contractDateEnd)) {
+            return false;
+        }
+
+        if (!is_null($this->contractVersion)) {
+            return false;
+        }
+
+        if (!is_null($this->subscriptionType)) {
+            return false;
+        }
+
+        return true;
+    }
 }

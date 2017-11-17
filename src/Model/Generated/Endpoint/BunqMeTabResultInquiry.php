@@ -41,4 +41,16 @@ class BunqMeTabResultInquiry extends BunqModel
     {
         $this->payment = $payment;
     }
+
+    /**
+     * @return bool
+     */
+    public function areAllFieldsNull()
+    {
+        if (!is_null($this->payment)) {
+            return false;
+        }
+
+        return true;
+    }
 }

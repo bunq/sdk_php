@@ -67,4 +67,20 @@ class TaxResident extends BunqModel
     {
         $this->taxNumber = $taxNumber;
     }
+
+    /**
+     * @return bool
+     */
+    public function areAllFieldsNull()
+    {
+        if (!is_null($this->country)) {
+            return false;
+        }
+
+        if (!is_null($this->taxNumber)) {
+            return false;
+        }
+
+        return true;
+    }
 }

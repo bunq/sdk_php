@@ -54,4 +54,12 @@ class AttachmentConversationContent extends BunqModel
             new BunqResponse($responseRaw->getBodyString(), $responseRaw->getHeaders())
         );
     }
+
+    /**
+     * @return bool
+     */
+    public function areAllFieldsNull()
+    {
+        return true;
+    }
 }

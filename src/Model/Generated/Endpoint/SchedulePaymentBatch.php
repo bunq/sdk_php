@@ -159,4 +159,20 @@ class SchedulePaymentBatch extends BunqModel
     {
         $this->schedule = $schedule;
     }
+
+    /**
+     * @return bool
+     */
+    public function areAllFieldsNull()
+    {
+        if (!is_null($this->payments)) {
+            return false;
+        }
+
+        if (!is_null($this->schedule)) {
+            return false;
+        }
+
+        return true;
+    }
 }

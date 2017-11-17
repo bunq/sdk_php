@@ -34,13 +34,31 @@ class ServerPublicKey extends BunqModel
     }
 
     /**
-     * @param mixed[] $responseArray
+     * @param array $responseArray
      * @param string|null $wrapper
+     * @param int|null $depthCounter
      *
      * @return static
      */
-    public static function createFromResponseArray(array $responseArray, string $wrapper = null): ServerPublicKey
-    {
+    protected static function createFromResponseArray(
+        array $responseArray,
+        string $wrapper = null,
+        int $depthCounter = null
+    ) {
         return new static($responseArray[self::FIELD_SERVER_PUBLIC_KEY]);
+    }
+
+
+
+    /**
+     * @return bool
+     */
+    protected function areAllFieldsNull()
+    {
+        if (!is_null($this->serverPublicKey)) {
+            return false;
+        }
+
+        return true;
     }
 }

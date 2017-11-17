@@ -90,4 +90,24 @@ class DraftShareInviteBankEntry extends BunqModel
     {
         $this->endDate = $endDate;
     }
+
+    /**
+     * @return bool
+     */
+    public function areAllFieldsNull()
+    {
+        if (!is_null($this->shareDetail)) {
+            return false;
+        }
+
+        if (!is_null($this->startDate)) {
+            return false;
+        }
+
+        if (!is_null($this->endDate)) {
+            return false;
+        }
+
+        return true;
+    }
 }

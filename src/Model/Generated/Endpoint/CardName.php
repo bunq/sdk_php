@@ -82,4 +82,16 @@ class CardName extends BunqModel
     {
         $this->possibleCardNameArray = $possibleCardNameArray;
     }
+
+    /**
+     * @return bool
+     */
+    public function areAllFieldsNull()
+    {
+        if (!is_null($this->possibleCardNameArray)) {
+            return false;
+        }
+
+        return true;
+    }
 }

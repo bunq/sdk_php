@@ -86,4 +86,24 @@ class MonetaryAccountSetting extends BunqModel
     {
         $this->restrictionChat = $restrictionChat;
     }
+
+    /**
+     * @return bool
+     */
+    public function areAllFieldsNull()
+    {
+        if (!is_null($this->color)) {
+            return false;
+        }
+
+        if (!is_null($this->defaultAvatarStatus)) {
+            return false;
+        }
+
+        if (!is_null($this->restrictionChat)) {
+            return false;
+        }
+
+        return true;
+    }
 }

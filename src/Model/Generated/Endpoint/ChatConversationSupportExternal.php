@@ -114,4 +114,28 @@ class ChatConversationSupportExternal extends BunqModel
     {
         $this->lastMessage = $lastMessage;
     }
+
+    /**
+     * @return bool
+     */
+    public function areAllFieldsNull()
+    {
+        if (!is_null($this->id)) {
+            return false;
+        }
+
+        if (!is_null($this->created)) {
+            return false;
+        }
+
+        if (!is_null($this->updated)) {
+            return false;
+        }
+
+        if (!is_null($this->lastMessage)) {
+            return false;
+        }
+
+        return true;
+    }
 }

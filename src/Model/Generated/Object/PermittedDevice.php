@@ -57,4 +57,20 @@ class PermittedDevice extends BunqModel
     {
         $this->ip = $ip;
     }
+
+    /**
+     * @return bool
+     */
+    public function areAllFieldsNull()
+    {
+        if (!is_null($this->description)) {
+            return false;
+        }
+
+        if (!is_null($this->ip)) {
+            return false;
+        }
+
+        return true;
+    }
 }

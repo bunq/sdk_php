@@ -72,4 +72,20 @@ class CardPinAssignment extends BunqModel
     {
         $this->monetaryAccountId = $monetaryAccountId;
     }
+
+    /**
+     * @return bool
+     */
+    public function areAllFieldsNull()
+    {
+        if (!is_null($this->type)) {
+            return false;
+        }
+
+        if (!is_null($this->monetaryAccountId)) {
+            return false;
+        }
+
+        return true;
+    }
 }

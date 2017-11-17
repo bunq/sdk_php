@@ -40,4 +40,16 @@ class Certificate extends BunqModel
     {
         $this->certificate = $certificate;
     }
+
+    /**
+     * @return bool
+     */
+    public function areAllFieldsNull()
+    {
+        if (!is_null($this->certificate)) {
+            return false;
+        }
+
+        return true;
+    }
 }

@@ -32,4 +32,16 @@ class ChatMessageContentAttachment extends BunqModel
     {
         $this->attachment = $attachment;
     }
+
+    /**
+     * @return bool
+     */
+    public function areAllFieldsNull()
+    {
+        if (!is_null($this->attachment)) {
+            return false;
+        }
+
+        return true;
+    }
 }
