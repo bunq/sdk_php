@@ -140,9 +140,31 @@ abstract class BunqModel implements JsonSerializable
 
         if (is_null($responseArray)) {
             return null;
-        } else {
-            return self::createInstanceFromResponseArray($responseArray);
         }
+
+        if ($depthCounter === null) {
+            $depthCounter = self::DEPTH_COUNTER_BEGIN;
+        }
+
+        $model = self::createInstanceFromResponseArray($responseArray);
+
+        if ($model->areAllFieldsNull() && $depthCounter < self::DEPTH_COUNTER_MAX) {
+            $modelFields = (array_keys(get_object_vars($model)));
+
+            foreach ($modelFields as $field) {
+                try {
+                    $fieldClass = ModelUtil::determineModelClassNameQualified($field);
+                    $reflectionClass = new ReflectionClass($fieldClass);
+                    /** @var BunqModel $bunqModelSubClass */
+                    $bunqModelSubClass = $reflectionClass->newInstanceWithoutConstructor();
+                    $model->$field = $bunqModelSubClass::createFromResponseArray($responseArray, null, $depthCounter++);
+                } catch (BunqException $exception) {
+                    continue;
+                }
+            }
+        }
+
+        return $model;
     }
 
     /**
