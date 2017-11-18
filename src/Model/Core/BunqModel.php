@@ -154,28 +154,42 @@ abstract class BunqModel implements JsonSerializable
         $model = self::createInstanceFromResponseArray($responseArray);
 
         if ($model->areAllFieldsNull() && $depthCounter < self::DEPTH_COUNTER_MAX) {
-            $modelFields = (array_keys(get_object_vars($model)));
+            $model = self::decodeInsideModelFields($responseArray, $model, $depthCounter);
+        }
 
-            foreach ($modelFields as $field) {
-                try {
-                    $fieldClass = ModelUtil::determineModelClassNameQualified($field);
-                    $reflectionClass = new ReflectionClass($fieldClass);
-                    /** @var BunqModel $bunqModelSubClass */
-                    $bunqModelSubClass = $reflectionClass->newInstanceWithoutConstructor();
-                    $fieldContents = $bunqModelSubClass::createFromResponseArray(
-                        $responseArray,
-                        null,
-                        $depthCounter + self::DEPTH_COUNTER_INCREMENTER
-                    );
+        return $model;
+    }
 
-                    if ($fieldContents->areAllFieldsNull()) {
-                        $model->{$field} = null;
-                    } else {
-                        $model->{$field} = $fieldContents;
-                    }
-                } catch (BunqException $exception) {
-                    continue;
+    /**
+     * @param array $responseArray
+     * @param BunqModel $model
+     * @param int $depthCounter
+     *
+     * @return BunqModel
+     */
+    private static function decodeInsideModelFields(array $responseArray, BunqModel $model, int $depthCounter)
+    {
+        $modelFields = (array_keys(get_object_vars($model)));
+
+        foreach ($modelFields as $field) {
+            try {
+                $fieldClass = ModelUtil::determineModelClassNameQualified($field);
+                $reflectionClass = new ReflectionClass($fieldClass);
+                /** @var BunqModel $bunqModelSubClass */
+                $bunqModelSubClass = $reflectionClass->newInstanceWithoutConstructor();
+                $fieldContents = $bunqModelSubClass::createFromResponseArray(
+                    $responseArray,
+                    null,
+                    $depthCounter + self::DEPTH_COUNTER_INCREMENTER
+                );
+
+                if ($fieldContents->areAllFieldsNull()) {
+                    $model->{$field} = null;
+                } else {
+                    $model->{$field} = $fieldContents;
                 }
+            } catch (BunqException $exception) {
+                continue;
             }
         }
 
