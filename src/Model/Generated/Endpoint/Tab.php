@@ -5,6 +5,7 @@ use bunq\Context\ApiContext;
 use bunq\exception\BunqException;
 use bunq\Http\ApiClient;
 use bunq\Http\BunqResponse;
+use bunq\Model\Core\AnchorObjectInterface;
 use bunq\Model\Core\BunqModel;
 
 /**
@@ -18,7 +19,7 @@ use bunq\Model\Core\BunqModel;
  *
  * @generated
  */
-class Tab extends BunqModel
+class Tab extends BunqModel implements AnchorObjectInterface
 {
     /**
      * Error constants.

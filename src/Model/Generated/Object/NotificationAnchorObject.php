@@ -28,7 +28,7 @@ use bunq\Model\Generated\Endpoint\User;
 /**
  * @generated
  */
-class NotificationAnchorObject extends BunqModel
+class NotificationAnchorObject extends BunqModel implements AnchorObjectInterface
 {
     /**
      * Error constants.

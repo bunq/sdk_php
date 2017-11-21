@@ -2,6 +2,7 @@
 namespace bunq\Model\Generated\Object;
 
 use bunq\exception\BunqException;
+use bunq\Model\Core\AnchorObjectInterface;
 use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Endpoint\CardDebit;
 use bunq\Model\Generated\Endpoint\CardPinChange;
@@ -25,7 +26,7 @@ use bunq\Model\Generated\Endpoint\UserCredentialPasswordIp;
 /**
  * @generated
  */
-class AnchoredObject extends BunqModel
+class AnchoredObject extends BunqModel implements AnchorObjectInterface
 {
     /**
      * Error constants.

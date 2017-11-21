@@ -2,12 +2,13 @@
 namespace bunq\Model\Generated\Object;
 
 use bunq\exception\BunqException;
+use bunq\Model\Core\AnchorObjectInterface;
 use bunq\Model\Core\BunqModel;
 
 /**
  * @generated
  */
-class ChatMessageContent extends BunqModel
+class ChatMessageContent extends BunqModel implements AnchorObjectInterface
 {
     /**
      * Error constants.

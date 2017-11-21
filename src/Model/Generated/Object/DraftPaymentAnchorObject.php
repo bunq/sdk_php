@@ -2,6 +2,7 @@
 namespace bunq\Model\Generated\Object;
 
 use bunq\exception\BunqException;
+use bunq\Model\Core\AnchorObjectInterface;
 use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Endpoint\Payment;
 use bunq\Model\Generated\Endpoint\PaymentBatch;
@@ -9,7 +10,7 @@ use bunq\Model\Generated\Endpoint\PaymentBatch;
 /**
  * @generated
  */
-class DraftPaymentAnchorObject extends BunqModel
+class DraftPaymentAnchorObject extends BunqModel implements AnchorObjectInterface
 {
     /**
      * Error constants.
