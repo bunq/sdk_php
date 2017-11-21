@@ -130,19 +130,38 @@ abstract class BunqModel implements JsonSerializable
     /**
      * @param mixed[] $responseArray
      * @param string $wrapper
-     * @param int $depthCounter
      *
      * @return BunqModel|null
      */
     protected static function createFromResponseArray(
         array $responseArray,
-        string $wrapper = null,
-        int $depthCounter = null
+        string $wrapper = null
     ) {
+        if (is_subclass_of(get_called_class(), AnchorObjectInterface::class)) {
+            return self::createFromResponseArrayAnchorObject($responseArray);
+        }
+
         if (is_string($wrapper)) {
             $responseArray = $responseArray[$wrapper];
         }
 
+        if (is_null($responseArray)) {
+            return null;
+        }
+
+        return self::createInstanceFromResponseArray($responseArray);
+    }
+
+    /**
+     * @param array $responseArray
+     * @param int|null $depthCounter
+     *
+     * @return BunqModel|null
+     */
+    private static function createFromResponseArrayAnchorObject(
+        array $responseArray,
+        int $depthCounter = null
+    ) {
         if (is_null($responseArray)) {
             return null;
         }
@@ -177,9 +196,8 @@ abstract class BunqModel implements JsonSerializable
                 $reflectionClass = new ReflectionClass($fieldClass);
                 /** @var BunqModel $bunqModelSubClass */
                 $bunqModelSubClass = $reflectionClass->newInstanceWithoutConstructor();
-                $fieldContents = $bunqModelSubClass::createFromResponseArray(
+                $fieldContents = $bunqModelSubClass::createFromResponseArrayAnchorObject(
                     $responseArray,
-                    null,
                     $depthCounter + self::DEPTH_COUNTER_INCREMENTER
                 );
 
