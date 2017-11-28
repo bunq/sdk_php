@@ -24,6 +24,18 @@ class ResponseHandlerSignature extends ResponseHandlerBase
     const FORMAT_HEADER = '%s: %s';
 
     /**
+     * Regex constants.
+     */
+    const REGEX_FOR_LOWERCASE_HEADERS = '/-([a-z])/';
+    const REGEX_REPLACE = '/%s/';
+    const REGEX_CHECK_FAILED = '0';
+
+    /**
+     * The index of the first item in an array.
+     */
+    const INDEX_FIRST = 0;
+
+    /**
      * Http status constants.
      */
     const STATUS_CODE_OK = 200;
@@ -95,6 +107,16 @@ class ResponseHandlerSignature extends ResponseHandlerBase
 
         foreach ($headers as $headerName => $headerValue) {
             // All headers with the prefix 'X-Bunq-' except 'Server-Signature' need to be signed.
+            $headerName = ucfirst($headerName);
+            $regexResult = preg_match_all(self::REGEX_FOR_LOWERCASE_HEADERS, $headerName, $matches);
+
+            if ($regexResult != self::REGEX_CHECK_FAILED) {
+                foreach ($matches[self::INDEX_FIRST] as $match) {
+                    $matchUpper = strtoupper($match);
+                    $headerName = preg_replace(vsprintf(self::REGEX_REPLACE, $match), $matchUpper, $headerName);
+                }
+            }
+
             if ($headerName === self::HEADER_SERVER_SIGNATURE) {
                 // Skip this header
             } elseif (strpos($headerName, self::HEADER_PREFIX) === self::HEADER_PREFIX_START) {
