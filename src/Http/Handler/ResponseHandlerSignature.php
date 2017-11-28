@@ -107,15 +107,7 @@ class ResponseHandlerSignature extends ResponseHandlerBase
 
         foreach ($headers as $headerName => $headerValue) {
             // All headers with the prefix 'X-Bunq-' except 'Server-Signature' need to be signed.
-            $headerName = ucfirst($headerName);
-            $regexResult = preg_match_all(self::REGEX_FOR_LOWERCASE_HEADERS, $headerName, $matches);
-
-            if ($regexResult != self::REGEX_CHECK_FAILED) {
-                foreach ($matches[self::INDEX_FIRST] as $match) {
-                    $matchUpper = strtoupper($match);
-                    $headerName = preg_replace(vsprintf(self::REGEX_REPLACE, $match), $matchUpper, $headerName);
-                }
-            }
+            $headerName = $this->ensureHeaderIsCorrectlyCased($headerName);
 
             if ($headerName === self::HEADER_SERVER_SIGNATURE) {
                 // Skip this header
@@ -125,6 +117,26 @@ class ResponseHandlerSignature extends ResponseHandlerBase
         }
 
         return implode(self::NEWLINE, $signedDataHeaders);
+    }
+
+    /**
+     * @param string $headerName
+     *
+     * @return mixed|string
+     */
+    private function ensureHeaderIsCorrectlyCased(string $headerName)
+    {
+        $headerName = ucfirst($headerName);
+        $regexResult = preg_match_all(self::REGEX_FOR_LOWERCASE_HEADERS, $headerName, $matches);
+
+        if ($regexResult != self::REGEX_CHECK_FAILED) {
+            foreach ($matches[self::INDEX_FIRST] as $match) {
+                $matchUpper = strtoupper($match);
+                $headerName = preg_replace(vsprintf(self::REGEX_REPLACE, $match), $matchUpper, $headerName);
+            }
+        }
+
+        return $headerName;
     }
 
     /**
