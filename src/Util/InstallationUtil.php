@@ -190,7 +190,7 @@ final class InstallationUtil
      *
      * @return string[]
      */
-    private static function formatIps(string $permittedIpsInput): array
+    private static function formatIps(string $permittedIpsInput = null): array
     {
         if (is_null($permittedIpsInput)) {
             $permittedIps = [];
