@@ -34,7 +34,7 @@ class ServerPublicKey extends BunqModel
     }
 
     /**
-     * @param array $responseArray
+     * @param mixed[] $responseArray
      * @param string|null $wrapper
      *
      * @return static

@@ -155,7 +155,7 @@ abstract class BunqModel implements JsonSerializable
     }
 
     /**
-     * @param array $responseArray
+     * @param mixed[] $responseArray
      * @param int|null $depthCounter
      *
      * @return BunqModel|null
@@ -182,7 +182,7 @@ abstract class BunqModel implements JsonSerializable
     }
 
     /**
-     * @param array $responseArray
+     * @param mixed[] $responseArray
      * @param BunqModel $model
      * @param int $depthCounter
      *
