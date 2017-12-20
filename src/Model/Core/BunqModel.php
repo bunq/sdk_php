@@ -101,7 +101,7 @@ abstract class BunqModel implements JsonSerializable
      *
      * @throws BunqException
      */
-    abstract protected function areAllFieldsNull();
+    abstract protected function isAllFieldNull();
 
     /**
      * @param mixed[] $responseArray
