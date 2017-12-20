@@ -186,7 +186,7 @@ class InvoiceItemGroup extends BunqModel
     /**
      * @return bool
      */
-    public function areAllFieldsNull()
+    public function isAllFieldNull()
     {
         if (!is_null($this->type)) {
             return false;

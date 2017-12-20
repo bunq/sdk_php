@@ -580,7 +580,7 @@ class TokenQrRequestIdeal extends BunqModel
     /**
      * @return bool
      */
-    public function areAllFieldsNull()
+    public function isAllFieldNull()
     {
         if (!is_null($this->timeResponded)) {
             return false;

@@ -129,7 +129,7 @@ class MonetaryAccount extends BunqModel implements AnchorObjectInterface
     /**
      * @return bool
      */
-    public function areAllFieldsNull()
+    public function isAllFieldNull()
     {
         if (!is_null($this->monetaryAccountBank)) {
             return false;

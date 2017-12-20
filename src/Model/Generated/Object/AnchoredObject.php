@@ -495,7 +495,7 @@ class AnchoredObject extends BunqModel implements AnchorObjectInterface
     /**
      * @return bool
      */
-    public function areAllFieldsNull()
+    public function isAllFieldNull()
     {
         if (!is_null($this->cardDebit)) {
             return false;

@@ -61,7 +61,7 @@ class ScheduleUser extends BunqModel
     /**
      * @return bool
      */
-    public function areAllFieldsNull()
+    public function isAllFieldNull()
     {
         return true;
     }

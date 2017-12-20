@@ -2,7 +2,9 @@
 namespace bunq\Model\Generated\Object;
 
 use bunq\exception\BunqException;
+use bunq\Model\Core\AnchorObjectInterface;
 use bunq\Model\Core\BunqModel;
+use bunq\Model\Generated\Endpoint\BunqMeFundraiserResult;
 use bunq\Model\Generated\Endpoint\BunqMeTab;
 use bunq\Model\Generated\Endpoint\BunqMeTabResultInquiry;
 use bunq\Model\Generated\Endpoint\BunqMeTabResultResponse;
@@ -34,6 +36,11 @@ class NotificationAnchorObject extends BunqModel implements AnchorObjectInterfac
      * Error constants.
      */
     const ERROR_NULL_FIELDS = 'All fields of an extended model or object are null.';
+
+    /**
+     * @var BunqMeFundraiserResult
+     */
+    protected $bunqMeFundraiserResult;
 
     /**
      * @var BunqMeTab
@@ -141,7 +148,20 @@ class NotificationAnchorObject extends BunqModel implements AnchorObjectInterfac
     protected $user;
 
     /**
+     * @return BunqMeFundraiserResult
      */
+    public function getBunqMeFundraiserResult()
+    {
+        return $this->bunqMeFundraiserResult;
+    }
+
+    /**
+     * @param BunqMeFundraiserResult $bunqMeFundraiserResult
+     */
+    public function setBunqMeFundraiserResult($bunqMeFundraiserResult)
+    {
+        $this->bunqMeFundraiserResult = $bunqMeFundraiserResult;
+    }
 
     /**
      * @return BunqMeTab
@@ -485,6 +505,10 @@ class NotificationAnchorObject extends BunqModel implements AnchorObjectInterfac
      */
     public function getReferencedObject()
     {
+        if (!is_null($this->bunqMeFundraiserResult)) {
+            return $this->bunqMeFundraiserResult;
+        }
+
         if (!is_null($this->bunqMeTab)) {
             return $this->bunqMeTab;
         }
@@ -575,8 +599,12 @@ class NotificationAnchorObject extends BunqModel implements AnchorObjectInterfac
     /**
      * @return bool
      */
-    public function areAllFieldsNull()
+    public function isAllFieldNull()
     {
+        if (!is_null($this->bunqMeFundraiserResult)) {
+            return false;
+        }
+
         if (!is_null($this->bunqMeTab)) {
             return false;
         }

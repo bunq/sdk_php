@@ -196,7 +196,7 @@ class AttachmentPublic extends BunqModel
     /**
      * @return bool
      */
-    public function areAllFieldsNull()
+    public function isAllFieldNull()
     {
         if (!is_null($this->uuid)) {
             return false;

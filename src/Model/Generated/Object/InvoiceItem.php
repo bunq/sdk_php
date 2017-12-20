@@ -236,7 +236,7 @@ class InvoiceItem extends BunqModel
     /**
      * @return bool
      */
-    public function areAllFieldsNull()
+    public function isAllFieldNull()
     {
         if (!is_null($this->billingDate)) {
             return false;
