@@ -90,7 +90,7 @@ class SessionServer extends BunqModel
     /**
      * @return bool
      */
-    protected function areAllFieldsNull()
+    protected function isAllFieldNull()
     {
         if (!is_null($this->token)) {
             return false;

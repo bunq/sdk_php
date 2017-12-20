@@ -51,7 +51,7 @@ class ServerPublicKey extends BunqModel
     /**
      * @return bool
      */
-    protected function areAllFieldsNull()
+    protected function isAllFieldNull()
     {
         if (!is_null($this->serverPublicKey)) {
             return false;

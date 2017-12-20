@@ -56,10 +56,12 @@ abstract class BunqModel implements JsonSerializable
     const SCALAR_TYPE_BOOL = 'bool';
     const SCALAR_TYPE_INT = 'int';
     const SCALAR_TYPE_FLOAT = 'float';
+
     /**
      * @var string[]
      */
     protected static $fieldNameOverrideMap = [];
+
     /**
      * Set of the PHP scalar types. Mimicking a constant, and therefore should be used with self::.
      *
@@ -172,7 +174,7 @@ abstract class BunqModel implements JsonSerializable
 
         $model = self::createInstanceFromResponseArray($responseArray);
 
-        if ($model->areAllFieldsNull() && $depthCounter < self::DEPTH_COUNTER_MAX) {
+        if ($model->isAllFieldNull() && $depthCounter < self::DEPTH_COUNTER_MAX) {
             $model = self::decodeInsideModelFields($responseArray, $model, $depthCounter);
         }
 
@@ -201,7 +203,7 @@ abstract class BunqModel implements JsonSerializable
                     $depthCounter + self::DEPTH_COUNTER_INCREMENTER
                 );
 
-                if ($fieldContents->areAllFieldsNull()) {
+                if ($fieldContents->isAllFieldNull()) {
                     $model->{$field} = null;
                 } else {
                     $model->{$field} = $fieldContents;
