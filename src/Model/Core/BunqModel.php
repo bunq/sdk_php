@@ -147,7 +147,7 @@ abstract class BunqModel implements JsonSerializable
             $responseArray = $responseArray[$wrapper];
         }
 
-        if (is_null($responseArray)) {
+        if (empty($responseArray)) {
             return null;
         }
 
@@ -164,7 +164,7 @@ abstract class BunqModel implements JsonSerializable
         array $responseArray,
         int $depthCounter = null
     ) {
-        if (is_null($responseArray)) {
+        if (empty($responseArray)) {
             return null;
         }
 
