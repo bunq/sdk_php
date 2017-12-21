@@ -193,23 +193,24 @@ abstract class BunqModel implements JsonSerializable
         $modelFields = (array_keys(get_object_vars($model)));
 
         foreach ($modelFields as $field) {
-            try {
-                $fieldClass = ModelUtil::determineModelClassNameQualified($field);
-                $reflectionClass = new ReflectionClass($fieldClass);
-                /** @var BunqModel $bunqModelSubClass */
-                $bunqModelSubClass = $reflectionClass->newInstanceWithoutConstructor();
-                $fieldContents = $bunqModelSubClass::createFromResponseArrayAnchorObject(
-                    $responseArray,
-                    $depthCounter + self::DEPTH_COUNTER_INCREMENTER
-                );
+                $fieldClass = ModelUtil::getModelClassNameQualifiedOrNull($field);
 
-                if ($fieldContents->isAllFieldNull()) {
-                    $model->{$field} = null;
-                } else {
-                    $model->{$field} = $fieldContents;
-                }
-            } catch (BunqException $exception) {
+            if (is_null($fieldClass)) {
                 continue;
+            }
+
+            $reflectionClass = new ReflectionClass($fieldClass);
+            /** @var BunqModel $bunqModelSubClass */
+            $bunqModelSubClass = $reflectionClass->newInstanceWithoutConstructor();
+            $fieldContents = $bunqModelSubClass::createFromResponseArrayAnchorObject(
+                $responseArray,
+                $depthCounter + self::DEPTH_COUNTER_INCREMENTER
+            );
+
+            if ($fieldContents->isAllFieldNull()) {
+                $model->{$field} = null;
+            } else {
+                $model->{$field} = $fieldContents;
             }
         }
 

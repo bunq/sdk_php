@@ -62,6 +62,20 @@ class ModelUtil
     }
 
     /**
+     * @param string $model
+     *
+     * @return null|string
+     */
+    public static function getModelClassNameQualifiedOrNull(string $model)
+    {
+        try {
+            return static::determineModelClassNameQualified($model);
+        } catch (BunqException $exception) {
+            return null;
+        }
+    }
+
+    /**
      * @param string $className
      *
      * @return bool
