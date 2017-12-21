@@ -46,6 +46,22 @@ class ModelUtil
      */
     public static function determineModelClassNameQualified(string $model): string
     {
+        $classNameModel = static::getModelClassNameQualifiedOrNull($model);
+
+        if (is_null($classNameModel)) {
+            throw new BunqException(self::ERROR_MODEL_NOT_DEFINED, [$model]);
+        }
+
+        return $classNameModel;
+    }
+
+    /**
+     * @param string $model
+     *
+     * @return null|string
+     */
+    public static function getModelClassNameQualifiedOrNull(string $model)
+    {
         $classNameOverride = vsprintf(self::FORMAT_QUALIFIED_OVERRIDE_TYPE, [$model]);
         $classNameModel = vsprintf(self::FORMAT_QUALIFIED_MODEL_TYPE, [$model]);
         $classNameObject = vsprintf(self::FORMAT_QUALIFIED_OBJECT_TYPE, [$model]);
@@ -57,20 +73,6 @@ class ModelUtil
         } elseif (static::isClassSubClassOfBunqModel($classNameObject)) {
             return $classNameObject;
         } else {
-            throw new BunqException(self::ERROR_MODEL_NOT_DEFINED, [$model]);
-        }
-    }
-
-    /**
-     * @param string $model
-     *
-     * @return null|string
-     */
-    public static function getModelClassNameQualifiedOrNull(string $model)
-    {
-        try {
-            return static::determineModelClassNameQualified($model);
-        } catch (BunqException $exception) {
             return null;
         }
     }

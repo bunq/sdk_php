@@ -193,7 +193,7 @@ abstract class BunqModel implements JsonSerializable
         $modelFields = (array_keys(get_object_vars($model)));
 
         foreach ($modelFields as $field) {
-                $fieldClass = ModelUtil::getModelClassNameQualifiedOrNull($field);
+            $fieldClass = ModelUtil::getModelClassNameQualifiedOrNull($field);
 
             if (is_null($fieldClass)) {
                 continue;
