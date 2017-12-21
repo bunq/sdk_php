@@ -65,4 +65,20 @@ class Issuer extends BunqModel
     {
         $this->name = $name;
     }
+
+    /**
+     * @return bool
+     */
+    public function isAllFieldNull()
+    {
+        if (!is_null($this->bic)) {
+            return false;
+        }
+
+        if (!is_null($this->name)) {
+            return false;
+        }
+
+        return true;
+    }
 }

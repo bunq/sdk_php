@@ -234,4 +234,36 @@ class CardPinChange extends BunqModel
     {
         $this->status = $status;
     }
+
+    /**
+     * @return bool
+     */
+    public function isAllFieldNull()
+    {
+        if (!is_null($this->id)) {
+            return false;
+        }
+
+        if (!is_null($this->labelCard)) {
+            return false;
+        }
+
+        if (!is_null($this->labelMonetaryAccountCurrent)) {
+            return false;
+        }
+
+        if (!is_null($this->timeRequest)) {
+            return false;
+        }
+
+        if (!is_null($this->timeAccept)) {
+            return false;
+        }
+
+        if (!is_null($this->status)) {
+            return false;
+        }
+
+        return true;
+    }
 }

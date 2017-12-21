@@ -262,4 +262,36 @@ class CardGeneratedCvc2 extends BunqModel
     {
         $this->expiryTime = $expiryTime;
     }
+
+    /**
+     * @return bool
+     */
+    public function isAllFieldNull()
+    {
+        if (!is_null($this->id)) {
+            return false;
+        }
+
+        if (!is_null($this->created)) {
+            return false;
+        }
+
+        if (!is_null($this->updated)) {
+            return false;
+        }
+
+        if (!is_null($this->cvc2)) {
+            return false;
+        }
+
+        if (!is_null($this->status)) {
+            return false;
+        }
+
+        if (!is_null($this->expiryTime)) {
+            return false;
+        }
+
+        return true;
+    }
 }

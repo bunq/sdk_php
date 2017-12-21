@@ -105,4 +105,28 @@ class Installation extends BunqModel
             self::FIELD_CLIENT_PUBLIC_KEY => $this->clientPublicKey,
         ];
     }
+
+    /**
+     * @return bool
+     */
+    protected function isAllFieldNull()
+    {
+        if (!is_null($this->id)) {
+            return false;
+        }
+
+        if (!is_null($this->token)) {
+            return false;
+        }
+
+        if (!is_null($this->serverPublicKey)) {
+            return false;
+        }
+
+        if (!is_null($this->clientPublicKey)) {
+            return false;
+        }
+
+        return true;
+    }
 }

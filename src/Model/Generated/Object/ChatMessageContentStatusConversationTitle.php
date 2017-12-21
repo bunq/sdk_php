@@ -32,4 +32,16 @@ class ChatMessageContentStatusConversationTitle extends BunqModel
     {
         $this->title = $title;
     }
+
+    /**
+     * @return bool
+     */
+    public function isAllFieldNull()
+    {
+        if (!is_null($this->title)) {
+            return false;
+        }
+
+        return true;
+    }
 }

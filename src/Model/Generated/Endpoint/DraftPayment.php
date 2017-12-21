@@ -356,4 +356,44 @@ class DraftPayment extends BunqModel
     {
         $this->object = $object;
     }
+
+    /**
+     * @return bool
+     */
+    public function isAllFieldNull()
+    {
+        if (!is_null($this->id)) {
+            return false;
+        }
+
+        if (!is_null($this->monetaryAccountId)) {
+            return false;
+        }
+
+        if (!is_null($this->userAliasCreated)) {
+            return false;
+        }
+
+        if (!is_null($this->responses)) {
+            return false;
+        }
+
+        if (!is_null($this->status)) {
+            return false;
+        }
+
+        if (!is_null($this->type)) {
+            return false;
+        }
+
+        if (!is_null($this->entries)) {
+            return false;
+        }
+
+        if (!is_null($this->object)) {
+            return false;
+        }
+
+        return true;
+    }
 }

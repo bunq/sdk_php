@@ -86,4 +86,28 @@ class SessionServer extends BunqModel
     {
         return $this->userPerson;
     }
+
+    /**
+     * @return bool
+     */
+    protected function isAllFieldNull()
+    {
+        if (!is_null($this->token)) {
+            return false;
+        }
+
+        if (!is_null($this->id)) {
+            return false;
+        }
+
+        if (!is_null($this->userCompany)) {
+            return false;
+        }
+
+        if (!is_null($this->userPerson)) {
+            return false;
+        }
+
+        return true;
+    }
 }

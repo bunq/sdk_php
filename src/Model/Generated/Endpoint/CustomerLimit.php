@@ -177,4 +177,32 @@ class CustomerLimit extends BunqModel
     {
         $this->limitCardDebitReplacement = $limitCardDebitReplacement;
     }
+
+    /**
+     * @return bool
+     */
+    public function isAllFieldNull()
+    {
+        if (!is_null($this->limitMonetaryAccount)) {
+            return false;
+        }
+
+        if (!is_null($this->limitCardDebitMaestro)) {
+            return false;
+        }
+
+        if (!is_null($this->limitCardDebitMastercard)) {
+            return false;
+        }
+
+        if (!is_null($this->limitCardDebitWildcard)) {
+            return false;
+        }
+
+        if (!is_null($this->limitCardDebitReplacement)) {
+            return false;
+        }
+
+        return true;
+    }
 }

@@ -5,6 +5,7 @@ use bunq\Context\ApiContext;
 use bunq\exception\BunqException;
 use bunq\Http\ApiClient;
 use bunq\Http\BunqResponse;
+use bunq\Model\Core\AnchorObjectInterface;
 use bunq\Model\Core\BunqModel;
 
 /**
@@ -13,7 +14,7 @@ use bunq\Model\Core\BunqModel;
  *
  * @generated
  */
-class User extends BunqModel
+class User extends BunqModel implements AnchorObjectInterface
 {
     /**
      * Error constants.
@@ -168,5 +169,25 @@ class User extends BunqModel
         }
 
         throw new BunqException(self::ERROR_NULL_FIELDS);
+    }
+
+    /**
+     * @return bool
+     */
+    public function isAllFieldNull()
+    {
+        if (!is_null($this->userLight)) {
+            return false;
+        }
+
+        if (!is_null($this->userPerson)) {
+            return false;
+        }
+
+        if (!is_null($this->userCompany)) {
+            return false;
+        }
+
+        return true;
     }
 }

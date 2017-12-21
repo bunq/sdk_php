@@ -220,4 +220,28 @@ class PaymentChat extends BunqModel
     {
         $this->unreadMessageCount = $unreadMessageCount;
     }
+
+    /**
+     * @return bool
+     */
+    public function isAllFieldNull()
+    {
+        if (!is_null($this->id)) {
+            return false;
+        }
+
+        if (!is_null($this->created)) {
+            return false;
+        }
+
+        if (!is_null($this->updated)) {
+            return false;
+        }
+
+        if (!is_null($this->unreadMessageCount)) {
+            return false;
+        }
+
+        return true;
+    }
 }

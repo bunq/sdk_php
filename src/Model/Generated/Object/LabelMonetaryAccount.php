@@ -232,4 +232,48 @@ class LabelMonetaryAccount extends BunqModel
     {
         $this->swiftAccountNumber = $swiftAccountNumber;
     }
+
+    /**
+     * @return bool
+     */
+    public function isAllFieldNull()
+    {
+        if (!is_null($this->iban)) {
+            return false;
+        }
+
+        if (!is_null($this->displayName)) {
+            return false;
+        }
+
+        if (!is_null($this->avatar)) {
+            return false;
+        }
+
+        if (!is_null($this->labelUser)) {
+            return false;
+        }
+
+        if (!is_null($this->country)) {
+            return false;
+        }
+
+        if (!is_null($this->bunqMe)) {
+            return false;
+        }
+
+        if (!is_null($this->isLight)) {
+            return false;
+        }
+
+        if (!is_null($this->swiftBic)) {
+            return false;
+        }
+
+        if (!is_null($this->swiftAccountNumber)) {
+            return false;
+        }
+
+        return true;
+    }
 }

@@ -107,4 +107,28 @@ class Image extends BunqModel
     {
         $this->width = $width;
     }
+
+    /**
+     * @return bool
+     */
+    public function isAllFieldNull()
+    {
+        if (!is_null($this->attachmentPublicUuid)) {
+            return false;
+        }
+
+        if (!is_null($this->contentType)) {
+            return false;
+        }
+
+        if (!is_null($this->height)) {
+            return false;
+        }
+
+        if (!is_null($this->width)) {
+            return false;
+        }
+
+        return true;
+    }
 }

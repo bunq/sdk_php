@@ -121,4 +121,28 @@ class MonetaryAccountProfileDrain extends BunqModel
     {
         $this->savingsAccountAlias = $savingsAccountAlias;
     }
+
+    /**
+     * @return bool
+     */
+    public function isAllFieldNull()
+    {
+        if (!is_null($this->status)) {
+            return false;
+        }
+
+        if (!is_null($this->balancePreferred)) {
+            return false;
+        }
+
+        if (!is_null($this->balanceThresholdHigh)) {
+            return false;
+        }
+
+        if (!is_null($this->savingsAccountAlias)) {
+            return false;
+        }
+
+        return true;
+    }
 }

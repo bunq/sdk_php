@@ -909,4 +909,136 @@ class UserPerson extends BunqModel
     {
         $this->notificationFilters = $notificationFilters;
     }
+
+    /**
+     * @return bool
+     */
+    public function isAllFieldNull()
+    {
+        if (!is_null($this->id)) {
+            return false;
+        }
+
+        if (!is_null($this->created)) {
+            return false;
+        }
+
+        if (!is_null($this->updated)) {
+            return false;
+        }
+
+        if (!is_null($this->publicUuid)) {
+            return false;
+        }
+
+        if (!is_null($this->firstName)) {
+            return false;
+        }
+
+        if (!is_null($this->middleName)) {
+            return false;
+        }
+
+        if (!is_null($this->lastName)) {
+            return false;
+        }
+
+        if (!is_null($this->legalName)) {
+            return false;
+        }
+
+        if (!is_null($this->displayName)) {
+            return false;
+        }
+
+        if (!is_null($this->publicNickName)) {
+            return false;
+        }
+
+        if (!is_null($this->alias)) {
+            return false;
+        }
+
+        if (!is_null($this->taxResident)) {
+            return false;
+        }
+
+        if (!is_null($this->documentType)) {
+            return false;
+        }
+
+        if (!is_null($this->documentNumber)) {
+            return false;
+        }
+
+        if (!is_null($this->documentCountryOfIssuance)) {
+            return false;
+        }
+
+        if (!is_null($this->addressMain)) {
+            return false;
+        }
+
+        if (!is_null($this->addressPostal)) {
+            return false;
+        }
+
+        if (!is_null($this->dateOfBirth)) {
+            return false;
+        }
+
+        if (!is_null($this->placeOfBirth)) {
+            return false;
+        }
+
+        if (!is_null($this->countryOfBirth)) {
+            return false;
+        }
+
+        if (!is_null($this->nationality)) {
+            return false;
+        }
+
+        if (!is_null($this->language)) {
+            return false;
+        }
+
+        if (!is_null($this->region)) {
+            return false;
+        }
+
+        if (!is_null($this->gender)) {
+            return false;
+        }
+
+        if (!is_null($this->avatar)) {
+            return false;
+        }
+
+        if (!is_null($this->versionTermsOfService)) {
+            return false;
+        }
+
+        if (!is_null($this->status)) {
+            return false;
+        }
+
+        if (!is_null($this->subStatus)) {
+            return false;
+        }
+
+        if (!is_null($this->sessionTimeout)) {
+            return false;
+        }
+
+        if (!is_null($this->dailyLimitWithoutConfirmationLogin)) {
+            return false;
+        }
+
+        if (!is_null($this->notificationFilters)) {
+            return false;
+        }
+
+        return true;
+    }
 }

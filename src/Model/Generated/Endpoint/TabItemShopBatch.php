@@ -82,4 +82,16 @@ class TabItemShopBatch extends BunqModel
     {
         $this->tabItems = $tabItems;
     }
+
+    /**
+     * @return bool
+     */
+    public function isAllFieldNull()
+    {
+        if (!is_null($this->tabItems)) {
+            return false;
+        }
+
+        return true;
+    }
 }

@@ -43,16 +43,25 @@ abstract class BunqModel implements JsonSerializable
     const INDEX_FIRST = 0;
 
     /**
+     * Depth counter constants.
+     */
+    const DEPTH_COUNTER_BEGIN = 0;
+    const DEPTH_COUNTER_MAX = 2;
+    const DEPTH_COUNTER_INCREMENTER = 1;
+
+    /**
      * Type constants.
      */
     const SCALAR_TYPE_STRING = 'string';
     const SCALAR_TYPE_BOOL = 'bool';
     const SCALAR_TYPE_INT = 'int';
     const SCALAR_TYPE_FLOAT = 'float';
+
     /**
      * @var string[]
      */
     protected static $fieldNameOverrideMap = [];
+
     /**
      * Set of the PHP scalar types. Mimicking a constant, and therefore should be used with self::.
      *
@@ -97,6 +106,11 @@ abstract class BunqModel implements JsonSerializable
     }
 
     /**
+     * @return bool
+     */
+    abstract protected function isAllFieldNull();
+
+    /**
      * @param mixed[] $responseArray
      * @param string $wrapper
      *
@@ -121,17 +135,86 @@ abstract class BunqModel implements JsonSerializable
      *
      * @return BunqModel|null
      */
-    protected static function createFromResponseArray(array $responseArray, string $wrapper = null)
-    {
+    protected static function createFromResponseArray(
+        array $responseArray,
+        string $wrapper = null
+    ) {
+        if (is_subclass_of(get_called_class(), AnchorObjectInterface::class)) {
+            return self::createFromResponseArrayAnchorObject($responseArray);
+        }
+
         if (is_string($wrapper)) {
             $responseArray = $responseArray[$wrapper];
         }
 
-        if (is_null($responseArray)) {
+        if (empty($responseArray)) {
             return null;
-        } else {
-            return self::createInstanceFromResponseArray($responseArray);
         }
+
+        return self::createInstanceFromResponseArray($responseArray);
+    }
+
+    /**
+     * @param mixed[] $responseArray
+     * @param int|null $depthCounter
+     *
+     * @return BunqModel|null
+     */
+    private static function createFromResponseArrayAnchorObject(
+        array $responseArray,
+        int $depthCounter = null
+    ) {
+        if (empty($responseArray)) {
+            return null;
+        }
+
+        if (is_null($depthCounter)) {
+            $depthCounter = self::DEPTH_COUNTER_BEGIN;
+        }
+
+        $model = self::createInstanceFromResponseArray($responseArray);
+
+        if ($model->isAllFieldNull() && $depthCounter < self::DEPTH_COUNTER_MAX) {
+            $model = self::decodeInsideModelFields($responseArray, $model, $depthCounter);
+        }
+
+        return $model;
+    }
+
+    /**
+     * @param mixed[] $responseArray
+     * @param BunqModel $model
+     * @param int $depthCounter
+     *
+     * @return BunqModel
+     */
+    private static function decodeInsideModelFields(array $responseArray, BunqModel $model, int $depthCounter)
+    {
+        $modelFields = (array_keys(get_object_vars($model)));
+
+        foreach ($modelFields as $field) {
+            $fieldClass = ModelUtil::getModelClassNameQualifiedOrNull($field);
+
+            if (is_null($fieldClass)) {
+                continue;
+            }
+
+            $reflectionClass = new ReflectionClass($fieldClass);
+            /** @var BunqModel $bunqModelSubClass */
+            $bunqModelSubClass = $reflectionClass->newInstanceWithoutConstructor();
+            $fieldContents = $bunqModelSubClass::createFromResponseArrayAnchorObject(
+                $responseArray,
+                $depthCounter + self::DEPTH_COUNTER_INCREMENTER
+            );
+
+            if ($fieldContents->isAllFieldNull()) {
+                $model->{$field} = null;
+            } else {
+                $model->{$field} = $fieldContents;
+            }
+        }
+
+        return $model;
     }
 
     /**

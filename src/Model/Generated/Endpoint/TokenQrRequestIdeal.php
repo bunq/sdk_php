@@ -576,4 +576,92 @@ class TokenQrRequestIdeal extends BunqModel
     {
         $this->eligibleWhitelistId = $eligibleWhitelistId;
     }
+
+    /**
+     * @return bool
+     */
+    public function isAllFieldNull()
+    {
+        if (!is_null($this->timeResponded)) {
+            return false;
+        }
+
+        if (!is_null($this->timeExpiry)) {
+            return false;
+        }
+
+        if (!is_null($this->monetaryAccountId)) {
+            return false;
+        }
+
+        if (!is_null($this->amountInquired)) {
+            return false;
+        }
+
+        if (!is_null($this->amountResponded)) {
+            return false;
+        }
+
+        if (!is_null($this->alias)) {
+            return false;
+        }
+
+        if (!is_null($this->counterpartyAlias)) {
+            return false;
+        }
+
+        if (!is_null($this->description)) {
+            return false;
+        }
+
+        if (!is_null($this->attachment)) {
+            return false;
+        }
+
+        if (!is_null($this->status)) {
+            return false;
+        }
+
+        if (!is_null($this->minimumAge)) {
+            return false;
+        }
+
+        if (!is_null($this->requireAddress)) {
+            return false;
+        }
+
+        if (!is_null($this->addressShipping)) {
+            return false;
+        }
+
+        if (!is_null($this->addressBilling)) {
+            return false;
+        }
+
+        if (!is_null($this->geolocation)) {
+            return false;
+        }
+
+        if (!is_null($this->redirectUrl)) {
+            return false;
+        }
+
+        if (!is_null($this->type)) {
+            return false;
+        }
+
+        if (!is_null($this->subType)) {
+            return false;
+        }
+
+        if (!is_null($this->allowChat)) {
+            return false;
+        }
+
+        if (!is_null($this->eligibleWhitelistId)) {
+            return false;
+        }
+
+        return true;
+    }
 }

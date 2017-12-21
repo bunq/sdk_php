@@ -54,4 +54,12 @@ class ExportAnnualOverviewContent extends BunqModel
             new BunqResponse($responseRaw->getBodyString(), $responseRaw->getHeaders())
         );
     }
+
+    /**
+     * @return bool
+     */
+    public function isAllFieldNull()
+    {
+        return true;
+    }
 }

@@ -57,4 +57,20 @@ class DraftPaymentResponse extends BunqModel
     {
         $this->userAliasCreated = $userAliasCreated;
     }
+
+    /**
+     * @return bool
+     */
+    public function isAllFieldNull()
+    {
+        if (!is_null($this->status)) {
+            return false;
+        }
+
+        if (!is_null($this->userAliasCreated)) {
+            return false;
+        }
+
+        return true;
+    }
 }

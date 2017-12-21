@@ -42,4 +42,16 @@ class ChatMessageContentAnchorEvent extends BunqModel
     {
         $this->anchoredObject = $anchoredObject;
     }
+
+    /**
+     * @return bool
+     */
+    public function isAllFieldNull()
+    {
+        if (!is_null($this->anchoredObject)) {
+            return false;
+        }
+
+        return true;
+    }
 }

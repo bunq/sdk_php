@@ -112,4 +112,24 @@ class NotificationFilter extends BunqModel
     {
         $this->category = $category;
     }
+
+    /**
+     * @return bool
+     */
+    public function isAllFieldNull()
+    {
+        if (!is_null($this->notificationDeliveryMethod)) {
+            return false;
+        }
+
+        if (!is_null($this->notificationTarget)) {
+            return false;
+        }
+
+        if (!is_null($this->category)) {
+            return false;
+        }
+
+        return true;
+    }
 }

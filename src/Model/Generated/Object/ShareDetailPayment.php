@@ -181,4 +181,36 @@ class ShareDetailPayment extends BunqModel
     {
         $this->budget = $budget;
     }
+
+    /**
+     * @return bool
+     */
+    public function isAllFieldNull()
+    {
+        if (!is_null($this->makePayments)) {
+            return false;
+        }
+
+        if (!is_null($this->makeDraftPayments)) {
+            return false;
+        }
+
+        if (!is_null($this->viewBalance)) {
+            return false;
+        }
+
+        if (!is_null($this->viewOldEvents)) {
+            return false;
+        }
+
+        if (!is_null($this->viewNewEvents)) {
+            return false;
+        }
+
+        if (!is_null($this->budget)) {
+            return false;
+        }
+
+        return true;
+    }
 }

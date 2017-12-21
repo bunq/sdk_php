@@ -40,4 +40,28 @@ class Token extends BunqModel
     {
         return $this->token;
     }
+
+    /**
+     * @return bool
+     */
+    protected function isAllFieldNull()
+    {
+        if (!is_null($this->id)) {
+            return false;
+        }
+
+        if (!is_null($this->created)) {
+            return false;
+        }
+
+        if (!is_null($this->updated)) {
+            return false;
+        }
+
+        if (!is_null($this->token)) {
+            return false;
+        }
+
+        return true;
+    }
 }

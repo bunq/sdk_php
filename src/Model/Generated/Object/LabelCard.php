@@ -157,4 +157,36 @@ class LabelCard extends BunqModel
     {
         $this->labelUser = $labelUser;
     }
+
+    /**
+     * @return bool
+     */
+    public function isAllFieldNull()
+    {
+        if (!is_null($this->uuid)) {
+            return false;
+        }
+
+        if (!is_null($this->type)) {
+            return false;
+        }
+
+        if (!is_null($this->secondLine)) {
+            return false;
+        }
+
+        if (!is_null($this->expiryDate)) {
+            return false;
+        }
+
+        if (!is_null($this->status)) {
+            return false;
+        }
+
+        if (!is_null($this->labelUser)) {
+            return false;
+        }
+
+        return true;
+    }
 }

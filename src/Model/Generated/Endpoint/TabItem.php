@@ -196,4 +196,40 @@ class TabItem extends BunqModel
     {
         $this->amount = $amount;
     }
+
+    /**
+     * @return bool
+     */
+    public function isAllFieldNull()
+    {
+        if (!is_null($this->id)) {
+            return false;
+        }
+
+        if (!is_null($this->description)) {
+            return false;
+        }
+
+        if (!is_null($this->eanCode)) {
+            return false;
+        }
+
+        if (!is_null($this->avatarAttachment)) {
+            return false;
+        }
+
+        if (!is_null($this->tabAttachment)) {
+            return false;
+        }
+
+        if (!is_null($this->quantity)) {
+            return false;
+        }
+
+        if (!is_null($this->amount)) {
+            return false;
+        }
+
+        return true;
+    }
 }

@@ -90,4 +90,24 @@ class Avatar extends BunqModel
     {
         $this->image = $image;
     }
+
+    /**
+     * @return bool
+     */
+    public function isAllFieldNull()
+    {
+        if (!is_null($this->uuid)) {
+            return false;
+        }
+
+        if (!is_null($this->anchorUuid)) {
+            return false;
+        }
+
+        if (!is_null($this->image)) {
+            return false;
+        }
+
+        return true;
+    }
 }

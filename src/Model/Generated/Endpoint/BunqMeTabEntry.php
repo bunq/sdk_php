@@ -205,4 +205,40 @@ class BunqMeTabEntry extends BunqModel
     {
         $this->merchantAvailable = $merchantAvailable;
     }
+
+    /**
+     * @return bool
+     */
+    public function isAllFieldNull()
+    {
+        if (!is_null($this->uuid)) {
+            return false;
+        }
+
+        if (!is_null($this->amountInquired)) {
+            return false;
+        }
+
+        if (!is_null($this->alias)) {
+            return false;
+        }
+
+        if (!is_null($this->description)) {
+            return false;
+        }
+
+        if (!is_null($this->status)) {
+            return false;
+        }
+
+        if (!is_null($this->redirectUrl)) {
+            return false;
+        }
+
+        if (!is_null($this->merchantAvailable)) {
+            return false;
+        }
+
+        return true;
+    }
 }
