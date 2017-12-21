@@ -122,7 +122,7 @@ class ResponseHandlerSignature extends ResponseHandlerBase
     /**
      * @param string $headerName
      *
-     * @return mixed|string
+     * @return string
      */
     private function ensureHeaderIsCorrectlyCased(string $headerName)
     {
