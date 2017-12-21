@@ -1,5 +1,30 @@
 # Change Log
 
+## [0.12.4](https://github.com/bunq/sdk_php/tree/0.12.4) (2017-12-21)
+[Full Changelog](https://github.com/bunq/sdk_php/compare/0.12.3...0.12.4)
+
+**Implemented enhancements:**
+
+- Introduce fromJson method.  [\#84](https://github.com/bunq/sdk_php/issues/84)
+- Make sure received signatures headers are correctly cased [\#75](https://github.com/bunq/sdk_php/issues/75)
+- Return base class from createFromJsonString [\#73](https://github.com/bunq/sdk_php/issues/73)
+- CHANGELOG.md is empty  [\#71](https://github.com/bunq/sdk_php/issues/71)
+- Improve decoder to recognise child objects  [\#68](https://github.com/bunq/sdk_php/issues/68)
+- Return static. \(bunq/sdk\_php\#73\) [\#74](https://github.com/bunq/sdk_php/pull/74) ([OGKevin](https://github.com/OGKevin))
+- Generated CHANGELOG.md :clap:. \(bunq/sdk\_php\#71\) [\#72](https://github.com/bunq/sdk_php/pull/72) ([OGKevin](https://github.com/OGKevin))
+
+**Fixed bugs:**
+
+- Fatal error in the interactive installer when no allowed IP is given [\#79](https://github.com/bunq/sdk_php/issues/79)
+- Fatal when using MonetaryAccountBank class  [\#38](https://github.com/bunq/sdk_php/issues/38)
+- Add specific php version to composer. \(bunq/sdk\_php\#38\) [\#77](https://github.com/bunq/sdk_php/pull/77) ([OGKevin](https://github.com/OGKevin))
+
+**Merged pull requests:**
+
+- Feature/make sure headers are correctly cased bunq/sdk php\#75 [\#85](https://github.com/bunq/sdk_php/pull/85) ([OGKevin](https://github.com/OGKevin))
+- Feature/decode child object in parent object bunq/sdk php\#68 [\#83](https://github.com/bunq/sdk_php/pull/83) ([OGKevin](https://github.com/OGKevin))
+- Allow permitted IPs to be null in the interactive installer [\#78](https://github.com/bunq/sdk_php/pull/78) ([mbernson](https://github.com/mbernson))
+
 ## [0.12.3](https://github.com/bunq/sdk_php/tree/0.12.3) (2017-11-15)
 [Full Changelog](https://github.com/bunq/sdk_php/compare/0.12.2...0.12.3)
 
