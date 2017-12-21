@@ -2,12 +2,13 @@
 namespace bunq\Model\Generated\Object;
 
 use bunq\exception\BunqException;
+use bunq\Model\Core\AnchorObjectInterface;
 use bunq\Model\Core\BunqModel;
 
 /**
  * @generated
  */
-class ChatMessageContent extends BunqModel
+class ChatMessageContent extends BunqModel implements AnchorObjectInterface
 {
     /**
      * Error constants.
@@ -199,5 +200,41 @@ class ChatMessageContent extends BunqModel
         }
 
         throw new BunqException(self::ERROR_NULL_FIELDS);
+    }
+
+    /**
+     * @return bool
+     */
+    public function isAllFieldNull()
+    {
+        if (!is_null($this->chatMessageContentAnchorEvent)) {
+            return false;
+        }
+
+        if (!is_null($this->chatMessageContentAttachment)) {
+            return false;
+        }
+
+        if (!is_null($this->chatMessageContentGeolocation)) {
+            return false;
+        }
+
+        if (!is_null($this->chatMessageContentStatusConversationTitle)) {
+            return false;
+        }
+
+        if (!is_null($this->chatMessageContentStatusConversation)) {
+            return false;
+        }
+
+        if (!is_null($this->chatMessageContentStatusMembership)) {
+            return false;
+        }
+
+        if (!is_null($this->chatMessageContentText)) {
+            return false;
+        }
+
+        return true;
     }
 }

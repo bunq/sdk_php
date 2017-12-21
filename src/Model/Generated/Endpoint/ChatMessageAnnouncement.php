@@ -166,4 +166,36 @@ class ChatMessageAnnouncement extends BunqModel
     {
         $this->content = $content;
     }
+
+    /**
+     * @return bool
+     */
+    public function isAllFieldNull()
+    {
+        if (!is_null($this->id)) {
+            return false;
+        }
+
+        if (!is_null($this->created)) {
+            return false;
+        }
+
+        if (!is_null($this->updated)) {
+            return false;
+        }
+
+        if (!is_null($this->conversationId)) {
+            return false;
+        }
+
+        if (!is_null($this->creator)) {
+            return false;
+        }
+
+        if (!is_null($this->content)) {
+            return false;
+        }
+
+        return true;
+    }
 }

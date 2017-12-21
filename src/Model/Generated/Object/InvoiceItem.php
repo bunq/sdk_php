@@ -232,4 +232,48 @@ class InvoiceItem extends BunqModel
     {
         $this->totalVatInclusive = $totalVatInclusive;
     }
+
+    /**
+     * @return bool
+     */
+    public function isAllFieldNull()
+    {
+        if (!is_null($this->billingDate)) {
+            return false;
+        }
+
+        if (!is_null($this->typeDescription)) {
+            return false;
+        }
+
+        if (!is_null($this->typeDescriptionTranslated)) {
+            return false;
+        }
+
+        if (!is_null($this->unitVatExclusive)) {
+            return false;
+        }
+
+        if (!is_null($this->unitVatInclusive)) {
+            return false;
+        }
+
+        if (!is_null($this->vat)) {
+            return false;
+        }
+
+        if (!is_null($this->quantity)) {
+            return false;
+        }
+
+        if (!is_null($this->totalVatExclusive)) {
+            return false;
+        }
+
+        if (!is_null($this->totalVatInclusive)) {
+            return false;
+        }
+
+        return true;
+    }
 }

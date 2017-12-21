@@ -82,4 +82,24 @@ class AttachmentPublic extends BunqModel
     {
         $this->contentType = $contentType;
     }
+
+    /**
+     * @return bool
+     */
+    public function isAllFieldNull()
+    {
+        if (!is_null($this->uuid)) {
+            return false;
+        }
+
+        if (!is_null($this->description)) {
+            return false;
+        }
+
+        if (!is_null($this->contentType)) {
+            return false;
+        }
+
+        return true;
+    }
 }

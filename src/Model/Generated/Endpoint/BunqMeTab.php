@@ -368,4 +368,48 @@ class BunqMeTab extends BunqModel
     {
         $this->resultInquiries = $resultInquiries;
     }
+
+    /**
+     * @return bool
+     */
+    public function isAllFieldNull()
+    {
+        if (!is_null($this->id)) {
+            return false;
+        }
+
+        if (!is_null($this->created)) {
+            return false;
+        }
+
+        if (!is_null($this->updated)) {
+            return false;
+        }
+
+        if (!is_null($this->timeExpiry)) {
+            return false;
+        }
+
+        if (!is_null($this->monetaryAccountId)) {
+            return false;
+        }
+
+        if (!is_null($this->status)) {
+            return false;
+        }
+
+        if (!is_null($this->bunqmeTabShareUrl)) {
+            return false;
+        }
+
+        if (!is_null($this->bunqmeTabEntry)) {
+            return false;
+        }
+
+        if (!is_null($this->resultInquiries)) {
+            return false;
+        }
+
+        return true;
+    }
 }

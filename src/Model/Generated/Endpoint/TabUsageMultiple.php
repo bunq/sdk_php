@@ -644,4 +644,80 @@ class TabUsageMultiple extends BunqModel
     {
         $this->tabAttachment = $tabAttachment;
     }
+
+    /**
+     * @return bool
+     */
+    public function isAllFieldNull()
+    {
+        if (!is_null($this->uuid)) {
+            return false;
+        }
+
+        if (!is_null($this->created)) {
+            return false;
+        }
+
+        if (!is_null($this->updated)) {
+            return false;
+        }
+
+        if (!is_null($this->description)) {
+            return false;
+        }
+
+        if (!is_null($this->status)) {
+            return false;
+        }
+
+        if (!is_null($this->amountTotal)) {
+            return false;
+        }
+
+        if (!is_null($this->qrCodeToken)) {
+            return false;
+        }
+
+        if (!is_null($this->tabUrl)) {
+            return false;
+        }
+
+        if (!is_null($this->visibility)) {
+            return false;
+        }
+
+        if (!is_null($this->minimumAge)) {
+            return false;
+        }
+
+        if (!is_null($this->requireAddress)) {
+            return false;
+        }
+
+        if (!is_null($this->redirectUrl)) {
+            return false;
+        }
+
+        if (!is_null($this->expiration)) {
+            return false;
+        }
+
+        if (!is_null($this->alias)) {
+            return false;
+        }
+
+        if (!is_null($this->cashRegisterLocation)) {
+            return false;
+        }
+
+        if (!is_null($this->tabItem)) {
+            return false;
+        }
+
+        if (!is_null($this->tabAttachment)) {
+            return false;
+        }
+
+        return true;
+    }
 }

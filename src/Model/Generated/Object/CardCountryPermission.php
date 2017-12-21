@@ -90,4 +90,24 @@ class CardCountryPermission extends BunqModel
     {
         $this->expiryTime = $expiryTime;
     }
+
+    /**
+     * @return bool
+     */
+    public function isAllFieldNull()
+    {
+        if (!is_null($this->id)) {
+            return false;
+        }
+
+        if (!is_null($this->country)) {
+            return false;
+        }
+
+        if (!is_null($this->expiryTime)) {
+            return false;
+        }
+
+        return true;
+    }
 }

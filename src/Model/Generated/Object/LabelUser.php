@@ -144,4 +144,32 @@ class LabelUser extends BunqModel
     {
         $this->country = $country;
     }
+
+    /**
+     * @return bool
+     */
+    public function isAllFieldNull()
+    {
+        if (!is_null($this->uuid)) {
+            return false;
+        }
+
+        if (!is_null($this->avatar)) {
+            return false;
+        }
+
+        if (!is_null($this->publicNickName)) {
+            return false;
+        }
+
+        if (!is_null($this->displayName)) {
+            return false;
+        }
+
+        if (!is_null($this->country)) {
+            return false;
+        }
+
+        return true;
+    }
 }

@@ -100,4 +100,24 @@ class ShareDetailReadOnly extends BunqModel
     {
         $this->viewNewEvents = $viewNewEvents;
     }
+
+    /**
+     * @return bool
+     */
+    public function isAllFieldNull()
+    {
+        if (!is_null($this->viewBalance)) {
+            return false;
+        }
+
+        if (!is_null($this->viewOldEvents)) {
+            return false;
+        }
+
+        if (!is_null($this->viewNewEvents)) {
+            return false;
+        }
+
+        return true;
+    }
 }

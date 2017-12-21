@@ -148,4 +148,32 @@ class MonetaryAccountProfileFill extends BunqModel
     {
         $this->issuer = $issuer;
     }
+
+    /**
+     * @return bool
+     */
+    public function isAllFieldNull()
+    {
+        if (!is_null($this->status)) {
+            return false;
+        }
+
+        if (!is_null($this->balancePreferred)) {
+            return false;
+        }
+
+        if (!is_null($this->balanceThresholdLow)) {
+            return false;
+        }
+
+        if (!is_null($this->methodFill)) {
+            return false;
+        }
+
+        if (!is_null($this->issuer)) {
+            return false;
+        }
+
+        return true;
+    }
 }

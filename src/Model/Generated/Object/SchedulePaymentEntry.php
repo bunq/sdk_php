@@ -189,4 +189,36 @@ class SchedulePaymentEntry extends BunqModel
     {
         $this->merchantReference = $merchantReference;
     }
+
+    /**
+     * @return bool
+     */
+    public function isAllFieldNull()
+    {
+        if (!is_null($this->amount)) {
+            return false;
+        }
+
+        if (!is_null($this->alias)) {
+            return false;
+        }
+
+        if (!is_null($this->counterpartyAlias)) {
+            return false;
+        }
+
+        if (!is_null($this->description)) {
+            return false;
+        }
+
+        if (!is_null($this->attachment)) {
+            return false;
+        }
+
+        if (!is_null($this->merchantReference)) {
+            return false;
+        }
+
+        return true;
+    }
 }

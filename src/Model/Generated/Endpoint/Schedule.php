@@ -249,4 +249,36 @@ class Schedule extends BunqModel
     {
         $this->object = $object;
     }
+
+    /**
+     * @return bool
+     */
+    public function isAllFieldNull()
+    {
+        if (!is_null($this->timeStart)) {
+            return false;
+        }
+
+        if (!is_null($this->timeEnd)) {
+            return false;
+        }
+
+        if (!is_null($this->recurrenceUnit)) {
+            return false;
+        }
+
+        if (!is_null($this->recurrenceSize)) {
+            return false;
+        }
+
+        if (!is_null($this->status)) {
+            return false;
+        }
+
+        if (!is_null($this->object)) {
+            return false;
+        }
+
+        return true;
+    }
 }

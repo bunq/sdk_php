@@ -728,4 +728,104 @@ class Payment extends BunqModel
     {
         $this->allowChat = $allowChat;
     }
+
+    /**
+     * @return bool
+     */
+    public function isAllFieldNull()
+    {
+        if (!is_null($this->id)) {
+            return false;
+        }
+
+        if (!is_null($this->created)) {
+            return false;
+        }
+
+        if (!is_null($this->updated)) {
+            return false;
+        }
+
+        if (!is_null($this->monetaryAccountId)) {
+            return false;
+        }
+
+        if (!is_null($this->amount)) {
+            return false;
+        }
+
+        if (!is_null($this->alias)) {
+            return false;
+        }
+
+        if (!is_null($this->counterpartyAlias)) {
+            return false;
+        }
+
+        if (!is_null($this->description)) {
+            return false;
+        }
+
+        if (!is_null($this->type)) {
+            return false;
+        }
+
+        if (!is_null($this->subType)) {
+            return false;
+        }
+
+        if (!is_null($this->bunqtoStatus)) {
+            return false;
+        }
+
+        if (!is_null($this->bunqtoSubStatus)) {
+            return false;
+        }
+
+        if (!is_null($this->bunqtoShareUrl)) {
+            return false;
+        }
+
+        if (!is_null($this->bunqtoExpiry)) {
+            return false;
+        }
+
+        if (!is_null($this->bunqtoTimeResponded)) {
+            return false;
+        }
+
+        if (!is_null($this->attachment)) {
+            return false;
+        }
+
+        if (!is_null($this->merchantReference)) {
+            return false;
+        }
+
+        if (!is_null($this->batchId)) {
+            return false;
+        }
+
+        if (!is_null($this->scheduledId)) {
+            return false;
+        }
+
+        if (!is_null($this->addressShipping)) {
+            return false;
+        }
+
+        if (!is_null($this->addressBilling)) {
+            return false;
+        }
+
+        if (!is_null($this->geolocation)) {
+            return false;
+        }
+
+        if (!is_null($this->allowChat)) {
+            return false;
+        }
+
+        return true;
+    }
 }

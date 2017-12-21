@@ -485,4 +485,76 @@ class CardResult extends BunqModel
     {
         $this->reservationExpiryTime = $reservationExpiryTime;
     }
+
+    /**
+     * @return bool
+     */
+    public function isAllFieldNull()
+    {
+        if (!is_null($this->monetaryAccountId)) {
+            return false;
+        }
+
+        if (!is_null($this->cardId)) {
+            return false;
+        }
+
+        if (!is_null($this->amountOriginal)) {
+            return false;
+        }
+
+        if (!is_null($this->amountFinal)) {
+            return false;
+        }
+
+        if (!is_null($this->decision)) {
+            return false;
+        }
+
+        if (!is_null($this->decisionDescription)) {
+            return false;
+        }
+
+        if (!is_null($this->decisionDescriptionTranslated)) {
+            return false;
+        }
+
+        if (!is_null($this->description)) {
+            return false;
+        }
+
+        if (!is_null($this->messageType)) {
+            return false;
+        }
+
+        if (!is_null($this->authorisationType)) {
+            return false;
+        }
+
+        if (!is_null($this->city)) {
+            return false;
+        }
+
+        if (!is_null($this->alias)) {
+            return false;
+        }
+
+        if (!is_null($this->counterpartyAlias)) {
+            return false;
+        }
+
+        if (!is_null($this->labelCard)) {
+            return false;
+        }
+
+        if (!is_null($this->reservationStatus)) {
+            return false;
+        }
+
+        if (!is_null($this->reservationExpiryTime)) {
+            return false;
+        }
+
+        return true;
+    }
 }

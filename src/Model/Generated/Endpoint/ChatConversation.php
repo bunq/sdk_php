@@ -5,6 +5,7 @@ use bunq\Context\ApiContext;
 use bunq\exception\BunqException;
 use bunq\Http\ApiClient;
 use bunq\Http\BunqResponse;
+use bunq\Model\Core\AnchorObjectInterface;
 use bunq\Model\Core\BunqModel;
 
 /**
@@ -12,7 +13,7 @@ use bunq\Model\Core\BunqModel;
  *
  * @generated
  */
-class ChatConversation extends BunqModel
+class ChatConversation extends BunqModel implements AnchorObjectInterface
 {
     /**
      * Error constants.
@@ -140,5 +141,21 @@ class ChatConversation extends BunqModel
         }
 
         throw new BunqException(self::ERROR_NULL_FIELDS);
+    }
+
+    /**
+     * @return bool
+     */
+    public function isAllFieldNull()
+    {
+        if (!is_null($this->supportConversationExternal)) {
+            return false;
+        }
+
+        if (!is_null($this->chatConversationReference)) {
+            return false;
+        }
+
+        return true;
     }
 }

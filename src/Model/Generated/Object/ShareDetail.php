@@ -98,4 +98,24 @@ class ShareDetail extends BunqModel
     {
         $this->draftPayment = $draftPayment;
     }
+
+    /**
+     * @return bool
+     */
+    public function isAllFieldNull()
+    {
+        if (!is_null($this->payment)) {
+            return false;
+        }
+
+        if (!is_null($this->readOnly)) {
+            return false;
+        }
+
+        if (!is_null($this->draftPayment)) {
+            return false;
+        }
+
+        return true;
+    }
 }

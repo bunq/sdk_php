@@ -57,4 +57,20 @@ class Error extends BunqModel
     {
         $this->errorDescriptionTranslated = $errorDescriptionTranslated;
     }
+
+    /**
+     * @return bool
+     */
+    public function isAllFieldNull()
+    {
+        if (!is_null($this->errorDescription)) {
+            return false;
+        }
+
+        if (!is_null($this->errorDescriptionTranslated)) {
+            return false;
+        }
+
+        return true;
+    }
 }

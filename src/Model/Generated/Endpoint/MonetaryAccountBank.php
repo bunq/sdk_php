@@ -685,4 +685,92 @@ class MonetaryAccountBank extends BunqModel
     {
         $this->setting = $setting;
     }
+
+    /**
+     * @return bool
+     */
+    public function isAllFieldNull()
+    {
+        if (!is_null($this->id)) {
+            return false;
+        }
+
+        if (!is_null($this->created)) {
+            return false;
+        }
+
+        if (!is_null($this->updated)) {
+            return false;
+        }
+
+        if (!is_null($this->avatar)) {
+            return false;
+        }
+
+        if (!is_null($this->currency)) {
+            return false;
+        }
+
+        if (!is_null($this->description)) {
+            return false;
+        }
+
+        if (!is_null($this->dailyLimit)) {
+            return false;
+        }
+
+        if (!is_null($this->dailySpent)) {
+            return false;
+        }
+
+        if (!is_null($this->overdraftLimit)) {
+            return false;
+        }
+
+        if (!is_null($this->balance)) {
+            return false;
+        }
+
+        if (!is_null($this->alias)) {
+            return false;
+        }
+
+        if (!is_null($this->publicUuid)) {
+            return false;
+        }
+
+        if (!is_null($this->status)) {
+            return false;
+        }
+
+        if (!is_null($this->subStatus)) {
+            return false;
+        }
+
+        if (!is_null($this->reason)) {
+            return false;
+        }
+
+        if (!is_null($this->reasonDescription)) {
+            return false;
+        }
+
+        if (!is_null($this->userId)) {
+            return false;
+        }
+
+        if (!is_null($this->monetaryAccountProfile)) {
+            return false;
+        }
+
+        if (!is_null($this->notificationFilters)) {
+            return false;
+        }
+
+        if (!is_null($this->setting)) {
+            return false;
+        }
+
+        return true;
+    }
 }

@@ -465,4 +465,68 @@ class IdealMerchantTransaction extends BunqModel
     {
         $this->allowChat = $allowChat;
     }
+
+    /**
+     * @return bool
+     */
+    public function isAllFieldNull()
+    {
+        if (!is_null($this->monetaryAccountId)) {
+            return false;
+        }
+
+        if (!is_null($this->alias)) {
+            return false;
+        }
+
+        if (!is_null($this->counterpartyAlias)) {
+            return false;
+        }
+
+        if (!is_null($this->amountGuaranteed)) {
+            return false;
+        }
+
+        if (!is_null($this->amountRequested)) {
+            return false;
+        }
+
+        if (!is_null($this->expiration)) {
+            return false;
+        }
+
+        if (!is_null($this->issuer)) {
+            return false;
+        }
+
+        if (!is_null($this->issuerName)) {
+            return false;
+        }
+
+        if (!is_null($this->issuerAuthenticationUrl)) {
+            return false;
+        }
+
+        if (!is_null($this->purchaseIdentifier)) {
+            return false;
+        }
+
+        if (!is_null($this->status)) {
+            return false;
+        }
+
+        if (!is_null($this->statusTimestamp)) {
+            return false;
+        }
+
+        if (!is_null($this->transactionIdentifier)) {
+            return false;
+        }
+
+        if (!is_null($this->allowChat)) {
+            return false;
+        }
+
+        return true;
+    }
 }

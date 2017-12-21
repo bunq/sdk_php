@@ -312,4 +312,36 @@ class CashRegisterQrCode extends BunqModel
     {
         $this->tabObject = $tabObject;
     }
+
+    /**
+     * @return bool
+     */
+    public function isAllFieldNull()
+    {
+        if (!is_null($this->id)) {
+            return false;
+        }
+
+        if (!is_null($this->created)) {
+            return false;
+        }
+
+        if (!is_null($this->updated)) {
+            return false;
+        }
+
+        if (!is_null($this->status)) {
+            return false;
+        }
+
+        if (!is_null($this->cashRegister)) {
+            return false;
+        }
+
+        if (!is_null($this->tabObject)) {
+            return false;
+        }
+
+        return true;
+    }
 }

@@ -1,12 +1,13 @@
 <?php
 namespace bunq\test\Model\Object;
 
-use bunq\Exception\BunqException;
 use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Endpoint\BunqMeTab;
+use bunq\Model\Generated\Endpoint\ChatMessage;
 use bunq\Model\Generated\Endpoint\ChatMessageAnnouncement;
 use bunq\Model\Generated\Endpoint\DraftPayment;
 use bunq\Model\Generated\Endpoint\MasterCardAction;
+use bunq\Model\Generated\Endpoint\MonetaryAccount;
 use bunq\Model\Generated\Endpoint\MonetaryAccountBank;
 use bunq\Model\Generated\Endpoint\Payment;
 use bunq\Model\Generated\Endpoint\PaymentBatch;
@@ -37,10 +38,12 @@ class NotificationUrlTest extends BunqSdkTestBase
      */
     const GETTER_PAYMENT = 'getPayment';
     const GETTER_BUNQ_ME_TAB = 'getBunqMeTab';
+    const GETTER_CHAT_MESSAGE = 'getChatMessage';
     const GETTER_CHAT_MESSAGE_ANNOUNCEMENT = 'getChatMessageAnnouncement';
     const GETTER_DRAFT_PAYMENT = 'getDraftPayment';
     const GETTER_MASTER_CARD_ACTION = 'getMasterCardAction';
-    const GETTER_MONETARY_ACCOUNT_BANK = 'getMonetaryAccountBank';
+    const GETTER_MONETARY_ACCOUNT = 'getMonetaryAccount';
+    const GETTER_MONETARY_ACCOUNT_BANK= 'getMonetaryAccountBank';
     const GETTER_PAYMENT_BATCH = 'getPaymentBatch';
     const GETTER_REQUEST_INQUIRY = 'getRequestInquiry';
     const GETTER_REQUEST_RESPONSE = 'getRequestResponse';
@@ -100,8 +103,10 @@ class NotificationUrlTest extends BunqSdkTestBase
     {
         $this->executeNotificationUrlTest(
             self::JSON_PATH_MONETARY_ACCOUNT_BANK_MODEL,
-            MonetaryAccountBank::class,
-            self::GETTER_MONETARY_ACCOUNT_BANK
+            MonetaryAccount::class,
+            self::GETTER_MONETARY_ACCOUNT,
+            self::GETTER_MONETARY_ACCOUNT_BANK,
+            MonetaryAccountBank::class
         );
     }
     
@@ -199,8 +204,10 @@ class NotificationUrlTest extends BunqSdkTestBase
     {
         $this->executeNotificationUrlTest(
             self::JSON_PATH_CHAT_MESSAGE_ANNOUNCEMENT_MODEL,
-            ChatMessageAnnouncement::class,
-            self::GETTER_CHAT_MESSAGE_ANNOUNCEMENT
+            ChatMessage::class,
+            self::GETTER_CHAT_MESSAGE,
+            self::GETTER_CHAT_MESSAGE_ANNOUNCEMENT,
+            ChatMessageAnnouncement::class
         );
     }
 
@@ -219,11 +226,15 @@ class NotificationUrlTest extends BunqSdkTestBase
      * @param string $expectedJsonFileName
      * @param string $classNameExpected
      * @param string $referencedObjectGetterName
+     * @param string|null $subClassObjectGetterName
+     * @param string|null $subClassNameExpected
      */
     private function executeNotificationUrlTest(
         string $expectedJsonFileName,
         string $classNameExpected,
-        string $referencedObjectGetterName
+        string $referencedObjectGetterName,
+        string $subClassObjectGetterName = null,
+        string $subClassNameExpected = null
     ) {
         $jsonExpectedString = FileUtil::getFileContents($expectedJsonFileName);
         $notificationUrl = $this->getNotificationUrlFromJson($jsonExpectedString);
@@ -234,6 +245,13 @@ class NotificationUrlTest extends BunqSdkTestBase
         static::assertNotNull($model);
         static::assertNotNull($referencedModel);
         static::assertInstanceOf($classNameExpected, $referencedModel);
+
+        if (!is_null($subClassObjectGetterName)) {
+            $subClassModel = $referencedModel->$subClassObjectGetterName();
+
+            static::assertNotNull($subClassModel);
+            static::assertInstanceOf($subClassNameExpected, $subClassModel);
+        }
     }
 
     /**

@@ -202,4 +202,20 @@ class RequestInquiryBatch extends BunqModel
     {
         $this->totalAmountInquired = $totalAmountInquired;
     }
+
+    /**
+     * @return bool
+     */
+    public function isAllFieldNull()
+    {
+        if (!is_null($this->requestInquiries)) {
+            return false;
+        }
+
+        if (!is_null($this->totalAmountInquired)) {
+            return false;
+        }
+
+        return true;
+    }
 }

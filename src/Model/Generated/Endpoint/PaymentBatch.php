@@ -175,4 +175,16 @@ class PaymentBatch extends BunqModel
     {
         $this->payments = $payments;
     }
+
+    /**
+     * @return bool
+     */
+    public function isAllFieldNull()
+    {
+        if (!is_null($this->payments)) {
+            return false;
+        }
+
+        return true;
+    }
 }

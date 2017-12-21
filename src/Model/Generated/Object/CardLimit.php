@@ -121,4 +121,28 @@ class CardLimit extends BunqModel
     {
         $this->type = $type;
     }
+
+    /**
+     * @return bool
+     */
+    public function isAllFieldNull()
+    {
+        if (!is_null($this->id)) {
+            return false;
+        }
+
+        if (!is_null($this->dailyLimit)) {
+            return false;
+        }
+
+        if (!is_null($this->currency)) {
+            return false;
+        }
+
+        if (!is_null($this->type)) {
+            return false;
+        }
+
+        return true;
+    }
 }

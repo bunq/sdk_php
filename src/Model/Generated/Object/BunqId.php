@@ -40,4 +40,16 @@ class BunqId extends BunqModel
     {
         $this->id = $id;
     }
+
+    /**
+     * @return bool
+     */
+    public function isAllFieldNull()
+    {
+        if (!is_null($this->id)) {
+            return false;
+        }
+
+        return true;
+    }
 }
