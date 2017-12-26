@@ -11,6 +11,12 @@ use Psr\Http\Message\ResponseInterface;
 class ResponseHandlerError extends ResponseHandlerBase
 {
     /**
+     * Error constants.
+     */
+    const ERROR_COULD_NOT_DETERMINE_RESPONSE_ID_HEADER =
+        'The response header "X-Bunq-Client-Response-Id" or "x-bunq-client-response-id" could not be found.';
+
+    /**
      * Field constants.
      */
     const FIELD_ERROR = 'Error';
