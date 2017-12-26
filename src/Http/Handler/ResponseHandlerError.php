@@ -3,7 +3,9 @@
 namespace bunq\Http\Handler;
 
 use bunq\Exception\ApiException;
+use bunq\Exception\BunqException;
 use bunq\Exception\ExceptionFactory;
+use Gitonomy\Git\Tests\ReferenceTest;
 use Psr\Http\Message\ResponseInterface;
 
 /**
@@ -30,6 +32,11 @@ class ResponseHandlerError extends ResponseHandlerBase
     const STATUS_CODE_OK = 200;
 
     /**
+     * The index of the first item in an array.
+     */
+    const INDEX_FIRST = 0;
+
+    /**
      * @param ResponseInterface $response
      *
      * @return ResponseInterface
@@ -40,7 +47,8 @@ class ResponseHandlerError extends ResponseHandlerBase
         if ($response->getStatusCode() !== self::STATUS_CODE_OK) {
             throw ExceptionFactory::createExceptionForResponse(
                 $this->fetchErrorMessages($response),
-                $response->getStatusCode()
+                $response->getStatusCode(),
+                $this->getResponseId($response)
             );
         }
 
@@ -79,5 +87,26 @@ class ResponseHandlerError extends ResponseHandlerBase
         }
 
         return $errorDescriptions;
+    }
+
+    /**
+     * @param ResponseInterface $response
+     *
+     * @return string
+     * @throws BunqException
+     */
+    private function getResponseId(ResponseInterface $response): string
+    {
+        $header = $response->getHeader(self::FIELD_BUNQ_CLIENT_RESPONSE_ID_UPPER_CASED);
+
+        if (empty($header)) {
+            $header = $response->getHeader(self::FIELD_BUNQ_CLIENT_RESPONSE_ID_UPPER_CASED);
+        }
+
+        if (empty($header)) {
+            throw new BunqException(self::ERROR_COULD_NOT_DETERMINE_RESPONSE_ID_HEADER);
+        }
+
+        return $header[self::INDEX_FIRST];
     }
 }
