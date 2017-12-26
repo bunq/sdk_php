@@ -63,14 +63,23 @@ class ExceptionFactory
     /**
      * @param int $responseCode
      * @param string[] $messages
+     * @param string $responseId
      *
      * @return string
      */
-    private static function generateErrorMessage(int $responseCode, array $messages): string
-    {
+    private static function generateErrorMessage(
+        int $responseCode,
+        array $messages,
+        string $responseId
+    ): string {
         $lineResponseCode = sprintf(self::FORMAT_RESPONSE_CODE_LINE, $responseCode);
+        $lineResponseId = sprintf(self::FORMAT_RESPONSE_ID, $responseId);
+        $lineErrorMessage = sprintf(
+            self::FORMAT_ERROR_MESSAGE_LINE,
+            implode($messages)
+        );
 
-        return static::glueMessages(array_merge([$lineResponseCode], $messages));
+        return static::glueMessages([$lineResponseCode, $lineResponseId, $lineErrorMessage]);
     }
 
     /**
