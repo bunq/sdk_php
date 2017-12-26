@@ -20,6 +20,8 @@ class ExceptionFactory
      * Formatting constants
      */
     const FORMAT_RESPONSE_CODE_LINE = 'HTTP Response Code: %s';
+    const FORMAT_RESPONSE_ID = 'The response id to help bunq debug: %s';
+    const FORMAT_ERROR_MESSAGE_LINE = 'Error message: %s';
     const GLUE_ERROR_MESSAGES = "\n";
 
     /**

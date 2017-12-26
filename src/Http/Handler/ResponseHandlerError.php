@@ -15,6 +15,8 @@ class ResponseHandlerError extends ResponseHandlerBase
      */
     const FIELD_ERROR = 'Error';
     const FIELD_ERROR_DESCRIPTION = 'error_description';
+    const FIELD_BUNQ_CLIENT_RESPONSE_ID_UPPER_CASED = 'X-Bunq-Client-Response-Id';
+    const FIELD_BUNQ_CLIENT_RESPONSE_ID_LOWER_CASED = 'x-bunq-client-response-id';
 
     /**
      * Http status code constants.
