@@ -5,7 +5,6 @@ namespace bunq\Http\Handler;
 use bunq\Exception\ApiException;
 use bunq\Exception\BunqException;
 use bunq\Exception\ExceptionFactory;
-use Gitonomy\Git\Tests\ReferenceTest;
 use Psr\Http\Message\ResponseInterface;
 
 /**
