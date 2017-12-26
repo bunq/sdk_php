@@ -31,7 +31,7 @@ class ResponseHandlerError extends ResponseHandlerBase
      */
     public function execute(ResponseInterface $response): ResponseInterface
     {
-        if ($response->getStatusCode() !== self::STATUS_CODE_OK){
+        if ($response->getStatusCode() !== self::STATUS_CODE_OK) {
             throw ExceptionFactory::createExceptionForResponse(
                 $this->fetchErrorMessages($response),
                 $response->getStatusCode()
@@ -51,9 +51,9 @@ class ResponseHandlerError extends ResponseHandlerBase
         $responseBody = $response->getBody();
         $responseBodyInJson = json_decode($responseBody, true);
 
-        if ($responseBodyInJson !== false){
+        if ($responseBodyInJson !== false) {
             return $this->fetchErrorDescriptions($responseBodyInJson);
-        }else{
+        } else {
             return [$responseBody];
         }
     }
@@ -67,7 +67,7 @@ class ResponseHandlerError extends ResponseHandlerBase
     {
         $errorDescriptions = [];
 
-        foreach ($errorArray[self::FIELD_ERROR] as $error){
+        foreach ($errorArray[self::FIELD_ERROR] as $error) {
             $description = $error[self::FIELD_ERROR_DESCRIPTION];
             $errorDescriptions[] = $description;
         }
