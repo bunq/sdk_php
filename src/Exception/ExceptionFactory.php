@@ -32,31 +32,34 @@ class ExceptionFactory
     /**
      * @param string[] $messages
      * @param int $responseCode
+     * @param string $responseId
      *
      * @return ApiException
      */
-    public static function createExceptionForResponse(array $messages, int $responseCode): ApiException
-    {
-        $errorMessage = static::generateErrorMessage($responseCode, $messages);
+    public static function createExceptionForResponse(
+        array $messages,
+        int $responseCode,
+        string $responseId
+    ): ApiException {
+        $errorMessage = static::generateErrorMessage($responseCode, $messages, $responseId);
 
-        switch ($responseCode)
-        {
+        switch ($responseCode) {
             case self::HTTP_RESPONSE_CODE_BAD_REQUEST:
-                return new BadRequestException($errorMessage, $responseCode);
+                return new BadRequestException($errorMessage, $responseCode, $responseId);
             case self::HTTP_RESPONSE_CODE_UNAUTHORIZED:
-                return new UnauthorizedException($errorMessage, $responseCode);
+                return new UnauthorizedException($errorMessage, $responseCode, $responseId);
             case self::HTTP_RESPONSE_CODE_FORBIDDEN:
-                return new ForbiddenException($errorMessage, $responseCode);
+                return new ForbiddenException($errorMessage, $responseCode, $responseId);
             case self::HTTP_RESPONSE_CODE_NOT_FOUND:
-                return new NotFoundException($errorMessage, $responseCode);
+                return new NotFoundException($errorMessage, $responseCode, $responseId);
             case self::HTTP_RESPONSE_CODE_METHOD_NOT_ALLOWED:
-                return new MethodNotAllowedException($errorMessage, $responseCode);
+                return new MethodNotAllowedException($errorMessage, $responseCode, $responseId);
             case self::HTTP_RESPONSE_CODE_TOO_MANY_REQUESTS:
-                return new TooManyRequestsException($errorMessage, $responseCode);
+                return new TooManyRequestsException($errorMessage, $responseCode, $responseId);
             case self::HTTP_RESPONSE_CODE_INTERNAL_SERVER_ERROR:
-                return new PleaseContactBunqException($errorMessage, $responseCode);
+                return new PleaseContactBunqException($errorMessage, $responseCode, $responseId);
             default:
-                return new UnknownApiErrorException($errorMessage, $responseCode);
+                return new UnknownApiErrorException($errorMessage, $responseCode, $responseId);
         }
     }
 
