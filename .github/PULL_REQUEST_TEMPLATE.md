@@ -3,6 +3,6 @@
          If this pull request is changing files that are located in "src/Model/Generated" then this pull request will be closed as these files must/can only be changed on bunq's side.)
          
 ## This PR closes/fixes the following issues:
-[//]: # (If for some reason your pull request does not require a test case you can just mark this box as checked and explain why it should not require a test case.)
+[//]: # (If for some reason your pull request does not require a test case you can just mark this box as checked and explain why it does not require a test case.)
  - Closes bunq/sdk_php#
     - [ ] Tested
