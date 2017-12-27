@@ -11,6 +11,11 @@ use bunq\test\BunqSdkTestBase;
 class ErrorResponseIdTest extends BunqSdkTestBase
 {
     /**
+     * Invalid user id to trigger BadRequestException
+     */
+    const INVALID_USER_PERSON_ID = 0;
+
+    /**
      */
     public function testBadRequestWitResponseId()
     {
@@ -18,6 +23,7 @@ class ErrorResponseIdTest extends BunqSdkTestBase
 
         try {
             UserPerson::get(static::$apiContext, 0);
+            UserPerson::get(static::$apiContext, self::INVALID_USER_PERSON_ID);
         } catch (BadRequestException $exception) {
             $caughtExcretion = $exception;
         }
