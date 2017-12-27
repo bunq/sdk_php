@@ -19,16 +19,15 @@ class ErrorResponseIdTest extends BunqSdkTestBase
      */
     public function testBadRequestWitResponseId()
     {
-        $caughtExcretion = null;
+        $caughtException = null;
 
         try {
-            UserPerson::get(static::$apiContext, 0);
             UserPerson::get(static::$apiContext, self::INVALID_USER_PERSON_ID);
         } catch (BadRequestException $exception) {
-            $caughtExcretion = $exception;
+            $caughtException = $exception;
         }
 
-        static::assertNotNull($caughtExcretion);
-        static::assertNotNull($caughtExcretion->getResponseId());
+        static::assertNotNull($caughtException);
+        static::assertNotNull($caughtException->getResponseId());
     }
 }
