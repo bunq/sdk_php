@@ -65,7 +65,7 @@ class ResponseHandlerError extends ResponseHandlerBase
         $responseBodyInJson = json_decode($responseBody, true);
 
         if ($responseBodyInJson !== false) {
-            return $this->fetchErrorDescriptions($responseBodyInJson);
+            return $this->fetchAllErrorDescription($responseBodyInJson);
         } else {
             return [$responseBody];
         }
@@ -76,16 +76,16 @@ class ResponseHandlerError extends ResponseHandlerBase
      *
      * @return string[]
      */
-    private function fetchErrorDescriptions(array $errorArray): array
+    private function fetchAllErrorDescription(array $errorArray): array
     {
-        $errorDescriptions = [];
+        $allErrorDescription = [];
 
         foreach ($errorArray[self::FIELD_ERROR] as $error) {
             $description = $error[self::FIELD_ERROR_DESCRIPTION];
-            $errorDescriptions[] = $description;
+            $allErrorDescription[] = $description;
         }
 
-        return $errorDescriptions;
+        return $allErrorDescription;
     }
 
     /**

@@ -30,18 +30,18 @@ class ExceptionFactory
     const INDEX_FIRST = 0;
 
     /**
-     * @param string[] $messages
+     * @param string[] $allMessage
      * @param int $responseCode
      * @param string $responseId
      *
      * @return ApiException
      */
     public static function createExceptionForResponse(
-        array $messages,
+        array $allMessage,
         int $responseCode,
         string $responseId
     ): ApiException {
-        $errorMessage = static::generateErrorMessage($responseCode, $messages, $responseId);
+        $errorMessage = static::generateErrorMessage($responseCode, $allMessage, $responseId);
 
         switch ($responseCode) {
             case self::HTTP_RESPONSE_CODE_BAD_REQUEST:
@@ -65,21 +65,21 @@ class ExceptionFactory
 
     /**
      * @param int $responseCode
-     * @param string[] $messages
+     * @param string[] $allMessage
      * @param string $responseId
      *
      * @return string
      */
     private static function generateErrorMessage(
         int $responseCode,
-        array $messages,
+        array $allMessage,
         string $responseId
     ): string {
         $lineResponseCode = sprintf(self::FORMAT_RESPONSE_CODE_LINE, $responseCode);
         $lineResponseId = sprintf(self::FORMAT_RESPONSE_ID, $responseId);
         $lineErrorMessage = sprintf(
             self::FORMAT_ERROR_MESSAGE_LINE,
-            implode($messages)
+            implode($allMessage)
         );
 
         return static::glueMessages([$lineResponseCode, $lineResponseId, $lineErrorMessage]);
