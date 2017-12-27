@@ -86,7 +86,7 @@ class ExceptionFactory
             implode($allMessage)
         );
 
-        return static::glueMessages([$lineResponseCode, $lineResponseId, $lineErrorMessage]);
+        return static::glueAllMessage([$lineResponseCode, $lineResponseId, $lineErrorMessage]);
     }
 
     /**
@@ -94,7 +94,7 @@ class ExceptionFactory
      *
      * @return string
      */
-    private static function glueMessages(array $messages): string
+    private static function glueAllMessage(array $messages): string
     {
         return implode(self::SEPARATOR_ERROR_MESSAGES, $messages);
     }
