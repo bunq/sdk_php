@@ -1,5 +1,4 @@
 <?php
-
 namespace bunq\test\Http;
 
 use bunq\Exception\BadRequestException;
