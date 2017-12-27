@@ -22,7 +22,11 @@ class ExceptionFactory
     const FORMAT_RESPONSE_CODE_LINE = 'HTTP Response Code: %s';
     const FORMAT_RESPONSE_ID = 'The response id to help bunq debug: %s';
     const FORMAT_ERROR_MESSAGE_LINE = 'Error message: %s';
-    const GLUE_ERROR_MESSAGES = "\n";
+
+    /**
+     * String separator constants
+     */
+    const SEPARATOR_ERROR_MESSAGES = "\n";
 
     /**
      * The first item index in an array.
@@ -92,6 +96,6 @@ class ExceptionFactory
      */
     private static function glueMessages(array $messages): string
     {
-        return implode(self::GLUE_ERROR_MESSAGES, $messages);
+        return implode(self::SEPARATOR_ERROR_MESSAGES, $messages);
     }
 }
