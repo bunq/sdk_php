@@ -90,12 +90,12 @@ class ExceptionFactory
     }
 
     /**
-     * @param string[] $messages
+     * @param string[] $allMessage
      *
      * @return string
      */
-    private static function glueAllMessage(array $messages): string
+    private static function glueAllMessage(array $allMessage): string
     {
-        return implode(self::SEPARATOR_ERROR_MESSAGES, $messages);
+        return implode(self::SEPARATOR_ERROR_MESSAGES, $allMessage);
     }
 }
