@@ -22,8 +22,12 @@ class ResponseHandlerError extends ResponseHandlerBase
      */
     const FIELD_ERROR = 'Error';
     const FIELD_ERROR_DESCRIPTION = 'error_description';
-    const FIELD_BUNQ_CLIENT_RESPONSE_ID_UPPER_CASED = 'X-Bunq-Client-Response-Id';
-    const FIELD_BUNQ_CLIENT_RESPONSE_ID_LOWER_CASED = 'x-bunq-client-response-id';
+
+    /**
+     * Header constants.
+     */
+    const HEADER_BUNQ_CLIENT_RESPONSE_ID_UPPER_CASED = 'X-Bunq-Client-Response-Id';
+    const HEADER_BUNQ_CLIENT_RESPONSE_ID_LOWER_CASED = 'x-bunq-client-response-id';
 
     /**
      * Http status code constants.
@@ -96,10 +100,10 @@ class ResponseHandlerError extends ResponseHandlerBase
      */
     private function getResponseId(ResponseInterface $response): string
     {
-        $header = $response->getHeader(self::FIELD_BUNQ_CLIENT_RESPONSE_ID_UPPER_CASED);
+        $header = $response->getHeader(self::HEADER_BUNQ_CLIENT_RESPONSE_ID_UPPER_CASED);
 
         if (empty($header)) {
-            $header = $response->getHeader(self::FIELD_BUNQ_CLIENT_RESPONSE_ID_UPPER_CASED);
+            $header = $response->getHeader(self::HEADER_BUNQ_CLIENT_RESPONSE_ID_UPPER_CASED);
         }
 
         if (empty($header)) {
