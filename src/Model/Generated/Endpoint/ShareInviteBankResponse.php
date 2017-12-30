@@ -82,7 +82,7 @@ class ShareInviteBankResponse extends BunqModel
     protected $status;
 
     /**
-     * The share type: STANDARD.
+     * The share type, either STANDARD or MUTUAL.
      *
      * @var string
      */
@@ -308,7 +308,7 @@ class ShareInviteBankResponse extends BunqModel
     }
 
     /**
-     * The share type: STANDARD.
+     * The share type, either STANDARD or MUTUAL.
      *
      * @return string
      */
