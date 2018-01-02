@@ -13,7 +13,6 @@ use bunq\Util\BunqEnumApiEnvironmentType;
 use GuzzleHttp\Client;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Uri;
-use phpDocumentor\Reflection\Types\Self_;
 use Psr\Http\Message\ResponseInterface;
 
 /**
