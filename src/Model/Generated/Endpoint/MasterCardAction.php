@@ -28,6 +28,13 @@ class MasterCardAction extends BunqModel
     const OBJECT_TYPE = 'MasterCardAction';
 
     /**
+     * The id of the MastercardAction.
+     *
+     * @var int
+     */
+    protected $id;
+
+    /**
      * The id of the monetary account this action links to.
      *
      * @var int
@@ -246,6 +253,24 @@ class MasterCardAction extends BunqModel
         return BunqResponseMasterCardActionList::castFromBunqResponse(
             static::fromJsonList($responseRaw, self::OBJECT_TYPE)
         );
+    }
+
+    /**
+     * The id of the MastercardAction.
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
     }
 
     /**
@@ -672,6 +697,10 @@ class MasterCardAction extends BunqModel
      */
     public function isAllFieldNull()
     {
+        if (!is_null($this->id)) {
+            return false;
+        }
+
         if (!is_null($this->monetaryAccountId)) {
             return false;
         }
