@@ -39,6 +39,13 @@ class TokenQrRequestIdeal extends BunqModel
     const OBJECT_TYPE = 'TokenQrRequestIdeal';
 
     /**
+     * The id of the RequestResponse.
+     *
+     * @var int
+     */
+    protected $id;
+
+    /**
      * The timestamp of when the RequestResponse was responded to.
      *
      * @var string
@@ -209,6 +216,24 @@ class TokenQrRequestIdeal extends BunqModel
         return BunqResponseTokenQrRequestIdeal::castFromBunqResponse(
             static::fromJson($responseRaw, self::OBJECT_TYPE)
         );
+    }
+
+    /**
+     * The id of the RequestResponse.
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
     }
 
     /**
@@ -582,6 +607,10 @@ class TokenQrRequestIdeal extends BunqModel
      */
     public function isAllFieldNull()
     {
+        if (!is_null($this->id)) {
+            return false;
+        }
+
         if (!is_null($this->timeResponded)) {
             return false;
         }
