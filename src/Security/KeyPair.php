@@ -1,5 +1,6 @@
 <?php
 namespace bunq\Security;
+use bunq\Exception\BunqException;
 
 /**
  * Represents an OpenSSL key pair.
@@ -7,6 +8,13 @@ namespace bunq\Security;
  */
 class KeyPair
 {
+    /**
+     * Error constants
+     */
+    const ERROR_PRIVATE_KEY_GENERATION_FAILED = <<<'EOT'
+Generating a new private key failed. See "http˜://php.net/manual/en/function.openssl-pkey-new.php" for more info.
+EOT;
+
     /**
      * Field constants.
      */
@@ -43,6 +51,7 @@ class KeyPair
 
     /**
      * @return static
+     * @throws BunqException
      */
     public static function generate(): KeyPair
     {
@@ -51,6 +60,10 @@ class KeyPair
             self::FIELD_KEY_LENGTH => self::PRIVATE_KEY_LENGTH,
             self::FIELD_KEY_TYPE => OPENSSL_KEYTYPE_RSA
         ]);
+
+        if ($opensslKeyPair === false) {
+            throw new BunqException(self::ERROR_PRIVATE_KEY_GENERATION_FAILED);
+        }
 
         $privateKey = new PrivateKey(openssl_pkey_get_private($opensslKeyPair));
         $keyDetails = openssl_pkey_get_details($opensslKeyPair);
