@@ -29,7 +29,7 @@ class PromotionDisplay extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE_GET ='PromotionDisplay';
+    const OBJECT_TYPE_GET = 'PromotionDisplay';
 
     /**
      * The id of the promotion.

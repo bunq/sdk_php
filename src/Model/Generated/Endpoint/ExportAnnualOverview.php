@@ -31,7 +31,7 @@ class ExportAnnualOverview extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE_GET ='ExportAnnualOverview';
+    const OBJECT_TYPE_GET = 'ExportAnnualOverview';
 
     /**
      * The id of the annual overview as created on the server.

@@ -44,7 +44,7 @@ class Payment extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE_GET ='Payment';
+    const OBJECT_TYPE_GET = 'Payment';
 
     /**
      * The id of the created Payment.

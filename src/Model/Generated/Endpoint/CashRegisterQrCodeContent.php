@@ -22,7 +22,7 @@ class CashRegisterQrCodeContent extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE_GET ='CashRegisterQrCodeContent';
+    const OBJECT_TYPE_GET = 'CashRegisterQrCodeContent';
 
     /**
      * Show the raw contents of a QR code

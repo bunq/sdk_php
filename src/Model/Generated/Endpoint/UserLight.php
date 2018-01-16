@@ -59,7 +59,7 @@ class UserLight extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE_GET ='UserPerson';
+    const OBJECT_TYPE_GET = 'UserPerson';
 
     /**
      * The id of the user.

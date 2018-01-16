@@ -30,7 +30,7 @@ class Device extends BunqModel implements AnchorObjectInterface
     /**
      * Object type.
      */
-    const OBJECT_TYPE_GET ='Device';
+    const OBJECT_TYPE_GET = 'Device';
 
     /**
      * @var DeviceServer

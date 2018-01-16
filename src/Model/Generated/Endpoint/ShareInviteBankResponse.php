@@ -33,7 +33,7 @@ class ShareInviteBankResponse extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE_GET ='ShareInviteBankResponse';
+    const OBJECT_TYPE_GET = 'ShareInviteBankResponse';
 
     /**
      * The monetary account and user who created the share.

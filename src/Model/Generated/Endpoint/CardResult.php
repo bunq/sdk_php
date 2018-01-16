@@ -25,7 +25,7 @@ class CardResult extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE_GET ='CardResult';
+    const OBJECT_TYPE_GET = 'CardResult';
 
     /**
      * The id of the monetary account this card result links to.

@@ -23,7 +23,7 @@ class DraftShareInviteBankQrCodeContent extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE_GET ='DraftShareInviteBankQrCodeContent';
+    const OBJECT_TYPE_GET = 'DraftShareInviteBankQrCodeContent';
 
     /**
      * Returns the raw content of the QR code that links to this draft share

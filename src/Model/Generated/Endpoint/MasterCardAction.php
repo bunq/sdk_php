@@ -25,7 +25,7 @@ class MasterCardAction extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE_GET ='MasterCardAction';
+    const OBJECT_TYPE_GET = 'MasterCardAction';
 
     /**
      * The id of the MastercardAction.

@@ -34,8 +34,8 @@ class Avatar extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE_POST ='Uuid';
-    const OBJECT_TYPE_GET ='Avatar';
+    const OBJECT_TYPE_POST = 'Uuid';
+    const OBJECT_TYPE_GET = 'Avatar';
 
     /**
      * The UUID of the created avatar.

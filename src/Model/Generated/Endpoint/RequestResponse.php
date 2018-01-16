@@ -40,8 +40,8 @@ class RequestResponse extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE_PUT ='RequestResponse';
-    const OBJECT_TYPE_GET ='RequestResponse';
+    const OBJECT_TYPE_PUT = 'RequestResponse';
+    const OBJECT_TYPE_GET = 'RequestResponse';
 
     /**
      * The id of the Request Response.

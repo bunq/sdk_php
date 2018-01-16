@@ -23,7 +23,7 @@ class CardGeneratedCvc2 extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE_GET ='CardGeneratedCvc2';
+    const OBJECT_TYPE_GET = 'CardGeneratedCvc2';
 
     /**
      * The id of the cvc code.

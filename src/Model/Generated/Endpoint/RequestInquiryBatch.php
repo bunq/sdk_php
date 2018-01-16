@@ -33,7 +33,7 @@ class RequestInquiryBatch extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE_GET ='RequestInquiryBatch';
+    const OBJECT_TYPE_GET = 'RequestInquiryBatch';
 
     /**
      * The list of requests that were made.

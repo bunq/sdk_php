@@ -52,8 +52,8 @@ class RequestInquiry extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE_PUT ='RequestInquiry';
-    const OBJECT_TYPE_GET ='RequestInquiry';
+    const OBJECT_TYPE_PUT = 'RequestInquiry';
+    const OBJECT_TYPE_GET = 'RequestInquiry';
 
     /**
      * The id of the created RequestInquiry.

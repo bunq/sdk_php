@@ -27,7 +27,7 @@ class BillingContractSubscription extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE_GET ='BillingContractSubscription';
+    const OBJECT_TYPE_GET = 'BillingContractSubscription';
 
     /**
      * The id of the billing contract.

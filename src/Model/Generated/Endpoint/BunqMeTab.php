@@ -32,7 +32,7 @@ class BunqMeTab extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE_GET ='BunqMeTab';
+    const OBJECT_TYPE_GET = 'BunqMeTab';
 
     /**
      * The id of the created bunq.me.

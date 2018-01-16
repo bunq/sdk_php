@@ -32,7 +32,7 @@ class SchedulePayment extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE_GET ='ScheduledPayment';
+    const OBJECT_TYPE_GET = 'ScheduledPayment';
 
     /**
      * The payment details.

@@ -36,7 +36,7 @@ class DraftShareInviteBank extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE_GET ='DraftShareInviteBank';
+    const OBJECT_TYPE_GET = 'DraftShareInviteBank';
 
     /**
      * The user who created the draft share invite.

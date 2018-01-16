@@ -31,7 +31,7 @@ class PermittedIp extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE_GET ='PermittedIp';
+    const OBJECT_TYPE_GET = 'PermittedIp';
 
     /**
      * The IP address.

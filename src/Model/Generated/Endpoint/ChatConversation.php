@@ -29,7 +29,7 @@ class ChatConversation extends BunqModel implements AnchorObjectInterface
     /**
      * Object type.
      */
-    const OBJECT_TYPE_GET ='ChatConversation';
+    const OBJECT_TYPE_GET = 'ChatConversation';
 
     /**
      * @var ChatConversationSupportExternal

@@ -55,9 +55,9 @@ class TabUsageSingle extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE_POST ='Uuid';
-    const OBJECT_TYPE_PUT ='Uuid';
-    const OBJECT_TYPE_GET ='TabUsageSingle';
+    const OBJECT_TYPE_POST = 'Uuid';
+    const OBJECT_TYPE_PUT = 'Uuid';
+    const OBJECT_TYPE_GET = 'TabUsageSingle';
 
     /**
      * The uuid of the created TabUsageSingle.

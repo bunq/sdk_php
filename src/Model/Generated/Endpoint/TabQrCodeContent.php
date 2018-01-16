@@ -23,7 +23,7 @@ class TabQrCodeContent extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE_GET ='TabQrCodeContent';
+    const OBJECT_TYPE_GET = 'TabQrCodeContent';
 
     /**
      * Returns the raw content of the QR code that links to this Tab. The raw

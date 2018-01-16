@@ -41,7 +41,7 @@ class ShareInviteBankInquiry extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE_GET ='ShareInviteBankInquiry';
+    const OBJECT_TYPE_GET = 'ShareInviteBankInquiry';
 
     /**
      * The label of the monetary account that's being shared.

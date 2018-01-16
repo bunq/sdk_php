@@ -33,7 +33,7 @@ class MonetaryAccount extends BunqModel implements AnchorObjectInterface
     /**
      * Object type.
      */
-    const OBJECT_TYPE_GET ='MonetaryAccount';
+    const OBJECT_TYPE_GET = 'MonetaryAccount';
 
     /**
      * @var MonetaryAccountBank

@@ -24,7 +24,7 @@ class CardPinChange extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE_GET ='CardPinChange';
+    const OBJECT_TYPE_GET = 'CardPinChange';
 
     /**
      * The id of the pin change.

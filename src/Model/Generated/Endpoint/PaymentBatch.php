@@ -31,7 +31,7 @@ class PaymentBatch extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE_GET ='PaymentBatch';
+    const OBJECT_TYPE_GET = 'PaymentBatch';
 
     /**
      * The list of mutations that were made.

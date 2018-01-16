@@ -22,7 +22,7 @@ class TabAttachmentTab extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE_GET ='TabAttachmentTab';
+    const OBJECT_TYPE_GET = 'TabAttachmentTab';
 
     /**
      * The id of the attachment.

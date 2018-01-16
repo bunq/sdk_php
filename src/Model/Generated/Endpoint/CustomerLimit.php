@@ -21,7 +21,7 @@ class CustomerLimit extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE_GET ='CustomerLimit';
+    const OBJECT_TYPE_GET = 'CustomerLimit';
 
     /**
      * The limit of monetary accounts.

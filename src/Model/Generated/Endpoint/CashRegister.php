@@ -45,7 +45,7 @@ class CashRegister extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE_GET ='CashRegister';
+    const OBJECT_TYPE_GET = 'CashRegister';
 
     /**
      * The id of the created CashRegister.

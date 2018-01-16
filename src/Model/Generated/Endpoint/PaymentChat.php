@@ -28,7 +28,7 @@ class PaymentChat extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE_GET ='ChatConversationPayment';
+    const OBJECT_TYPE_GET = 'ChatConversationPayment';
 
     /**
      * The id of the chat conversation.

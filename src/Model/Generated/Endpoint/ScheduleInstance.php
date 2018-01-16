@@ -31,7 +31,7 @@ class ScheduleInstance extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE_GET ='ScheduledInstance';
+    const OBJECT_TYPE_GET = 'ScheduledInstance';
 
     /**
      * The state of the scheduleInstance. (FINISHED_SUCCESSFULLY, RETRY,

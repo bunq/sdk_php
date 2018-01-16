@@ -31,7 +31,7 @@ class CertificatePinned extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE_GET ='CertificatePinned';
+    const OBJECT_TYPE_GET = 'CertificatePinned';
 
     /**
      * The certificate chain in .PEM format. Certificates are glued with newline

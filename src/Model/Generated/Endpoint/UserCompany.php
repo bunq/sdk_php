@@ -52,7 +52,7 @@ class UserCompany extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE_GET ='UserCompany';
+    const OBJECT_TYPE_GET = 'UserCompany';
 
     /**
      * The id of the modified company.

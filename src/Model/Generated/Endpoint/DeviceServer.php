@@ -31,7 +31,7 @@ class DeviceServer extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE_GET ='DeviceServer';
+    const OBJECT_TYPE_GET = 'DeviceServer';
 
     /**
      * The id of the DeviceServer as created on the server.

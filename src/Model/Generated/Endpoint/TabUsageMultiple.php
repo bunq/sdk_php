@@ -54,9 +54,9 @@ class TabUsageMultiple extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE_POST ='Uuid';
-    const OBJECT_TYPE_PUT ='Uuid';
-    const OBJECT_TYPE_GET ='TabUsageMultiple';
+    const OBJECT_TYPE_POST = 'Uuid';
+    const OBJECT_TYPE_PUT = 'Uuid';
+    const OBJECT_TYPE_GET = 'TabUsageMultiple';
 
     /**
      * The uuid of the created TabUsageMultiple.

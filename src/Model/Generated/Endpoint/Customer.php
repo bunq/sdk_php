@@ -28,7 +28,7 @@ class Customer extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE_GET ='Customer';
+    const OBJECT_TYPE_GET = 'Customer';
 
     /**
      * The id of the customer.

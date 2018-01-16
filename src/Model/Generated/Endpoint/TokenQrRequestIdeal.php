@@ -36,7 +36,7 @@ class TokenQrRequestIdeal extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE_POST ='RequestResponse';
+    const OBJECT_TYPE_POST = 'RequestResponse';
 
     /**
      * The id of the RequestResponse.

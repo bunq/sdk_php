@@ -31,7 +31,7 @@ class IdealMerchantTransaction extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE_GET ='IdealMerchantTransaction';
+    const OBJECT_TYPE_GET = 'IdealMerchantTransaction';
 
     /**
      * The id of the monetary account this ideal merchant transaction links to.

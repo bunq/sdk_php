@@ -31,7 +31,7 @@ class Schedule extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE_GET ='Schedule';
+    const OBJECT_TYPE_GET = 'Schedule';
 
     /**
      * The schedule start time (UTC).

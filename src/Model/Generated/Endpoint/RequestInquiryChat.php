@@ -32,7 +32,7 @@ class RequestInquiryChat extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE_GET ='RequestInquiryChat';
+    const OBJECT_TYPE_GET = 'RequestInquiryChat';
 
     /**
      * The id of the newly created chat conversation.

@@ -24,7 +24,7 @@ class TabResultResponse extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE_GET ='TabResultResponse';
+    const OBJECT_TYPE_GET = 'TabResultResponse';
 
     /**
      * The Tab details.

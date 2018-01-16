@@ -21,7 +21,7 @@ class ScheduleUser extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE_GET ='ScheduleUser';
+    const OBJECT_TYPE_GET = 'ScheduleUser';
 
     /**
      * Get a collection of scheduled definition for all accessible monetary

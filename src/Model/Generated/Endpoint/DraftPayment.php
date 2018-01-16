@@ -37,7 +37,7 @@ class DraftPayment extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE_GET ='DraftPayment';
+    const OBJECT_TYPE_GET = 'DraftPayment';
 
     /**
      * The id of the created DrafPayment.

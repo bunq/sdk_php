@@ -52,7 +52,7 @@ class MonetaryAccountBank extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE_GET ='MonetaryAccountBank';
+    const OBJECT_TYPE_GET = 'MonetaryAccountBank';
 
     /**
      * The id of the MonetaryAccountBank.
