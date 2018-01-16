@@ -32,7 +32,7 @@ class AttachmentTab extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'AttachmentTab';
+    const OBJECT_TYPE_GET ='AttachmentTab';
 
     /**
      * The id of the attachment.
@@ -121,7 +121,7 @@ class AttachmentTab extends BunqModel
         );
 
         return BunqResponseAttachmentTab::castFromBunqResponse(
-            static::fromJson($responseRaw, self::OBJECT_TYPE)
+            static::fromJson($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 

@@ -25,7 +25,6 @@ class BunqMeTabEntry extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'BunqMeTab';
 
     /**
      * The uuid of the bunq.me.

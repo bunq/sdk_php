@@ -31,7 +31,7 @@ class IdealMerchantTransaction extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'IdealMerchantTransaction';
+    const OBJECT_TYPE_GET ='IdealMerchantTransaction';
 
     /**
      * The id of the monetary account this ideal merchant transaction links to.
@@ -180,7 +180,7 @@ class IdealMerchantTransaction extends BunqModel
         );
 
         return BunqResponseIdealMerchantTransaction::castFromBunqResponse(
-            static::fromJson($responseRaw, self::OBJECT_TYPE)
+            static::fromJson($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 
@@ -209,7 +209,7 @@ class IdealMerchantTransaction extends BunqModel
         );
 
         return BunqResponseIdealMerchantTransactionList::castFromBunqResponse(
-            static::fromJsonList($responseRaw, self::OBJECT_TYPE)
+            static::fromJsonList($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 

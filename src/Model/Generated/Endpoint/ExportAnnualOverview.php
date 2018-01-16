@@ -31,7 +31,7 @@ class ExportAnnualOverview extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'ExportAnnualOverview';
+    const OBJECT_TYPE_GET ='ExportAnnualOverview';
 
     /**
      * The id of the annual overview as created on the server.
@@ -119,7 +119,7 @@ class ExportAnnualOverview extends BunqModel
         );
 
         return BunqResponseExportAnnualOverview::castFromBunqResponse(
-            static::fromJson($responseRaw, self::OBJECT_TYPE)
+            static::fromJson($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 
@@ -149,7 +149,7 @@ class ExportAnnualOverview extends BunqModel
         );
 
         return BunqResponseExportAnnualOverviewList::castFromBunqResponse(
-            static::fromJsonList($responseRaw, self::OBJECT_TYPE)
+            static::fromJsonList($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 

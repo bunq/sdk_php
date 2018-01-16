@@ -23,7 +23,7 @@ class AttachmentPublicContent extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'AttachmentPublicContent';
+    const OBJECT_TYPE_GET ='AttachmentPublicContent';
 
     /**
      * Get the raw content of a specific attachment.

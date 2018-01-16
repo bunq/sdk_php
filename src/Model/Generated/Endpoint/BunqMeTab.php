@@ -32,7 +32,7 @@ class BunqMeTab extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'BunqMeTab';
+    const OBJECT_TYPE_GET ='BunqMeTab';
 
     /**
      * The id of the created bunq.me.
@@ -132,9 +132,9 @@ class BunqMeTab extends BunqModel
      * @param int $bunqMeTabId
      * @param string[] $customHeaders
      *
-     * @return BunqResponseBunqMeTab
+     * @return BunqResponseInt
      */
-    public static function update(ApiContext $apiContext, array $requestMap, int $userId, int $monetaryAccountId, int $bunqMeTabId, array $customHeaders = []): BunqResponseBunqMeTab
+    public static function update(ApiContext $apiContext, array $requestMap, int $userId, int $monetaryAccountId, int $bunqMeTabId, array $customHeaders = []): BunqResponseInt
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->put(
@@ -146,8 +146,8 @@ class BunqMeTab extends BunqModel
             $customHeaders
         );
 
-        return BunqResponseBunqMeTab::castFromBunqResponse(
-            static::fromJson($responseRaw, self::OBJECT_TYPE)
+        return BunqResponseInt::castFromBunqResponse(
+            static::processForId($responseRaw)
         );
     }
 
@@ -176,7 +176,7 @@ class BunqMeTab extends BunqModel
         );
 
         return BunqResponseBunqMeTabList::castFromBunqResponse(
-            static::fromJsonList($responseRaw, self::OBJECT_TYPE)
+            static::fromJsonList($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 
@@ -202,7 +202,7 @@ class BunqMeTab extends BunqModel
         );
 
         return BunqResponseBunqMeTab::castFromBunqResponse(
-            static::fromJson($responseRaw, self::OBJECT_TYPE)
+            static::fromJson($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 

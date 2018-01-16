@@ -32,7 +32,8 @@ class AttachmentPublic extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'AttachmentPublic';
+    const OBJECT_TYPE_POST ='Uuid';
+    const OBJECT_TYPE_GET ='AttachmentPublic';
 
     /**
      * The UUID of the attachment.
@@ -117,7 +118,7 @@ class AttachmentPublic extends BunqModel
         );
 
         return BunqResponseAttachmentPublic::castFromBunqResponse(
-            static::fromJson($responseRaw, self::OBJECT_TYPE)
+            static::fromJson($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 

@@ -25,7 +25,7 @@ class CardResult extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'CardResult';
+    const OBJECT_TYPE_GET ='CardResult';
 
     /**
      * The id of the monetary account this card result links to.
@@ -163,7 +163,7 @@ class CardResult extends BunqModel
         );
 
         return BunqResponseCardResult::castFromBunqResponse(
-            static::fromJson($responseRaw, self::OBJECT_TYPE)
+            static::fromJson($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 
@@ -192,7 +192,7 @@ class CardResult extends BunqModel
         );
 
         return BunqResponseCardResultList::castFromBunqResponse(
-            static::fromJsonList($responseRaw, self::OBJECT_TYPE)
+            static::fromJsonList($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 

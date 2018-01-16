@@ -32,7 +32,7 @@ class SchedulePayment extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'ScheduledPayment';
+    const OBJECT_TYPE_GET ='ScheduledPayment';
 
     /**
      * The payment details.
@@ -121,7 +121,7 @@ class SchedulePayment extends BunqModel
         );
 
         return BunqResponseSchedulePayment::castFromBunqResponse(
-            static::fromJson($responseRaw, self::OBJECT_TYPE)
+            static::fromJson($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 
@@ -150,7 +150,7 @@ class SchedulePayment extends BunqModel
         );
 
         return BunqResponseSchedulePaymentList::castFromBunqResponse(
-            static::fromJsonList($responseRaw, self::OBJECT_TYPE)
+            static::fromJsonList($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 
@@ -162,9 +162,9 @@ class SchedulePayment extends BunqModel
      * @param int $schedulePaymentId
      * @param string[] $customHeaders
      *
-     * @return BunqResponseSchedulePayment
+     * @return BunqResponseInt
      */
-    public static function update(ApiContext $apiContext, array $requestMap, int $userId, int $monetaryAccountId, int $schedulePaymentId, array $customHeaders = []): BunqResponseSchedulePayment
+    public static function update(ApiContext $apiContext, array $requestMap, int $userId, int $monetaryAccountId, int $schedulePaymentId, array $customHeaders = []): BunqResponseInt
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->put(
@@ -176,8 +176,8 @@ class SchedulePayment extends BunqModel
             $customHeaders
         );
 
-        return BunqResponseSchedulePayment::castFromBunqResponse(
-            static::fromJson($responseRaw, self::OBJECT_TYPE)
+        return BunqResponseInt::castFromBunqResponse(
+            static::processForId($responseRaw)
         );
     }
 

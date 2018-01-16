@@ -24,7 +24,7 @@ class CustomerStatementExportContent extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'CustomerStatementExportContent';
+    const OBJECT_TYPE_GET ='CustomerStatementExportContent';
 
     /**
      * This method is called "listing" because "list" is a restricted PHP word

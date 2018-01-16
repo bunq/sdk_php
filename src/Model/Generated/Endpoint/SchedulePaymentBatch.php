@@ -30,7 +30,6 @@ class SchedulePaymentBatch extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'ScheduledPaymentBatch';
 
     /**
      * The payment details.
@@ -80,9 +79,9 @@ class SchedulePaymentBatch extends BunqModel
      * @param int $schedulePaymentBatchId
      * @param string[] $customHeaders
      *
-     * @return BunqResponseSchedulePaymentBatch
+     * @return BunqResponseInt
      */
-    public static function update(ApiContext $apiContext, array $requestMap, int $userId, int $monetaryAccountId, int $schedulePaymentBatchId, array $customHeaders = []): BunqResponseSchedulePaymentBatch
+    public static function update(ApiContext $apiContext, array $requestMap, int $userId, int $monetaryAccountId, int $schedulePaymentBatchId, array $customHeaders = []): BunqResponseInt
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->put(
@@ -94,8 +93,8 @@ class SchedulePaymentBatch extends BunqModel
             $customHeaders
         );
 
-        return BunqResponseSchedulePaymentBatch::castFromBunqResponse(
-            static::fromJson($responseRaw, self::OBJECT_TYPE)
+        return BunqResponseInt::castFromBunqResponse(
+            static::processForId($responseRaw)
         );
     }
 

@@ -31,7 +31,7 @@ class PermittedIp extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'PermittedIp';
+    const OBJECT_TYPE_GET ='PermittedIp';
 
     /**
      * The IP address.
@@ -71,7 +71,7 @@ class PermittedIp extends BunqModel
         );
 
         return BunqResponsePermittedIp::castFromBunqResponse(
-            static::fromJson($responseRaw, self::OBJECT_TYPE)
+            static::fromJson($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 
@@ -126,7 +126,7 @@ class PermittedIp extends BunqModel
         );
 
         return BunqResponsePermittedIpList::castFromBunqResponse(
-            static::fromJsonList($responseRaw, self::OBJECT_TYPE)
+            static::fromJsonList($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 

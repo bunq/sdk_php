@@ -55,7 +55,9 @@ class TabUsageSingle extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'TabUsageSingle';
+    const OBJECT_TYPE_POST ='Uuid';
+    const OBJECT_TYPE_PUT ='Uuid';
+    const OBJECT_TYPE_GET ='TabUsageSingle';
 
     /**
      * The uuid of the created TabUsageSingle.
@@ -259,7 +261,7 @@ class TabUsageSingle extends BunqModel
     }
 
     /**
-     * Cancel a specific TabUsageSingle. This request returns an empty response.
+     * Cancel a specific TabUsageSingle.
      *
      * @param ApiContext $apiContext
      * @param string[] $customHeaders
@@ -311,7 +313,7 @@ class TabUsageSingle extends BunqModel
         );
 
         return BunqResponseTabUsageSingle::castFromBunqResponse(
-            static::fromJson($responseRaw, self::OBJECT_TYPE)
+            static::fromJson($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 
@@ -343,7 +345,7 @@ class TabUsageSingle extends BunqModel
         );
 
         return BunqResponseTabUsageSingleList::castFromBunqResponse(
-            static::fromJsonList($responseRaw, self::OBJECT_TYPE)
+            static::fromJsonList($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 

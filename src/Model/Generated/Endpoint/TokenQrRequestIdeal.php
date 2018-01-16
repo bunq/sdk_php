@@ -36,7 +36,7 @@ class TokenQrRequestIdeal extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'TokenQrRequestIdeal';
+    const OBJECT_TYPE_POST ='RequestResponse';
 
     /**
      * The id of the RequestResponse.
@@ -214,7 +214,7 @@ class TokenQrRequestIdeal extends BunqModel
         );
 
         return BunqResponseTokenQrRequestIdeal::castFromBunqResponse(
-            static::fromJson($responseRaw, self::OBJECT_TYPE)
+            static::fromJson($responseRaw, self::OBJECT_TYPE_POST)
         );
     }
 

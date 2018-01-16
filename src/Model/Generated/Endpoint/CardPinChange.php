@@ -24,7 +24,7 @@ class CardPinChange extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'CardPinChange';
+    const OBJECT_TYPE_GET ='CardPinChange';
 
     /**
      * The id of the pin change.
@@ -95,7 +95,7 @@ class CardPinChange extends BunqModel
         );
 
         return BunqResponseCardPinChangeList::castFromBunqResponse(
-            static::fromJsonList($responseRaw, self::OBJECT_TYPE)
+            static::fromJsonList($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 
@@ -121,7 +121,7 @@ class CardPinChange extends BunqModel
         );
 
         return BunqResponseCardPinChange::castFromBunqResponse(
-            static::fromJson($responseRaw, self::OBJECT_TYPE)
+            static::fromJson($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 

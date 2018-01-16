@@ -31,7 +31,7 @@ class DeviceServer extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'DeviceServer';
+    const OBJECT_TYPE_GET ='DeviceServer';
 
     /**
      * The id of the DeviceServer as created on the server.
@@ -131,7 +131,7 @@ class DeviceServer extends BunqModel
         );
 
         return BunqResponseDeviceServer::castFromBunqResponse(
-            static::fromJson($responseRaw, self::OBJECT_TYPE)
+            static::fromJson($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 
@@ -160,7 +160,7 @@ class DeviceServer extends BunqModel
         );
 
         return BunqResponseDeviceServerList::castFromBunqResponse(
-            static::fromJsonList($responseRaw, self::OBJECT_TYPE)
+            static::fromJsonList($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 

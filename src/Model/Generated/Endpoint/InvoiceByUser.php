@@ -26,7 +26,7 @@ class InvoiceByUser extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'Invoice';
+    const OBJECT_TYPE_GET ='Invoice';
 
     /**
      * The id of the invoice object.
@@ -165,7 +165,7 @@ class InvoiceByUser extends BunqModel
         );
 
         return BunqResponseInvoiceByUserList::castFromBunqResponse(
-            static::fromJsonList($responseRaw, self::OBJECT_TYPE)
+            static::fromJsonList($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 
@@ -190,7 +190,7 @@ class InvoiceByUser extends BunqModel
         );
 
         return BunqResponseInvoiceByUser::castFromBunqResponse(
-            static::fromJson($responseRaw, self::OBJECT_TYPE)
+            static::fromJson($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 

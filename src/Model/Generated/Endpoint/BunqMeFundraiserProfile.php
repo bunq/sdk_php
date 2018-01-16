@@ -21,7 +21,6 @@ class BunqMeFundraiserProfile extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'BunqMeFundraiserProfileModel';
 
     /**
      * The color chosen for the bunq.me fundraiser profile in hexadecimal

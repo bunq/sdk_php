@@ -32,7 +32,7 @@ class CashRegisterQrCode extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'TokenQrCashRegister';
+    const OBJECT_TYPE_GET ='TokenQrCashRegister';
 
     /**
      * The id of the created QR code. Use this id to get the RAW content of the
@@ -166,7 +166,7 @@ class CashRegisterQrCode extends BunqModel
         );
 
         return BunqResponseCashRegisterQrCode::castFromBunqResponse(
-            static::fromJson($responseRaw, self::OBJECT_TYPE)
+            static::fromJson($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 
@@ -198,7 +198,7 @@ class CashRegisterQrCode extends BunqModel
         );
 
         return BunqResponseCashRegisterQrCodeList::castFromBunqResponse(
-            static::fromJsonList($responseRaw, self::OBJECT_TYPE)
+            static::fromJsonList($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 

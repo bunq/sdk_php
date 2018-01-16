@@ -40,7 +40,7 @@ class CardDebit extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'CardDebit';
+    const OBJECT_TYPE_POST ='CardDebit';
 
     /**
      * The id of the card.
@@ -213,7 +213,7 @@ class CardDebit extends BunqModel
         );
 
         return BunqResponseCardDebit::castFromBunqResponse(
-            static::fromJson($responseRaw, self::OBJECT_TYPE)
+            static::fromJson($responseRaw, self::OBJECT_TYPE_POST)
         );
     }
 

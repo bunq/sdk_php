@@ -15,7 +15,6 @@ class BunqMeTabResultInquiry extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'BunqMeTabResultInquiry';
 
     /**
      * The payment made for the Tab.

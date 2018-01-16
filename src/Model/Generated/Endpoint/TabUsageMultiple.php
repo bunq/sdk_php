@@ -54,7 +54,9 @@ class TabUsageMultiple extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'TabUsageMultiple';
+    const OBJECT_TYPE_POST ='Uuid';
+    const OBJECT_TYPE_PUT ='Uuid';
+    const OBJECT_TYPE_GET ='TabUsageMultiple';
 
     /**
      * The uuid of the created TabUsageMultiple.
@@ -245,8 +247,7 @@ class TabUsageMultiple extends BunqModel
     }
 
     /**
-     * Close a specific TabUsageMultiple. This request returns an empty
-     * response.
+     * Close a specific TabUsageMultiple.
      *
      * @param ApiContext $apiContext
      * @param string[] $customHeaders
@@ -298,7 +299,7 @@ class TabUsageMultiple extends BunqModel
         );
 
         return BunqResponseTabUsageMultiple::castFromBunqResponse(
-            static::fromJson($responseRaw, self::OBJECT_TYPE)
+            static::fromJson($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 
@@ -330,7 +331,7 @@ class TabUsageMultiple extends BunqModel
         );
 
         return BunqResponseTabUsageMultipleList::castFromBunqResponse(
-            static::fromJsonList($responseRaw, self::OBJECT_TYPE)
+            static::fromJsonList($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 

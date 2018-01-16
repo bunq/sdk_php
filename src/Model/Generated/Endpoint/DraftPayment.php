@@ -37,7 +37,7 @@ class DraftPayment extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'DraftPayment';
+    const OBJECT_TYPE_GET ='DraftPayment';
 
     /**
      * The id of the created DrafPayment.
@@ -180,7 +180,7 @@ class DraftPayment extends BunqModel
         );
 
         return BunqResponseDraftPaymentList::castFromBunqResponse(
-            static::fromJsonList($responseRaw, self::OBJECT_TYPE)
+            static::fromJsonList($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 
@@ -208,7 +208,7 @@ class DraftPayment extends BunqModel
         );
 
         return BunqResponseDraftPayment::castFromBunqResponse(
-            static::fromJson($responseRaw, self::OBJECT_TYPE)
+            static::fromJson($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 

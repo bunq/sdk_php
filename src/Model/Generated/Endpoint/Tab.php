@@ -35,7 +35,7 @@ class Tab extends BunqModel implements AnchorObjectInterface
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'Tab';
+    const OBJECT_TYPE_GET ='Tab';
 
     /**
      * @var TabUsageSingle

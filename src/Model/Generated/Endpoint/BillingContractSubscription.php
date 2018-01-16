@@ -27,7 +27,7 @@ class BillingContractSubscription extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'BillingContractSubscription';
+    const OBJECT_TYPE_GET ='BillingContractSubscription';
 
     /**
      * The id of the billing contract.
@@ -86,9 +86,9 @@ class BillingContractSubscription extends BunqModel
      * @param int $userId
      * @param string[] $customHeaders
      *
-     * @return BunqResponseBillingContractSubscription
+     * @return BunqResponseInt
      */
-    public static function create(ApiContext $apiContext, array $requestMap, int $userId, array $customHeaders = []): BunqResponseBillingContractSubscription
+    public static function create(ApiContext $apiContext, array $requestMap, int $userId, array $customHeaders = []): BunqResponseInt
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->post(
@@ -100,8 +100,8 @@ class BillingContractSubscription extends BunqModel
             $customHeaders
         );
 
-        return BunqResponseBillingContractSubscription::castFromBunqResponse(
-            static::fromJson($responseRaw, self::OBJECT_TYPE)
+        return BunqResponseInt::castFromBunqResponse(
+            static::processForId($responseRaw)
         );
     }
 
@@ -131,7 +131,7 @@ class BillingContractSubscription extends BunqModel
         );
 
         return BunqResponseBillingContractSubscriptionList::castFromBunqResponse(
-            static::fromJsonList($responseRaw, self::OBJECT_TYPE)
+            static::fromJsonList($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 

@@ -32,7 +32,6 @@ class CardReplace extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'CardReplace';
 
     /**
      * The id of the new card.

@@ -21,7 +21,7 @@ class CustomerLimit extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'CustomerLimit';
+    const OBJECT_TYPE_GET ='CustomerLimit';
 
     /**
      * The limit of monetary accounts.
@@ -84,7 +84,7 @@ class CustomerLimit extends BunqModel
         );
 
         return BunqResponseCustomerLimitList::castFromBunqResponse(
-            static::fromJsonList($responseRaw, self::OBJECT_TYPE)
+            static::fromJsonList($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 

@@ -34,7 +34,7 @@ class CustomerStatementExport extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'CustomerStatementExport';
+    const OBJECT_TYPE_GET ='CustomerStatementExport';
 
     /**
      * The id of the customer statement model.
@@ -154,7 +154,7 @@ class CustomerStatementExport extends BunqModel
         );
 
         return BunqResponseCustomerStatementExport::castFromBunqResponse(
-            static::fromJson($responseRaw, self::OBJECT_TYPE)
+            static::fromJson($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 
@@ -183,7 +183,7 @@ class CustomerStatementExport extends BunqModel
         );
 
         return BunqResponseCustomerStatementExportList::castFromBunqResponse(
-            static::fromJsonList($responseRaw, self::OBJECT_TYPE)
+            static::fromJsonList($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 

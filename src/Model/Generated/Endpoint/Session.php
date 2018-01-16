@@ -21,10 +21,9 @@ class Session extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'Session';
 
     /**
-     * Deletes the current session. No response is returned for this request.
+     * Deletes the current session.
      *
      * @param ApiContext $apiContext
      * @param string[] $customHeaders

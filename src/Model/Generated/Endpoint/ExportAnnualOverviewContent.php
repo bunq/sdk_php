@@ -23,7 +23,7 @@ class ExportAnnualOverviewContent extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'ExportAnnualOverviewContent';
+    const OBJECT_TYPE_GET ='ExportAnnualOverviewContent';
 
     /**
      * Used to retrieve the raw content of an annual overview.

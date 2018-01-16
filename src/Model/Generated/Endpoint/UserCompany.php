@@ -52,7 +52,7 @@ class UserCompany extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'UserCompany';
+    const OBJECT_TYPE_GET ='UserCompany';
 
     /**
      * The id of the modified company.
@@ -286,7 +286,7 @@ class UserCompany extends BunqModel
         );
 
         return BunqResponseUserCompany::castFromBunqResponse(
-            static::fromJson($responseRaw, self::OBJECT_TYPE)
+            static::fromJson($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 

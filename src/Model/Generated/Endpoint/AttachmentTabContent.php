@@ -22,7 +22,7 @@ class AttachmentTabContent extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'AttachmentTabContent';
+    const OBJECT_TYPE_GET ='AttachmentTabContent';
 
     /**
      * Get the raw content of a specific attachment.

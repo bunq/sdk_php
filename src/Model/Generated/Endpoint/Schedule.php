@@ -31,7 +31,7 @@ class Schedule extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'Schedule';
+    const OBJECT_TYPE_GET ='Schedule';
 
     /**
      * The schedule start time (UTC).
@@ -101,7 +101,7 @@ class Schedule extends BunqModel
         );
 
         return BunqResponseSchedule::castFromBunqResponse(
-            static::fromJson($responseRaw, self::OBJECT_TYPE)
+            static::fromJson($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 
@@ -136,7 +136,7 @@ class Schedule extends BunqModel
         );
 
         return BunqResponseScheduleList::castFromBunqResponse(
-            static::fromJsonList($responseRaw, self::OBJECT_TYPE)
+            static::fromJsonList($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 

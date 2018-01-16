@@ -30,7 +30,7 @@ class User extends BunqModel implements AnchorObjectInterface
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'User';
+    const OBJECT_TYPE_GET ='User';
 
     /**
      * @var UserLight

@@ -36,7 +36,7 @@ class DraftShareInviteBank extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'DraftShareInviteBank';
+    const OBJECT_TYPE_GET ='DraftShareInviteBank';
 
     /**
      * The user who created the draft share invite.
@@ -136,7 +136,7 @@ class DraftShareInviteBank extends BunqModel
         );
 
         return BunqResponseDraftShareInviteBank::castFromBunqResponse(
-            static::fromJson($responseRaw, self::OBJECT_TYPE)
+            static::fromJson($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 
@@ -150,9 +150,9 @@ class DraftShareInviteBank extends BunqModel
      * @param int $draftShareInviteBankId
      * @param string[] $customHeaders
      *
-     * @return BunqResponseDraftShareInviteBank
+     * @return BunqResponseInt
      */
-    public static function update(ApiContext $apiContext, array $requestMap, int $userId, int $draftShareInviteBankId, array $customHeaders = []): BunqResponseDraftShareInviteBank
+    public static function update(ApiContext $apiContext, array $requestMap, int $userId, int $draftShareInviteBankId, array $customHeaders = []): BunqResponseInt
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->put(
@@ -164,8 +164,8 @@ class DraftShareInviteBank extends BunqModel
             $customHeaders
         );
 
-        return BunqResponseDraftShareInviteBank::castFromBunqResponse(
-            static::fromJson($responseRaw, self::OBJECT_TYPE)
+        return BunqResponseInt::castFromBunqResponse(
+            static::processForId($responseRaw)
         );
     }
 
@@ -193,7 +193,7 @@ class DraftShareInviteBank extends BunqModel
         );
 
         return BunqResponseDraftShareInviteBankList::castFromBunqResponse(
-            static::fromJsonList($responseRaw, self::OBJECT_TYPE)
+            static::fromJsonList($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 

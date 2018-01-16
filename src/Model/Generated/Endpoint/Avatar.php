@@ -34,7 +34,8 @@ class Avatar extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'Avatar';
+    const OBJECT_TYPE_POST ='Uuid';
+    const OBJECT_TYPE_GET ='Avatar';
 
     /**
      * The UUID of the created avatar.
@@ -94,7 +95,7 @@ class Avatar extends BunqModel
         );
 
         return BunqResponseAvatar::castFromBunqResponse(
-            static::fromJson($responseRaw, self::OBJECT_TYPE)
+            static::fromJson($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 
