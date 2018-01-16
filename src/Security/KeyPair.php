@@ -11,8 +11,8 @@ class KeyPair
     /**
      * Error constants
      */
-    const ERROR_PRIVATE_KEY_GENERATION_FAILED = <<<'EOT'
-Generating a new private key failed. See "http˜://php.net/manual/en/function.openssl-pkey-new.php" for more info.
+    const ERROR_PRIVATE_KEY_GENERATION_FAILED = <<<EOT
+Generating a new private key failed. See "http://php.net/manual/en/function.openssl-pkey-new.php" for more info.
 EOT;
 
     /**
