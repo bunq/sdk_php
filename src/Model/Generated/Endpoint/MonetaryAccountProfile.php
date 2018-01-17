@@ -22,7 +22,6 @@ class MonetaryAccountProfile extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'MonetaryAccountProfile';
 
     /**
      * The profile settings for triggering the fill of a monetary account.

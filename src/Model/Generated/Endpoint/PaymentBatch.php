@@ -31,7 +31,7 @@ class PaymentBatch extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'PaymentBatch';
+    const OBJECT_TYPE_GET = 'PaymentBatch';
 
     /**
      * The list of mutations that were made.
@@ -123,7 +123,7 @@ class PaymentBatch extends BunqModel
         );
 
         return BunqResponsePaymentBatch::castFromBunqResponse(
-            static::fromJson($responseRaw, self::OBJECT_TYPE)
+            static::fromJson($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 
@@ -154,7 +154,7 @@ class PaymentBatch extends BunqModel
         );
 
         return BunqResponsePaymentBatchList::castFromBunqResponse(
-            static::fromJsonList($responseRaw, self::OBJECT_TYPE)
+            static::fromJsonList($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 

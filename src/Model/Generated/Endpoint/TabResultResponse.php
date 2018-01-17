@@ -24,7 +24,7 @@ class TabResultResponse extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'TabResultResponse';
+    const OBJECT_TYPE_GET = 'TabResultResponse';
 
     /**
      * The Tab details.
@@ -64,7 +64,7 @@ class TabResultResponse extends BunqModel
         );
 
         return BunqResponseTabResultResponse::castFromBunqResponse(
-            static::fromJson($responseRaw, self::OBJECT_TYPE)
+            static::fromJson($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 
@@ -95,7 +95,7 @@ class TabResultResponse extends BunqModel
         );
 
         return BunqResponseTabResultResponseList::castFromBunqResponse(
-            static::fromJsonList($responseRaw, self::OBJECT_TYPE)
+            static::fromJsonList($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 

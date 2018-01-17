@@ -52,7 +52,7 @@ class MonetaryAccountBank extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'MonetaryAccountBank';
+    const OBJECT_TYPE_GET = 'MonetaryAccountBank';
 
     /**
      * The id of the MonetaryAccountBank.
@@ -254,7 +254,7 @@ class MonetaryAccountBank extends BunqModel
         );
 
         return BunqResponseMonetaryAccountBank::castFromBunqResponse(
-            static::fromJson($responseRaw, self::OBJECT_TYPE)
+            static::fromJson($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 
@@ -312,7 +312,7 @@ class MonetaryAccountBank extends BunqModel
         );
 
         return BunqResponseMonetaryAccountBankList::castFromBunqResponse(
-            static::fromJsonList($responseRaw, self::OBJECT_TYPE)
+            static::fromJsonList($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 

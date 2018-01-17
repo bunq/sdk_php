@@ -16,7 +16,6 @@ class TabItem extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'TabItem';
 
     /**
      * The id of the tab item.

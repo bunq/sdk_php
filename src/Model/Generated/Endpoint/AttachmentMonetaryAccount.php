@@ -31,7 +31,6 @@ class AttachmentMonetaryAccount extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'AttachmentMonetaryAccount';
 
     /**
      * The attachment.

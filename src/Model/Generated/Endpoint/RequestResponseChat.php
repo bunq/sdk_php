@@ -32,7 +32,7 @@ class RequestResponseChat extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'RequestResponseChat';
+    const OBJECT_TYPE_GET = 'RequestResponseChat';
 
     /**
      * The id of the newly created chat conversation.
@@ -102,9 +102,9 @@ class RequestResponseChat extends BunqModel
      * @param int $requestResponseChatId
      * @param string[] $customHeaders
      *
-     * @return BunqResponseRequestResponseChat
+     * @return BunqResponseInt
      */
-    public static function update(ApiContext $apiContext, array $requestMap, int $userId, int $monetaryAccountId, int $requestResponseId, int $requestResponseChatId, array $customHeaders = []): BunqResponseRequestResponseChat
+    public static function update(ApiContext $apiContext, array $requestMap, int $userId, int $monetaryAccountId, int $requestResponseId, int $requestResponseChatId, array $customHeaders = []): BunqResponseInt
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->put(
@@ -116,8 +116,8 @@ class RequestResponseChat extends BunqModel
             $customHeaders
         );
 
-        return BunqResponseRequestResponseChat::castFromBunqResponse(
-            static::fromJson($responseRaw, self::OBJECT_TYPE)
+        return BunqResponseInt::castFromBunqResponse(
+            static::processForId($responseRaw)
         );
     }
 
@@ -149,7 +149,7 @@ class RequestResponseChat extends BunqModel
         );
 
         return BunqResponseRequestResponseChatList::castFromBunqResponse(
-            static::fromJsonList($responseRaw, self::OBJECT_TYPE)
+            static::fromJsonList($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 

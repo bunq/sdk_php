@@ -13,7 +13,6 @@ class BunqMeFundraiserResult extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'BunqMeFundraiserResult';
 
     /**
      * The id of the bunq.me.

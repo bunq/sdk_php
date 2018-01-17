@@ -15,7 +15,6 @@ class BunqMeTabResultResponse extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'BunqMeTabResultResponse';
 
     /**
      * The payment made for the bunq.me tab.

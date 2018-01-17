@@ -41,7 +41,7 @@ class Card extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'CardDebit';
+    const OBJECT_TYPE_GET = 'CardDebit';
 
     /**
      * The id of the card.
@@ -211,9 +211,9 @@ class Card extends BunqModel
      * @param int $cardId
      * @param string[] $customHeaders
      *
-     * @return BunqResponseCard
+     * @return BunqResponseInt
      */
-    public static function update(ApiContext $apiContext, array $requestMap, int $userId, int $cardId, array $customHeaders = []): BunqResponseCard
+    public static function update(ApiContext $apiContext, array $requestMap, int $userId, int $cardId, array $customHeaders = []): BunqResponseInt
     {
         $apiClient = new ApiClient($apiContext);
         $apiClient->enableEncryption();
@@ -226,8 +226,8 @@ class Card extends BunqModel
             $customHeaders
         );
 
-        return BunqResponseCard::castFromBunqResponse(
-            static::fromJson($responseRaw, self::OBJECT_TYPE)
+        return BunqResponseInt::castFromBunqResponse(
+            static::processForId($responseRaw)
         );
     }
 
@@ -254,7 +254,7 @@ class Card extends BunqModel
         );
 
         return BunqResponseCard::castFromBunqResponse(
-            static::fromJson($responseRaw, self::OBJECT_TYPE)
+            static::fromJson($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 
@@ -284,7 +284,7 @@ class Card extends BunqModel
         );
 
         return BunqResponseCardList::castFromBunqResponse(
-            static::fromJsonList($responseRaw, self::OBJECT_TYPE)
+            static::fromJsonList($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 

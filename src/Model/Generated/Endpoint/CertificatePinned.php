@@ -31,7 +31,7 @@ class CertificatePinned extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'CertificatePinned';
+    const OBJECT_TYPE_GET = 'CertificatePinned';
 
     /**
      * The certificate chain in .PEM format. Certificates are glued with newline
@@ -127,7 +127,7 @@ class CertificatePinned extends BunqModel
         );
 
         return BunqResponseCertificatePinnedList::castFromBunqResponse(
-            static::fromJsonList($responseRaw, self::OBJECT_TYPE)
+            static::fromJsonList($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 
@@ -154,7 +154,7 @@ class CertificatePinned extends BunqModel
         );
 
         return BunqResponseCertificatePinned::castFromBunqResponse(
-            static::fromJson($responseRaw, self::OBJECT_TYPE)
+            static::fromJson($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 

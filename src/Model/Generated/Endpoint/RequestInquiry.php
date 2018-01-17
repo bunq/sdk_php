@@ -52,7 +52,8 @@ class RequestInquiry extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'RequestInquiry';
+    const OBJECT_TYPE_PUT = 'RequestInquiry';
+    const OBJECT_TYPE_GET = 'RequestInquiry';
 
     /**
      * The id of the created RequestInquiry.
@@ -289,7 +290,7 @@ class RequestInquiry extends BunqModel
         );
 
         return BunqResponseRequestInquiry::castFromBunqResponse(
-            static::fromJson($responseRaw, self::OBJECT_TYPE)
+            static::fromJson($responseRaw, self::OBJECT_TYPE_PUT)
         );
     }
 
@@ -320,7 +321,7 @@ class RequestInquiry extends BunqModel
         );
 
         return BunqResponseRequestInquiryList::castFromBunqResponse(
-            static::fromJsonList($responseRaw, self::OBJECT_TYPE)
+            static::fromJsonList($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 
@@ -348,7 +349,7 @@ class RequestInquiry extends BunqModel
         );
 
         return BunqResponseRequestInquiry::castFromBunqResponse(
-            static::fromJson($responseRaw, self::OBJECT_TYPE)
+            static::fromJson($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 

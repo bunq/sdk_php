@@ -21,7 +21,7 @@ class ScheduleUser extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'ScheduleUser';
+    const OBJECT_TYPE_GET = 'ScheduleUser';
 
     /**
      * Get a collection of scheduled definition for all accessible monetary
@@ -54,7 +54,7 @@ class ScheduleUser extends BunqModel
         );
 
         return BunqResponseScheduleUserList::castFromBunqResponse(
-            static::fromJsonList($responseRaw, self::OBJECT_TYPE)
+            static::fromJsonList($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 

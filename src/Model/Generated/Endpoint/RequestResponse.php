@@ -40,7 +40,8 @@ class RequestResponse extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'RequestResponse';
+    const OBJECT_TYPE_PUT = 'RequestResponse';
+    const OBJECT_TYPE_GET = 'RequestResponse';
 
     /**
      * The id of the Request Response.
@@ -253,7 +254,7 @@ class RequestResponse extends BunqModel
         );
 
         return BunqResponseRequestResponse::castFromBunqResponse(
-            static::fromJson($responseRaw, self::OBJECT_TYPE)
+            static::fromJson($responseRaw, self::OBJECT_TYPE_PUT)
         );
     }
 
@@ -284,7 +285,7 @@ class RequestResponse extends BunqModel
         );
 
         return BunqResponseRequestResponseList::castFromBunqResponse(
-            static::fromJsonList($responseRaw, self::OBJECT_TYPE)
+            static::fromJsonList($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 
@@ -312,7 +313,7 @@ class RequestResponse extends BunqModel
         );
 
         return BunqResponseRequestResponse::castFromBunqResponse(
-            static::fromJson($responseRaw, self::OBJECT_TYPE)
+            static::fromJson($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 

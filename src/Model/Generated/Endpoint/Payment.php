@@ -44,7 +44,7 @@ class Payment extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'Payment';
+    const OBJECT_TYPE_GET = 'Payment';
 
     /**
      * The id of the created Payment.
@@ -269,7 +269,7 @@ class Payment extends BunqModel
         );
 
         return BunqResponsePayment::castFromBunqResponse(
-            static::fromJson($responseRaw, self::OBJECT_TYPE)
+            static::fromJson($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 
@@ -301,7 +301,7 @@ class Payment extends BunqModel
         );
 
         return BunqResponsePaymentList::castFromBunqResponse(
-            static::fromJsonList($responseRaw, self::OBJECT_TYPE)
+            static::fromJsonList($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 

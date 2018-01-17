@@ -26,7 +26,6 @@ class TabItemShopBatch extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'TabItemShopBatch';
 
     /**
      * The list of tab items in the batch.

@@ -24,7 +24,7 @@ class UserCredentialPasswordIp extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'CredentialPasswordIp';
+    const OBJECT_TYPE_GET = 'CredentialPasswordIp';
 
     /**
      * The id of the credential.
@@ -97,7 +97,7 @@ class UserCredentialPasswordIp extends BunqModel
         );
 
         return BunqResponseUserCredentialPasswordIp::castFromBunqResponse(
-            static::fromJson($responseRaw, self::OBJECT_TYPE)
+            static::fromJson($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 
@@ -125,7 +125,7 @@ class UserCredentialPasswordIp extends BunqModel
         );
 
         return BunqResponseUserCredentialPasswordIpList::castFromBunqResponse(
-            static::fromJsonList($responseRaw, self::OBJECT_TYPE)
+            static::fromJsonList($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 

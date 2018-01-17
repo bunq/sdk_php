@@ -25,7 +25,7 @@ class MasterCardAction extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'MasterCardAction';
+    const OBJECT_TYPE_GET = 'MasterCardAction';
 
     /**
      * The id of the MastercardAction.
@@ -222,7 +222,7 @@ class MasterCardAction extends BunqModel
         );
 
         return BunqResponseMasterCardAction::castFromBunqResponse(
-            static::fromJson($responseRaw, self::OBJECT_TYPE)
+            static::fromJson($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 
@@ -251,7 +251,7 @@ class MasterCardAction extends BunqModel
         );
 
         return BunqResponseMasterCardActionList::castFromBunqResponse(
-            static::fromJsonList($responseRaw, self::OBJECT_TYPE)
+            static::fromJsonList($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 
