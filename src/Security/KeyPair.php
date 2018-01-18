@@ -1,5 +1,6 @@
 <?php
 namespace bunq\Security;
+
 use bunq\Exception\BunqException;
 
 /**
