@@ -19,10 +19,6 @@ class Session extends BunqModel
     const ENDPOINT_URL_DELETE = 'session/%s';
 
     /**
-     * Object type.
-     */
-
-    /**
      * Deletes the current session.
      *
      * @param ApiContext $apiContext

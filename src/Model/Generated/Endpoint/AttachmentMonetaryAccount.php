@@ -29,10 +29,6 @@ class AttachmentMonetaryAccount extends BunqModel
     const FIELD_DESCRIPTION = ApiClient::FIELD_DESCRIPTION;
 
     /**
-     * Object type.
-     */
-
-    /**
      * The attachment.
      *
      * @var Attachment

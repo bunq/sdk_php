@@ -19,10 +19,6 @@ class BunqMeFundraiserProfile extends BunqModel
     const FIELD_POINTER = 'pointer';
 
     /**
-     * Object type.
-     */
-
-    /**
      * The color chosen for the bunq.me fundraiser profile in hexadecimal
      * format.
      *

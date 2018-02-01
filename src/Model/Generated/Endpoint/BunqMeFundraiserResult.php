@@ -11,10 +11,6 @@ use bunq\Model\Core\BunqModel;
 class BunqMeFundraiserResult extends BunqModel
 {
     /**
-     * Object type.
-     */
-
-    /**
      * The id of the bunq.me.
      *
      * @var int

@@ -25,10 +25,6 @@ class ChatMessageAttachment extends BunqModel
     const FIELD_ATTACHMENT = 'attachment';
 
     /**
-     * Object type.
-     */
-
-    /**
      * The id of the newly created chat message.
      *
      * @var int

@@ -13,10 +13,6 @@ use bunq\Model\Core\BunqModel;
 class BunqMeTabResultResponse extends BunqModel
 {
     /**
-     * Object type.
-     */
-
-    /**
      * The payment made for the bunq.me tab.
      *
      * @var Payment

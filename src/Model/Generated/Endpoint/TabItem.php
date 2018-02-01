@@ -14,10 +14,6 @@ use bunq\Model\Generated\Object\AttachmentTab;
 class TabItem extends BunqModel
 {
     /**
-     * Object type.
-     */
-
-    /**
      * The id of the tab item.
      *
      * @var int
