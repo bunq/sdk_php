@@ -23,10 +23,6 @@ class ShareInviteBankAmountUsed extends BunqModel
     const ENDPOINT_URL_DELETE = 'user/%s/monetary-account/%s/share-invite-bank-inquiry/%s/amount-used/%s';
 
     /**
-     * Object type.
-     */
-
-    /**
      * Reset the available budget for a bank account share. To be called without
      * any ID at the end of the path.
      *

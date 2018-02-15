@@ -28,10 +28,6 @@ class SchedulePaymentBatch extends BunqModel
     const FIELD_SCHEDULE = 'schedule';
 
     /**
-     * Object type.
-     */
-
-    /**
      * The payment details.
      *
      * @var SchedulePaymentEntry[]

@@ -20,10 +20,6 @@ class MonetaryAccountProfile extends BunqModel
     const FIELD_PROFILE_DRAIN = 'profile_drain';
 
     /**
-     * Object type.
-     */
-
-    /**
      * The profile settings for triggering the fill of a monetary account.
      *
      * @var MonetaryAccountProfileFill

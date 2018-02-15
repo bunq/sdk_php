@@ -13,15 +13,18 @@ use bunq\Model\Core\BunqModel;
 class BunqMeTabResultInquiry extends BunqModel
 {
     /**
-     * Object type.
-     */
-
-    /**
      * The payment made for the Tab.
      *
      * @var Payment
      */
     protected $payment;
+
+    /**
+     * The Id of the bunq.me tab that this BunqMeTabResultInquiry belongs to.
+     *
+     * @var int
+     */
+    protected $bunqMeTabId;
 
     /**
      * The payment made for the Tab.
@@ -42,11 +45,33 @@ class BunqMeTabResultInquiry extends BunqModel
     }
 
     /**
+     * The Id of the bunq.me tab that this BunqMeTabResultInquiry belongs to.
+     *
+     * @return int
+     */
+    public function getBunqMeTabId()
+    {
+        return $this->bunqMeTabId;
+    }
+
+    /**
+     * @param int $bunqMeTabId
+     */
+    public function setBunqMeTabId($bunqMeTabId)
+    {
+        $this->bunqMeTabId = $bunqMeTabId;
+    }
+
+    /**
      * @return bool
      */
     public function isAllFieldNull()
     {
         if (!is_null($this->payment)) {
+            return false;
+        }
+
+        if (!is_null($this->bunqMeTabId)) {
             return false;
         }
 
