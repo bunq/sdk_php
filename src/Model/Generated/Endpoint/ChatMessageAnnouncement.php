@@ -13,10 +13,6 @@ use bunq\Model\Generated\Object\LabelUser;
 class ChatMessageAnnouncement extends BunqModel
 {
     /**
-     * Object type.
-     */
-
-    /**
      * The id of the message.
      *
      * @var int

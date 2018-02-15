@@ -30,10 +30,6 @@ class CardReplace extends BunqModel
     const FIELD_SECOND_LINE = 'second_line';
 
     /**
-     * Object type.
-     */
-
-    /**
      * The id of the new card.
      *
      * @var int

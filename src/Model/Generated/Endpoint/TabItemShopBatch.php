@@ -24,10 +24,6 @@ class TabItemShopBatch extends BunqModel
     const FIELD_TAB_ITEMS = 'tab_items';
 
     /**
-     * Object type.
-     */
-
-    /**
      * The list of tab items in the batch.
      *
      * @var TabItemShop[]

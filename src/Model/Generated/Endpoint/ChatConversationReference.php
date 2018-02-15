@@ -11,10 +11,6 @@ use bunq\Model\Core\BunqModel;
 class ChatConversationReference extends BunqModel
 {
     /**
-     * Object type.
-     */
-
-    /**
      * The id of this conversation.
      *
      * @var int
