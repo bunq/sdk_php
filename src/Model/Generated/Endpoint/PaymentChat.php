@@ -28,7 +28,7 @@ class PaymentChat extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'ChatConversationPayment';
+    const OBJECT_TYPE_GET = 'ChatConversationPayment';
 
     /**
      * The id of the chat conversation.
@@ -98,9 +98,9 @@ class PaymentChat extends BunqModel
      * @param int $paymentChatId
      * @param string[] $customHeaders
      *
-     * @return BunqResponsePaymentChat
+     * @return BunqResponseInt
      */
-    public static function update(ApiContext $apiContext, array $requestMap, int $userId, int $monetaryAccountId, int $paymentId, int $paymentChatId, array $customHeaders = []): BunqResponsePaymentChat
+    public static function update(ApiContext $apiContext, array $requestMap, int $userId, int $monetaryAccountId, int $paymentId, int $paymentChatId, array $customHeaders = []): BunqResponseInt
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->put(
@@ -112,8 +112,8 @@ class PaymentChat extends BunqModel
             $customHeaders
         );
 
-        return BunqResponsePaymentChat::castFromBunqResponse(
-            static::fromJson($responseRaw, self::OBJECT_TYPE)
+        return BunqResponseInt::castFromBunqResponse(
+            static::processForId($responseRaw)
         );
     }
 
@@ -145,7 +145,7 @@ class PaymentChat extends BunqModel
         );
 
         return BunqResponsePaymentChatList::castFromBunqResponse(
-            static::fromJsonList($responseRaw, self::OBJECT_TYPE)
+            static::fromJsonList($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 

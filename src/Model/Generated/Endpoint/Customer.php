@@ -28,7 +28,7 @@ class Customer extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'Customer';
+    const OBJECT_TYPE_GET = 'Customer';
 
     /**
      * The id of the customer.
@@ -82,7 +82,7 @@ class Customer extends BunqModel
         );
 
         return BunqResponseCustomerList::castFromBunqResponse(
-            static::fromJsonList($responseRaw, self::OBJECT_TYPE)
+            static::fromJsonList($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 
@@ -107,7 +107,7 @@ class Customer extends BunqModel
         );
 
         return BunqResponseCustomer::castFromBunqResponse(
-            static::fromJson($responseRaw, self::OBJECT_TYPE)
+            static::fromJson($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 

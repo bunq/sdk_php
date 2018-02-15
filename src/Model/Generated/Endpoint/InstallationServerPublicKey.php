@@ -23,7 +23,7 @@ class InstallationServerPublicKey extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'ServerPublicKey';
+    const OBJECT_TYPE_GET = 'ServerPublicKey';
 
     /**
      * The server's public key for this Installation.
@@ -58,7 +58,7 @@ class InstallationServerPublicKey extends BunqModel
         );
 
         return BunqResponseInstallationServerPublicKeyList::castFromBunqResponse(
-            static::fromJsonList($responseRaw, self::OBJECT_TYPE)
+            static::fromJsonList($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 

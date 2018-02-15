@@ -29,7 +29,7 @@ class PromotionDisplay extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'PromotionDisplay';
+    const OBJECT_TYPE_GET = 'PromotionDisplay';
 
     /**
      * The id of the promotion.
@@ -80,7 +80,7 @@ class PromotionDisplay extends BunqModel
         );
 
         return BunqResponsePromotionDisplay::castFromBunqResponse(
-            static::fromJson($responseRaw, self::OBJECT_TYPE)
+            static::fromJson($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 

@@ -62,7 +62,7 @@ class UserPerson extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'UserPerson';
+    const OBJECT_TYPE_GET = 'UserPerson';
 
     /**
      * The id of the modified person object.
@@ -312,7 +312,7 @@ class UserPerson extends BunqModel
         );
 
         return BunqResponseUserPerson::castFromBunqResponse(
-            static::fromJson($responseRaw, self::OBJECT_TYPE)
+            static::fromJson($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 

@@ -24,7 +24,7 @@ class CardName extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'CardUserNameArray';
+    const OBJECT_TYPE_GET = 'CardUserNameArray';
 
     /**
      * All possible variations (of suitable length) of user's legal name for the
@@ -60,7 +60,7 @@ class CardName extends BunqModel
         );
 
         return BunqResponseCardNameList::castFromBunqResponse(
-            static::fromJsonList($responseRaw, self::OBJECT_TYPE)
+            static::fromJsonList($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 

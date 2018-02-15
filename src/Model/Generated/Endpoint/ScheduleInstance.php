@@ -31,7 +31,7 @@ class ScheduleInstance extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'ScheduledInstance';
+    const OBJECT_TYPE_GET = 'ScheduledInstance';
 
     /**
      * The state of the scheduleInstance. (FINISHED_SUCCESSFULLY, RETRY,
@@ -100,7 +100,7 @@ class ScheduleInstance extends BunqModel
         );
 
         return BunqResponseScheduleInstance::castFromBunqResponse(
-            static::fromJson($responseRaw, self::OBJECT_TYPE)
+            static::fromJson($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 
@@ -113,9 +113,9 @@ class ScheduleInstance extends BunqModel
      * @param int $scheduleInstanceId
      * @param string[] $customHeaders
      *
-     * @return BunqResponseScheduleInstance
+     * @return BunqResponseInt
      */
-    public static function update(ApiContext $apiContext, array $requestMap, int $userId, int $monetaryAccountId, int $scheduleId, int $scheduleInstanceId, array $customHeaders = []): BunqResponseScheduleInstance
+    public static function update(ApiContext $apiContext, array $requestMap, int $userId, int $monetaryAccountId, int $scheduleId, int $scheduleInstanceId, array $customHeaders = []): BunqResponseInt
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->put(
@@ -127,8 +127,8 @@ class ScheduleInstance extends BunqModel
             $customHeaders
         );
 
-        return BunqResponseScheduleInstance::castFromBunqResponse(
-            static::fromJson($responseRaw, self::OBJECT_TYPE)
+        return BunqResponseInt::castFromBunqResponse(
+            static::processForId($responseRaw)
         );
     }
 
@@ -158,7 +158,7 @@ class ScheduleInstance extends BunqModel
         );
 
         return BunqResponseScheduleInstanceList::castFromBunqResponse(
-            static::fromJsonList($responseRaw, self::OBJECT_TYPE)
+            static::fromJsonList($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 

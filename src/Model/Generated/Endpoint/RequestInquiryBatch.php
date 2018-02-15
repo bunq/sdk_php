@@ -33,7 +33,7 @@ class RequestInquiryBatch extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'RequestInquiryBatch';
+    const OBJECT_TYPE_GET = 'RequestInquiryBatch';
 
     /**
      * The list of requests that were made.
@@ -132,7 +132,7 @@ class RequestInquiryBatch extends BunqModel
         );
 
         return BunqResponseRequestInquiryBatch::castFromBunqResponse(
-            static::fromJson($responseRaw, self::OBJECT_TYPE)
+            static::fromJson($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 
@@ -163,7 +163,7 @@ class RequestInquiryBatch extends BunqModel
         );
 
         return BunqResponseRequestInquiryBatchList::castFromBunqResponse(
-            static::fromJsonList($responseRaw, self::OBJECT_TYPE)
+            static::fromJsonList($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 

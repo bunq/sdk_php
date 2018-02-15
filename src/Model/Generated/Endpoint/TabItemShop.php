@@ -44,7 +44,7 @@ class TabItemShop extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'TabItem';
+    const OBJECT_TYPE_GET = 'TabItem';
 
     /**
      * The id of the created TabItem.
@@ -158,8 +158,7 @@ class TabItemShop extends BunqModel
     }
 
     /**
-     * Delete a specific TabItem from a Tab. This request returns an empty
-     * response.
+     * Delete a specific TabItem from a Tab.
      *
      * @param ApiContext $apiContext
      * @param string[] $customHeaders
@@ -216,7 +215,7 @@ class TabItemShop extends BunqModel
         );
 
         return BunqResponseTabItemShopList::castFromBunqResponse(
-            static::fromJsonList($responseRaw, self::OBJECT_TYPE)
+            static::fromJsonList($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 
@@ -246,7 +245,7 @@ class TabItemShop extends BunqModel
         );
 
         return BunqResponseTabItemShop::castFromBunqResponse(
-            static::fromJson($responseRaw, self::OBJECT_TYPE)
+            static::fromJson($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 

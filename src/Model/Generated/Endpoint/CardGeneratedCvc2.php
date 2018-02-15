@@ -23,7 +23,7 @@ class CardGeneratedCvc2 extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'CardGeneratedCvc2';
+    const OBJECT_TYPE_GET = 'CardGeneratedCvc2';
 
     /**
      * The id of the cvc code.
@@ -76,9 +76,9 @@ class CardGeneratedCvc2 extends BunqModel
      * @param int $cardId
      * @param string[] $customHeaders
      *
-     * @return BunqResponseCardGeneratedCvc2
+     * @return BunqResponseInt
      */
-    public static function create(ApiContext $apiContext, array $requestMap, int $userId, int $cardId, array $customHeaders = []): BunqResponseCardGeneratedCvc2
+    public static function create(ApiContext $apiContext, array $requestMap, int $userId, int $cardId, array $customHeaders = []): BunqResponseInt
     {
         $apiClient = new ApiClient($apiContext);
         $apiClient->enableEncryption();
@@ -91,8 +91,8 @@ class CardGeneratedCvc2 extends BunqModel
             $customHeaders
         );
 
-        return BunqResponseCardGeneratedCvc2::castFromBunqResponse(
-            static::fromJson($responseRaw, self::OBJECT_TYPE)
+        return BunqResponseInt::castFromBunqResponse(
+            static::processForId($responseRaw)
         );
     }
 
@@ -120,7 +120,7 @@ class CardGeneratedCvc2 extends BunqModel
         );
 
         return BunqResponseCardGeneratedCvc2::castFromBunqResponse(
-            static::fromJson($responseRaw, self::OBJECT_TYPE)
+            static::fromJson($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 
@@ -151,7 +151,7 @@ class CardGeneratedCvc2 extends BunqModel
         );
 
         return BunqResponseCardGeneratedCvc2List::castFromBunqResponse(
-            static::fromJsonList($responseRaw, self::OBJECT_TYPE)
+            static::fromJsonList($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 

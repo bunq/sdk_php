@@ -59,7 +59,7 @@ class UserLight extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'UserPerson';
+    const OBJECT_TYPE_GET = 'UserPerson';
 
     /**
      * The id of the user.
@@ -315,7 +315,7 @@ class UserLight extends BunqModel
         );
 
         return BunqResponseUserLight::castFromBunqResponse(
-            static::fromJson($responseRaw, self::OBJECT_TYPE)
+            static::fromJson($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 

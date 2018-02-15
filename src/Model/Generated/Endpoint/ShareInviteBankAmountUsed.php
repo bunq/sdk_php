@@ -25,7 +25,6 @@ class ShareInviteBankAmountUsed extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'ShareInviteBankAmountUsed';
 
     /**
      * Reset the available budget for a bank account share. To be called without

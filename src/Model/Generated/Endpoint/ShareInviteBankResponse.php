@@ -33,7 +33,7 @@ class ShareInviteBankResponse extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'ShareInviteBankResponse';
+    const OBJECT_TYPE_GET = 'ShareInviteBankResponse';
 
     /**
      * The monetary account and user who created the share.
@@ -133,7 +133,7 @@ class ShareInviteBankResponse extends BunqModel
         );
 
         return BunqResponseShareInviteBankResponse::castFromBunqResponse(
-            static::fromJson($responseRaw, self::OBJECT_TYPE)
+            static::fromJson($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 
@@ -146,9 +146,9 @@ class ShareInviteBankResponse extends BunqModel
      * @param int $shareInviteBankResponseId
      * @param string[] $customHeaders
      *
-     * @return BunqResponseShareInviteBankResponse
+     * @return BunqResponseInt
      */
-    public static function update(ApiContext $apiContext, array $requestMap, int $userId, int $shareInviteBankResponseId, array $customHeaders = []): BunqResponseShareInviteBankResponse
+    public static function update(ApiContext $apiContext, array $requestMap, int $userId, int $shareInviteBankResponseId, array $customHeaders = []): BunqResponseInt
     {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->put(
@@ -160,8 +160,8 @@ class ShareInviteBankResponse extends BunqModel
             $customHeaders
         );
 
-        return BunqResponseShareInviteBankResponse::castFromBunqResponse(
-            static::fromJson($responseRaw, self::OBJECT_TYPE)
+        return BunqResponseInt::castFromBunqResponse(
+            static::processForId($responseRaw)
         );
     }
 
@@ -191,7 +191,7 @@ class ShareInviteBankResponse extends BunqModel
         );
 
         return BunqResponseShareInviteBankResponseList::castFromBunqResponse(
-            static::fromJsonList($responseRaw, self::OBJECT_TYPE)
+            static::fromJsonList($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 
