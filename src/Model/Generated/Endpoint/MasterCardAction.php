@@ -201,6 +201,13 @@ class MasterCardAction extends BunqModel
     protected $eligibleWhitelistId;
 
     /**
+     * The secure code id for this mastercard action or null.
+     *
+     * @var int
+     */
+    protected $secureCodeId;
+
+    /**
      * @param ApiContext $apiContext
      * @param int $userId
      * @param int $monetaryAccountId
@@ -693,6 +700,24 @@ class MasterCardAction extends BunqModel
     }
 
     /**
+     * The secure code id for this mastercard action or null.
+     *
+     * @return int
+     */
+    public function getSecureCodeId()
+    {
+        return $this->secureCodeId;
+    }
+
+    /**
+     * @param int $secureCodeId
+     */
+    public function setSecureCodeId($secureCodeId)
+    {
+        $this->secureCodeId = $secureCodeId;
+    }
+
+    /**
      * @return bool
      */
     public function isAllFieldNull()
@@ -790,6 +815,10 @@ class MasterCardAction extends BunqModel
         }
 
         if (!is_null($this->eligibleWhitelistId)) {
+            return false;
+        }
+
+        if (!is_null($this->secureCodeId)) {
             return false;
         }
 

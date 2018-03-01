@@ -55,6 +55,8 @@ class UserPerson extends BunqModel
     const FIELD_SUB_STATUS = 'sub_status';
     const FIELD_LEGAL_GUARDIAN_ALIAS = 'legal_guardian_alias';
     const FIELD_SESSION_TIMEOUT = 'session_timeout';
+    const FIELD_CARD_IDS = 'card_ids';
+    const FIELD_CARD_LIMITS = 'card_limits';
     const FIELD_DAILY_LIMIT_WITHOUT_CONFIRMATION_LOGIN = 'daily_limit_without_confirmation_login';
     const FIELD_COUNTER_BANK_IBAN = 'counter_bank_iban';
     const FIELD_NOTIFICATION_FILTERS = 'notification_filters';

@@ -8,6 +8,8 @@ use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Object\Address;
 use bunq\Model\Generated\Object\Amount;
 use bunq\Model\Generated\Object\Avatar;
+use bunq\Model\Generated\Object\BunqId;
+use bunq\Model\Generated\Object\CardLimit;
 use bunq\Model\Generated\Object\LabelUser;
 use bunq\Model\Generated\Object\NotificationFilter;
 use bunq\Model\Generated\Object\Pointer;
@@ -226,6 +228,20 @@ class UserCompany extends BunqModel
      * @var int
      */
     protected $sessionTimeout;
+
+    /**
+     * Card ids used for centralized card limits.
+     *
+     * @var BunqId[]
+     */
+    protected $cardIds;
+
+    /**
+     * The centralized limits for user's cards.
+     *
+     * @var CardLimit[]
+     */
+    protected $cardLimits;
 
     /**
      * The amount the company can pay in the session without asking for
@@ -755,6 +771,42 @@ class UserCompany extends BunqModel
     }
 
     /**
+     * Card ids used for centralized card limits.
+     *
+     * @return BunqId[]
+     */
+    public function getCardIds()
+    {
+        return $this->cardIds;
+    }
+
+    /**
+     * @param BunqId[] $cardIds
+     */
+    public function setCardIds($cardIds)
+    {
+        $this->cardIds = $cardIds;
+    }
+
+    /**
+     * The centralized limits for user's cards.
+     *
+     * @return CardLimit[]
+     */
+    public function getCardLimits()
+    {
+        return $this->cardLimits;
+    }
+
+    /**
+     * @param CardLimit[] $cardLimits
+     */
+    public function setCardLimits($cardLimits)
+    {
+        $this->cardLimits = $cardLimits;
+    }
+
+    /**
      * The amount the company can pay in the session without asking for
      * credentials.
      *
@@ -944,6 +996,14 @@ class UserCompany extends BunqModel
         }
 
         if (!is_null($this->sessionTimeout)) {
+            return false;
+        }
+
+        if (!is_null($this->cardIds)) {
+            return false;
+        }
+
+        if (!is_null($this->cardLimits)) {
             return false;
         }
 

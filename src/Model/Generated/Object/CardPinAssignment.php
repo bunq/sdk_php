@@ -31,10 +31,14 @@ class CardPinAssignment extends BunqModel
 
     /**
      * @param string $type
+     * @param string $pinCode
+     * @param int $monetaryAccountId
      */
-    public function __construct($type)
+    public function __construct($type, $pinCode, $monetaryAccountId)
     {
         $this->type = $type;
+        $this->pinCode = $pinCode;
+        $this->monetaryAccountId = $monetaryAccountId;
     }
 
     /**
