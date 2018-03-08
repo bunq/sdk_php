@@ -27,6 +27,7 @@ class IdealMerchantTransaction extends BunqModel
      */
     const FIELD_AMOUNT_REQUESTED = 'amount_requested';
     const FIELD_ISSUER = 'issuer';
+    const FIELD_CALLBACK_TYPE = 'callback_type';
 
     /**
      * Object type.

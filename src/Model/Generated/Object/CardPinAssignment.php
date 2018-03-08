@@ -25,7 +25,7 @@ class CardPinAssignment extends BunqModel
     /**
      * The ID of the monetary account to assign to this pin for the card.
      *
-     * @var string
+     * @var int
      */
     protected $monetaryAccountId;
 
@@ -62,7 +62,7 @@ class CardPinAssignment extends BunqModel
     /**
      * The ID of the monetary account to assign to this pin for the card.
      *
-     * @return string
+     * @return int
      */
     public function getMonetaryAccountId()
     {
@@ -70,7 +70,7 @@ class CardPinAssignment extends BunqModel
     }
 
     /**
-     * @param string $monetaryAccountId
+     * @param int $monetaryAccountId
      */
     public function setMonetaryAccountId($monetaryAccountId)
     {
