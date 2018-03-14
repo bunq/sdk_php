@@ -162,7 +162,7 @@ class RequestResponse extends BunqModel
 
     /**
      * The type of the RequestInquiry. Can be DIRECT_DEBIT, DIRECT_DEBIT_B2B,
-     * IDEAL or INTERNAL.
+     * IDEAL, SOFORT or INTERNAL.
      *
      * @var string
      */
@@ -612,7 +612,7 @@ class RequestResponse extends BunqModel
 
     /**
      * The type of the RequestInquiry. Can be DIRECT_DEBIT, DIRECT_DEBIT_B2B,
-     * IDEAL or INTERNAL.
+     * IDEAL, SOFORT or INTERNAL.
      *
      * @return string
      */

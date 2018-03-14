@@ -5,6 +5,7 @@ use bunq\Model\Generated\Endpoint\Card;
 use bunq\Model\Generated\Endpoint\CardDebit;
 use bunq\Model\Generated\Endpoint\CardName;
 use bunq\Model\Generated\Endpoint\User;
+use bunq\Model\Generated\Object\CardPinAssignment;
 use bunq\Model\Generated\Object\Pointer;
 use bunq\test\BunqSdkTestBase;
 use bunq\test\Config;
@@ -22,6 +23,7 @@ class CardDebitTest extends BunqSdkTestBase
      *  Pin code that the card will be ordered with.
      */
     const CARD_PIN_CODE = '4045';
+    const CARD_ASSIGNMENT_TYPE_PRIMARY = 'PRIMARY';
 
     /**
      * The prefix for the second line on the card.
@@ -49,6 +51,11 @@ class CardDebitTest extends BunqSdkTestBase
     private static $alias;
 
     /**
+     * @var int
+     */
+    private static $monetaryAccountId;
+
+    /**
      */
     public static function setUpBeforeClass()
     {
@@ -58,6 +65,7 @@ class CardDebitTest extends BunqSdkTestBase
         static::$nameOnCard = $cardNamesAllowed[self::INDEX_FIRST]->getPossibleCardNameArray();
         $usersAccessible = User::listing(static::getApiContext())->getValue();
         static::$alias = $usersAccessible[self::INDEX_FIRST]->getUserCompany()->getAlias()[self::INDEX_FIRST];
+        static::$monetaryAccountId = Config::getMonetaryAccountId();
     }
 
     /**
@@ -67,11 +75,17 @@ class CardDebitTest extends BunqSdkTestBase
     {
         $apiContext = static::getApiContext();
         $alias = new Pointer(static::$alias->getType(), static::$alias->getValue());
+        $cardAssigned =
+            new CardPinAssignment(
+                self::CARD_ASSIGNMENT_TYPE_PRIMARY,
+                self::CARD_PIN_CODE,
+                static::$monetaryAccountId
+            );
 
         $cardDebitMap = [
             CardDebit::FIELD_ALIAS => $alias,
             CardDebit::FIELD_SECOND_LINE => uniqid(self::CARD_SECOND_LINE_PREFIX),
-            CardDebit::FIELD_PIN_CODE => self::CARD_PIN_CODE,
+            CardDebit::FIELD_PIN_CODE_ASSIGNMENT => [$cardAssigned],
             CardDebit::FIELD_NAME_ON_CARD => static::$nameOnCard[self::INDEX_FIRST],
         ];
         $cardDebit = CardDebit::create($apiContext, $cardDebitMap, static::$userId)->getValue();

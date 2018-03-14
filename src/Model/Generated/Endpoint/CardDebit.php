@@ -30,7 +30,6 @@ class CardDebit extends BunqModel
      */
     const FIELD_SECOND_LINE = 'second_line';
     const FIELD_NAME_ON_CARD = 'name_on_card';
-    const FIELD_PIN_CODE = 'pin_code';
     const FIELD_ALIAS = 'alias';
     const FIELD_TYPE = 'type';
     const FIELD_PIN_CODE_ASSIGNMENT = 'pin_code_assignment';
