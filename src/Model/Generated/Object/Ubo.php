@@ -30,6 +30,20 @@ class Ubo extends BunqModel
     protected $nationality;
 
     /**
+     * @param string|null $name        The name of the ultimate beneficiary owner.
+     * @param string|null $dateOfBirth The date of birth of the ultimate
+     *                                 beneficiary owner. Accepts ISO8601 date formats.
+     * @param string|null $nationality The nationality of the ultimate
+     *                                 beneficiary owner. Accepts ISO8601 date formats.
+     */
+    public function __construct(string $name = null, string $dateOfBirth = null, string $nationality = null)
+    {
+        $this->name = $name;
+        $this->dateOfBirth = $dateOfBirth;
+        $this->nationality = $nationality;
+    }
+
+    /**
      * The name of the ultimate beneficiary owner.
      *
      * @return string
@@ -40,6 +54,9 @@ class Ubo extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $name
      */
     public function setName($name)
@@ -58,6 +75,9 @@ class Ubo extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $dateOfBirth
      */
     public function setDateOfBirth($dateOfBirth)
@@ -76,6 +96,9 @@ class Ubo extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $nationality
      */
     public function setNationality($nationality)

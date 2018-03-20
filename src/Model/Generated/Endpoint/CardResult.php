@@ -1,9 +1,7 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
-use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
-use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Object\Amount;
 use bunq\Model\Generated\Object\LabelCard;
@@ -142,21 +140,22 @@ class CardResult extends BunqModel
     protected $reservationExpiryTime;
 
     /**
-     * @param ApiContext $apiContext
-     * @param int $userId
-     * @param int $monetaryAccountId
      * @param int $cardResultId
+     * @param int|null $monetaryAccountId
      * @param string[] $customHeaders
      *
      * @return BunqResponseCardResult
      */
-    public static function get(ApiContext $apiContext, int $userId, int $monetaryAccountId, int $cardResultId, array $customHeaders = []): BunqResponseCardResult
-    {
-        $apiClient = new ApiClient($apiContext);
+    public static function get(
+        int $cardResultId,
+        int $monetaryAccountId = null,
+        array $customHeaders = []
+    ): BunqResponseCardResult {
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_READ,
-                [$userId, $monetaryAccountId, $cardResultId]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId), $cardResultId]
             ),
             [],
             $customHeaders
@@ -171,21 +170,22 @@ class CardResult extends BunqModel
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
-     * @param ApiContext $apiContext
-     * @param int $userId
-     * @param int $monetaryAccountId
+     * @param int|null $monetaryAccountId
      * @param string[] $params
      * @param string[] $customHeaders
      *
      * @return BunqResponseCardResultList
      */
-    public static function listing(ApiContext $apiContext, int $userId, int $monetaryAccountId, array $params = [], array $customHeaders = []): BunqResponseCardResultList
-    {
-        $apiClient = new ApiClient($apiContext);
+    public static function listing(
+        int $monetaryAccountId = null,
+        array $params = [],
+        array $customHeaders = []
+    ): BunqResponseCardResultList {
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_LISTING,
-                [$userId, $monetaryAccountId]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId)]
             ),
             $params,
             $customHeaders
@@ -207,6 +207,9 @@ class CardResult extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param int $monetaryAccountId
      */
     public function setMonetaryAccountId($monetaryAccountId)
@@ -225,6 +228,9 @@ class CardResult extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param int $cardId
      */
     public function setCardId($cardId)
@@ -243,6 +249,9 @@ class CardResult extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param Amount $amountOriginal
      */
     public function setAmountOriginal($amountOriginal)
@@ -261,6 +270,9 @@ class CardResult extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param Amount $amountFinal
      */
     public function setAmountFinal($amountFinal)
@@ -279,6 +291,9 @@ class CardResult extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $decision
      */
     public function setDecision($decision)
@@ -297,6 +312,9 @@ class CardResult extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $decisionDescription
      */
     public function setDecisionDescription($decisionDescription)
@@ -316,6 +334,9 @@ class CardResult extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $decisionDescriptionTranslated
      */
     public function setDecisionDescriptionTranslated($decisionDescriptionTranslated)
@@ -334,6 +355,9 @@ class CardResult extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $description
      */
     public function setDescription($description)
@@ -352,6 +376,9 @@ class CardResult extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $messageType
      */
     public function setMessageType($messageType)
@@ -370,6 +397,9 @@ class CardResult extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $authorisationType
      */
     public function setAuthorisationType($authorisationType)
@@ -388,6 +418,9 @@ class CardResult extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $city
      */
     public function setCity($city)
@@ -407,6 +440,9 @@ class CardResult extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param LabelMonetaryAccount $alias
      */
     public function setAlias($alias)
@@ -425,6 +461,9 @@ class CardResult extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param LabelMonetaryAccount $counterpartyAlias
      */
     public function setCounterpartyAlias($counterpartyAlias)
@@ -443,6 +482,9 @@ class CardResult extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param LabelCard $labelCard
      */
     public function setLabelCard($labelCard)
@@ -461,6 +503,9 @@ class CardResult extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $reservationStatus
      */
     public function setReservationStatus($reservationStatus)
@@ -479,6 +524,9 @@ class CardResult extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $reservationExpiryTime
      */
     public function setReservationExpiryTime($reservationExpiryTime)

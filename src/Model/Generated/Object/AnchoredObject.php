@@ -132,6 +132,9 @@ class AnchoredObject extends BunqModel implements AnchorObjectInterface
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param CardDebit $cardDebit
      */
     public function setCardDebit($cardDebit)
@@ -148,6 +151,9 @@ class AnchoredObject extends BunqModel implements AnchorObjectInterface
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param CardPinChange $cardPinChange
      */
     public function setCardPinChange($cardPinChange)
@@ -164,6 +170,9 @@ class AnchoredObject extends BunqModel implements AnchorObjectInterface
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param CardResult $cardResult
      */
     public function setCardResult($cardResult)
@@ -180,6 +189,9 @@ class AnchoredObject extends BunqModel implements AnchorObjectInterface
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param DraftPayment $draftPayment
      */
     public function setDraftPayment($draftPayment)
@@ -196,6 +208,9 @@ class AnchoredObject extends BunqModel implements AnchorObjectInterface
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param IdealMerchantTransaction $idealMerchantTransaction
      */
     public function setIdealMerchantTransaction($idealMerchantTransaction)
@@ -212,6 +227,9 @@ class AnchoredObject extends BunqModel implements AnchorObjectInterface
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param Invoice $invoice
      */
     public function setInvoice($invoice)
@@ -228,6 +246,9 @@ class AnchoredObject extends BunqModel implements AnchorObjectInterface
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param Payment $payment
      */
     public function setPayment($payment)
@@ -244,6 +265,9 @@ class AnchoredObject extends BunqModel implements AnchorObjectInterface
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param PaymentBatch $paymentBatch
      */
     public function setPaymentBatch($paymentBatch)
@@ -260,6 +284,9 @@ class AnchoredObject extends BunqModel implements AnchorObjectInterface
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param PromotionDisplay $promotionDisplay
      */
     public function setPromotionDisplay($promotionDisplay)
@@ -276,6 +303,9 @@ class AnchoredObject extends BunqModel implements AnchorObjectInterface
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param RequestInquiryBatch $requestInquiryBatch
      */
     public function setRequestInquiryBatch($requestInquiryBatch)
@@ -292,6 +322,9 @@ class AnchoredObject extends BunqModel implements AnchorObjectInterface
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param RequestInquiry $requestInquiry
      */
     public function setRequestInquiry($requestInquiry)
@@ -308,6 +341,9 @@ class AnchoredObject extends BunqModel implements AnchorObjectInterface
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param RequestResponse $requestResponse
      */
     public function setRequestResponse($requestResponse)
@@ -324,6 +360,9 @@ class AnchoredObject extends BunqModel implements AnchorObjectInterface
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param SchedulePaymentBatch $scheduledPaymentBatch
      */
     public function setScheduledPaymentBatch($scheduledPaymentBatch)
@@ -340,6 +379,9 @@ class AnchoredObject extends BunqModel implements AnchorObjectInterface
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param SchedulePayment $scheduledPayment
      */
     public function setScheduledPayment($scheduledPayment)
@@ -356,6 +398,9 @@ class AnchoredObject extends BunqModel implements AnchorObjectInterface
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param ScheduleInstance $scheduledInstance
      */
     public function setScheduledInstance($scheduledInstance)
@@ -372,6 +417,9 @@ class AnchoredObject extends BunqModel implements AnchorObjectInterface
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param ShareInviteBankInquiry $shareInviteBankInquiry
      */
     public function setShareInviteBankInquiry($shareInviteBankInquiry)
@@ -388,6 +436,9 @@ class AnchoredObject extends BunqModel implements AnchorObjectInterface
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param ShareInviteBankResponse $shareInviteBankResponse
      */
     public function setShareInviteBankResponse($shareInviteBankResponse)
@@ -404,6 +455,9 @@ class AnchoredObject extends BunqModel implements AnchorObjectInterface
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param UserCredentialPasswordIp $userCredentialPasswordIp
      */
     public function setUserCredentialPasswordIp($userCredentialPasswordIp)

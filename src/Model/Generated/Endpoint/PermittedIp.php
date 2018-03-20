@@ -1,9 +1,7 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
-use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
-use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 
 /**
@@ -50,21 +48,22 @@ class PermittedIp extends BunqModel
     protected $status;
 
     /**
-     * @param ApiContext $apiContext
-     * @param int $userId
      * @param int $credentialPasswordIpId
      * @param int $permittedIpId
      * @param string[] $customHeaders
      *
      * @return BunqResponsePermittedIp
      */
-    public static function get(ApiContext $apiContext, int $userId, int $credentialPasswordIpId, int $permittedIpId, array $customHeaders = []): BunqResponsePermittedIp
-    {
-        $apiClient = new ApiClient($apiContext);
+    public static function get(
+        int $credentialPasswordIpId,
+        int $permittedIpId,
+        array $customHeaders = []
+    ): BunqResponsePermittedIp {
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_READ,
-                [$userId, $credentialPasswordIpId, $permittedIpId]
+                [static::determineUserId(), $credentialPasswordIpId, $permittedIpId]
             ),
             [],
             $customHeaders
@@ -76,23 +75,31 @@ class PermittedIp extends BunqModel
     }
 
     /**
-     * @param ApiContext $apiContext
-     * @param mixed[] $requestMap
-     * @param int $userId
      * @param int $credentialPasswordIpId
+     * @param string $ip          The IP address.
+     * @param string|null $status The status of the IP. May be "ACTIVE" or
+     *                            "INACTIVE". It is only possible to make requests from "ACTIVE" IP
+     *                            addresses. Only "ACTIVE" IPs will be billed.
      * @param string[] $customHeaders
      *
      * @return BunqResponseInt
      */
-    public static function create(ApiContext $apiContext, array $requestMap, int $userId, int $credentialPasswordIpId, array $customHeaders = []): BunqResponseInt
-    {
-        $apiClient = new ApiClient($apiContext);
+    public static function create(
+        int $credentialPasswordIpId,
+        string $ip,
+        string $status = null,
+        array $customHeaders = []
+    ): BunqResponseInt {
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->post(
             vsprintf(
                 self::ENDPOINT_URL_CREATE,
-                [$userId, $credentialPasswordIpId]
+                [static::determineUserId(), $credentialPasswordIpId]
             ),
-            $requestMap,
+            [
+                self::FIELD_IP => $ip,
+                self::FIELD_STATUS => $status,
+            ],
             $customHeaders
         );
 
@@ -105,21 +112,22 @@ class PermittedIp extends BunqModel
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
-     * @param ApiContext $apiContext
-     * @param int $userId
      * @param int $credentialPasswordIpId
      * @param string[] $params
      * @param string[] $customHeaders
      *
      * @return BunqResponsePermittedIpList
      */
-    public static function listing(ApiContext $apiContext, int $userId, int $credentialPasswordIpId, array $params = [], array $customHeaders = []): BunqResponsePermittedIpList
-    {
-        $apiClient = new ApiClient($apiContext);
+    public static function listing(
+        int $credentialPasswordIpId,
+        array $params = [],
+        array $customHeaders = []
+    ): BunqResponsePermittedIpList {
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_LISTING,
-                [$userId, $credentialPasswordIpId]
+                [static::determineUserId(), $credentialPasswordIpId]
             ),
             $params,
             $customHeaders
@@ -131,24 +139,28 @@ class PermittedIp extends BunqModel
     }
 
     /**
-     * @param ApiContext $apiContext
-     * @param mixed[] $requestMap
-     * @param int $userId
      * @param int $credentialPasswordIpId
      * @param int $permittedIpId
+     * @param string|null $status The status of the IP. May be "ACTIVE" or
+     *                            "INACTIVE". It is only possible to make requests from "ACTIVE" IP
+     *                            addresses. Only "ACTIVE" IPs will be billed.
      * @param string[] $customHeaders
      *
      * @return BunqResponseInt
      */
-    public static function update(ApiContext $apiContext, array $requestMap, int $userId, int $credentialPasswordIpId, int $permittedIpId, array $customHeaders = []): BunqResponseInt
-    {
-        $apiClient = new ApiClient($apiContext);
+    public static function update(
+        int $credentialPasswordIpId,
+        int $permittedIpId,
+        string $status = null,
+        array $customHeaders = []
+    ): BunqResponseInt {
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->put(
             vsprintf(
                 self::ENDPOINT_URL_UPDATE,
-                [$userId, $credentialPasswordIpId, $permittedIpId]
+                [static::determineUserId(), $credentialPasswordIpId, $permittedIpId]
             ),
-            $requestMap,
+            [self::FIELD_STATUS => $status],
             $customHeaders
         );
 
@@ -168,6 +180,9 @@ class PermittedIp extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $ip
      */
     public function setIp($ip)
@@ -188,6 +203,9 @@ class PermittedIp extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $status
      */
     public function setStatus($status)

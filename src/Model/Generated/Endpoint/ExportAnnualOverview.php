@@ -1,9 +1,7 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
-use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
-use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Object\LabelUser;
 
@@ -72,22 +70,20 @@ class ExportAnnualOverview extends BunqModel
      * Create a new annual overview for a specific year. An overview can be
      * generated only for a past year.
      *
-     * @param ApiContext $apiContext
-     * @param mixed[] $requestMap
-     * @param int $userId
+     * @param int $year The year for which the overview is.
      * @param string[] $customHeaders
      *
      * @return BunqResponseInt
      */
-    public static function create(ApiContext $apiContext, array $requestMap, int $userId, array $customHeaders = []): BunqResponseInt
+    public static function create(int $year, array $customHeaders = []): BunqResponseInt
     {
-        $apiClient = new ApiClient($apiContext);
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->post(
             vsprintf(
                 self::ENDPOINT_URL_CREATE,
-                [$userId]
+                [static::determineUserId()]
             ),
-            $requestMap,
+            [self::FIELD_YEAR => $year],
             $customHeaders
         );
 
@@ -99,20 +95,18 @@ class ExportAnnualOverview extends BunqModel
     /**
      * Get an annual overview for a user by its id.
      *
-     * @param ApiContext $apiContext
-     * @param int $userId
      * @param int $exportAnnualOverviewId
      * @param string[] $customHeaders
      *
      * @return BunqResponseExportAnnualOverview
      */
-    public static function get(ApiContext $apiContext, int $userId, int $exportAnnualOverviewId, array $customHeaders = []): BunqResponseExportAnnualOverview
+    public static function get(int $exportAnnualOverviewId, array $customHeaders = []): BunqResponseExportAnnualOverview
     {
-        $apiClient = new ApiClient($apiContext);
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_READ,
-                [$userId, $exportAnnualOverviewId]
+                [static::determineUserId(), $exportAnnualOverviewId]
             ),
             [],
             $customHeaders
@@ -129,20 +123,18 @@ class ExportAnnualOverview extends BunqModel
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
-     * @param ApiContext $apiContext
-     * @param int $userId
      * @param string[] $params
      * @param string[] $customHeaders
      *
      * @return BunqResponseExportAnnualOverviewList
      */
-    public static function listing(ApiContext $apiContext, int $userId, array $params = [], array $customHeaders = []): BunqResponseExportAnnualOverviewList
+    public static function listing(array $params = [], array $customHeaders = []): BunqResponseExportAnnualOverviewList
     {
-        $apiClient = new ApiClient($apiContext);
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_LISTING,
-                [$userId]
+                [static::determineUserId()]
             ),
             $params,
             $customHeaders
@@ -164,6 +156,9 @@ class ExportAnnualOverview extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param int $id
      */
     public function setId($id)
@@ -182,6 +177,9 @@ class ExportAnnualOverview extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $created
      */
     public function setCreated($created)
@@ -200,6 +198,9 @@ class ExportAnnualOverview extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $updated
      */
     public function setUpdated($updated)
@@ -218,6 +219,9 @@ class ExportAnnualOverview extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param int $year
      */
     public function setYear($year)
@@ -236,6 +240,9 @@ class ExportAnnualOverview extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param LabelUser $aliasUser
      */
     public function setAliasUser($aliasUser)

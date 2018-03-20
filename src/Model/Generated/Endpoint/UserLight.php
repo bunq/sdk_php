@@ -1,9 +1,7 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
-use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
-use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Object\Address;
 use bunq\Model\Generated\Object\Amount;
@@ -31,7 +29,6 @@ class UserLight extends BunqModel
     const FIELD_MIDDLE_NAME = 'middle_name';
     const FIELD_LAST_NAME = 'last_name';
     const FIELD_PUBLIC_NICK_NAME = 'public_nick_name';
-    const FIELD_COUNTER_BANK_IBAN = 'counter_bank_iban';
     const FIELD_ADDRESS_MAIN = 'address_main';
     const FIELD_ADDRESS_POSTAL = 'address_postal';
     const FIELD_AVATAR_UUID = 'avatar_uuid';
@@ -296,15 +293,14 @@ class UserLight extends BunqModel
     /**
      * Get a specific bunq light user.
      *
-     * @param ApiContext $apiContext
      * @param int $userLightId
      * @param string[] $customHeaders
      *
      * @return BunqResponseUserLight
      */
-    public static function get(ApiContext $apiContext, int $userLightId, array $customHeaders = []): BunqResponseUserLight
+    public static function get(int $userLightId, array $customHeaders = []): BunqResponseUserLight
     {
-        $apiClient = new ApiClient($apiContext);
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_READ,
@@ -330,6 +326,9 @@ class UserLight extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param int $id
      */
     public function setId($id)
@@ -348,6 +347,9 @@ class UserLight extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $created
      */
     public function setCreated($created)
@@ -366,6 +368,9 @@ class UserLight extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $updated
      */
     public function setUpdated($updated)
@@ -384,6 +389,9 @@ class UserLight extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $publicUuid
      */
     public function setPublicUuid($publicUuid)
@@ -402,6 +410,9 @@ class UserLight extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $firstName
      */
     public function setFirstName($firstName)
@@ -420,6 +431,9 @@ class UserLight extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $middleName
      */
     public function setMiddleName($middleName)
@@ -438,6 +452,9 @@ class UserLight extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $lastName
      */
     public function setLastName($lastName)
@@ -456,6 +473,9 @@ class UserLight extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $legalName
      */
     public function setLegalName($legalName)
@@ -474,6 +494,9 @@ class UserLight extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $displayName
      */
     public function setDisplayName($displayName)
@@ -492,6 +515,9 @@ class UserLight extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $publicNickName
      */
     public function setPublicNickName($publicNickName)
@@ -510,6 +536,9 @@ class UserLight extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param Pointer[] $alias
      */
     public function setAlias($alias)
@@ -528,6 +557,9 @@ class UserLight extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $socialSecurityNumber
      */
     public function setSocialSecurityNumber($socialSecurityNumber)
@@ -546,6 +578,9 @@ class UserLight extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param TaxResident[] $taxResident
      */
     public function setTaxResident($taxResident)
@@ -564,6 +599,9 @@ class UserLight extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $documentType
      */
     public function setDocumentType($documentType)
@@ -582,6 +620,9 @@ class UserLight extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $documentNumber
      */
     public function setDocumentNumber($documentNumber)
@@ -601,6 +642,9 @@ class UserLight extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $documentCountryOfIssuance
      */
     public function setDocumentCountryOfIssuance($documentCountryOfIssuance)
@@ -619,6 +663,9 @@ class UserLight extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param Address $addressMain
      */
     public function setAddressMain($addressMain)
@@ -637,6 +684,9 @@ class UserLight extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param Address $addressPostal
      */
     public function setAddressPostal($addressPostal)
@@ -655,6 +705,9 @@ class UserLight extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $dateOfBirth
      */
     public function setDateOfBirth($dateOfBirth)
@@ -673,6 +726,9 @@ class UserLight extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $placeOfBirth
      */
     public function setPlaceOfBirth($placeOfBirth)
@@ -692,6 +748,9 @@ class UserLight extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $countryOfBirth
      */
     public function setCountryOfBirth($countryOfBirth)
@@ -710,6 +769,9 @@ class UserLight extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $nationality
      */
     public function setNationality($nationality)
@@ -729,6 +791,9 @@ class UserLight extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $language
      */
     public function setLanguage($language)
@@ -748,6 +813,9 @@ class UserLight extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $region
      */
     public function setRegion($region)
@@ -766,6 +834,9 @@ class UserLight extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $gender
      */
     public function setGender($gender)
@@ -784,6 +855,9 @@ class UserLight extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param Avatar $avatar
      */
     public function setAvatar($avatar)
@@ -802,6 +876,9 @@ class UserLight extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $versionTermsOfService
      */
     public function setVersionTermsOfService($versionTermsOfService)
@@ -821,6 +898,9 @@ class UserLight extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $status
      */
     public function setStatus($status)
@@ -840,6 +920,9 @@ class UserLight extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $subStatus
      */
     public function setSubStatus($subStatus)
@@ -858,6 +941,9 @@ class UserLight extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param int $sessionTimeout
      */
     public function setSessionTimeout($sessionTimeout)
@@ -877,6 +963,9 @@ class UserLight extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param Amount $dailyLimitWithoutConfirmationLogin
      */
     public function setDailyLimitWithoutConfirmationLogin($dailyLimitWithoutConfirmationLogin)
@@ -896,6 +985,9 @@ class UserLight extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param NotificationFilter[] $notificationFilters
      */
     public function setNotificationFilters($notificationFilters)

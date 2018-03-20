@@ -47,13 +47,6 @@ class DraftPaymentEntry extends BunqModel
     protected $attachment;
 
     /**
-     * Whether or not sending a bunq.to payment is allowed.
-     *
-     * @var bool
-     */
-    protected $allowBunqto;
-
-    /**
      * The id of the draft payment entry.
      *
      * @var int
@@ -76,15 +69,34 @@ class DraftPaymentEntry extends BunqModel
     protected $type;
 
     /**
-     * @param Amount $amount
-     * @param Pointer $counterpartyAlias
-     * @param string $description
+     * @param Amount $amount                                      The amount of the payment.
+     * @param Pointer $counterpartyAlias                          The Alias of the party we are
+     *                                                            transferring the money to. Can be an Alias of type
+     *                                                            EMAIL or PHONE_NUMBER
+     *                                                            (for bunq MonetaryAccounts or bunq.to payments) or
+     *                                                            IBAN (for external bank account).
+     * @param string $description                                 The description for the DraftPayment. Maximum
+     *                                                            140 characters for DraftPayments to external IBANs,
+     *                                                            9000 characters for DraftPayments to only other bunq
+     *                                                            MonetaryAccounts. Field is required but can be an
+     *                                                            empty string.
+     * @param string|null $merchantReference                      Optional data to be included with
+     *                                                            the Payment specific to the merchant.
+     * @param AttachmentMonetaryAccountPayment[]|null $attachment The
+     *                                                            Attachments to attach to the DraftPayment.
      */
-    public function __construct(Amount $amount, Pointer $counterpartyAlias, $description)
-    {
+    public function __construct(
+        Amount $amount,
+        Pointer $counterpartyAlias,
+        string $description,
+        string $merchantReference = null,
+        array $attachment = null
+    ) {
         $this->amount = $amount;
         $this->counterpartyAlias = $counterpartyAlias;
         $this->description = $description;
+        $this->merchantReference = $merchantReference;
+        $this->attachment = $attachment;
     }
 
     /**
@@ -98,6 +110,9 @@ class DraftPaymentEntry extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param int $id
      */
     public function setId($id)
@@ -116,6 +131,9 @@ class DraftPaymentEntry extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param Amount $amount
      */
     public function setAmount($amount)
@@ -135,6 +153,9 @@ class DraftPaymentEntry extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param LabelMonetaryAccount $alias
      */
     public function setAlias($alias)
@@ -154,6 +175,9 @@ class DraftPaymentEntry extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param LabelMonetaryAccount $counterpartyAlias
      */
     public function setCounterpartyAlias($counterpartyAlias)
@@ -174,6 +198,9 @@ class DraftPaymentEntry extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $description
      */
     public function setDescription($description)
@@ -192,6 +219,9 @@ class DraftPaymentEntry extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $merchantReference
      */
     public function setMerchantReference($merchantReference)
@@ -210,6 +240,9 @@ class DraftPaymentEntry extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $type
      */
     public function setType($type)
@@ -228,6 +261,9 @@ class DraftPaymentEntry extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param AttachmentMonetaryAccountPayment[] $attachment
      */
     public function setAttachment($attachment)

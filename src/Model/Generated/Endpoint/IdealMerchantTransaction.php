@@ -1,9 +1,7 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
-use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
-use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Object\Amount;
 use bunq\Model\Generated\Object\LabelMonetaryAccount;
@@ -91,7 +89,7 @@ class IdealMerchantTransaction extends BunqModel
     protected $issuerName;
 
     /**
-     * The URL to visit to 
+     * The URL to visit to
      *
      * @var string
      */
@@ -133,23 +131,29 @@ class IdealMerchantTransaction extends BunqModel
     protected $allowChat;
 
     /**
-     * @param ApiContext $apiContext
-     * @param mixed[] $requestMap
-     * @param int $userId
-     * @param int $monetaryAccountId
+     * @param Amount $amountRequested The requested amount of money to add.
+     * @param string $issuer          The BIC of the issuing bank to ask for money.
+     * @param int|null $monetaryAccountId
      * @param string[] $customHeaders
      *
      * @return BunqResponseInt
      */
-    public static function create(ApiContext $apiContext, array $requestMap, int $userId, int $monetaryAccountId, array $customHeaders = []): BunqResponseInt
-    {
-        $apiClient = new ApiClient($apiContext);
+    public static function create(
+        Amount $amountRequested,
+        string $issuer,
+        int $monetaryAccountId = null,
+        array $customHeaders = []
+    ): BunqResponseInt {
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->post(
             vsprintf(
                 self::ENDPOINT_URL_CREATE,
-                [$userId, $monetaryAccountId]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId)]
             ),
-            $requestMap,
+            [
+                self::FIELD_AMOUNT_REQUESTED => $amountRequested,
+                self::FIELD_ISSUER => $issuer,
+            ],
             $customHeaders
         );
 
@@ -159,21 +163,26 @@ class IdealMerchantTransaction extends BunqModel
     }
 
     /**
-     * @param ApiContext $apiContext
-     * @param int $userId
-     * @param int $monetaryAccountId
      * @param int $idealMerchantTransactionId
+     * @param int|null $monetaryAccountId
      * @param string[] $customHeaders
      *
      * @return BunqResponseIdealMerchantTransaction
      */
-    public static function get(ApiContext $apiContext, int $userId, int $monetaryAccountId, int $idealMerchantTransactionId, array $customHeaders = []): BunqResponseIdealMerchantTransaction
-    {
-        $apiClient = new ApiClient($apiContext);
+    public static function get(
+        int $idealMerchantTransactionId,
+        int $monetaryAccountId = null,
+        array $customHeaders = []
+    ): BunqResponseIdealMerchantTransaction {
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_READ,
-                [$userId, $monetaryAccountId, $idealMerchantTransactionId]
+                [
+                    static::determineUserId(),
+                    static::determineMonetaryAccountId($monetaryAccountId),
+                    $idealMerchantTransactionId,
+                ]
             ),
             [],
             $customHeaders
@@ -188,21 +197,22 @@ class IdealMerchantTransaction extends BunqModel
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
-     * @param ApiContext $apiContext
-     * @param int $userId
-     * @param int $monetaryAccountId
+     * @param int|null $monetaryAccountId
      * @param string[] $params
      * @param string[] $customHeaders
      *
      * @return BunqResponseIdealMerchantTransactionList
      */
-    public static function listing(ApiContext $apiContext, int $userId, int $monetaryAccountId, array $params = [], array $customHeaders = []): BunqResponseIdealMerchantTransactionList
-    {
-        $apiClient = new ApiClient($apiContext);
+    public static function listing(
+        int $monetaryAccountId = null,
+        array $params = [],
+        array $customHeaders = []
+    ): BunqResponseIdealMerchantTransactionList {
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_LISTING,
-                [$userId, $monetaryAccountId]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId)]
             ),
             $params,
             $customHeaders
@@ -224,6 +234,9 @@ class IdealMerchantTransaction extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param int $monetaryAccountId
      */
     public function setMonetaryAccountId($monetaryAccountId)
@@ -242,6 +255,9 @@ class IdealMerchantTransaction extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param LabelMonetaryAccount $alias
      */
     public function setAlias($alias)
@@ -260,6 +276,9 @@ class IdealMerchantTransaction extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param LabelMonetaryAccount $counterpartyAlias
      */
     public function setCounterpartyAlias($counterpartyAlias)
@@ -279,6 +298,9 @@ class IdealMerchantTransaction extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param Amount $amountGuaranteed
      */
     public function setAmountGuaranteed($amountGuaranteed)
@@ -297,6 +319,9 @@ class IdealMerchantTransaction extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param Amount $amountRequested
      */
     public function setAmountRequested($amountRequested)
@@ -315,6 +340,9 @@ class IdealMerchantTransaction extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $expiration
      */
     public function setExpiration($expiration)
@@ -333,6 +361,9 @@ class IdealMerchantTransaction extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $issuer
      */
     public function setIssuer($issuer)
@@ -351,6 +382,9 @@ class IdealMerchantTransaction extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $issuerName
      */
     public function setIssuerName($issuerName)
@@ -359,7 +393,7 @@ class IdealMerchantTransaction extends BunqModel
     }
 
     /**
-     * The URL to visit to 
+     * The URL to visit to
      *
      * @return string
      */
@@ -369,6 +403,9 @@ class IdealMerchantTransaction extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $issuerAuthenticationUrl
      */
     public function setIssuerAuthenticationUrl($issuerAuthenticationUrl)
@@ -387,6 +424,9 @@ class IdealMerchantTransaction extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $purchaseIdentifier
      */
     public function setPurchaseIdentifier($purchaseIdentifier)
@@ -405,6 +445,9 @@ class IdealMerchantTransaction extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $status
      */
     public function setStatus($status)
@@ -423,6 +466,9 @@ class IdealMerchantTransaction extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $statusTimestamp
      */
     public function setStatusTimestamp($statusTimestamp)
@@ -441,6 +487,9 @@ class IdealMerchantTransaction extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $transactionIdentifier
      */
     public function setTransactionIdentifier($transactionIdentifier)
@@ -459,6 +508,9 @@ class IdealMerchantTransaction extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param bool $allowChat
      */
     public function setAllowChat($allowChat)

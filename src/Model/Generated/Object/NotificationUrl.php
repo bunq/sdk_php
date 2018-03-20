@@ -37,6 +37,9 @@ class NotificationUrl extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $targetUrl
      */
     public function setTargetUrl($targetUrl)
@@ -53,6 +56,9 @@ class NotificationUrl extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $category
      */
     public function setCategory($category)
@@ -69,6 +75,9 @@ class NotificationUrl extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $eventType
      */
     public function setEventType($eventType)
@@ -85,6 +94,9 @@ class NotificationUrl extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param NotificationAnchorObject $object
      */
     public function setObject($object)

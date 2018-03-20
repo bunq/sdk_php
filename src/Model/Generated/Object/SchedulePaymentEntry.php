@@ -52,7 +52,7 @@ class SchedulePaymentEntry extends BunqModel
      * Whether or not sending a bunq.to payment is allowed. Mandatory for
      * publicApi.
      *
-     * @var bool
+     * @var bool|null
      */
     protected $allowBunqto;
 
@@ -65,15 +65,36 @@ class SchedulePaymentEntry extends BunqModel
     protected $alias;
 
     /**
-     * @param Amount $amount
-     * @param Pointer $counterpartyAlias
-     * @param string $description
+     * @param Amount $amount                 The Amount to transfer with the Payment. Must be
+     *                                       bigger 0 and smaller than the MonetaryAccount's balance.
+     * @param Pointer $counterpartyAlias     The Alias of the party we are
+     *                                       transferring the money to. Can be an Alias of type EMAIL or PHONE (for
+     *                                       bunq MonetaryAccounts) or IBAN (for external bank account).
+     * @param string $description            The description for the Payment. Maximum 140
+     *                                       characters for Payments to external IBANs, 9000 characters for Payments
+     *                                       to only other bunq MonetaryAccounts. Field is required but can be an
+     *                                       empty string.
+     * @param BunqId[]|null $attachment      The Attachments to attach to the
+     *                                       Payment.
+     * @param string|null $merchantReference Optional data to be included with
+     *                                       the Payment specific to the merchant.
+     * @param bool|null $allowBunqto         Whether or not sending a bunq.to payment is
+     *                                       allowed. Mandatory for publicApi.
      */
-    public function __construct(Amount $amount, Pointer $counterpartyAlias, $description)
-    {
+    public function __construct(
+        Amount $amount,
+        Pointer $counterpartyAlias,
+        string $description,
+        array $attachment = null,
+        string $merchantReference = null,
+        bool $allowBunqto = null
+    ) {
         $this->amount = $amount;
         $this->counterpartyAlias = $counterpartyAlias;
         $this->description = $description;
+        $this->attachment = $attachment;
+        $this->merchantReference = $merchantReference;
+        $this->allowBunqto = $allowBunqto;
     }
 
     /**
@@ -89,6 +110,9 @@ class SchedulePaymentEntry extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param Amount $amount
      */
     public function setAmount($amount)
@@ -108,6 +132,9 @@ class SchedulePaymentEntry extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param LabelMonetaryAccount $alias
      */
     public function setAlias($alias)
@@ -127,6 +154,9 @@ class SchedulePaymentEntry extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param LabelMonetaryAccount $counterpartyAlias
      */
     public function setCounterpartyAlias($counterpartyAlias)
@@ -147,6 +177,9 @@ class SchedulePaymentEntry extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $description
      */
     public function setDescription($description)
@@ -165,6 +198,9 @@ class SchedulePaymentEntry extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param AttachmentMonetaryAccountPayment[] $attachment
      */
     public function setAttachment($attachment)
@@ -183,6 +219,9 @@ class SchedulePaymentEntry extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $merchantReference
      */
     public function setMerchantReference($merchantReference)

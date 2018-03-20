@@ -16,9 +16,10 @@ class Certificate extends BunqModel
     protected $certificate;
 
     /**
-     * @param string $certificate
+     * @param string $certificate A single certificate in the chain in .PEM
+     *                            format.
      */
-    public function __construct($certificate)
+    public function __construct(string $certificate)
     {
         $this->certificate = $certificate;
     }
@@ -34,6 +35,9 @@ class Certificate extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $certificate
      */
     public function setCertificate($certificate)

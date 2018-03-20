@@ -1,10 +1,8 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
-use bunq\Context\ApiContext;
 use bunq\exception\BunqException;
 use bunq\Http\ApiClient;
-use bunq\Http\BunqResponse;
 use bunq\Model\Core\AnchorObjectInterface;
 use bunq\Model\Core\BunqModel;
 
@@ -41,22 +39,30 @@ class MonetaryAccount extends BunqModel implements AnchorObjectInterface
     protected $monetaryAccountBank;
 
     /**
+     * @var MonetaryAccountJoint
+     */
+    protected $monetaryAccountJoint;
+
+    /**
+     * @var MonetaryAccountLight
+     */
+    protected $monetaryAccountLight;
+
+    /**
      * Get a specific MonetaryAccount.
      *
-     * @param ApiContext $apiContext
-     * @param int $userId
      * @param int $monetaryAccountId
      * @param string[] $customHeaders
      *
      * @return BunqResponseMonetaryAccount
      */
-    public static function get(ApiContext $apiContext, int $userId, int $monetaryAccountId, array $customHeaders = []): BunqResponseMonetaryAccount
+    public static function get(int $monetaryAccountId, array $customHeaders = []): BunqResponseMonetaryAccount
     {
-        $apiClient = new ApiClient($apiContext);
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_READ,
-                [$userId, $monetaryAccountId]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId)]
             ),
             [],
             $customHeaders
@@ -73,20 +79,18 @@ class MonetaryAccount extends BunqModel implements AnchorObjectInterface
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
-     * @param ApiContext $apiContext
-     * @param int $userId
      * @param string[] $params
      * @param string[] $customHeaders
      *
      * @return BunqResponseMonetaryAccountList
      */
-    public static function listing(ApiContext $apiContext, int $userId, array $params = [], array $customHeaders = []): BunqResponseMonetaryAccountList
+    public static function listing(array $params = [], array $customHeaders = []): BunqResponseMonetaryAccountList
     {
-        $apiClient = new ApiClient($apiContext);
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_LISTING,
-                [$userId]
+                [static::determineUserId()]
             ),
             $params,
             $customHeaders
@@ -106,11 +110,52 @@ class MonetaryAccount extends BunqModel implements AnchorObjectInterface
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param MonetaryAccountBank $monetaryAccountBank
      */
     public function setMonetaryAccountBank($monetaryAccountBank)
     {
         $this->monetaryAccountBank = $monetaryAccountBank;
+    }
+
+    /**
+     * @return MonetaryAccountJoint
+     */
+    public function getMonetaryAccountJoint()
+    {
+        return $this->monetaryAccountJoint;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param MonetaryAccountJoint $monetaryAccountJoint
+     */
+    public function setMonetaryAccountJoint($monetaryAccountJoint)
+    {
+        $this->monetaryAccountJoint = $monetaryAccountJoint;
+    }
+
+    /**
+     * @return MonetaryAccountLight
+     */
+    public function getMonetaryAccountLight()
+    {
+        return $this->monetaryAccountLight;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param MonetaryAccountLight $monetaryAccountLight
+     */
+    public function setMonetaryAccountLight($monetaryAccountLight)
+    {
+        $this->monetaryAccountLight = $monetaryAccountLight;
     }
 
     /**
@@ -123,6 +168,14 @@ class MonetaryAccount extends BunqModel implements AnchorObjectInterface
             return $this->monetaryAccountBank;
         }
 
+        if (!is_null($this->monetaryAccountJoint)) {
+            return $this->monetaryAccountJoint;
+        }
+
+        if (!is_null($this->monetaryAccountLight)) {
+            return $this->monetaryAccountLight;
+        }
+
         throw new BunqException(self::ERROR_NULL_FIELDS);
     }
 
@@ -132,6 +185,14 @@ class MonetaryAccount extends BunqModel implements AnchorObjectInterface
     public function isAllFieldNull()
     {
         if (!is_null($this->monetaryAccountBank)) {
+            return false;
+        }
+
+        if (!is_null($this->monetaryAccountJoint)) {
+            return false;
+        }
+
+        if (!is_null($this->monetaryAccountLight)) {
             return false;
         }
 

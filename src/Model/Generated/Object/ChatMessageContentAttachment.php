@@ -26,6 +26,9 @@ class ChatMessageContentAttachment extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param Attachment $attachment
      */
     public function setAttachment($attachment)

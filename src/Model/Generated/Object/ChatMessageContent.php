@@ -59,6 +59,9 @@ class ChatMessageContent extends BunqModel implements AnchorObjectInterface
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param ChatMessageContentAnchorEvent $chatMessageContentAnchorEvent
      */
     public function setChatMessageContentAnchorEvent($chatMessageContentAnchorEvent)
@@ -75,6 +78,9 @@ class ChatMessageContent extends BunqModel implements AnchorObjectInterface
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param ChatMessageContentAttachment $chatMessageContentAttachment
      */
     public function setChatMessageContentAttachment($chatMessageContentAttachment)
@@ -91,6 +97,9 @@ class ChatMessageContent extends BunqModel implements AnchorObjectInterface
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param ChatMessageContentGeolocation $chatMessageContentGeolocation
      */
     public function setChatMessageContentGeolocation($chatMessageContentGeolocation)
@@ -107,6 +116,9 @@ class ChatMessageContent extends BunqModel implements AnchorObjectInterface
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param ChatMessageContentStatusConversationTitle
      * $chatMessageContentStatusConversationTitle
      */
@@ -124,6 +136,9 @@ class ChatMessageContent extends BunqModel implements AnchorObjectInterface
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param ChatMessageContentStatusConversation
      * $chatMessageContentStatusConversation
      */
@@ -141,6 +156,9 @@ class ChatMessageContent extends BunqModel implements AnchorObjectInterface
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param ChatMessageContentStatusMembership
      * $chatMessageContentStatusMembership
      */
@@ -158,6 +176,9 @@ class ChatMessageContent extends BunqModel implements AnchorObjectInterface
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param ChatMessageContentText $chatMessageContentText
      */
     public function setChatMessageContentText($chatMessageContentText)

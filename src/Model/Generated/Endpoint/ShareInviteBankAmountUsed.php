@@ -1,7 +1,6 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
-use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
 use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
@@ -26,22 +25,28 @@ class ShareInviteBankAmountUsed extends BunqModel
      * Reset the available budget for a bank account share. To be called without
      * any ID at the end of the path.
      *
-     * @param ApiContext $apiContext
      * @param string[] $customHeaders
-     * @param int $userId
-     * @param int $monetaryAccountId
      * @param int $shareInviteBankInquiryId
      * @param int $shareInviteBankAmountUsedId
      *
      * @return BunqResponseNull
      */
-    public static function delete(ApiContext $apiContext, int $userId, int $monetaryAccountId, int $shareInviteBankInquiryId, int $shareInviteBankAmountUsedId, array $customHeaders = []): BunqResponseNull
-    {
-        $apiClient = new ApiClient($apiContext);
+    public static function delete(
+        int $shareInviteBankInquiryId,
+        int $shareInviteBankAmountUsedId,
+        int $monetaryAccountId = null,
+        array $customHeaders = []
+    ): BunqResponseNull {
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->delete(
             vsprintf(
                 self::ENDPOINT_URL_DELETE,
-                [$userId, $monetaryAccountId, $shareInviteBankInquiryId, $shareInviteBankAmountUsedId]
+                [
+                    static::determineUserId(),
+                    static::determineMonetaryAccountId($monetaryAccountId),
+                    $shareInviteBankInquiryId,
+                    $shareInviteBankAmountUsedId,
+                ]
             ),
             $customHeaders
         );

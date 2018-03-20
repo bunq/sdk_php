@@ -30,9 +30,9 @@ class Avatar extends BunqModel
     protected $image;
 
     /**
-     * @param string $uuid
+     * @param string $uuid The public UUID of the avatar.
      */
-    public function __construct($uuid)
+    public function __construct(string $uuid)
     {
         $this->uuid = $uuid;
     }
@@ -48,6 +48,9 @@ class Avatar extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $uuid
      */
     public function setUuid($uuid)
@@ -66,6 +69,9 @@ class Avatar extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $anchorUuid
      */
     public function setAnchorUuid($anchorUuid)
@@ -84,6 +90,9 @@ class Avatar extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param Image[] $image
      */
     public function setImage($image)

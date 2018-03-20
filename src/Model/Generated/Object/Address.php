@@ -58,16 +58,24 @@ class Address extends BunqModel
     protected $province;
 
     /**
-     * @param string $street
-     * @param string $houseNumber
-     * @param string $postalCode
-     * @param string $city
-     * @param string $country
+     * @param string $street      The street.
+     * @param string $houseNumber The house number.
+     * @param string $postalCode  The postal code.
+     * @param string $city        The city.
+     * @param string $country     The country as an ISO 3166-1 alpha-2 country code.
+     * @param string|null $poBox  The PO box.
      */
-    public function __construct($street, $houseNumber, $postalCode, $city, $country)
-    {
+    public function __construct(
+        string $street,
+        string $houseNumber,
+        string $postalCode,
+        string $city,
+        string $country,
+        string $poBox = null
+    ) {
         $this->street = $street;
         $this->houseNumber = $houseNumber;
+        $this->poBox = $poBox;
         $this->postalCode = $postalCode;
         $this->city = $city;
         $this->country = $country;
@@ -84,6 +92,9 @@ class Address extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $street
      */
     public function setStreet($street)
@@ -102,6 +113,9 @@ class Address extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $houseNumber
      */
     public function setHouseNumber($houseNumber)
@@ -120,6 +134,9 @@ class Address extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $poBox
      */
     public function setPoBox($poBox)
@@ -138,6 +155,9 @@ class Address extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $postalCode
      */
     public function setPostalCode($postalCode)
@@ -156,6 +176,9 @@ class Address extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $city
      */
     public function setCity($city)
@@ -174,6 +197,9 @@ class Address extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $country
      */
     public function setCountry($country)
@@ -192,6 +218,9 @@ class Address extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $province
      */
     public function setProvince($province)

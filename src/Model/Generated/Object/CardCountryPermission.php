@@ -30,11 +30,14 @@ class CardCountryPermission extends BunqModel
     protected $id;
 
     /**
-     * @param string $country
+     * @param string $country         The country to allow transactions in (e.g. NL,
+     *                                DE).
+     * @param string|null $expiryTime Expiry time of this rule.
      */
-    public function __construct($country)
+    public function __construct(string $country, string $expiryTime = null)
     {
         $this->country = $country;
+        $this->expiryTime = $expiryTime;
     }
 
     /**
@@ -48,6 +51,9 @@ class CardCountryPermission extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param int $id
      */
     public function setId($id)
@@ -66,6 +72,9 @@ class CardCountryPermission extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $country
      */
     public function setCountry($country)
@@ -84,6 +93,9 @@ class CardCountryPermission extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $expiryTime
      */
     public function setExpiryTime($expiryTime)

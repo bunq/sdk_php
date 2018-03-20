@@ -1,14 +1,13 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
-use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
-use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Object\Address;
 use bunq\Model\Generated\Object\Amount;
 use bunq\Model\Generated\Object\InvoiceItemGroup;
 use bunq\Model\Generated\Object\LabelMonetaryAccount;
+use bunq\Model\Generated\Object\RequestInquiryReference;
 
 /**
  * Used to view a bunq invoice.
@@ -149,24 +148,33 @@ class Invoice extends BunqModel
     protected $vatNumber;
 
     /**
+     * The reference to the object used for split the bill. Can be
+     * RequestInquiry or RequestInquiryBatch
+     *
+     * @var RequestInquiryReference[]
+     */
+    protected $requestReferenceSplitTheBill;
+
+    /**
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
-     * @param ApiContext $apiContext
-     * @param int $userId
-     * @param int $monetaryAccountId
+     * @param int|null $monetaryAccountId
      * @param string[] $params
      * @param string[] $customHeaders
      *
      * @return BunqResponseInvoiceList
      */
-    public static function listing(ApiContext $apiContext, int $userId, int $monetaryAccountId, array $params = [], array $customHeaders = []): BunqResponseInvoiceList
-    {
-        $apiClient = new ApiClient($apiContext);
+    public static function listing(
+        int $monetaryAccountId = null,
+        array $params = [],
+        array $customHeaders = []
+    ): BunqResponseInvoiceList {
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_LISTING,
-                [$userId, $monetaryAccountId]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId)]
             ),
             $params,
             $customHeaders
@@ -178,21 +186,22 @@ class Invoice extends BunqModel
     }
 
     /**
-     * @param ApiContext $apiContext
-     * @param int $userId
-     * @param int $monetaryAccountId
      * @param int $invoiceId
+     * @param int|null $monetaryAccountId
      * @param string[] $customHeaders
      *
      * @return BunqResponseInvoice
      */
-    public static function get(ApiContext $apiContext, int $userId, int $monetaryAccountId, int $invoiceId, array $customHeaders = []): BunqResponseInvoice
-    {
-        $apiClient = new ApiClient($apiContext);
+    public static function get(
+        int $invoiceId,
+        int $monetaryAccountId = null,
+        array $customHeaders = []
+    ): BunqResponseInvoice {
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_READ,
-                [$userId, $monetaryAccountId, $invoiceId]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId), $invoiceId]
             ),
             [],
             $customHeaders
@@ -214,6 +223,9 @@ class Invoice extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param int $id
      */
     public function setId($id)
@@ -232,6 +244,9 @@ class Invoice extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $created
      */
     public function setCreated($created)
@@ -250,6 +265,9 @@ class Invoice extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $updated
      */
     public function setUpdated($updated)
@@ -268,6 +286,9 @@ class Invoice extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $invoiceDate
      */
     public function setInvoiceDate($invoiceDate)
@@ -286,6 +307,9 @@ class Invoice extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $invoiceNumber
      */
     public function setInvoiceNumber($invoiceNumber)
@@ -304,6 +328,9 @@ class Invoice extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $status
      */
     public function setStatus($status)
@@ -322,6 +349,9 @@ class Invoice extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param InvoiceItemGroup[] $group
      */
     public function setGroup($group)
@@ -340,6 +370,9 @@ class Invoice extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param Amount $totalVatInclusive
      */
     public function setTotalVatInclusive($totalVatInclusive)
@@ -358,6 +391,9 @@ class Invoice extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param Amount $totalVatExclusive
      */
     public function setTotalVatExclusive($totalVatExclusive)
@@ -376,6 +412,9 @@ class Invoice extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param Amount $totalVat
      */
     public function setTotalVat($totalVat)
@@ -395,6 +434,9 @@ class Invoice extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param LabelMonetaryAccount $alias
      */
     public function setAlias($alias)
@@ -413,6 +455,9 @@ class Invoice extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param Address $address
      */
     public function setAddress($address)
@@ -431,6 +476,9 @@ class Invoice extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param LabelMonetaryAccount $counterpartyAlias
      */
     public function setCounterpartyAlias($counterpartyAlias)
@@ -449,6 +497,9 @@ class Invoice extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param Address $counterpartyAddress
      */
     public function setCounterpartyAddress($counterpartyAddress)
@@ -467,6 +518,9 @@ class Invoice extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $chamberOfCommerceNumber
      */
     public function setChamberOfCommerceNumber($chamberOfCommerceNumber)
@@ -485,11 +539,36 @@ class Invoice extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $vatNumber
      */
     public function setVatNumber($vatNumber)
     {
         $this->vatNumber = $vatNumber;
+    }
+
+    /**
+     * The reference to the object used for split the bill. Can be
+     * RequestInquiry or RequestInquiryBatch
+     *
+     * @return RequestInquiryReference[]
+     */
+    public function getRequestReferenceSplitTheBill()
+    {
+        return $this->requestReferenceSplitTheBill;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param RequestInquiryReference[] $requestReferenceSplitTheBill
+     */
+    public function setRequestReferenceSplitTheBill($requestReferenceSplitTheBill)
+    {
+        $this->requestReferenceSplitTheBill = $requestReferenceSplitTheBill;
     }
 
     /**
@@ -558,6 +637,10 @@ class Invoice extends BunqModel
         }
 
         if (!is_null($this->vatNumber)) {
+            return false;
+        }
+
+        if (!is_null($this->requestReferenceSplitTheBill)) {
             return false;
         }
 

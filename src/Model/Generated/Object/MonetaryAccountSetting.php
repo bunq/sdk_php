@@ -32,6 +32,24 @@ class MonetaryAccountSetting extends BunqModel
     protected $restrictionChat;
 
     /**
+     * @param string|null $color               The color chosen for the MonetaryAccount in
+     *                                         hexadecimal format.
+     * @param string|null $defaultAvatarStatus The status of the avatar. Cannot
+     *                                         be updated directly.
+     * @param string|null $restrictionChat     The chat restriction. Possible values
+     *                                         are ALLOW_INCOMING or BLOCK_INCOMING
+     */
+    public function __construct(
+        string $color = null,
+        string $defaultAvatarStatus = null,
+        string $restrictionChat = null
+    ) {
+        $this->color = $color;
+        $this->defaultAvatarStatus = $defaultAvatarStatus;
+        $this->restrictionChat = $restrictionChat;
+    }
+
+    /**
      * The color chosen for the MonetaryAccount.
      *
      * @return string
@@ -42,6 +60,9 @@ class MonetaryAccountSetting extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $color
      */
     public function setColor($color)
@@ -61,6 +82,9 @@ class MonetaryAccountSetting extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $defaultAvatarStatus
      */
     public function setDefaultAvatarStatus($defaultAvatarStatus)
@@ -80,6 +104,9 @@ class MonetaryAccountSetting extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $restrictionChat
      */
     public function setRestrictionChat($restrictionChat)

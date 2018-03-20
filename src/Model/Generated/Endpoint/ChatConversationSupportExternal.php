@@ -49,6 +49,9 @@ class ChatConversationSupportExternal extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param int $id
      */
     public function setId($id)
@@ -67,6 +70,9 @@ class ChatConversationSupportExternal extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $created
      */
     public function setCreated($created)
@@ -85,6 +91,9 @@ class ChatConversationSupportExternal extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $updated
      */
     public function setUpdated($updated)
@@ -103,6 +112,9 @@ class ChatConversationSupportExternal extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param ChatMessage $lastMessage
      */
     public function setLastMessage($lastMessage)
