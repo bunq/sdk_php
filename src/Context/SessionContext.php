@@ -15,6 +15,7 @@ class SessionContext implements JsonSerializable
      */
     const FIELD_TOKEN = 'token';
     const FIELD_EXPIRY_TIME = 'expiry_time';
+    const FIELD_USER_ID = 'user_id';
 
     /**
      * Constants for manipulating expiry timestamp.
@@ -35,6 +36,11 @@ class SessionContext implements JsonSerializable
     protected $expiryTime;
 
     /**
+     * @var int
+     */
+    protected $userId;
+
+    /**
      */
     private function __construct()
     {
@@ -50,6 +56,7 @@ class SessionContext implements JsonSerializable
         $sessionContext = new static();
         $sessionContext->sessionToken = $sessionServer->getSessionToken();
         $sessionContext->expiryTime = static::calculateExpiryTime($sessionServer);
+        $sessionContext->userId = $sessionServer->getReferencedUser()->getId();
 
         return $sessionContext;
     }
@@ -107,6 +114,7 @@ class SessionContext implements JsonSerializable
             self::FORMAT_MICROTIME,
             $sessionContextBody[self::FIELD_EXPIRY_TIME]
         );
+        $sessionContext->userId = $sessionContextBody[self::FIELD_USER_ID];
 
         return $sessionContext;
     }
@@ -119,6 +127,7 @@ class SessionContext implements JsonSerializable
         return [
             self::FIELD_TOKEN => $this->getSessionToken()->getToken(),
             self::FIELD_EXPIRY_TIME => $this->getExpiryTime()->format(self::FORMAT_MICROTIME),
+            self::FIELD_USER_ID => $this->getUserId(),
         ];
     }
 
@@ -128,6 +137,14 @@ class SessionContext implements JsonSerializable
     public function getSessionToken(): Token
     {
         return $this->sessionToken;
+    }
+
+    /**
+     * @return int
+     */
+    public function getUserId(): int
+    {
+        return $this->userId;
     }
 
     /**
