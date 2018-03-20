@@ -1,5 +1,43 @@
 # Change Log
 
+## [0.13.0](https://github.com/bunq/sdk_php/tree/0.13.0) (2018-03-20)
+
+[Full Changelog](https://github.com/bunq/sdk_php/compare/0.12.4...0.13.0)
+
+**Implemented enhancements:**
+
+- Add zappr integration for better quality control  [\#91](https://github.com/bunq/sdk_php/issues/91)
+- Add more information to templates [\#89](https://github.com/bunq/sdk_php/issues/89)
+- Add response id to error messages from failed requests  [\#88](https://github.com/bunq/sdk_php/issues/88)
+
+**Fixed bugs:**
+
+- openssl\_pkey\_get\_details\(\) expects parameter 1 to be resource, boolean given [\#102](https://github.com/bunq/sdk_php/issues/102)
+- Token request ideal is missing id attribute in response. [\#97](https://github.com/bunq/sdk_php/issues/97)
+- "HTTP Response Code: 400 The request signature is invalid." [\#87](https://github.com/bunq/sdk_php/issues/87)
+- Field ID is missing from MasterCardAction [\#81](https://github.com/bunq/sdk_php/issues/81)
+- TokenQrRequestIdeal returns the wrong type [\#80](https://github.com/bunq/sdk_php/issues/80)
+
+**Closed issues:**
+
+- bunq update 7  [\#112](https://github.com/bunq/sdk_php/issues/112)
+- Document conditions for Payment.description [\#108](https://github.com/bunq/sdk_php/issues/108)
+- Simple way to create a iDeal request? [\#103](https://github.com/bunq/sdk_php/issues/103)
+- DraftPayment create fails with superfluous field-errors [\#101](https://github.com/bunq/sdk_php/issues/101)
+
+**Merged pull requests:**
+
+- Bunq update 7  [\#113](https://github.com/bunq/sdk_php/pull/113) ([OGKevin](https://github.com/OGKevin))
+- Regenerate code for release [\#111](https://github.com/bunq/sdk_php/pull/111) ([OGKevin](https://github.com/OGKevin))
+- Removed unneeded doc block. \(bunq/sdk\_php\#80\) [\#110](https://github.com/bunq/sdk_php/pull/110) ([OGKevin](https://github.com/OGKevin))
+- Token qr request ideal returns the wrong type. \(bunq/sdk\_php\#80\) [\#107](https://github.com/bunq/sdk_php/pull/107) ([OGKevin](https://github.com/OGKevin))
+- Throw exception when private key generation fails. \(bunq/sdk\_php\#102\) [\#105](https://github.com/bunq/sdk_php/pull/105) ([OGKevin](https://github.com/OGKevin))
+- Added missing field id for TokenQrRequestIdeal. \(bunq/sdk\_php\#97\) [\#100](https://github.com/bunq/sdk_php/pull/100) ([OGKevin](https://github.com/OGKevin))
+- Regenerated code to add missing id field. \(bunq/sdk\_php\#81\) [\#95](https://github.com/bunq/sdk_php/pull/95) ([OGKevin](https://github.com/OGKevin))
+- Add response id to request error. \(bunq/sdk\_php\#88\) [\#93](https://github.com/bunq/sdk_php/pull/93) ([OGKevin](https://github.com/OGKevin))
+- Configure Zappr [\#92](https://github.com/bunq/sdk_php/pull/92) ([OGKevin](https://github.com/OGKevin))
+- Add more info to templates. \(bunq/sdk\_php\#89\) [\#90](https://github.com/bunq/sdk_php/pull/90) ([OGKevin](https://github.com/OGKevin))
+
 ## [0.12.4](https://github.com/bunq/sdk_php/tree/0.12.4) (2017-12-21)
 [Full Changelog](https://github.com/bunq/sdk_php/compare/0.12.3...0.12.4)
 
