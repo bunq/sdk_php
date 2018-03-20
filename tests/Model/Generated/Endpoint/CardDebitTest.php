@@ -51,6 +51,11 @@ class CardDebitTest extends BunqSdkTestBase
     private static $alias;
 
     /**
+     * @var int
+     */
+    private static $monetaryAccountId;
+
+    /**
      */
     public static function setUpBeforeClass()
     {
@@ -59,6 +64,7 @@ class CardDebitTest extends BunqSdkTestBase
         static::$nameOnCard = $cardNamesAllowed[self::INDEX_FIRST]->getPossibleCardNameArray();
         $usersAccessible = User::listing()->getValue();
         static::$alias = $usersAccessible[self::INDEX_FIRST]->getUserCompany()->getAlias()[self::INDEX_FIRST];
+        static::$monetaryAccountId = Config::getMonetaryAccountId();
     }
 
     /**
@@ -67,6 +73,12 @@ class CardDebitTest extends BunqSdkTestBase
     public function testOrderingDebitCard()
     {
         $alias = new Pointer(static::$alias->getType(), static::$alias->getValue());
+        $cardAssigned =
+            new CardPinAssignment(
+                self::CARD_ASSIGNMENT_TYPE_PRIMARY,
+                self::CARD_PIN_CODE,
+                static::$monetaryAccountId
+            );
 
         $cardDebit = CardDebit::create(
             uniqid(self::CARD_SECOND_LINE_PREFIX),
