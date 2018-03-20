@@ -1,28 +1,17 @@
 <?php
 namespace bunq\test;
 
-use bunq\Model\Generated\Object\Pointer;
 use bunq\Util\FileUtil;
 
 /**
  * Configuration for the test cases
  */
-class Config
+class TestConfig
 {
     /**
-     * The path where the config.json file is stored
+     * Field constants
      */
-    const CONFIG_PATH = '/Resource/config.json';
-
-    /**
-     * Delimiter between the IP addresses in the PERMITTED_IPS field.
-     */
-    const DELIMITER_IPS = ',';
-
-    /**
-     * Field constants.
-     */
-    const FIELD_PERMITTED_IPS = 'PERMITTED_IPS';
+    const FIELD_IP_ADDRESS_ALLOWED = 'ipAddress';
     const FIELD_COUNTER_PARTY_OTHER = 'CounterPartyOther';
     const FIELD_ALIAS_TYPE = 'Type';
     const FIELD_COUNTER_PARTY_SELF = 'CounterPartySelf';
@@ -33,58 +22,68 @@ class Config
     const FIELD_TAB_USAGE_SINGLE_TEST = 'TabUsageSingleTest';
     const FIELD_CASH_REGISTER_ID = 'CASH_REGISTER_ID';
     const FIELD_MONETARY_ACCOUNT_ID = 'MONETARY_ACCOUNT_ID';
+    const FIELD_USER_ID = 'USER_ID';
     const FIELD_API_KEY = 'API_KEY';
     const FIELD_ATTACHMENT_PUBLIC_TEST = 'AttachmentPublicTest';
     const FIELD_ATTACHMENT_PATH_IN = 'PATH_IN';
 
     /**
-     * @return string[]
+     * The path where the config.json file is stored
      */
-    public static function getPermittedIps(): array
-    {
-        $permittedIpsString = static::getConfigFile()[self::FIELD_PERMITTED_IPS];
+    const CONFIG_PATH = '/resource/config.json';
 
-        if (empty($permittedIpsString)) {
-            return [];
-        } else {
-            return explode(self::DELIMITER_IPS, $permittedIpsString);
-        }
+    /**
+     * @return string
+     */
+    public static function getIpAddress()
+    {
+        return static::getConfigFile()[self::FIELD_IP_ADDRESS_ALLOWED];
     }
 
     /**
      * @return mixed[]
      */
-    private static function getConfigFile(): array
+    private static function getConfigFile()
     {
         return json_decode(FileUtil::getFileContents(__DIR__ . self::CONFIG_PATH), true);
     }
 
     /**
-     * @return Pointer
+     * @return string
      */
-    public static function getCounterPartyAliasOther(): Pointer
+    public static function getTypeCounterPartyOther()
     {
-        $type = static::getConfigFile()[self::FIELD_COUNTER_PARTY_OTHER][self::FIELD_ALIAS_TYPE];
-        $alias = static::getConfigFile()[self::FIELD_COUNTER_PARTY_OTHER][self::FIELD_ALIAS];
-
-        return new Pointer($type, $alias);
+        return static::getConfigFile()[self::FIELD_COUNTER_PARTY_OTHER][self::FIELD_ALIAS_TYPE];
     }
 
     /**
-     * @return Pointer
+     * @return string
      */
-    public static function getCounterPartyAliasSelf(): Pointer
+    public static function getAliasCounterPartyOther()
     {
-        $type = static::getConfigFile()[self::FIELD_COUNTER_PARTY_SELF][self::FIELD_ALIAS_TYPE];
-        $alias = static::getConfigFile()[self::FIELD_COUNTER_PARTY_SELF][self::FIELD_ALIAS];
+        return static::getConfigFile()[self::FIELD_COUNTER_PARTY_OTHER][self::FIELD_ALIAS];
+    }
 
-        return new Pointer($type, $alias);
+    /**
+     * @return string
+     */
+    public static function getAliasCounterParty()
+    {
+        return static::getConfigFile()[self::FIELD_COUNTER_PARTY_SELF][self::FIELD_ALIAS];
+    }
+
+    /**
+     * @return string
+     */
+    public static function getTypeCounterParty()
+    {
+        return static::getConfigFile()[self::FIELD_COUNTER_PARTY_SELF][self::FIELD_ALIAS_TYPE];
     }
 
     /**
      * @return int
      */
-    public static function getMonetaryAccountId2(): int
+    public static function getMonetaryAccountId2()
     {
         return static::getConfigFile()[self::FIELD_MONETARY_ACCOUNT_ID2];
     }
@@ -92,7 +91,7 @@ class Config
     /**
      * @return int
      */
-    public static function getCashRegisterId(): int
+    public static function getCashRegisterId()
     {
         return static::getConfigFile()[self::FIELD_TAB_USAGE_SINGLE_TEST][self::FIELD_CASH_REGISTER_ID];
     }
@@ -100,23 +99,30 @@ class Config
     /**
      * @return int
      */
-    public static function getMonetaryAccountId(): int
+    public static function getMonetaryAccountId()
     {
         return static::getConfigFile()[self::FIELD_MONETARY_ACCOUNT_ID];
     }
 
     /**
+     * @return int
+     */
+    public static function getUserId()
+    {
+        return static::getConfigFile()[self::FIELD_USER_ID];
+    }
+
+    /**
      * @return string
      */
-    public static function getApiKey(): string
-    {
+    public static function getApiKey(){
         return static::getConfigFile()[self::FIELD_API_KEY];
     }
 
     /**
      * @return string
      */
-    public static function getAttachmentContentType(): string
+    public static function getAttachmentContentType()
     {
         return static::getConfigFile()[self::FIELD_ATTACHMENT_PUBLIC_TEST][self::FIELD_CONTENT_TYPE];
     }
@@ -124,7 +130,7 @@ class Config
     /**
      * @return string
      */
-    public static function getAttachmentPathIn(): string
+    public static function getAttachmentPathIn()
     {
         return static::getConfigFile()[self::FIELD_ATTACHMENT_PUBLIC_TEST][self::FIELD_ATTACHMENT_PATH_IN];
     }
@@ -132,7 +138,7 @@ class Config
     /**
      * @return string
      */
-    public static function getAttachmentDescription(): string
+    public static function getAttachmentDescription()
     {
         return static::getConfigFile()[self::FIELD_ATTACHMENT_PUBLIC_TEST][self::FIELD_ATTACHMENT_DESCRIPTION];
     }

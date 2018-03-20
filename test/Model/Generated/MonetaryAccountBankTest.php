@@ -1,9 +1,8 @@
 <?php
-namespace bunq\test\Model\Generated\Endpoint;
+namespace bunq\Model\Generated;
 
-use bunq\Model\Generated\Endpoint\MonetaryAccountBank;
 use bunq\test\BunqSdkTestBase;
-use bunq\test\Config;
+use bunq\test\TestConfig;
 
 /**
  * Tests:
@@ -28,6 +27,11 @@ class MonetaryAccountBankTest extends BunqSdkTestBase
     /**
      * @var int
      */
+    private static $userId;
+
+    /**
+     * @var int
+     */
     private static $monetaryAccountBankToCloseId;
 
     /**
@@ -35,6 +39,7 @@ class MonetaryAccountBankTest extends BunqSdkTestBase
     public static function setUpBeforeClass()
     {
         parent::setUpBeforeClass();
+        static::$userId = TestConfig::getUserId();
     }
 
     /**
@@ -43,16 +48,16 @@ class MonetaryAccountBankTest extends BunqSdkTestBase
     public static function tearDownAfterClass()
     {
         if (!is_null(static::$monetaryAccountBankToCloseId)) {
-            MonetaryAccountBank::update(
-                static::$monetaryAccountBankToCloseId,
-                null,
-                null,
-                null,
-                self::STATUS,
-                self::SUB_STATUS,
-                self::REASON,
-                self::REASON_DESCRIPTION
-            );
+            $apiContext = static::getApiContext();
+
+            $requestMap = [
+                MonetaryAccountBank::FIELD_STATUS => self::STATUS,
+                MonetaryAccountBank::FIELD_SUB_STATUS => self::SUB_STATUS,
+                MonetaryAccountBank::FIELD_REASON => self::REASON,
+                MonetaryAccountBank::FIELD_REASON_DESCRIPTION => self::REASON_DESCRIPTION,
+            ];
+
+            MonetaryAccountBank::update($apiContext, $requestMap, static::$userId, static::$monetaryAccountBankToCloseId);
         }
     }
 
@@ -63,9 +68,12 @@ class MonetaryAccountBankTest extends BunqSdkTestBase
      */
     public function testCreateNewMonetaryAccount()
     {
-        static::$monetaryAccountBankToCloseId = MonetaryAccountBank::create(
-            self::CURRENCY,
-            uniqid(self::PREFIX_MONETARY_ACCOUNT_DESCRIPTION)
-        )->getValue();
+        $apiContext = static::getApiContext();
+        $requestMap = [
+            MonetaryAccountBank::FIELD_CURRENCY => self::CURRENCY,
+            MonetaryAccountBank::FIELD_DESCRIPTION => uniqid(self::PREFIX_MONETARY_ACCOUNT_DESCRIPTION),
+        ];
+
+        static::$monetaryAccountBankToCloseId = MonetaryAccountBank::create($apiContext, $requestMap, static::$userId);
     }
 }

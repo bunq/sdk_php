@@ -2,10 +2,9 @@
 namespace bunq\test;
 
 use bunq\Context\ApiContext;
-use bunq\Context\BunqContext;
 use bunq\Exception\ApiException;
 use bunq\Exception\BunqException;
-use bunq\Model\Generated\Endpoint\User;
+use bunq\Model\Generated\User;
 use bunq\Util\BunqEnumApiEnvironmentType;
 use PHPUnit\Framework\TestCase;
 
@@ -25,6 +24,11 @@ class BunqSdkTestBase extends TestCase
     const DEVICE_DESCRIPTION = 'PHP unit tests';
 
     /**
+     * @var ApiContext
+     */
+    protected static $apiContext;
+
+    /**
      */
     public static function setUpBeforeClass()
     {
@@ -38,26 +42,32 @@ class BunqSdkTestBase extends TestCase
     {
         try {
             $apiContext = ApiContext::restore(static::FILENAME_CONTEXT_CONFIG);
-            $apiContext->ensureSessionActive();
+            User::listing($apiContext);
+        } catch (ApiException $exception) {
+            $apiContext = self::createApiContext();
         } catch (BunqException $exception) {
             $apiContext = self::createApiContext();
         }
 
         $apiContext->save(static::FILENAME_CONTEXT_CONFIG);
 
-        BunqContext::loadApiContext($apiContext);
+        static::$apiContext = $apiContext;
     }
 
     /**
      * @return ApiContext
      */
-    protected static function createApiContext(): ApiContext
+    protected static function createApiContext()
     {
-        return ApiContext::create(
-            BunqEnumApiEnvironmentType::SANDBOX(),
-            Config::getApiKey(),
-            static::DEVICE_DESCRIPTION,
-            Config::getPermittedIps()
-        );
+        return ApiContext::create(BunqEnumApiEnvironmentType::SANDBOX(), TestConfig::getApiKey(),
+            static::DEVICE_DESCRIPTION, [TestConfig::getIpAddress()]);
+    }
+
+    /**
+     * @return ApiContext
+     */
+    protected static function getApiContext()
+    {
+        return static::$apiContext;
     }
 }

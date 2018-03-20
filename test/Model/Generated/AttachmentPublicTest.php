@@ -1,11 +1,11 @@
 <?php
-namespace bunq\test\Model\Generated\Endpoint;
+namespace bunq\test\Model\Generated;
 
 use bunq\Http\ApiClient;
-use bunq\Model\Generated\Endpoint\AttachmentPublic;
-use bunq\Model\Generated\Endpoint\AttachmentPublicContent;
+use bunq\Model\Generated\AttachmentPublic;
+use bunq\Model\Generated\AttachmentPublicContent;
 use bunq\test\BunqSdkTestBase;
-use bunq\test\Config;
+use bunq\test\TestConfig;
 use bunq\Util\FileUtil;
 
 /**
@@ -18,7 +18,7 @@ class AttachmentPublicTest extends BunqSdkTestBase
     /**
      *  Points to the folder where attachments are located.
      */
-    const PATH_ATTACHMENT = '/../../../Resource/';
+    const PATH_ATTACHMENT = '/../../resource/';
 
     /**
      * @var string
@@ -40,9 +40,9 @@ class AttachmentPublicTest extends BunqSdkTestBase
     public static function setUpBeforeClass()
     {
         parent::setUpBeforeClass();
-        static::$contentType = Config::getAttachmentContentType();
-        static::$attachmentDescription = Config::getAttachmentDescription();
-        static::$attachmentPathIn = Config::getAttachmentPathIn();
+        static::$contentType = TestConfig::getAttachmentContentType();
+        static::$attachmentDescription = TestConfig::getAttachmentDescription();
+        static::$attachmentPathIn = TestConfig::getAttachmentPathIn();
     }
 
     /**
@@ -56,8 +56,8 @@ class AttachmentPublicTest extends BunqSdkTestBase
             ApiClient::HEADER_ATTACHMENT_DESCRIPTION => static::$attachmentDescription,
         ];
 
-        $beforeUuid = AttachmentPublic::create($beforeBytes, $customHeadersMap)->getValue();
-        $bytesAfter = AttachmentPublicContent::listing($beforeUuid)->getValue();
+        $beforeUuid = AttachmentPublic::create(static::getApiContext(), $beforeBytes, $customHeadersMap);
+        $bytesAfter = AttachmentPublicContent::listing(static::getApiContext(), $beforeUuid);
 
         static::assertEquals($beforeBytes, $bytesAfter);
     }
@@ -65,7 +65,7 @@ class AttachmentPublicTest extends BunqSdkTestBase
     /**
      * @return string
      */
-    private function getFileContentsOfAttachment(): string
+    private function getFileContentsOfAttachment()
     {
         $path = __DIR__ . self::PATH_ATTACHMENT . static::$attachmentPathIn;
 

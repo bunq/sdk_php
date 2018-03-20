@@ -1,9 +1,10 @@
 {
     "API_KEY": "<API KEY>",
+    "USER_ID": "xxxx",
     "MONETARY_ACCOUNT_ID": "xxxx",
     "MONETARY_ACCOUNT_ID2": "xxxx",
-    "PERMITTED_IPS": "<IP address>,<Another IP address>",
-    "AttachmentPublicTest": {
+    "ipAddress": "<Ip address>",
+    "AttachmentPublicTest":{
         "CONTENT_TYPE": "image/png",
         "DESCRIPTION": "TEST PNG PHP",
         "PATH_IN": "/bunq_App_Icon_Square@4x.png"

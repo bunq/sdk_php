@@ -1,15 +1,12 @@
 <?php
-namespace bunq\test\Model\Generated\Endpoint;
+namespace bunq\Model\Generated;
 
 use bunq\Context\ApiContext;
-use bunq\Model\Generated\Endpoint\DraftShareInviteBank;
-use bunq\Model\Generated\Endpoint\DraftShareInviteBankQrCodeContent;
 use bunq\Model\Generated\Object\DraftShareInviteBankEntry;
-use bunq\Model\Generated\Object\DraftShareInviteEntry;
 use bunq\Model\Generated\Object\ShareDetail;
 use bunq\Model\Generated\Object\ShareDetailReadOnly;
 use bunq\test\BunqSdkTestBase;
-use bunq\test\Config;
+use bunq\test\TestConfig;
 
 /**
  * Tests
@@ -34,6 +31,11 @@ class DraftShareInviteBankQrCodeContentTest extends BunqSdkTestBase
     const EXPIRATION_ADDED_TIME = '+1 hour';
 
     /**
+     * @var int
+     */
+    private static $userId;
+
+    /**
      * @var string
      */
     private static $expirationDate;
@@ -43,6 +45,7 @@ class DraftShareInviteBankQrCodeContentTest extends BunqSdkTestBase
     public static function setUpBeforeClass()
     {
         parent::setUpBeforeClass();
+        static::$userId = TestConfig::getUserId();
         static::$expirationDate = date(self::FORMAT_MICROTIME, strtotime(self::EXPIRATION_ADDED_TIME));
     }
 
@@ -53,34 +56,39 @@ class DraftShareInviteBankQrCodeContentTest extends BunqSdkTestBase
      */
     public function testCreateDraftShareAndGetGr()
     {
-        $draftShareId = $this->createConnect();
-        $qrContent = $this->getQrContent($draftShareId);
+        $apiContext = static::getApiContext();
+
+        $draftShareId = $this->createConnect($apiContext);
+        $qrContent = $this->getQrContent($apiContext, $draftShareId);
         file_put_contents(self::PATH_QR_OUTPUT, $qrContent);
     }
 
     /**
+     * @param ApiContext $apiContext
+     *
      * @return int
      */
-    private function createConnect(): int
+    private function createConnect($apiContext)
     {
-        return DraftShareInviteBank::create(
-            static::$expirationDate,
-            new DraftShareInviteEntry(
-                new ShareDetail(
-                    null,
-                    new ShareDetailReadOnly(true, true, true)
-                )
-            )
-        )->getValue();
+        $readOnly = new ShareDetailReadOnly(true, true, true);
+        $shareDetail = new ShareDetail();
+        $shareDetail->setReadOnly($readOnly);
+        $draftMap = [
+            DraftShareInviteBank::FIELD_EXPIRATION => static::$expirationDate,
+            DraftShareInviteBank::FIELD_DRAFT_SHARE_SETTINGS => new DraftShareInviteBankEntry($shareDetail),
+        ];
+
+        return DraftShareInviteBank::create($apiContext, $draftMap, static::$userId);
     }
 
     /**
+     * @param ApiContext $apiContext
      * @param int $draftShareId
      *
      * @return string
      */
-    private function getQrContent(int $draftShareId): string
+    private function getQrContent($apiContext, $draftShareId)
     {
-        return DraftShareInviteBankQrCodeContent::listing($draftShareId)->getValue();
+        return DraftShareInviteBankQrCodeContent::listing($apiContext, static::$userId, $draftShareId);
     }
 }

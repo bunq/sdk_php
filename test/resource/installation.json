@@ -1,0 +1,22 @@
+{
+    "Response": [
+        {
+            "Id": {
+                "id": 26
+            }
+        },
+        {
+            "Token": {
+                "id": 134,
+                "created": "2015-06-13 23:19:16.215235",
+                "updated": "2015-06-30 09:12:31.981573",
+                "token": "a4f9d888eea84f52722b9baf2f17c289d549edf6e0eccdbf868eb922be306fb6"
+            }
+        },
+        {
+            "ServerPublicKey": {
+                "server_public_key": "My server public key"
+            }
+        }
+    ]
+}

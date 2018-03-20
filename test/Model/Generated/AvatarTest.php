@@ -1,12 +1,9 @@
 <?php
-namespace bunq\test\Model\Generated\Endpoint;
+namespace bunq\Model\Generated;
 
 use bunq\Http\ApiClient;
-use bunq\Model\Generated\Endpoint\AttachmentPublic;
-use bunq\Model\Generated\Endpoint\AttachmentPublicContent;
-use bunq\Model\Generated\Endpoint\Avatar;
 use bunq\test\BunqSdkTestBase;
-use bunq\test\Config;
+use bunq\test\TestConfig;
 use bunq\Util\FileUtil;
 
 /**
@@ -24,7 +21,7 @@ class AvatarTest extends BunqSdkTestBase
     /**
      *  Points to the directory where attachments are stored.
      */
-    const PATH_ATTACHMENT = '/../../../Resource/';
+    const PATH_ATTACHMENT = '/../../resource/';
 
     /**
      * @var string
@@ -46,9 +43,9 @@ class AvatarTest extends BunqSdkTestBase
     public static function setUpBeforeClass()
     {
         parent::setUpBeforeClass();
-        static::$attachmentDescription = Config::getAttachmentDescription();
-        static::$attachmentPathIn = Config::getAttachmentPathIn();
-        static::$contentType = Config::getAttachmentContentType();
+        static::$attachmentDescription = TestConfig::getAttachmentDescription();
+        static::$attachmentPathIn = TestConfig::getAttachmentPathIn();
+        static::$contentType = TestConfig::getAttachmentContentType();
     }
 
     /**
@@ -62,17 +59,16 @@ class AvatarTest extends BunqSdkTestBase
             ApiClient::HEADER_CONTENT_TYPE => static::$contentType,
         ];
 
-        $attachmentUuidBefore = AttachmentPublic::create(
-            $fileContentsBefore,
-            $customHeadersMap
-        )->getValue();
-        $avatarUuid = Avatar::create($attachmentUuidBefore)->getValue();
+        $attachmentUuidBefore = AttachmentPublic::create(static::getApiContext(), $fileContentsBefore, $customHeadersMap);
+        $avatarMap = [
+            Avatar::FIELD_ATTACHMENT_PUBLIC_UUID => $attachmentUuidBefore,
+        ];
+        $avatarUuid = Avatar::create(static::getApiContext(), $avatarMap);
 
-        $attachmentUuidAfter = Avatar::get($avatarUuid)->getValue();
+        $attachmentUuidAfter = Avatar::get(static::getApiContext(), $avatarUuid);
         $imageInfoArray = $attachmentUuidAfter->getImage();
         $attachmentPublicUuid = $imageInfoArray[self::INDEX_FIRST]->getAttachmentPublicUuid();
-        $fileContentsAfter = AttachmentPublicContent::listing($attachmentPublicUuid)
-            ->getValue();
+        $fileContentsAfter = AttachmentPublicContent::listing(static::getApiContext(), $attachmentPublicUuid);
 
         static::assertEquals($fileContentsBefore, $fileContentsAfter);
     }
@@ -80,7 +76,7 @@ class AvatarTest extends BunqSdkTestBase
     /**
      * @return string
      */
-    private function getFileContentsOfAttachment(): string
+    private function getFileContentsOfAttachment()
     {
         $path = __DIR__ . self::PATH_ATTACHMENT . static::$attachmentPathIn;
 
