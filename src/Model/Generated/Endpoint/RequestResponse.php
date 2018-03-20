@@ -1,15 +1,14 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
-use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
-use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Object\Address;
 use bunq\Model\Generated\Object\Amount;
 use bunq\Model\Generated\Object\Attachment;
 use bunq\Model\Generated\Object\Geolocation;
 use bunq\Model\Generated\Object\LabelMonetaryAccount;
+use bunq\Model\Generated\Object\RequestInquiryReference;
 
 /**
  * A RequestResponse is what a user on the other side of a RequestInquiry
@@ -230,26 +229,52 @@ class RequestResponse extends BunqModel
     protected $eligibleWhitelistId;
 
     /**
+     * The reference to the object used for split the bill. Can be
+     * RequestInquiry or RequestInquiryBatch
+     *
+     * @var RequestInquiryReference[]
+     */
+    protected $requestReferenceSplitTheBill;
+
+    /**
      * Update the status to accept or reject the RequestResponse.
      *
-     * @param ApiContext $apiContext
-     * @param mixed[] $requestMap
-     * @param int $userId
-     * @param int $monetaryAccountId
      * @param int $requestResponseId
+     * @param int|null $monetaryAccountId
+     * @param Amount|null $amountResponded  The Amount the user decides to pay.
+     * @param string|null $status           The responding status of the RequestResponse.
+     *                                      Can be ACCEPTED or REJECTED.
+     * @param Address|null $addressShipping The shipping Address to return to
+     *                                      the user who created the RequestInquiry. Should only be provided if
+     *                                      'require_address' is set to SHIPPING, BILLING_SHIPPING or OPTIONAL.
+     * @param Address|null $addressBilling  The billing Address to return to the
+     *                                      user who created the RequestInquiry. Should only be provided if
+     *                                      'require_address' is set to BILLING, BILLING_SHIPPING or OPTIONAL.
      * @param string[] $customHeaders
      *
      * @return BunqResponseRequestResponse
      */
-    public static function update(ApiContext $apiContext, array $requestMap, int $userId, int $monetaryAccountId, int $requestResponseId, array $customHeaders = []): BunqResponseRequestResponse
-    {
-        $apiClient = new ApiClient($apiContext);
+    public static function update(
+        int $requestResponseId,
+        int $monetaryAccountId = null,
+        Amount $amountResponded = null,
+        string $status = null,
+        Address $addressShipping = null,
+        Address $addressBilling = null,
+        array $customHeaders = []
+    ): BunqResponseRequestResponse {
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->put(
             vsprintf(
                 self::ENDPOINT_URL_UPDATE,
-                [$userId, $monetaryAccountId, $requestResponseId]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId), $requestResponseId]
             ),
-            $requestMap,
+            [
+                self::FIELD_AMOUNT_RESPONDED => $amountResponded,
+                self::FIELD_STATUS => $status,
+                self::FIELD_ADDRESS_SHIPPING => $addressShipping,
+                self::FIELD_ADDRESS_BILLING => $addressBilling,
+            ],
             $customHeaders
         );
 
@@ -264,21 +289,22 @@ class RequestResponse extends BunqModel
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
-     * @param ApiContext $apiContext
-     * @param int $userId
-     * @param int $monetaryAccountId
+     * @param int|null $monetaryAccountId
      * @param string[] $params
      * @param string[] $customHeaders
      *
      * @return BunqResponseRequestResponseList
      */
-    public static function listing(ApiContext $apiContext, int $userId, int $monetaryAccountId, array $params = [], array $customHeaders = []): BunqResponseRequestResponseList
-    {
-        $apiClient = new ApiClient($apiContext);
+    public static function listing(
+        int $monetaryAccountId = null,
+        array $params = [],
+        array $customHeaders = []
+    ): BunqResponseRequestResponseList {
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_LISTING,
-                [$userId, $monetaryAccountId]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId)]
             ),
             $params,
             $customHeaders
@@ -292,21 +318,22 @@ class RequestResponse extends BunqModel
     /**
      * Get the details for a specific existing RequestResponse.
      *
-     * @param ApiContext $apiContext
-     * @param int $userId
-     * @param int $monetaryAccountId
      * @param int $requestResponseId
+     * @param int|null $monetaryAccountId
      * @param string[] $customHeaders
      *
      * @return BunqResponseRequestResponse
      */
-    public static function get(ApiContext $apiContext, int $userId, int $monetaryAccountId, int $requestResponseId, array $customHeaders = []): BunqResponseRequestResponse
-    {
-        $apiClient = new ApiClient($apiContext);
+    public static function get(
+        int $requestResponseId,
+        int $monetaryAccountId = null,
+        array $customHeaders = []
+    ): BunqResponseRequestResponse {
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_READ,
-                [$userId, $monetaryAccountId, $requestResponseId]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId), $requestResponseId]
             ),
             [],
             $customHeaders
@@ -328,6 +355,9 @@ class RequestResponse extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param int $id
      */
     public function setId($id)
@@ -346,6 +376,9 @@ class RequestResponse extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $created
      */
     public function setCreated($created)
@@ -365,6 +398,9 @@ class RequestResponse extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $updated
      */
     public function setUpdated($updated)
@@ -383,6 +419,9 @@ class RequestResponse extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $timeResponded
      */
     public function setTimeResponded($timeResponded)
@@ -401,6 +440,9 @@ class RequestResponse extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $timeExpiry
      */
     public function setTimeExpiry($timeExpiry)
@@ -419,6 +461,9 @@ class RequestResponse extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param int $monetaryAccountId
      */
     public function setMonetaryAccountId($monetaryAccountId)
@@ -437,6 +482,9 @@ class RequestResponse extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param Amount $amountInquired
      */
     public function setAmountInquired($amountInquired)
@@ -455,6 +503,9 @@ class RequestResponse extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param Amount $amountResponded
      */
     public function setAmountResponded($amountResponded)
@@ -474,6 +525,9 @@ class RequestResponse extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $status
      */
     public function setStatus($status)
@@ -493,6 +547,9 @@ class RequestResponse extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $description
      */
     public function setDescription($description)
@@ -512,6 +569,9 @@ class RequestResponse extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param LabelMonetaryAccount $alias
      */
     public function setAlias($alias)
@@ -531,6 +591,9 @@ class RequestResponse extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param LabelMonetaryAccount $counterpartyAlias
      */
     public function setCounterpartyAlias($counterpartyAlias)
@@ -549,6 +612,9 @@ class RequestResponse extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param Attachment[] $attachment
      */
     public function setAttachment($attachment)
@@ -567,6 +633,9 @@ class RequestResponse extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param int $minimumAge
      */
     public function setMinimumAge($minimumAge)
@@ -585,6 +654,9 @@ class RequestResponse extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $requireAddress
      */
     public function setRequireAddress($requireAddress)
@@ -603,6 +675,9 @@ class RequestResponse extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param Geolocation $geolocation
      */
     public function setGeolocation($geolocation)
@@ -622,6 +697,9 @@ class RequestResponse extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $type
      */
     public function setType($type)
@@ -641,6 +719,9 @@ class RequestResponse extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $subType
      */
     public function setSubType($subType)
@@ -660,6 +741,9 @@ class RequestResponse extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $redirectUrl
      */
     public function setRedirectUrl($redirectUrl)
@@ -679,6 +763,9 @@ class RequestResponse extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param Address $addressBilling
      */
     public function setAddressBilling($addressBilling)
@@ -698,6 +785,9 @@ class RequestResponse extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param Address $addressShipping
      */
     public function setAddressShipping($addressShipping)
@@ -716,6 +806,9 @@ class RequestResponse extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param bool $allowChat
      */
     public function setAllowChat($allowChat)
@@ -735,6 +828,9 @@ class RequestResponse extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $creditSchemeIdentifier
      */
     public function setCreditSchemeIdentifier($creditSchemeIdentifier)
@@ -753,6 +849,9 @@ class RequestResponse extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $mandateIdentifier
      */
     public function setMandateIdentifier($mandateIdentifier)
@@ -771,11 +870,36 @@ class RequestResponse extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param int $eligibleWhitelistId
      */
     public function setEligibleWhitelistId($eligibleWhitelistId)
     {
         $this->eligibleWhitelistId = $eligibleWhitelistId;
+    }
+
+    /**
+     * The reference to the object used for split the bill. Can be
+     * RequestInquiry or RequestInquiryBatch
+     *
+     * @return RequestInquiryReference[]
+     */
+    public function getRequestReferenceSplitTheBill()
+    {
+        return $this->requestReferenceSplitTheBill;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param RequestInquiryReference[] $requestReferenceSplitTheBill
+     */
+    public function setRequestReferenceSplitTheBill($requestReferenceSplitTheBill)
+    {
+        $this->requestReferenceSplitTheBill = $requestReferenceSplitTheBill;
     }
 
     /**
@@ -880,6 +1004,10 @@ class RequestResponse extends BunqModel
         }
 
         if (!is_null($this->eligibleWhitelistId)) {
+            return false;
+        }
+
+        if (!is_null($this->requestReferenceSplitTheBill)) {
             return false;
         }
 

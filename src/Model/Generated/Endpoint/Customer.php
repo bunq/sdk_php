@@ -1,9 +1,7 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
-use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
-use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 
 /**
@@ -62,20 +60,18 @@ class Customer extends BunqModel
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
-     * @param ApiContext $apiContext
-     * @param int $userId
      * @param string[] $params
      * @param string[] $customHeaders
      *
      * @return BunqResponseCustomerList
      */
-    public static function listing(ApiContext $apiContext, int $userId, array $params = [], array $customHeaders = []): BunqResponseCustomerList
+    public static function listing(array $params = [], array $customHeaders = []): BunqResponseCustomerList
     {
-        $apiClient = new ApiClient($apiContext);
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_LISTING,
-                [$userId]
+                [static::determineUserId()]
             ),
             $params,
             $customHeaders
@@ -87,20 +83,18 @@ class Customer extends BunqModel
     }
 
     /**
-     * @param ApiContext $apiContext
-     * @param int $userId
      * @param int $customerId
      * @param string[] $customHeaders
      *
      * @return BunqResponseCustomer
      */
-    public static function get(ApiContext $apiContext, int $userId, int $customerId, array $customHeaders = []): BunqResponseCustomer
+    public static function get(int $customerId, array $customHeaders = []): BunqResponseCustomer
     {
-        $apiClient = new ApiClient($apiContext);
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_READ,
-                [$userId, $customerId]
+                [static::determineUserId(), $customerId]
             ),
             [],
             $customHeaders
@@ -112,23 +106,25 @@ class Customer extends BunqModel
     }
 
     /**
-     * @param ApiContext $apiContext
-     * @param mixed[] $requestMap
-     * @param int $userId
      * @param int $customerId
+     * @param string|null $billingAccountId The primary billing account
+     *                                      account's id.
      * @param string[] $customHeaders
      *
      * @return BunqResponseInt
      */
-    public static function update(ApiContext $apiContext, array $requestMap, int $userId, int $customerId, array $customHeaders = []): BunqResponseInt
-    {
-        $apiClient = new ApiClient($apiContext);
+    public static function update(
+        int $customerId,
+        string $billingAccountId = null,
+        array $customHeaders = []
+    ): BunqResponseInt {
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->put(
             vsprintf(
                 self::ENDPOINT_URL_UPDATE,
-                [$userId, $customerId]
+                [static::determineUserId(), $customerId]
             ),
-            $requestMap,
+            [self::FIELD_BILLING_ACCOUNT_ID => $billingAccountId],
             $customHeaders
         );
 
@@ -148,6 +144,9 @@ class Customer extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param int $id
      */
     public function setId($id)
@@ -166,6 +165,9 @@ class Customer extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $created
      */
     public function setCreated($created)
@@ -184,6 +186,9 @@ class Customer extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $updated
      */
     public function setUpdated($updated)
@@ -202,6 +207,9 @@ class Customer extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $billingAccountId
      */
     public function setBillingAccountId($billingAccountId)

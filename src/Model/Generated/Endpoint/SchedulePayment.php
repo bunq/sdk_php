@@ -1,7 +1,6 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
-use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
 use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
@@ -49,23 +48,30 @@ class SchedulePayment extends BunqModel
     protected $schedule;
 
     /**
-     * @param ApiContext $apiContext
-     * @param mixed[] $requestMap
-     * @param int $userId
-     * @param int $monetaryAccountId
+     * @param SchedulePaymentEntry $payment The payment details.
+     * @param Schedule $schedule            The schedule details when creating or updating
+     *                                      a scheduled payment.
+     * @param int|null $monetaryAccountId
      * @param string[] $customHeaders
      *
      * @return BunqResponseInt
      */
-    public static function create(ApiContext $apiContext, array $requestMap, int $userId, int $monetaryAccountId, array $customHeaders = []): BunqResponseInt
-    {
-        $apiClient = new ApiClient($apiContext);
+    public static function create(
+        SchedulePaymentEntry $payment,
+        Schedule $schedule,
+        int $monetaryAccountId = null,
+        array $customHeaders = []
+    ): BunqResponseInt {
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->post(
             vsprintf(
                 self::ENDPOINT_URL_CREATE,
-                [$userId, $monetaryAccountId]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId)]
             ),
-            $requestMap,
+            [
+                self::FIELD_PAYMENT => $payment,
+                self::FIELD_SCHEDULE => $schedule,
+            ],
             $customHeaders
         );
 
@@ -75,21 +81,21 @@ class SchedulePayment extends BunqModel
     }
 
     /**
-     * @param ApiContext $apiContext
      * @param string[] $customHeaders
-     * @param int $userId
-     * @param int $monetaryAccountId
      * @param int $schedulePaymentId
      *
      * @return BunqResponseNull
      */
-    public static function delete(ApiContext $apiContext, int $userId, int $monetaryAccountId, int $schedulePaymentId, array $customHeaders = []): BunqResponseNull
-    {
-        $apiClient = new ApiClient($apiContext);
+    public static function delete(
+        int $schedulePaymentId,
+        int $monetaryAccountId = null,
+        array $customHeaders = []
+    ): BunqResponseNull {
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->delete(
             vsprintf(
                 self::ENDPOINT_URL_DELETE,
-                [$userId, $monetaryAccountId, $schedulePaymentId]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId), $schedulePaymentId]
             ),
             $customHeaders
         );
@@ -100,21 +106,22 @@ class SchedulePayment extends BunqModel
     }
 
     /**
-     * @param ApiContext $apiContext
-     * @param int $userId
-     * @param int $monetaryAccountId
      * @param int $schedulePaymentId
+     * @param int|null $monetaryAccountId
      * @param string[] $customHeaders
      *
      * @return BunqResponseSchedulePayment
      */
-    public static function get(ApiContext $apiContext, int $userId, int $monetaryAccountId, int $schedulePaymentId, array $customHeaders = []): BunqResponseSchedulePayment
-    {
-        $apiClient = new ApiClient($apiContext);
+    public static function get(
+        int $schedulePaymentId,
+        int $monetaryAccountId = null,
+        array $customHeaders = []
+    ): BunqResponseSchedulePayment {
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_READ,
-                [$userId, $monetaryAccountId, $schedulePaymentId]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId), $schedulePaymentId]
             ),
             [],
             $customHeaders
@@ -129,21 +136,22 @@ class SchedulePayment extends BunqModel
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
-     * @param ApiContext $apiContext
-     * @param int $userId
-     * @param int $monetaryAccountId
+     * @param int|null $monetaryAccountId
      * @param string[] $params
      * @param string[] $customHeaders
      *
      * @return BunqResponseSchedulePaymentList
      */
-    public static function listing(ApiContext $apiContext, int $userId, int $monetaryAccountId, array $params = [], array $customHeaders = []): BunqResponseSchedulePaymentList
-    {
-        $apiClient = new ApiClient($apiContext);
+    public static function listing(
+        int $monetaryAccountId = null,
+        array $params = [],
+        array $customHeaders = []
+    ): BunqResponseSchedulePaymentList {
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_LISTING,
-                [$userId, $monetaryAccountId]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId)]
             ),
             $params,
             $customHeaders
@@ -155,24 +163,32 @@ class SchedulePayment extends BunqModel
     }
 
     /**
-     * @param ApiContext $apiContext
-     * @param mixed[] $requestMap
-     * @param int $userId
-     * @param int $monetaryAccountId
      * @param int $schedulePaymentId
+     * @param int|null $monetaryAccountId
+     * @param SchedulePaymentEntry|null $payment The payment details.
+     * @param Schedule|null $schedule            The schedule details when creating or
+     *                                           updating a scheduled payment.
      * @param string[] $customHeaders
      *
      * @return BunqResponseInt
      */
-    public static function update(ApiContext $apiContext, array $requestMap, int $userId, int $monetaryAccountId, int $schedulePaymentId, array $customHeaders = []): BunqResponseInt
-    {
-        $apiClient = new ApiClient($apiContext);
+    public static function update(
+        int $schedulePaymentId,
+        int $monetaryAccountId = null,
+        SchedulePaymentEntry $payment = null,
+        Schedule $schedule = null,
+        array $customHeaders = []
+    ): BunqResponseInt {
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->put(
             vsprintf(
                 self::ENDPOINT_URL_UPDATE,
-                [$userId, $monetaryAccountId, $schedulePaymentId]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId), $schedulePaymentId]
             ),
-            $requestMap,
+            [
+                self::FIELD_PAYMENT => $payment,
+                self::FIELD_SCHEDULE => $schedule,
+            ],
             $customHeaders
         );
 
@@ -192,6 +208,9 @@ class SchedulePayment extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param SchedulePaymentEntry $payment
      */
     public function setPayment($payment)
@@ -210,6 +229,9 @@ class SchedulePayment extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param Schedule $schedule
      */
     public function setSchedule($schedule)

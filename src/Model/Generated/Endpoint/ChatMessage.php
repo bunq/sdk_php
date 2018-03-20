@@ -1,10 +1,8 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
-use bunq\Context\ApiContext;
 use bunq\exception\BunqException;
 use bunq\Http\ApiClient;
-use bunq\Http\BunqResponse;
 use bunq\Model\Core\AnchorObjectInterface;
 use bunq\Model\Core\BunqModel;
 
@@ -51,21 +49,22 @@ class ChatMessage extends BunqModel implements AnchorObjectInterface
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
-     * @param ApiContext $apiContext
-     * @param int $userId
      * @param int $chatConversationId
      * @param string[] $params
      * @param string[] $customHeaders
      *
      * @return BunqResponseChatMessageList
      */
-    public static function listing(ApiContext $apiContext, int $userId, int $chatConversationId, array $params = [], array $customHeaders = []): BunqResponseChatMessageList
-    {
-        $apiClient = new ApiClient($apiContext);
+    public static function listing(
+        int $chatConversationId,
+        array $params = [],
+        array $customHeaders = []
+    ): BunqResponseChatMessageList {
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_LISTING,
-                [$userId, $chatConversationId]
+                [static::determineUserId(), $chatConversationId]
             ),
             $params,
             $customHeaders
@@ -85,6 +84,9 @@ class ChatMessage extends BunqModel implements AnchorObjectInterface
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param ChatMessageAnnouncement $chatMessageAnnouncement
      */
     public function setChatMessageAnnouncement($chatMessageAnnouncement)
@@ -101,6 +103,9 @@ class ChatMessage extends BunqModel implements AnchorObjectInterface
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param ChatMessageStatus $chatMessageStatus
      */
     public function setChatMessageStatus($chatMessageStatus)
@@ -117,6 +122,9 @@ class ChatMessage extends BunqModel implements AnchorObjectInterface
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param ChatMessageUser $chatMessageUser
      */
     public function setChatMessageUser($chatMessageUser)

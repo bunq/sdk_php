@@ -68,11 +68,21 @@ class ResponseHandlerError extends ResponseHandlerBase
         $responseBody = $response->getBody();
         $responseBodyInJson = json_decode($responseBody, true);
 
-        if ($responseBodyInJson !== false) {
+        if ($this->doesResponseBodyContainValidJson($responseBodyInJson)) {
             return $this->fetchAllErrorDescription($responseBodyInJson);
         } else {
             return [$responseBody];
         }
+    }
+
+    /**
+     * @param bool|string[]|null $body
+     *
+     * @return bool
+     */
+    private function doesResponseBodyContainValidJson($body): bool
+    {
+        return $body !== false && !is_null($body);
     }
 
     /**
@@ -107,7 +117,7 @@ class ResponseHandlerError extends ResponseHandlerBase
         }
 
         if (empty($header)) {
-            throw new BunqException(self::ERROR_COULD_NOT_DETERMINE_RESPONSE_ID_HEADER);
+            return self::ERROR_COULD_NOT_DETERMINE_RESPONSE_ID_HEADER;
         }
 
         return $header[self::INDEX_FIRST];

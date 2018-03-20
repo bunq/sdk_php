@@ -23,10 +23,10 @@ class TaxResident extends BunqModel
     protected $taxNumber;
 
     /**
-     * @param string $country
-     * @param string $taxNumber
+     * @param string $country   The country of the tax number.
+     * @param string $taxNumber The tax number.
      */
-    public function __construct($country, $taxNumber)
+    public function __construct(string $country, string $taxNumber)
     {
         $this->country = $country;
         $this->taxNumber = $taxNumber;
@@ -43,6 +43,9 @@ class TaxResident extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $country
      */
     public function setCountry($country)
@@ -61,6 +64,9 @@ class TaxResident extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $taxNumber
      */
     public function setTaxNumber($taxNumber)

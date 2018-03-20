@@ -26,6 +26,9 @@ class ChatMessageContentGeolocation extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param Geolocation $geolocation
      */
     public function setGeolocation($geolocation)

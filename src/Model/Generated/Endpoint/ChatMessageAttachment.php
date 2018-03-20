@@ -1,10 +1,9 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
-use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
-use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
+use bunq\Model\Generated\Object\BunqId;
 
 /**
  * Create new messages holding file attachments.
@@ -21,7 +20,6 @@ class ChatMessageAttachment extends BunqModel
     /**
      * Field constants.
      */
-    const FIELD_CLIENT_MESSAGE_UUID = 'client_message_uuid';
     const FIELD_ATTACHMENT = 'attachment';
 
     /**
@@ -35,23 +33,24 @@ class ChatMessageAttachment extends BunqModel
      * Create a new message holding a file attachment to a specific
      * conversation.
      *
-     * @param ApiContext $apiContext
-     * @param mixed[] $requestMap
-     * @param int $userId
      * @param int $chatConversationId
+     * @param BunqId $attachment The attachment contained in this message.
      * @param string[] $customHeaders
      *
      * @return BunqResponseInt
      */
-    public static function create(ApiContext $apiContext, array $requestMap, int $userId, int $chatConversationId, array $customHeaders = []): BunqResponseInt
-    {
-        $apiClient = new ApiClient($apiContext);
+    public static function create(
+        int $chatConversationId,
+        BunqId $attachment,
+        array $customHeaders = []
+    ): BunqResponseInt {
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->post(
             vsprintf(
                 self::ENDPOINT_URL_CREATE,
-                [$userId, $chatConversationId]
+                [static::determineUserId(), $chatConversationId]
             ),
-            $requestMap,
+            [self::FIELD_ATTACHMENT => $attachment],
             $customHeaders
         );
 
@@ -71,6 +70,9 @@ class ChatMessageAttachment extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param int $id
      */
     public function setId($id)

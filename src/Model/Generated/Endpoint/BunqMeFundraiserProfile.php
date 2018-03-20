@@ -83,6 +83,9 @@ class BunqMeFundraiserProfile extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $color
      */
     public function setColor($color)
@@ -102,6 +105,9 @@ class BunqMeFundraiserProfile extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param LabelMonetaryAccount $alias
      */
     public function setAlias($alias)
@@ -120,6 +126,9 @@ class BunqMeFundraiserProfile extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $description
      */
     public function setDescription($description)
@@ -138,6 +147,9 @@ class BunqMeFundraiserProfile extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param AttachmentPublic[] $attachment
      */
     public function setAttachment($attachment)
@@ -157,6 +169,9 @@ class BunqMeFundraiserProfile extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param Pointer $pointer
      */
     public function setPointer($pointer)
@@ -176,6 +191,9 @@ class BunqMeFundraiserProfile extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $status
      */
     public function setStatus($status)
@@ -194,6 +212,9 @@ class BunqMeFundraiserProfile extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $redirectUrl
      */
     public function setRedirectUrl($redirectUrl)

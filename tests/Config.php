@@ -33,7 +33,6 @@ class Config
     const FIELD_TAB_USAGE_SINGLE_TEST = 'TabUsageSingleTest';
     const FIELD_CASH_REGISTER_ID = 'CASH_REGISTER_ID';
     const FIELD_MONETARY_ACCOUNT_ID = 'MONETARY_ACCOUNT_ID';
-    const FIELD_USER_ID = 'USER_ID';
     const FIELD_API_KEY = 'API_KEY';
     const FIELD_ATTACHMENT_PUBLIC_TEST = 'AttachmentPublicTest';
     const FIELD_ATTACHMENT_PATH_IN = 'PATH_IN';
@@ -104,14 +103,6 @@ class Config
     public static function getMonetaryAccountId(): int
     {
         return static::getConfigFile()[self::FIELD_MONETARY_ACCOUNT_ID];
-    }
-
-    /**
-     * @return int
-     */
-    public static function getUserId(): int
-    {
-        return static::getConfigFile()[self::FIELD_USER_ID];
     }
 
     /**

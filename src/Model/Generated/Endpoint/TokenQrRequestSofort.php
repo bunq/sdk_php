@@ -1,9 +1,7 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
-use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
-use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 
 /**
@@ -32,22 +30,20 @@ class TokenQrRequestSofort extends BunqModel
     /**
      * Create a request from an SOFORT transaction.
      *
-     * @param ApiContext $apiContext
-     * @param mixed[] $requestMap
-     * @param int $userId
+     * @param string $token The token passed from a site or read from a QR code.
      * @param string[] $customHeaders
      *
      * @return BunqResponseTokenQrRequestSofort
      */
-    public static function create(ApiContext $apiContext, array $requestMap, int $userId, array $customHeaders = []): BunqResponseTokenQrRequestSofort
+    public static function create(string $token, array $customHeaders = []): BunqResponseTokenQrRequestSofort
     {
-        $apiClient = new ApiClient($apiContext);
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->post(
             vsprintf(
                 self::ENDPOINT_URL_CREATE,
-                [$userId]
+                [static::determineUserId()]
             ),
-            $requestMap,
+            [self::FIELD_TOKEN => $token],
             $customHeaders
         );
 

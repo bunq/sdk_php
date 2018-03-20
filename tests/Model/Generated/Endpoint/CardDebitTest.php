@@ -23,7 +23,7 @@ class CardDebitTest extends BunqSdkTestBase
      *  Pin code that the card will be ordered with.
      */
     const CARD_PIN_CODE = '4045';
-    const CARD_ASSIGNMENT_TYPE_PRIMARY = 'PRIMARY';
+    const CARD_PIN_CODE_ASSIGNMENT = 'PRIMARY';
 
     /**
      * The prefix for the second line on the card.
@@ -60,10 +60,9 @@ class CardDebitTest extends BunqSdkTestBase
     public static function setUpBeforeClass()
     {
         parent::setUpBeforeClass();
-        static::$userId = Config::getUserId();
-        $cardNamesAllowed = CardName::listing(static::getApiContext(), static::$userId)->getValue();
+        $cardNamesAllowed = CardName::listing()->getValue();
         static::$nameOnCard = $cardNamesAllowed[self::INDEX_FIRST]->getPossibleCardNameArray();
-        $usersAccessible = User::listing(static::getApiContext())->getValue();
+        $usersAccessible = User::listing()->getValue();
         static::$alias = $usersAccessible[self::INDEX_FIRST]->getUserCompany()->getAlias()[self::INDEX_FIRST];
         static::$monetaryAccountId = Config::getMonetaryAccountId();
     }
@@ -73,7 +72,6 @@ class CardDebitTest extends BunqSdkTestBase
      */
     public function testOrderingDebitCard()
     {
-        $apiContext = static::getApiContext();
         $alias = new Pointer(static::$alias->getType(), static::$alias->getValue());
         $cardAssigned =
             new CardPinAssignment(
@@ -82,14 +80,15 @@ class CardDebitTest extends BunqSdkTestBase
                 static::$monetaryAccountId
             );
 
-        $cardDebitMap = [
-            CardDebit::FIELD_ALIAS => $alias,
-            CardDebit::FIELD_SECOND_LINE => uniqid(self::CARD_SECOND_LINE_PREFIX),
-            CardDebit::FIELD_PIN_CODE_ASSIGNMENT => [$cardAssigned],
-            CardDebit::FIELD_NAME_ON_CARD => static::$nameOnCard[self::INDEX_FIRST],
-        ];
-        $cardDebit = CardDebit::create($apiContext, $cardDebitMap, static::$userId)->getValue();
-        $card = Card::get($apiContext, static::$userId, $cardDebit->getId())->getValue();
+        $cardDebit = CardDebit::create(
+            uniqid(self::CARD_SECOND_LINE_PREFIX),
+            static::$nameOnCard[self::INDEX_FIRST],
+            $alias,
+            null,
+            [new CardPinAssignment(self::CARD_PIN_CODE_ASSIGNMENT, self::CARD_PIN_CODE, Config::getMonetaryAccountId())]
+        )->getValue();
+
+        $card = Card::get($cardDebit->getId())->getValue();
 
         static::assertEquals($cardDebit->getNameOnCard(), $card->getNameOnCard());
         static::assertEquals($cardDebit->getCreated(), $card->getCreated());

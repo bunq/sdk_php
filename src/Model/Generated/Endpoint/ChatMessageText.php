@@ -1,9 +1,7 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
-use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
-use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 
 /**
@@ -21,7 +19,6 @@ class ChatMessageText extends BunqModel
     /**
      * Field constants.
      */
-    const FIELD_CLIENT_MESSAGE_UUID = 'client_message_uuid';
     const FIELD_TEXT = 'text';
 
     /**
@@ -34,23 +31,21 @@ class ChatMessageText extends BunqModel
     /**
      * Add a new text message to a specific conversation.
      *
-     * @param ApiContext $apiContext
-     * @param mixed[] $requestMap
-     * @param int $userId
      * @param int $chatConversationId
+     * @param string $text The textual content of this message. Cannot be empty.
      * @param string[] $customHeaders
      *
      * @return BunqResponseInt
      */
-    public static function create(ApiContext $apiContext, array $requestMap, int $userId, int $chatConversationId, array $customHeaders = []): BunqResponseInt
+    public static function create(int $chatConversationId, string $text, array $customHeaders = []): BunqResponseInt
     {
-        $apiClient = new ApiClient($apiContext);
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->post(
             vsprintf(
                 self::ENDPOINT_URL_CREATE,
-                [$userId, $chatConversationId]
+                [static::determineUserId(), $chatConversationId]
             ),
-            $requestMap,
+            [self::FIELD_TEXT => $text],
             $customHeaders
         );
 
@@ -70,6 +65,9 @@ class ChatMessageText extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param int $id
      */
     public function setId($id)

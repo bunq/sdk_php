@@ -65,6 +65,9 @@ class ChatMessageStatus extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param int $id
      */
     public function setId($id)
@@ -83,6 +86,9 @@ class ChatMessageStatus extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $created
      */
     public function setCreated($created)
@@ -101,6 +107,9 @@ class ChatMessageStatus extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $updated
      */
     public function setUpdated($updated)
@@ -119,6 +128,9 @@ class ChatMessageStatus extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param int $conversationId
      */
     public function setConversationId($conversationId)
@@ -137,6 +149,9 @@ class ChatMessageStatus extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param LabelUser $creator
      */
     public function setCreator($creator)
@@ -155,6 +170,9 @@ class ChatMessageStatus extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param ChatMessageContent $content
      */
     public function setContent($content)

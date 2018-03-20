@@ -1,7 +1,6 @@
 <?php
 namespace bunq\test\Model\Generated\Endpoint;
 
-use bunq\Context\ApiContext;
 use bunq\Model\Generated\Endpoint\RequestInquiry;
 use bunq\Model\Generated\Endpoint\RequestResponse;
 use bunq\Model\Generated\Object\Amount;
@@ -38,16 +37,6 @@ class RequestInquiryTest extends BunqSdkTestBase
     /**
      * @var int
      */
-    private static $userId;
-
-    /**
-     * @var int
-     */
-    private static $monetaryAccountId;
-
-    /**
-     * @var int
-     */
     private static $monetaryAccountId2;
 
     /**
@@ -61,8 +50,6 @@ class RequestInquiryTest extends BunqSdkTestBase
     public static function setUpBeforeClass()
     {
         parent::setUpBeforeClass();
-        static::$userId = Config::getUserId();
-        static::$monetaryAccountId = Config::getMonetaryAccountId();
         static::$monetaryAccountId2 = Config::getMonetaryAccountId2();
         static::$counterPartyAliasSelf = Config::getCounterPartyAliasSelf();
     }
@@ -74,48 +61,34 @@ class RequestInquiryTest extends BunqSdkTestBase
      */
     public function testSendingAndAcceptingRequest()
     {
-        $apiContext = static::getApiContext();
-
-        $this->sendRequest($apiContext);
-        $responses = RequestResponse::listing($apiContext, static::$userId, static::$monetaryAccountId2)->getValue();
+        $this->sendRequest();
+        $responses = RequestResponse::listing(static::$monetaryAccountId2)->getValue();
         $requestResponseId = $responses[self::INDEX_FIRST]->getId();
-        $this->acceptRequest($apiContext, $requestResponseId);
+        $this->acceptRequest($requestResponseId);
     }
 
     /**
-     * @param ApiContext $apiContext
      */
-    private function sendRequest(ApiContext $apiContext)
+    private function sendRequest()
     {
-        $requestMap = [
-            RequestInquiry::FIELD_AMOUNT_INQUIRED => new Amount(
-                self::REQUEST_AMOUNT_IN_EUR,
-                self::REQUEST_CURRENCY
-            ),
-            RequestInquiry::FIELD_COUNTERPARTY_ALIAS => static::$counterPartyAliasSelf,
-            RequestInquiry::FIELD_DESCRIPTION => self::REQUEST_DESCRIPTION,
-            RequestInquiry::FIELD_ALLOW_BUNQME => false,
-        ];
-
-        RequestInquiry::create($apiContext, $requestMap, static::$userId, static::$monetaryAccountId);
+        RequestInquiry::create(
+            new Amount(self::REQUEST_AMOUNT_IN_EUR, self::REQUEST_CURRENCY),
+            static::$counterPartyAliasSelf,
+            self::REQUEST_DESCRIPTION,
+            false
+        );
     }
 
     /**
-     * @param ApiContext $apiContext
      * @param int $requestResponseId
      */
-    private function acceptRequest(ApiContext $apiContext, int $requestResponseId)
+    private function acceptRequest(int $requestResponseId)
     {
-        $responseMap = [
-            RequestResponse::FIELD_STATUS => self::REQUEST_STATUS_ACCEPTED,
-        ];
-
         RequestResponse::update(
-            $apiContext,
-            $responseMap,
-            static::$userId,
+            $requestResponseId,
             static::$monetaryAccountId2,
-            $requestResponseId
+            null,
+            self::REQUEST_STATUS_ACCEPTED
         );
     }
 }

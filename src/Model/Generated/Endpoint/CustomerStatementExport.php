@@ -1,7 +1,6 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
-use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
 use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
@@ -107,23 +106,38 @@ class CustomerStatementExport extends BunqModel
     protected $aliasMonetaryAccount;
 
     /**
-     * @param ApiContext $apiContext
-     * @param mixed[] $requestMap
-     * @param int $userId
-     * @param int $monetaryAccountId
+     * @param string $statementFormat     The format type of statement. Allowed
+     *                                    values: MT940, CSV, PDF.
+     * @param string $dateStart           The start date for making statements.
+     * @param string $dateEnd             The end date for making statements.
+     * @param int|null $monetaryAccountId
+     * @param string|null $regionalFormat Required for CSV exports. The regional
+     *                                    format of the statement, can be UK_US (comma-separated) or EUROPEAN
+     *                                    (semicolon-separated).
      * @param string[] $customHeaders
      *
      * @return BunqResponseInt
      */
-    public static function create(ApiContext $apiContext, array $requestMap, int $userId, int $monetaryAccountId, array $customHeaders = []): BunqResponseInt
-    {
-        $apiClient = new ApiClient($apiContext);
+    public static function create(
+        string $statementFormat,
+        string $dateStart,
+        string $dateEnd,
+        int $monetaryAccountId = null,
+        string $regionalFormat = null,
+        array $customHeaders = []
+    ): BunqResponseInt {
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->post(
             vsprintf(
                 self::ENDPOINT_URL_CREATE,
-                [$userId, $monetaryAccountId]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId)]
             ),
-            $requestMap,
+            [
+                self::FIELD_STATEMENT_FORMAT => $statementFormat,
+                self::FIELD_DATE_START => $dateStart,
+                self::FIELD_DATE_END => $dateEnd,
+                self::FIELD_REGIONAL_FORMAT => $regionalFormat,
+            ],
             $customHeaders
         );
 
@@ -133,21 +147,26 @@ class CustomerStatementExport extends BunqModel
     }
 
     /**
-     * @param ApiContext $apiContext
-     * @param int $userId
-     * @param int $monetaryAccountId
      * @param int $customerStatementExportId
+     * @param int|null $monetaryAccountId
      * @param string[] $customHeaders
      *
      * @return BunqResponseCustomerStatementExport
      */
-    public static function get(ApiContext $apiContext, int $userId, int $monetaryAccountId, int $customerStatementExportId, array $customHeaders = []): BunqResponseCustomerStatementExport
-    {
-        $apiClient = new ApiClient($apiContext);
+    public static function get(
+        int $customerStatementExportId,
+        int $monetaryAccountId = null,
+        array $customHeaders = []
+    ): BunqResponseCustomerStatementExport {
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_READ,
-                [$userId, $monetaryAccountId, $customerStatementExportId]
+                [
+                    static::determineUserId(),
+                    static::determineMonetaryAccountId($monetaryAccountId),
+                    $customerStatementExportId,
+                ]
             ),
             [],
             $customHeaders
@@ -162,21 +181,22 @@ class CustomerStatementExport extends BunqModel
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
-     * @param ApiContext $apiContext
-     * @param int $userId
-     * @param int $monetaryAccountId
+     * @param int|null $monetaryAccountId
      * @param string[] $params
      * @param string[] $customHeaders
      *
      * @return BunqResponseCustomerStatementExportList
      */
-    public static function listing(ApiContext $apiContext, int $userId, int $monetaryAccountId, array $params = [], array $customHeaders = []): BunqResponseCustomerStatementExportList
-    {
-        $apiClient = new ApiClient($apiContext);
+    public static function listing(
+        int $monetaryAccountId = null,
+        array $params = [],
+        array $customHeaders = []
+    ): BunqResponseCustomerStatementExportList {
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_LISTING,
-                [$userId, $monetaryAccountId]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId)]
             ),
             $params,
             $customHeaders
@@ -188,21 +208,25 @@ class CustomerStatementExport extends BunqModel
     }
 
     /**
-     * @param ApiContext $apiContext
      * @param string[] $customHeaders
-     * @param int $userId
-     * @param int $monetaryAccountId
      * @param int $customerStatementExportId
      *
      * @return BunqResponseNull
      */
-    public static function delete(ApiContext $apiContext, int $userId, int $monetaryAccountId, int $customerStatementExportId, array $customHeaders = []): BunqResponseNull
-    {
-        $apiClient = new ApiClient($apiContext);
+    public static function delete(
+        int $customerStatementExportId,
+        int $monetaryAccountId = null,
+        array $customHeaders = []
+    ): BunqResponseNull {
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->delete(
             vsprintf(
                 self::ENDPOINT_URL_DELETE,
-                [$userId, $monetaryAccountId, $customerStatementExportId]
+                [
+                    static::determineUserId(),
+                    static::determineMonetaryAccountId($monetaryAccountId),
+                    $customerStatementExportId,
+                ]
             ),
             $customHeaders
         );
@@ -223,6 +247,9 @@ class CustomerStatementExport extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param int $id
      */
     public function setId($id)
@@ -241,6 +268,9 @@ class CustomerStatementExport extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $created
      */
     public function setCreated($created)
@@ -259,6 +289,9 @@ class CustomerStatementExport extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $updated
      */
     public function setUpdated($updated)
@@ -277,6 +310,9 @@ class CustomerStatementExport extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $dateStart
      */
     public function setDateStart($dateStart)
@@ -295,6 +331,9 @@ class CustomerStatementExport extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $dateEnd
      */
     public function setDateEnd($dateEnd)
@@ -313,6 +352,9 @@ class CustomerStatementExport extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $status
      */
     public function setStatus($status)
@@ -331,6 +373,9 @@ class CustomerStatementExport extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param int $statementNumber
      */
     public function setStatementNumber($statementNumber)
@@ -349,6 +394,9 @@ class CustomerStatementExport extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $statementFormat
      */
     public function setStatementFormat($statementFormat)
@@ -367,6 +415,9 @@ class CustomerStatementExport extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $regionalFormat
      */
     public function setRegionalFormat($regionalFormat)
@@ -385,6 +436,9 @@ class CustomerStatementExport extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param LabelMonetaryAccount $aliasMonetaryAccount
      */
     public function setAliasMonetaryAccount($aliasMonetaryAccount)

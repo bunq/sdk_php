@@ -16,6 +16,14 @@ class CardMagStripePermission extends BunqModel
     protected $expiryTime;
 
     /**
+     * @param string|null $expiryTime Expiry time of this rule.
+     */
+    public function __construct(string $expiryTime = null)
+    {
+        $this->expiryTime = $expiryTime;
+    }
+
+    /**
      * Expiry time of this rule.
      *
      * @return string
@@ -26,6 +34,9 @@ class CardMagStripePermission extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $expiryTime
      */
     public function setExpiryTime($expiryTime)

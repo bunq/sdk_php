@@ -56,6 +56,9 @@ class BunqMeFundraiserResult extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param int $id
      */
     public function setId($id)
@@ -74,6 +77,9 @@ class BunqMeFundraiserResult extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $created
      */
     public function setCreated($created)
@@ -92,6 +98,9 @@ class BunqMeFundraiserResult extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $updated
      */
     public function setUpdated($updated)
@@ -110,6 +119,9 @@ class BunqMeFundraiserResult extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param BunqMeFundraiserProfile $bunqmeFundraiserProfile
      */
     public function setBunqmeFundraiserProfile($bunqmeFundraiserProfile)
@@ -128,6 +140,9 @@ class BunqMeFundraiserResult extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param Payment[] $payments
      */
     public function setPayments($payments)

@@ -2,10 +2,11 @@
 namespace bunq\Context;
 
 use bunq\Exception\BunqException;
+use bunq\Model\Core\DeviceServerInternal;
 use bunq\Model\Core\Installation;
+use bunq\Model\Core\SandboxUserInternal;
 use bunq\Model\Core\SessionServer;
 use bunq\Model\Core\Token;
-use bunq\Model\Generated\Endpoint\DeviceServer;
 use bunq\Model\Generated\Endpoint\Session;
 use bunq\Security\KeyPair;
 use bunq\Util\BunqEnumApiEnvironmentType;
@@ -113,6 +114,14 @@ class ApiContext
     }
 
     /**
+     */
+    private function createSandboxUser()
+    {
+        $sandboxUser = SandboxUserInternal::create([], $this);
+        $this->apiKey = $sandboxUser->getValue()->getApiKey();
+    }
+
+    /**
      * @param string $description
      * @param string[] $permittedIps
      */
@@ -145,13 +154,12 @@ class ApiContext
      */
     private function registerDevice(string $description, array $permittedIps)
     {
-        DeviceServer::create(
-            $this,
-            [
-                DeviceServer::FIELD_DESCRIPTION => $description,
-                DeviceServer::FIELD_PERMITTED_IPS => $permittedIps,
-                DeviceServer::FIELD_SECRET => $this->apiKey,
-            ]
+        DeviceServerInternal::create(
+            $description,
+            $this->apiKey,
+            $permittedIps,
+            [],
+            $this
         );
     }
 
@@ -245,7 +253,7 @@ class ApiContext
             throw new BunqException(
                 self::ERROR_ENVIRONMENT_TYPE_UNEXPECTED,
                 [
-                    $this->environmentType->getChoiceString()
+                    $this->environmentType->getChoiceString(),
                 ]
             );
         }
@@ -256,7 +264,7 @@ class ApiContext
      */
     public function closeSession()
     {
-        Session::delete($this, self::SESSION_ID_DUMMY);
+        Session::delete(self::SESSION_ID_DUMMY);
         $this->dropSessionContext();
     }
 
@@ -283,7 +291,7 @@ class ApiContext
      */
     public function isSessionActive(): bool
     {
-        if (is_null($this->sessionContext)){
+        if (is_null($this->sessionContext)) {
             return false;
         }
 

@@ -1,10 +1,8 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
-use bunq\Context\ApiContext;
 use bunq\exception\BunqException;
 use bunq\Http\ApiClient;
-use bunq\Http\BunqResponse;
 use bunq\Model\Core\AnchorObjectInterface;
 use bunq\Model\Core\BunqModel;
 
@@ -50,19 +48,18 @@ class User extends BunqModel implements AnchorObjectInterface
     /**
      * Get a specific user.
      *
-     * @param ApiContext $apiContext
      * @param int $userId
      * @param string[] $customHeaders
      *
      * @return BunqResponseUser
      */
-    public static function get(ApiContext $apiContext, int $userId, array $customHeaders = []): BunqResponseUser
+    public static function get(array $customHeaders = []): BunqResponseUser
     {
-        $apiClient = new ApiClient($apiContext);
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_READ,
-                [$userId]
+                [static::determineUserId()]
             ),
             [],
             $customHeaders
@@ -79,15 +76,14 @@ class User extends BunqModel implements AnchorObjectInterface
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
-     * @param ApiContext $apiContext
      * @param string[] $params
      * @param string[] $customHeaders
      *
      * @return BunqResponseUserList
      */
-    public static function listing(ApiContext $apiContext, array $params = [], array $customHeaders = []): BunqResponseUserList
+    public static function listing(array $params = [], array $customHeaders = []): BunqResponseUserList
     {
-        $apiClient = new ApiClient($apiContext);
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_LISTING,
@@ -111,6 +107,9 @@ class User extends BunqModel implements AnchorObjectInterface
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param UserLight $userLight
      */
     public function setUserLight($userLight)
@@ -127,6 +126,9 @@ class User extends BunqModel implements AnchorObjectInterface
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param UserPerson $userPerson
      */
     public function setUserPerson($userPerson)
@@ -143,6 +145,9 @@ class User extends BunqModel implements AnchorObjectInterface
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param UserCompany $userCompany
      */
     public function setUserCompany($userCompany)

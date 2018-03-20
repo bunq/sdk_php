@@ -1,9 +1,7 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
-use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
-use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Object\LabelMonetaryAccount;
 use bunq\Model\Generated\Object\LabelUser;
@@ -113,20 +111,20 @@ class ShareInviteBankResponse extends BunqModel
     /**
      * Return the details of a specific share a user was invited to.
      *
-     * @param ApiContext $apiContext
-     * @param int $userId
      * @param int $shareInviteBankResponseId
      * @param string[] $customHeaders
      *
      * @return BunqResponseShareInviteBankResponse
      */
-    public static function get(ApiContext $apiContext, int $userId, int $shareInviteBankResponseId, array $customHeaders = []): BunqResponseShareInviteBankResponse
-    {
-        $apiClient = new ApiClient($apiContext);
+    public static function get(
+        int $shareInviteBankResponseId,
+        array $customHeaders = []
+    ): BunqResponseShareInviteBankResponse {
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_READ,
-                [$userId, $shareInviteBankResponseId]
+                [static::determineUserId(), $shareInviteBankResponseId]
             ),
             [],
             $customHeaders
@@ -140,23 +138,28 @@ class ShareInviteBankResponse extends BunqModel
     /**
      * Accept or reject a share a user was invited to.
      *
-     * @param ApiContext $apiContext
-     * @param mixed[] $requestMap
-     * @param int $userId
      * @param int $shareInviteBankResponseId
+     * @param string|null $status The status of the share. Can be PENDING,
+     *                            REVOKED (the user deletes the share inquiry before it's accepted),
+     *                            ACCEPTED, CANCELLED (the user deletes an active share) or
+     *                            CANCELLATION_PENDING, CANCELLATION_ACCEPTED, CANCELLATION_REJECTED (for
+     *                            canceling mutual connects)
      * @param string[] $customHeaders
      *
      * @return BunqResponseInt
      */
-    public static function update(ApiContext $apiContext, array $requestMap, int $userId, int $shareInviteBankResponseId, array $customHeaders = []): BunqResponseInt
-    {
-        $apiClient = new ApiClient($apiContext);
+    public static function update(
+        int $shareInviteBankResponseId,
+        string $status = null,
+        array $customHeaders = []
+    ): BunqResponseInt {
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->put(
             vsprintf(
                 self::ENDPOINT_URL_UPDATE,
-                [$userId, $shareInviteBankResponseId]
+                [static::determineUserId(), $shareInviteBankResponseId]
             ),
-            $requestMap,
+            [self::FIELD_STATUS => $status],
             $customHeaders
         );
 
@@ -171,20 +174,20 @@ class ShareInviteBankResponse extends BunqModel
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
-     * @param ApiContext $apiContext
-     * @param int $userId
      * @param string[] $params
      * @param string[] $customHeaders
      *
      * @return BunqResponseShareInviteBankResponseList
      */
-    public static function listing(ApiContext $apiContext, int $userId, array $params = [], array $customHeaders = []): BunqResponseShareInviteBankResponseList
-    {
-        $apiClient = new ApiClient($apiContext);
+    public static function listing(
+        array $params = [],
+        array $customHeaders = []
+    ): BunqResponseShareInviteBankResponseList {
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_LISTING,
-                [$userId]
+                [static::determineUserId()]
             ),
             $params,
             $customHeaders
@@ -206,6 +209,9 @@ class ShareInviteBankResponse extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param LabelMonetaryAccount $counterAlias
      */
     public function setCounterAlias($counterAlias)
@@ -224,6 +230,9 @@ class ShareInviteBankResponse extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param LabelUser $userAliasCancelled
      */
     public function setUserAliasCancelled($userAliasCancelled)
@@ -243,6 +252,9 @@ class ShareInviteBankResponse extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param int $monetaryAccountId
      */
     public function setMonetaryAccountId($monetaryAccountId)
@@ -261,6 +273,9 @@ class ShareInviteBankResponse extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param int $draftShareInviteBankId
      */
     public function setDraftShareInviteBankId($draftShareInviteBankId)
@@ -279,6 +294,9 @@ class ShareInviteBankResponse extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param ShareDetail $shareDetail
      */
     public function setShareDetail($shareDetail)
@@ -300,6 +318,9 @@ class ShareInviteBankResponse extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $status
      */
     public function setStatus($status)
@@ -318,6 +339,9 @@ class ShareInviteBankResponse extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $shareType
      */
     public function setShareType($shareType)
@@ -336,6 +360,9 @@ class ShareInviteBankResponse extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $startDate
      */
     public function setStartDate($startDate)
@@ -354,6 +381,9 @@ class ShareInviteBankResponse extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $endDate
      */
     public function setEndDate($endDate)
@@ -373,6 +403,9 @@ class ShareInviteBankResponse extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $description
      */
     public function setDescription($description)

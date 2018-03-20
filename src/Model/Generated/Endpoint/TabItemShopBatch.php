@@ -1,9 +1,7 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
-use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
-use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 
 /**
@@ -33,25 +31,34 @@ class TabItemShopBatch extends BunqModel
     /**
      * Create tab items as a batch.
      *
-     * @param ApiContext $apiContext
-     * @param mixed[] $requestMap
-     * @param int $userId
-     * @param int $monetaryAccountId
      * @param int $cashRegisterId
      * @param string $tabUuid
+     * @param TabItemShop[] $tabItems The list of tab items we want to create in
+     *                                a single batch. Limited to 50 items per batch.
+     * @param int|null $monetaryAccountId
      * @param string[] $customHeaders
      *
      * @return BunqResponseInt
      */
-    public static function create(ApiContext $apiContext, array $requestMap, int $userId, int $monetaryAccountId, int $cashRegisterId, string $tabUuid, array $customHeaders = []): BunqResponseInt
-    {
-        $apiClient = new ApiClient($apiContext);
+    public static function create(
+        int $cashRegisterId,
+        string $tabUuid,
+        array $tabItems,
+        int $monetaryAccountId = null,
+        array $customHeaders = []
+    ): BunqResponseInt {
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->post(
             vsprintf(
                 self::ENDPOINT_URL_CREATE,
-                [$userId, $monetaryAccountId, $cashRegisterId, $tabUuid]
+                [
+                    static::determineUserId(),
+                    static::determineMonetaryAccountId($monetaryAccountId),
+                    $cashRegisterId,
+                    $tabUuid,
+                ]
             ),
-            $requestMap,
+            [self::FIELD_TAB_ITEMS => $tabItems],
             $customHeaders
         );
 
@@ -71,6 +78,9 @@ class TabItemShopBatch extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param TabItemShop[] $tabItems
      */
     public function setTabItems($tabItems)

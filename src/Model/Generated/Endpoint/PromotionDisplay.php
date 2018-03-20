@@ -1,9 +1,7 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
-use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
-use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Object\LabelMonetaryAccount;
 
@@ -60,20 +58,18 @@ class PromotionDisplay extends BunqModel
     protected $status;
 
     /**
-     * @param ApiContext $apiContext
-     * @param int $userId
      * @param int $promotionDisplayId
      * @param string[] $customHeaders
      *
      * @return BunqResponsePromotionDisplay
      */
-    public static function get(ApiContext $apiContext, int $userId, int $promotionDisplayId, array $customHeaders = []): BunqResponsePromotionDisplay
+    public static function get(int $promotionDisplayId, array $customHeaders = []): BunqResponsePromotionDisplay
     {
-        $apiClient = new ApiClient($apiContext);
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_READ,
-                [$userId, $promotionDisplayId]
+                [static::determineUserId(), $promotionDisplayId]
             ),
             [],
             $customHeaders
@@ -85,23 +81,25 @@ class PromotionDisplay extends BunqModel
     }
 
     /**
-     * @param ApiContext $apiContext
-     * @param mixed[] $requestMap
-     * @param int $userId
      * @param int $promotionDisplayId
+     * @param string|null $status The status of the promotion. User can set it
+     *                            to discarded.
      * @param string[] $customHeaders
      *
      * @return BunqResponseInt
      */
-    public static function update(ApiContext $apiContext, array $requestMap, int $userId, int $promotionDisplayId, array $customHeaders = []): BunqResponseInt
-    {
-        $apiClient = new ApiClient($apiContext);
+    public static function update(
+        int $promotionDisplayId,
+        string $status = null,
+        array $customHeaders = []
+    ): BunqResponseInt {
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->put(
             vsprintf(
                 self::ENDPOINT_URL_UPDATE,
-                [$userId, $promotionDisplayId]
+                [static::determineUserId(), $promotionDisplayId]
             ),
-            $requestMap,
+            [self::FIELD_STATUS => $status],
             $customHeaders
         );
 
@@ -121,6 +119,9 @@ class PromotionDisplay extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param int $id
      */
     public function setId($id)
@@ -139,6 +140,9 @@ class PromotionDisplay extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param LabelMonetaryAccount $counterpartyAlias
      */
     public function setCounterpartyAlias($counterpartyAlias)
@@ -157,6 +161,9 @@ class PromotionDisplay extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $eventDescription
      */
     public function setEventDescription($eventDescription)
@@ -175,6 +182,9 @@ class PromotionDisplay extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $status
      */
     public function setStatus($status)

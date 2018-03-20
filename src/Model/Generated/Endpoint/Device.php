@@ -1,10 +1,8 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
-use bunq\Context\ApiContext;
 use bunq\exception\BunqException;
 use bunq\Http\ApiClient;
-use bunq\Http\BunqResponse;
 use bunq\Model\Core\AnchorObjectInterface;
 use bunq\Model\Core\BunqModel;
 
@@ -40,15 +38,14 @@ class Device extends BunqModel implements AnchorObjectInterface
     /**
      * Get a single Device. A Device is either a DevicePhone or a DeviceServer.
      *
-     * @param ApiContext $apiContext
      * @param int $deviceId
      * @param string[] $customHeaders
      *
      * @return BunqResponseDevice
      */
-    public static function get(ApiContext $apiContext, int $deviceId, array $customHeaders = []): BunqResponseDevice
+    public static function get(int $deviceId, array $customHeaders = []): BunqResponseDevice
     {
-        $apiClient = new ApiClient($apiContext);
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_READ,
@@ -70,15 +67,14 @@ class Device extends BunqModel implements AnchorObjectInterface
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
-     * @param ApiContext $apiContext
      * @param string[] $params
      * @param string[] $customHeaders
      *
      * @return BunqResponseDeviceList
      */
-    public static function listing(ApiContext $apiContext, array $params = [], array $customHeaders = []): BunqResponseDeviceList
+    public static function listing(array $params = [], array $customHeaders = []): BunqResponseDeviceList
     {
-        $apiClient = new ApiClient($apiContext);
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_LISTING,
@@ -102,6 +98,9 @@ class Device extends BunqModel implements AnchorObjectInterface
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param DeviceServer $deviceServer
      */
     public function setDeviceServer($deviceServer)

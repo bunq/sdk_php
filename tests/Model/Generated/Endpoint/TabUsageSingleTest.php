@@ -35,16 +35,6 @@ class TabUsageSingleTest extends BunqSdkTestBase
     /**
      * @var int
      */
-    private static $userId;
-
-    /**
-     * @var int
-     */
-    private static $monetaryAccountId;
-
-    /**
-     * @var int
-     */
     private static $cashRegisterId;
 
     /**
@@ -57,8 +47,6 @@ class TabUsageSingleTest extends BunqSdkTestBase
     public static function setUpBeforeClass()
     {
         parent::setUpBeforeClass();
-        static::$userId = Config::getUserId();
-        static::$monetaryAccountId = Config::getMonetaryAccountId();
         static::$cashRegisterId = Config::getCashRegisterId();
     }
 
@@ -67,12 +55,7 @@ class TabUsageSingleTest extends BunqSdkTestBase
      */
     public static function tearDownAfterClass()
     {
-        $apiContext = static::getApiContext();
-
         TabUsageSingle::delete(
-            $apiContext,
-            static::$userId,
-            static::$monetaryAccountId,
             static::$cashRegisterId,
             static::$tabUuid
         );
@@ -85,19 +68,11 @@ class TabUsageSingleTest extends BunqSdkTestBase
      */
     public function testCreateTab()
     {
-        $apiContext = static::getApiContext();
-
-        $tabUsageSingleCreateMap = [
-            TabUsageSingle::FIELD_DESCRIPTION => self::TAB_DESCRIPTION,
-            TabUsageSingle::FIELD_STATUS => self::TAB_STATUS_BEFORE,
-            TabUsageSingle::FIELD_AMOUNT_TOTAL => new Amount(self::AMOUNT_IN_EUR, self::TAB_CURRENCY),
-        ];
         static::$tabUuid = TabUsageSingle::create(
-            $apiContext,
-            $tabUsageSingleCreateMap,
-            static::$userId,
-            static::$monetaryAccountId,
-            static::$cashRegisterId
+            static::$cashRegisterId,
+            self::TAB_DESCRIPTION,
+            self::TAB_STATUS_BEFORE,
+            new Amount(self::AMOUNT_IN_EUR, self::TAB_CURRENCY)
         )->getValue();
     }
 
@@ -108,19 +83,16 @@ class TabUsageSingleTest extends BunqSdkTestBase
      */
     public function testAddItemToTab()
     {
-        $apiContext = static::getApiContext();
-
-        $tabItemShopMap = [
-            TabItemShop::FIELD_DESCRIPTION => self::ITEM_DESCRIPTION,
-            TabItemShop::FIELD_AMOUNT => new Amount(self::AMOUNT_IN_EUR, self::TAB_CURRENCY),
-        ];
         TabItemShop::create(
-            $apiContext,
-            $tabItemShopMap,
-            static::$userId,
-            static::$monetaryAccountId,
             static::$cashRegisterId,
-            static::$tabUuid
+            static::$tabUuid,
+            self::ITEM_DESCRIPTION,
+            null,
+            null,
+            null,
+            null,
+            null,
+            new Amount(self::AMOUNT_IN_EUR, self::TAB_CURRENCY)
         );
     }
 
@@ -131,18 +103,11 @@ class TabUsageSingleTest extends BunqSdkTestBase
      */
     public function testUpdateTab()
     {
-        $apiContext = static::getApiContext();
-
-        $tabUsageSingleUpdateMap = [
-            TabUsageSingle::FIELD_STATUS => self::TAB_STATUS_AFTER,
-        ];
         TabUsageSingle::update(
-            $apiContext,
-            $tabUsageSingleUpdateMap,
-            static::$userId,
-            static::$monetaryAccountId,
             static::$cashRegisterId,
-            static::$tabUuid
+            static::$tabUuid,
+            null,
+            self::TAB_STATUS_AFTER
         );
     }
 }

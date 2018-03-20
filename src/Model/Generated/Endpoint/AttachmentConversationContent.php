@@ -1,7 +1,6 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
-use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
 use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
@@ -30,21 +29,22 @@ class AttachmentConversationContent extends BunqModel
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
-     * @param ApiContext $apiContext
-     * @param int $userId
      * @param int $chatConversationId
      * @param int $attachmentId
      * @param string[] $customHeaders
      *
      * @return BunqResponseString
      */
-    public static function listing(ApiContext $apiContext, int $userId, int $chatConversationId, int $attachmentId, array $customHeaders = []): BunqResponseString
-    {
-        $apiClient = new ApiClient($apiContext);
+    public static function listing(
+        int $chatConversationId,
+        int $attachmentId,
+        array $customHeaders = []
+    ): BunqResponseString {
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_LISTING,
-                [$userId, $chatConversationId, $attachmentId]
+                [static::determineUserId(), $chatConversationId, $attachmentId]
             ),
             [],
             $customHeaders

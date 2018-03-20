@@ -2,6 +2,7 @@
 namespace bunq\test\Context;
 
 use bunq\Context\ApiContext;
+use bunq\Context\BunqContext;
 use bunq\test\BunqSdkTestBase;
 
 /**
@@ -17,16 +18,9 @@ class ApiContextTest extends BunqSdkTestBase
 
     /**
      */
-    public static function setUpBeforeClass()
-    {
-        static::$apiContext = static::createApiContext();
-    }
-
-    /**
-     */
     public function testApiContextSerializeDeserialize()
     {
-        $apiContextJson = static::$apiContext->toJson();
+        $apiContextJson = BunqContext::getApiContext()->toJson();
         $apiContextDeSerialised = ApiContext::fromJson($apiContextJson);
 
         static::assertEquals($apiContextJson, $apiContextDeSerialised->toJson());
@@ -36,8 +30,8 @@ class ApiContextTest extends BunqSdkTestBase
      */
     public function testApiContextSaveRestore()
     {
-        $apiContextJson = static::$apiContext->toJson();
-        static::$apiContext->save(self::CONTEXT_FILE_PATH_TEST);
+        $apiContextJson = BunqContext::getApiContext()->toJson();
+        BunqContext::getApiContext()->save(self::CONTEXT_FILE_PATH_TEST);
         $apiContextRestored = ApiContext::restore(self::CONTEXT_FILE_PATH_TEST);
 
         static::assertEquals($apiContextJson, $apiContextRestored->toJson());

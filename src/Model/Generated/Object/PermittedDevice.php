@@ -33,6 +33,9 @@ class PermittedDevice extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $description
      */
     public function setDescription($description)
@@ -51,6 +54,9 @@ class PermittedDevice extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $ip
      */
     public function setIp($ip)

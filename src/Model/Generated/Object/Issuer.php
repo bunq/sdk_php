@@ -23,11 +23,13 @@ class Issuer extends BunqModel
     protected $name;
 
     /**
-     * @param string $bic
+     * @param string $bic       The BIC code.
+     * @param string|null $name The name of the bank.
      */
-    public function __construct($bic)
+    public function __construct(string $bic, string $name = null)
     {
         $this->bic = $bic;
+        $this->name = $name;
     }
 
     /**
@@ -41,6 +43,9 @@ class Issuer extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $bic
      */
     public function setBic($bic)
@@ -59,6 +64,9 @@ class Issuer extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $name
      */
     public function setName($name)

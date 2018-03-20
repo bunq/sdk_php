@@ -1,9 +1,7 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
-use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
-use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Object\Attachment;
 
@@ -56,16 +54,18 @@ class TabAttachmentTab extends BunqModel
      * Get a specific attachment. The header of the response contains the
      * content-type of the attachment.
      *
-     * @param ApiContext $apiContext
      * @param string $tabUuid
      * @param int $tabAttachmentTabId
      * @param string[] $customHeaders
      *
      * @return BunqResponseTabAttachmentTab
      */
-    public static function get(ApiContext $apiContext, string $tabUuid, int $tabAttachmentTabId, array $customHeaders = []): BunqResponseTabAttachmentTab
-    {
-        $apiClient = new ApiClient($apiContext);
+    public static function get(
+        string $tabUuid,
+        int $tabAttachmentTabId,
+        array $customHeaders = []
+    ): BunqResponseTabAttachmentTab {
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_READ,
@@ -91,6 +91,9 @@ class TabAttachmentTab extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param int $id
      */
     public function setId($id)
@@ -109,6 +112,9 @@ class TabAttachmentTab extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $created
      */
     public function setCreated($created)
@@ -127,6 +133,9 @@ class TabAttachmentTab extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $updated
      */
     public function setUpdated($updated)
@@ -145,6 +154,9 @@ class TabAttachmentTab extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param Attachment $attachment
      */
     public function setAttachment($attachment)

@@ -1,6 +1,8 @@
 <?php
 namespace bunq\Model\Core;
 
+use bunq\Context\ApiContext;
+use bunq\Context\BunqContext;
 use bunq\Exception\BunqException;
 use bunq\Http\BunqResponse;
 use bunq\Http\BunqResponseRaw;
@@ -75,25 +77,6 @@ abstract class BunqModel implements JsonSerializable
     ];
 
     /**
-     * @param BunqResponseRaw $responseRaw
-     * @param string $wrapper
-     *
-     * @return BunqResponse
-     */
-    protected static function fromJsonList(
-        BunqResponseRaw $responseRaw,
-        string $wrapper = null
-    ): BunqResponse {
-        $json = $responseRaw->getBodyString();
-        $responseArray = ModelUtil::deserializeResponseArray($json);
-        $response = $responseArray[self::FIELD_RESPONSE];
-        $value = static::createListFromResponseArray($response, $wrapper);
-        $pagination = Pagination::restore($responseArray[self::FIELD_PAGINATION]);
-
-        return new BunqResponse($value, $responseRaw->getHeaders(), $pagination);
-    }
-
-    /**
      * @param string $json
      *
      * @return static
@@ -103,30 +86,6 @@ abstract class BunqModel implements JsonSerializable
         $responseArray = ModelUtil::deserializeResponseArray($json);
 
         return static::createFromResponseArray($responseArray);
-    }
-
-    /**
-     * @return bool
-     */
-    abstract protected function isAllFieldNull();
-
-    /**
-     * @param mixed[] $responseArray
-     * @param string $wrapper
-     *
-     * @return BunqModel[]
-     */
-    protected static function createListFromResponseArray(
-        array $responseArray,
-        string $wrapper = null
-    ): array {
-        $list = [];
-
-        foreach ($responseArray as $className => $element) {
-            $list[] = static::createFromResponseArray($element, $wrapper);
-        }
-
-        return $list;
     }
 
     /**
@@ -176,42 +135,6 @@ abstract class BunqModel implements JsonSerializable
 
         if ($model->isAllFieldNull() && $depthCounter < self::DEPTH_COUNTER_MAX) {
             $model = self::decodeInsideModelFields($responseArray, $model, $depthCounter);
-        }
-
-        return $model;
-    }
-
-    /**
-     * @param mixed[] $responseArray
-     * @param BunqModel $model
-     * @param int $depthCounter
-     *
-     * @return BunqModel
-     */
-    private static function decodeInsideModelFields(array $responseArray, BunqModel $model, int $depthCounter)
-    {
-        $modelFields = (array_keys(get_object_vars($model)));
-
-        foreach ($modelFields as $field) {
-            $fieldClass = ModelUtil::getModelClassNameQualifiedOrNull($field);
-
-            if (is_null($fieldClass)) {
-                continue;
-            }
-
-            $reflectionClass = new ReflectionClass($fieldClass);
-            /** @var BunqModel $bunqModelSubClass */
-            $bunqModelSubClass = $reflectionClass->newInstanceWithoutConstructor();
-            $fieldContents = $bunqModelSubClass::createFromResponseArrayAnchorObject(
-                $responseArray,
-                $depthCounter + self::DEPTH_COUNTER_INCREMENTER
-            );
-
-            if ($fieldContents->isAllFieldNull()) {
-                $model->{$field} = null;
-            } else {
-                $model->{$field} = $fieldContents;
-            }
         }
 
         return $model;
@@ -298,6 +221,85 @@ abstract class BunqModel implements JsonSerializable
     }
 
     /**
+     * @param mixed[] $responseArray
+     * @param string $wrapper
+     *
+     * @return BunqModel[]
+     */
+    protected static function createListFromResponseArray(
+        array $responseArray,
+        string $wrapper = null
+    ): array {
+        $list = [];
+
+        foreach ($responseArray as $className => $element) {
+            $list[] = static::createFromResponseArray($element, $wrapper);
+        }
+
+        return $list;
+    }
+
+    /**
+     * @return bool
+     */
+    abstract protected function isAllFieldNull();
+
+    /**
+     * @param mixed[] $responseArray
+     * @param BunqModel $model
+     * @param int $depthCounter
+     *
+     * @return BunqModel
+     */
+    private static function decodeInsideModelFields(array $responseArray, BunqModel $model, int $depthCounter)
+    {
+        $modelFields = (array_keys(get_object_vars($model)));
+
+        foreach ($modelFields as $field) {
+            $fieldClass = ModelUtil::getModelClassNameQualifiedOrNull($field);
+
+            if (is_null($fieldClass)) {
+                continue;
+            }
+
+            $reflectionClass = new ReflectionClass($fieldClass);
+            /** @var BunqModel $bunqModelSubClass */
+            $bunqModelSubClass = $reflectionClass->newInstanceWithoutConstructor();
+            $fieldContents = $bunqModelSubClass::createFromResponseArrayAnchorObject(
+                $responseArray,
+                $depthCounter + self::DEPTH_COUNTER_INCREMENTER
+            );
+
+            if ($fieldContents->isAllFieldNull()) {
+                $model->{$field} = null;
+            } else {
+                $model->{$field} = $fieldContents;
+            }
+        }
+
+        return $model;
+    }
+
+    /**
+     * @param BunqResponseRaw $responseRaw
+     * @param string $wrapper
+     *
+     * @return BunqResponse
+     */
+    protected static function fromJsonList(
+        BunqResponseRaw $responseRaw,
+        string $wrapper = null
+    ): BunqResponse {
+        $json = $responseRaw->getBodyString();
+        $responseArray = ModelUtil::deserializeResponseArray($json);
+        $response = $responseArray[self::FIELD_RESPONSE];
+        $value = static::createListFromResponseArray($response, $wrapper);
+        $pagination = Pagination::restore($responseArray[self::FIELD_PAGINATION]);
+
+        return new BunqResponse($value, $responseRaw->getHeaders(), $pagination);
+    }
+
+    /**
      * @param BunqResponseRaw $responseRaw
      *
      * @return BunqResponse
@@ -351,6 +353,36 @@ abstract class BunqModel implements JsonSerializable
         $uuid = Uuid::fromJson($responseRaw, self::FIELD_UUID)->getValue();
 
         return new BunqResponse($uuid->getUuid(), $responseRaw->getHeaders());
+    }
+
+    /**
+     * @return ApiContext
+     */
+    protected static function getApiContext(): ApiContext
+    {
+        return BunqContext::getApiContext();
+    }
+
+    /**
+     * @return int
+     */
+    protected static function determineUserId(): int
+    {
+        return BunqContext::getUserContext()->getUserId();
+    }
+
+    /**
+     * @param int|null $monetaryAccountId
+     *
+     * @return int
+     */
+    protected static function determineMonetaryAccountId(int $monetaryAccountId = null): int
+    {
+        if (is_null($monetaryAccountId)) {
+            return BunqContext::getUserContext()->getMainMonetaryAccountId();
+        } else {
+            return $monetaryAccountId;
+        }
     }
 
     /**

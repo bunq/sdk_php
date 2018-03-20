@@ -22,6 +22,7 @@ final class InstallationUtil
     const ERROR_EMPTY_API_KEY = 'Api key cannot be empty.';
     const ERROR_EMPTY_DESCRIPTION = 'Description cannot be empty.';
     const ERROR_INVALID_IP_ADDRESS = 'Invalid ip address "%s"';
+    const ERROR_CANNOT_CREATE_API_KEY_PRODUCTION = 'Cannot automatically create API key for production.';
 
     /**
      * Prompt constants.
@@ -39,6 +40,7 @@ final class InstallationUtil
     const PROPERTY_ENVIRONMENT_TYPE = 'environmentType';
     const PROPERTY_API_KEY = 'apiKey';
     const PROPERTY_PROXY_URL = 'proxyUrl';
+    const METHOD_CREATE_SANDBOX_USER = 'createSandboxUser';
     const METHOD_INITIALIZE_INSTALLATION_CONTEXT = 'initializeInstallationContext';
     const METHOD_REGISTER_DEVICE = 'registerDevice';
     const METHOD_INITIALIZE_SESSION_CONTEXT = 'initializeSessionContext';
@@ -107,6 +109,71 @@ final class InstallationUtil
             }
         } catch (BunqException $exception) {
             echo sprintf(self::ERROR_BUNQ_EXCEPTION, $exception->getMessage());
+        } catch (Exception $exception) {
+            echo sprintf(self::ERROR_EXCEPTION, $exception->getMessage());
+        }
+    }
+
+    /**
+     * @param BunqEnumApiEnvironmentType $environmentType
+     * @param string $contextFileName
+     * @param string|null $apiKey
+     */
+    public static function automaticInstall(
+        BunqEnumApiEnvironmentType $environmentType,
+        string $contextFileName,
+        string $apiKey = null
+    ) {
+        try {
+            $context = static::createApiContextWithoutConstructor();
+
+            if (is_null($environmentType)) {
+                $environmentType = BunqEnumApiEnvironmentType::SANDBOX();
+            } else {
+                // Environment already passed
+            }
+
+            static::setPrivateProperty($context, self::PROPERTY_ENVIRONMENT_TYPE, $environmentType);
+
+            if ($environmentType->equals(BunqEnumApiEnvironmentType::SANDBOX()) && is_null($apiKey)) {
+                $methodCreateSandboxUser = static::createAccessibleReflectionMethod(
+                    ApiContext::class,
+                    self::METHOD_CREATE_SANDBOX_USER
+                );
+
+                $methodCreateSandboxUser->invoke($context);
+            } elseif (!is_null($apiKey)) {
+                static::setPrivateProperty($context, self::PROPERTY_API_KEY, $apiKey);
+            } else {
+                throw new BunqException(self::ERROR_CANNOT_CREATE_API_KEY_PRODUCTION);
+            }
+
+            $methodInitializeInstallationContext = static::createAccessibleReflectionMethod(
+                ApiContext::class,
+                self::METHOD_INITIALIZE_INSTALLATION_CONTEXT
+            );
+            $methodInitializeInstallationContext->invoke($context);
+
+            $methodRegisterDevice = static::createAccessibleReflectionMethod(
+                ApiContext::class,
+                self::METHOD_REGISTER_DEVICE
+            );
+            $methodRegisterDevice->invoke($context, gethostname(), []);
+
+            $methodInitializeSessionContext = static::createAccessibleReflectionMethod(
+                ApiContext::class,
+                self::METHOD_INITIALIZE_SESSION_CONTEXT
+            );
+            $methodInitializeSessionContext->invoke($context);
+
+            if ($contextFileName === null) {
+                $context->save();
+            } else {
+                $context->save($contextFileName);
+            }
+        } catch (BunqException $exception) {
+            echo sprintf(self::ERROR_BUNQ_EXCEPTION, $exception->getMessage());
+            var_dump($exception);
         } catch (Exception $exception) {
             echo sprintf(self::ERROR_EXCEPTION, $exception->getMessage());
         }

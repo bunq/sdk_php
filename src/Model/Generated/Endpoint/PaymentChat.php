@@ -1,9 +1,7 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
-use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
-use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 
 /**
@@ -61,24 +59,26 @@ class PaymentChat extends BunqModel
     /**
      * Create a chat for a specific payment.
      *
-     * @param ApiContext $apiContext
-     * @param mixed[] $requestMap
-     * @param int $userId
-     * @param int $monetaryAccountId
      * @param int $paymentId
+     * @param int|null $monetaryAccountId
+     * @param int|null $lastReadMessageId The id of the last read message.
      * @param string[] $customHeaders
      *
      * @return BunqResponseInt
      */
-    public static function create(ApiContext $apiContext, array $requestMap, int $userId, int $monetaryAccountId, int $paymentId, array $customHeaders = []): BunqResponseInt
-    {
-        $apiClient = new ApiClient($apiContext);
+    public static function create(
+        int $paymentId,
+        int $monetaryAccountId = null,
+        int $lastReadMessageId = null,
+        array $customHeaders = []
+    ): BunqResponseInt {
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->post(
             vsprintf(
                 self::ENDPOINT_URL_CREATE,
-                [$userId, $monetaryAccountId, $paymentId]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId), $paymentId]
             ),
-            $requestMap,
+            [self::FIELD_LAST_READ_MESSAGE_ID => $lastReadMessageId],
             $customHeaders
         );
 
@@ -90,25 +90,33 @@ class PaymentChat extends BunqModel
     /**
      * Update the last read message in the chat of a specific payment.
      *
-     * @param ApiContext $apiContext
-     * @param mixed[] $requestMap
-     * @param int $userId
-     * @param int $monetaryAccountId
      * @param int $paymentId
      * @param int $paymentChatId
+     * @param int|null $monetaryAccountId
+     * @param int|null $lastReadMessageId The id of the last read message.
      * @param string[] $customHeaders
      *
      * @return BunqResponseInt
      */
-    public static function update(ApiContext $apiContext, array $requestMap, int $userId, int $monetaryAccountId, int $paymentId, int $paymentChatId, array $customHeaders = []): BunqResponseInt
-    {
-        $apiClient = new ApiClient($apiContext);
+    public static function update(
+        int $paymentId,
+        int $paymentChatId,
+        int $monetaryAccountId = null,
+        int $lastReadMessageId = null,
+        array $customHeaders = []
+    ): BunqResponseInt {
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->put(
             vsprintf(
                 self::ENDPOINT_URL_UPDATE,
-                [$userId, $monetaryAccountId, $paymentId, $paymentChatId]
+                [
+                    static::determineUserId(),
+                    static::determineMonetaryAccountId($monetaryAccountId),
+                    $paymentId,
+                    $paymentChatId,
+                ]
             ),
-            $requestMap,
+            [self::FIELD_LAST_READ_MESSAGE_ID => $lastReadMessageId],
             $customHeaders
         );
 
@@ -123,22 +131,24 @@ class PaymentChat extends BunqModel
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
-     * @param ApiContext $apiContext
-     * @param int $userId
-     * @param int $monetaryAccountId
      * @param int $paymentId
+     * @param int|null $monetaryAccountId
      * @param string[] $params
      * @param string[] $customHeaders
      *
      * @return BunqResponsePaymentChatList
      */
-    public static function listing(ApiContext $apiContext, int $userId, int $monetaryAccountId, int $paymentId, array $params = [], array $customHeaders = []): BunqResponsePaymentChatList
-    {
-        $apiClient = new ApiClient($apiContext);
+    public static function listing(
+        int $paymentId,
+        int $monetaryAccountId = null,
+        array $params = [],
+        array $customHeaders = []
+    ): BunqResponsePaymentChatList {
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_LISTING,
-                [$userId, $monetaryAccountId, $paymentId]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId), $paymentId]
             ),
             $params,
             $customHeaders
@@ -160,6 +170,9 @@ class PaymentChat extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param int $id
      */
     public function setId($id)
@@ -178,6 +191,9 @@ class PaymentChat extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $created
      */
     public function setCreated($created)
@@ -196,6 +212,9 @@ class PaymentChat extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $updated
      */
     public function setUpdated($updated)
@@ -214,6 +233,9 @@ class PaymentChat extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param int $unreadMessageCount
      */
     public function setUnreadMessageCount($unreadMessageCount)

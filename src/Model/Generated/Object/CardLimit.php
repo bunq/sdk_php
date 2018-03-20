@@ -38,11 +38,13 @@ class CardLimit extends BunqModel
     protected $id;
 
     /**
-     * @param string $dailyLimit
-     * @param string $currency
-     * @param string $type
+     * @param string $dailyLimit The daily limit amount.
+     * @param string $currency   Currency for the daily limit.
+     * @param string $type       The type of transaction for the limit. Can be
+     *                           CARD_LIMIT_ATM, CARD_LIMIT_CONTACTLESS, CARD_LIMIT_DIPPING or
+     *                           CARD_LIMIT_POS_ICC.
      */
-    public function __construct($dailyLimit, $currency, $type)
+    public function __construct(string $dailyLimit, string $currency, string $type)
     {
         $this->dailyLimit = $dailyLimit;
         $this->currency = $currency;
@@ -60,6 +62,9 @@ class CardLimit extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param int $id
      */
     public function setId($id)
@@ -78,6 +83,9 @@ class CardLimit extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $dailyLimit
      */
     public function setDailyLimit($dailyLimit)
@@ -96,6 +104,9 @@ class CardLimit extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $currency
      */
     public function setCurrency($currency)
@@ -115,6 +126,9 @@ class CardLimit extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $type
      */
     public function setType($type)
