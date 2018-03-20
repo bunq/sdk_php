@@ -44,11 +44,12 @@ class LabelUser extends BunqModel
     protected $publicNickName;
 
     /**
-     * @param string $uuid
-     * @param string $displayName
-     * @param string $country
+     * @param string $uuid        The public UUID of the label-user.
+     * @param string $displayName The name to be displayed for this user, as it
+     *                            was given on the request.
+     * @param string $country     The country of the user
      */
-    public function __construct($uuid, $displayName, $country)
+    public function __construct(string $uuid, string $displayName, string $country)
     {
         $this->uuid = $uuid;
         $this->displayName = $displayName;
@@ -66,6 +67,9 @@ class LabelUser extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $uuid
      */
     public function setUuid($uuid)
@@ -84,6 +88,9 @@ class LabelUser extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param Avatar $avatar
      */
     public function setAvatar($avatar)
@@ -102,6 +109,9 @@ class LabelUser extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $publicNickName
      */
     public function setPublicNickName($publicNickName)
@@ -120,6 +130,9 @@ class LabelUser extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $displayName
      */
     public function setDisplayName($displayName)
@@ -138,6 +151,9 @@ class LabelUser extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $country
      */
     public function setCountry($country)

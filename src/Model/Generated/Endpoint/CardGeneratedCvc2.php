@@ -1,9 +1,7 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
-use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
-use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 
 /**
@@ -23,7 +21,7 @@ class CardGeneratedCvc2 extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'CardGeneratedCvc2';
+    const OBJECT_TYPE_GET = 'CardGeneratedCvc2';
 
     /**
      * The id of the cvc code.
@@ -70,57 +68,55 @@ class CardGeneratedCvc2 extends BunqModel
     /**
      * Generate a new CVC2 code for a card.
      *
-     * @param ApiContext $apiContext
-     * @param mixed[] $requestMap
-     * @param int $userId
      * @param int $cardId
      * @param string[] $customHeaders
      *
-     * @return BunqResponseCardGeneratedCvc2
+     * @return BunqResponseInt
      */
-    public static function create(ApiContext $apiContext, array $requestMap, int $userId, int $cardId, array $customHeaders = []): BunqResponseCardGeneratedCvc2
+    public static function create(int $cardId, array $customHeaders = []): BunqResponseInt
     {
-        $apiClient = new ApiClient($apiContext);
+        $apiClient = new ApiClient(static::getApiContext());
         $apiClient->enableEncryption();
         $responseRaw = $apiClient->post(
             vsprintf(
                 self::ENDPOINT_URL_CREATE,
-                [$userId, $cardId]
+                [static::determineUserId(), $cardId]
             ),
-            $requestMap,
+            [],
             $customHeaders
         );
 
-        return BunqResponseCardGeneratedCvc2::castFromBunqResponse(
-            static::fromJson($responseRaw, self::OBJECT_TYPE)
+        return BunqResponseInt::castFromBunqResponse(
+            static::processForId($responseRaw)
         );
     }
 
     /**
      * Get the details for a specific generated CVC2 code.
      *
-     * @param ApiContext $apiContext
-     * @param int $userId
      * @param int $cardId
      * @param int $cardGeneratedCvc2Id
      * @param string[] $customHeaders
      *
      * @return BunqResponseCardGeneratedCvc2
      */
-    public static function get(ApiContext $apiContext, int $userId, int $cardId, int $cardGeneratedCvc2Id, array $customHeaders = []): BunqResponseCardGeneratedCvc2
-    {
-        $apiClient = new ApiClient($apiContext);
+    public static function get(
+        int $cardId,
+        int $cardGeneratedCvc2Id,
+        array $customHeaders = []
+    ): BunqResponseCardGeneratedCvc2 {
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_READ,
-                [$userId, $cardId, $cardGeneratedCvc2Id]
+                [static::determineUserId(), $cardId, $cardGeneratedCvc2Id]
             ),
             [],
             $customHeaders
         );
 
         return BunqResponseCardGeneratedCvc2::castFromBunqResponse(
-            static::fromJson($responseRaw, self::OBJECT_TYPE)
+            static::fromJson($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 
@@ -130,28 +126,29 @@ class CardGeneratedCvc2 extends BunqModel
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
-     * @param ApiContext $apiContext
-     * @param int $userId
      * @param int $cardId
      * @param string[] $params
      * @param string[] $customHeaders
      *
      * @return BunqResponseCardGeneratedCvc2List
      */
-    public static function listing(ApiContext $apiContext, int $userId, int $cardId, array $params = [], array $customHeaders = []): BunqResponseCardGeneratedCvc2List
-    {
-        $apiClient = new ApiClient($apiContext);
+    public static function listing(
+        int $cardId,
+        array $params = [],
+        array $customHeaders = []
+    ): BunqResponseCardGeneratedCvc2List {
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_LISTING,
-                [$userId, $cardId]
+                [static::determineUserId(), $cardId]
             ),
             $params,
             $customHeaders
         );
 
         return BunqResponseCardGeneratedCvc2List::castFromBunqResponse(
-            static::fromJsonList($responseRaw, self::OBJECT_TYPE)
+            static::fromJsonList($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 
@@ -166,6 +163,9 @@ class CardGeneratedCvc2 extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param int $id
      */
     public function setId($id)
@@ -184,6 +184,9 @@ class CardGeneratedCvc2 extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $created
      */
     public function setCreated($created)
@@ -202,6 +205,9 @@ class CardGeneratedCvc2 extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $updated
      */
     public function setUpdated($updated)
@@ -220,6 +226,9 @@ class CardGeneratedCvc2 extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $cvc2
      */
     public function setCvc2($cvc2)
@@ -238,6 +247,9 @@ class CardGeneratedCvc2 extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $status
      */
     public function setStatus($status)
@@ -256,6 +268,9 @@ class CardGeneratedCvc2 extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $expiryTime
      */
     public function setExpiryTime($expiryTime)

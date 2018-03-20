@@ -1,9 +1,7 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
-use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
-use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Object\Avatar;
 use bunq\Model\Generated\Object\Geolocation;
@@ -45,7 +43,7 @@ class CashRegister extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'CashRegister';
+    const OBJECT_TYPE_GET = 'CashRegister';
 
     /**
      * The id of the created CashRegister.
@@ -119,23 +117,48 @@ class CashRegister extends BunqModel
      * sandbox testing environment an CashRegister will be automatically
      * approved immediately after creation.
      *
-     * @param ApiContext $apiContext
-     * @param mixed[] $requestMap
-     * @param int $userId
-     * @param int $monetaryAccountId
+     * @param string $name                                      The name of the CashRegister. Must be unique for this
+     *                                                          MonetaryAccount.
+     * @param string $status                                    The status of the CashRegister. Can only be created
+     *                                                          or updated with PENDING_APPROVAL or CLOSED.
+     * @param string $avatarUuid                                The UUID of the avatar of the CashRegister. Use
+     *                                                          the calls /attachment-public and /avatar to create a
+     *                                                          new Avatar and get its UUID.
+     * @param int|null $monetaryAccountId
+     * @param Geolocation|null $location                        The geolocation of the CashRegister.
+     * @param NotificationFilter[]|null $notificationFilters    The types of
+     *                                                          notifications that will result in a push notification
+     *                                                          or URL callback for this CashRegister.
+     * @param TabTextWaitingScreen[]|null $tabTextWaitingScreen The tab text for
+     *                                                          waiting screen of CashRegister.
      * @param string[] $customHeaders
      *
      * @return BunqResponseInt
      */
-    public static function create(ApiContext $apiContext, array $requestMap, int $userId, int $monetaryAccountId, array $customHeaders = []): BunqResponseInt
-    {
-        $apiClient = new ApiClient($apiContext);
+    public static function create(
+        string $name,
+        string $status,
+        string $avatarUuid,
+        int $monetaryAccountId = null,
+        Geolocation $location = null,
+        array $notificationFilters = null,
+        array $tabTextWaitingScreen = null,
+        array $customHeaders = []
+    ): BunqResponseInt {
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->post(
             vsprintf(
                 self::ENDPOINT_URL_CREATE,
-                [$userId, $monetaryAccountId]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId)]
             ),
-            $requestMap,
+            [
+                self::FIELD_NAME => $name,
+                self::FIELD_STATUS => $status,
+                self::FIELD_AVATAR_UUID => $avatarUuid,
+                self::FIELD_LOCATION => $location,
+                self::FIELD_NOTIFICATION_FILTERS => $notificationFilters,
+                self::FIELD_TAB_TEXT_WAITING_SCREEN => $tabTextWaitingScreen,
+            ],
             $customHeaders
         );
 
@@ -147,28 +170,29 @@ class CashRegister extends BunqModel
     /**
      * Get a specific CashRegister.
      *
-     * @param ApiContext $apiContext
-     * @param int $userId
-     * @param int $monetaryAccountId
      * @param int $cashRegisterId
+     * @param int|null $monetaryAccountId
      * @param string[] $customHeaders
      *
      * @return BunqResponseCashRegister
      */
-    public static function get(ApiContext $apiContext, int $userId, int $monetaryAccountId, int $cashRegisterId, array $customHeaders = []): BunqResponseCashRegister
-    {
-        $apiClient = new ApiClient($apiContext);
+    public static function get(
+        int $cashRegisterId,
+        int $monetaryAccountId = null,
+        array $customHeaders = []
+    ): BunqResponseCashRegister {
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_READ,
-                [$userId, $monetaryAccountId, $cashRegisterId]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId), $cashRegisterId]
             ),
             [],
             $customHeaders
         );
 
         return BunqResponseCashRegister::castFromBunqResponse(
-            static::fromJson($responseRaw, self::OBJECT_TYPE)
+            static::fromJson($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 
@@ -177,24 +201,50 @@ class CashRegister extends BunqModel
      * PENDING_APPROVAL if you modify the name, avatar or location of a
      * CashRegister. To close a cash register put its status to CLOSED.
      *
-     * @param ApiContext $apiContext
-     * @param mixed[] $requestMap
-     * @param int $userId
-     * @param int $monetaryAccountId
      * @param int $cashRegisterId
+     * @param int|null $monetaryAccountId
+     * @param string|null $name                                 The name of the CashRegister. Must be unique for
+     *                                                          this MonetaryAccount.
+     * @param string|null $status                               The status of the CashRegister. Can only be
+     *                                                          created or updated with PENDING_APPROVAL or CLOSED.
+     * @param string|null $avatarUuid                           The UUID of the avatar of the
+     *                                                          CashRegister. Use the calls /attachment-public and
+     *                                                          /avatar to create a new Avatar and get its UUID.
+     * @param Geolocation|null $location                        The geolocation of the CashRegister.
+     * @param NotificationFilter[]|null $notificationFilters    The types of
+     *                                                          notifications that will result in a push notification
+     *                                                          or URL callback for this CashRegister.
+     * @param TabTextWaitingScreen[]|null $tabTextWaitingScreen The tab text for
+     *                                                          waiting screen of CashRegister.
      * @param string[] $customHeaders
      *
      * @return BunqResponseInt
      */
-    public static function update(ApiContext $apiContext, array $requestMap, int $userId, int $monetaryAccountId, int $cashRegisterId, array $customHeaders = []): BunqResponseInt
-    {
-        $apiClient = new ApiClient($apiContext);
+    public static function update(
+        int $cashRegisterId,
+        int $monetaryAccountId = null,
+        string $name = null,
+        string $status = null,
+        string $avatarUuid = null,
+        Geolocation $location = null,
+        array $notificationFilters = null,
+        array $tabTextWaitingScreen = null,
+        array $customHeaders = []
+    ): BunqResponseInt {
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->put(
             vsprintf(
                 self::ENDPOINT_URL_UPDATE,
-                [$userId, $monetaryAccountId, $cashRegisterId]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId), $cashRegisterId]
             ),
-            $requestMap,
+            [
+                self::FIELD_NAME => $name,
+                self::FIELD_STATUS => $status,
+                self::FIELD_AVATAR_UUID => $avatarUuid,
+                self::FIELD_LOCATION => $location,
+                self::FIELD_NOTIFICATION_FILTERS => $notificationFilters,
+                self::FIELD_TAB_TEXT_WAITING_SCREEN => $tabTextWaitingScreen,
+            ],
             $customHeaders
         );
 
@@ -209,28 +259,29 @@ class CashRegister extends BunqModel
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
-     * @param ApiContext $apiContext
-     * @param int $userId
-     * @param int $monetaryAccountId
+     * @param int|null $monetaryAccountId
      * @param string[] $params
      * @param string[] $customHeaders
      *
      * @return BunqResponseCashRegisterList
      */
-    public static function listing(ApiContext $apiContext, int $userId, int $monetaryAccountId, array $params = [], array $customHeaders = []): BunqResponseCashRegisterList
-    {
-        $apiClient = new ApiClient($apiContext);
+    public static function listing(
+        int $monetaryAccountId = null,
+        array $params = [],
+        array $customHeaders = []
+    ): BunqResponseCashRegisterList {
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_LISTING,
-                [$userId, $monetaryAccountId]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId)]
             ),
             $params,
             $customHeaders
         );
 
         return BunqResponseCashRegisterList::castFromBunqResponse(
-            static::fromJsonList($responseRaw, self::OBJECT_TYPE)
+            static::fromJsonList($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 
@@ -245,6 +296,9 @@ class CashRegister extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param int $id
      */
     public function setId($id)
@@ -263,6 +317,9 @@ class CashRegister extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $created
      */
     public function setCreated($created)
@@ -281,6 +338,9 @@ class CashRegister extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $updated
      */
     public function setUpdated($updated)
@@ -299,6 +359,9 @@ class CashRegister extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $name
      */
     public function setName($name)
@@ -318,6 +381,9 @@ class CashRegister extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $status
      */
     public function setStatus($status)
@@ -336,6 +402,9 @@ class CashRegister extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param Avatar $avatar
      */
     public function setAvatar($avatar)
@@ -354,6 +423,9 @@ class CashRegister extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param Geolocation $location
      */
     public function setLocation($location)
@@ -373,6 +445,9 @@ class CashRegister extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param NotificationFilter[] $notificationFilters
      */
     public function setNotificationFilters($notificationFilters)
@@ -391,6 +466,9 @@ class CashRegister extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param TabTextWaitingScreen[] $tabTextWaitingScreen
      */
     public function setTabTextWaitingScreen($tabTextWaitingScreen)

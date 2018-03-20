@@ -1,9 +1,7 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
-use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
-use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Object\Amount;
 use bunq\Model\Generated\Object\Avatar;
@@ -38,21 +36,18 @@ class MonetaryAccountBank extends BunqModel
     const FIELD_CURRENCY = 'currency';
     const FIELD_DESCRIPTION = 'description';
     const FIELD_DAILY_LIMIT = 'daily_limit';
-    const FIELD_OVERDRAFT_LIMIT = 'overdraft_limit';
-    const FIELD_ALIAS = 'alias';
     const FIELD_AVATAR_UUID = 'avatar_uuid';
     const FIELD_STATUS = 'status';
     const FIELD_SUB_STATUS = 'sub_status';
     const FIELD_REASON = 'reason';
     const FIELD_REASON_DESCRIPTION = 'reason_description';
-    const FIELD_SHARE = 'share';
     const FIELD_NOTIFICATION_FILTERS = 'notification_filters';
     const FIELD_SETTING = 'setting';
 
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'MonetaryAccountBank';
+    const OBJECT_TYPE_GET = 'MonetaryAccountBank';
 
     /**
      * The id of the MonetaryAccountBank.
@@ -207,22 +202,78 @@ class MonetaryAccountBank extends BunqModel
     /**
      * Create new MonetaryAccountBank.
      *
-     * @param ApiContext $apiContext
-     * @param mixed[] $requestMap
-     * @param int $userId
+     * @param string $currency                               The currency of the MonetaryAccountBank as an ISO
+     *                                                       4217 formatted currency code.
+     * @param string|null $description                       The description of the
+     *                                                       MonetaryAccountBank. Defaults to 'bunq account'.
+     * @param Amount|null $dailyLimit                        The daily spending limit Amount of the
+     *                                                       MonetaryAccountBank. Defaults to 1000 EUR. Currency must
+     *                                                       match the MonetaryAccountBank's currency. Limited to 10000
+     *                                                       EUR.
+     * @param string|null $avatarUuid                        The UUID of the Avatar of the
+     *                                                       MonetaryAccountBank.
+     * @param string|null $status                            The status of the MonetaryAccountBank. Ignored
+     *                                                       in POST requests (always set to ACTIVE) can be CANCELLED
+     *                                                       or
+     *                                                       PENDING_REOPEN in PUT requests to cancel (close) or reopen
+     *                                                       the MonetaryAccountBank. When updating the status and/or
+     *                                                       sub_status no other fields can be updated in the same
+     *                                                       request (and vice versa).
+     * @param string|null $subStatus                         The sub-status of the MonetaryAccountBank
+     *                                                       providing extra information regarding the status. Should
+     *                                                       be ignored for POST requests. In case of PUT requests with
+     *                                                       status CANCELLED it can only be REDEMPTION_VOLUNTARY,
+     *                                                       while with status PENDING_REOPEN it can only be NONE. When
+     *                                                       updating the status and/or sub_status no other fields can
+     *                                                       be updated in the same request (and vice versa).
+     * @param string|null $reason                            The reason for voluntarily cancelling
+     *                                                       (closing) the MonetaryAccountBank, can only be OTHER.
+     *                                                       Should only be specified if updating the status to
+     *                                                       CANCELLED.
+     * @param string|null $reasonDescription                 The optional free-form reason for
+     *                                                       voluntarily cancelling (closing) the MonetaryAccountBank.
+     *                                                       Can be any user provided message. Should only be specified
+     *                                                       if updating the status to CANCELLED.
+     * @param NotificationFilter[]|null $notificationFilters The types of
+     *                                                       notifications that will result in a push notification or
+     *                                                       URL callback for this MonetaryAccountBank.
+     * @param MonetaryAccountSetting|null $setting           The settings of the
+     *                                                       MonetaryAccountBank.
      * @param string[] $customHeaders
      *
      * @return BunqResponseInt
      */
-    public static function create(ApiContext $apiContext, array $requestMap, int $userId, array $customHeaders = []): BunqResponseInt
-    {
-        $apiClient = new ApiClient($apiContext);
+    public static function create(
+        string $currency,
+        string $description = null,
+        Amount $dailyLimit = null,
+        string $avatarUuid = null,
+        string $status = null,
+        string $subStatus = null,
+        string $reason = null,
+        string $reasonDescription = null,
+        array $notificationFilters = null,
+        MonetaryAccountSetting $setting = null,
+        array $customHeaders = []
+    ): BunqResponseInt {
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->post(
             vsprintf(
                 self::ENDPOINT_URL_CREATE,
-                [$userId]
+                [static::determineUserId()]
             ),
-            $requestMap,
+            [
+                self::FIELD_CURRENCY => $currency,
+                self::FIELD_DESCRIPTION => $description,
+                self::FIELD_DAILY_LIMIT => $dailyLimit,
+                self::FIELD_AVATAR_UUID => $avatarUuid,
+                self::FIELD_STATUS => $status,
+                self::FIELD_SUB_STATUS => $subStatus,
+                self::FIELD_REASON => $reason,
+                self::FIELD_REASON_DESCRIPTION => $reasonDescription,
+                self::FIELD_NOTIFICATION_FILTERS => $notificationFilters,
+                self::FIELD_SETTING => $setting,
+            ],
             $customHeaders
         );
 
@@ -234,50 +285,101 @@ class MonetaryAccountBank extends BunqModel
     /**
      * Get a specific MonetaryAccountBank.
      *
-     * @param ApiContext $apiContext
-     * @param int $userId
      * @param int $monetaryAccountBankId
      * @param string[] $customHeaders
      *
      * @return BunqResponseMonetaryAccountBank
      */
-    public static function get(ApiContext $apiContext, int $userId, int $monetaryAccountBankId, array $customHeaders = []): BunqResponseMonetaryAccountBank
+    public static function get(int $monetaryAccountBankId, array $customHeaders = []): BunqResponseMonetaryAccountBank
     {
-        $apiClient = new ApiClient($apiContext);
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_READ,
-                [$userId, $monetaryAccountBankId]
+                [static::determineUserId(), $monetaryAccountBankId]
             ),
             [],
             $customHeaders
         );
 
         return BunqResponseMonetaryAccountBank::castFromBunqResponse(
-            static::fromJson($responseRaw, self::OBJECT_TYPE)
+            static::fromJson($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 
     /**
      * Update a specific existing MonetaryAccountBank.
      *
-     * @param ApiContext $apiContext
-     * @param mixed[] $requestMap
-     * @param int $userId
      * @param int $monetaryAccountBankId
+     * @param string|null $description                       The description of the
+     *                                                       MonetaryAccountBank. Defaults to 'bunq account'.
+     * @param Amount|null $dailyLimit                        The daily spending limit Amount of the
+     *                                                       MonetaryAccountBank. Defaults to 1000 EUR. Currency must
+     *                                                       match the MonetaryAccountBank's currency. Limited to 10000
+     *                                                       EUR.
+     * @param string|null $avatarUuid                        The UUID of the Avatar of the
+     *                                                       MonetaryAccountBank.
+     * @param string|null $status                            The status of the MonetaryAccountBank. Ignored
+     *                                                       in POST requests (always set to ACTIVE) can be CANCELLED
+     *                                                       or
+     *                                                       PENDING_REOPEN in PUT requests to cancel (close) or reopen
+     *                                                       the MonetaryAccountBank. When updating the status and/or
+     *                                                       sub_status no other fields can be updated in the same
+     *                                                       request (and vice versa).
+     * @param string|null $subStatus                         The sub-status of the MonetaryAccountBank
+     *                                                       providing extra information regarding the status. Should
+     *                                                       be ignored for POST requests. In case of PUT requests with
+     *                                                       status CANCELLED it can only be REDEMPTION_VOLUNTARY,
+     *                                                       while with status PENDING_REOPEN it can only be NONE. When
+     *                                                       updating the status and/or sub_status no other fields can
+     *                                                       be updated in the same request (and vice versa).
+     * @param string|null $reason                            The reason for voluntarily cancelling
+     *                                                       (closing) the MonetaryAccountBank, can only be OTHER.
+     *                                                       Should only be specified if updating the status to
+     *                                                       CANCELLED.
+     * @param string|null $reasonDescription                 The optional free-form reason for
+     *                                                       voluntarily cancelling (closing) the MonetaryAccountBank.
+     *                                                       Can be any user provided message. Should only be specified
+     *                                                       if updating the status to CANCELLED.
+     * @param NotificationFilter[]|null $notificationFilters The types of
+     *                                                       notifications that will result in a push notification or
+     *                                                       URL callback for this MonetaryAccountBank.
+     * @param MonetaryAccountSetting|null $setting           The settings of the
+     *                                                       MonetaryAccountBank.
      * @param string[] $customHeaders
      *
      * @return BunqResponseInt
      */
-    public static function update(ApiContext $apiContext, array $requestMap, int $userId, int $monetaryAccountBankId, array $customHeaders = []): BunqResponseInt
-    {
-        $apiClient = new ApiClient($apiContext);
+    public static function update(
+        int $monetaryAccountBankId,
+        string $description = null,
+        Amount $dailyLimit = null,
+        string $avatarUuid = null,
+        string $status = null,
+        string $subStatus = null,
+        string $reason = null,
+        string $reasonDescription = null,
+        array $notificationFilters = null,
+        MonetaryAccountSetting $setting = null,
+        array $customHeaders = []
+    ): BunqResponseInt {
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->put(
             vsprintf(
                 self::ENDPOINT_URL_UPDATE,
-                [$userId, $monetaryAccountBankId]
+                [static::determineUserId(), $monetaryAccountBankId]
             ),
-            $requestMap,
+            [
+                self::FIELD_DESCRIPTION => $description,
+                self::FIELD_DAILY_LIMIT => $dailyLimit,
+                self::FIELD_AVATAR_UUID => $avatarUuid,
+                self::FIELD_STATUS => $status,
+                self::FIELD_SUB_STATUS => $subStatus,
+                self::FIELD_REASON => $reason,
+                self::FIELD_REASON_DESCRIPTION => $reasonDescription,
+                self::FIELD_NOTIFICATION_FILTERS => $notificationFilters,
+                self::FIELD_SETTING => $setting,
+            ],
             $customHeaders
         );
 
@@ -292,27 +394,25 @@ class MonetaryAccountBank extends BunqModel
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
-     * @param ApiContext $apiContext
-     * @param int $userId
      * @param string[] $params
      * @param string[] $customHeaders
      *
      * @return BunqResponseMonetaryAccountBankList
      */
-    public static function listing(ApiContext $apiContext, int $userId, array $params = [], array $customHeaders = []): BunqResponseMonetaryAccountBankList
+    public static function listing(array $params = [], array $customHeaders = []): BunqResponseMonetaryAccountBankList
     {
-        $apiClient = new ApiClient($apiContext);
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_LISTING,
-                [$userId]
+                [static::determineUserId()]
             ),
             $params,
             $customHeaders
         );
 
         return BunqResponseMonetaryAccountBankList::castFromBunqResponse(
-            static::fromJsonList($responseRaw, self::OBJECT_TYPE)
+            static::fromJsonList($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 
@@ -327,6 +427,9 @@ class MonetaryAccountBank extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param int $id
      */
     public function setId($id)
@@ -345,6 +448,9 @@ class MonetaryAccountBank extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $created
      */
     public function setCreated($created)
@@ -363,6 +469,9 @@ class MonetaryAccountBank extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $updated
      */
     public function setUpdated($updated)
@@ -381,6 +490,9 @@ class MonetaryAccountBank extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param Avatar $avatar
      */
     public function setAvatar($avatar)
@@ -400,6 +512,9 @@ class MonetaryAccountBank extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $currency
      */
     public function setCurrency($currency)
@@ -418,6 +533,9 @@ class MonetaryAccountBank extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $description
      */
     public function setDescription($description)
@@ -438,6 +556,9 @@ class MonetaryAccountBank extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param Amount $dailyLimit
      */
     public function setDailyLimit($dailyLimit)
@@ -456,6 +577,9 @@ class MonetaryAccountBank extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param Amount $dailySpent
      */
     public function setDailySpent($dailySpent)
@@ -474,6 +598,9 @@ class MonetaryAccountBank extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param Amount $overdraftLimit
      */
     public function setOverdraftLimit($overdraftLimit)
@@ -492,6 +619,9 @@ class MonetaryAccountBank extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param Amount $balance
      */
     public function setBalance($balance)
@@ -510,6 +640,9 @@ class MonetaryAccountBank extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param Pointer[] $alias
      */
     public function setAlias($alias)
@@ -528,6 +661,9 @@ class MonetaryAccountBank extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $publicUuid
      */
     public function setPublicUuid($publicUuid)
@@ -547,6 +683,9 @@ class MonetaryAccountBank extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $status
      */
     public function setStatus($status)
@@ -568,6 +707,9 @@ class MonetaryAccountBank extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $subStatus
      */
     public function setSubStatus($subStatus)
@@ -587,6 +729,9 @@ class MonetaryAccountBank extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $reason
      */
     public function setReason($reason)
@@ -606,6 +751,9 @@ class MonetaryAccountBank extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $reasonDescription
      */
     public function setReasonDescription($reasonDescription)
@@ -624,6 +772,9 @@ class MonetaryAccountBank extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param int $userId
      */
     public function setUserId($userId)
@@ -642,6 +793,9 @@ class MonetaryAccountBank extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param MonetaryAccountProfile $monetaryAccountProfile
      */
     public function setMonetaryAccountProfile($monetaryAccountProfile)
@@ -661,6 +815,9 @@ class MonetaryAccountBank extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param NotificationFilter[] $notificationFilters
      */
     public function setNotificationFilters($notificationFilters)
@@ -679,6 +836,9 @@ class MonetaryAccountBank extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param MonetaryAccountSetting $setting
      */
     public function setSetting($setting)

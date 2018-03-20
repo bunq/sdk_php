@@ -1,9 +1,7 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
-use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
-use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 
 /**
@@ -24,7 +22,7 @@ class CardName extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'CardUserNameArray';
+    const OBJECT_TYPE_GET = 'CardUserNameArray';
 
     /**
      * All possible variations (of suitable length) of user's legal name for the
@@ -40,27 +38,25 @@ class CardName extends BunqModel
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
-     * @param ApiContext $apiContext
-     * @param int $userId
      * @param string[] $params
      * @param string[] $customHeaders
      *
      * @return BunqResponseCardNameList
      */
-    public static function listing(ApiContext $apiContext, int $userId, array $params = [], array $customHeaders = []): BunqResponseCardNameList
+    public static function listing(array $params = [], array $customHeaders = []): BunqResponseCardNameList
     {
-        $apiClient = new ApiClient($apiContext);
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_LISTING,
-                [$userId]
+                [static::determineUserId()]
             ),
             $params,
             $customHeaders
         );
 
         return BunqResponseCardNameList::castFromBunqResponse(
-            static::fromJsonList($responseRaw, self::OBJECT_TYPE)
+            static::fromJsonList($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 
@@ -76,6 +72,9 @@ class CardName extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string[] $possibleCardNameArray
      */
     public function setPossibleCardNameArray($possibleCardNameArray)

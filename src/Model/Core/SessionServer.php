@@ -2,6 +2,7 @@
 namespace bunq\Model\Core;
 
 use bunq\Context\ApiContext;
+use bunq\Exception\BunqException;
 use bunq\Http\ApiClient;
 use bunq\Model\Generated\Endpoint\UserCompany;
 use bunq\Model\Generated\Endpoint\UserPerson;
@@ -10,6 +11,11 @@ use bunq\Model\Generated\Endpoint\UserPerson;
  */
 class SessionServer extends BunqModel
 {
+    /**
+     * Error constants.
+     */
+    const ERROR_NULL_FIELDS = 'All fields of an extended model or object are null.';
+
     /**
      * Field constants.
      */
@@ -85,6 +91,21 @@ class SessionServer extends BunqModel
     public function getUserPerson()
     {
         return $this->userPerson;
+    }
+
+    /**
+     * @return UserCompany|UserPerson
+     * @throws BunqException
+     */
+    public function getReferencedUser()
+    {
+        if (is_null($this->userPerson) || !is_null($this->userCompany)) {
+            return $this->userCompany;
+        } elseif (is_null($this->userCompany) || !is_null($this->userPerson)) {
+            return $this->userPerson;
+        } else {
+            throw new BunqException(self::ERROR_NULL_FIELDS);
+        }
     }
 
     /**

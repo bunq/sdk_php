@@ -1,9 +1,7 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
-use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
-use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Object\Attachment;
 
@@ -32,7 +30,7 @@ class AttachmentTab extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'AttachmentTab';
+    const OBJECT_TYPE_GET = 'AttachmentTab';
 
     /**
      * The id of the attachment.
@@ -70,22 +68,19 @@ class AttachmentTab extends BunqModel
      * are required to provide a description of the attachment using the
      * X-Bunq-Attachment-Description header.
      *
-     * @param ApiContext $apiContext
      * @param string $requestBytes
-     * @param int $userId
-     * @param int $monetaryAccountId
      * @param string[] $customHeaders
      *
      * @return BunqResponseInt
      */
-    public static function create(ApiContext $apiContext, string $requestBytes, int $userId, int $monetaryAccountId, array $customHeaders = []): BunqResponseInt
+    public static function create(string $requestBytes, array $customHeaders = []): BunqResponseInt
     {
-        $apiClient = new ApiClient($apiContext);
+        $apiClient = new ApiClient(static::getApiContext());
         $apiClient->enableBinary();
         $responseRaw = $apiClient->post(
             vsprintf(
                 self::ENDPOINT_URL_CREATE,
-                [$userId, $monetaryAccountId]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId)]
             ),
             $requestBytes,
             $customHeaders
@@ -100,28 +95,29 @@ class AttachmentTab extends BunqModel
      * Get a specific attachment. The header of the response contains the
      * content-type of the attachment.
      *
-     * @param ApiContext $apiContext
-     * @param int $userId
-     * @param int $monetaryAccountId
      * @param int $attachmentTabId
+     * @param int|null $monetaryAccountId
      * @param string[] $customHeaders
      *
      * @return BunqResponseAttachmentTab
      */
-    public static function get(ApiContext $apiContext, int $userId, int $monetaryAccountId, int $attachmentTabId, array $customHeaders = []): BunqResponseAttachmentTab
-    {
-        $apiClient = new ApiClient($apiContext);
+    public static function get(
+        int $attachmentTabId,
+        int $monetaryAccountId = null,
+        array $customHeaders = []
+    ): BunqResponseAttachmentTab {
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_READ,
-                [$userId, $monetaryAccountId, $attachmentTabId]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId), $attachmentTabId]
             ),
             [],
             $customHeaders
         );
 
         return BunqResponseAttachmentTab::castFromBunqResponse(
-            static::fromJson($responseRaw, self::OBJECT_TYPE)
+            static::fromJson($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 
@@ -136,6 +132,9 @@ class AttachmentTab extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param int $id
      */
     public function setId($id)
@@ -154,6 +153,9 @@ class AttachmentTab extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $created
      */
     public function setCreated($created)
@@ -172,6 +174,9 @@ class AttachmentTab extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $updated
      */
     public function setUpdated($updated)
@@ -190,6 +195,9 @@ class AttachmentTab extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param Attachment $attachment
      */
     public function setAttachment($attachment)

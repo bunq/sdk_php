@@ -1,9 +1,7 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
-use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
-use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 
 /**
@@ -27,7 +25,7 @@ class BillingContractSubscription extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'BillingContractSubscription';
+    const OBJECT_TYPE_GET = 'BillingContractSubscription';
 
     /**
      * The id of the billing contract.
@@ -81,27 +79,27 @@ class BillingContractSubscription extends BunqModel
     protected $subscriptionType;
 
     /**
-     * @param ApiContext $apiContext
-     * @param mixed[] $requestMap
-     * @param int $userId
+     * @param string $subscriptionType The subscription type of the user. Can be
+     *                                 one of PERSON_LIGHT_V1, PERSON_MORE_V1, PERSON_FREE_V1,
+     *                                 PERSON_PREMIUM_V1, COMPANY_V1, or COMPANY_V2.
      * @param string[] $customHeaders
      *
-     * @return BunqResponseBillingContractSubscription
+     * @return BunqResponseInt
      */
-    public static function create(ApiContext $apiContext, array $requestMap, int $userId, array $customHeaders = []): BunqResponseBillingContractSubscription
+    public static function create(string $subscriptionType, array $customHeaders = []): BunqResponseInt
     {
-        $apiClient = new ApiClient($apiContext);
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->post(
             vsprintf(
                 self::ENDPOINT_URL_CREATE,
-                [$userId]
+                [static::determineUserId()]
             ),
-            $requestMap,
+            [self::FIELD_SUBSCRIPTION_TYPE => $subscriptionType],
             $customHeaders
         );
 
-        return BunqResponseBillingContractSubscription::castFromBunqResponse(
-            static::fromJson($responseRaw, self::OBJECT_TYPE)
+        return BunqResponseInt::castFromBunqResponse(
+            static::processForId($responseRaw)
         );
     }
 
@@ -111,27 +109,27 @@ class BillingContractSubscription extends BunqModel
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
-     * @param ApiContext $apiContext
-     * @param int $userId
      * @param string[] $params
      * @param string[] $customHeaders
      *
      * @return BunqResponseBillingContractSubscriptionList
      */
-    public static function listing(ApiContext $apiContext, int $userId, array $params = [], array $customHeaders = []): BunqResponseBillingContractSubscriptionList
-    {
-        $apiClient = new ApiClient($apiContext);
+    public static function listing(
+        array $params = [],
+        array $customHeaders = []
+    ): BunqResponseBillingContractSubscriptionList {
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_LISTING,
-                [$userId]
+                [static::determineUserId()]
             ),
             $params,
             $customHeaders
         );
 
         return BunqResponseBillingContractSubscriptionList::castFromBunqResponse(
-            static::fromJsonList($responseRaw, self::OBJECT_TYPE)
+            static::fromJsonList($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 
@@ -146,6 +144,9 @@ class BillingContractSubscription extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param int $id
      */
     public function setId($id)
@@ -164,6 +165,9 @@ class BillingContractSubscription extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $created
      */
     public function setCreated($created)
@@ -182,6 +186,9 @@ class BillingContractSubscription extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $updated
      */
     public function setUpdated($updated)
@@ -200,6 +207,9 @@ class BillingContractSubscription extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $contractDateStart
      */
     public function setContractDateStart($contractDateStart)
@@ -218,6 +228,9 @@ class BillingContractSubscription extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $contractDateEnd
      */
     public function setContractDateEnd($contractDateEnd)
@@ -236,6 +249,9 @@ class BillingContractSubscription extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param int $contractVersion
      */
     public function setContractVersion($contractVersion)
@@ -256,6 +272,9 @@ class BillingContractSubscription extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $subscriptionType
      */
     public function setSubscriptionType($subscriptionType)

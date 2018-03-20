@@ -30,13 +30,16 @@ class Pointer extends BunqModel
     protected $name;
 
     /**
-     * @param string $type
-     * @param string $value
+     * @param string $type      The alias type, can be: EMAIL|PHONE_NUMBER|IBAN.
+     * @param string $value     The alias value. Phone number are formatted conform
+     *                          E.123 without spaces (e.g., +314211234567).
+     * @param string|null $name The alias name. Only required for IBANs.
      */
-    public function __construct($type, $value)
+    public function __construct(string $type, string $value, string $name = null)
     {
         $this->type = $type;
         $this->value = $value;
+        $this->name = $name;
     }
 
     /**
@@ -50,6 +53,9 @@ class Pointer extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $type
      */
     public function setType($type)
@@ -68,6 +74,9 @@ class Pointer extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $value
      */
     public function setValue($value)
@@ -86,6 +95,9 @@ class Pointer extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $name
      */
     public function setName($name)

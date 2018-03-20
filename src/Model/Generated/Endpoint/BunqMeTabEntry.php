@@ -23,11 +23,6 @@ class BunqMeTabEntry extends BunqModel
     const FIELD_REDIRECT_URL = 'redirect_url';
 
     /**
-     * Object type.
-     */
-    const OBJECT_TYPE = 'BunqMeTab';
-
-    /**
      * The uuid of the bunq.me.
      *
      * @var string
@@ -89,6 +84,9 @@ class BunqMeTabEntry extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $uuid
      */
     public function setUuid($uuid)
@@ -107,6 +105,9 @@ class BunqMeTabEntry extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param Amount $amountInquired
      */
     public function setAmountInquired($amountInquired)
@@ -126,6 +127,9 @@ class BunqMeTabEntry extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param LabelMonetaryAccount $alias
      */
     public function setAlias($alias)
@@ -144,6 +148,9 @@ class BunqMeTabEntry extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $description
      */
     public function setDescription($description)
@@ -163,6 +170,9 @@ class BunqMeTabEntry extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $status
      */
     public function setStatus($status)
@@ -181,6 +191,9 @@ class BunqMeTabEntry extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $redirectUrl
      */
     public function setRedirectUrl($redirectUrl)
@@ -199,6 +212,9 @@ class BunqMeTabEntry extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param BunqMeMerchantAvailable[] $merchantAvailable
      */
     public function setMerchantAvailable($merchantAvailable)

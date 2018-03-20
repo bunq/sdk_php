@@ -5,12 +5,12 @@ use bunq\Http\BunqResponse;
 
 /**
  */
-class BunqResponsePaymentChat extends BunqResponse
+class BunqResponseTokenQrRequestSofort extends BunqResponse
 {
     /**
-     * @return PaymentChat
+     * @return TokenQrRequestSofort
      */
-    public function getValue(): PaymentChat
+    public function getValue(): TokenQrRequestSofort
     {
         return parent::getValue();
     }

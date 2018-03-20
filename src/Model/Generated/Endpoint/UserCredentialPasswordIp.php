@@ -1,9 +1,7 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
-use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
-use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Object\PermittedDevice;
 
@@ -24,7 +22,7 @@ class UserCredentialPasswordIp extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'CredentialPasswordIp';
+    const OBJECT_TYPE_GET = 'CredentialPasswordIp';
 
     /**
      * The id of the credential.
@@ -77,27 +75,27 @@ class UserCredentialPasswordIp extends BunqModel
     protected $permittedDevice;
 
     /**
-     * @param ApiContext $apiContext
-     * @param int $userId
      * @param int $userCredentialPasswordIpId
      * @param string[] $customHeaders
      *
      * @return BunqResponseUserCredentialPasswordIp
      */
-    public static function get(ApiContext $apiContext, int $userId, int $userCredentialPasswordIpId, array $customHeaders = []): BunqResponseUserCredentialPasswordIp
-    {
-        $apiClient = new ApiClient($apiContext);
+    public static function get(
+        int $userCredentialPasswordIpId,
+        array $customHeaders = []
+    ): BunqResponseUserCredentialPasswordIp {
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_READ,
-                [$userId, $userCredentialPasswordIpId]
+                [static::determineUserId(), $userCredentialPasswordIpId]
             ),
             [],
             $customHeaders
         );
 
         return BunqResponseUserCredentialPasswordIp::castFromBunqResponse(
-            static::fromJson($responseRaw, self::OBJECT_TYPE)
+            static::fromJson($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 
@@ -105,27 +103,27 @@ class UserCredentialPasswordIp extends BunqModel
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
-     * @param ApiContext $apiContext
-     * @param int $userId
      * @param string[] $params
      * @param string[] $customHeaders
      *
      * @return BunqResponseUserCredentialPasswordIpList
      */
-    public static function listing(ApiContext $apiContext, int $userId, array $params = [], array $customHeaders = []): BunqResponseUserCredentialPasswordIpList
-    {
-        $apiClient = new ApiClient($apiContext);
+    public static function listing(
+        array $params = [],
+        array $customHeaders = []
+    ): BunqResponseUserCredentialPasswordIpList {
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_LISTING,
-                [$userId]
+                [static::determineUserId()]
             ),
             $params,
             $customHeaders
         );
 
         return BunqResponseUserCredentialPasswordIpList::castFromBunqResponse(
-            static::fromJsonList($responseRaw, self::OBJECT_TYPE)
+            static::fromJsonList($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 
@@ -140,6 +138,9 @@ class UserCredentialPasswordIp extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param int $id
      */
     public function setId($id)
@@ -158,6 +159,9 @@ class UserCredentialPasswordIp extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $created
      */
     public function setCreated($created)
@@ -176,6 +180,9 @@ class UserCredentialPasswordIp extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $updated
      */
     public function setUpdated($updated)
@@ -194,6 +201,9 @@ class UserCredentialPasswordIp extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $status
      */
     public function setStatus($status)
@@ -212,6 +222,9 @@ class UserCredentialPasswordIp extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $expiryTime
      */
     public function setExpiryTime($expiryTime)
@@ -230,6 +243,9 @@ class UserCredentialPasswordIp extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $tokenValue
      */
     public function setTokenValue($tokenValue)
@@ -249,6 +265,9 @@ class UserCredentialPasswordIp extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param PermittedDevice $permittedDevice
      */
     public function setPermittedDevice($permittedDevice)

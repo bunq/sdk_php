@@ -1,9 +1,7 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
-use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
-use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 
 /**
@@ -21,7 +19,7 @@ class CustomerLimit extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'CustomerLimit';
+    const OBJECT_TYPE_GET = 'CustomerLimit';
 
     /**
      * The limit of monetary accounts.
@@ -64,27 +62,25 @@ class CustomerLimit extends BunqModel
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
-     * @param ApiContext $apiContext
-     * @param int $userId
      * @param string[] $params
      * @param string[] $customHeaders
      *
      * @return BunqResponseCustomerLimitList
      */
-    public static function listing(ApiContext $apiContext, int $userId, array $params = [], array $customHeaders = []): BunqResponseCustomerLimitList
+    public static function listing(array $params = [], array $customHeaders = []): BunqResponseCustomerLimitList
     {
-        $apiClient = new ApiClient($apiContext);
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_LISTING,
-                [$userId]
+                [static::determineUserId()]
             ),
             $params,
             $customHeaders
         );
 
         return BunqResponseCustomerLimitList::castFromBunqResponse(
-            static::fromJsonList($responseRaw, self::OBJECT_TYPE)
+            static::fromJsonList($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 
@@ -99,6 +95,9 @@ class CustomerLimit extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param int $limitMonetaryAccount
      */
     public function setLimitMonetaryAccount($limitMonetaryAccount)
@@ -117,6 +116,9 @@ class CustomerLimit extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param int $limitCardDebitMaestro
      */
     public function setLimitCardDebitMaestro($limitCardDebitMaestro)
@@ -135,6 +137,9 @@ class CustomerLimit extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param int $limitCardDebitMastercard
      */
     public function setLimitCardDebitMastercard($limitCardDebitMastercard)
@@ -153,6 +158,9 @@ class CustomerLimit extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param int $limitCardDebitWildcard
      */
     public function setLimitCardDebitWildcard($limitCardDebitWildcard)
@@ -171,6 +179,9 @@ class CustomerLimit extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param int $limitCardDebitReplacement
      */
     public function setLimitCardDebitReplacement($limitCardDebitReplacement)

@@ -13,14 +13,29 @@ class ApiException extends Exception
     private $responseCode;
 
     /**
+     * @var string
+     */
+    private $responseId;
+
+    /**
      * @param string $message
      * @param int $responseCode
+     * @param string $responseId
      */
-    public function __construct(string $message, int $responseCode)
+    public function __construct(string $message, int $responseCode, string $responseId)
     {
         $this->responseCode = $responseCode;
+        $this->responseId = $responseId;
 
         parent::__construct($message);
+    }
+
+    /**
+     * @return string
+     */
+    public function getResponseId(): string
+    {
+        return $this->responseId;
     }
 
     /**

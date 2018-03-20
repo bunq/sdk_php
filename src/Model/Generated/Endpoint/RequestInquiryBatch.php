@@ -1,11 +1,10 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
-use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
-use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Object\Amount;
+use bunq\Model\Generated\Object\RequestReferenceSplitTheBillAnchorObject;
 
 /**
  * Create a batch of requests for payment, or show the request batches of a
@@ -29,11 +28,12 @@ class RequestInquiryBatch extends BunqModel
     const FIELD_REQUEST_INQUIRIES = 'request_inquiries';
     const FIELD_STATUS = 'status';
     const FIELD_TOTAL_AMOUNT_INQUIRED = 'total_amount_inquired';
+    const FIELD_EVENT_ID = 'event_id';
 
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'RequestInquiryBatch';
+    const OBJECT_TYPE_GET = 'RequestInquiryBatch';
 
     /**
      * The list of requests that were made.
@@ -50,26 +50,49 @@ class RequestInquiryBatch extends BunqModel
     protected $totalAmountInquired;
 
     /**
+     * The reference to the object used for split the bill. Can be Payment,
+     * PaymentBatch, ScheduleInstance, RequestResponse and MasterCardAction
+     *
+     * @var RequestReferenceSplitTheBillAnchorObject
+     */
+    protected $referenceSplitTheBill;
+
+    /**
      * Create a request batch by sending an array of single request objects,
      * that will become part of the batch.
      *
-     * @param ApiContext $apiContext
-     * @param mixed[] $requestMap
-     * @param int $userId
-     * @param int $monetaryAccountId
+     * @param RequestInquiry[] $requestInquiries The list of request inquiries
+     *                                           we want to send in 1 batch.
+     * @param Amount $totalAmountInquired        The total amount originally inquired
+     *                                           for this batch.
+     * @param int|null $monetaryAccountId
+     * @param string|null $status                The status of the request.
+     * @param int|null $eventId                  The ID of the associated event if the request
+     *                                           batch was made using 'split the bill'.
      * @param string[] $customHeaders
      *
      * @return BunqResponseInt
      */
-    public static function create(ApiContext $apiContext, array $requestMap, int $userId, int $monetaryAccountId, array $customHeaders = []): BunqResponseInt
-    {
-        $apiClient = new ApiClient($apiContext);
+    public static function create(
+        array $requestInquiries,
+        Amount $totalAmountInquired,
+        int $monetaryAccountId = null,
+        string $status = null,
+        int $eventId = null,
+        array $customHeaders = []
+    ): BunqResponseInt {
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->post(
             vsprintf(
                 self::ENDPOINT_URL_CREATE,
-                [$userId, $monetaryAccountId]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId)]
             ),
-            $requestMap,
+            [
+                self::FIELD_REQUEST_INQUIRIES => $requestInquiries,
+                self::FIELD_STATUS => $status,
+                self::FIELD_TOTAL_AMOUNT_INQUIRED => $totalAmountInquired,
+                self::FIELD_EVENT_ID => $eventId,
+            ],
             $customHeaders
         );
 
@@ -82,24 +105,30 @@ class RequestInquiryBatch extends BunqModel
      * Revoke a request batch. The status of all the requests will be set to
      * REVOKED.
      *
-     * @param ApiContext $apiContext
-     * @param mixed[] $requestMap
-     * @param int $userId
-     * @param int $monetaryAccountId
      * @param int $requestInquiryBatchId
+     * @param int|null $monetaryAccountId
+     * @param string|null $status The status of the request.
      * @param string[] $customHeaders
      *
      * @return BunqResponseInt
      */
-    public static function update(ApiContext $apiContext, array $requestMap, int $userId, int $monetaryAccountId, int $requestInquiryBatchId, array $customHeaders = []): BunqResponseInt
-    {
-        $apiClient = new ApiClient($apiContext);
+    public static function update(
+        int $requestInquiryBatchId,
+        int $monetaryAccountId = null,
+        string $status = null,
+        array $customHeaders = []
+    ): BunqResponseInt {
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->put(
             vsprintf(
                 self::ENDPOINT_URL_UPDATE,
-                [$userId, $monetaryAccountId, $requestInquiryBatchId]
+                [
+                    static::determineUserId(),
+                    static::determineMonetaryAccountId($monetaryAccountId),
+                    $requestInquiryBatchId,
+                ]
             ),
-            $requestMap,
+            [self::FIELD_STATUS => $status],
             $customHeaders
         );
 
@@ -111,28 +140,33 @@ class RequestInquiryBatch extends BunqModel
     /**
      * Return the details of a specific request batch.
      *
-     * @param ApiContext $apiContext
-     * @param int $userId
-     * @param int $monetaryAccountId
      * @param int $requestInquiryBatchId
+     * @param int|null $monetaryAccountId
      * @param string[] $customHeaders
      *
      * @return BunqResponseRequestInquiryBatch
      */
-    public static function get(ApiContext $apiContext, int $userId, int $monetaryAccountId, int $requestInquiryBatchId, array $customHeaders = []): BunqResponseRequestInquiryBatch
-    {
-        $apiClient = new ApiClient($apiContext);
+    public static function get(
+        int $requestInquiryBatchId,
+        int $monetaryAccountId = null,
+        array $customHeaders = []
+    ): BunqResponseRequestInquiryBatch {
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_READ,
-                [$userId, $monetaryAccountId, $requestInquiryBatchId]
+                [
+                    static::determineUserId(),
+                    static::determineMonetaryAccountId($monetaryAccountId),
+                    $requestInquiryBatchId,
+                ]
             ),
             [],
             $customHeaders
         );
 
         return BunqResponseRequestInquiryBatch::castFromBunqResponse(
-            static::fromJson($responseRaw, self::OBJECT_TYPE)
+            static::fromJson($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 
@@ -142,28 +176,29 @@ class RequestInquiryBatch extends BunqModel
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
-     * @param ApiContext $apiContext
-     * @param int $userId
-     * @param int $monetaryAccountId
+     * @param int|null $monetaryAccountId
      * @param string[] $params
      * @param string[] $customHeaders
      *
      * @return BunqResponseRequestInquiryBatchList
      */
-    public static function listing(ApiContext $apiContext, int $userId, int $monetaryAccountId, array $params = [], array $customHeaders = []): BunqResponseRequestInquiryBatchList
-    {
-        $apiClient = new ApiClient($apiContext);
+    public static function listing(
+        int $monetaryAccountId = null,
+        array $params = [],
+        array $customHeaders = []
+    ): BunqResponseRequestInquiryBatchList {
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_LISTING,
-                [$userId, $monetaryAccountId]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId)]
             ),
             $params,
             $customHeaders
         );
 
         return BunqResponseRequestInquiryBatchList::castFromBunqResponse(
-            static::fromJsonList($responseRaw, self::OBJECT_TYPE)
+            static::fromJsonList($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 
@@ -178,6 +213,9 @@ class RequestInquiryBatch extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param RequestInquiry[] $requestInquiries
      */
     public function setRequestInquiries($requestInquiries)
@@ -196,11 +234,36 @@ class RequestInquiryBatch extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param Amount $totalAmountInquired
      */
     public function setTotalAmountInquired($totalAmountInquired)
     {
         $this->totalAmountInquired = $totalAmountInquired;
+    }
+
+    /**
+     * The reference to the object used for split the bill. Can be Payment,
+     * PaymentBatch, ScheduleInstance, RequestResponse and MasterCardAction
+     *
+     * @return RequestReferenceSplitTheBillAnchorObject
+     */
+    public function getReferenceSplitTheBill()
+    {
+        return $this->referenceSplitTheBill;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param RequestReferenceSplitTheBillAnchorObject $referenceSplitTheBill
+     */
+    public function setReferenceSplitTheBill($referenceSplitTheBill)
+    {
+        $this->referenceSplitTheBill = $referenceSplitTheBill;
     }
 
     /**
@@ -213,6 +276,10 @@ class RequestInquiryBatch extends BunqModel
         }
 
         if (!is_null($this->totalAmountInquired)) {
+            return false;
+        }
+
+        if (!is_null($this->referenceSplitTheBill)) {
             return false;
         }
 

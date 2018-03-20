@@ -1,9 +1,7 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
-use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
-use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Object\Image;
 
@@ -34,7 +32,8 @@ class Avatar extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'Avatar';
+    const OBJECT_TYPE_POST = 'Uuid';
+    const OBJECT_TYPE_GET = 'Avatar';
 
     /**
      * The UUID of the created avatar.
@@ -51,21 +50,21 @@ class Avatar extends BunqModel
     protected $image;
 
     /**
-     * @param ApiContext $apiContext
-     * @param mixed[] $requestMap
+     * @param string $attachmentPublicUuid The public UUID of the public
+     *                                     attachment from which an avatar image must be created.
      * @param string[] $customHeaders
      *
      * @return BunqResponseString
      */
-    public static function create(ApiContext $apiContext, array $requestMap, array $customHeaders = []): BunqResponseString
+    public static function create(string $attachmentPublicUuid, array $customHeaders = []): BunqResponseString
     {
-        $apiClient = new ApiClient($apiContext);
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->post(
             vsprintf(
                 self::ENDPOINT_URL_CREATE,
                 []
             ),
-            $requestMap,
+            [self::FIELD_ATTACHMENT_PUBLIC_UUID => $attachmentPublicUuid],
             $customHeaders
         );
 
@@ -75,15 +74,14 @@ class Avatar extends BunqModel
     }
 
     /**
-     * @param ApiContext $apiContext
      * @param string $avatarUuid
      * @param string[] $customHeaders
      *
      * @return BunqResponseAvatar
      */
-    public static function get(ApiContext $apiContext, string $avatarUuid, array $customHeaders = []): BunqResponseAvatar
+    public static function get(string $avatarUuid, array $customHeaders = []): BunqResponseAvatar
     {
-        $apiClient = new ApiClient($apiContext);
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_READ,
@@ -94,7 +92,7 @@ class Avatar extends BunqModel
         );
 
         return BunqResponseAvatar::castFromBunqResponse(
-            static::fromJson($responseRaw, self::OBJECT_TYPE)
+            static::fromJson($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 
@@ -109,6 +107,9 @@ class Avatar extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $uuid
      */
     public function setUuid($uuid)
@@ -127,6 +128,9 @@ class Avatar extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param Image[] $image
      */
     public function setImage($image)

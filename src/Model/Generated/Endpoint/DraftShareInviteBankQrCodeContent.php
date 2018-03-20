@@ -1,7 +1,6 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
-use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
 use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
@@ -23,7 +22,7 @@ class DraftShareInviteBankQrCodeContent extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'DraftShareInviteBankQrCodeContent';
+    const OBJECT_TYPE_GET = 'DraftShareInviteBankQrCodeContent';
 
     /**
      * Returns the raw content of the QR code that links to this draft share
@@ -33,20 +32,18 @@ class DraftShareInviteBankQrCodeContent extends BunqModel
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
-     * @param ApiContext $apiContext
-     * @param int $userId
      * @param int $draftShareInviteBankId
      * @param string[] $customHeaders
      *
      * @return BunqResponseString
      */
-    public static function listing(ApiContext $apiContext, int $userId, int $draftShareInviteBankId, array $customHeaders = []): BunqResponseString
+    public static function listing(int $draftShareInviteBankId, array $customHeaders = []): BunqResponseString
     {
-        $apiClient = new ApiClient($apiContext);
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_LISTING,
-                [$userId, $draftShareInviteBankId]
+                [static::determineUserId(), $draftShareInviteBankId]
             ),
             [],
             $customHeaders

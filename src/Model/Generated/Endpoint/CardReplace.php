@@ -1,18 +1,16 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
-use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
-use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 
 /**
  * It is possible to order a card replacement with the bunq
- * API.<br/><br/>You can order up to three free card replacements per year.
+ * API.<br/><br/>You can order up to one free card replacement per year.
  * Additional replacement requests will be billed.<br/><br/>The card
  * replacement will have the same expiry date and the same pricing as the
  * old card, but it will have a new card number. You can change the
- * description and PIN through the card replacement endpoint.
+ * description and optional the PIN through the card replacement endpoint.
  *
  * @generated
  */
@@ -30,11 +28,6 @@ class CardReplace extends BunqModel
     const FIELD_SECOND_LINE = 'second_line';
 
     /**
-     * Object type.
-     */
-    const OBJECT_TYPE = 'CardReplace';
-
-    /**
      * The id of the new card.
      *
      * @var int
@@ -44,24 +37,31 @@ class CardReplace extends BunqModel
     /**
      * Request a card replacement.
      *
-     * @param ApiContext $apiContext
-     * @param mixed[] $requestMap
-     * @param int $userId
      * @param int $cardId
+     * @param string|null $pinCode    The plaintext pin code. Requests require
+     *                                encryption to be enabled.
+     * @param string|null $secondLine The second line on the card.
      * @param string[] $customHeaders
      *
      * @return BunqResponseInt
      */
-    public static function create(ApiContext $apiContext, array $requestMap, int $userId, int $cardId, array $customHeaders = []): BunqResponseInt
-    {
-        $apiClient = new ApiClient($apiContext);
+    public static function create(
+        int $cardId,
+        string $pinCode = null,
+        string $secondLine = null,
+        array $customHeaders = []
+    ): BunqResponseInt {
+        $apiClient = new ApiClient(static::getApiContext());
         $apiClient->enableEncryption();
         $responseRaw = $apiClient->post(
             vsprintf(
                 self::ENDPOINT_URL_CREATE,
-                [$userId, $cardId]
+                [static::determineUserId(), $cardId]
             ),
-            $requestMap,
+            [
+                self::FIELD_PIN_CODE => $pinCode,
+                self::FIELD_SECOND_LINE => $secondLine,
+            ],
             $customHeaders
         );
 
@@ -81,6 +81,9 @@ class CardReplace extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param int $id
      */
     public function setId($id)

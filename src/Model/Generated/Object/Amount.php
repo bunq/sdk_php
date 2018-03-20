@@ -23,10 +23,11 @@ class Amount extends BunqModel
     protected $currency;
 
     /**
-     * @param string $value
-     * @param string $currency
+     * @param string $value    The amount formatted to two decimal places.
+     * @param string $currency The currency of the amount. It is an ISO 4217
+     *                         formatted currency code.
      */
-    public function __construct($value, $currency)
+    public function __construct(string $value, string $currency)
     {
         $this->value = $value;
         $this->currency = $currency;
@@ -43,6 +44,9 @@ class Amount extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $value
      */
     public function setValue($value)
@@ -61,6 +65,9 @@ class Amount extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $currency
      */
     public function setCurrency($currency)

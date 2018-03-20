@@ -1,13 +1,12 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
-use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
-use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Object\Amount;
 use bunq\Model\Generated\Object\LabelCard;
 use bunq\Model\Generated\Object\LabelMonetaryAccount;
+use bunq\Model\Generated\Object\RequestInquiryReference;
 
 /**
  * MasterCard transaction view.
@@ -25,7 +24,14 @@ class MasterCardAction extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'MasterCardAction';
+    const OBJECT_TYPE_GET = 'MasterCardAction';
+
+    /**
+     * The id of the MastercardAction.
+     *
+     * @var int
+     */
+    protected $id;
 
     /**
      * The id of the monetary account this action links to.
@@ -194,28 +200,44 @@ class MasterCardAction extends BunqModel
     protected $eligibleWhitelistId;
 
     /**
-     * @param ApiContext $apiContext
-     * @param int $userId
-     * @param int $monetaryAccountId
+     * The secure code id for this mastercard action or null.
+     *
+     * @var int
+     */
+    protected $secureCodeId;
+
+    /**
+     * The reference to the object used for split the bill. Can be
+     * RequestInquiry or RequestInquiryBatch
+     *
+     * @var RequestInquiryReference[]
+     */
+    protected $requestReferenceSplitTheBill;
+
+    /**
      * @param int $masterCardActionId
+     * @param int|null $monetaryAccountId
      * @param string[] $customHeaders
      *
      * @return BunqResponseMasterCardAction
      */
-    public static function get(ApiContext $apiContext, int $userId, int $monetaryAccountId, int $masterCardActionId, array $customHeaders = []): BunqResponseMasterCardAction
-    {
-        $apiClient = new ApiClient($apiContext);
+    public static function get(
+        int $masterCardActionId,
+        int $monetaryAccountId = null,
+        array $customHeaders = []
+    ): BunqResponseMasterCardAction {
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_READ,
-                [$userId, $monetaryAccountId, $masterCardActionId]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId), $masterCardActionId]
             ),
             [],
             $customHeaders
         );
 
         return BunqResponseMasterCardAction::castFromBunqResponse(
-            static::fromJson($responseRaw, self::OBJECT_TYPE)
+            static::fromJson($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 
@@ -223,29 +245,51 @@ class MasterCardAction extends BunqModel
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
-     * @param ApiContext $apiContext
-     * @param int $userId
-     * @param int $monetaryAccountId
+     * @param int|null $monetaryAccountId
      * @param string[] $params
      * @param string[] $customHeaders
      *
      * @return BunqResponseMasterCardActionList
      */
-    public static function listing(ApiContext $apiContext, int $userId, int $monetaryAccountId, array $params = [], array $customHeaders = []): BunqResponseMasterCardActionList
-    {
-        $apiClient = new ApiClient($apiContext);
+    public static function listing(
+        int $monetaryAccountId = null,
+        array $params = [],
+        array $customHeaders = []
+    ): BunqResponseMasterCardActionList {
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_LISTING,
-                [$userId, $monetaryAccountId]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId)]
             ),
             $params,
             $customHeaders
         );
 
         return BunqResponseMasterCardActionList::castFromBunqResponse(
-            static::fromJsonList($responseRaw, self::OBJECT_TYPE)
+            static::fromJsonList($responseRaw, self::OBJECT_TYPE_GET)
         );
+    }
+
+    /**
+     * The id of the MastercardAction.
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param int $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
     }
 
     /**
@@ -259,6 +303,9 @@ class MasterCardAction extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param int $monetaryAccountId
      */
     public function setMonetaryAccountId($monetaryAccountId)
@@ -277,6 +324,9 @@ class MasterCardAction extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param int $cardId
      */
     public function setCardId($cardId)
@@ -295,6 +345,9 @@ class MasterCardAction extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param Amount $amountLocal
      */
     public function setAmountLocal($amountLocal)
@@ -313,6 +366,9 @@ class MasterCardAction extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param Amount $amountBilling
      */
     public function setAmountBilling($amountBilling)
@@ -331,6 +387,9 @@ class MasterCardAction extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param Amount $amountOriginalLocal
      */
     public function setAmountOriginalLocal($amountOriginalLocal)
@@ -349,6 +408,9 @@ class MasterCardAction extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param Amount $amountOriginalBilling
      */
     public function setAmountOriginalBilling($amountOriginalBilling)
@@ -367,6 +429,9 @@ class MasterCardAction extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param Amount $amountFee
      */
     public function setAmountFee($amountFee)
@@ -385,6 +450,9 @@ class MasterCardAction extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $decision
      */
     public function setDecision($decision)
@@ -403,6 +471,9 @@ class MasterCardAction extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $decisionDescription
      */
     public function setDecisionDescription($decisionDescription)
@@ -422,6 +493,9 @@ class MasterCardAction extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $decisionDescriptionTranslated
      */
     public function setDecisionDescriptionTranslated($decisionDescriptionTranslated)
@@ -440,6 +514,9 @@ class MasterCardAction extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $description
      */
     public function setDescription($description)
@@ -458,6 +535,9 @@ class MasterCardAction extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $authorisationStatus
      */
     public function setAuthorisationStatus($authorisationStatus)
@@ -476,6 +556,9 @@ class MasterCardAction extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $authorisationType
      */
     public function setAuthorisationType($authorisationType)
@@ -495,6 +578,9 @@ class MasterCardAction extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $panEntryModeUser
      */
     public function setPanEntryModeUser($panEntryModeUser)
@@ -513,6 +599,9 @@ class MasterCardAction extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $city
      */
     public function setCity($city)
@@ -532,6 +621,9 @@ class MasterCardAction extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param LabelMonetaryAccount $alias
      */
     public function setAlias($alias)
@@ -550,6 +642,9 @@ class MasterCardAction extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param LabelMonetaryAccount $counterpartyAlias
      */
     public function setCounterpartyAlias($counterpartyAlias)
@@ -568,6 +663,9 @@ class MasterCardAction extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param LabelCard $labelCard
      */
     public function setLabelCard($labelCard)
@@ -586,6 +684,9 @@ class MasterCardAction extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $tokenStatus
      */
     public function setTokenStatus($tokenStatus)
@@ -604,6 +705,9 @@ class MasterCardAction extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $reservationExpiryTime
      */
     public function setReservationExpiryTime($reservationExpiryTime)
@@ -624,6 +728,9 @@ class MasterCardAction extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $appliedLimit
      */
     public function setAppliedLimit($appliedLimit)
@@ -642,6 +749,9 @@ class MasterCardAction extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param bool $allowChat
      */
     public function setAllowChat($allowChat)
@@ -660,6 +770,9 @@ class MasterCardAction extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param int $eligibleWhitelistId
      */
     public function setEligibleWhitelistId($eligibleWhitelistId)
@@ -668,10 +781,57 @@ class MasterCardAction extends BunqModel
     }
 
     /**
+     * The secure code id for this mastercard action or null.
+     *
+     * @return int
+     */
+    public function getSecureCodeId()
+    {
+        return $this->secureCodeId;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param int $secureCodeId
+     */
+    public function setSecureCodeId($secureCodeId)
+    {
+        $this->secureCodeId = $secureCodeId;
+    }
+
+    /**
+     * The reference to the object used for split the bill. Can be
+     * RequestInquiry or RequestInquiryBatch
+     *
+     * @return RequestInquiryReference[]
+     */
+    public function getRequestReferenceSplitTheBill()
+    {
+        return $this->requestReferenceSplitTheBill;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param RequestInquiryReference[] $requestReferenceSplitTheBill
+     */
+    public function setRequestReferenceSplitTheBill($requestReferenceSplitTheBill)
+    {
+        $this->requestReferenceSplitTheBill = $requestReferenceSplitTheBill;
+    }
+
+    /**
      * @return bool
      */
     public function isAllFieldNull()
     {
+        if (!is_null($this->id)) {
+            return false;
+        }
+
         if (!is_null($this->monetaryAccountId)) {
             return false;
         }
@@ -761,6 +921,14 @@ class MasterCardAction extends BunqModel
         }
 
         if (!is_null($this->eligibleWhitelistId)) {
+            return false;
+        }
+
+        if (!is_null($this->secureCodeId)) {
+            return false;
+        }
+
+        if (!is_null($this->requestReferenceSplitTheBill)) {
             return false;
         }
 

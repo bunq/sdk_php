@@ -40,6 +40,9 @@ class AttachmentPublic extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $uuid
      */
     public function setUuid($uuid)
@@ -58,6 +61,9 @@ class AttachmentPublic extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $description
      */
     public function setDescription($description)
@@ -76,6 +82,9 @@ class AttachmentPublic extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $contentType
      */
     public function setContentType($contentType)

@@ -18,12 +18,12 @@ class ScheduleAnchorObject extends BunqModel implements AnchorObjectInterface
     const ERROR_NULL_FIELDS = 'All fields of an extended model or object are null.';
 
     /**
-     * @var Payment
+     * @var Payment|null
      */
     protected $payment;
 
     /**
-     * @var PaymentBatch
+     * @var PaymentBatch|null
      */
     protected $paymentBatch;
 
@@ -36,6 +36,9 @@ class ScheduleAnchorObject extends BunqModel implements AnchorObjectInterface
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param Payment $payment
      */
     public function setPayment($payment)
@@ -52,6 +55,9 @@ class ScheduleAnchorObject extends BunqModel implements AnchorObjectInterface
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param PaymentBatch $paymentBatch
      */
     public function setPaymentBatch($paymentBatch)

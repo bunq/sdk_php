@@ -1,9 +1,7 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
-use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
-use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Object\Attachment;
 
@@ -29,11 +27,6 @@ class AttachmentMonetaryAccount extends BunqModel
     const FIELD_DESCRIPTION = ApiClient::FIELD_DESCRIPTION;
 
     /**
-     * Object type.
-     */
-    const OBJECT_TYPE = 'AttachmentMonetaryAccount';
-
-    /**
      * The attachment.
      *
      * @var Attachment
@@ -54,22 +47,19 @@ class AttachmentMonetaryAccount extends BunqModel
      * the Content-Type header. You are required to provide a description of the
      * attachment using the X-Bunq-Attachment-Description header.
      *
-     * @param ApiContext $apiContext
      * @param string $requestBytes
-     * @param int $userId
-     * @param int $monetaryAccountId
      * @param string[] $customHeaders
      *
      * @return BunqResponseInt
      */
-    public static function create(ApiContext $apiContext, string $requestBytes, int $userId, int $monetaryAccountId, array $customHeaders = []): BunqResponseInt
+    public static function create(string $requestBytes, array $customHeaders = []): BunqResponseInt
     {
-        $apiClient = new ApiClient($apiContext);
+        $apiClient = new ApiClient(static::getApiContext());
         $apiClient->enableBinary();
         $responseRaw = $apiClient->post(
             vsprintf(
                 self::ENDPOINT_URL_CREATE,
-                [$userId, $monetaryAccountId]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId)]
             ),
             $requestBytes,
             $customHeaders
@@ -91,6 +81,9 @@ class AttachmentMonetaryAccount extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param Attachment $attachment
      */
     public function setAttachment($attachment)
@@ -109,6 +102,9 @@ class AttachmentMonetaryAccount extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param int $id
      */
     public function setId($id)

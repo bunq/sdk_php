@@ -2,6 +2,7 @@
 namespace bunq\test;
 
 use bunq\Context\ApiContext;
+use bunq\Context\BunqContext;
 use bunq\Exception\ApiException;
 use bunq\Exception\BunqException;
 use bunq\Model\Generated\Endpoint\User;
@@ -24,11 +25,6 @@ class BunqSdkTestBase extends TestCase
     const DEVICE_DESCRIPTION = 'PHP unit tests';
 
     /**
-     * @var ApiContext
-     */
-    protected static $apiContext;
-
-    /**
      */
     public static function setUpBeforeClass()
     {
@@ -49,7 +45,7 @@ class BunqSdkTestBase extends TestCase
 
         $apiContext->save(static::FILENAME_CONTEXT_CONFIG);
 
-        static::$apiContext = $apiContext;
+        BunqContext::loadApiContext($apiContext);
     }
 
     /**
@@ -63,13 +59,5 @@ class BunqSdkTestBase extends TestCase
             static::DEVICE_DESCRIPTION,
             Config::getPermittedIps()
         );
-    }
-
-    /**
-     * @return ApiContext
-     */
-    protected static function getApiContext(): ApiContext
-    {
-        return static::$apiContext;
     }
 }

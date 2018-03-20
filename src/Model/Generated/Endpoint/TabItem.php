@@ -14,11 +14,6 @@ use bunq\Model\Generated\Object\AttachmentTab;
 class TabItem extends BunqModel
 {
     /**
-     * Object type.
-     */
-    const OBJECT_TYPE = 'TabItem';
-
-    /**
      * The id of the tab item.
      *
      * @var int
@@ -80,6 +75,9 @@ class TabItem extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param int $id
      */
     public function setId($id)
@@ -98,6 +96,9 @@ class TabItem extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $description
      */
     public function setDescription($description)
@@ -116,6 +117,9 @@ class TabItem extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $eanCode
      */
     public function setEanCode($eanCode)
@@ -135,6 +139,9 @@ class TabItem extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param AttachmentPublic $avatarAttachment
      */
     public function setAvatarAttachment($avatarAttachment)
@@ -153,6 +160,9 @@ class TabItem extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param AttachmentTab[] $tabAttachment
      */
     public function setTabAttachment($tabAttachment)
@@ -172,6 +182,9 @@ class TabItem extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $quantity
      */
     public function setQuantity($quantity)
@@ -190,6 +203,9 @@ class TabItem extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param Amount $amount
      */
     public function setAmount($amount)

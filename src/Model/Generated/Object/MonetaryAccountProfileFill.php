@@ -45,17 +45,26 @@ class MonetaryAccountProfileFill extends BunqModel
     protected $issuer;
 
     /**
-     * @param string $status
-     * @param Amount $balancePreferred
-     * @param Amount $balanceThresholdLow
-     * @param string $methodFill
+     * @param string $status              The status of the profile.
+     * @param Amount $balancePreferred    The goal balance.
+     * @param Amount $balanceThresholdLow The low threshold balance.
+     * @param string $methodFill          The method used to fill the monetary account.
+     *                                    Currently IDEAL and SOFORT is supported.
+     * @param Issuer|null $issuer         The bank the fill is supposed to happen from,
+     *                                    with BIC and bank name.
      */
-    public function __construct($status, Amount $balancePreferred, Amount $balanceThresholdLow, $methodFill)
-    {
+    public function __construct(
+        string $status,
+        Amount $balancePreferred,
+        Amount $balanceThresholdLow,
+        string $methodFill,
+        Issuer $issuer = null
+    ) {
         $this->status = $status;
         $this->balancePreferred = $balancePreferred;
         $this->balanceThresholdLow = $balanceThresholdLow;
         $this->methodFill = $methodFill;
+        $this->issuer = $issuer;
     }
 
     /**
@@ -69,6 +78,9 @@ class MonetaryAccountProfileFill extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $status
      */
     public function setStatus($status)
@@ -87,6 +99,9 @@ class MonetaryAccountProfileFill extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param Amount $balancePreferred
      */
     public function setBalancePreferred($balancePreferred)
@@ -105,6 +120,9 @@ class MonetaryAccountProfileFill extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param Amount $balanceThresholdLow
      */
     public function setBalanceThresholdLow($balanceThresholdLow)
@@ -124,6 +142,9 @@ class MonetaryAccountProfileFill extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $methodFill
      */
     public function setMethodFill($methodFill)
@@ -142,6 +163,9 @@ class MonetaryAccountProfileFill extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param Issuer $issuer
      */
     public function setIssuer($issuer)

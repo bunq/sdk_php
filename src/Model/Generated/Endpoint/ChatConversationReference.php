@@ -11,11 +11,6 @@ use bunq\Model\Core\BunqModel;
 class ChatConversationReference extends BunqModel
 {
     /**
-     * Object type.
-     */
-    const OBJECT_TYPE = 'SupportConversationReference';
-
-    /**
      * The id of this conversation.
      *
      * @var int
@@ -47,6 +42,9 @@ class ChatConversationReference extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param int $id
      */
     public function setId($id)
@@ -65,6 +63,9 @@ class ChatConversationReference extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $created
      */
     public function setCreated($created)
@@ -83,6 +84,9 @@ class ChatConversationReference extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $updated
      */
     public function setUpdated($updated)

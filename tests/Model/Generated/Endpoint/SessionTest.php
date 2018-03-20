@@ -1,6 +1,7 @@
 <?php
 namespace bunq\test\Model\Generated\Endpoint;
 
+use bunq\Context\BunqContext;
 use bunq\Model\Generated\Endpoint\Session;
 use bunq\test\BunqSdkTestBase;
 
@@ -32,9 +33,7 @@ class SessionTest extends BunqSdkTestBase
      */
     public function testDeleteSession()
     {
-        $apiContext = static::getApiContext();
-
-        Session::delete($apiContext, self::SESSION_ID_DUMMY);
+        Session::delete(self::SESSION_ID_DUMMY);
     }
 
     /**
@@ -42,10 +41,8 @@ class SessionTest extends BunqSdkTestBase
      */
     public static function tearDownAfterClass()
     {
-        $apiContext = static::getApiContext();
-
         sleep(self::SECONDS_TO_SLEEP);
-        $apiContext->resetSession();
-        $apiContext->save(self::FILENAME_CONTEXT_CONFIG);
+        BunqContext::getApiContext()->resetSession();
+        BunqContext::getApiContext()->save(self::FILENAME_CONTEXT_CONFIG);
     }
 }

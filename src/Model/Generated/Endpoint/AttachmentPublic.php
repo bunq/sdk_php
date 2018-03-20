@@ -1,9 +1,7 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
-use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
-use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Object\Attachment;
 
@@ -32,7 +30,8 @@ class AttachmentPublic extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'AttachmentPublic';
+    const OBJECT_TYPE_POST = 'Uuid';
+    const OBJECT_TYPE_GET = 'AttachmentPublic';
 
     /**
      * The UUID of the attachment.
@@ -69,15 +68,14 @@ class AttachmentPublic extends BunqModel
      * Content-Type header. You are required to provide a description of the
      * attachment using the X-Bunq-Attachment-Description header.
      *
-     * @param ApiContext $apiContext
      * @param string $requestBytes
      * @param string[] $customHeaders
      *
      * @return BunqResponseString
      */
-    public static function create(ApiContext $apiContext, string $requestBytes, array $customHeaders = []): BunqResponseString
+    public static function create(string $requestBytes, array $customHeaders = []): BunqResponseString
     {
-        $apiClient = new ApiClient($apiContext);
+        $apiClient = new ApiClient(static::getApiContext());
         $apiClient->enableBinary();
         $responseRaw = $apiClient->post(
             vsprintf(
@@ -98,15 +96,14 @@ class AttachmentPublic extends BunqModel
      * header of the response will describe the MIME type of the attachment
      * file.
      *
-     * @param ApiContext $apiContext
      * @param string $attachmentPublicUuid
      * @param string[] $customHeaders
      *
      * @return BunqResponseAttachmentPublic
      */
-    public static function get(ApiContext $apiContext, string $attachmentPublicUuid, array $customHeaders = []): BunqResponseAttachmentPublic
+    public static function get(string $attachmentPublicUuid, array $customHeaders = []): BunqResponseAttachmentPublic
     {
-        $apiClient = new ApiClient($apiContext);
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_READ,
@@ -117,7 +114,7 @@ class AttachmentPublic extends BunqModel
         );
 
         return BunqResponseAttachmentPublic::castFromBunqResponse(
-            static::fromJson($responseRaw, self::OBJECT_TYPE)
+            static::fromJson($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 
@@ -132,6 +129,9 @@ class AttachmentPublic extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $uuid
      */
     public function setUuid($uuid)
@@ -150,6 +150,9 @@ class AttachmentPublic extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $created
      */
     public function setCreated($created)
@@ -168,6 +171,9 @@ class AttachmentPublic extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $updated
      */
     public function setUpdated($updated)
@@ -186,6 +192,9 @@ class AttachmentPublic extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param Attachment $attachment
      */
     public function setAttachment($attachment)

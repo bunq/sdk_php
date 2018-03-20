@@ -5,12 +5,12 @@ use bunq\Http\BunqResponse;
 
 /**
  */
-class BunqResponseRequestResponseChat extends BunqResponse
+class BunqResponseSandboxUser extends BunqResponse
 {
     /**
-     * @return RequestResponseChat
+     * @return SandboxUser
      */
-    public function getValue(): RequestResponseChat
+    public function getValue(): SandboxUser
     {
         return parent::getValue();
     }

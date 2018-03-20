@@ -1,9 +1,7 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
-use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
-use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Object\LabelCard;
 use bunq\Model\Generated\Object\LabelMonetaryAccount;
@@ -24,7 +22,7 @@ class CardPinChange extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'CardPinChange';
+    const OBJECT_TYPE_GET = 'CardPinChange';
 
     /**
      * The id of the pin change.
@@ -74,54 +72,53 @@ class CardPinChange extends BunqModel
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
-     * @param ApiContext $apiContext
-     * @param int $userId
      * @param int $cardId
      * @param string[] $params
      * @param string[] $customHeaders
      *
      * @return BunqResponseCardPinChangeList
      */
-    public static function listing(ApiContext $apiContext, int $userId, int $cardId, array $params = [], array $customHeaders = []): BunqResponseCardPinChangeList
-    {
-        $apiClient = new ApiClient($apiContext);
+    public static function listing(
+        int $cardId,
+        array $params = [],
+        array $customHeaders = []
+    ): BunqResponseCardPinChangeList {
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_LISTING,
-                [$userId, $cardId]
+                [static::determineUserId(), $cardId]
             ),
             $params,
             $customHeaders
         );
 
         return BunqResponseCardPinChangeList::castFromBunqResponse(
-            static::fromJsonList($responseRaw, self::OBJECT_TYPE)
+            static::fromJsonList($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 
     /**
-     * @param ApiContext $apiContext
-     * @param int $userId
      * @param int $cardId
      * @param int $cardPinChangeId
      * @param string[] $customHeaders
      *
      * @return BunqResponseCardPinChange
      */
-    public static function get(ApiContext $apiContext, int $userId, int $cardId, int $cardPinChangeId, array $customHeaders = []): BunqResponseCardPinChange
+    public static function get(int $cardId, int $cardPinChangeId, array $customHeaders = []): BunqResponseCardPinChange
     {
-        $apiClient = new ApiClient($apiContext);
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_READ,
-                [$userId, $cardId, $cardPinChangeId]
+                [static::determineUserId(), $cardId, $cardPinChangeId]
             ),
             [],
             $customHeaders
         );
 
         return BunqResponseCardPinChange::castFromBunqResponse(
-            static::fromJson($responseRaw, self::OBJECT_TYPE)
+            static::fromJson($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 
@@ -136,6 +133,9 @@ class CardPinChange extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param int $id
      */
     public function setId($id)
@@ -154,6 +154,9 @@ class CardPinChange extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param LabelCard $labelCard
      */
     public function setLabelCard($labelCard)
@@ -173,6 +176,9 @@ class CardPinChange extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param LabelMonetaryAccount $labelMonetaryAccountCurrent
      */
     public function setLabelMonetaryAccountCurrent($labelMonetaryAccountCurrent)
@@ -191,6 +197,9 @@ class CardPinChange extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $timeRequest
      */
     public function setTimeRequest($timeRequest)
@@ -209,6 +218,9 @@ class CardPinChange extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $timeAccept
      */
     public function setTimeAccept($timeAccept)
@@ -228,6 +240,9 @@ class CardPinChange extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $status
      */
     public function setStatus($status)

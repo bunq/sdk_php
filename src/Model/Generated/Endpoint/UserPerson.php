@@ -1,13 +1,13 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
-use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
-use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Object\Address;
 use bunq\Model\Generated\Object\Amount;
 use bunq\Model\Generated\Object\Avatar;
+use bunq\Model\Generated\Object\BunqId;
+use bunq\Model\Generated\Object\CardLimit;
 use bunq\Model\Generated\Object\NotificationFilter;
 use bunq\Model\Generated\Object\Pointer;
 use bunq\Model\Generated\Object\TaxResident;
@@ -55,14 +55,15 @@ class UserPerson extends BunqModel
     const FIELD_SUB_STATUS = 'sub_status';
     const FIELD_LEGAL_GUARDIAN_ALIAS = 'legal_guardian_alias';
     const FIELD_SESSION_TIMEOUT = 'session_timeout';
+    const FIELD_CARD_IDS = 'card_ids';
+    const FIELD_CARD_LIMITS = 'card_limits';
     const FIELD_DAILY_LIMIT_WITHOUT_CONFIRMATION_LOGIN = 'daily_limit_without_confirmation_login';
-    const FIELD_COUNTER_BANK_IBAN = 'counter_bank_iban';
     const FIELD_NOTIFICATION_FILTERS = 'notification_filters';
 
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'UserPerson';
+    const OBJECT_TYPE_GET = 'UserPerson';
 
     /**
      * The id of the modified person object.
@@ -293,48 +294,156 @@ class UserPerson extends BunqModel
     /**
      * Get a specific person.
      *
-     * @param ApiContext $apiContext
      * @param int $userPersonId
      * @param string[] $customHeaders
      *
      * @return BunqResponseUserPerson
      */
-    public static function get(ApiContext $apiContext, int $userPersonId, array $customHeaders = []): BunqResponseUserPerson
+    public static function get(array $customHeaders = []): BunqResponseUserPerson
     {
-        $apiClient = new ApiClient($apiContext);
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_READ,
-                [$userPersonId]
+                [static::determineUserId()]
             ),
             [],
             $customHeaders
         );
 
         return BunqResponseUserPerson::castFromBunqResponse(
-            static::fromJson($responseRaw, self::OBJECT_TYPE)
+            static::fromJson($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 
     /**
      * Modify a specific person object's data.
      *
-     * @param ApiContext $apiContext
-     * @param mixed[] $requestMap
      * @param int $userPersonId
+     * @param string|null $firstName                          The person's first name.
+     * @param string|null $middleName                         The person's middle name.
+     * @param string|null $lastName                           The person's last name.
+     * @param string|null $publicNickName                     The person's public nick name.
+     * @param Address|null $addressMain                       The user's main address.
+     * @param Address|null $addressPostal                     The person's postal address.
+     * @param string|null $avatarUuid                         The public UUID of the user's avatar.
+     * @param TaxResident[]|null $taxResident                 The user's tax residence numbers
+     *                                                        for different countries.
+     * @param string|null $documentType                       The type of identification document the
+     *                                                        person registered with.
+     * @param string|null $documentNumber                     The identification document number the
+     *                                                        person registered with.
+     * @param string|null $documentCountryOfIssuance          The country which issued
+     *                                                        the identification document the person registered with.
+     * @param int|null $documentFrontAttachmentId             The reference to the uploaded
+     *                                                        picture/scan of the front side of the identification
+     *                                                        document.
+     * @param int|null $documentBackAttachmentId              The reference to the uploaded
+     *                                                        picture/scan of the back side of the identification
+     *                                                        document.
+     * @param string|null $dateOfBirth                        The person's date of birth. Accepts
+     *                                                        ISO8601 date formats.
+     * @param string|null $placeOfBirth                       The person's place of birth.
+     * @param string|null $countryOfBirth                     The person's country of birth.
+     *                                                        Formatted as a SO 3166-1 alpha-2 country code.
+     * @param string|null $nationality                        The person's nationality. Formatted as a
+     *                                                        SO 3166-1 alpha-2 country code.
+     * @param string|null $language                           The person's preferred language. Formatted
+     *                                                        as a ISO 639-1 language code plus a ISO 3166-1 alpha-2
+     *                                                        country code, seperated by an underscore.
+     * @param string|null $region                             The person's preferred region. Formatted as a
+     *                                                        ISO 639-1 language code plus a ISO 3166-1 alpha-2 country
+     *                                                        code, seperated by an underscore.
+     * @param string|null $gender                             The person's gender. Can be: MALE, FEMALE and
+     *                                                        UNKNOWN.
+     * @param string|null $status                             The user status. You are not allowed to update
+     *                                                        the status via PUT.
+     * @param string|null $subStatus                          The user sub-status. Can be updated to
+     *                                                        SUBMIT if status is RECOVERY.
+     * @param Pointer|null $legalGuardianAlias                The legal guardian of the user.
+     *                                                        Required for minors.
+     * @param int|null $sessionTimeout                        The setting for the session timeout of
+     *                                                        the user in seconds.
+     * @param BunqId[]|null $cardIds                          Card ids used for centralized card limits.
+     * @param CardLimit[]|null $cardLimits                    The centralized limits for user's
+     *                                                        cards.
+     * @param Amount|null $dailyLimitWithoutConfirmationLogin The amount the
+     *                                                        user can pay in the session without asking for
+     *                                                        credentials.
+     * @param NotificationFilter[]|null $notificationFilters  The types of
+     *                                                        notifications that will result in a push notification or
+     *                                                        URL callback for this UserPerson.
      * @param string[] $customHeaders
      *
      * @return BunqResponseInt
      */
-    public static function update(ApiContext $apiContext, array $requestMap, int $userPersonId, array $customHeaders = []): BunqResponseInt
-    {
-        $apiClient = new ApiClient($apiContext);
+    public static function update(
+        string $firstName = null,
+        string $middleName = null,
+        string $lastName = null,
+        string $publicNickName = null,
+        Address $addressMain = null,
+        Address $addressPostal = null,
+        string $avatarUuid = null,
+        array $taxResident = null,
+        string $documentType = null,
+        string $documentNumber = null,
+        string $documentCountryOfIssuance = null,
+        int $documentFrontAttachmentId = null,
+        int $documentBackAttachmentId = null,
+        string $dateOfBirth = null,
+        string $placeOfBirth = null,
+        string $countryOfBirth = null,
+        string $nationality = null,
+        string $language = null,
+        string $region = null,
+        string $gender = null,
+        string $status = null,
+        string $subStatus = null,
+        Pointer $legalGuardianAlias = null,
+        int $sessionTimeout = null,
+        array $cardIds = null,
+        array $cardLimits = null,
+        Amount $dailyLimitWithoutConfirmationLogin = null,
+        array $notificationFilters = null,
+        array $customHeaders = []
+    ): BunqResponseInt {
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->put(
             vsprintf(
                 self::ENDPOINT_URL_UPDATE,
-                [$userPersonId]
+                [static::determineUserId()]
             ),
-            $requestMap,
+            [
+                self::FIELD_FIRST_NAME => $firstName,
+                self::FIELD_MIDDLE_NAME => $middleName,
+                self::FIELD_LAST_NAME => $lastName,
+                self::FIELD_PUBLIC_NICK_NAME => $publicNickName,
+                self::FIELD_ADDRESS_MAIN => $addressMain,
+                self::FIELD_ADDRESS_POSTAL => $addressPostal,
+                self::FIELD_AVATAR_UUID => $avatarUuid,
+                self::FIELD_TAX_RESIDENT => $taxResident,
+                self::FIELD_DOCUMENT_TYPE => $documentType,
+                self::FIELD_DOCUMENT_NUMBER => $documentNumber,
+                self::FIELD_DOCUMENT_COUNTRY_OF_ISSUANCE => $documentCountryOfIssuance,
+                self::FIELD_DOCUMENT_FRONT_ATTACHMENT_ID => $documentFrontAttachmentId,
+                self::FIELD_DOCUMENT_BACK_ATTACHMENT_ID => $documentBackAttachmentId,
+                self::FIELD_DATE_OF_BIRTH => $dateOfBirth,
+                self::FIELD_PLACE_OF_BIRTH => $placeOfBirth,
+                self::FIELD_COUNTRY_OF_BIRTH => $countryOfBirth,
+                self::FIELD_NATIONALITY => $nationality,
+                self::FIELD_LANGUAGE => $language,
+                self::FIELD_REGION => $region,
+                self::FIELD_GENDER => $gender,
+                self::FIELD_STATUS => $status,
+                self::FIELD_SUB_STATUS => $subStatus,
+                self::FIELD_LEGAL_GUARDIAN_ALIAS => $legalGuardianAlias,
+                self::FIELD_SESSION_TIMEOUT => $sessionTimeout,
+                self::FIELD_CARD_IDS => $cardIds,
+                self::FIELD_CARD_LIMITS => $cardLimits,
+                self::FIELD_DAILY_LIMIT_WITHOUT_CONFIRMATION_LOGIN => $dailyLimitWithoutConfirmationLogin,
+                self::FIELD_NOTIFICATION_FILTERS => $notificationFilters,
+            ],
             $customHeaders
         );
 
@@ -354,6 +463,9 @@ class UserPerson extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param int $id
      */
     public function setId($id)
@@ -372,6 +484,9 @@ class UserPerson extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $created
      */
     public function setCreated($created)
@@ -390,6 +505,9 @@ class UserPerson extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $updated
      */
     public function setUpdated($updated)
@@ -408,6 +526,9 @@ class UserPerson extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $publicUuid
      */
     public function setPublicUuid($publicUuid)
@@ -426,6 +547,9 @@ class UserPerson extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $firstName
      */
     public function setFirstName($firstName)
@@ -444,6 +568,9 @@ class UserPerson extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $middleName
      */
     public function setMiddleName($middleName)
@@ -462,6 +589,9 @@ class UserPerson extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $lastName
      */
     public function setLastName($lastName)
@@ -480,6 +610,9 @@ class UserPerson extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $legalName
      */
     public function setLegalName($legalName)
@@ -498,6 +631,9 @@ class UserPerson extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $displayName
      */
     public function setDisplayName($displayName)
@@ -516,6 +652,9 @@ class UserPerson extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $publicNickName
      */
     public function setPublicNickName($publicNickName)
@@ -534,6 +673,9 @@ class UserPerson extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param Pointer[] $alias
      */
     public function setAlias($alias)
@@ -552,6 +694,9 @@ class UserPerson extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param TaxResident[] $taxResident
      */
     public function setTaxResident($taxResident)
@@ -570,6 +715,9 @@ class UserPerson extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $documentType
      */
     public function setDocumentType($documentType)
@@ -588,6 +736,9 @@ class UserPerson extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $documentNumber
      */
     public function setDocumentNumber($documentNumber)
@@ -607,6 +758,9 @@ class UserPerson extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $documentCountryOfIssuance
      */
     public function setDocumentCountryOfIssuance($documentCountryOfIssuance)
@@ -625,6 +779,9 @@ class UserPerson extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param Address $addressMain
      */
     public function setAddressMain($addressMain)
@@ -643,6 +800,9 @@ class UserPerson extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param Address $addressPostal
      */
     public function setAddressPostal($addressPostal)
@@ -661,6 +821,9 @@ class UserPerson extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $dateOfBirth
      */
     public function setDateOfBirth($dateOfBirth)
@@ -679,6 +842,9 @@ class UserPerson extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $placeOfBirth
      */
     public function setPlaceOfBirth($placeOfBirth)
@@ -698,6 +864,9 @@ class UserPerson extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $countryOfBirth
      */
     public function setCountryOfBirth($countryOfBirth)
@@ -716,6 +885,9 @@ class UserPerson extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $nationality
      */
     public function setNationality($nationality)
@@ -735,6 +907,9 @@ class UserPerson extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $language
      */
     public function setLanguage($language)
@@ -754,6 +929,9 @@ class UserPerson extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $region
      */
     public function setRegion($region)
@@ -772,6 +950,9 @@ class UserPerson extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $gender
      */
     public function setGender($gender)
@@ -790,6 +971,9 @@ class UserPerson extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param Avatar $avatar
      */
     public function setAvatar($avatar)
@@ -808,6 +992,9 @@ class UserPerson extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $versionTermsOfService
      */
     public function setVersionTermsOfService($versionTermsOfService)
@@ -827,6 +1014,9 @@ class UserPerson extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $status
      */
     public function setStatus($status)
@@ -847,6 +1037,9 @@ class UserPerson extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $subStatus
      */
     public function setSubStatus($subStatus)
@@ -865,6 +1058,9 @@ class UserPerson extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param int $sessionTimeout
      */
     public function setSessionTimeout($sessionTimeout)
@@ -884,6 +1080,9 @@ class UserPerson extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param Amount $dailyLimitWithoutConfirmationLogin
      */
     public function setDailyLimitWithoutConfirmationLogin($dailyLimitWithoutConfirmationLogin)
@@ -903,6 +1102,9 @@ class UserPerson extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param NotificationFilter[] $notificationFilters
      */
     public function setNotificationFilters($notificationFilters)

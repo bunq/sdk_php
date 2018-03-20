@@ -30,16 +30,6 @@ class PaginationScenarioTest extends BunqSdkTestBase
     const PAYMENT_DESCRIPTION = 'PHP test Payment';
 
     /**
-     * @var int
-     */
-    private static $userId;
-
-    /**
-     * @var int
-     */
-    private static $monetaryAccountId;
-
-    /**
      * @var Pointer
      */
     private static $counterPartyAliasOther;
@@ -49,8 +39,6 @@ class PaginationScenarioTest extends BunqSdkTestBase
     public static function setUpBeforeClass()
     {
         parent::setUpBeforeClass();
-        static::$userId = Config::getUserId();
-        static::$monetaryAccountId = Config::getMonetaryAccountId();
         static::$counterPartyAliasOther = Config::getCounterPartyAliasOther();
     }
 
@@ -109,25 +97,17 @@ class PaginationScenarioTest extends BunqSdkTestBase
      */
     private static function listPayments(array $urlParams): BunqResponse
     {
-        return Payment::listing(static::$apiContext, static::$userId, static::$monetaryAccountId, $urlParams);
+        return Payment::listing(null, $urlParams);
     }
 
     /**
      */
     public static function createPayment()
     {
-        $apiContext = static::getApiContext();
-        $requestMap = [
-            Payment::FIELD_AMOUNT => new Amount(self::PAYMENT_AMOUNT_EUR, self::PAYMENT_CURRENCY),
-            Payment::FIELD_COUNTERPARTY_ALIAS => static::$counterPartyAliasOther,
-            Payment::FIELD_DESCRIPTION => self::PAYMENT_DESCRIPTION,
-        ];
-
         Payment::create(
-            $apiContext,
-            $requestMap,
-            static::$userId,
-            static::$monetaryAccountId
+            new Amount(self::PAYMENT_AMOUNT_EUR, self::PAYMENT_CURRENCY),
+            static::$counterPartyAliasOther,
+            self::PAYMENT_DESCRIPTION
         );
     }
 }

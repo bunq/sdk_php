@@ -1,7 +1,6 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
-use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
 use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
@@ -54,7 +53,9 @@ class TabUsageMultiple extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'TabUsageMultiple';
+    const OBJECT_TYPE_POST = 'Uuid';
+    const OBJECT_TYPE_PUT = 'Uuid';
+    const OBJECT_TYPE_GET = 'TabUsageMultiple';
 
     /**
      * The uuid of the created TabUsageMultiple.
@@ -118,7 +119,7 @@ class TabUsageMultiple extends BunqModel
      * The visibility of a Tab. A Tab can be visible trough NearPay, the QR code
      * of the CashRegister and its own QR code.
      *
-     * @var TabVisibility
+     * @var TabVisibility|null
      */
     protected $visibility;
 
@@ -183,24 +184,83 @@ class TabUsageMultiple extends BunqModel
     /**
      * Create a TabUsageMultiple. On creation the status must be set to OPEN
      *
-     * @param ApiContext $apiContext
-     * @param mixed[] $requestMap
-     * @param int $userId
-     * @param int $monetaryAccountId
      * @param int $cashRegisterId
+     * @param string $description            The description of the TabUsageMultiple.
+     *                                       Maximum 9000 characters. Field is required but can be an empty string.
+     * @param string $status                 The status of the TabUsageMultiple. On creation the
+     *                                       status must be set to OPEN. You can change the status from OPEN to
+     *                                       PAYABLE. If the TabUsageMultiple gets paid the status will remain
+     *                                       PAYABLE.
+     * @param Amount $amountTotal            The total amount of the Tab. Must be a
+     *                                       positive amount. As long as the tab has the status OPEN you can change
+     *                                       the total amount. This amount is not affected by the amounts of the
+     *                                       TabItems. However, if you've created any TabItems for a Tab the sum of
+     *                                       the amounts of these items must be equal to the total_amount of the Tab
+     *                                       when you change its status to PAYABLE
+     * @param int|null $monetaryAccountId
+     * @param bool|null $allowAmountHigher   [DEPRECATED] Whether or not a higher
+     *                                       amount can be paid.
+     * @param bool|null $allowAmountLower    [DEPRECATED] Whether or not a lower
+     *                                       amount can be paid.
+     * @param bool|null $wantTip             [DEPRECATED] Whether or not the user paying the
+     *                                       Tab should be asked if he wants to give a tip. When want_tip is set to
+     *                                       true, allow_amount_higher must also be set to true and allow_amount_lower
+     *                                       must be false.
+     * @param int|null $minimumAge           The minimum age of the user paying the Tab.
+     * @param string|null $requireAddress    Whether a billing and shipping address
+     *                                       must be provided when paying the Tab. Possible values are: BILLING,
+     *                                       SHIPPING, BILLING_SHIPPING, NONE, OPTIONAL. Default is NONE.
+     * @param string|null $redirectUrl       The URL which the user is sent to after
+     *                                       paying the Tab.
+     * @param TabVisibility|null $visibility The visibility of a Tab. A Tab can
+     *                                       be visible trough NearPay, the QR code of the CashRegister and its own QR
+     *                                       code.
+     * @param string|null $expiration        The moment when this Tab expires. Can be
+     *                                       at most 365 days into the future.
+     * @param BunqId[]|null $tabAttachment   An array of attachments that describe
+     *                                       the tab. Uploaded through the POST /user/{userid}/attachment-tab
+     *                                       endpoint.
      * @param string[] $customHeaders
      *
      * @return BunqResponseString
      */
-    public static function create(ApiContext $apiContext, array $requestMap, int $userId, int $monetaryAccountId, int $cashRegisterId, array $customHeaders = []): BunqResponseString
-    {
-        $apiClient = new ApiClient($apiContext);
+    public static function create(
+        int $cashRegisterId,
+        string $description,
+        string $status,
+        Amount $amountTotal,
+        int $monetaryAccountId = null,
+        bool $allowAmountHigher = null,
+        bool $allowAmountLower = null,
+        bool $wantTip = null,
+        int $minimumAge = null,
+        string $requireAddress = null,
+        string $redirectUrl = null,
+        TabVisibility $visibility = null,
+        string $expiration = null,
+        array $tabAttachment = null,
+        array $customHeaders = []
+    ): BunqResponseString {
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->post(
             vsprintf(
                 self::ENDPOINT_URL_CREATE,
-                [$userId, $monetaryAccountId, $cashRegisterId]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId), $cashRegisterId]
             ),
-            $requestMap,
+            [
+                self::FIELD_DESCRIPTION => $description,
+                self::FIELD_STATUS => $status,
+                self::FIELD_AMOUNT_TOTAL => $amountTotal,
+                self::FIELD_ALLOW_AMOUNT_HIGHER => $allowAmountHigher,
+                self::FIELD_ALLOW_AMOUNT_LOWER => $allowAmountLower,
+                self::FIELD_WANT_TIP => $wantTip,
+                self::FIELD_MINIMUM_AGE => $minimumAge,
+                self::FIELD_REQUIRE_ADDRESS => $requireAddress,
+                self::FIELD_REDIRECT_URL => $redirectUrl,
+                self::FIELD_VISIBILITY => $visibility,
+                self::FIELD_EXPIRATION => $expiration,
+                self::FIELD_TAB_ATTACHMENT => $tabAttachment,
+            ],
             $customHeaders
         );
 
@@ -217,25 +277,60 @@ class TabUsageMultiple extends BunqModel
      * equal to the total_amount of the Tab when you change its status to
      * PAYABLE.
      *
-     * @param ApiContext $apiContext
-     * @param mixed[] $requestMap
-     * @param int $userId
-     * @param int $monetaryAccountId
      * @param int $cashRegisterId
      * @param string $tabUsageMultipleUuid
+     * @param int|null $monetaryAccountId
+     * @param string|null $status            The status of the TabUsageMultiple. On
+     *                                       creation the status must be set to OPEN. You can change the status from
+     *                                       OPEN to PAYABLE. If the TabUsageMultiple gets paid the status will remain
+     *                                       PAYABLE.
+     * @param Amount|null $amountTotal       The total amount of the Tab. Must be a
+     *                                       positive amount. As long as the tab has the status OPEN you can change
+     *                                       the total amount. This amount is not affected by the amounts of the
+     *                                       TabItems. However, if you've created any TabItems for a Tab the sum of
+     *                                       the amounts of these items must be equal to the total_amount of the Tab
+     *                                       when you change its status to PAYABLE
+     * @param TabVisibility|null $visibility The visibility of a Tab. A Tab can
+     *                                       be visible trough NearPay, the QR code of the CashRegister and its own QR
+     *                                       code.
+     * @param string|null $expiration        The moment when this Tab expires. Can be
+     *                                       at most 365 days into the future.
+     * @param BunqId[]|null $tabAttachment   An array of attachments that describe
+     *                                       the tab. Uploaded through the POST /user/{userid}/attachment-tab
+     *                                       endpoint.
      * @param string[] $customHeaders
      *
      * @return BunqResponseString
      */
-    public static function update(ApiContext $apiContext, array $requestMap, int $userId, int $monetaryAccountId, int $cashRegisterId, string $tabUsageMultipleUuid, array $customHeaders = []): BunqResponseString
-    {
-        $apiClient = new ApiClient($apiContext);
+    public static function update(
+        int $cashRegisterId,
+        string $tabUsageMultipleUuid,
+        int $monetaryAccountId = null,
+        string $status = null,
+        Amount $amountTotal = null,
+        TabVisibility $visibility = null,
+        string $expiration = null,
+        array $tabAttachment = null,
+        array $customHeaders = []
+    ): BunqResponseString {
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->put(
             vsprintf(
                 self::ENDPOINT_URL_UPDATE,
-                [$userId, $monetaryAccountId, $cashRegisterId, $tabUsageMultipleUuid]
+                [
+                    static::determineUserId(),
+                    static::determineMonetaryAccountId($monetaryAccountId),
+                    $cashRegisterId,
+                    $tabUsageMultipleUuid,
+                ]
             ),
-            $requestMap,
+            [
+                self::FIELD_STATUS => $status,
+                self::FIELD_AMOUNT_TOTAL => $amountTotal,
+                self::FIELD_VISIBILITY => $visibility,
+                self::FIELD_EXPIRATION => $expiration,
+                self::FIELD_TAB_ATTACHMENT => $tabAttachment,
+            ],
             $customHeaders
         );
 
@@ -245,25 +340,30 @@ class TabUsageMultiple extends BunqModel
     }
 
     /**
-     * Close a specific TabUsageMultiple. This request returns an empty
-     * response.
+     * Close a specific TabUsageMultiple.
      *
-     * @param ApiContext $apiContext
      * @param string[] $customHeaders
-     * @param int $userId
-     * @param int $monetaryAccountId
      * @param int $cashRegisterId
      * @param string $tabUsageMultipleUuid
      *
      * @return BunqResponseNull
      */
-    public static function delete(ApiContext $apiContext, int $userId, int $monetaryAccountId, int $cashRegisterId, string $tabUsageMultipleUuid, array $customHeaders = []): BunqResponseNull
-    {
-        $apiClient = new ApiClient($apiContext);
+    public static function delete(
+        int $cashRegisterId,
+        string $tabUsageMultipleUuid,
+        int $monetaryAccountId = null,
+        array $customHeaders = []
+    ): BunqResponseNull {
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->delete(
             vsprintf(
                 self::ENDPOINT_URL_DELETE,
-                [$userId, $monetaryAccountId, $cashRegisterId, $tabUsageMultipleUuid]
+                [
+                    static::determineUserId(),
+                    static::determineMonetaryAccountId($monetaryAccountId),
+                    $cashRegisterId,
+                    $tabUsageMultipleUuid,
+                ]
             ),
             $customHeaders
         );
@@ -276,29 +376,36 @@ class TabUsageMultiple extends BunqModel
     /**
      * Get a specific TabUsageMultiple.
      *
-     * @param ApiContext $apiContext
-     * @param int $userId
-     * @param int $monetaryAccountId
      * @param int $cashRegisterId
      * @param string $tabUsageMultipleUuid
+     * @param int|null $monetaryAccountId
      * @param string[] $customHeaders
      *
      * @return BunqResponseTabUsageMultiple
      */
-    public static function get(ApiContext $apiContext, int $userId, int $monetaryAccountId, int $cashRegisterId, string $tabUsageMultipleUuid, array $customHeaders = []): BunqResponseTabUsageMultiple
-    {
-        $apiClient = new ApiClient($apiContext);
+    public static function get(
+        int $cashRegisterId,
+        string $tabUsageMultipleUuid,
+        int $monetaryAccountId = null,
+        array $customHeaders = []
+    ): BunqResponseTabUsageMultiple {
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_READ,
-                [$userId, $monetaryAccountId, $cashRegisterId, $tabUsageMultipleUuid]
+                [
+                    static::determineUserId(),
+                    static::determineMonetaryAccountId($monetaryAccountId),
+                    $cashRegisterId,
+                    $tabUsageMultipleUuid,
+                ]
             ),
             [],
             $customHeaders
         );
 
         return BunqResponseTabUsageMultiple::castFromBunqResponse(
-            static::fromJson($responseRaw, self::OBJECT_TYPE)
+            static::fromJson($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 
@@ -308,29 +415,31 @@ class TabUsageMultiple extends BunqModel
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
-     * @param ApiContext $apiContext
-     * @param int $userId
-     * @param int $monetaryAccountId
      * @param int $cashRegisterId
+     * @param int|null $monetaryAccountId
      * @param string[] $params
      * @param string[] $customHeaders
      *
      * @return BunqResponseTabUsageMultipleList
      */
-    public static function listing(ApiContext $apiContext, int $userId, int $monetaryAccountId, int $cashRegisterId, array $params = [], array $customHeaders = []): BunqResponseTabUsageMultipleList
-    {
-        $apiClient = new ApiClient($apiContext);
+    public static function listing(
+        int $cashRegisterId,
+        int $monetaryAccountId = null,
+        array $params = [],
+        array $customHeaders = []
+    ): BunqResponseTabUsageMultipleList {
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_LISTING,
-                [$userId, $monetaryAccountId, $cashRegisterId]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId), $cashRegisterId]
             ),
             $params,
             $customHeaders
         );
 
         return BunqResponseTabUsageMultipleList::castFromBunqResponse(
-            static::fromJsonList($responseRaw, self::OBJECT_TYPE)
+            static::fromJsonList($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 
@@ -345,6 +454,9 @@ class TabUsageMultiple extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $uuid
      */
     public function setUuid($uuid)
@@ -363,6 +475,9 @@ class TabUsageMultiple extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $created
      */
     public function setCreated($created)
@@ -381,6 +496,9 @@ class TabUsageMultiple extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $updated
      */
     public function setUpdated($updated)
@@ -399,6 +517,9 @@ class TabUsageMultiple extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $description
      */
     public function setDescription($description)
@@ -417,6 +538,9 @@ class TabUsageMultiple extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $status
      */
     public function setStatus($status)
@@ -435,6 +559,9 @@ class TabUsageMultiple extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param Amount $amountTotal
      */
     public function setAmountTotal($amountTotal)
@@ -454,6 +581,9 @@ class TabUsageMultiple extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $qrCodeToken
      */
     public function setQrCodeToken($qrCodeToken)
@@ -473,6 +603,9 @@ class TabUsageMultiple extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $tabUrl
      */
     public function setTabUrl($tabUrl)
@@ -492,6 +625,9 @@ class TabUsageMultiple extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param TabVisibility $visibility
      */
     public function setVisibility($visibility)
@@ -510,6 +646,9 @@ class TabUsageMultiple extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param bool $minimumAge
      */
     public function setMinimumAge($minimumAge)
@@ -529,6 +668,9 @@ class TabUsageMultiple extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $requireAddress
      */
     public function setRequireAddress($requireAddress)
@@ -547,6 +689,9 @@ class TabUsageMultiple extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $redirectUrl
      */
     public function setRedirectUrl($redirectUrl)
@@ -565,6 +710,9 @@ class TabUsageMultiple extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $expiration
      */
     public function setExpiration($expiration)
@@ -583,6 +731,9 @@ class TabUsageMultiple extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param LabelMonetaryAccount $alias
      */
     public function setAlias($alias)
@@ -601,6 +752,9 @@ class TabUsageMultiple extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param Geolocation $cashRegisterLocation
      */
     public function setCashRegisterLocation($cashRegisterLocation)
@@ -619,6 +773,9 @@ class TabUsageMultiple extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param TabItem[] $tabItem
      */
     public function setTabItem($tabItem)
@@ -638,6 +795,9 @@ class TabUsageMultiple extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param BunqId[] $tabAttachment
      */
     public function setTabAttachment($tabAttachment)

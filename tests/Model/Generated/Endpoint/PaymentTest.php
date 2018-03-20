@@ -40,11 +40,6 @@ class PaymentTest extends BunqSdkTestBase
     /**
      * @var int
      */
-    private static $userId;
-
-    /**
-     * @var int
-     */
     private static $monetaryAccountId;
 
     /**
@@ -67,7 +62,6 @@ class PaymentTest extends BunqSdkTestBase
     public static function setUpBeforeClass()
     {
         parent::setUpBeforeClass();
-        static::$userId = Config::getUserId();
         static::$monetaryAccountId = Config::getMonetaryAccountId();
         static::$counterPartyAliasOther = Config::getCounterPartyAliasOther();
         static::$counterPartyAliasSelf = Config::getCounterPartyAliasSelf();
@@ -80,15 +74,11 @@ class PaymentTest extends BunqSdkTestBase
      */
     public function testSendMoneyToOtherUser()
     {
-        $apiContext = static::getApiContext();
-
-        $requestMap = [
-            Payment::FIELD_COUNTERPARTY_ALIAS => static::$counterPartyAliasOther,
-            Payment::FIELD_AMOUNT => new Amount(self::PAYMENT_AMOUNT_IN_EUR, self::PAYMENT_CURRENCY),
-            Payment::FIELD_DESCRIPTION => self::PAYMENT_DESCRIPTION,
-        ];
-
-        Payment::create($apiContext, $requestMap, static::$userId, static::$monetaryAccountId);
+        Payment::create(
+            new Amount(self::PAYMENT_AMOUNT_IN_EUR, self::PAYMENT_CURRENCY),
+            static::$counterPartyAliasOther,
+            self::PAYMENT_DESCRIPTION
+        );
     }
 
     /**
@@ -98,18 +88,10 @@ class PaymentTest extends BunqSdkTestBase
      */
     public function testSendMoneyToOtherMonetaryAccount()
     {
-        $apiContext = static::getApiContext();
-        $requestMap = [
-            Payment::FIELD_AMOUNT => new Amount(self::PAYMENT_AMOUNT_IN_EUR, self::PAYMENT_CURRENCY),
-            Payment::FIELD_COUNTERPARTY_ALIAS => static::$counterPartyAliasSelf,
-            Payment::FIELD_DESCRIPTION => self::PAYMENT_DESCRIPTION,
-        ];
-
         static::$paymentId = Payment::create(
-            $apiContext,
-            $requestMap,
-            static::$userId,
-            static::$monetaryAccountId
+            new Amount(self::PAYMENT_AMOUNT_IN_EUR, self::PAYMENT_CURRENCY),
+            static::$counterPartyAliasSelf,
+            self::PAYMENT_DESCRIPTION
         )->getValue();
     }
 
@@ -122,18 +104,10 @@ class PaymentTest extends BunqSdkTestBase
      */
     public function testSendMessageToPayment()
     {
-        $apiContext = static::getApiContext();
         $chatId = PaymentChat::create(
-            $apiContext,
-            [],
-            static::$userId,
-            static::$monetaryAccountId,
             static::$paymentId
         )->getValue();
-        $messageMap = [
-            ChatMessageText::FIELD_TEXT => self::PAYMENT_CHAT_TEXT_MESSAGE,
-        ];
 
-        ChatMessageText::create($apiContext, $messageMap, static::$userId, $chatId);
+        ChatMessageText::create($chatId, self::PAYMENT_CHAT_TEXT_MESSAGE);
     }
 }

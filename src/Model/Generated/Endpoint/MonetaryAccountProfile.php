@@ -20,11 +20,6 @@ class MonetaryAccountProfile extends BunqModel
     const FIELD_PROFILE_DRAIN = 'profile_drain';
 
     /**
-     * Object type.
-     */
-    const OBJECT_TYPE = 'MonetaryAccountProfile';
-
-    /**
      * The profile settings for triggering the fill of a monetary account.
      *
      * @var MonetaryAccountProfileFill
@@ -49,6 +44,9 @@ class MonetaryAccountProfile extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param MonetaryAccountProfileFill $profileFill
      */
     public function setProfileFill($profileFill)
@@ -67,6 +65,9 @@ class MonetaryAccountProfile extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param MonetaryAccountProfileDrain $profileDrain
      */
     public function setProfileDrain($profileDrain)

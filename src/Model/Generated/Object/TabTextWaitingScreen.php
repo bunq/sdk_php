@@ -23,10 +23,10 @@ class TabTextWaitingScreen extends BunqModel
     protected $description;
 
     /**
-     * @param string $language
-     * @param string $description
+     * @param string $language    Language of tab text
+     * @param string $description Tab text
      */
-    public function __construct($language, $description)
+    public function __construct(string $language, string $description)
     {
         $this->language = $language;
         $this->description = $description;
@@ -43,6 +43,9 @@ class TabTextWaitingScreen extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $language
      */
     public function setLanguage($language)
@@ -61,6 +64,9 @@ class TabTextWaitingScreen extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $description
      */
     public function setDescription($description)

@@ -5,12 +5,12 @@ use bunq\Http\BunqResponse;
 
 /**
  */
-class BunqResponseRequestInquiryChat extends BunqResponse
+class BunqResponseDraftShareInviteApiKeyList extends BunqResponse
 {
     /**
-     * @return RequestInquiryChat
+     * @return DraftShareInviteApiKey[]
      */
-    public function getValue(): RequestInquiryChat
+    public function getValue(): array
     {
         return parent::getValue();
     }

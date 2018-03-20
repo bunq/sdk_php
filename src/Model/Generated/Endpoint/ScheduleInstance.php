@@ -1,11 +1,10 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
-use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
-use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Object\Error;
+use bunq\Model\Generated\Object\RequestInquiryReference;
 use bunq\Model\Generated\Object\ScheduleAnchorObject;
 use bunq\Model\Generated\Object\ScheduleInstanceAnchorObject;
 
@@ -31,7 +30,7 @@ class ScheduleInstance extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'ScheduledInstance';
+    const OBJECT_TYPE_GET = 'ScheduledInstance';
 
     /**
      * The state of the scheduleInstance. (FINISHED_SUCCESSFULLY, RETRY,
@@ -78,57 +77,81 @@ class ScheduleInstance extends BunqModel
     protected $resultObject;
 
     /**
-     * @param ApiContext $apiContext
-     * @param int $userId
-     * @param int $monetaryAccountId
+     * The reference to the object used for split the bill. Can be
+     * RequestInquiry or RequestInquiryBatch
+     *
+     * @var RequestInquiryReference[]
+     */
+    protected $requestReferenceSplitTheBill;
+
+    /**
      * @param int $scheduleId
      * @param int $scheduleInstanceId
+     * @param int|null $monetaryAccountId
      * @param string[] $customHeaders
      *
      * @return BunqResponseScheduleInstance
      */
-    public static function get(ApiContext $apiContext, int $userId, int $monetaryAccountId, int $scheduleId, int $scheduleInstanceId, array $customHeaders = []): BunqResponseScheduleInstance
-    {
-        $apiClient = new ApiClient($apiContext);
+    public static function get(
+        int $scheduleId,
+        int $scheduleInstanceId,
+        int $monetaryAccountId = null,
+        array $customHeaders = []
+    ): BunqResponseScheduleInstance {
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_READ,
-                [$userId, $monetaryAccountId, $scheduleId, $scheduleInstanceId]
+                [
+                    static::determineUserId(),
+                    static::determineMonetaryAccountId($monetaryAccountId),
+                    $scheduleId,
+                    $scheduleInstanceId,
+                ]
             ),
             [],
             $customHeaders
         );
 
         return BunqResponseScheduleInstance::castFromBunqResponse(
-            static::fromJson($responseRaw, self::OBJECT_TYPE)
+            static::fromJson($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 
     /**
-     * @param ApiContext $apiContext
-     * @param mixed[] $requestMap
-     * @param int $userId
-     * @param int $monetaryAccountId
      * @param int $scheduleId
      * @param int $scheduleInstanceId
+     * @param int|null $monetaryAccountId
+     * @param string|null $state Change the state of the scheduleInstance from
+     *                           FAILED_USER_ERROR to RETRY.
      * @param string[] $customHeaders
      *
-     * @return BunqResponseScheduleInstance
+     * @return BunqResponseInt
      */
-    public static function update(ApiContext $apiContext, array $requestMap, int $userId, int $monetaryAccountId, int $scheduleId, int $scheduleInstanceId, array $customHeaders = []): BunqResponseScheduleInstance
-    {
-        $apiClient = new ApiClient($apiContext);
+    public static function update(
+        int $scheduleId,
+        int $scheduleInstanceId,
+        int $monetaryAccountId = null,
+        string $state = null,
+        array $customHeaders = []
+    ): BunqResponseInt {
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->put(
             vsprintf(
                 self::ENDPOINT_URL_UPDATE,
-                [$userId, $monetaryAccountId, $scheduleId, $scheduleInstanceId]
+                [
+                    static::determineUserId(),
+                    static::determineMonetaryAccountId($monetaryAccountId),
+                    $scheduleId,
+                    $scheduleInstanceId,
+                ]
             ),
-            $requestMap,
+            [self::FIELD_STATE => $state],
             $customHeaders
         );
 
-        return BunqResponseScheduleInstance::castFromBunqResponse(
-            static::fromJson($responseRaw, self::OBJECT_TYPE)
+        return BunqResponseInt::castFromBunqResponse(
+            static::processForId($responseRaw)
         );
     }
 
@@ -136,29 +159,31 @@ class ScheduleInstance extends BunqModel
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
-     * @param ApiContext $apiContext
-     * @param int $userId
-     * @param int $monetaryAccountId
      * @param int $scheduleId
+     * @param int|null $monetaryAccountId
      * @param string[] $params
      * @param string[] $customHeaders
      *
      * @return BunqResponseScheduleInstanceList
      */
-    public static function listing(ApiContext $apiContext, int $userId, int $monetaryAccountId, int $scheduleId, array $params = [], array $customHeaders = []): BunqResponseScheduleInstanceList
-    {
-        $apiClient = new ApiClient($apiContext);
+    public static function listing(
+        int $scheduleId,
+        int $monetaryAccountId = null,
+        array $params = [],
+        array $customHeaders = []
+    ): BunqResponseScheduleInstanceList {
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_LISTING,
-                [$userId, $monetaryAccountId, $scheduleId]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId), $scheduleId]
             ),
             $params,
             $customHeaders
         );
 
         return BunqResponseScheduleInstanceList::castFromBunqResponse(
-            static::fromJsonList($responseRaw, self::OBJECT_TYPE)
+            static::fromJsonList($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 
@@ -174,6 +199,9 @@ class ScheduleInstance extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $state
      */
     public function setState($state)
@@ -192,6 +220,9 @@ class ScheduleInstance extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $timeStart
      */
     public function setTimeStart($timeStart)
@@ -210,6 +241,9 @@ class ScheduleInstance extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $timeEnd
      */
     public function setTimeEnd($timeEnd)
@@ -229,6 +263,9 @@ class ScheduleInstance extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param Error[] $errorMessage
      */
     public function setErrorMessage($errorMessage)
@@ -247,6 +284,9 @@ class ScheduleInstance extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param ScheduleAnchorObject $scheduledObject
      */
     public function setScheduledObject($scheduledObject)
@@ -265,11 +305,36 @@ class ScheduleInstance extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param ScheduleInstanceAnchorObject $resultObject
      */
     public function setResultObject($resultObject)
     {
         $this->resultObject = $resultObject;
+    }
+
+    /**
+     * The reference to the object used for split the bill. Can be
+     * RequestInquiry or RequestInquiryBatch
+     *
+     * @return RequestInquiryReference[]
+     */
+    public function getRequestReferenceSplitTheBill()
+    {
+        return $this->requestReferenceSplitTheBill;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param RequestInquiryReference[] $requestReferenceSplitTheBill
+     */
+    public function setRequestReferenceSplitTheBill($requestReferenceSplitTheBill)
+    {
+        $this->requestReferenceSplitTheBill = $requestReferenceSplitTheBill;
     }
 
     /**
@@ -298,6 +363,10 @@ class ScheduleInstance extends BunqModel
         }
 
         if (!is_null($this->resultObject)) {
+            return false;
+        }
+
+        if (!is_null($this->requestReferenceSplitTheBill)) {
             return false;
         }
 

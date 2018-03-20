@@ -1,9 +1,7 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
-use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
-use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 
 /**
@@ -31,7 +29,7 @@ class DeviceServer extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'DeviceServer';
+    const OBJECT_TYPE_GET = 'DeviceServer';
 
     /**
      * The id of the DeviceServer as created on the server.
@@ -86,21 +84,34 @@ class DeviceServer extends BunqModel
      * at this link <a href="https://bunq.com/en/apikey-dynamic-ip"
      * target="_blank">https://bunq.com/en/apikey-dynamic-ip</a>.
      *
-     * @param ApiContext $apiContext
-     * @param mixed[] $requestMap
+     * @param string $description         The description of the DeviceServer. This is
+     *                                    only for your own reference when reading the DeviceServer again.
+     * @param string $secret              The API key. You can request an API key in the bunq
+     *                                    app.
+     * @param string[]|null $permittedIps An array of IPs (v4 or v6) this
+     *                                    DeviceServer will be able to do calls from. These will be linked to the
+     *                                    API key.
      * @param string[] $customHeaders
      *
      * @return BunqResponseInt
      */
-    public static function create(ApiContext $apiContext, array $requestMap, array $customHeaders = []): BunqResponseInt
-    {
-        $apiClient = new ApiClient($apiContext);
+    public static function create(
+        string $description,
+        string $secret,
+        array $permittedIps = null,
+        array $customHeaders = []
+    ): BunqResponseInt {
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->post(
             vsprintf(
                 self::ENDPOINT_URL_CREATE,
                 []
             ),
-            $requestMap,
+            [
+                self::FIELD_DESCRIPTION => $description,
+                self::FIELD_SECRET => $secret,
+                self::FIELD_PERMITTED_IPS => $permittedIps,
+            ],
             $customHeaders
         );
 
@@ -112,15 +123,14 @@ class DeviceServer extends BunqModel
     /**
      * Get one of your DeviceServers.
      *
-     * @param ApiContext $apiContext
      * @param int $deviceServerId
      * @param string[] $customHeaders
      *
      * @return BunqResponseDeviceServer
      */
-    public static function get(ApiContext $apiContext, int $deviceServerId, array $customHeaders = []): BunqResponseDeviceServer
+    public static function get(int $deviceServerId, array $customHeaders = []): BunqResponseDeviceServer
     {
-        $apiClient = new ApiClient($apiContext);
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_READ,
@@ -131,7 +141,7 @@ class DeviceServer extends BunqModel
         );
 
         return BunqResponseDeviceServer::castFromBunqResponse(
-            static::fromJson($responseRaw, self::OBJECT_TYPE)
+            static::fromJson($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 
@@ -141,15 +151,14 @@ class DeviceServer extends BunqModel
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
-     * @param ApiContext $apiContext
      * @param string[] $params
      * @param string[] $customHeaders
      *
      * @return BunqResponseDeviceServerList
      */
-    public static function listing(ApiContext $apiContext, array $params = [], array $customHeaders = []): BunqResponseDeviceServerList
+    public static function listing(array $params = [], array $customHeaders = []): BunqResponseDeviceServerList
     {
-        $apiClient = new ApiClient($apiContext);
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_LISTING,
@@ -160,7 +169,7 @@ class DeviceServer extends BunqModel
         );
 
         return BunqResponseDeviceServerList::castFromBunqResponse(
-            static::fromJsonList($responseRaw, self::OBJECT_TYPE)
+            static::fromJsonList($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 
@@ -175,6 +184,9 @@ class DeviceServer extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param int $id
      */
     public function setId($id)
@@ -193,6 +205,9 @@ class DeviceServer extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $created
      */
     public function setCreated($created)
@@ -211,6 +226,9 @@ class DeviceServer extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $updated
      */
     public function setUpdated($updated)
@@ -229,6 +247,9 @@ class DeviceServer extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $description
      */
     public function setDescription($description)
@@ -247,6 +268,9 @@ class DeviceServer extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $ip
      */
     public function setIp($ip)
@@ -266,6 +290,9 @@ class DeviceServer extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $status
      */
     public function setStatus($status)

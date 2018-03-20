@@ -33,11 +33,14 @@ class ShareDetailReadOnly extends BunqModel
     protected $viewNewEvents;
 
     /**
-     * @param bool $viewBalance
-     * @param bool $viewOldEvents
-     * @param bool $viewNewEvents
+     * @param bool $viewBalance   If set to true, the invited user will be able to
+     *                            view the account balance.
+     * @param bool $viewOldEvents If set to true, the invited user will be able
+     *                            to view events from before the share was active.
+     * @param bool $viewNewEvents If set to true, the invited user will be able
+     *                            to view events starting from the time the share became active.
      */
-    public function __construct($viewBalance, $viewOldEvents, $viewNewEvents)
+    public function __construct(bool $viewBalance, bool $viewOldEvents, bool $viewNewEvents)
     {
         $this->viewBalance = $viewBalance;
         $this->viewOldEvents = $viewOldEvents;
@@ -56,6 +59,9 @@ class ShareDetailReadOnly extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param bool $viewBalance
      */
     public function setViewBalance($viewBalance)
@@ -75,6 +81,9 @@ class ShareDetailReadOnly extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param bool $viewOldEvents
      */
     public function setViewOldEvents($viewOldEvents)
@@ -94,6 +103,9 @@ class ShareDetailReadOnly extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param bool $viewNewEvents
      */
     public function setViewNewEvents($viewNewEvents)

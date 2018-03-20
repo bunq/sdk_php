@@ -63,19 +63,15 @@ class AvatarTest extends BunqSdkTestBase
         ];
 
         $attachmentUuidBefore = AttachmentPublic::create(
-            static::getApiContext(),
             $fileContentsBefore,
             $customHeadersMap
         )->getValue();
-        $avatarMap = [
-            Avatar::FIELD_ATTACHMENT_PUBLIC_UUID => $attachmentUuidBefore,
-        ];
-        $avatarUuid = Avatar::create(static::getApiContext(), $avatarMap)->getValue();
+        $avatarUuid = Avatar::create($attachmentUuidBefore)->getValue();
 
-        $attachmentUuidAfter = Avatar::get(static::getApiContext(), $avatarUuid)->getValue();
+        $attachmentUuidAfter = Avatar::get($avatarUuid)->getValue();
         $imageInfoArray = $attachmentUuidAfter->getImage();
         $attachmentPublicUuid = $imageInfoArray[self::INDEX_FIRST]->getAttachmentPublicUuid();
-        $fileContentsAfter = AttachmentPublicContent::listing(static::getApiContext(), $attachmentPublicUuid)
+        $fileContentsAfter = AttachmentPublicContent::listing($attachmentPublicUuid)
             ->getValue();
 
         static::assertEquals($fileContentsBefore, $fileContentsAfter);

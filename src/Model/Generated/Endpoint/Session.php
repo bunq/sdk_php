@@ -1,7 +1,6 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
-use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
 use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
@@ -19,22 +18,16 @@ class Session extends BunqModel
     const ENDPOINT_URL_DELETE = 'session/%s';
 
     /**
-     * Object type.
-     */
-    const OBJECT_TYPE = 'Session';
-
-    /**
-     * Deletes the current session. No response is returned for this request.
+     * Deletes the current session.
      *
-     * @param ApiContext $apiContext
      * @param string[] $customHeaders
      * @param int $sessionId
      *
      * @return BunqResponseNull
      */
-    public static function delete(ApiContext $apiContext, int $sessionId, array $customHeaders = []): BunqResponseNull
+    public static function delete(int $sessionId, array $customHeaders = []): BunqResponseNull
     {
-        $apiClient = new ApiClient($apiContext);
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->delete(
             vsprintf(
                 self::ENDPOINT_URL_DELETE,

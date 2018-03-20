@@ -82,6 +82,9 @@ class InvoiceItem extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $billingDate
      */
     public function setBillingDate($billingDate)
@@ -100,6 +103,9 @@ class InvoiceItem extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $typeDescription
      */
     public function setTypeDescription($typeDescription)
@@ -118,6 +124,9 @@ class InvoiceItem extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $typeDescriptionTranslated
      */
     public function setTypeDescriptionTranslated($typeDescriptionTranslated)
@@ -136,6 +145,9 @@ class InvoiceItem extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param Amount $unitVatExclusive
      */
     public function setUnitVatExclusive($unitVatExclusive)
@@ -154,6 +166,9 @@ class InvoiceItem extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param Amount $unitVatInclusive
      */
     public function setUnitVatInclusive($unitVatInclusive)
@@ -172,6 +187,9 @@ class InvoiceItem extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param float $vat
      */
     public function setVat($vat)
@@ -190,6 +208,9 @@ class InvoiceItem extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param float $quantity
      */
     public function setQuantity($quantity)
@@ -208,6 +229,9 @@ class InvoiceItem extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param Amount $totalVatExclusive
      */
     public function setTotalVatExclusive($totalVatExclusive)
@@ -226,6 +250,9 @@ class InvoiceItem extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param Amount $totalVatInclusive
      */
     public function setTotalVatInclusive($totalVatInclusive)

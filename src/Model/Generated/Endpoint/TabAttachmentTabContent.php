@@ -1,7 +1,6 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
-use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
 use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
@@ -22,7 +21,7 @@ class TabAttachmentTabContent extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'TabAttachmentTabContent';
+    const OBJECT_TYPE_GET = 'TabAttachmentTabContent';
 
     /**
      * Get the raw content of a specific attachment.
@@ -30,16 +29,15 @@ class TabAttachmentTabContent extends BunqModel
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
-     * @param ApiContext $apiContext
      * @param string $tabUuid
      * @param int $attachmentId
      * @param string[] $customHeaders
      *
      * @return BunqResponseString
      */
-    public static function listing(ApiContext $apiContext, string $tabUuid, int $attachmentId, array $customHeaders = []): BunqResponseString
+    public static function listing(string $tabUuid, int $attachmentId, array $customHeaders = []): BunqResponseString
     {
-        $apiClient = new ApiClient($apiContext);
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_LISTING,

@@ -25,16 +25,21 @@ class CardPinAssignment extends BunqModel
     /**
      * The ID of the monetary account to assign to this pin for the card.
      *
-     * @var string
+     * @var int
      */
     protected $monetaryAccountId;
 
     /**
-     * @param string $type
+     * @param string $type           PIN type. Can be PRIMARY, SECONDARY or TERTIARY
+     * @param string $pinCode        The 4 digit PIN to be assigned to this account.
+     * @param int $monetaryAccountId The ID of the monetary account to assign to
+     *                               this pin for the card.
      */
-    public function __construct($type)
+    public function __construct(string $type, string $pinCode, int $monetaryAccountId)
     {
         $this->type = $type;
+        $this->pinCode = $pinCode;
+        $this->monetaryAccountId = $monetaryAccountId;
     }
 
     /**
@@ -48,6 +53,9 @@ class CardPinAssignment extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $type
      */
     public function setType($type)
@@ -58,7 +66,7 @@ class CardPinAssignment extends BunqModel
     /**
      * The ID of the monetary account to assign to this pin for the card.
      *
-     * @return string
+     * @return int
      */
     public function getMonetaryAccountId()
     {
@@ -66,7 +74,10 @@ class CardPinAssignment extends BunqModel
     }
 
     /**
-     * @param string $monetaryAccountId
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param int $monetaryAccountId
      */
     public function setMonetaryAccountId($monetaryAccountId)
     {

@@ -1,9 +1,7 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
-use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
-use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 
 /**
@@ -32,7 +30,7 @@ class RequestResponseChat extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'RequestResponseChat';
+    const OBJECT_TYPE_GET = 'RequestResponseChat';
 
     /**
      * The id of the newly created chat conversation.
@@ -65,24 +63,26 @@ class RequestResponseChat extends BunqModel
     /**
      * Create a chat for a specific request response.
      *
-     * @param ApiContext $apiContext
-     * @param mixed[] $requestMap
-     * @param int $userId
-     * @param int $monetaryAccountId
      * @param int $requestResponseId
+     * @param int|null $monetaryAccountId
+     * @param int|null $lastReadMessageId The id of the last read message.
      * @param string[] $customHeaders
      *
      * @return BunqResponseInt
      */
-    public static function create(ApiContext $apiContext, array $requestMap, int $userId, int $monetaryAccountId, int $requestResponseId, array $customHeaders = []): BunqResponseInt
-    {
-        $apiClient = new ApiClient($apiContext);
+    public static function create(
+        int $requestResponseId,
+        int $monetaryAccountId = null,
+        int $lastReadMessageId = null,
+        array $customHeaders = []
+    ): BunqResponseInt {
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->post(
             vsprintf(
                 self::ENDPOINT_URL_CREATE,
-                [$userId, $monetaryAccountId, $requestResponseId]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId), $requestResponseId]
             ),
-            $requestMap,
+            [self::FIELD_LAST_READ_MESSAGE_ID => $lastReadMessageId],
             $customHeaders
         );
 
@@ -94,30 +94,38 @@ class RequestResponseChat extends BunqModel
     /**
      * Update the last read message in the chat of a specific request response.
      *
-     * @param ApiContext $apiContext
-     * @param mixed[] $requestMap
-     * @param int $userId
-     * @param int $monetaryAccountId
      * @param int $requestResponseId
      * @param int $requestResponseChatId
+     * @param int|null $monetaryAccountId
+     * @param int|null $lastReadMessageId The id of the last read message.
      * @param string[] $customHeaders
      *
-     * @return BunqResponseRequestResponseChat
+     * @return BunqResponseInt
      */
-    public static function update(ApiContext $apiContext, array $requestMap, int $userId, int $monetaryAccountId, int $requestResponseId, int $requestResponseChatId, array $customHeaders = []): BunqResponseRequestResponseChat
-    {
-        $apiClient = new ApiClient($apiContext);
+    public static function update(
+        int $requestResponseId,
+        int $requestResponseChatId,
+        int $monetaryAccountId = null,
+        int $lastReadMessageId = null,
+        array $customHeaders = []
+    ): BunqResponseInt {
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->put(
             vsprintf(
                 self::ENDPOINT_URL_UPDATE,
-                [$userId, $monetaryAccountId, $requestResponseId, $requestResponseChatId]
+                [
+                    static::determineUserId(),
+                    static::determineMonetaryAccountId($monetaryAccountId),
+                    $requestResponseId,
+                    $requestResponseChatId,
+                ]
             ),
-            $requestMap,
+            [self::FIELD_LAST_READ_MESSAGE_ID => $lastReadMessageId],
             $customHeaders
         );
 
-        return BunqResponseRequestResponseChat::castFromBunqResponse(
-            static::fromJson($responseRaw, self::OBJECT_TYPE)
+        return BunqResponseInt::castFromBunqResponse(
+            static::processForId($responseRaw)
         );
     }
 
@@ -127,29 +135,31 @@ class RequestResponseChat extends BunqModel
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
-     * @param ApiContext $apiContext
-     * @param int $userId
-     * @param int $monetaryAccountId
      * @param int $requestResponseId
+     * @param int|null $monetaryAccountId
      * @param string[] $params
      * @param string[] $customHeaders
      *
      * @return BunqResponseRequestResponseChatList
      */
-    public static function listing(ApiContext $apiContext, int $userId, int $monetaryAccountId, int $requestResponseId, array $params = [], array $customHeaders = []): BunqResponseRequestResponseChatList
-    {
-        $apiClient = new ApiClient($apiContext);
+    public static function listing(
+        int $requestResponseId,
+        int $monetaryAccountId = null,
+        array $params = [],
+        array $customHeaders = []
+    ): BunqResponseRequestResponseChatList {
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_LISTING,
-                [$userId, $monetaryAccountId, $requestResponseId]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId), $requestResponseId]
             ),
             $params,
             $customHeaders
         );
 
         return BunqResponseRequestResponseChatList::castFromBunqResponse(
-            static::fromJsonList($responseRaw, self::OBJECT_TYPE)
+            static::fromJsonList($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 
@@ -164,6 +174,9 @@ class RequestResponseChat extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param int $id
      */
     public function setId($id)
@@ -182,6 +195,9 @@ class RequestResponseChat extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $created
      */
     public function setCreated($created)
@@ -200,6 +216,9 @@ class RequestResponseChat extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $updated
      */
     public function setUpdated($updated)
@@ -218,6 +237,9 @@ class RequestResponseChat extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param int $unreadMessageCount
      */
     public function setUnreadMessageCount($unreadMessageCount)

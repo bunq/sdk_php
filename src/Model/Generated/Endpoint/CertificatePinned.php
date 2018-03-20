@@ -1,10 +1,10 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
-use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
 use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
+use bunq\Model\Generated\Object\Certificate;
 
 /**
  * This endpoint allow you to pin the certificate chains to your account.
@@ -31,7 +31,7 @@ class CertificatePinned extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'CertificatePinned';
+    const OBJECT_TYPE_GET = 'CertificatePinned';
 
     /**
      * The certificate chain in .PEM format. Certificates are glued with newline
@@ -51,22 +51,21 @@ class CertificatePinned extends BunqModel
     /**
      * Pin the certificate chain.
      *
-     * @param ApiContext $apiContext
-     * @param mixed[] $requestMap
-     * @param int $userId
+     * @param Certificate[] $certificateChain The certificate chain in .PEM
+     *                                        format.
      * @param string[] $customHeaders
      *
      * @return BunqResponseInt
      */
-    public static function create(ApiContext $apiContext, array $requestMap, int $userId, array $customHeaders = []): BunqResponseInt
+    public static function create(array $certificateChain, array $customHeaders = []): BunqResponseInt
     {
-        $apiClient = new ApiClient($apiContext);
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->post(
             vsprintf(
                 self::ENDPOINT_URL_CREATE,
-                [$userId]
+                [static::determineUserId()]
             ),
-            $requestMap,
+            [self::FIELD_CERTIFICATE_CHAIN => $certificateChain],
             $customHeaders
         );
 
@@ -78,20 +77,18 @@ class CertificatePinned extends BunqModel
     /**
      * Remove the pinned certificate chain with the specific ID.
      *
-     * @param ApiContext $apiContext
      * @param string[] $customHeaders
-     * @param int $userId
      * @param int $certificatePinnedId
      *
      * @return BunqResponseNull
      */
-    public static function delete(ApiContext $apiContext, int $userId, int $certificatePinnedId, array $customHeaders = []): BunqResponseNull
+    public static function delete(int $certificatePinnedId, array $customHeaders = []): BunqResponseNull
     {
-        $apiClient = new ApiClient($apiContext);
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->delete(
             vsprintf(
                 self::ENDPOINT_URL_DELETE,
-                [$userId, $certificatePinnedId]
+                [static::determineUserId(), $certificatePinnedId]
             ),
             $customHeaders
         );
@@ -107,54 +104,50 @@ class CertificatePinned extends BunqModel
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
-     * @param ApiContext $apiContext
-     * @param int $userId
      * @param string[] $params
      * @param string[] $customHeaders
      *
      * @return BunqResponseCertificatePinnedList
      */
-    public static function listing(ApiContext $apiContext, int $userId, array $params = [], array $customHeaders = []): BunqResponseCertificatePinnedList
+    public static function listing(array $params = [], array $customHeaders = []): BunqResponseCertificatePinnedList
     {
-        $apiClient = new ApiClient($apiContext);
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_LISTING,
-                [$userId]
+                [static::determineUserId()]
             ),
             $params,
             $customHeaders
         );
 
         return BunqResponseCertificatePinnedList::castFromBunqResponse(
-            static::fromJsonList($responseRaw, self::OBJECT_TYPE)
+            static::fromJsonList($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 
     /**
      * Get the pinned certificate chain with the specified ID.
      *
-     * @param ApiContext $apiContext
-     * @param int $userId
      * @param int $certificatePinnedId
      * @param string[] $customHeaders
      *
      * @return BunqResponseCertificatePinned
      */
-    public static function get(ApiContext $apiContext, int $userId, int $certificatePinnedId, array $customHeaders = []): BunqResponseCertificatePinned
+    public static function get(int $certificatePinnedId, array $customHeaders = []): BunqResponseCertificatePinned
     {
-        $apiClient = new ApiClient($apiContext);
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_READ,
-                [$userId, $certificatePinnedId]
+                [static::determineUserId(), $certificatePinnedId]
             ),
             [],
             $customHeaders
         );
 
         return BunqResponseCertificatePinned::castFromBunqResponse(
-            static::fromJson($responseRaw, self::OBJECT_TYPE)
+            static::fromJson($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 
@@ -170,6 +163,9 @@ class CertificatePinned extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $certificateChain
      */
     public function setCertificateChain($certificateChain)
@@ -188,6 +184,9 @@ class CertificatePinned extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param int $id
      */
     public function setId($id)

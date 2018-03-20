@@ -28,11 +28,6 @@ class MonetaryAccountBankTest extends BunqSdkTestBase
     /**
      * @var int
      */
-    private static $userId;
-
-    /**
-     * @var int
-     */
     private static $monetaryAccountBankToCloseId;
 
     /**
@@ -40,7 +35,6 @@ class MonetaryAccountBankTest extends BunqSdkTestBase
     public static function setUpBeforeClass()
     {
         parent::setUpBeforeClass();
-        static::$userId = Config::getUserId();
     }
 
     /**
@@ -49,20 +43,15 @@ class MonetaryAccountBankTest extends BunqSdkTestBase
     public static function tearDownAfterClass()
     {
         if (!is_null(static::$monetaryAccountBankToCloseId)) {
-            $apiContext = static::getApiContext();
-
-            $requestMap = [
-                MonetaryAccountBank::FIELD_STATUS => self::STATUS,
-                MonetaryAccountBank::FIELD_SUB_STATUS => self::SUB_STATUS,
-                MonetaryAccountBank::FIELD_REASON => self::REASON,
-                MonetaryAccountBank::FIELD_REASON_DESCRIPTION => self::REASON_DESCRIPTION,
-            ];
-
             MonetaryAccountBank::update(
-                $apiContext,
-                $requestMap,
-                static::$userId,
-                static::$monetaryAccountBankToCloseId
+                static::$monetaryAccountBankToCloseId,
+                null,
+                null,
+                null,
+                self::STATUS,
+                self::SUB_STATUS,
+                self::REASON,
+                self::REASON_DESCRIPTION
             );
         }
     }
@@ -74,16 +63,9 @@ class MonetaryAccountBankTest extends BunqSdkTestBase
      */
     public function testCreateNewMonetaryAccount()
     {
-        $apiContext = static::getApiContext();
-        $requestMap = [
-            MonetaryAccountBank::FIELD_CURRENCY => self::CURRENCY,
-            MonetaryAccountBank::FIELD_DESCRIPTION => uniqid(self::PREFIX_MONETARY_ACCOUNT_DESCRIPTION),
-        ];
-
         static::$monetaryAccountBankToCloseId = MonetaryAccountBank::create(
-            $apiContext,
-            $requestMap,
-            static::$userId
+            self::CURRENCY,
+            uniqid(self::PREFIX_MONETARY_ACCOUNT_DESCRIPTION)
         )->getValue();
     }
 }

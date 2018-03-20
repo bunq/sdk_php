@@ -1,6 +1,5 @@
 {
     "API_KEY": "<API KEY>",
-    "USER_ID": "xxxx",
     "MONETARY_ACCOUNT_ID": "xxxx",
     "MONETARY_ACCOUNT_ID2": "xxxx",
     "PERMITTED_IPS": "<IP address>,<Another IP address>",

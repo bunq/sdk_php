@@ -13,11 +13,6 @@ use bunq\Model\Core\BunqModel;
 class BunqMeTabResultResponse extends BunqModel
 {
     /**
-     * Object type.
-     */
-    const OBJECT_TYPE = 'BunqMeTabResultResponse';
-
-    /**
      * The payment made for the bunq.me tab.
      *
      * @var Payment
@@ -35,6 +30,9 @@ class BunqMeTabResultResponse extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param Payment $payment
      */
     public function setPayment($payment)

@@ -1,10 +1,8 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
-use bunq\Context\ApiContext;
 use bunq\exception\BunqException;
 use bunq\Http\ApiClient;
-use bunq\Http\BunqResponse;
 use bunq\Model\Core\AnchorObjectInterface;
 use bunq\Model\Core\BunqModel;
 
@@ -29,7 +27,7 @@ class ChatConversation extends BunqModel implements AnchorObjectInterface
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'ChatConversation';
+    const OBJECT_TYPE_GET = 'ChatConversation';
 
     /**
      * @var ChatConversationSupportExternal
@@ -45,20 +43,18 @@ class ChatConversation extends BunqModel implements AnchorObjectInterface
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
-     * @param ApiContext $apiContext
-     * @param int $userId
      * @param string[] $params
      * @param string[] $customHeaders
      *
      * @return BunqResponseChatConversationList
      */
-    public static function listing(ApiContext $apiContext, int $userId, array $params = [], array $customHeaders = []): BunqResponseChatConversationList
+    public static function listing(array $params = [], array $customHeaders = []): BunqResponseChatConversationList
     {
-        $apiClient = new ApiClient($apiContext);
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_LISTING,
-                [$userId]
+                [static::determineUserId()]
             ),
             $params,
             $customHeaders
@@ -70,20 +66,18 @@ class ChatConversation extends BunqModel implements AnchorObjectInterface
     }
 
     /**
-     * @param ApiContext $apiContext
-     * @param int $userId
      * @param int $chatConversationId
      * @param string[] $customHeaders
      *
      * @return BunqResponseChatConversation
      */
-    public static function get(ApiContext $apiContext, int $userId, int $chatConversationId, array $customHeaders = []): BunqResponseChatConversation
+    public static function get(int $chatConversationId, array $customHeaders = []): BunqResponseChatConversation
     {
-        $apiClient = new ApiClient($apiContext);
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_READ,
-                [$userId, $chatConversationId]
+                [static::determineUserId(), $chatConversationId]
             ),
             [],
             $customHeaders
@@ -103,6 +97,9 @@ class ChatConversation extends BunqModel implements AnchorObjectInterface
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param ChatConversationSupportExternal $supportConversationExternal
      */
     public function setSupportConversationExternal($supportConversationExternal)
@@ -119,6 +116,9 @@ class ChatConversation extends BunqModel implements AnchorObjectInterface
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param ChatConversationReference $chatConversationReference
      */
     public function setChatConversationReference($chatConversationReference)

@@ -1,9 +1,7 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
-use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
-use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Object\ScheduleAnchorObject;
 
@@ -31,7 +29,7 @@ class Schedule extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE = 'Schedule';
+    const OBJECT_TYPE_GET = 'Schedule';
 
     /**
      * The schedule start time (UTC).
@@ -80,28 +78,29 @@ class Schedule extends BunqModel
     /**
      * Get a specific schedule definition for a given monetary account.
      *
-     * @param ApiContext $apiContext
-     * @param int $userId
-     * @param int $monetaryAccountId
      * @param int $scheduleId
+     * @param int|null $monetaryAccountId
      * @param string[] $customHeaders
      *
      * @return BunqResponseSchedule
      */
-    public static function get(ApiContext $apiContext, int $userId, int $monetaryAccountId, int $scheduleId, array $customHeaders = []): BunqResponseSchedule
-    {
-        $apiClient = new ApiClient($apiContext);
+    public static function get(
+        int $scheduleId,
+        int $monetaryAccountId = null,
+        array $customHeaders = []
+    ): BunqResponseSchedule {
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_READ,
-                [$userId, $monetaryAccountId, $scheduleId]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId), $scheduleId]
             ),
             [],
             $customHeaders
         );
 
         return BunqResponseSchedule::castFromBunqResponse(
-            static::fromJson($responseRaw, self::OBJECT_TYPE)
+            static::fromJson($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 
@@ -115,28 +114,29 @@ class Schedule extends BunqModel
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
-     * @param ApiContext $apiContext
-     * @param int $userId
-     * @param int $monetaryAccountId
+     * @param int|null $monetaryAccountId
      * @param string[] $params
      * @param string[] $customHeaders
      *
      * @return BunqResponseScheduleList
      */
-    public static function listing(ApiContext $apiContext, int $userId, int $monetaryAccountId, array $params = [], array $customHeaders = []): BunqResponseScheduleList
-    {
-        $apiClient = new ApiClient($apiContext);
+    public static function listing(
+        int $monetaryAccountId = null,
+        array $params = [],
+        array $customHeaders = []
+    ): BunqResponseScheduleList {
+        $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_LISTING,
-                [$userId, $monetaryAccountId]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId)]
             ),
             $params,
             $customHeaders
         );
 
         return BunqResponseScheduleList::castFromBunqResponse(
-            static::fromJsonList($responseRaw, self::OBJECT_TYPE)
+            static::fromJsonList($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 
@@ -151,6 +151,9 @@ class Schedule extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $timeStart
      */
     public function setTimeStart($timeStart)
@@ -169,6 +172,9 @@ class Schedule extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $timeEnd
      */
     public function setTimeEnd($timeEnd)
@@ -188,6 +194,9 @@ class Schedule extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $recurrenceUnit
      */
     public function setRecurrenceUnit($recurrenceUnit)
@@ -207,6 +216,9 @@ class Schedule extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param int $recurrenceSize
      */
     public function setRecurrenceSize($recurrenceSize)
@@ -225,6 +237,9 @@ class Schedule extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param string $status
      */
     public function setStatus($status)
@@ -243,6 +258,9 @@ class Schedule extends BunqModel
     }
 
     /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
      * @param ScheduleAnchorObject $object
      */
     public function setObject($object)
