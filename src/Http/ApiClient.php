@@ -11,6 +11,7 @@ use bunq\Http\Handler\ResponseHandlerError;
 use bunq\Http\Handler\ResponseHandlerSignature;
 use bunq\Util\BunqEnumApiEnvironmentType;
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Uri;
 use Psr\Http\Message\ResponseInterface;
@@ -23,10 +24,12 @@ class ApiClient
      * Endpoints not requiring active session for the request to succeed.
      */
     const URIS_NOT_REQUIRING_ACTIVE_SESSION = [
+        self::SANDBOX_USER_URL => true,
         self::DEVICE_SERVER_URL => true,
         self::INSTALLATION_URL => true,
         self::SESSION_SERVER_URL => true,
     ];
+    const SANDBOX_USER_URL = 'sandbox-user';
     const DEVICE_SERVER_URL = 'device-server';
     const INSTALLATION_URL = 'installation';
     const SESSION_SERVER_URL = 'session-server';
@@ -35,6 +38,8 @@ class ApiClient
      * Error constants.
      */
     const ERROR_ENVIRONMENT_TYPE_UNKNOWN = 'Unknown environmentType "%s"';
+    const ERROR_MAC_OS_CURL_VERSION = 'Your PHP seems to be linked to the MacOS provided curl binary. ' .
+        'This is incompatible with our SDK, please reinstall by running: "brew reinstall %s --with-homebrew-curl".%s';
 
     /**
      * Public key locations.
@@ -109,6 +114,22 @@ class ApiClient
     const GLUE_HEADER_VALUE = ',';
 
     /**
+     * MacOS curl bug error code constant.
+     */
+    const ERROR_CODE_MAC_OS_CURL_BUG = 0;
+
+    /**
+     * uname constants.
+     */
+    const INDEX_UNAME_SYSNAME = 'sysname';
+    const SYSNAME_MAC_OS = 'Darwin';
+
+    /**
+     * PHP version check command constant.
+     */
+    const COMMAND_DETERMINE_BREW_PHP_VERSION = 'brew list | egrep -e "^php[0-9]{2}$"';
+
+    /**
      * @var Client
      */
     protected $httpClient;
@@ -180,11 +201,19 @@ class ApiClient
     ): BunqResponseRaw {
         $this->initialize($uri);
 
-        $response = $this->httpClient->request(
-            $method,
-            $this->determineUriFull($uri, $params),
-            $this->determineRequestOptions($body, $customHeaders)
-        );
+        try {
+            $response = $this->httpClient->request(
+                $method,
+                $this->determineUriFull($uri, $params),
+                $this->determineRequestOptions($body, $customHeaders)
+            );
+        } catch (RequestException $exception) {
+            if ($exception->getCode() === self::ERROR_CODE_MAC_OS_CURL_BUG && $this->isMacOs()) {
+                die(vsprintf(self::ERROR_MAC_OS_CURL_VERSION, [$this->determineVersionPhpMacOs(), PHP_EOL]));
+            } else {
+                throw $exception;
+            }
+        }
 
         return $this->createBunqResponseRaw($response);
     }
@@ -341,6 +370,22 @@ class ApiClient
         }
 
         return $bodyString;
+    }
+
+    /**
+     * @return bool
+     */
+    private function isMacOs(): bool
+    {
+        return posix_uname()[self::INDEX_UNAME_SYSNAME] === self::SYSNAME_MAC_OS;
+    }
+
+    /**
+     * @return string
+     */
+    private function determineVersionPhpMacOs(): string
+    {
+        return exec(self::COMMAND_DETERMINE_BREW_PHP_VERSION);
     }
 
     /**
