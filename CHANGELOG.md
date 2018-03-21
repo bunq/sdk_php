@@ -1,7 +1,18 @@
 # Change Log
 
-## [0.13.0](https://github.com/bunq/sdk_php/tree/0.13.0) (2018-03-20)
+## [0.13.1](https://github.com/bunq/sdk_php/tree/0.13.1)
 
+[Full Changelog](https://github.com/bunq/sdk_php/compare/0.13.0...0.13.1)
+
+**Closed issues:**
+
+- bunqContext should be renamed to BunqContext. [\#114](https://github.com/bunq/sdk_php/issues/114)
+
+**Merged pull requests:**
+
+- Renamed filename accordingly. [\#115](https://github.com/bunq/sdk_php/pull/115) ([OGKevin](https://github.com/OGKevin))
+
+## [0.13.0](https://github.com/bunq/sdk_php/tree/0.13.0) (2018-03-20)
 [Full Changelog](https://github.com/bunq/sdk_php/compare/0.12.4...0.13.0)
 
 **Implemented enhancements:**
@@ -27,7 +38,6 @@
 
 **Merged pull requests:**
 
-- Bunq update 7  [\#113](https://github.com/bunq/sdk_php/pull/113) ([OGKevin](https://github.com/OGKevin))
 - Regenerate code for release [\#111](https://github.com/bunq/sdk_php/pull/111) ([OGKevin](https://github.com/OGKevin))
 - Removed unneeded doc block. \(bunq/sdk\_php\#80\) [\#110](https://github.com/bunq/sdk_php/pull/110) ([OGKevin](https://github.com/OGKevin))
 - Token qr request ideal returns the wrong type. \(bunq/sdk\_php\#80\) [\#107](https://github.com/bunq/sdk_php/pull/107) ([OGKevin](https://github.com/OGKevin))
@@ -37,6 +47,7 @@
 - Add response id to request error. \(bunq/sdk\_php\#88\) [\#93](https://github.com/bunq/sdk_php/pull/93) ([OGKevin](https://github.com/OGKevin))
 - Configure Zappr [\#92](https://github.com/bunq/sdk_php/pull/92) ([OGKevin](https://github.com/OGKevin))
 - Add more info to templates. \(bunq/sdk\_php\#89\) [\#90](https://github.com/bunq/sdk_php/pull/90) ([OGKevin](https://github.com/OGKevin))
+- Bunq update 7  [\#113](https://github.com/bunq/sdk_php/pull/113) ([OGKevin](https://github.com/OGKevin))
 
 ## [0.12.4](https://github.com/bunq/sdk_php/tree/0.12.4) (2017-12-21)
 [Full Changelog](https://github.com/bunq/sdk_php/compare/0.12.3...0.12.4)
