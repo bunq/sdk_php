@@ -51,7 +51,7 @@ use bunq\Util\BunqEnumApiEnvironmentType;
 $environmentType = BunqEnumApiEnvironmentType::SANDBOX(); // Can also be BunqEnumApiEnvironmentType::PRODUCTION();
 $apiKey = '### Your API Key ###'; // Replace with your API key
 $deviceDescription = '### Your device description ###'; // Replace with your device description
-$permittedIps = ['0.0.0.0']; // List the real expected IPs of this device of leave empty to use the current IP
+$permittedIps = ['0.0.0.0']; // List the real expected IPs of this device or leave empty to use the current IP
 
 $apiContext = ApiContext::create(
     $environmentType,
