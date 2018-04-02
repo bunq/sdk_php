@@ -19,7 +19,7 @@ class SessionTest extends BunqSdkTestBase
     /**
      * Full name of context config file to use for testing.
      */
-    const FILENAME_CONTEXT_CONFIG = __DIR__ . '/../bunq-test.conf';
+    const FILE_PATH_CONTEXT_CONFIG = __DIR__ . '/../bunq-test.conf';
 
     /**
      * The amount of secconds to sleep to prevent the api from returning a 429.
@@ -43,6 +43,6 @@ class SessionTest extends BunqSdkTestBase
     {
         sleep(self::SECONDS_TO_SLEEP);
         BunqContext::getApiContext()->resetSession();
-        BunqContext::getApiContext()->save(self::FILENAME_CONTEXT_CONFIG);
+        BunqContext::getApiContext()->save(self::FILE_PATH_CONTEXT_CONFIG);
     }
 }
