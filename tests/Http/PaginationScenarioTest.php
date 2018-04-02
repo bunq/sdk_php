@@ -5,10 +5,7 @@ use bunq\Http\BunqResponse;
 use bunq\Http\Pagination;
 use bunq\Model\Generated\Endpoint\Payment;
 use bunq\Model\Generated\Object\Amount;
-use bunq\Model\Generated\Object\Pointer;
 use bunq\test\BunqSdkTestBase;
-use bunq\test\Config;
-use phpDocumentor\Reflection\Types\This;
 
 /**
  * Tests:
@@ -47,7 +44,7 @@ class PaginationScenarioTest extends BunqSdkTestBase
 
         $paymentsActual = array_merge($responsePreviousNext->getValue(), $responsePrevious->getValue());
 
-        static::assertEquals($paymentsExpected, $paymentsActual);
+        $this->assertEquals($paymentsExpected, $paymentsActual);
     }
 
     /**

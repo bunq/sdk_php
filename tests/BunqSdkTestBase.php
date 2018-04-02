@@ -114,7 +114,6 @@ class BunqSdkTestBase extends TestCase
             ]
         );
         $avatarUuid = Avatar::create($attachmentUuid->getValue());
-
         $cashId = CashRegister::create(
             self::CASH_REGISTER_NAME,
             self::CASH_REGISTER_STATUS,
