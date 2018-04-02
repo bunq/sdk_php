@@ -21,13 +21,37 @@ use PHPUnit\Framework\TestCase;
 class BunqSdkTestBase extends TestCase
 {
     /**
+     * Error constants.
+     */
+    const ERROR_COULD_NOT_DETERMINE_IBAN_POINTER = 'Could not determine IBAN pointer';
+    const ERROR_COULD_NOT_DETERMINE_USER_ALIAS = 'Could not determine user alias.';
+    const WARMING_TEST_SKIPPED_DUE_TO_INSUFFICIENT_BALANCE = 'Not enough money on primary account.';
+
+    /*
+     * CashRegister constants.
+     */
+    const CASH_REGISTER_NAME = 'PHP test cash register';
+    const CASH_REGISTER_STATUS = 'PENDING_APPROVAL';
+
+    /**
+     * MonetaryAccount constants.
+     */
+    const MOMENTARY_ACCOUNT_CURRENCY = 'EUR';
+    const MONETARY_ACCOUNT_DESCRIPTION = 'test account php';
+    const MONETARY_ACCOUNT_BALANCE_THRESHOLD = 0.00;
+
+    /**
+     * Pointer constants.
+     */
+    const POINTER_TYPE_IBAN = 'IBAN';
+    const POINTER_TYPE_EMAIL = 'EMAIL';
+    const EMAIL_BRAVO = 'bravo@bunq.com';
+
+    /**
      * Full name of context config file to use for testing.
      */
-    const FILENAME_CONTEXT_CONFIG = __DIR__ . '/../bunq-test.conf';
-    /**
-     * Device description for PHP unit tests
-     */
-    const DEVICE_DESCRIPTION = 'PHP unit tests';
+    const FILE_PATH_CONTEXT_CONFIG = __DIR__ . '/../bunq-test.conf';
+    const FILE_PATH_AVATAR = '/resource/bunq_App_Icon_Square@4x.png';
 
     /**
      * Attachment constants.
@@ -35,6 +59,11 @@ class BunqSdkTestBase extends TestCase
     const ATTACHMENT_CONTENT_TYPE = 'image/png';
     const ATTACHMENT_DESCRIPTION = 'TEST PNG PHP';
     const ATTACHMENT_PATH_IN = '/bunq_App_Icon_Square@4x.png';
+
+    /**
+     * The index of the first item in an array.
+     */
+    const INDEX_FIRST = 0;
 
     /**
      * @var MonetaryAccountBank
@@ -52,7 +81,7 @@ class BunqSdkTestBase extends TestCase
     {
         static::createApiContext();
         BunqContext::loadApiContext(
-            ApiContext::restore(self::FILENAME_CONTEXT_CONFIG)
+            ApiContext::restore(self::FILE_PATH_CONTEXT_CONFIG)
         );
     }
 
@@ -62,7 +91,7 @@ class BunqSdkTestBase extends TestCase
     {
         InstallationUtil::automaticInstall(
             BunqEnumApiEnvironmentType::SANDBOX(),
-            self::FILENAME_CONTEXT_CONFIG
+            self::FILE_PATH_CONTEXT_CONFIG
         );
     }
 
@@ -78,7 +107,7 @@ class BunqSdkTestBase extends TestCase
     private function setCashRegister()
     {
         $attachmentUuid = AttachmentPublic::create(
-            FileUtil::getFileContents(__DIR__ . '/resource/bunq_App_Icon_Square@4x.png'),
+            FileUtil::getFileContents(__DIR__ . self::FILE_PATH_AVATAR),
             [
                 ApiClient::HEADER_CONTENT_TYPE => $this->getAttachmentContentType(),
                 ApiClient::HEADER_ATTACHMENT_DESCRIPTION => $this->getAttachmentDescription(),
@@ -87,8 +116,8 @@ class BunqSdkTestBase extends TestCase
         $avatarUuid = Avatar::create($attachmentUuid->getValue());
 
         $cashId = CashRegister::create(
-            'PHP test cash register',
-            'PENDING_APPROVAL',
+            self::CASH_REGISTER_NAME,
+            self::CASH_REGISTER_STATUS,
             $avatarUuid->getValue()
         );
 
@@ -116,8 +145,8 @@ class BunqSdkTestBase extends TestCase
     private function setSecondMonetaryAccountBank()
     {
         $createdId = MonetaryAccountBank::create(
-            'EUR',
-            'test account php'
+            self::MOMENTARY_ACCOUNT_CURRENCY,
+            self::MONETARY_ACCOUNT_DESCRIPTION
         );
 
         $this->secondMonetaryAccountBank = MonetaryAccountBank::get($createdId->getValue())->getValue();
@@ -133,12 +162,12 @@ class BunqSdkTestBase extends TestCase
         $allAlias = $this->secondMonetaryAccountBank->getAlias();
 
         foreach ($allAlias as $alias) {
-            if ($alias->getType() === 'IBAN') {
+            if ($alias->getType() === self::POINTER_TYPE_IBAN) {
                 return $alias;
             }
         }
 
-        throw new BunqException('Could not determine IBAN pointer');
+        throw new BunqException(self::ERROR_COULD_NOT_DETERMINE_IBAN_POINTER);
     }
 
     /**
@@ -157,11 +186,11 @@ class BunqSdkTestBase extends TestCase
     protected function getUserAlias(): Pointer
     {
         if (BunqContext::getUserContext()->isOnlyUserPersonSet()) {
-            return BunqContext::getUserContext()->getUserPerson()->getAlias()[0];
+            return BunqContext::getUserContext()->getUserPerson()->getAlias()[self::INDEX_FIRST];
         } elseif (BunqContext::getUserContext()->isOnlyUserCompanySet()) {
-            return BunqContext::getUserContext()->getUserCompany()->getAlias()[0];
+            return BunqContext::getUserContext()->getUserCompany()->getAlias()[self::INDEX_FIRST];
         } else {
-            throw new BunqException('Could not determine user alias.');
+            throw new BunqException(self::ERROR_COULD_NOT_DETERMINE_USER_ALIAS);
         }
     }
 
@@ -171,8 +200,8 @@ class BunqSdkTestBase extends TestCase
     protected function getUserBravoPointer(): Pointer
     {
         return new Pointer(
-            'EMAIL',
-            'bravo@bunq.com'
+            self::POINTER_TYPE_EMAIL,
+            self::EMAIL_BRAVO
         );
     }
 
@@ -203,7 +232,7 @@ class BunqSdkTestBase extends TestCase
     {
         $balance = floatval(BunqContext::getUserContext()->getPrimaryMonetaryAccount()->getBalance()->getValue());
 
-        return $balance > 0.00;
+        return $balance > self::MONETARY_ACCOUNT_BALANCE_THRESHOLD;
     }
 
     /**
@@ -212,7 +241,7 @@ class BunqSdkTestBase extends TestCase
     protected function assertTestShouldBeSkippedDueToInsufficientBalance(): bool
     {
         if (!$this->doesAccountHaveEnoughMoney()) {
-            static::markTestSkipped('Not enough money on primary account.');
+            static::markTestSkipped(self::WARMING_TEST_SKIPPED_DUE_TO_INSUFFICIENT_BALANCE);
         }
 
         return true;
