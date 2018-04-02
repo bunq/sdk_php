@@ -8,6 +8,7 @@ use bunq\Model\Generated\Object\Amount;
 use bunq\Model\Generated\Object\Pointer;
 use bunq\test\BunqSdkTestBase;
 use bunq\test\Config;
+use phpDocumentor\Reflection\Types\This;
 
 /**
  * Tests:
@@ -30,23 +31,10 @@ class PaginationScenarioTest extends BunqSdkTestBase
     const PAYMENT_DESCRIPTION = 'PHP test Payment';
 
     /**
-     * @var Pointer
-     */
-    private static $counterPartyAliasOther;
-
-    /**
-     */
-    public static function setUpBeforeClass()
-    {
-        parent::setUpBeforeClass();
-        static::$counterPartyAliasOther = Config::getCounterPartyAliasOther();
-    }
-
-    /**
      */
     public function testApiScenarioPaymentListingWithPagination()
     {
-        static::ensureEnoughPayments();
+        $this->ensureEnoughPayments();
         $paymentsExpected = static::getPaymentsRequired();
         $paginationCountOnly = new Pagination();
         $paginationCountOnly->setCount(self::PAYMENT_LISTING_PAGE_SIZE);
@@ -64,10 +52,12 @@ class PaginationScenarioTest extends BunqSdkTestBase
 
     /**
      */
-    private static function ensureEnoughPayments()
+    private function ensureEnoughPayments()
     {
+        $this->assertTestShouldBeSkippedDueToInsufficientBalance();
+
         for ($i = self::NUMBER_ZERO; $i < self::getPaymentsMissingCount(); ++$i) {
-            static::createPayment();
+            $this->createPayment();
         }
     }
 
@@ -102,11 +92,11 @@ class PaginationScenarioTest extends BunqSdkTestBase
 
     /**
      */
-    public static function createPayment()
+    public function createPayment()
     {
         Payment::create(
             new Amount(self::PAYMENT_AMOUNT_EUR, self::PAYMENT_CURRENCY),
-            static::$counterPartyAliasOther,
+            $this->getSecondMonetaryAccountAlias(),
             self::PAYMENT_DESCRIPTION
         );
     }
