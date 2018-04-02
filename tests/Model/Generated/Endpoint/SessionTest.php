@@ -33,7 +33,7 @@ class SessionTest extends BunqSdkTestBase
      */
     public function testDeleteSession()
     {
-        Session::delete(self::SESSION_ID_DUMMY);
+        $this->assertNull(Session::delete(self::SESSION_ID_DUMMY)->getValue());
     }
 
     /**

@@ -68,8 +68,8 @@ class CardDebitTest extends BunqSdkTestBase
 
         $card = Card::get($cardDebit->getId())->getValue();
 
-        static::assertEquals($cardDebit->getNameOnCard(), $card->getNameOnCard());
-        static::assertEquals($cardDebit->getCreated(), $card->getCreated());
-        static::assertEquals($cardDebit->getSecondLine(), $card->getSecondLine());
+        $this->assertEquals($cardDebit->getNameOnCard(), $card->getNameOnCard());
+        $this->assertEquals($cardDebit->getCreated(), $card->getCreated());
+        $this->assertEquals($cardDebit->getSecondLine(), $card->getSecondLine());
     }
 }

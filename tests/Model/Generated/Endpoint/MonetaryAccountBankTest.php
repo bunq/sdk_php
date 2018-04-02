@@ -60,5 +60,7 @@ class MonetaryAccountBankTest extends BunqSdkTestBase
             self::CURRENCY,
             uniqid(self::PREFIX_MONETARY_ACCOUNT_DESCRIPTION)
         )->getValue();
+
+        $this->assertTrue(is_integer(static::$monetaryAccountBankToCloseId));
     }
 }
