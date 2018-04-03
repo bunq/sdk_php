@@ -8,6 +8,7 @@ use bunq\Model\Generated\Object\Amount;
 use bunq\Model\Generated\Object\Pointer;
 use bunq\test\BunqSdkTestBase;
 use bunq\test\Config;
+use phpDocumentor\Reflection\Types\This;
 
 /**
  * Tests:
@@ -40,32 +41,7 @@ class PaymentTest extends BunqSdkTestBase
     /**
      * @var int
      */
-    private static $monetaryAccountId;
-
-    /**
-     * @var Pointer
-     */
-    private static $counterPartyAliasOther;
-
-    /**
-     * @var Pointer
-     */
-    private static $counterPartyAliasSelf;
-
-    /**
-     * @var int
-     */
-    private static $paymentId;
-
-    /**
-     */
-    public static function setUpBeforeClass()
-    {
-        parent::setUpBeforeClass();
-        static::$monetaryAccountId = Config::getMonetaryAccountId();
-        static::$counterPartyAliasOther = Config::getCounterPartyAliasOther();
-        static::$counterPartyAliasSelf = Config::getCounterPartyAliasSelf();
-    }
+    private $paymentId;
 
     /**
      * Test sending money to other sandbox user.
@@ -74,9 +50,11 @@ class PaymentTest extends BunqSdkTestBase
      */
     public function testSendMoneyToOtherUser()
     {
+        $this->skipTestIfNeededDueToInsufficientBalance();
+
         Payment::create(
             new Amount(self::PAYMENT_AMOUNT_IN_EUR, self::PAYMENT_CURRENCY),
-            static::$counterPartyAliasOther,
+            $this->getPointerUserBravo(),
             self::PAYMENT_DESCRIPTION
         );
     }
@@ -88,9 +66,11 @@ class PaymentTest extends BunqSdkTestBase
      */
     public function testSendMoneyToOtherMonetaryAccount()
     {
-        static::$paymentId = Payment::create(
+        $this->skipTestIfNeededDueToInsufficientBalance();
+
+        $this->paymentId = Payment::create(
             new Amount(self::PAYMENT_AMOUNT_IN_EUR, self::PAYMENT_CURRENCY),
-            static::$counterPartyAliasSelf,
+            $this->getSecondMonetaryAccountAlias(),
             self::PAYMENT_DESCRIPTION
         )->getValue();
     }
@@ -105,7 +85,7 @@ class PaymentTest extends BunqSdkTestBase
     public function testSendMessageToPayment()
     {
         $chatId = PaymentChat::create(
-            static::$paymentId
+            $this->paymentId
         )->getValue();
 
         ChatMessageText::create($chatId, self::PAYMENT_CHAT_TEXT_MESSAGE);

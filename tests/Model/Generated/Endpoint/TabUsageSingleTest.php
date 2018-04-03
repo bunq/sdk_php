@@ -1,11 +1,11 @@
 <?php
 namespace bunq\test\Model\Generated\Endpoint;
 
+use bunq\Context\BunqContext;
 use bunq\Model\Generated\Endpoint\TabItemShop;
 use bunq\Model\Generated\Endpoint\TabUsageSingle;
 use bunq\Model\Generated\Object\Amount;
 use bunq\test\BunqSdkTestBase;
-use bunq\test\Config;
 
 /**
  * Tests:
@@ -14,6 +14,11 @@ use bunq\test\Config;
  */
 class TabUsageSingleTest extends BunqSdkTestBase
 {
+    /**
+     * Error constants.
+     */
+    const ERROR_ONLY_USER_COMPANY_CAN_CREATE_TABS = 'Only user company can create tabs.';
+
     /**
      *  Field constants
      */
@@ -33,33 +38,9 @@ class TabUsageSingleTest extends BunqSdkTestBase
     const AMOUNT_IN_EUR = '0.02';
 
     /**
-     * @var int
-     */
-    private static $cashRegisterId;
-
-    /**
      * @var string
      */
     private static $tabUuid;
-
-    /**
-     */
-    public static function setUpBeforeClass()
-    {
-        parent::setUpBeforeClass();
-        static::$cashRegisterId = Config::getCashRegisterId();
-    }
-
-    /**
-     * Deletes the created tab.
-     */
-    public static function tearDownAfterClass()
-    {
-        TabUsageSingle::delete(
-            static::$cashRegisterId,
-            static::$tabUuid
-        );
-    }
 
     /**
      * Tests the creation of a tab.
@@ -68,8 +49,12 @@ class TabUsageSingleTest extends BunqSdkTestBase
      */
     public function testCreateTab()
     {
+        if (BunqContext::getUserContext()->isOnlyUserPersonSet()) {
+            static::markTestSkipped(self::ERROR_ONLY_USER_COMPANY_CAN_CREATE_TABS);
+        }
+
         static::$tabUuid = TabUsageSingle::create(
-            static::$cashRegisterId,
+            $this->getCashRegisterId(),
             self::TAB_DESCRIPTION,
             self::TAB_STATUS_BEFORE,
             new Amount(self::AMOUNT_IN_EUR, self::TAB_CURRENCY)
@@ -84,7 +69,7 @@ class TabUsageSingleTest extends BunqSdkTestBase
     public function testAddItemToTab()
     {
         TabItemShop::create(
-            static::$cashRegisterId,
+            $this->getCashRegisterId(),
             static::$tabUuid,
             self::ITEM_DESCRIPTION,
             null,
@@ -104,7 +89,7 @@ class TabUsageSingleTest extends BunqSdkTestBase
     public function testUpdateTab()
     {
         TabUsageSingle::update(
-            static::$cashRegisterId,
+            $this->getCashRegisterId(),
             static::$tabUuid,
             null,
             self::TAB_STATUS_AFTER

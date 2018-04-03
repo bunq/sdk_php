@@ -21,39 +21,14 @@ class AttachmentPublicTest extends BunqSdkTestBase
     const PATH_ATTACHMENT = '/../../../Resource/';
 
     /**
-     * @var string
-     */
-    private static $contentType;
-
-    /**
-     * @var string
-     */
-    private static $attachmentDescription;
-
-    /**
-     * @var string
-     */
-    private static $attachmentPathIn;
-
-    /**
-     */
-    public static function setUpBeforeClass()
-    {
-        parent::setUpBeforeClass();
-        static::$contentType = Config::getAttachmentContentType();
-        static::$attachmentDescription = Config::getAttachmentDescription();
-        static::$attachmentPathIn = Config::getAttachmentPathIn();
-    }
-
-    /**
      * Check if the file send is indeed the same file we receive.
      */
     public function testCompareBeforeAndAfterBytes()
     {
         $beforeBytes = $this->getFileContentsOfAttachment();
         $customHeadersMap = [
-            ApiClient::HEADER_CONTENT_TYPE => static::$contentType,
-            ApiClient::HEADER_ATTACHMENT_DESCRIPTION => static::$attachmentDescription,
+            ApiClient::HEADER_CONTENT_TYPE => $this->getAttachmentContentType(),
+            ApiClient::HEADER_ATTACHMENT_DESCRIPTION => $this->getAttachmentDescription(),
         ];
 
         $beforeUuid = AttachmentPublic::create($beforeBytes, $customHeadersMap)->getValue();
@@ -67,7 +42,7 @@ class AttachmentPublicTest extends BunqSdkTestBase
      */
     private function getFileContentsOfAttachment(): string
     {
-        $path = __DIR__ . self::PATH_ATTACHMENT . static::$attachmentPathIn;
+        $path = __DIR__ . self::PATH_ATTACHMENT . $this->getAttachmentFilePath();
 
         return FileUtil::getFileContents($path);
     }

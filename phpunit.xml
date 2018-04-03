@@ -4,6 +4,11 @@
         xsi:noNamespaceSchemaLocation="http://schema.phpunit.de/4.5/phpunit.xsd"
         cacheTokens="false">
     <testsuites>
+        <testsuite name="ParaTest Fixtures">
+            <directory>./tests/</directory>
+        </testsuite>
+    </testsuites>
+    <testsuites>
         <testsuite name="Test Suite">
             <directory>./tests</directory>
         </testsuite>

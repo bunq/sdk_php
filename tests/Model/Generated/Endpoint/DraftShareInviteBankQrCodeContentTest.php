@@ -56,6 +56,8 @@ class DraftShareInviteBankQrCodeContentTest extends BunqSdkTestBase
         $draftShareId = $this->createConnect();
         $qrContent = $this->getQrContent($draftShareId);
         file_put_contents(self::PATH_QR_OUTPUT, $qrContent);
+
+        $this->assertTrue(file_exists(self::PATH_QR_OUTPUT));
     }
 
     /**

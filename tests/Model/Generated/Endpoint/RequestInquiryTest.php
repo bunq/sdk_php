@@ -35,34 +35,16 @@ class RequestInquiryTest extends BunqSdkTestBase
     const INDEX_FIRST = 0;
 
     /**
-     * @var int
-     */
-    private static $monetaryAccountId2;
-
-    /**
-     * @var string
-     */
-    private static $counterPartyAliasSelf;
-
-
-    /**
-     */
-    public static function setUpBeforeClass()
-    {
-        parent::setUpBeforeClass();
-        static::$monetaryAccountId2 = Config::getMonetaryAccountId2();
-        static::$counterPartyAliasSelf = Config::getCounterPartyAliasSelf();
-    }
-
-    /**
      * Send a request from monetary account 1 to monetary account 2 and accept it.
      *
      * This test has no assertion as of its testing to see if the code runs without errors.
      */
     public function testSendingAndAcceptingRequest()
     {
+        $this->skipTestIfNeededDueToInsufficientBalance();
+
         $this->sendRequest();
-        $responses = RequestResponse::listing(static::$monetaryAccountId2)->getValue();
+        $responses = RequestResponse::listing($this->getSecondMonetaryAccountId())->getValue();
         $requestResponseId = $responses[self::INDEX_FIRST]->getId();
         $this->acceptRequest($requestResponseId);
     }
@@ -73,7 +55,7 @@ class RequestInquiryTest extends BunqSdkTestBase
     {
         RequestInquiry::create(
             new Amount(self::REQUEST_AMOUNT_IN_EUR, self::REQUEST_CURRENCY),
-            static::$counterPartyAliasSelf,
+            $this->getSecondMonetaryAccountAlias(),
             self::REQUEST_DESCRIPTION,
             false
         );
@@ -86,7 +68,7 @@ class RequestInquiryTest extends BunqSdkTestBase
     {
         RequestResponse::update(
             $requestResponseId,
-            static::$monetaryAccountId2,
+            $this->getSecondMonetaryAccountId(),
             null,
             self::REQUEST_STATUS_ACCEPTED
         );

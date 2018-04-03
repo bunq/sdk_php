@@ -31,13 +31,6 @@ class MonetaryAccountBankTest extends BunqSdkTestBase
     private static $monetaryAccountBankToCloseId;
 
     /**
-     */
-    public static function setUpBeforeClass()
-    {
-        parent::setUpBeforeClass();
-    }
-
-    /**
      *  Deletes the new created monetary account.
      */
     public static function tearDownAfterClass()
@@ -67,5 +60,7 @@ class MonetaryAccountBankTest extends BunqSdkTestBase
             self::CURRENCY,
             uniqid(self::PREFIX_MONETARY_ACCOUNT_DESCRIPTION)
         )->getValue();
+
+        $this->assertTrue(is_integer(static::$monetaryAccountBankToCloseId));
     }
 }
