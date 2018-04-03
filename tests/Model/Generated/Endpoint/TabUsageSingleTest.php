@@ -16,6 +16,11 @@ use bunq\test\Config;
 class TabUsageSingleTest extends BunqSdkTestBase
 {
     /**
+     * Error constants.
+     */
+    const ERROR_ONLY_USER_COMPANY_CAN_CREATE_TABS = 'Only user company can create tabs.';
+    
+    /**
      *  Field constants
      */
     const TAB_DESCRIPTION = 'Pay the tab for PHP test please';
@@ -46,7 +51,7 @@ class TabUsageSingleTest extends BunqSdkTestBase
     public function testCreateTab()
     {
         if (BunqContext::getUserContext()->isOnlyUserPersonSet()) {
-            static::markTestSkipped('Only user company can create tabs.');
+            static::markTestSkipped(self::ERROR_ONLY_USER_COMPANY_CAN_CREATE_TABS);
         }
 
         static::$tabUuid = TabUsageSingle::create(
