@@ -114,13 +114,13 @@ class BunqSdkTestBase extends TestCase
             ]
         );
         $avatarUuid = Avatar::create($attachmentUuid->getValue());
-        $cashId = CashRegister::create(
+        $cashRegisterId = CashRegister::create(
             self::CASH_REGISTER_NAME,
             self::CASH_REGISTER_STATUS,
             $avatarUuid->getValue()
         );
 
-        $this->cashRegister = CashRegister::get($cashId->getValue());
+        $this->cashRegister = CashRegister::get($cashRegisterId->getValue());
     }
 
     /**
@@ -196,7 +196,7 @@ class BunqSdkTestBase extends TestCase
     /**
      * @return Pointer
      */
-    protected function getUserBravoPointer(): Pointer
+    protected function getPointerUserBravo(): Pointer
     {
         return new Pointer(
             self::POINTER_TYPE_EMAIL,
@@ -227,7 +227,7 @@ class BunqSdkTestBase extends TestCase
     /**
      * @return bool
      */
-    protected function doesAccountHaveEnoughMoney(): bool
+    protected function isMonetaryAccountBalanceSufficient(): bool
     {
         $balance = floatval(BunqContext::getUserContext()->getPrimaryMonetaryAccount()->getBalance()->getValue());
 
@@ -237,9 +237,9 @@ class BunqSdkTestBase extends TestCase
     /**
      * @return bool
      */
-    protected function assertTestShouldBeSkippedDueToInsufficientBalance(): bool
+    protected function skipTestIfNeededDueToInsufficientBalance(): bool
     {
-        if (!$this->doesAccountHaveEnoughMoney()) {
+        if (!$this->isMonetaryAccountBalanceSufficient()) {
             static::markTestSkipped(self::WARMING_TEST_SKIPPED_DUE_TO_INSUFFICIENT_BALANCE);
         }
 

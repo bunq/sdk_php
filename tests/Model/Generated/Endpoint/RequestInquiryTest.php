@@ -41,7 +41,7 @@ class RequestInquiryTest extends BunqSdkTestBase
      */
     public function testSendingAndAcceptingRequest()
     {
-        $this->assertTestShouldBeSkippedDueToInsufficientBalance();
+        $this->skipTestIfNeededDueToInsufficientBalance();
 
         $this->sendRequest();
         $responses = RequestResponse::listing($this->getSecondMonetaryAccountId())->getValue();

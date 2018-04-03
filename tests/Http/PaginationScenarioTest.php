@@ -51,7 +51,7 @@ class PaginationScenarioTest extends BunqSdkTestBase
      */
     private function ensureEnoughPayments()
     {
-        $this->assertTestShouldBeSkippedDueToInsufficientBalance();
+        $this->skipTestIfNeededDueToInsufficientBalance();
 
         for ($i = self::NUMBER_ZERO; $i < self::getPaymentsMissingCount(); ++$i) {
             $this->createPayment();

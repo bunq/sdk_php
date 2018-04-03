@@ -50,11 +50,11 @@ class PaymentTest extends BunqSdkTestBase
      */
     public function testSendMoneyToOtherUser()
     {
-        $this->assertTestShouldBeSkippedDueToInsufficientBalance();
+        $this->skipTestIfNeededDueToInsufficientBalance();
 
         Payment::create(
             new Amount(self::PAYMENT_AMOUNT_IN_EUR, self::PAYMENT_CURRENCY),
-            $this->getUserBravoPointer(),
+            $this->getPointerUserBravo(),
             self::PAYMENT_DESCRIPTION
         );
     }
@@ -66,7 +66,7 @@ class PaymentTest extends BunqSdkTestBase
      */
     public function testSendMoneyToOtherMonetaryAccount()
     {
-        $this->assertTestShouldBeSkippedDueToInsufficientBalance();
+        $this->skipTestIfNeededDueToInsufficientBalance();
 
         $this->paymentId = Payment::create(
             new Amount(self::PAYMENT_AMOUNT_IN_EUR, self::PAYMENT_CURRENCY),
