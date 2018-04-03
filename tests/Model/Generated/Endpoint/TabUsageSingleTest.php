@@ -6,7 +6,6 @@ use bunq\Model\Generated\Endpoint\TabItemShop;
 use bunq\Model\Generated\Endpoint\TabUsageSingle;
 use bunq\Model\Generated\Object\Amount;
 use bunq\test\BunqSdkTestBase;
-use bunq\test\Config;
 
 /**
  * Tests:
@@ -19,7 +18,7 @@ class TabUsageSingleTest extends BunqSdkTestBase
      * Error constants.
      */
     const ERROR_ONLY_USER_COMPANY_CAN_CREATE_TABS = 'Only user company can create tabs.';
-    
+
     /**
      *  Field constants
      */
