@@ -1,6 +1,7 @@
 <?php
 namespace bunq\test\Model\Generated\Endpoint;
 
+use bunq\Model\Generated\Endpoint\BunqResponseInt;
 use bunq\Model\Generated\Endpoint\ChatMessageText;
 use bunq\Model\Generated\Endpoint\Payment;
 use bunq\Model\Generated\Endpoint\PaymentChat;
@@ -39,11 +40,6 @@ class PaymentTest extends BunqSdkTestBase
     const PAYMENT_CHAT_TEXT_MESSAGE = 'send from PHP test';
 
     /**
-     * @var int
-     */
-    private $paymentId;
-
-    /**
      * Test sending money to other sandbox user.
      *
      * This test has no assertion as of its testing to see if the code runs without errors.
@@ -68,7 +64,7 @@ class PaymentTest extends BunqSdkTestBase
     {
         $this->skipTestIfNeededDueToInsufficientBalance();
 
-        $this->paymentId = Payment::create(
+        $paymentId = Payment::create(
             new Amount(self::PAYMENT_AMOUNT_IN_EUR, self::PAYMENT_CURRENCY),
             $this->getSecondMonetaryAccountAlias(),
             self::PAYMENT_DESCRIPTION
