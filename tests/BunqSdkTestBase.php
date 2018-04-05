@@ -82,7 +82,7 @@ class BunqSdkTestBase extends TestCase
      */
     const SPENDING_MONEY_AMOUNT = '500';
     const SPENDING_MONEY_RECIPIENT = 'sugardaddy@bunq.com';
-    const SPENDING_MONEY_DESCRIPTION = 'sdk php test, thanks daddy <3 - OG';
+    const SPENDING_MONEY_DESCRIPTION = 'sdk php test, thanks daddy <3';
 
     /**
      */
