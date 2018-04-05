@@ -48,11 +48,13 @@ class PaymentTest extends BunqSdkTestBase
     {
         $this->skipTestIfNeededDueToInsufficientBalance();
 
-        Payment::create(
+        $response = Payment::create(
             new Amount(self::PAYMENT_AMOUNT_IN_EUR, self::PAYMENT_CURRENCY),
             $this->getPointerUserBravo(),
             self::PAYMENT_DESCRIPTION
         );
+
+        static::assertNotNull($response);
     }
 
     /**
@@ -60,7 +62,7 @@ class PaymentTest extends BunqSdkTestBase
      *
      * This test has no assertion as of its testing to see if the code runs without errors.
      */
-    public function testSendMoneyToOtherMonetaryAccount()
+    public function testSendMoneyToOtherMonetaryAccount(): BunqResponseInt
     {
         $this->skipTestIfNeededDueToInsufficientBalance();
 
@@ -68,7 +70,11 @@ class PaymentTest extends BunqSdkTestBase
             new Amount(self::PAYMENT_AMOUNT_IN_EUR, self::PAYMENT_CURRENCY),
             $this->getSecondMonetaryAccountAlias(),
             self::PAYMENT_DESCRIPTION
-        )->getValue();
+        );
+
+        static::assertNotNull($paymentId);
+
+        return $paymentId;
     }
 
     /**
@@ -78,12 +84,14 @@ class PaymentTest extends BunqSdkTestBase
      *
      * @depends testSendMoneyToOtherMonetaryAccount
      */
-    public function testSendMessageToPayment()
+    public function testSendMessageToPayment(BunqResponseInt $paymentId)
     {
         $chatId = PaymentChat::create(
-            $this->paymentId
+            $paymentId->getValue()
         )->getValue();
 
-        ChatMessageText::create($chatId, self::PAYMENT_CHAT_TEXT_MESSAGE);
+        $response = ChatMessageText::create($chatId, self::PAYMENT_CHAT_TEXT_MESSAGE);
+
+        static::assertNotNull($response);
     }
 }

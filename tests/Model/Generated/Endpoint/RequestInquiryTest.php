@@ -45,6 +45,9 @@ class RequestInquiryTest extends BunqSdkTestBase
 
         $this->sendRequest();
         $responses = RequestResponse::listing($this->getSecondMonetaryAccountId())->getValue();
+
+        static::assertNotNull($responses);
+
         $requestResponseId = $responses[self::INDEX_FIRST]->getId();
         $this->acceptRequest($requestResponseId);
     }
@@ -53,12 +56,14 @@ class RequestInquiryTest extends BunqSdkTestBase
      */
     private function sendRequest()
     {
-        RequestInquiry::create(
+        $response = RequestInquiry::create(
             new Amount(self::REQUEST_AMOUNT_IN_EUR, self::REQUEST_CURRENCY),
             $this->getSecondMonetaryAccountAlias(),
             self::REQUEST_DESCRIPTION,
             false
         );
+
+        static::assertNotNull($response);
     }
 
     /**
@@ -66,11 +71,13 @@ class RequestInquiryTest extends BunqSdkTestBase
      */
     private function acceptRequest(int $requestResponseId)
     {
-        RequestResponse::update(
+        $response = RequestResponse::update(
             $requestResponseId,
             $this->getSecondMonetaryAccountId(),
             null,
             self::REQUEST_STATUS_ACCEPTED
         );
+
+        static::assertNotNull($response);
     }
 }
