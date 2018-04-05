@@ -292,6 +292,324 @@ class UserPerson extends BunqModel
     protected $notificationFilters;
 
     /**
+     * The person's first name.
+     *
+     * @var string|null
+     */
+    protected $firstNameFieldForRequest;
+
+    /**
+     * The person's middle name.
+     *
+     * @var string|null
+     */
+    protected $middleNameFieldForRequest;
+
+    /**
+     * The person's last name.
+     *
+     * @var string|null
+     */
+    protected $lastNameFieldForRequest;
+
+    /**
+     * The person's public nick name.
+     *
+     * @var string|null
+     */
+    protected $publicNickNameFieldForRequest;
+
+    /**
+     * The user's main address.
+     *
+     * @var Address
+     */
+    protected $addressMainFieldForRequest;
+
+    /**
+     * The person's postal address.
+     *
+     * @var Address|null
+     */
+    protected $addressPostalFieldForRequest;
+
+    /**
+     * The public UUID of the user's avatar.
+     *
+     * @var string
+     */
+    protected $avatarUuid;
+
+    /**
+     * The user's tax residence numbers for different countries.
+     *
+     * @var TaxResident[]|null
+     */
+    protected $taxResidentFieldForRequest;
+
+    /**
+     * The type of identification document the person registered with.
+     *
+     * @var string
+     */
+    protected $documentTypeFieldForRequest;
+
+    /**
+     * The identification document number the person registered with.
+     *
+     * @var string
+     */
+    protected $documentNumberFieldForRequest;
+
+    /**
+     * The country which issued the identification document the person
+     * registered with.
+     *
+     * @var string
+     */
+    protected $documentCountryOfIssuanceFieldForRequest;
+
+    /**
+     * The reference to the uploaded picture/scan of the front side of the
+     * identification document.
+     *
+     * @var int
+     */
+    protected $documentFrontAttachmentId;
+
+    /**
+     * The reference to the uploaded picture/scan of the back side of the
+     * identification document.
+     *
+     * @var int|null
+     */
+    protected $documentBackAttachmentId;
+
+    /**
+     * The person's date of birth. Accepts ISO8601 date formats.
+     *
+     * @var string
+     */
+    protected $dateOfBirthFieldForRequest;
+
+    /**
+     * The person's place of birth.
+     *
+     * @var string
+     */
+    protected $placeOfBirthFieldForRequest;
+
+    /**
+     * The person's country of birth. Formatted as a SO 3166-1 alpha-2 country
+     * code.
+     *
+     * @var string
+     */
+    protected $countryOfBirthFieldForRequest;
+
+    /**
+     * The person's nationality. Formatted as a SO 3166-1 alpha-2 country code.
+     *
+     * @var string
+     */
+    protected $nationalityFieldForRequest;
+
+    /**
+     * The person's preferred language. Formatted as a ISO 639-1 language code
+     * plus a ISO 3166-1 alpha-2 country code, seperated by an underscore.
+     *
+     * @var string
+     */
+    protected $languageFieldForRequest;
+
+    /**
+     * The person's preferred region. Formatted as a ISO 639-1 language code
+     * plus a ISO 3166-1 alpha-2 country code, seperated by an underscore.
+     *
+     * @var string
+     */
+    protected $regionFieldForRequest;
+
+    /**
+     * The person's gender. Can be: MALE, FEMALE and UNKNOWN.
+     *
+     * @var string
+     */
+    protected $genderFieldForRequest;
+
+    /**
+     * The user status. You are not allowed to update the status via PUT.
+     *
+     * @var string
+     */
+    protected $statusFieldForRequest;
+
+    /**
+     * The user sub-status. Can be updated to SUBMIT if status is RECOVERY.
+     *
+     * @var string
+     */
+    protected $subStatusFieldForRequest;
+
+    /**
+     * The legal guardian of the user. Required for minors.
+     *
+     * @var Pointer
+     */
+    protected $legalGuardianAlias;
+
+    /**
+     * The setting for the session timeout of the user in seconds.
+     *
+     * @var int
+     */
+    protected $sessionTimeoutFieldForRequest;
+
+    /**
+     * Card ids used for centralized card limits.
+     *
+     * @var BunqId[]|null
+     */
+    protected $cardIds;
+
+    /**
+     * The centralized limits for user's cards.
+     *
+     * @var CardLimit[]|null
+     */
+    protected $cardLimits;
+
+    /**
+     * The amount the user can pay in the session without asking for
+     * credentials.
+     *
+     * @var Amount
+     */
+    protected $dailyLimitWithoutConfirmationLoginFieldForRequest;
+
+    /**
+     * The types of notifications that will result in a push notification or URL
+     * callback for this UserPerson.
+     *
+     * @var NotificationFilter[]|null
+     */
+    protected $notificationFiltersFieldForRequest;
+
+    /**
+     * @param Address $addressMain                           The user's main address.
+     * @param string $avatarUuid                             The public UUID of the user's avatar.
+     * @param string $documentType                           The type of identification document the
+     *                                                       person registered with.
+     * @param string $documentNumber                         The identification document number the
+     *                                                       person registered with.
+     * @param string $documentCountryOfIssuance              The country which issued the
+     *                                                       identification document the person registered with.
+     * @param int $documentFrontAttachmentId                 The reference to the uploaded
+     *                                                       picture/scan of the front side of the identification
+     *                                                       document.
+     * @param string $dateOfBirth                            The person's date of birth. Accepts ISO8601
+     *                                                       date formats.
+     * @param string $placeOfBirth                           The person's place of birth.
+     * @param string $countryOfBirth                         The person's country of birth. Formatted as
+     *                                                       a SO 3166-1 alpha-2 country code.
+     * @param string $nationality                            The person's nationality. Formatted as a SO
+     *                                                       3166-1 alpha-2 country code.
+     * @param string $language                               The person's preferred language. Formatted as a
+     *                                                       ISO 639-1 language code plus a ISO 3166-1 alpha-2 country
+     *                                                       code, seperated by an underscore.
+     * @param string $region                                 The person's preferred region. Formatted as a ISO
+     *                                                       639-1 language code plus a ISO 3166-1 alpha-2 country
+     *                                                       code, seperated by an underscore.
+     * @param string $gender                                 The person's gender. Can be: MALE, FEMALE and
+     *                                                       UNKNOWN.
+     * @param string $status                                 The user status. You are not allowed to update the
+     *                                                       status via PUT.
+     * @param string $subStatus                              The user sub-status. Can be updated to SUBMIT if
+     *                                                       status is RECOVERY.
+     * @param Pointer $legalGuardianAlias                    The legal guardian of the user.
+     *                                                       Required for minors.
+     * @param int $sessionTimeout                            The setting for the session timeout of the
+     *                                                       user in seconds.
+     * @param Amount $dailyLimitWithoutConfirmationLogin     The amount the user can
+     *                                                       pay in the session without asking for credentials.
+     * @param string|null $firstName                         The person's first name.
+     * @param string|null $middleName                        The person's middle name.
+     * @param string|null $lastName                          The person's last name.
+     * @param string|null $publicNickName                    The person's public nick name.
+     * @param Address|null $addressPostal                    The person's postal address.
+     * @param TaxResident[]|null $taxResident                The user's tax residence numbers
+     *                                                       for different countries.
+     * @param int|null $documentBackAttachmentId             The reference to the uploaded
+     *                                                       picture/scan of the back side of the identification
+     *                                                       document.
+     * @param BunqId[]|null $cardIds                         Card ids used for centralized card limits.
+     * @param CardLimit[]|null $cardLimits                   The centralized limits for user's
+     *                                                       cards.
+     * @param NotificationFilter[]|null $notificationFilters The types of
+     *                                                       notifications that will result in a push notification or
+     *                                                       URL callback for this UserPerson.
+     */
+    public function __construct(
+        Address $addressMain,
+        string $avatarUuid,
+        string $documentType,
+        string $documentNumber,
+        string $documentCountryOfIssuance,
+        int $documentFrontAttachmentId,
+        string $dateOfBirth,
+        string $placeOfBirth,
+        string $countryOfBirth,
+        string $nationality,
+        string $language,
+        string $region,
+        string $gender,
+        string $status,
+        string $subStatus,
+        Pointer $legalGuardianAlias,
+        int $sessionTimeout,
+        Amount $dailyLimitWithoutConfirmationLogin,
+        string $firstName = null,
+        string $middleName = null,
+        string $lastName = null,
+        string $publicNickName = null,
+        Address $addressPostal = null,
+        array $taxResident = null,
+        int $documentBackAttachmentId = null,
+        array $cardIds = null,
+        array $cardLimits = null,
+        array $notificationFilters = null
+    ) {
+        $this->firstNameFieldForRequest = $firstName;
+        $this->middleNameFieldForRequest = $middleName;
+        $this->lastNameFieldForRequest = $lastName;
+        $this->publicNickNameFieldForRequest = $publicNickName;
+        $this->addressMainFieldForRequest = $addressMain;
+        $this->addressPostalFieldForRequest = $addressPostal;
+        $this->avatarUuidFieldForRequest = $avatarUuid;
+        $this->taxResidentFieldForRequest = $taxResident;
+        $this->documentTypeFieldForRequest = $documentType;
+        $this->documentNumberFieldForRequest = $documentNumber;
+        $this->documentCountryOfIssuanceFieldForRequest = $documentCountryOfIssuance;
+        $this->documentFrontAttachmentIdFieldForRequest = $documentFrontAttachmentId;
+        $this->documentBackAttachmentIdFieldForRequest = $documentBackAttachmentId;
+        $this->dateOfBirthFieldForRequest = $dateOfBirth;
+        $this->placeOfBirthFieldForRequest = $placeOfBirth;
+        $this->countryOfBirthFieldForRequest = $countryOfBirth;
+        $this->nationalityFieldForRequest = $nationality;
+        $this->languageFieldForRequest = $language;
+        $this->regionFieldForRequest = $region;
+        $this->genderFieldForRequest = $gender;
+        $this->statusFieldForRequest = $status;
+        $this->subStatusFieldForRequest = $subStatus;
+        $this->legalGuardianAliasFieldForRequest = $legalGuardianAlias;
+        $this->sessionTimeoutFieldForRequest = $sessionTimeout;
+        $this->cardIdsFieldForRequest = $cardIds;
+        $this->cardLimitsFieldForRequest = $cardLimits;
+        $this->dailyLimitWithoutConfirmationLoginFieldForRequest = $dailyLimitWithoutConfirmationLogin;
+        $this->notificationFiltersFieldForRequest = $notificationFilters;
+    }
+
+    /**
      * Get a specific person.
      *
      * @param int $userPersonId

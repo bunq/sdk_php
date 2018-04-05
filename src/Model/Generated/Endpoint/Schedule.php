@@ -76,6 +76,52 @@ class Schedule extends BunqModel
     protected $object;
 
     /**
+     * The schedule start time (UTC).
+     *
+     * @var string
+     */
+    protected $timeStartFieldForRequest;
+
+    /**
+     * The schedule end time (UTC).
+     *
+     * @var string|null
+     */
+    protected $timeEndFieldForRequest;
+
+    /**
+     * The schedule recurrence unit, options: ONCE, HOURLY, DAILY, WEEKLY,
+     * MONTHLY, YEARLY
+     *
+     * @var string
+     */
+    protected $recurrenceUnitFieldForRequest;
+
+    /**
+     * The schedule recurrence size. For example size 4 and unit WEEKLY means
+     * the recurrence is every 4 weeks.
+     *
+     * @var int
+     */
+    protected $recurrenceSizeFieldForRequest;
+
+    /**
+     * @param string $timeStart The schedule start time (UTC).
+     * @param string $recurrenceUnit The schedule recurrence unit, options:
+     *                               ONCE, HOURLY, DAILY, WEEKLY, MONTHLY, YEARLY
+     * @param int $recurrenceSize The schedule recurrence size. For example size
+     *                               4 and unit WEEKLY means the recurrence is every 4 weeks.
+     * @param string|null $timeEnd The schedule end time (UTC).
+     */
+    public function __construct(string $timeStart, string $recurrenceUnit, int $recurrenceSize, string $timeEnd = null)
+    {
+        $this->timeStartFieldForRequest = $timeStart;
+        $this->timeEndFieldForRequest = $timeEnd;
+        $this->recurrenceUnitFieldForRequest = $recurrenceUnit;
+        $this->recurrenceSizeFieldForRequest = $recurrenceSize;
+    }
+
+    /**
      * Get a specific schedule definition for a given monetary account.
      *
      * @param int $scheduleId

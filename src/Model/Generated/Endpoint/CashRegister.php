@@ -111,6 +111,82 @@ class CashRegister extends BunqModel
     protected $tabTextWaitingScreen;
 
     /**
+     * The name of the CashRegister. Must be unique for this MonetaryAccount.
+     *
+     * @var string
+     */
+    protected $nameFieldForRequest;
+
+    /**
+     * The status of the CashRegister. Can only be created or updated with
+     * PENDING_APPROVAL or CLOSED.
+     *
+     * @var string
+     */
+    protected $statusFieldForRequest;
+
+    /**
+     * The UUID of the avatar of the CashRegister. Use the calls
+     * /attachment-public and /avatar to create a new Avatar and get its UUID.
+     *
+     * @var string
+     */
+    protected $avatarUuid;
+
+    /**
+     * The geolocation of the CashRegister.
+     *
+     * @var Geolocation|null
+     */
+    protected $locationFieldForRequest;
+
+    /**
+     * The types of notifications that will result in a push notification or URL
+     * callback for this CashRegister.
+     *
+     * @var NotificationFilter[]|null
+     */
+    protected $notificationFiltersFieldForRequest;
+
+    /**
+     * The tab text for waiting screen of CashRegister.
+     *
+     * @var TabTextWaitingScreen[]|null
+     */
+    protected $tabTextWaitingScreenFieldForRequest;
+
+    /**
+     * @param string $name                                      The name of the CashRegister. Must be unique for this
+     *                                                          MonetaryAccount.
+     * @param string $status                                    The status of the CashRegister. Can only be created
+     *                                                          or updated with PENDING_APPROVAL or CLOSED.
+     * @param string $avatarUuid                                The UUID of the avatar of the CashRegister. Use
+     *                                                          the calls /attachment-public and /avatar to create a
+     *                                                          new Avatar and get its UUID.
+     * @param Geolocation|null $location                        The geolocation of the CashRegister.
+     * @param NotificationFilter[]|null $notificationFilters    The types of
+     *                                                          notifications that will result in a push notification
+     *                                                          or URL callback for this CashRegister.
+     * @param TabTextWaitingScreen[]|null $tabTextWaitingScreen The tab text for
+     *                                                          waiting screen of CashRegister.
+     */
+    public function __construct(
+        string $name,
+        string $status,
+        string $avatarUuid,
+        Geolocation $location = null,
+        array $notificationFilters = null,
+        array $tabTextWaitingScreen = null
+    ) {
+        $this->nameFieldForRequest = $name;
+        $this->statusFieldForRequest = $status;
+        $this->avatarUuidFieldForRequest = $avatarUuid;
+        $this->locationFieldForRequest = $location;
+        $this->notificationFiltersFieldForRequest = $notificationFilters;
+        $this->tabTextWaitingScreenFieldForRequest = $tabTextWaitingScreen;
+    }
+
+    /**
      * Create a new CashRegister. Only an UserCompany can create a
      * CashRegisters. They need to be created with status PENDING_APPROVAL, an
      * bunq admin has to approve your CashRegister before you can use it. In the

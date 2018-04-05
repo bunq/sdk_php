@@ -6,11 +6,11 @@ use bunq\Model\Core\BunqModel;
 
 /**
  * It is possible to order a card replacement with the bunq
- * API.<br/><br/>You can order up to one free card replacement per year.
+ * API.<br/><br/>You can order up to three free card replacements per year.
  * Additional replacement requests will be billed.<br/><br/>The card
  * replacement will have the same expiry date and the same pricing as the
  * old card, but it will have a new card number. You can change the
- * description and optional the PIN through the card replacement endpoint.
+ * description and PIN through the card replacement endpoint.
  *
  * @generated
  */
@@ -35,10 +35,35 @@ class CardReplace extends BunqModel
     protected $id;
 
     /**
+     * The plaintext pin code. Requests require encryption to be enabled.
+     *
+     * @var string
+     */
+    protected $pinCode;
+
+    /**
+     * The second line on the card.
+     *
+     * @var string|null
+     */
+    protected $secondLine;
+
+    /**
+     * @param string $pinCode         The plaintext pin code. Requests require
+     *                                encryption to be enabled.
+     * @param string|null $secondLine The second line on the card.
+     */
+    public function __construct(string $pinCode, string $secondLine = null)
+    {
+        $this->pinCodeFieldForRequest = $pinCode;
+        $this->secondLineFieldForRequest = $secondLine;
+    }
+
+    /**
      * Request a card replacement.
      *
      * @param int $cardId
-     * @param string|null $pinCode    The plaintext pin code. Requests require
+     * @param string $pinCode         The plaintext pin code. Requests require
      *                                encryption to be enabled.
      * @param string|null $secondLine The second line on the card.
      * @param string[] $customHeaders
@@ -47,7 +72,7 @@ class CardReplace extends BunqModel
      */
     public static function create(
         int $cardId,
-        string $pinCode = null,
+        string $pinCode,
         string $secondLine = null,
         array $customHeaders = []
     ): BunqResponseInt {

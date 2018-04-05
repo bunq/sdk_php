@@ -58,6 +58,22 @@ class PromotionDisplay extends BunqModel
     protected $status;
 
     /**
+     * The status of the promotion. User can set it to discarded.
+     *
+     * @var string
+     */
+    protected $statusFieldForRequest;
+
+    /**
+     * @param string $status The status of the promotion. User can set it to
+     *                       discarded.
+     */
+    public function __construct(string $status)
+    {
+        $this->statusFieldForRequest = $status;
+    }
+
+    /**
      * @param int $promotionDisplayId
      * @param string[] $customHeaders
      *

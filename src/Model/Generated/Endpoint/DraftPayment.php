@@ -7,7 +7,6 @@ use bunq\Model\Generated\Object\DraftPaymentAnchorObject;
 use bunq\Model\Generated\Object\DraftPaymentEntry;
 use bunq\Model\Generated\Object\DraftPaymentResponse;
 use bunq\Model\Generated\Object\LabelUser;
-use bunq\Model\Generated\Object\RequestInquiryReference;
 
 /**
  * A DraftPayment is like a regular Payment, but it needs to be accepted by
@@ -96,12 +95,60 @@ class DraftPayment extends BunqModel
     protected $object;
 
     /**
-     * The reference to the object used for split the bill. Can be
-     * RequestInquiry or RequestInquiryBatch
+     * The status of the DraftPayment.
      *
-     * @var RequestInquiryReference[]
+     * @var string|null
      */
-    protected $requestReferenceSplitTheBill;
+    protected $statusFieldForRequest;
+
+    /**
+     * The list of entries in the DraftPayment. Each entry will result in a
+     * payment when the DraftPayment is accepted.
+     *
+     * @var DraftPaymentEntry[]
+     */
+    protected $entriesFieldForRequest;
+
+    /**
+     * The last updated_timestamp that you received for this DraftPayment. This
+     * needs to be provided to prevent race conditions.
+     *
+     * @var string|null
+     */
+    protected $previousUpdatedTimestamp;
+
+    /**
+     * The number of accepts that are required for the draft payment to receive
+     * status ACCEPTED. Currently only 1 is valid.
+     *
+     * @var int
+     */
+    protected $numberOfRequiredAccepts;
+
+    /**
+     * @param DraftPaymentEntry[] $entries          The list of entries in the
+     *                                              DraftPayment. Each entry will result in a payment when the
+     *                                              DraftPayment is accepted.
+     * @param int $numberOfRequiredAccepts          The number of accepts that are
+     *                                              required for the draft payment to receive status ACCEPTED.
+     *                                              Currently only
+     *                                              1 is valid.
+     * @param string|null $status                   The status of the DraftPayment.
+     * @param string|null $previousUpdatedTimestamp The last updated_timestamp
+     *                                              that you received for this DraftPayment. This needs to be provided
+     *                                              to prevent race conditions.
+     */
+    public function __construct(
+        array $entries,
+        int $numberOfRequiredAccepts,
+        string $status = null,
+        string $previousUpdatedTimestamp = null
+    ) {
+        $this->statusFieldForRequest = $status;
+        $this->entriesFieldForRequest = $entries;
+        $this->previousUpdatedTimestampFieldForRequest = $previousUpdatedTimestamp;
+        $this->numberOfRequiredAcceptsFieldForRequest = $numberOfRequiredAccepts;
+    }
 
     /**
      * Create a new DraftPayment.
@@ -424,28 +471,6 @@ class DraftPayment extends BunqModel
     }
 
     /**
-     * The reference to the object used for split the bill. Can be
-     * RequestInquiry or RequestInquiryBatch
-     *
-     * @return RequestInquiryReference[]
-     */
-    public function getRequestReferenceSplitTheBill()
-    {
-        return $this->requestReferenceSplitTheBill;
-    }
-
-    /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
-     * @param RequestInquiryReference[] $requestReferenceSplitTheBill
-     */
-    public function setRequestReferenceSplitTheBill($requestReferenceSplitTheBill)
-    {
-        $this->requestReferenceSplitTheBill = $requestReferenceSplitTheBill;
-    }
-
-    /**
      * @return bool
      */
     public function isAllFieldNull()
@@ -479,10 +504,6 @@ class DraftPayment extends BunqModel
         }
 
         if (!is_null($this->object)) {
-            return false;
-        }
-
-        if (!is_null($this->requestReferenceSplitTheBill)) {
             return false;
         }
 

@@ -130,6 +130,91 @@ class ShareInviteBankInquiry extends BunqModel
     protected $id;
 
     /**
+     * The pointer of the user to share with.
+     *
+     * @var Pointer
+     */
+    protected $counterUserAliasFieldForRequest;
+
+    /**
+     * The id of the draft share invite bank.
+     *
+     * @var int|null
+     */
+    protected $draftShareInviteBankIdFieldForRequest;
+
+    /**
+     * The share details. Only one of these objects may be passed.
+     *
+     * @var ShareDetail
+     */
+    protected $shareDetailFieldForRequest;
+
+    /**
+     * The status of the share. Can be PENDING, REVOKED (the user deletes the
+     * share inquiry before it's accepted), ACCEPTED, CANCELLED (the user
+     * deletes an active share) or CANCELLATION_PENDING, CANCELLATION_ACCEPTED,
+     * CANCELLATION_REJECTED (for canceling mutual connects).
+     *
+     * @var string
+     */
+    protected $statusFieldForRequest;
+
+    /**
+     * The share type, either STANDARD or MUTUAL.
+     *
+     * @var string|null
+     */
+    protected $shareTypeFieldForRequest;
+
+    /**
+     * The start date of this share.
+     *
+     * @var string|null
+     */
+    protected $startDateFieldForRequest;
+
+    /**
+     * The expiration date of this share.
+     *
+     * @var string|null
+     */
+    protected $endDateFieldForRequest;
+
+    /**
+     * @param Pointer $counterUserAlias        The pointer of the user to share with.
+     * @param ShareDetail $shareDetail         The share details. Only one of these
+     *                                         objects may be passed.
+     * @param string $status                   The status of the share. Can be PENDING, REVOKED
+     *                                         (the user deletes the share inquiry before it's accepted), ACCEPTED,
+     *                                         CANCELLED (the user deletes an active share) or CANCELLATION_PENDING,
+     *                                         CANCELLATION_ACCEPTED, CANCELLATION_REJECTED (for canceling mutual
+     *                                         connects).
+     * @param int|null $draftShareInviteBankId The id of the draft share invite
+     *                                         bank.
+     * @param string|null $shareType           The share type, either STANDARD or MUTUAL.
+     * @param string|null $startDate           The start date of this share.
+     * @param string|null $endDate             The expiration date of this share.
+     */
+    public function __construct(
+        Pointer $counterUserAlias,
+        ShareDetail $shareDetail,
+        string $status,
+        int $draftShareInviteBankId = null,
+        string $shareType = null,
+        string $startDate = null,
+        string $endDate = null
+    ) {
+        $this->counterUserAliasFieldForRequest = $counterUserAlias;
+        $this->draftShareInviteBankIdFieldForRequest = $draftShareInviteBankId;
+        $this->shareDetailFieldForRequest = $shareDetail;
+        $this->statusFieldForRequest = $status;
+        $this->shareTypeFieldForRequest = $shareType;
+        $this->startDateFieldForRequest = $startDate;
+        $this->endDateFieldForRequest = $endDate;
+    }
+
+    /**
      * Create a new share inquiry for a monetary account, specifying the
      * permission the other bunq user will have on it.
      *

@@ -48,6 +48,34 @@ class PermittedIp extends BunqModel
     protected $status;
 
     /**
+     * The IP address.
+     *
+     * @var string
+     */
+    protected $ipFieldForRequest;
+
+    /**
+     * The status of the IP. May be "ACTIVE" or "INACTIVE". It is only possible
+     * to make requests from "ACTIVE" IP addresses. Only "ACTIVE" IPs will be
+     * billed.
+     *
+     * @var string|null
+     */
+    protected $statusFieldForRequest;
+
+    /**
+     * @param string $ip          The IP address.
+     * @param string|null $status The status of the IP. May be "ACTIVE" or
+     *                            "INACTIVE". It is only possible to make requests from "ACTIVE" IP
+     *                            addresses. Only "ACTIVE" IPs will be billed.
+     */
+    public function __construct(string $ip, string $status = null)
+    {
+        $this->ipFieldForRequest = $ip;
+        $this->statusFieldForRequest = $status;
+    }
+
+    /**
      * @param int $credentialPasswordIpId
      * @param int $permittedIpId
      * @param string[] $customHeaders

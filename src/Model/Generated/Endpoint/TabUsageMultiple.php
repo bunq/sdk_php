@@ -182,6 +182,169 @@ class TabUsageMultiple extends BunqModel
     protected $tabAttachment;
 
     /**
+     * The description of the TabUsageMultiple. Maximum 9000 characters. Field
+     * is required but can be an empty string.
+     *
+     * @var string
+     */
+    protected $descriptionFieldForRequest;
+
+    /**
+     * The status of the TabUsageMultiple. On creation the status must be set to
+     * OPEN. You can change the status from OPEN to PAYABLE. If the
+     * TabUsageMultiple gets paid the status will remain PAYABLE.
+     *
+     * @var string
+     */
+    protected $statusFieldForRequest;
+
+    /**
+     * The total amount of the Tab. Must be a positive amount. As long as the
+     * tab has the status OPEN you can change the total amount. This amount is
+     * not affected by the amounts of the TabItems. However, if you've created
+     * any TabItems for a Tab the sum of the amounts of these items must be
+     * equal to the total_amount of the Tab when you change its status to
+     * PAYABLE
+     *
+     * @var Amount
+     */
+    protected $amountTotalFieldForRequest;
+
+    /**
+     * [DEPRECATED] Whether or not a higher amount can be paid.
+     *
+     * @var bool|null
+     */
+    protected $allowAmountHigher;
+
+    /**
+     * [DEPRECATED] Whether or not a lower amount can be paid.
+     *
+     * @var bool|null
+     */
+    protected $allowAmountLower;
+
+    /**
+     * [DEPRECATED] Whether or not the user paying the Tab should be asked if he
+     * wants to give a tip. When want_tip is set to true, allow_amount_higher
+     * must also be set to true and allow_amount_lower must be false.
+     *
+     * @var bool|null
+     */
+    protected $wantTip;
+
+    /**
+     * The minimum age of the user paying the Tab.
+     *
+     * @var int|null
+     */
+    protected $minimumAgeFieldForRequest;
+
+    /**
+     * Whether a billing and shipping address must be provided when paying the
+     * Tab. Possible values are: BILLING, SHIPPING, BILLING_SHIPPING, NONE,
+     * OPTIONAL. Default is NONE.
+     *
+     * @var string|null
+     */
+    protected $requireAddressFieldForRequest;
+
+    /**
+     * The URL which the user is sent to after paying the Tab.
+     *
+     * @var string|null
+     */
+    protected $redirectUrlFieldForRequest;
+
+    /**
+     * The visibility of a Tab. A Tab can be visible trough NearPay, the QR code
+     * of the CashRegister and its own QR code.
+     *
+     * @var TabVisibility|null
+     */
+    protected $visibilityFieldForRequest;
+
+    /**
+     * The moment when this Tab expires. Can be at most 365 days into the
+     * future.
+     *
+     * @var string|null
+     */
+    protected $expirationFieldForRequest;
+
+    /**
+     * An array of attachments that describe the tab. Uploaded through the POST
+     * /user/{userid}/attachment-tab endpoint.
+     *
+     * @var BunqId[]|null
+     */
+    protected $tabAttachmentFieldForRequest;
+
+    /**
+     * @param string $description            The description of the TabUsageMultiple.
+     *                                       Maximum 9000 characters. Field is required but can be an empty string.
+     * @param string $status                 The status of the TabUsageMultiple. On creation the
+     *                                       status must be set to OPEN. You can change the status from OPEN to
+     *                                       PAYABLE. If the TabUsageMultiple gets paid the status will remain
+     *                                       PAYABLE.
+     * @param Amount $amountTotal            The total amount of the Tab. Must be a
+     *                                       positive amount. As long as the tab has the status OPEN you can change
+     *                                       the total amount. This amount is not affected by the amounts of the
+     *                                       TabItems. However, if you've created any TabItems for a Tab the sum of
+     *                                       the amounts of these items must be equal to the total_amount of the Tab
+     *                                       when you change its status to PAYABLE
+     * @param bool|null $allowAmountHigher   [DEPRECATED] Whether or not a higher
+     *                                       amount can be paid.
+     * @param bool|null $allowAmountLower    [DEPRECATED] Whether or not a lower
+     *                                       amount can be paid.
+     * @param bool|null $wantTip             [DEPRECATED] Whether or not the user paying the
+     *                                       Tab should be asked if he wants to give a tip. When want_tip is set to
+     *                                       true, allow_amount_higher must also be set to true and allow_amount_lower
+     *                                       must be false.
+     * @param int|null $minimumAge           The minimum age of the user paying the Tab.
+     * @param string|null $requireAddress    Whether a billing and shipping address
+     *                                       must be provided when paying the Tab. Possible values are: BILLING,
+     *                                       SHIPPING, BILLING_SHIPPING, NONE, OPTIONAL. Default is NONE.
+     * @param string|null $redirectUrl       The URL which the user is sent to after
+     *                                       paying the Tab.
+     * @param TabVisibility|null $visibility The visibility of a Tab. A Tab can
+     *                                       be visible trough NearPay, the QR code of the CashRegister and its own QR
+     *                                       code.
+     * @param string|null $expiration        The moment when this Tab expires. Can be
+     *                                       at most 365 days into the future.
+     * @param BunqId[]|null $tabAttachment   An array of attachments that describe
+     *                                       the tab. Uploaded through the POST /user/{userid}/attachment-tab
+     *                                       endpoint.
+     */
+    public function __construct(
+        string $description,
+        string $status,
+        Amount $amountTotal,
+        bool $allowAmountHigher = null,
+        bool $allowAmountLower = null,
+        bool $wantTip = null,
+        int $minimumAge = null,
+        string $requireAddress = null,
+        string $redirectUrl = null,
+        TabVisibility $visibility = null,
+        string $expiration = null,
+        array $tabAttachment = null
+    ) {
+        $this->descriptionFieldForRequest = $description;
+        $this->statusFieldForRequest = $status;
+        $this->amountTotalFieldForRequest = $amountTotal;
+        $this->allowAmountHigherFieldForRequest = $allowAmountHigher;
+        $this->allowAmountLowerFieldForRequest = $allowAmountLower;
+        $this->wantTipFieldForRequest = $wantTip;
+        $this->minimumAgeFieldForRequest = $minimumAge;
+        $this->requireAddressFieldForRequest = $requireAddress;
+        $this->redirectUrlFieldForRequest = $redirectUrl;
+        $this->visibilityFieldForRequest = $visibility;
+        $this->expirationFieldForRequest = $expiration;
+        $this->tabAttachmentFieldForRequest = $tabAttachment;
+    }
+
+    /**
      * Create a TabUsageMultiple. On creation the status must be set to OPEN
      *
      * @param int $cashRegisterId

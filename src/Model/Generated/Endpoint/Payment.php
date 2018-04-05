@@ -9,7 +9,6 @@ use bunq\Model\Generated\Object\AttachmentMonetaryAccountPayment;
 use bunq\Model\Generated\Object\Geolocation;
 use bunq\Model\Generated\Object\LabelMonetaryAccount;
 use bunq\Model\Generated\Object\Pointer;
-use bunq\Model\Generated\Object\RequestInquiryReference;
 
 /**
  * Using Payment, you can send payments to bunq and non-bunq users from your
@@ -216,12 +215,77 @@ class Payment extends BunqModel
     protected $allowChat;
 
     /**
-     * The reference to the object used for split the bill. Can be
-     * RequestInquiry or RequestInquiryBatch
+     * The Amount to transfer with the Payment. Must be bigger than 0 and
+     * smaller than the MonetaryAccount's balance.
      *
-     * @var RequestInquiryReference[]
+     * @var Amount
      */
-    protected $requestReferenceSplitTheBill;
+    protected $amountFieldForRequest;
+
+    /**
+     * The Alias of the party we are transferring the money to. Can be an Alias
+     * of type EMAIL or PHONE_NUMBER (for bunq MonetaryAccounts or bunq.to
+     * payments) or IBAN (for external bank account).
+     *
+     * @var Pointer
+     */
+    protected $counterpartyAliasFieldForRequest;
+
+    /**
+     * The description for the Payment. Maximum 140 characters for Payments to
+     * external IBANs, 9000 characters for Payments to only other bunq
+     * MonetaryAccounts. Field is required but can be an empty string.
+     *
+     * @var string
+     */
+    protected $descriptionFieldForRequest;
+
+    /**
+     * The Attachments to attach to the Payment.
+     *
+     * @var AttachmentMonetaryAccountPayment[]|null
+     */
+    protected $attachmentFieldForRequest;
+
+    /**
+     * Optional data to be included with the Payment specific to the merchant.
+     *
+     * @var string|null
+     */
+    protected $merchantReferenceFieldForRequest;
+
+    /**
+     * @param Amount $amount                                      The Amount to transfer with the Payment. Must be
+     *                                                            bigger than 0 and smaller than the MonetaryAccount's
+     *                                                            balance.
+     * @param Pointer $counterpartyAlias                          The Alias of the party we are
+     *                                                            transferring the money to. Can be an Alias of type
+     *                                                            EMAIL or PHONE_NUMBER
+     *                                                            (for bunq MonetaryAccounts or bunq.to payments) or
+     *                                                            IBAN (for external bank account).
+     * @param string $description                                 The description for the Payment. Maximum 140
+     *                                                            characters for Payments to external IBANs, 9000
+     *                                                            characters for Payments to only other bunq
+     *                                                            MonetaryAccounts. Field is required but can be an
+     *                                                            empty string.
+     * @param AttachmentMonetaryAccountPayment[]|null $attachment The
+     *                                                            Attachments to attach to the Payment.
+     * @param string|null $merchantReference                      Optional data to be included with
+     *                                                            the Payment specific to the merchant.
+     */
+    public function __construct(
+        Amount $amount,
+        Pointer $counterpartyAlias,
+        string $description,
+        array $attachment = null,
+        string $merchantReference = null
+    ) {
+        $this->amountFieldForRequest = $amount;
+        $this->counterpartyAliasFieldForRequest = $counterpartyAlias;
+        $this->descriptionFieldForRequest = $description;
+        $this->attachmentFieldForRequest = $attachment;
+        $this->merchantReferenceFieldForRequest = $merchantReference;
+    }
 
     /**
      * Create a new Payment.
@@ -834,28 +898,6 @@ class Payment extends BunqModel
     }
 
     /**
-     * The reference to the object used for split the bill. Can be
-     * RequestInquiry or RequestInquiryBatch
-     *
-     * @return RequestInquiryReference[]
-     */
-    public function getRequestReferenceSplitTheBill()
-    {
-        return $this->requestReferenceSplitTheBill;
-    }
-
-    /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
-     * @param RequestInquiryReference[] $requestReferenceSplitTheBill
-     */
-    public function setRequestReferenceSplitTheBill($requestReferenceSplitTheBill)
-    {
-        $this->requestReferenceSplitTheBill = $requestReferenceSplitTheBill;
-    }
-
-    /**
      * @return bool
      */
     public function isAllFieldNull()
@@ -949,10 +991,6 @@ class Payment extends BunqModel
         }
 
         if (!is_null($this->allowChat)) {
-            return false;
-        }
-
-        if (!is_null($this->requestReferenceSplitTheBill)) {
             return false;
         }
 

@@ -8,7 +8,6 @@ use bunq\Model\Generated\Object\Amount;
 use bunq\Model\Generated\Object\Attachment;
 use bunq\Model\Generated\Object\Geolocation;
 use bunq\Model\Generated\Object\LabelMonetaryAccount;
-use bunq\Model\Generated\Object\RequestInquiryReference;
 
 /**
  * A RequestResponse is what a user on the other side of a RequestInquiry
@@ -229,12 +228,60 @@ class RequestResponse extends BunqModel
     protected $eligibleWhitelistId;
 
     /**
-     * The reference to the object used for split the bill. Can be
-     * RequestInquiry or RequestInquiryBatch
+     * The Amount the user decides to pay.
      *
-     * @var RequestInquiryReference[]
+     * @var Amount|null
      */
-    protected $requestReferenceSplitTheBill;
+    protected $amountRespondedFieldForRequest;
+
+    /**
+     * The responding status of the RequestResponse. Can be ACCEPTED or
+     * REJECTED.
+     *
+     * @var string
+     */
+    protected $statusFieldForRequest;
+
+    /**
+     * The shipping Address to return to the user who created the
+     * RequestInquiry. Should only be provided if 'require_address' is set to
+     * SHIPPING, BILLING_SHIPPING or OPTIONAL.
+     *
+     * @var Address|null
+     */
+    protected $addressShippingFieldForRequest;
+
+    /**
+     * The billing Address to return to the user who created the RequestInquiry.
+     * Should only be provided if 'require_address' is set to BILLING,
+     * BILLING_SHIPPING or OPTIONAL.
+     *
+     * @var Address|null
+     */
+    protected $addressBillingFieldForRequest;
+
+    /**
+     * @param string $status                The responding status of the RequestResponse. Can
+     *                                      be ACCEPTED or REJECTED.
+     * @param Amount|null $amountResponded  The Amount the user decides to pay.
+     * @param Address|null $addressShipping The shipping Address to return to
+     *                                      the user who created the RequestInquiry. Should only be provided if
+     *                                      'require_address' is set to SHIPPING, BILLING_SHIPPING or OPTIONAL.
+     * @param Address|null $addressBilling  The billing Address to return to the
+     *                                      user who created the RequestInquiry. Should only be provided if
+     *                                      'require_address' is set to BILLING, BILLING_SHIPPING or OPTIONAL.
+     */
+    public function __construct(
+        string $status,
+        Amount $amountResponded = null,
+        Address $addressShipping = null,
+        Address $addressBilling = null
+    ) {
+        $this->amountRespondedFieldForRequest = $amountResponded;
+        $this->statusFieldForRequest = $status;
+        $this->addressShippingFieldForRequest = $addressShipping;
+        $this->addressBillingFieldForRequest = $addressBilling;
+    }
 
     /**
      * Update the status to accept or reject the RequestResponse.
@@ -881,28 +928,6 @@ class RequestResponse extends BunqModel
     }
 
     /**
-     * The reference to the object used for split the bill. Can be
-     * RequestInquiry or RequestInquiryBatch
-     *
-     * @return RequestInquiryReference[]
-     */
-    public function getRequestReferenceSplitTheBill()
-    {
-        return $this->requestReferenceSplitTheBill;
-    }
-
-    /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
-     * @param RequestInquiryReference[] $requestReferenceSplitTheBill
-     */
-    public function setRequestReferenceSplitTheBill($requestReferenceSplitTheBill)
-    {
-        $this->requestReferenceSplitTheBill = $requestReferenceSplitTheBill;
-    }
-
-    /**
      * @return bool
      */
     public function isAllFieldNull()
@@ -1004,10 +1029,6 @@ class RequestResponse extends BunqModel
         }
 
         if (!is_null($this->eligibleWhitelistId)) {
-            return false;
-        }
-
-        if (!is_null($this->requestReferenceSplitTheBill)) {
             return false;
         }
 

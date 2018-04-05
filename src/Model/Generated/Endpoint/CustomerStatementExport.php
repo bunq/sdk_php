@@ -106,6 +106,56 @@ class CustomerStatementExport extends BunqModel
     protected $aliasMonetaryAccount;
 
     /**
+     * The format type of statement. Allowed values: MT940, CSV, PDF.
+     *
+     * @var string
+     */
+    protected $statementFormatFieldForRequest;
+
+    /**
+     * The start date for making statements.
+     *
+     * @var string
+     */
+    protected $dateStartFieldForRequest;
+
+    /**
+     * The end date for making statements.
+     *
+     * @var string
+     */
+    protected $dateEndFieldForRequest;
+
+    /**
+     * Required for CSV exports. The regional format of the statement, can be
+     * UK_US (comma-separated) or EUROPEAN (semicolon-separated).
+     *
+     * @var string|null
+     */
+    protected $regionalFormatFieldForRequest;
+
+    /**
+     * @param string $statementFormat     The format type of statement. Allowed
+     *                                    values: MT940, CSV, PDF.
+     * @param string $dateStart           The start date for making statements.
+     * @param string $dateEnd             The end date for making statements.
+     * @param string|null $regionalFormat Required for CSV exports. The regional
+     *                                    format of the statement, can be UK_US (comma-separated) or EUROPEAN
+     *                                    (semicolon-separated).
+     */
+    public function __construct(
+        string $statementFormat,
+        string $dateStart,
+        string $dateEnd,
+        string $regionalFormat = null
+    ) {
+        $this->statementFormatFieldForRequest = $statementFormat;
+        $this->dateStartFieldForRequest = $dateStart;
+        $this->dateEndFieldForRequest = $dateEnd;
+        $this->regionalFormatFieldForRequest = $regionalFormat;
+    }
+
+    /**
      * @param string $statementFormat     The format type of statement. Allowed
      *                                    values: MT940, CSV, PDF.
      * @param string $dateStart           The start date for making statements.

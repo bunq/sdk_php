@@ -7,7 +7,6 @@ use bunq\Model\Generated\Object\Address;
 use bunq\Model\Generated\Object\Amount;
 use bunq\Model\Generated\Object\InvoiceItemGroup;
 use bunq\Model\Generated\Object\LabelMonetaryAccount;
-use bunq\Model\Generated\Object\RequestInquiryReference;
 
 /**
  * Used to view a bunq invoice.
@@ -148,12 +147,37 @@ class Invoice extends BunqModel
     protected $vatNumber;
 
     /**
-     * The reference to the object used for split the bill. Can be
-     * RequestInquiry or RequestInquiryBatch
+     * The status of the invoice.
      *
-     * @var RequestInquiryReference[]
+     * @var string
      */
-    protected $requestReferenceSplitTheBill;
+    protected $statusFieldForRequest;
+
+    /**
+     * The description provided by the admin.
+     *
+     * @var string
+     */
+    protected $description;
+
+    /**
+     * The external url provided by the admin.
+     *
+     * @var string
+     */
+    protected $externalUrl;
+
+    /**
+     * @param string $status The status of the invoice.
+     * @param string $description The description provided by the admin.
+     * @param string $externalUrl The external url provided by the admin.
+     */
+    public function __construct(string $status, string $description, string $externalUrl)
+    {
+        $this->statusFieldForRequest = $status;
+        $this->descriptionFieldForRequest = $description;
+        $this->externalUrlFieldForRequest = $externalUrl;
+    }
 
     /**
      * This method is called "listing" because "list" is a restricted PHP word
@@ -550,28 +574,6 @@ class Invoice extends BunqModel
     }
 
     /**
-     * The reference to the object used for split the bill. Can be
-     * RequestInquiry or RequestInquiryBatch
-     *
-     * @return RequestInquiryReference[]
-     */
-    public function getRequestReferenceSplitTheBill()
-    {
-        return $this->requestReferenceSplitTheBill;
-    }
-
-    /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
-     * @param RequestInquiryReference[] $requestReferenceSplitTheBill
-     */
-    public function setRequestReferenceSplitTheBill($requestReferenceSplitTheBill)
-    {
-        $this->requestReferenceSplitTheBill = $requestReferenceSplitTheBill;
-    }
-
-    /**
      * @return bool
      */
     public function isAllFieldNull()
@@ -637,10 +639,6 @@ class Invoice extends BunqModel
         }
 
         if (!is_null($this->vatNumber)) {
-            return false;
-        }
-
-        if (!is_null($this->requestReferenceSplitTheBill)) {
             return false;
         }
 

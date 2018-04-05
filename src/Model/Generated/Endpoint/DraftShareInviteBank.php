@@ -3,7 +3,7 @@ namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Http\ApiClient;
 use bunq\Model\Core\BunqModel;
-use bunq\Model\Generated\Object\DraftShareInviteEntry;
+use bunq\Model\Generated\Object\DraftShareInviteBankEntry;
 use bunq\Model\Generated\Object\LabelUser;
 
 /**
@@ -75,7 +75,7 @@ class DraftShareInviteBank extends BunqModel
     /**
      * The draft share invite details.
      *
-     * @var DraftShareInviteEntry
+     * @var DraftShareInviteBankEntry
      */
     protected $draftShareSettings;
 
@@ -87,19 +87,61 @@ class DraftShareInviteBank extends BunqModel
     protected $id;
 
     /**
-     * @param string $expiration                        The moment when this draft share invite
-     *                                                  expires.
-     * @param DraftShareInviteEntry $draftShareSettings The draft share invite
-     *                                                  details.
-     * @param string|null $status                       The status of the draft share invite. Can be
-     *                                                  CANCELLED (the user cancels the draft share before it's used).
+     * The status of the draft share invite. Can be CANCELLED (the user cancels
+     * the draft share before it's used).
+     *
+     * @var string|null
+     */
+    protected $statusFieldForRequest;
+
+    /**
+     * The moment when this draft share invite expires.
+     *
+     * @var string
+     */
+    protected $expirationFieldForRequest;
+
+    /**
+     * The draft share invite details.
+     *
+     * @var DraftShareInviteBankEntry
+     */
+    protected $draftShareSettingsFieldForRequest;
+
+    /**
+     * @param string $expiration                            The moment when this draft share invite
+     *                                                      expires.
+     * @param DraftShareInviteBankEntry $draftShareSettings The draft share
+     *                                                      invite details.
+     * @param string|null $status                           The status of the draft share invite. Can be
+     *                                                      CANCELLED (the user cancels the draft share before it's
+     *                                                      used).
+     */
+    public function __construct(
+        string $expiration,
+        DraftShareInviteBankEntry $draftShareSettings,
+        string $status = null
+    ) {
+        $this->statusFieldForRequest = $status;
+        $this->expirationFieldForRequest = $expiration;
+        $this->draftShareSettingsFieldForRequest = $draftShareSettings;
+    }
+
+    /**
+     * @param string $expiration                            The moment when this draft share invite
+     *                                                      expires.
+     * @param DraftShareInviteBankEntry $draftShareSettings The draft share
+     *                                                      invite details.
+     * @param string|null $status                           The status of the draft share invite. Can be
+     *                                                      CANCELLED (the user cancels the draft share before it's
+     *                                                      used).
      * @param string[] $customHeaders
      *
      * @return BunqResponseInt
      */
     public static function create(
         string $expiration,
-        DraftShareInviteEntry $draftShareSettings,
+        DraftShareInviteBankEntry $draftShareSettings,
         string $status = null,
         array $customHeaders = []
     ): BunqResponseInt {
@@ -152,13 +194,13 @@ class DraftShareInviteBank extends BunqModel
      * to cancel the draft share invite.
      *
      * @param int $draftShareInviteBankId
-     * @param string|null $status                            The status of the draft share invite. Can be
-     *                                                       CANCELLED (the user cancels the draft share before it's
-     *                                                       used).
-     * @param string|null $expiration                        The moment when this draft share invite
-     *                                                       expires.
-     * @param DraftShareInviteEntry|null $draftShareSettings The draft share
-     *                                                       invite details.
+     * @param string|null $status                                The status of the draft share invite. Can be
+     *                                                           CANCELLED (the user cancels the draft share before
+     *                                                           it's used).
+     * @param string|null $expiration                            The moment when this draft share invite
+     *                                                           expires.
+     * @param DraftShareInviteBankEntry|null $draftShareSettings The draft share
+     *                                                           invite details.
      * @param string[] $customHeaders
      *
      * @return BunqResponseInt
@@ -167,7 +209,7 @@ class DraftShareInviteBank extends BunqModel
         int $draftShareInviteBankId,
         string $status = null,
         string $expiration = null,
-        DraftShareInviteEntry $draftShareSettings = null,
+        DraftShareInviteBankEntry $draftShareSettings = null,
         array $customHeaders = []
     ): BunqResponseInt {
         $apiClient = new ApiClient(static::getApiContext());
@@ -324,7 +366,7 @@ class DraftShareInviteBank extends BunqModel
     /**
      * The draft share invite details.
      *
-     * @return DraftShareInviteEntry
+     * @return DraftShareInviteBankEntry
      */
     public function getDraftShareSettings()
     {
@@ -335,7 +377,7 @@ class DraftShareInviteBank extends BunqModel
      * @deprecated User should not be able to set values via setters, use
      * constructor.
      *
-     * @param DraftShareInviteEntry $draftShareSettings
+     * @param DraftShareInviteBankEntry $draftShareSettings
      */
     public function setDraftShareSettings($draftShareSettings)
     {

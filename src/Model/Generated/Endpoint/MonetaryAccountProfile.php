@@ -36,6 +36,34 @@ class MonetaryAccountProfile extends BunqModel
     /**
      * The profile settings for triggering the fill of a monetary account.
      *
+     * @var MonetaryAccountProfileFill|null
+     */
+    protected $profileFillFieldForRequest;
+
+    /**
+     * The profile settings for moving excesses to a savings account
+     *
+     * @var MonetaryAccountProfileDrain|null
+     */
+    protected $profileDrainFieldForRequest;
+
+    /**
+     * @param MonetaryAccountProfileFill|null $profileFill   The profile settings
+     *                                                       for triggering the fill of a monetary account.
+     * @param MonetaryAccountProfileDrain|null $profileDrain The profile
+     *                                                       settings for moving excesses to a savings account
+     */
+    public function __construct(
+        MonetaryAccountProfileFill $profileFill = null,
+        MonetaryAccountProfileDrain $profileDrain = null
+    ) {
+        $this->profileFillFieldForRequest = $profileFill;
+        $this->profileDrainFieldForRequest = $profileDrain;
+    }
+
+    /**
+     * The profile settings for triggering the fill of a monetary account.
+     *
      * @return MonetaryAccountProfileFill
      */
     public function getProfileFill()

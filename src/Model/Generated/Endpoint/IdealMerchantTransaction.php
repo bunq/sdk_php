@@ -25,7 +25,6 @@ class IdealMerchantTransaction extends BunqModel
      */
     const FIELD_AMOUNT_REQUESTED = 'amount_requested';
     const FIELD_ISSUER = 'issuer';
-    const FIELD_CALLBACK_TYPE = 'callback_type';
 
     /**
      * Object type.
@@ -130,6 +129,30 @@ class IdealMerchantTransaction extends BunqModel
      * @var bool
      */
     protected $allowChat;
+
+    /**
+     * The requested amount of money to add.
+     *
+     * @var Amount
+     */
+    protected $amountRequestedFieldForRequest;
+
+    /**
+     * The BIC of the issuing bank to ask for money.
+     *
+     * @var string
+     */
+    protected $issuerFieldForRequest;
+
+    /**
+     * @param Amount $amountRequested The requested amount of money to add.
+     * @param string $issuer          The BIC of the issuing bank to ask for money.
+     */
+    public function __construct(Amount $amountRequested, string $issuer)
+    {
+        $this->amountRequestedFieldForRequest = $amountRequested;
+        $this->issuerFieldForRequest = $issuer;
+    }
 
     /**
      * @param Amount $amountRequested The requested amount of money to add.

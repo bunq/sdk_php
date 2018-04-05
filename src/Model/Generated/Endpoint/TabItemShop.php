@@ -96,6 +96,80 @@ class TabItemShop extends BunqModel
     protected $amount;
 
     /**
+     * The TabItem's brief description. Can't be empty and must be no longer
+     * than 100 characters
+     *
+     * @var string
+     */
+    protected $descriptionFieldForRequest;
+
+    /**
+     * The TabItem's EAN code.
+     *
+     * @var string|null
+     */
+    protected $eanCodeFieldForRequest;
+
+    /**
+     * An AttachmentPublic UUID that used as an avatar for the TabItem.
+     *
+     * @var string|null
+     */
+    protected $avatarAttachmentUuid;
+
+    /**
+     * A list of AttachmentTab attached to the TabItem.
+     *
+     * @var int[]|null
+     */
+    protected $tabAttachmentFieldForRequest;
+
+    /**
+     * The quantity of the TabItem. Formatted as a number containing up to 15
+     * digits, up to 15 decimals and using a dot.
+     *
+     * @var string|null
+     */
+    protected $quantityFieldForRequest;
+
+    /**
+     * The money amount of the TabItem. Will not change the value of the
+     * corresponding Tab.
+     *
+     * @var Amount|null
+     */
+    protected $amountFieldForRequest;
+
+    /**
+     * @param string $description               The TabItem's brief description. Can't be
+     *                                          empty and must be no longer than 100 characters
+     * @param string|null $eanCode              The TabItem's EAN code.
+     * @param string|null $avatarAttachmentUuid An AttachmentPublic UUID that
+     *                                          used as an avatar for the TabItem.
+     * @param int[]|null $tabAttachment         A list of AttachmentTab attached to the
+     *                                          TabItem.
+     * @param string|null $quantity             The quantity of the TabItem. Formatted as a
+     *                                          number containing up to 15 digits, up to 15 decimals and using a dot.
+     * @param Amount|null $amount               The money amount of the TabItem. Will not
+     *                                          change the value of the corresponding Tab.
+     */
+    public function __construct(
+        string $description,
+        string $eanCode = null,
+        string $avatarAttachmentUuid = null,
+        array $tabAttachment = null,
+        string $quantity = null,
+        Amount $amount = null
+    ) {
+        $this->descriptionFieldForRequest = $description;
+        $this->eanCodeFieldForRequest = $eanCode;
+        $this->avatarAttachmentUuidFieldForRequest = $avatarAttachmentUuid;
+        $this->tabAttachmentFieldForRequest = $tabAttachment;
+        $this->quantityFieldForRequest = $quantity;
+        $this->amountFieldForRequest = $amount;
+    }
+
+    /**
      * Create a new TabItem for a given Tab.
      *
      * @param int $cashRegisterId

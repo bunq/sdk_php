@@ -97,6 +97,34 @@ class BunqMeTab extends BunqModel
     protected $resultInquiries;
 
     /**
+     * The bunq.me entry containing the payment information.
+     *
+     * @var BunqMeTabEntry
+     */
+    protected $bunqmeTabEntryFieldForRequest;
+
+    /**
+     * The status of the bunq.me. Ignored in POST requests but can be used for
+     * cancelling the bunq.me by setting status as CANCELLED with a PUT request.
+     *
+     * @var string|null
+     */
+    protected $statusFieldForRequest;
+
+    /**
+     * @param BunqMeTabEntry $bunqmeTabEntry The bunq.me entry containing the
+     *                                       payment information.
+     * @param string|null $status            The status of the bunq.me. Ignored in POST
+     *                                       requests but can be used for cancelling the bunq.me by setting status as
+     *                                       CANCELLED with a PUT request.
+     */
+    public function __construct(BunqMeTabEntry $bunqmeTabEntry, string $status = null)
+    {
+        $this->bunqmeTabEntryFieldForRequest = $bunqmeTabEntry;
+        $this->statusFieldForRequest = $status;
+    }
+
+    /**
      * @param BunqMeTabEntry $bunqmeTabEntry The bunq.me entry containing the
      *                                       payment information.
      * @param int|null $monetaryAccountId

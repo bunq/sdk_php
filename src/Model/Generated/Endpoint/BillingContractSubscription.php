@@ -79,6 +79,25 @@ class BillingContractSubscription extends BunqModel
     protected $subscriptionType;
 
     /**
+     * The subscription type of the user. Can be one of PERSON_LIGHT_V1,
+     * PERSON_MORE_V1, PERSON_FREE_V1, PERSON_PREMIUM_V1, COMPANY_V1, or
+     * COMPANY_V2.
+     *
+     * @var string
+     */
+    protected $subscriptionTypeFieldForRequest;
+
+    /**
+     * @param string $subscriptionType The subscription type of the user. Can be
+     *                                 one of PERSON_LIGHT_V1, PERSON_MORE_V1, PERSON_FREE_V1,
+     *                                 PERSON_PREMIUM_V1, COMPANY_V1, or COMPANY_V2.
+     */
+    public function __construct(string $subscriptionType)
+    {
+        $this->subscriptionTypeFieldForRequest = $subscriptionType;
+    }
+
+    /**
      * @param string $subscriptionType The subscription type of the user. Can be
      *                                 one of PERSON_LIGHT_V1, PERSON_MORE_V1, PERSON_FREE_V1,
      *                                 PERSON_PREMIUM_V1, COMPANY_V1, or COMPANY_V2.

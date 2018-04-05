@@ -57,6 +57,21 @@ class PaymentChat extends BunqModel
     protected $unreadMessageCount;
 
     /**
+     * The id of the last read message.
+     *
+     * @var int|null
+     */
+    protected $lastReadMessageId;
+
+    /**
+     * @param int|null $lastReadMessageId The id of the last read message.
+     */
+    public function __construct(int $lastReadMessageId = null)
+    {
+        $this->lastReadMessageIdFieldForRequest = $lastReadMessageId;
+    }
+
+    /**
      * Create a chat for a specific payment.
      *
      * @param int $paymentId

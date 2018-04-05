@@ -30,6 +30,21 @@ class ChatMessageAttachment extends BunqModel
     protected $id;
 
     /**
+     * The attachment contained in this message.
+     *
+     * @var BunqId
+     */
+    protected $attachment;
+
+    /**
+     * @param BunqId $attachment The attachment contained in this message.
+     */
+    public function __construct(BunqId $attachment)
+    {
+        $this->attachmentFieldForRequest = $attachment;
+    }
+
+    /**
      * Create a new message holding a file attachment to a specific
      * conversation.
      *

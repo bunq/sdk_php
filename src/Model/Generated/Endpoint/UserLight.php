@@ -291,6 +291,315 @@ class UserLight extends BunqModel
     protected $notificationFilters;
 
     /**
+     * The user's first name.
+     *
+     * @var string
+     */
+    protected $firstNameFieldForRequest;
+
+    /**
+     * The user's middle name.
+     *
+     * @var string|null
+     */
+    protected $middleNameFieldForRequest;
+
+    /**
+     * The user's last name.
+     *
+     * @var string
+     */
+    protected $lastNameFieldForRequest;
+
+    /**
+     * The user's public nick name.
+     *
+     * @var string
+     */
+    protected $publicNickNameFieldForRequest;
+
+    /**
+     * The user's main address.
+     *
+     * @var Address
+     */
+    protected $addressMainFieldForRequest;
+
+    /**
+     * The user's postal address.
+     *
+     * @var Address|null
+     */
+    protected $addressPostalFieldForRequest;
+
+    /**
+     * The public UUID of the user's avatar.
+     *
+     * @var string
+     */
+    protected $avatarUuid;
+
+    /**
+     * The user's social security number.
+     *
+     * @var string|null
+     */
+    protected $socialSecurityNumberFieldForRequest;
+
+    /**
+     * The user's tax residence numbers for different countries.
+     *
+     * @var TaxResident[]|null
+     */
+    protected $taxResidentFieldForRequest;
+
+    /**
+     * The type of identification document the user registered with.
+     *
+     * @var string|null
+     */
+    protected $documentTypeFieldForRequest;
+
+    /**
+     * The identification document number the user registered with.
+     *
+     * @var string|null
+     */
+    protected $documentNumberFieldForRequest;
+
+    /**
+     * The country which issued the identification document the user registered
+     * with.
+     *
+     * @var string|null
+     */
+    protected $documentCountryOfIssuanceFieldForRequest;
+
+    /**
+     * The reference to the uploaded picture/scan of the front side of the
+     * identification document.
+     *
+     * @var int|null
+     */
+    protected $documentFrontAttachmentId;
+
+    /**
+     * The reference to the uploaded picture/scan of the back side of the
+     * identification document.
+     *
+     * @var int|null
+     */
+    protected $documentBackAttachmentId;
+
+    /**
+     * The user's date of birth. Accepts ISO8601 date formats.
+     *
+     * @var string
+     */
+    protected $dateOfBirthFieldForRequest;
+
+    /**
+     * The user's place of birth.
+     *
+     * @var string|null
+     */
+    protected $placeOfBirthFieldForRequest;
+
+    /**
+     * The user's country of birth. Formatted as a SO 3166-1 alpha-2 country
+     * code.
+     *
+     * @var string|null
+     */
+    protected $countryOfBirthFieldForRequest;
+
+    /**
+     * The user's nationality. Formatted as a SO 3166-1 alpha-2 country code.
+     *
+     * @var string|null
+     */
+    protected $nationalityFieldForRequest;
+
+    /**
+     * The user's preferred language. Formatted as a ISO 639-1 language code
+     * plus a ISO 3166-1 alpha-2 country code, seperated by an underscore.
+     *
+     * @var string
+     */
+    protected $languageFieldForRequest;
+
+    /**
+     * The user's preferred region. Formatted as a ISO 639-1 language code plus
+     * a ISO 3166-1 alpha-2 country code, seperated by an underscore.
+     *
+     * @var string
+     */
+    protected $regionFieldForRequest;
+
+    /**
+     * The user's gender. Can be: MALE, FEMALE and UNKNOWN.
+     *
+     * @var string|null
+     */
+    protected $genderFieldForRequest;
+
+    /**
+     * The user status. You are not allowed to update the status via PUT.
+     *
+     * @var string
+     */
+    protected $statusFieldForRequest;
+
+    /**
+     * The user sub-status. Can be updated to SUBMIT to apply for a full bunq
+     * account.
+     *
+     * @var string
+     */
+    protected $subStatusFieldForRequest;
+
+    /**
+     * The legal guardian of the user. Required for minors.
+     *
+     * @var Pointer|null
+     */
+    protected $legalGuardianAlias;
+
+    /**
+     * The setting for the session timeout of the user in seconds.
+     *
+     * @var int
+     */
+    protected $sessionTimeoutFieldForRequest;
+
+    /**
+     * The amount the user can pay in the session without asking for
+     * credentials.
+     *
+     * @var Amount
+     */
+    protected $dailyLimitWithoutConfirmationLoginFieldForRequest;
+
+    /**
+     * The types of notifications that will result in a push notification or URL
+     * callback for this UserLight.
+     *
+     * @var NotificationFilter[]|null
+     */
+    protected $notificationFiltersFieldForRequest;
+
+    /**
+     * @param string $firstName                              The user's first name.
+     * @param string $lastName                               The user's last name.
+     * @param string $publicNickName                         The user's public nick name.
+     * @param Address $addressMain                           The user's main address.
+     * @param string $avatarUuid                             The public UUID of the user's avatar.
+     * @param string $dateOfBirth                            The user's date of birth. Accepts ISO8601 date
+     *                                                       formats.
+     * @param string $language                               The user's preferred language. Formatted as a ISO
+     *                                                       639-1 language code plus a ISO 3166-1 alpha-2 country
+     *                                                       code, seperated by an underscore.
+     * @param string $region                                 The user's preferred region. Formatted as a ISO
+     *                                                       639-1 language code plus a ISO 3166-1 alpha-2 country
+     *                                                       code, seperated by an underscore.
+     * @param string $status                                 The user status. You are not allowed to update the
+     *                                                       status via PUT.
+     * @param string $subStatus                              The user sub-status. Can be updated to SUBMIT to
+     *                                                       apply for a full bunq account.
+     * @param int $sessionTimeout                            The setting for the session timeout of the
+     *                                                       user in seconds.
+     * @param Amount $dailyLimitWithoutConfirmationLogin     The amount the user can
+     *                                                       pay in the session without asking for credentials.
+     * @param string|null $middleName                        The user's middle name.
+     * @param Address|null $addressPostal                    The user's postal address.
+     * @param string|null $socialSecurityNumber              The user's social security
+     *                                                       number.
+     * @param TaxResident[]|null $taxResident                The user's tax residence numbers
+     *                                                       for different countries.
+     * @param string|null $documentType                      The type of identification document the
+     *                                                       user registered with.
+     * @param string|null $documentNumber                    The identification document number the
+     *                                                       user registered with.
+     * @param string|null $documentCountryOfIssuance         The country which issued
+     *                                                       the identification document the user registered with.
+     * @param int|null $documentFrontAttachmentId            The reference to the uploaded
+     *                                                       picture/scan of the front side of the identification
+     *                                                       document.
+     * @param int|null $documentBackAttachmentId             The reference to the uploaded
+     *                                                       picture/scan of the back side of the identification
+     *                                                       document.
+     * @param string|null $placeOfBirth                      The user's place of birth.
+     * @param string|null $countryOfBirth                    The user's country of birth. Formatted
+     *                                                       as a SO 3166-1 alpha-2 country code.
+     * @param string|null $nationality                       The user's nationality. Formatted as a SO
+     *                                                       3166-1 alpha-2 country code.
+     * @param string|null $gender                            The user's gender. Can be: MALE, FEMALE and
+     *                                                       UNKNOWN.
+     * @param Pointer|null $legalGuardianAlias               The legal guardian of the user.
+     *                                                       Required for minors.
+     * @param NotificationFilter[]|null $notificationFilters The types of
+     *                                                       notifications that will result in a push notification or
+     *                                                       URL callback for this UserLight.
+     */
+    public function __construct(
+        string $firstName,
+        string $lastName,
+        string $publicNickName,
+        Address $addressMain,
+        string $avatarUuid,
+        string $dateOfBirth,
+        string $language,
+        string $region,
+        string $status,
+        string $subStatus,
+        int $sessionTimeout,
+        Amount $dailyLimitWithoutConfirmationLogin,
+        string $middleName = null,
+        Address $addressPostal = null,
+        string $socialSecurityNumber = null,
+        array $taxResident = null,
+        string $documentType = null,
+        string $documentNumber = null,
+        string $documentCountryOfIssuance = null,
+        int $documentFrontAttachmentId = null,
+        int $documentBackAttachmentId = null,
+        string $placeOfBirth = null,
+        string $countryOfBirth = null,
+        string $nationality = null,
+        string $gender = null,
+        Pointer $legalGuardianAlias = null,
+        array $notificationFilters = null
+    ) {
+        $this->firstNameFieldForRequest = $firstName;
+        $this->middleNameFieldForRequest = $middleName;
+        $this->lastNameFieldForRequest = $lastName;
+        $this->publicNickNameFieldForRequest = $publicNickName;
+        $this->addressMainFieldForRequest = $addressMain;
+        $this->addressPostalFieldForRequest = $addressPostal;
+        $this->avatarUuidFieldForRequest = $avatarUuid;
+        $this->socialSecurityNumberFieldForRequest = $socialSecurityNumber;
+        $this->taxResidentFieldForRequest = $taxResident;
+        $this->documentTypeFieldForRequest = $documentType;
+        $this->documentNumberFieldForRequest = $documentNumber;
+        $this->documentCountryOfIssuanceFieldForRequest = $documentCountryOfIssuance;
+        $this->documentFrontAttachmentIdFieldForRequest = $documentFrontAttachmentId;
+        $this->documentBackAttachmentIdFieldForRequest = $documentBackAttachmentId;
+        $this->dateOfBirthFieldForRequest = $dateOfBirth;
+        $this->placeOfBirthFieldForRequest = $placeOfBirth;
+        $this->countryOfBirthFieldForRequest = $countryOfBirth;
+        $this->nationalityFieldForRequest = $nationality;
+        $this->languageFieldForRequest = $language;
+        $this->regionFieldForRequest = $region;
+        $this->genderFieldForRequest = $gender;
+        $this->statusFieldForRequest = $status;
+        $this->subStatusFieldForRequest = $subStatus;
+        $this->legalGuardianAliasFieldForRequest = $legalGuardianAlias;
+        $this->sessionTimeoutFieldForRequest = $sessionTimeout;
+        $this->dailyLimitWithoutConfirmationLoginFieldForRequest = $dailyLimitWithoutConfirmationLogin;
+        $this->notificationFiltersFieldForRequest = $notificationFilters;
+    }
+
+    /**
      * Get a specific bunq light user.
      *
      * @param int $userLightId

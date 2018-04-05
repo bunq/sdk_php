@@ -50,6 +50,23 @@ class Avatar extends BunqModel
     protected $image;
 
     /**
+     * The public UUID of the public attachment from which an avatar image must
+     * be created.
+     *
+     * @var string
+     */
+    protected $attachmentPublicUuid;
+
+    /**
+     * @param string $attachmentPublicUuid The public UUID of the public
+     *                                     attachment from which an avatar image must be created.
+     */
+    public function __construct(string $attachmentPublicUuid)
+    {
+        $this->attachmentPublicUuidFieldForRequest = $attachmentPublicUuid;
+    }
+
+    /**
      * @param string $attachmentPublicUuid The public UUID of the public
      *                                     attachment from which an avatar image must be created.
      * @param string[] $customHeaders

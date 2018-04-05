@@ -38,6 +38,22 @@ class PaymentBatch extends BunqModel
     protected $payments;
 
     /**
+     * The list of payments we want to send in a single batch.
+     *
+     * @var Payment[]
+     */
+    protected $paymentsFieldForRequest;
+
+    /**
+     * @param Payment[] $payments The list of payments we want to send in a
+     *                            single batch.
+     */
+    public function __construct(array $payments)
+    {
+        $this->paymentsFieldForRequest = $payments;
+    }
+
+    /**
      * Create a payment batch by sending an array of single payment objects,
      * that will become part of the batch.
      *

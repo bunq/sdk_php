@@ -187,6 +187,87 @@ class CardDebit extends BunqModel
     protected $country;
 
     /**
+     * The second line of text on the card, used as name/description for it. It
+     * can contain at most 17 characters and it can be empty.
+     *
+     * @var string
+     */
+    protected $secondLineFieldForRequest;
+
+    /**
+     * The user's name as it will be on the card. Check 'card-name' for the
+     * available card names for a user.
+     *
+     * @var string
+     */
+    protected $nameOnCardFieldForRequest;
+
+    /**
+     * The pointer to the monetary account that will be connected at first with
+     * the card. Its IBAN code is also the one that will be printed on the card
+     * itself. The pointer must be of type IBAN.
+     *
+     * @var Pointer
+     */
+    protected $aliasFieldForRequest;
+
+    /**
+     * The type of card to order. Can be MAESTRO or MASTERCARD.
+     *
+     * @var string|null
+     */
+    protected $typeFieldForRequest;
+
+    /**
+     * Array of Types, PINs, account IDs assigned to the card.
+     *
+     * @var CardPinAssignment[]|null
+     */
+    protected $pinCodeAssignmentFieldForRequest;
+
+    /**
+     * ID of the MA to be used as fallback for this card if insufficient
+     * balance. Fallback account is removed if not supplied.
+     *
+     * @var int|null
+     */
+    protected $monetaryAccountIdFallbackFieldForRequest;
+
+    /**
+     * @param string $secondLine                          The second line of text on the card, used as
+     *                                                    name/description for it. It can contain at most 17 characters
+     *                                                    and it can be empty.
+     * @param string $nameOnCard                          The user's name as it will be on the card.
+     *                                                    Check 'card-name' for the available card names for a user.
+     * @param Pointer $alias                              The pointer to the monetary account that will be
+     *                                                    connected at first with the card. Its IBAN code is also the
+     *                                                    one that will be printed on the card itself. The pointer must
+     *                                                    be of type IBAN.
+     * @param string|null $type                           The type of card to order. Can be MAESTRO or
+     *                                                    MASTERCARD.
+     * @param CardPinAssignment[]|null $pinCodeAssignment Array of Types, PINs,
+     *                                                    account IDs assigned to the card.
+     * @param int|null $monetaryAccountIdFallback         ID of the MA to be used as
+     *                                                    fallback for this card if insufficient balance. Fallback
+     *                                                    account is removed if not supplied.
+     */
+    public function __construct(
+        string $secondLine,
+        string $nameOnCard,
+        Pointer $alias,
+        string $type = null,
+        array $pinCodeAssignment = null,
+        int $monetaryAccountIdFallback = null
+    ) {
+        $this->secondLineFieldForRequest = $secondLine;
+        $this->nameOnCardFieldForRequest = $nameOnCard;
+        $this->aliasFieldForRequest = $alias;
+        $this->typeFieldForRequest = $type;
+        $this->pinCodeAssignmentFieldForRequest = $pinCodeAssignment;
+        $this->monetaryAccountIdFallbackFieldForRequest = $monetaryAccountIdFallback;
+    }
+
+    /**
      * Create a new debit card request.
      *
      * @param string $secondLine                          The second line of text on the card, used as
@@ -194,10 +275,10 @@ class CardDebit extends BunqModel
      *                                                    and it can be empty.
      * @param string $nameOnCard                          The user's name as it will be on the card.
      *                                                    Check 'card-name' for the available card names for a user.
-     * @param Pointer|null $alias                         The pointer to the monetary account that will
-     *                                                    be connected at first with the card. Its IBAN code is also
-     *                                                    the one that will be printed on the card itself. The pointer
-     *                                                    must be of type IBAN.
+     * @param Pointer $alias                              The pointer to the monetary account that will be
+     *                                                    connected at first with the card. Its IBAN code is also the
+     *                                                    one that will be printed on the card itself. The pointer must
+     *                                                    be of type IBAN.
      * @param string|null $type                           The type of card to order. Can be MAESTRO or
      *                                                    MASTERCARD.
      * @param CardPinAssignment[]|null $pinCodeAssignment Array of Types, PINs,
@@ -212,7 +293,7 @@ class CardDebit extends BunqModel
     public static function create(
         string $secondLine,
         string $nameOnCard,
-        Pointer $alias = null,
+        Pointer $alias,
         string $type = null,
         array $pinCodeAssignment = null,
         int $monetaryAccountIdFallback = null,

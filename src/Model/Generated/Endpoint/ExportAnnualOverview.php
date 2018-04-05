@@ -67,6 +67,21 @@ class ExportAnnualOverview extends BunqModel
     protected $aliasUser;
 
     /**
+     * The year for which the overview is.
+     *
+     * @var int
+     */
+    protected $yearFieldForRequest;
+
+    /**
+     * @param int $year The year for which the overview is.
+     */
+    public function __construct(int $year)
+    {
+        $this->yearFieldForRequest = $year;
+    }
+
+    /**
      * Create a new annual overview for a specific year. An overview can be
      * generated only for a past year.
      *

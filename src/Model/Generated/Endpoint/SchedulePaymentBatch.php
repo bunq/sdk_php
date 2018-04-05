@@ -41,6 +41,31 @@ class SchedulePaymentBatch extends BunqModel
     protected $schedule;
 
     /**
+     * The payment details.
+     *
+     * @var SchedulePaymentEntry[]
+     */
+    protected $paymentsFieldForRequest;
+
+    /**
+     * The schedule details when creating a scheduled payment.
+     *
+     * @var Schedule
+     */
+    protected $scheduleFieldForRequest;
+
+    /**
+     * @param SchedulePaymentEntry[] $payments The payment details.
+     * @param Schedule $schedule               The schedule details when creating a scheduled
+     *                                         payment.
+     */
+    public function __construct(array $payments, Schedule $schedule)
+    {
+        $this->paymentsFieldForRequest = $payments;
+        $this->scheduleFieldForRequest = $schedule;
+    }
+
+    /**
      * @param SchedulePaymentEntry[] $payments The payment details.
      * @param Schedule $schedule               The schedule details when creating a scheduled
      *                                         payment.

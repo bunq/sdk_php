@@ -4,7 +4,6 @@ namespace bunq\Model\Generated\Endpoint;
 use bunq\Http\ApiClient;
 use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Object\Error;
-use bunq\Model\Generated\Object\RequestInquiryReference;
 use bunq\Model\Generated\Object\ScheduleAnchorObject;
 use bunq\Model\Generated\Object\ScheduleInstanceAnchorObject;
 
@@ -77,12 +76,20 @@ class ScheduleInstance extends BunqModel
     protected $resultObject;
 
     /**
-     * The reference to the object used for split the bill. Can be
-     * RequestInquiry or RequestInquiryBatch
+     * Change the state of the scheduleInstance from FAILED_USER_ERROR to RETRY.
      *
-     * @var RequestInquiryReference[]
+     * @var string
      */
-    protected $requestReferenceSplitTheBill;
+    protected $stateFieldForRequest;
+
+    /**
+     * @param string $state Change the state of the scheduleInstance from
+     *                      FAILED_USER_ERROR to RETRY.
+     */
+    public function __construct(string $state)
+    {
+        $this->stateFieldForRequest = $state;
+    }
 
     /**
      * @param int $scheduleId
@@ -316,28 +323,6 @@ class ScheduleInstance extends BunqModel
     }
 
     /**
-     * The reference to the object used for split the bill. Can be
-     * RequestInquiry or RequestInquiryBatch
-     *
-     * @return RequestInquiryReference[]
-     */
-    public function getRequestReferenceSplitTheBill()
-    {
-        return $this->requestReferenceSplitTheBill;
-    }
-
-    /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
-     * @param RequestInquiryReference[] $requestReferenceSplitTheBill
-     */
-    public function setRequestReferenceSplitTheBill($requestReferenceSplitTheBill)
-    {
-        $this->requestReferenceSplitTheBill = $requestReferenceSplitTheBill;
-    }
-
-    /**
      * @return bool
      */
     public function isAllFieldNull()
@@ -363,10 +348,6 @@ class ScheduleInstance extends BunqModel
         }
 
         if (!is_null($this->resultObject)) {
-            return false;
-        }
-
-        if (!is_null($this->requestReferenceSplitTheBill)) {
             return false;
         }
 

@@ -57,6 +57,21 @@ class Customer extends BunqModel
     protected $billingAccountId;
 
     /**
+     * The primary billing account account's id.
+     *
+     * @var string
+     */
+    protected $billingAccountIdFieldForRequest;
+
+    /**
+     * @param string $billingAccountId The primary billing account account's id.
+     */
+    public function __construct(string $billingAccountId)
+    {
+        $this->billingAccountIdFieldForRequest = $billingAccountId;
+    }
+
+    /**
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
