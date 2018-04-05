@@ -2,6 +2,7 @@
 namespace bunq\Context;
 
 use bunq\Exception\BunqException;
+use bunq\Model\Core\BunqModel;
 use bunq\Model\Core\SessionServer;
 use bunq\Model\Generated\Endpoint\MonetaryAccountBank;
 use bunq\Model\Generated\Endpoint\User;
@@ -53,10 +54,16 @@ class UserContext
      */
     public function __construct(int $userId)
     {
-        $userObject = User::listing()->getValue()[self::INDEX_FIRST]->getReferencedObject();
-
-        $this->setUser($userObject);
+        $this->setUser($this->getUserObject());
         $this->userId = $userId;
+    }
+
+    /**
+     * @return BunqModel
+     */
+    private function getUserObject(): BunqModel
+    {
+        return User::listing()->getValue()[self::INDEX_FIRST]->getReferencedObject();
     }
 
     /**
@@ -163,4 +170,11 @@ class UserContext
         return $this->primaryMonetaryAccount;
     }
 
+    /**
+     */
+    public function refreshUserContext()
+    {
+        $this->setUser($this->getUserObject());
+        $this->initMainMonetaryAccount();
+    }
 }
