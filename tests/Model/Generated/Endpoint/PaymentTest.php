@@ -6,10 +6,7 @@ use bunq\Model\Generated\Endpoint\ChatMessageText;
 use bunq\Model\Generated\Endpoint\Payment;
 use bunq\Model\Generated\Endpoint\PaymentChat;
 use bunq\Model\Generated\Object\Amount;
-use bunq\Model\Generated\Object\Pointer;
 use bunq\test\BunqSdkTestBase;
-use bunq\test\Config;
-use phpDocumentor\Reflection\Types\This;
 
 /**
  * Tests:
@@ -41,8 +38,6 @@ class PaymentTest extends BunqSdkTestBase
 
     /**
      * Test sending money to other sandbox user.
-     *
-     * This test has no assertion as of its testing to see if the code runs without errors.
      */
     public function testSendMoneyToOtherUser()
     {
@@ -59,8 +54,6 @@ class PaymentTest extends BunqSdkTestBase
 
     /**
      * Test sending money to other monetaryAccount.
-     *
-     * This test has no assertion as of its testing to see if the code runs without errors.
      */
     public function testSendMoneyToOtherMonetaryAccount(): BunqResponseInt
     {
