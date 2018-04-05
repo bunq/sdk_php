@@ -1,14 +1,12 @@
 <?php
 namespace bunq\test\Model\Generated\Endpoint;
 
+use bunq\Model\Generated\Endpoint\BunqResponseInt;
 use bunq\Model\Generated\Endpoint\ChatMessageText;
 use bunq\Model\Generated\Endpoint\Payment;
 use bunq\Model\Generated\Endpoint\PaymentChat;
 use bunq\Model\Generated\Object\Amount;
-use bunq\Model\Generated\Object\Pointer;
 use bunq\test\BunqSdkTestBase;
-use bunq\test\Config;
-use phpDocumentor\Reflection\Types\This;
 
 /**
  * Tests:
@@ -39,55 +37,50 @@ class PaymentTest extends BunqSdkTestBase
     const PAYMENT_CHAT_TEXT_MESSAGE = 'send from PHP test';
 
     /**
-     * @var int
-     */
-    private $paymentId;
-
-    /**
      * Test sending money to other sandbox user.
-     *
-     * This test has no assertion as of its testing to see if the code runs without errors.
      */
     public function testSendMoneyToOtherUser()
     {
         $this->skipTestIfNeededDueToInsufficientBalance();
 
-        Payment::create(
+        $response = Payment::create(
             new Amount(self::PAYMENT_AMOUNT_IN_EUR, self::PAYMENT_CURRENCY),
             $this->getPointerUserBravo(),
             self::PAYMENT_DESCRIPTION
         );
+
+        static::assertNotNull($response);
     }
 
     /**
      * Test sending money to other monetaryAccount.
-     *
-     * This test has no assertion as of its testing to see if the code runs without errors.
      */
-    public function testSendMoneyToOtherMonetaryAccount()
+    public function testSendMoneyToOtherMonetaryAccount(): BunqResponseInt
     {
         $this->skipTestIfNeededDueToInsufficientBalance();
 
-        $this->paymentId = Payment::create(
+        $paymentId = Payment::create(
             new Amount(self::PAYMENT_AMOUNT_IN_EUR, self::PAYMENT_CURRENCY),
             $this->getSecondMonetaryAccountAlias(),
             self::PAYMENT_DESCRIPTION
-        )->getValue();
+        );
+
+        static::assertNotNull($paymentId);
+
+        return $paymentId;
     }
 
     /**
      * Test sending a payment chat to a payment.
      *
-     * This test has no assertion as of its testing to see if the code runs without errors.
-     *
      * @depends testSendMoneyToOtherMonetaryAccount
      */
-    public function testSendMessageToPayment()
+    public function testSendMessageToPayment(BunqResponseInt $paymentId)
     {
-        $chatId = PaymentChat::create(
-            $this->paymentId
-        )->getValue();
+        $chatId = PaymentChat::create($paymentId->getValue())->getValue();
 
-        ChatMessageText::create($chatId, self::PAYMENT_CHAT_TEXT_MESSAGE);
+        $response = ChatMessageText::create($chatId, self::PAYMENT_CHAT_TEXT_MESSAGE);
+
+        static::assertNotNull($response);
     }
 }
