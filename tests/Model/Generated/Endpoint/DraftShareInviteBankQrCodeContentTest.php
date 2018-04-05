@@ -67,7 +67,7 @@ class DraftShareInviteBankQrCodeContentTest extends BunqSdkTestBase
     {
         return DraftShareInviteBank::create(
             static::$expirationDate,
-            new DraftShareInviteEntry(
+            new DraftShareInviteBankEntry(
                 new ShareDetail(
                     null,
                     new ShareDetailReadOnly(true, true, true)
