@@ -9,6 +9,8 @@ use bunq\Model\Generated\Endpoint\AttachmentPublic;
 use bunq\Model\Generated\Endpoint\Avatar;
 use bunq\Model\Generated\Endpoint\CashRegister;
 use bunq\Model\Generated\Endpoint\MonetaryAccountBank;
+use bunq\Model\Generated\Endpoint\RequestInquiry;
+use bunq\Model\Generated\Object\Amount;
 use bunq\Model\Generated\Object\Pointer;
 use bunq\Util\BunqEnumApiEnvironmentType;
 use bunq\Util\FileUtil;
@@ -36,7 +38,7 @@ class BunqSdkTestBase extends TestCase
     /**
      * MonetaryAccount constants.
      */
-    const MOMENTARY_ACCOUNT_CURRENCY = 'EUR';
+    const MONETARY_ACCOUNT_CURRENCY = 'EUR';
     const MONETARY_ACCOUNT_DESCRIPTION = 'test account php';
     const MONETARY_ACCOUNT_BALANCE_THRESHOLD = 0.00;
 
@@ -76,6 +78,13 @@ class BunqSdkTestBase extends TestCase
     protected $cashRegister;
 
     /**
+     * Spending money constants.
+     */
+    const SPENDING_MONEY_AMOUNT = '500';
+    const SPENDING_MONEY_RECIPIENT = 'sugardaddy@bunq.com';
+    const SPENDING_MONEY_DESCRIPTION = 'sdk php test, thanks daddy <3 - OG';
+
+    /**
      */
     public static function setUpBeforeClass()
     {
@@ -100,6 +109,9 @@ class BunqSdkTestBase extends TestCase
     protected function setUp()
     {
         $this->setSecondMonetaryAccountBank();
+        $this->requestSpendingMoney();
+        sleep(0.5); // ensure requests are auto accepted.
+        BunqContext::getUserContext()->refreshUserContext();
     }
 
     /**
@@ -144,11 +156,31 @@ class BunqSdkTestBase extends TestCase
     private function setSecondMonetaryAccountBank()
     {
         $createdId = MonetaryAccountBank::create(
-            self::MOMENTARY_ACCOUNT_CURRENCY,
+            self::MONETARY_ACCOUNT_CURRENCY,
             self::MONETARY_ACCOUNT_DESCRIPTION
         );
 
         $this->secondMonetaryAccountBank = MonetaryAccountBank::get($createdId->getValue())->getValue();
+    }
+
+    /**
+     */
+    private function requestSpendingMoney()
+    {
+        RequestInquiry::create(
+            new Amount(self::SPENDING_MONEY_AMOUNT, self::MONETARY_ACCOUNT_CURRENCY),
+            new Pointer(self::POINTER_TYPE_EMAIL, self::SPENDING_MONEY_RECIPIENT),
+            self::SPENDING_MONEY_DESCRIPTION,
+            false
+        );
+
+        RequestInquiry::create(
+            new Amount(self::SPENDING_MONEY_AMOUNT, self::MONETARY_ACCOUNT_CURRENCY),
+            new Pointer(self::POINTER_TYPE_EMAIL, self::SPENDING_MONEY_RECIPIENT),
+            self::SPENDING_MONEY_DESCRIPTION,
+            false,
+            $this->getSecondMonetaryAccountId()
+        );
     }
 
     /**
