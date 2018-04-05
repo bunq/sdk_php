@@ -73,15 +73,11 @@ class PaymentTest extends BunqSdkTestBase
     /**
      * Test sending a payment chat to a payment.
      *
-     * This test has no assertion as of its testing to see if the code runs without errors.
-     *
      * @depends testSendMoneyToOtherMonetaryAccount
      */
     public function testSendMessageToPayment(BunqResponseInt $paymentId)
     {
-        $chatId = PaymentChat::create(
-            $paymentId->getValue()
-        )->getValue();
+        $chatId = PaymentChat::create($paymentId->getValue())->getValue();
 
         $response = ChatMessageText::create($chatId, self::PAYMENT_CHAT_TEXT_MESSAGE);
 
