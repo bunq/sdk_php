@@ -6,6 +6,7 @@ php:
 install: composer install
 before_script:
   - sudo apt-get build-dep curl
+  - sudo apt-get install php-curl
   - pushd /tmp
   - wget https://curl.haxx.se/download/curl-7.59.0.tar.bz2
   - tar -xvjf curl-7.59.0.tar.bz2
