@@ -88,19 +88,17 @@ class BunqSdkTestBase extends TestCase
      */
     public static function setUpBeforeClass()
     {
-        static::createApiContext();
         BunqContext::loadApiContext(
-            ApiContext::restore(self::FILE_PATH_CONTEXT_CONFIG)
+            static::createApiContext()
         );
     }
 
     /**
      */
-    protected static function createApiContext()
+    protected static function createApiContext(): ApiContext
     {
-        InstallationUtil::automaticInstall(
-            BunqEnumApiEnvironmentType::SANDBOX(),
-            self::FILE_PATH_CONTEXT_CONFIG
+        return InstallationUtil::automaticInstall(
+            BunqEnumApiEnvironmentType::SANDBOX()
         );
     }
 
