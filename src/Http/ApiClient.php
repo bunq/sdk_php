@@ -334,7 +334,7 @@ class ApiClient
         return [
             self::OPTION_HEADERS => $headers,
             self::OPTION_BODY => $this->determineBodyString($body),
-            self::OPTION_DEBUG => true,
+            self::OPTION_DEBUG => false,
             self::OPTION_HTTP_ERRORS => false,
         ];
     }
