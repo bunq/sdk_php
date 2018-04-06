@@ -26,9 +26,7 @@ class PaymentBatchTest extends BunqSdkTestBase
      */
     public function testSendBatchPayment()
     {
-        $response = PaymentBatch::create(
-            $this->createPaymentArray()
-        );
+        $response = PaymentBatch::create($this->createPaymentArray());
 
         self::assertTrue(is_integer($response->getValue()));
     }
