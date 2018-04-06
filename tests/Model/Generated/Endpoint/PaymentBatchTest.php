@@ -9,8 +9,6 @@ use bunq\Model\Generated\Object\Pointer;
 use bunq\test\BunqSdkTestBase;
 
 /**
- * @author Kevin Hellemun <khellemun@bunq.com>
- * @since  20180330 Initial creation.
  */
 class PaymentBatchTest extends BunqSdkTestBase
 {
