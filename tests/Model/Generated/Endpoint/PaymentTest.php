@@ -6,10 +6,7 @@ use bunq\Model\Generated\Endpoint\ChatMessageText;
 use bunq\Model\Generated\Endpoint\Payment;
 use bunq\Model\Generated\Endpoint\PaymentChat;
 use bunq\Model\Generated\Object\Amount;
-use bunq\Model\Generated\Object\Pointer;
 use bunq\test\BunqSdkTestBase;
-use bunq\test\Config;
-use phpDocumentor\Reflection\Types\This;
 
 /**
  * Tests:
@@ -41,8 +38,6 @@ class PaymentTest extends BunqSdkTestBase
 
     /**
      * Test sending money to other sandbox user.
-     *
-     * This test has no assertion as of its testing to see if the code runs without errors.
      */
     public function testSendMoneyToOtherUser()
     {
@@ -59,8 +54,6 @@ class PaymentTest extends BunqSdkTestBase
 
     /**
      * Test sending money to other monetaryAccount.
-     *
-     * This test has no assertion as of its testing to see if the code runs without errors.
      */
     public function testSendMoneyToOtherMonetaryAccount(): BunqResponseInt
     {
@@ -80,15 +73,11 @@ class PaymentTest extends BunqSdkTestBase
     /**
      * Test sending a payment chat to a payment.
      *
-     * This test has no assertion as of its testing to see if the code runs without errors.
-     *
      * @depends testSendMoneyToOtherMonetaryAccount
      */
     public function testSendMessageToPayment(BunqResponseInt $paymentId)
     {
-        $chatId = PaymentChat::create(
-            $paymentId->getValue()
-        )->getValue();
+        $chatId = PaymentChat::create($paymentId->getValue())->getValue();
 
         $response = ChatMessageText::create($chatId, self::PAYMENT_CHAT_TEXT_MESSAGE);
 
