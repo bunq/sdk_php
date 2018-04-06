@@ -68,6 +68,13 @@ class BunqSdkTestBase extends TestCase
     const INDEX_FIRST = 0;
 
     /**
+     * Spending money constants.
+     */
+    const SPENDING_MONEY_AMOUNT = '500';
+    const SPENDING_MONEY_RECIPIENT = 'sugardaddy@bunq.com';
+    const SPENDING_MONEY_DESCRIPTION = 'sdk php test, thanks daddy <3';
+
+    /**
      * @var MonetaryAccountBank
      */
     protected $secondMonetaryAccountBank;
@@ -76,13 +83,6 @@ class BunqSdkTestBase extends TestCase
      * @var CashRegister
      */
     protected $cashRegister;
-
-    /**
-     * Spending money constants.
-     */
-    const SPENDING_MONEY_AMOUNT = '500';
-    const SPENDING_MONEY_RECIPIENT = 'sugardaddy@bunq.com';
-    const SPENDING_MONEY_DESCRIPTION = 'sdk php test, thanks daddy <3';
 
     /**
      */
@@ -110,43 +110,6 @@ class BunqSdkTestBase extends TestCase
         $this->requestSpendingMoney();
         sleep(0.5); // ensure requests are auto accepted.
         BunqContext::getUserContext()->refreshUserContext();
-    }
-
-    /**
-     */
-    private function setCashRegister()
-    {
-        $attachmentUuid = AttachmentPublic::create(
-            FileUtil::getFileContents(__DIR__ . self::FILE_PATH_AVATAR),
-            [
-                ApiClient::HEADER_CONTENT_TYPE => $this->getAttachmentContentType(),
-                ApiClient::HEADER_ATTACHMENT_DESCRIPTION => $this->getAttachmentDescription(),
-            ]
-        );
-        $avatarUuid = Avatar::create($attachmentUuid->getValue());
-        $cashRegisterId = CashRegister::create(
-            self::CASH_REGISTER_NAME,
-            self::CASH_REGISTER_STATUS,
-            $avatarUuid->getValue()
-        );
-
-        $this->cashRegister = CashRegister::get($cashRegisterId->getValue());
-    }
-
-    /**
-     * @return string
-     */
-    protected function getAttachmentContentType(): string
-    {
-        return self::ATTACHMENT_CONTENT_TYPE;
-    }
-
-    /**
-     * @return string
-     */
-    protected function getAttachmentDescription(): string
-    {
-        return self::ATTACHMENT_DESCRIPTION;
     }
 
     /**
@@ -179,6 +142,14 @@ class BunqSdkTestBase extends TestCase
             false,
             $this->getSecondMonetaryAccountId()
         );
+    }
+
+    /**
+     * @return int
+     */
+    protected function getSecondMonetaryAccountId(): int
+    {
+        return $this->secondMonetaryAccountBank->getId();
     }
 
     /**
@@ -237,14 +208,6 @@ class BunqSdkTestBase extends TestCase
     /**
      * @return int
      */
-    protected function getSecondMonetaryAccountId(): int
-    {
-        return $this->secondMonetaryAccountBank->getId();
-    }
-
-    /**
-     * @return int
-     */
     protected function getCashRegisterId(): int
     {
         if (is_null($this->cashRegister)) {
@@ -255,13 +218,40 @@ class BunqSdkTestBase extends TestCase
     }
 
     /**
-     * @return bool
      */
-    protected function isMonetaryAccountBalanceSufficient(): bool
+    private function setCashRegister()
     {
-        $balance = floatval(BunqContext::getUserContext()->getPrimaryMonetaryAccount()->getBalance()->getValue());
+        $attachmentUuid = AttachmentPublic::create(
+            FileUtil::getFileContents(__DIR__ . self::FILE_PATH_AVATAR),
+            [
+                ApiClient::HEADER_CONTENT_TYPE => $this->getAttachmentContentType(),
+                ApiClient::HEADER_ATTACHMENT_DESCRIPTION => $this->getAttachmentDescription(),
+            ]
+        );
+        $avatarUuid = Avatar::create($attachmentUuid->getValue());
+        $cashRegisterId = CashRegister::create(
+            self::CASH_REGISTER_NAME,
+            self::CASH_REGISTER_STATUS,
+            $avatarUuid->getValue()
+        );
 
-        return $balance > self::MONETARY_ACCOUNT_BALANCE_THRESHOLD;
+        $this->cashRegister = CashRegister::get($cashRegisterId->getValue());
+    }
+
+    /**
+     * @return string
+     */
+    protected function getAttachmentContentType(): string
+    {
+        return self::ATTACHMENT_CONTENT_TYPE;
+    }
+
+    /**
+     * @return string
+     */
+    protected function getAttachmentDescription(): string
+    {
+        return self::ATTACHMENT_DESCRIPTION;
     }
 
     /**
@@ -274,5 +264,15 @@ class BunqSdkTestBase extends TestCase
         }
 
         return true;
+    }
+
+    /**
+     * @return bool
+     */
+    protected function isMonetaryAccountBalanceSufficient(): bool
+    {
+        $balance = floatval(BunqContext::getUserContext()->getPrimaryMonetaryAccount()->getBalance()->getValue());
+
+        return $balance > self::MONETARY_ACCOUNT_BALANCE_THRESHOLD;
     }
 }
