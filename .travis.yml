@@ -1,20 +1,11 @@
-language: php
-php:
-  - 7.0.13
-  - 7.1
-  - 7.2
-install: composer install
-before_script:
-  - sudo apt-get build-dep curl
-  - pushd /tmp
-  - wget https://curl.haxx.se/download/curl-7.57.0.tar.bz2
-  - tar -xvjf curl-7.57.0.tar.bz2
-  - cd curl-7.57.0
-  - ./configure --with-ssl
-  - make
-  - sudo make install
-  - sudo ldconfig
-  - curl --version
-  - popd
+sudo: required
 
-script: vendor/bin/paratest -p 2
+language: php
+
+services:
+ - docker
+
+before_install:
+ - docker build -t sdk .
+
+script: docker run sdk
