@@ -116,14 +116,18 @@ final class InstallationUtil
 
     /**
      * @param BunqEnumApiEnvironmentType $environmentType
-     * @param string $contextFileName
+     * @param string|null $contextFileName
      * @param string|null $apiKey
+     * @param bool $saveToConfFile
+     *
+     * @return ApiContext
      */
     public static function automaticInstall(
         BunqEnumApiEnvironmentType $environmentType,
-        string $contextFileName,
-        string $apiKey = null
-    ) {
+        string $contextFileName = null,
+        string $apiKey = null,
+        bool $saveToConfFile = false
+    ): ApiContext {
         try {
             $context = static::createApiContextWithoutConstructor();
 
@@ -166,11 +170,11 @@ final class InstallationUtil
             );
             $methodInitializeSessionContext->invoke($context);
 
-            if ($contextFileName === null) {
-                $context->save();
-            } else {
+            if (!$contextFileName === null && $saveToConfFile) {
                 $context->save($contextFileName);
             }
+
+            return $context;
         } catch (BunqException $exception) {
             echo sprintf(self::ERROR_BUNQ_EXCEPTION, $exception->getMessage());
             var_dump($exception);
