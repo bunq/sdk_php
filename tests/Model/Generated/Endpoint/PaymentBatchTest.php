@@ -19,7 +19,8 @@ class PaymentBatchTest extends BunqSdkTestBase
      * Test constants
      */
     const PAYMENT_CURRENCY = 'EUR';
-    const PAYMENT_DESCRIPTION = "php sdk Batch test";
+    const PAYMENT_DESCRIPTION = 'php sdk Batch test';
+    const MAXIMUM_PAYMENT_ENTRIES = 10;
 
     /**
      */
@@ -39,7 +40,7 @@ class PaymentBatchTest extends BunqSdkTestBase
     {
         $allPayment = [];
 
-        while (count($allPayment) < 10) {
+        while (count($allPayment) < self::MAXIMUM_PAYMENT_ENTRIES) {
             $payment = new Payment(
                 new Amount(self::PAYMENT_AMOUNT_DEFAULT, self::PAYMENT_CURRENCY),
                 $this->getPointerUserBravo(),
