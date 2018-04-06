@@ -296,7 +296,7 @@ class UserCompany extends BunqModel
      *
      * @var string|null
      */
-    protected $avatarUuid;
+    protected $avatarUuidFieldForRequest;
 
     /**
      * The user's main address.

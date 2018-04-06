@@ -55,7 +55,7 @@ class Avatar extends BunqModel
      *
      * @var string
      */
-    protected $attachmentPublicUuid;
+    protected $attachmentPublicUuidFieldForRequest;
 
     /**
      * @param string $attachmentPublicUuid The public UUID of the public

@@ -39,14 +39,14 @@ class CardReplace extends BunqModel
      *
      * @var string
      */
-    protected $pinCode;
+    protected $pinCodeFieldForRequest;
 
     /**
      * The second line on the card.
      *
      * @var string|null
      */
-    protected $secondLine;
+    protected $secondLineFieldForRequest;
 
     /**
      * @param string $pinCode         The plaintext pin code. Requests require

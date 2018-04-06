@@ -202,7 +202,7 @@ class Card extends BunqModel
      *
      * @var string|null
      */
-    protected $pinCode;
+    protected $pinCodeFieldForRequest;
 
     /**
      * The activation code required to set status to ACTIVE initially. Can only
@@ -211,7 +211,7 @@ class Card extends BunqModel
      *
      * @var string|null
      */
-    protected $activationCode;
+    protected $activationCodeFieldForRequest;
 
     /**
      * The status to set for the card. Can be ACTIVE, DEACTIVATED, LOST, STOLEN
@@ -256,7 +256,7 @@ class Card extends BunqModel
      *
      * @var int|null
      */
-    protected $monetaryAccountCurrentId;
+    protected $monetaryAccountCurrentIdFieldForRequest;
 
     /**
      * Array of Types, PINs, account IDs assigned to the card.

@@ -59,7 +59,7 @@ class RequestInquiryBatch extends BunqModel
      *
      * @var string|null
      */
-    protected $status;
+    protected $statusFieldForRequest;
 
     /**
      * The total amount originally inquired for this batch.

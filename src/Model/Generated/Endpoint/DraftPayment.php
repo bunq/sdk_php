@@ -115,7 +115,7 @@ class DraftPayment extends BunqModel
      *
      * @var string|null
      */
-    protected $previousUpdatedTimestamp;
+    protected $previousUpdatedTimestampFieldForRequest;
 
     /**
      * The number of accepts that are required for the draft payment to receive
@@ -123,7 +123,7 @@ class DraftPayment extends BunqModel
      *
      * @var int
      */
-    protected $numberOfRequiredAccepts;
+    protected $numberOfRequiredAcceptsFieldForRequest;
 
     /**
      * @param DraftPaymentEntry[] $entries          The list of entries in the

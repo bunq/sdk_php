@@ -194,7 +194,7 @@ class TokenQrRequestIdeal extends BunqModel
      *
      * @var string
      */
-    protected $token;
+    protected $tokenFieldForRequest;
 
     /**
      * @param string $token The token passed from a site or read from a QR code.

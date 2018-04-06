@@ -87,7 +87,7 @@ class DeviceServer extends BunqModel
      *
      * @var string
      */
-    protected $secret;
+    protected $secretFieldForRequest;
 
     /**
      * An array of IPs (v4 or v6) this DeviceServer will be able to do calls
@@ -95,7 +95,7 @@ class DeviceServer extends BunqModel
      *
      * @var string[]|null
      */
-    protected $permittedIps;
+    protected $permittedIpsFieldForRequest;
 
     /**
      * @param string $description         The description of the DeviceServer. This is

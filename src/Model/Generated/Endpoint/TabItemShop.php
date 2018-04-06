@@ -115,7 +115,7 @@ class TabItemShop extends BunqModel
      *
      * @var string|null
      */
-    protected $avatarAttachmentUuid;
+    protected $avatarAttachmentUuidFieldForRequest;
 
     /**
      * A list of AttachmentTab attached to the TabItem.

@@ -338,7 +338,7 @@ class UserPerson extends BunqModel
      *
      * @var string
      */
-    protected $avatarUuid;
+    protected $avatarUuidFieldForRequest;
 
     /**
      * The user's tax residence numbers for different countries.
@@ -375,7 +375,7 @@ class UserPerson extends BunqModel
      *
      * @var int
      */
-    protected $documentFrontAttachmentId;
+    protected $documentFrontAttachmentIdFieldForRequest;
 
     /**
      * The reference to the uploaded picture/scan of the back side of the
@@ -383,7 +383,7 @@ class UserPerson extends BunqModel
      *
      * @var int|null
      */
-    protected $documentBackAttachmentId;
+    protected $documentBackAttachmentIdFieldForRequest;
 
     /**
      * The person's date of birth. Accepts ISO8601 date formats.
@@ -456,7 +456,7 @@ class UserPerson extends BunqModel
      *
      * @var Pointer
      */
-    protected $legalGuardianAlias;
+    protected $legalGuardianAliasFieldForRequest;
 
     /**
      * The setting for the session timeout of the user in seconds.
@@ -470,14 +470,14 @@ class UserPerson extends BunqModel
      *
      * @var BunqId[]|null
      */
-    protected $cardIds;
+    protected $cardIdsFieldForRequest;
 
     /**
      * The centralized limits for user's cards.
      *
      * @var CardLimit[]|null
      */
-    protected $cardLimits;
+    protected $cardLimitsFieldForRequest;
 
     /**
      * The amount the user can pay in the session without asking for

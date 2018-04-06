@@ -310,7 +310,7 @@ class RequestInquiry extends BunqModel
      *
      * @var bool|null
      */
-    protected $wantTip;
+    protected $wantTipFieldForRequest;
 
     /**
      * [DEPRECATED] Whether or not the accepting user can choose to accept with
@@ -318,7 +318,7 @@ class RequestInquiry extends BunqModel
      *
      * @var bool|null
      */
-    protected $allowAmountLower;
+    protected $allowAmountLowerFieldForRequest;
 
     /**
      * [DEPRECATED] Whether or not the accepting user can choose to accept with
@@ -326,14 +326,14 @@ class RequestInquiry extends BunqModel
      *
      * @var bool|null
      */
-    protected $allowAmountHigher;
+    protected $allowAmountHigherFieldForRequest;
 
     /**
      * Whether or not sending a bunq.me request is allowed.
      *
      * @var bool
      */
-    protected $allowBunqme;
+    protected $allowBunqmeFieldForRequest;
 
     /**
      * The URL which the user is sent to after accepting or rejecting the

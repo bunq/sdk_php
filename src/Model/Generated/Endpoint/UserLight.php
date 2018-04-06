@@ -337,7 +337,7 @@ class UserLight extends BunqModel
      *
      * @var string
      */
-    protected $avatarUuid;
+    protected $avatarUuidFieldForRequest;
 
     /**
      * The user's social security number.
@@ -381,7 +381,7 @@ class UserLight extends BunqModel
      *
      * @var int|null
      */
-    protected $documentFrontAttachmentId;
+    protected $documentFrontAttachmentIdFieldForRequest;
 
     /**
      * The reference to the uploaded picture/scan of the back side of the
@@ -389,7 +389,7 @@ class UserLight extends BunqModel
      *
      * @var int|null
      */
-    protected $documentBackAttachmentId;
+    protected $documentBackAttachmentIdFieldForRequest;
 
     /**
      * The user's date of birth. Accepts ISO8601 date formats.
@@ -463,7 +463,7 @@ class UserLight extends BunqModel
      *
      * @var Pointer|null
      */
-    protected $legalGuardianAlias;
+    protected $legalGuardianAliasFieldForRequest;
 
     /**
      * The setting for the session timeout of the user in seconds.

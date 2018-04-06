@@ -215,14 +215,14 @@ class TabUsageMultiple extends BunqModel
      *
      * @var bool|null
      */
-    protected $allowAmountHigher;
+    protected $allowAmountHigherFieldForRequest;
 
     /**
      * [DEPRECATED] Whether or not a lower amount can be paid.
      *
      * @var bool|null
      */
-    protected $allowAmountLower;
+    protected $allowAmountLowerFieldForRequest;
 
     /**
      * [DEPRECATED] Whether or not the user paying the Tab should be asked if he
@@ -231,7 +231,7 @@ class TabUsageMultiple extends BunqModel
      *
      * @var bool|null
      */
-    protected $wantTip;
+    protected $wantTipFieldForRequest;
 
     /**
      * The minimum age of the user paying the Tab.

@@ -131,7 +131,7 @@ class CashRegister extends BunqModel
      *
      * @var string
      */
-    protected $avatarUuid;
+    protected $avatarUuidFieldForRequest;
 
     /**
      * The geolocation of the CashRegister.

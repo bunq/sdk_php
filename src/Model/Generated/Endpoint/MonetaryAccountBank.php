@@ -228,7 +228,7 @@ class MonetaryAccountBank extends BunqModel
      *
      * @var string|null
      */
-    protected $avatarUuid;
+    protected $avatarUuidFieldForRequest;
 
     /**
      * The status of the MonetaryAccountBank. Ignored in POST requests (always

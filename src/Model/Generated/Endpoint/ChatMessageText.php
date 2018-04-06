@@ -33,7 +33,7 @@ class ChatMessageText extends BunqModel
      *
      * @var string
      */
-    protected $text;
+    protected $textFieldForRequest;
 
     /**
      * @param string $text The textual content of this message. Cannot be empty.

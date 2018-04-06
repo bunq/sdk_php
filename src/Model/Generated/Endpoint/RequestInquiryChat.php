@@ -65,7 +65,7 @@ class RequestInquiryChat extends BunqModel
      *
      * @var int|null
      */
-    protected $lastReadMessageId;
+    protected $lastReadMessageIdFieldForRequest;
 
     /**
      * @param int|null $lastReadMessageId The id of the last read message.

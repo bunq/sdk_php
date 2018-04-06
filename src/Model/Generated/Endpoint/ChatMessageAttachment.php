@@ -34,7 +34,7 @@ class ChatMessageAttachment extends BunqModel
      *
      * @var BunqId
      */
-    protected $attachment;
+    protected $attachmentFieldForRequest;
 
     /**
      * @param BunqId $attachment The attachment contained in this message.

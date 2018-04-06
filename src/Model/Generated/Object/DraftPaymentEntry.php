@@ -6,8 +6,7 @@ use bunq\Model\Core\BunqModel;
 /**
  * @generated
  */
-class
-DraftPaymentEntry extends BunqModel
+class DraftPaymentEntry extends BunqModel
 {
     /**
      * The amount of the payment.
