@@ -7,6 +7,9 @@ use bunq\Model\Generated\Object\Amount;
 use bunq\test\BunqSdkTestBase;
 
 /**
+ * Tests:
+ * BunqMeTab
+ * BunqMeTabEntry
  */
 class BunqMeTabEntryTest extends BunqSdkTestBase
 {

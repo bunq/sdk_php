@@ -9,6 +9,9 @@ use bunq\Model\Generated\Object\Pointer;
 use bunq\test\BunqSdkTestBase;
 
 /**
+ * Tests:
+ * PaymentBatch
+ * Payment
  */
 class PaymentBatchTest extends BunqSdkTestBase
 {

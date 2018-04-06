@@ -37,9 +37,7 @@ class SessionTest extends BunqSdkTestBase
     }
 
     /**
-     * Delete's the current session.
-     *
-     * This test has no assertion as of its testing to see if the code runs without errors.
+     * Deletes the current session.
      */
     public function testDeleteSession()
     {
