@@ -5,16 +5,12 @@ php:
   - 7.2
 install: composer install
 before_script:
-  - sudo apt-get install -y language-pack-en-base
-  - sudo LC_ALL=en_US.UTF-8 add-apt-repository ppa:ondrej/php
-  - apt update
   - sudo apt-get build-dep curl
-  - sudo apt-get install php-curl
   - pushd /tmp
-  - wget https://curl.haxx.se/download/curl-7.59.0.tar.bz2
-  - tar -xvjf curl-7.59.0.tar.bz2
-  - cd curl-7.59.0
-  - ./configure
+  - wget https://curl.haxx.se/download/curl-7.57.0.tar.bz2
+  - tar -xvjf curl-7.57.0.tar.bz2
+  - cd curl-7.57.0
+  - ./configure --with-ssl
   - make
   - sudo make install
   - sudo ldconfig
