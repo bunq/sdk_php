@@ -6,7 +6,7 @@ php:
 install: composer install
 before_script:
   - sudo apt-get build-dep curl
-  - cd /tmp
+  - pushd /tmp
   - wget https://curl.haxx.se/download/curl-7.59.0.tar.bz2
   - tar -xvjf curl-7.59.0.tar.bz2
   - cd curl-7.59.0
@@ -15,6 +15,6 @@ before_script:
   - sudo make install
   - sudo ldconfig
   - curl --version
-  - cd ~/bunq/sdk_php
+  - popd
 
 script: vendor/bin/paratest -p 2
