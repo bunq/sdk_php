@@ -78,6 +78,25 @@ class CashRegisterQrCode extends BunqModel
     protected $tabObject;
 
     /**
+     * The status of the QR code. ACTIVE or INACTIVE. Only one QR code can be
+     * ACTIVE for a CashRegister at any time. Setting a QR code to ACTIVE will
+     * deactivate any other CashRegister QR codes.
+     *
+     * @var string
+     */
+    protected $statusFieldForRequest;
+
+    /**
+     * @param string $status The status of the QR code. ACTIVE or INACTIVE. Only
+     *                       one QR code can be ACTIVE for a CashRegister at any time. Setting a QR
+     *                       code to ACTIVE will deactivate any other CashRegister QR codes.
+     */
+    public function __construct(string $status)
+    {
+        $this->statusFieldForRequest = $status;
+    }
+
+    /**
      * Create a new QR code for this CashRegister. You can only have one ACTIVE
      * CashRegister QR code at the time.
      *

@@ -29,6 +29,23 @@ class TabItemShopBatch extends BunqModel
     protected $tabItems;
 
     /**
+     * The list of tab items we want to create in a single batch. Limited to 50
+     * items per batch.
+     *
+     * @var TabItemShop[]
+     */
+    protected $tabItemsFieldForRequest;
+
+    /**
+     * @param TabItemShop[] $tabItems The list of tab items we want to create in
+     *                                a single batch. Limited to 50 items per batch.
+     */
+    public function __construct(array $tabItems)
+    {
+        $this->tabItemsFieldForRequest = $tabItems;
+    }
+
+    /**
      * Create tab items as a batch.
      *
      * @param int $cashRegisterId

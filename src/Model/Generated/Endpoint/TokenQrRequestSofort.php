@@ -28,6 +28,21 @@ class TokenQrRequestSofort extends BunqModel
     const OBJECT_TYPE_POST = 'RequestResponse';
 
     /**
+     * The token passed from a site or read from a QR code.
+     *
+     * @var string
+     */
+    protected $tokenFieldForRequest;
+
+    /**
+     * @param string $token The token passed from a site or read from a QR code.
+     */
+    public function __construct(string $token)
+    {
+        $this->tokenFieldForRequest = $token;
+    }
+
+    /**
      * Create a request from an SOFORT transaction.
      *
      * @param string $token The token passed from a site or read from a QR code.

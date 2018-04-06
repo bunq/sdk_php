@@ -27,16 +27,6 @@ class SessionTest extends BunqSdkTestBase
     const SECONDS_TO_SLEEP = 2;
 
     /**
-     * Delete's the current session.
-     *
-     * This test has no assertion as of its testing to see if the code runs without errors.
-     */
-    public function testDeleteSession()
-    {
-        $this->assertNull(Session::delete(self::SESSION_ID_DUMMY)->getValue());
-    }
-
-    /**
      * Resets the session context after this test has ran.
      */
     public static function tearDownAfterClass()
@@ -44,5 +34,13 @@ class SessionTest extends BunqSdkTestBase
         sleep(self::SECONDS_TO_SLEEP);
         BunqContext::getApiContext()->resetSession();
         BunqContext::getApiContext()->save(self::FILE_PATH_CONTEXT_CONFIG);
+    }
+
+    /**
+     * Deletes the current session.
+     */
+    public function testDeleteSession()
+    {
+        static::assertNull(Session::delete(self::SESSION_ID_DUMMY)->getValue());
     }
 }

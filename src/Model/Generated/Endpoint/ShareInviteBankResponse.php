@@ -109,6 +109,28 @@ class ShareInviteBankResponse extends BunqModel
     protected $description;
 
     /**
+     * The status of the share. Can be PENDING, REVOKED (the user deletes the
+     * share inquiry before it's accepted), ACCEPTED, CANCELLED (the user
+     * deletes an active share) or CANCELLATION_PENDING, CANCELLATION_ACCEPTED,
+     * CANCELLATION_REJECTED (for canceling mutual connects)
+     *
+     * @var string|null
+     */
+    protected $statusFieldForRequest;
+
+    /**
+     * @param string|null $status The status of the share. Can be PENDING,
+     *                            REVOKED (the user deletes the share inquiry before it's accepted),
+     *                            ACCEPTED, CANCELLED (the user deletes an active share) or
+     *                            CANCELLATION_PENDING, CANCELLATION_ACCEPTED, CANCELLATION_REJECTED (for
+     *                            canceling mutual connects)
+     */
+    public function __construct(string $status = null)
+    {
+        $this->statusFieldForRequest = $status;
+    }
+
+    /**
      * Return the details of a specific share a user was invited to.
      *
      * @param int $shareInviteBankResponseId

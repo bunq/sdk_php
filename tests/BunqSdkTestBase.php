@@ -63,6 +63,11 @@ class BunqSdkTestBase extends TestCase
     const ATTACHMENT_PATH_IN = '/bunq_App_Icon_Square@4x.png';
 
     /**
+     * Default constants.
+     */
+    const PAYMENT_AMOUNT_DEFAULT = '0.01';
+
+    /**
      * The index of the first item in an array.
      */
     const INDEX_FIRST = 0;

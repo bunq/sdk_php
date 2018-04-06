@@ -48,6 +48,31 @@ class SchedulePayment extends BunqModel
     protected $schedule;
 
     /**
+     * The payment details.
+     *
+     * @var SchedulePaymentEntry
+     */
+    protected $paymentFieldForRequest;
+
+    /**
+     * The schedule details when creating or updating a scheduled payment.
+     *
+     * @var Schedule
+     */
+    protected $scheduleFieldForRequest;
+
+    /**
+     * @param SchedulePaymentEntry $payment The payment details.
+     * @param Schedule $schedule            The schedule details when creating or updating
+     *                                      a scheduled payment.
+     */
+    public function __construct(SchedulePaymentEntry $payment, Schedule $schedule)
+    {
+        $this->paymentFieldForRequest = $payment;
+        $this->scheduleFieldForRequest = $schedule;
+    }
+
+    /**
      * @param SchedulePaymentEntry $payment The payment details.
      * @param Schedule $schedule            The schedule details when creating or updating
      *                                      a scheduled payment.

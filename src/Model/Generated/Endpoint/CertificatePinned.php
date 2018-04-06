@@ -49,6 +49,22 @@ class CertificatePinned extends BunqModel
     protected $id;
 
     /**
+     * The certificate chain in .PEM format.
+     *
+     * @var Certificate[]
+     */
+    protected $certificateChainFieldForRequest;
+
+    /**
+     * @param Certificate[] $certificateChain The certificate chain in .PEM
+     *                                        format.
+     */
+    public function __construct(array $certificateChain)
+    {
+        $this->certificateChainFieldForRequest = $certificateChain;
+    }
+
+    /**
      * Pin the certificate chain.
      *
      * @param Certificate[] $certificateChain The certificate chain in .PEM

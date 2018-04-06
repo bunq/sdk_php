@@ -200,6 +200,156 @@ class MonetaryAccountBank extends BunqModel
     protected $setting;
 
     /**
+     * The currency of the MonetaryAccountBank as an ISO 4217 formatted currency
+     * code.
+     *
+     * @var string
+     */
+    protected $currencyFieldForRequest;
+
+    /**
+     * The description of the MonetaryAccountBank. Defaults to 'bunq account'.
+     *
+     * @var string|null
+     */
+    protected $descriptionFieldForRequest;
+
+    /**
+     * The daily spending limit Amount of the MonetaryAccountBank. Defaults to
+     * 1000 EUR. Currency must match the MonetaryAccountBank's currency. Limited
+     * to 10000 EUR.
+     *
+     * @var Amount|null
+     */
+    protected $dailyLimitFieldForRequest;
+
+    /**
+     * The UUID of the Avatar of the MonetaryAccountBank.
+     *
+     * @var string|null
+     */
+    protected $avatarUuidFieldForRequest;
+
+    /**
+     * The status of the MonetaryAccountBank. Ignored in POST requests (always
+     * set to ACTIVE) can be CANCELLED or PENDING_REOPEN in PUT requests to
+     * cancel (close) or reopen the MonetaryAccountBank. When updating the
+     * status and/or sub_status no other fields can be updated in the same
+     * request (and vice versa).
+     *
+     * @var string|null
+     */
+    protected $statusFieldForRequest;
+
+    /**
+     * The sub-status of the MonetaryAccountBank providing extra information
+     * regarding the status. Should be ignored for POST requests. In case of PUT
+     * requests with status CANCELLED it can only be REDEMPTION_VOLUNTARY, while
+     * with status PENDING_REOPEN it can only be NONE. When updating the status
+     * and/or sub_status no other fields can be updated in the same request (and
+     * vice versa).
+     *
+     * @var string|null
+     */
+    protected $subStatusFieldForRequest;
+
+    /**
+     * The reason for voluntarily cancelling (closing) the MonetaryAccountBank,
+     * can only be OTHER. Should only be specified if updating the status to
+     * CANCELLED.
+     *
+     * @var string|null
+     */
+    protected $reasonFieldForRequest;
+
+    /**
+     * The optional free-form reason for voluntarily cancelling (closing) the
+     * MonetaryAccountBank. Can be any user provided message. Should only be
+     * specified if updating the status to CANCELLED.
+     *
+     * @var string|null
+     */
+    protected $reasonDescriptionFieldForRequest;
+
+    /**
+     * The types of notifications that will result in a push notification or URL
+     * callback for this MonetaryAccountBank.
+     *
+     * @var NotificationFilter[]|null
+     */
+    protected $notificationFiltersFieldForRequest;
+
+    /**
+     * The settings of the MonetaryAccountBank.
+     *
+     * @var MonetaryAccountSetting|null
+     */
+    protected $settingFieldForRequest;
+
+    /**
+     * @param string $currency                               The currency of the MonetaryAccountBank as an ISO
+     *                                                       4217 formatted currency code.
+     * @param string|null $description                       The description of the
+     *                                                       MonetaryAccountBank. Defaults to 'bunq account'.
+     * @param Amount|null $dailyLimit                        The daily spending limit Amount of the
+     *                                                       MonetaryAccountBank. Defaults to 1000 EUR. Currency must
+     *                                                       match the MonetaryAccountBank's currency. Limited to 10000
+     *                                                       EUR.
+     * @param string|null $avatarUuid                        The UUID of the Avatar of the
+     *                                                       MonetaryAccountBank.
+     * @param string|null $status                            The status of the MonetaryAccountBank. Ignored
+     *                                                       in POST requests (always set to ACTIVE) can be CANCELLED
+     *                                                       or
+     *                                                       PENDING_REOPEN in PUT requests to cancel (close) or reopen
+     *                                                       the MonetaryAccountBank. When updating the status and/or
+     *                                                       sub_status no other fields can be updated in the same
+     *                                                       request (and vice versa).
+     * @param string|null $subStatus                         The sub-status of the MonetaryAccountBank
+     *                                                       providing extra information regarding the status. Should
+     *                                                       be ignored for POST requests. In case of PUT requests with
+     *                                                       status CANCELLED it can only be REDEMPTION_VOLUNTARY,
+     *                                                       while with status PENDING_REOPEN it can only be NONE. When
+     *                                                       updating the status and/or sub_status no other fields can
+     *                                                       be updated in the same request (and vice versa).
+     * @param string|null $reason                            The reason for voluntarily cancelling
+     *                                                       (closing) the MonetaryAccountBank, can only be OTHER.
+     *                                                       Should only be specified if updating the status to
+     *                                                       CANCELLED.
+     * @param string|null $reasonDescription                 The optional free-form reason for
+     *                                                       voluntarily cancelling (closing) the MonetaryAccountBank.
+     *                                                       Can be any user provided message. Should only be specified
+     *                                                       if updating the status to CANCELLED.
+     * @param NotificationFilter[]|null $notificationFilters The types of
+     *                                                       notifications that will result in a push notification or
+     *                                                       URL callback for this MonetaryAccountBank.
+     * @param MonetaryAccountSetting|null $setting           The settings of the
+     *                                                       MonetaryAccountBank.
+     */
+    public function __construct(
+        string $currency,
+        string $description = null,
+        Amount $dailyLimit = null,
+        string $avatarUuid = null,
+        string $status = null,
+        string $subStatus = null,
+        string $reason = null,
+        string $reasonDescription = null,
+        array $notificationFilters = null,
+        MonetaryAccountSetting $setting = null
+    ) {
+        $this->currencyFieldForRequest = $currency;
+        $this->descriptionFieldForRequest = $description;
+        $this->dailyLimitFieldForRequest = $dailyLimit;
+        $this->avatarUuidFieldForRequest = $avatarUuid;
+        $this->statusFieldForRequest = $status;
+        $this->subStatusFieldForRequest = $subStatus;
+        $this->reasonFieldForRequest = $reason;
+        $this->reasonDescriptionFieldForRequest = $reasonDescription;
+        $this->notificationFiltersFieldForRequest = $notificationFilters;
+        $this->settingFieldForRequest = $setting;
+    }
+
+    /**
      * Create new MonetaryAccountBank.
      *
      * @param string $currency                               The currency of the MonetaryAccountBank as an ISO

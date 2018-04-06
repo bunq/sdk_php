@@ -39,7 +39,6 @@ class Card extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE_PUT = 'CardDebit';
     const OBJECT_TYPE_GET = 'CardDebit';
 
     /**
@@ -199,6 +198,138 @@ class Card extends BunqModel
     protected $country;
 
     /**
+     * The plaintext pin code. Requests require encryption to be enabled.
+     *
+     * @var string|null
+     */
+    protected $pinCodeFieldForRequest;
+
+    /**
+     * The activation code required to set status to ACTIVE initially. Can only
+     * set status to ACTIVE using activation code when order_status is
+     * ACCEPTED_FOR_PRODUCTION and status is DEACTIVATED.
+     *
+     * @var string|null
+     */
+    protected $activationCodeFieldForRequest;
+
+    /**
+     * The status to set for the card. Can be ACTIVE, DEACTIVATED, LOST, STOLEN
+     * or CANCELLED, and can only be set to LOST/STOLEN/CANCELLED when order
+     * status is
+     * ACCEPTED_FOR_PRODUCTION/DELIVERED_TO_CUSTOMER/CARD_UPDATE_REQUESTED/CARD_UPDATE_SENT/CARD_UPDATE_ACCEPTED.
+     * Can only be set to DEACTIVATED after initial activation, i.e.
+     * order_status is
+     * DELIVERED_TO_CUSTOMER/CARD_UPDATE_REQUESTED/CARD_UPDATE_SENT/CARD_UPDATE_ACCEPTED.
+     * Mind that all the possible choices (apart from ACTIVE and DEACTIVATED)
+     * are permanent and cannot be changed after.
+     *
+     * @var string|null
+     */
+    protected $statusFieldForRequest;
+
+    /**
+     * The limits to define for the card, among CARD_LIMIT_CONTACTLESS,
+     * CARD_LIMIT_ATM, CARD_LIMIT_DIPPING and CARD_LIMIT_POS_ICC (e.g. 25 EUR
+     * for CARD_LIMIT_CONTACTLESS). All the limits must be provided on update.
+     *
+     * @var CardLimit[]|null
+     */
+    protected $limitFieldForRequest;
+
+    /**
+     * Whether or not it is allowed to use the mag stripe for the card.
+     *
+     * @var CardMagStripePermission|null
+     */
+    protected $magStripePermissionFieldForRequest;
+
+    /**
+     * The countries for which to grant (temporary) permissions to use the card.
+     *
+     * @var CardCountryPermission[]|null
+     */
+    protected $countryPermissionFieldForRequest;
+
+    /**
+     * The ID of the monetary account that card transactions will use.
+     *
+     * @var int|null
+     */
+    protected $monetaryAccountCurrentIdFieldForRequest;
+
+    /**
+     * Array of Types, PINs, account IDs assigned to the card.
+     *
+     * @var CardPinAssignment[]|null
+     */
+    protected $pinCodeAssignmentFieldForRequest;
+
+    /**
+     * ID of the MA to be used as fallback for this card if insufficient
+     * balance. Fallback account is removed if not supplied.
+     *
+     * @var int|null
+     */
+    protected $monetaryAccountIdFallbackFieldForRequest;
+
+    /**
+     * @param string|null $pinCode                              The plaintext pin code. Requests require
+     *                                                          encryption to be enabled.
+     * @param string|null $activationCode                       The activation code required to set
+     *                                                          status to ACTIVE initially. Can only set status to
+     *                                                          ACTIVE using activation code when order_status is
+     *                                                          ACCEPTED_FOR_PRODUCTION and status is DEACTIVATED.
+     * @param string|null $status                               The status to set for the card. Can be ACTIVE,
+     *                                                          DEACTIVATED, LOST, STOLEN or CANCELLED, and can only be
+     *                                                          set to LOST/STOLEN/CANCELLED when order status is
+     *                                                          ACCEPTED_FOR_PRODUCTION/DELIVERED_TO_CUSTOMER/CARD_UPDATE_REQUESTED/CARD_UPDATE_SENT/CARD_UPDATE_ACCEPTED.
+     *                                                          Can only be set to DEACTIVATED after initial
+     *                                                          activation, i.e. order_status is
+     *                                                          DELIVERED_TO_CUSTOMER/CARD_UPDATE_REQUESTED/CARD_UPDATE_SENT/CARD_UPDATE_ACCEPTED.
+     *                                                          Mind that all the possible choices (apart from ACTIVE
+     *                                                          and DEACTIVATED) are permanent and cannot be changed
+     *                                                          after.
+     * @param CardLimit[]|null $limit                           The limits to define for the card, among
+     *                                                          CARD_LIMIT_CONTACTLESS, CARD_LIMIT_ATM,
+     *                                                          CARD_LIMIT_DIPPING and CARD_LIMIT_POS_ICC (e.g. 25 EUR
+     *                                                          for CARD_LIMIT_CONTACTLESS). All the limits must be
+     *                                                          provided on update.
+     * @param CardMagStripePermission|null $magStripePermission Whether or not
+     *                                                          it is allowed to use the mag stripe for the card.
+     * @param CardCountryPermission[]|null $countryPermission   The countries for
+     *                                                          which to grant (temporary) permissions to use the card.
+     * @param int|null $monetaryAccountCurrentId                The ID of the monetary account
+     *                                                          that card transactions will use.
+     * @param CardPinAssignment[]|null $pinCodeAssignment       Array of Types, PINs,
+     *                                                          account IDs assigned to the card.
+     * @param int|null $monetaryAccountIdFallback               ID of the MA to be used as
+     *                                                          fallback for this card if insufficient balance.
+     *                                                          Fallback account is removed if not supplied.
+     */
+    public function __construct(
+        string $pinCode = null,
+        string $activationCode = null,
+        string $status = null,
+        array $limit = null,
+        CardMagStripePermission $magStripePermission = null,
+        array $countryPermission = null,
+        int $monetaryAccountCurrentId = null,
+        array $pinCodeAssignment = null,
+        int $monetaryAccountIdFallback = null
+    ) {
+        $this->pinCodeFieldForRequest = $pinCode;
+        $this->activationCodeFieldForRequest = $activationCode;
+        $this->statusFieldForRequest = $status;
+        $this->limitFieldForRequest = $limit;
+        $this->magStripePermissionFieldForRequest = $magStripePermission;
+        $this->countryPermissionFieldForRequest = $countryPermission;
+        $this->monetaryAccountCurrentIdFieldForRequest = $monetaryAccountCurrentId;
+        $this->pinCodeAssignmentFieldForRequest = $pinCodeAssignment;
+        $this->monetaryAccountIdFallbackFieldForRequest = $monetaryAccountIdFallback;
+    }
+
+    /**
      * Update the card details. Allow to change pin code, status, limits,
      * country permissions and the monetary account connected to the card. When
      * the card has been received, it can be also activated through this
@@ -239,7 +370,7 @@ class Card extends BunqModel
      *                                                          Fallback account is removed if not supplied.
      * @param string[] $customHeaders
      *
-     * @return BunqResponseCard
+     * @return BunqResponseInt
      */
     public static function update(
         int $cardId,
@@ -253,7 +384,7 @@ class Card extends BunqModel
         array $pinCodeAssignment = null,
         int $monetaryAccountIdFallback = null,
         array $customHeaders = []
-    ): BunqResponseCard {
+    ): BunqResponseInt {
         $apiClient = new ApiClient(static::getApiContext());
         $apiClient->enableEncryption();
         $responseRaw = $apiClient->put(
@@ -275,8 +406,8 @@ class Card extends BunqModel
             $customHeaders
         );
 
-        return BunqResponseCard::castFromBunqResponse(
-            static::fromJson($responseRaw, self::OBJECT_TYPE_PUT)
+        return BunqResponseInt::castFromBunqResponse(
+            static::processForId($responseRaw)
         );
     }
 

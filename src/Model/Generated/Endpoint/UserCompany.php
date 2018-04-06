@@ -278,6 +278,183 @@ class UserCompany extends BunqModel
     protected $billingContract;
 
     /**
+     * The company name.
+     *
+     * @var string|null
+     */
+    protected $nameFieldForRequest;
+
+    /**
+     * The company's nick name.
+     *
+     * @var string|null
+     */
+    protected $publicNickNameFieldForRequest;
+
+    /**
+     * The public UUID of the company's avatar.
+     *
+     * @var string|null
+     */
+    protected $avatarUuidFieldForRequest;
+
+    /**
+     * The user's main address.
+     *
+     * @var Address
+     */
+    protected $addressMainFieldForRequest;
+
+    /**
+     * The company's postal address.
+     *
+     * @var Address|null
+     */
+    protected $addressPostalFieldForRequest;
+
+    /**
+     * The person's preferred language. Formatted as a ISO 639-1 language code
+     * plus a ISO 3166-1 alpha-2 country code, seperated by an underscore.
+     *
+     * @var string
+     */
+    protected $languageFieldForRequest;
+
+    /**
+     * The person's preferred region. Formatted as a ISO 639-1 language code
+     * plus a ISO 3166-1 alpha-2 country code, seperated by an underscore.
+     *
+     * @var string
+     */
+    protected $regionFieldForRequest;
+
+    /**
+     * The country where the company is registered.
+     *
+     * @var string|null
+     */
+    protected $countryFieldForRequest;
+
+    /**
+     * The names and birth dates of the company's ultimate beneficiary owners.
+     * Minimum zero, maximum four.
+     *
+     * @var Ubo[]|null
+     */
+    protected $uboFieldForRequest;
+
+    /**
+     * The company's chamber of commerce number.
+     *
+     * @var string|null
+     */
+    protected $chamberOfCommerceNumberFieldForRequest;
+
+    /**
+     * The user status. Can be: ACTIVE, SIGNUP, RECOVERY.
+     *
+     * @var string|null
+     */
+    protected $statusFieldForRequest;
+
+    /**
+     * The user sub-status. Can be: NONE, FACE_RESET, APPROVAL,
+     * APPROVAL_DIRECTOR, APPROVAL_PARENT, APPROVAL_SUPPORT, COUNTER_IBAN, IDEAL
+     * or SUBMIT.
+     *
+     * @var string|null
+     */
+    protected $subStatusFieldForRequest;
+
+    /**
+     * The setting for the session timeout of the company in seconds.
+     *
+     * @var int|null
+     */
+    protected $sessionTimeoutFieldForRequest;
+
+    /**
+     * The amount the company can pay in the session without asking for
+     * credentials.
+     *
+     * @var Amount|null
+     */
+    protected $dailyLimitWithoutConfirmationLoginFieldForRequest;
+
+    /**
+     * The types of notifications that will result in a push notification or URL
+     * callback for this UserCompany.
+     *
+     * @var NotificationFilter[]|null
+     */
+    protected $notificationFiltersFieldForRequest;
+
+    /**
+     * @param Address $addressMain                            The user's main address.
+     * @param string $language                                The person's preferred language. Formatted as a
+     *                                                        ISO 639-1 language code plus a ISO 3166-1 alpha-2 country
+     *                                                        code, seperated by an underscore.
+     * @param string $region                                  The person's preferred region. Formatted as a ISO
+     *                                                        639-1 language code plus a ISO 3166-1 alpha-2 country
+     *                                                        code, seperated by an underscore.
+     * @param string|null $name                               The company name.
+     * @param string|null $publicNickName                     The company's nick name.
+     * @param string|null $avatarUuid                         The public UUID of the company's avatar.
+     * @param Address|null $addressPostal                     The company's postal address.
+     * @param string|null $country                            The country where the company is registered.
+     * @param Ubo[]|null $ubo                                 The names and birth dates of the company's
+     *                                                        ultimate beneficiary owners. Minimum zero, maximum four.
+     * @param string|null $chamberOfCommerceNumber            The company's chamber of
+     *                                                        commerce number.
+     * @param string|null $status                             The user status. Can be: ACTIVE, SIGNUP,
+     *                                                        RECOVERY.
+     * @param string|null $subStatus                          The user sub-status. Can be: NONE,
+     *                                                        FACE_RESET, APPROVAL, APPROVAL_DIRECTOR, APPROVAL_PARENT,
+     *                                                        APPROVAL_SUPPORT, COUNTER_IBAN, IDEAL or SUBMIT.
+     * @param int|null $sessionTimeout                        The setting for the session timeout of
+     *                                                        the company in seconds.
+     * @param Amount|null $dailyLimitWithoutConfirmationLogin The amount the
+     *                                                        company can pay in the session without asking for
+     *                                                        credentials.
+     * @param NotificationFilter[]|null $notificationFilters  The types of
+     *                                                        notifications that will result in a push notification or
+     *                                                        URL callback for this UserCompany.
+     */
+    public function __construct(
+        Address $addressMain,
+        string $language,
+        string $region,
+        string $name = null,
+        string $publicNickName = null,
+        string $avatarUuid = null,
+        Address $addressPostal = null,
+        string $country = null,
+        array $ubo = null,
+        string $chamberOfCommerceNumber = null,
+        string $status = null,
+        string $subStatus = null,
+        int $sessionTimeout = null,
+        Amount $dailyLimitWithoutConfirmationLogin = null,
+        array $notificationFilters = null
+    ) {
+        $this->nameFieldForRequest = $name;
+        $this->publicNickNameFieldForRequest = $publicNickName;
+        $this->avatarUuidFieldForRequest = $avatarUuid;
+        $this->addressMainFieldForRequest = $addressMain;
+        $this->addressPostalFieldForRequest = $addressPostal;
+        $this->languageFieldForRequest = $language;
+        $this->regionFieldForRequest = $region;
+        $this->countryFieldForRequest = $country;
+        $this->uboFieldForRequest = $ubo;
+        $this->chamberOfCommerceNumberFieldForRequest = $chamberOfCommerceNumber;
+        $this->statusFieldForRequest = $status;
+        $this->subStatusFieldForRequest = $subStatus;
+        $this->sessionTimeoutFieldForRequest = $sessionTimeout;
+        $this->dailyLimitWithoutConfirmationLoginFieldForRequest = $dailyLimitWithoutConfirmationLogin;
+        $this->notificationFiltersFieldForRequest = $notificationFilters;
+    }
+
+    /**
      * Get a specific company.
      *
      * @param int $userCompanyId

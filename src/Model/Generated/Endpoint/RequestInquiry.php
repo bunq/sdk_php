@@ -10,7 +10,6 @@ use bunq\Model\Generated\Object\Geolocation;
 use bunq\Model\Generated\Object\LabelMonetaryAccount;
 use bunq\Model\Generated\Object\LabelUser;
 use bunq\Model\Generated\Object\Pointer;
-use bunq\Model\Generated\Object\RequestReferenceSplitTheBillAnchorObject;
 
 /**
  * RequestInquiry, aka 'RFP' (Request for Payment), is one of the innovative
@@ -48,7 +47,6 @@ class RequestInquiry extends BunqModel
     const FIELD_ALLOW_AMOUNT_HIGHER = 'allow_amount_higher';
     const FIELD_ALLOW_BUNQME = 'allow_bunqme';
     const FIELD_REDIRECT_URL = 'redirect_url';
-    const FIELD_EVENT_ID = 'event_id';
 
     /**
      * Object type.
@@ -239,12 +237,179 @@ class RequestInquiry extends BunqModel
     protected $allowChat;
 
     /**
-     * The reference to the object used for split the bill. Can be Payment,
-     * PaymentBatch, ScheduleInstance, RequestResponse and MasterCardAction
+     * The Amount requested to be paid by the person the RequestInquiry is sent
+     * to. Must be bigger than 0.
      *
-     * @var RequestReferenceSplitTheBillAnchorObject
+     * @var Amount
      */
-    protected $referenceSplitTheBill;
+    protected $amountInquiredFieldForRequest;
+
+    /**
+     * The Alias of the party we are requesting the money from. Can be an Alias
+     * of type EMAIL, PHONE_NUMBER or IBAN. In case the EMAIL or PHONE_NUMBER
+     * Alias does not refer to a bunq monetary account, 'allow_bunqme' needs to
+     * be 'true' in order to trigger the creation of a bunq.me request.
+     * Otherwise no request inquiry will be sent.
+     *
+     * @var Pointer
+     */
+    protected $counterpartyAliasFieldForRequest;
+
+    /**
+     * The description for the RequestInquiry. Maximum 9000 characters. Field is
+     * required but can be an empty string.
+     *
+     * @var string
+     */
+    protected $descriptionFieldForRequest;
+
+    /**
+     * The Attachments to attach to the RequestInquiry.
+     *
+     * @var BunqId[]|null
+     */
+    protected $attachmentFieldForRequest;
+
+    /**
+     * Optional data to be included with the RequestInquiry specific to the
+     * merchant. Has to be unique for the same source MonetaryAccount.
+     *
+     * @var string|null
+     */
+    protected $merchantReferenceFieldForRequest;
+
+    /**
+     * The status of the RequestInquiry. Ignored in POST requests but can be
+     * used for revoking (cancelling) the RequestInquiry by setting REVOKED with
+     * a PUT request.
+     *
+     * @var string|null
+     */
+    protected $statusFieldForRequest;
+
+    /**
+     * The minimum age the user accepting the RequestInquiry must have. Defaults
+     * to not checking. If set, must be between 12 and 100 inclusive.
+     *
+     * @var int|null
+     */
+    protected $minimumAgeFieldForRequest;
+
+    /**
+     * Whether a billing and shipping address must be provided when paying the
+     * request. Possible values are: BILLING, SHIPPING, BILLING_SHIPPING, NONE,
+     * OPTIONAL. Default is NONE.
+     *
+     * @var string|null
+     */
+    protected $requireAddressFieldForRequest;
+
+    /**
+     * [DEPRECATED] Whether or not the accepting user can give an extra tip on
+     * top of the requested Amount. Defaults to false.
+     *
+     * @var bool|null
+     */
+    protected $wantTipFieldForRequest;
+
+    /**
+     * [DEPRECATED] Whether or not the accepting user can choose to accept with
+     * a lower amount than requested. Defaults to false.
+     *
+     * @var bool|null
+     */
+    protected $allowAmountLowerFieldForRequest;
+
+    /**
+     * [DEPRECATED] Whether or not the accepting user can choose to accept with
+     * a higher amount than requested. Defaults to false.
+     *
+     * @var bool|null
+     */
+    protected $allowAmountHigherFieldForRequest;
+
+    /**
+     * Whether or not sending a bunq.me request is allowed.
+     *
+     * @var bool
+     */
+    protected $allowBunqmeFieldForRequest;
+
+    /**
+     * The URL which the user is sent to after accepting or rejecting the
+     * Request.
+     *
+     * @var string|null
+     */
+    protected $redirectUrlFieldForRequest;
+
+    /**
+     * @param Amount $amountInquired         The Amount requested to be paid by the
+     *                                       person the RequestInquiry is sent to. Must be bigger than 0.
+     * @param Pointer $counterpartyAlias     The Alias of the party we are
+     *                                       requesting the money from. Can be an Alias of type EMAIL, PHONE_NUMBER or
+     *                                       IBAN. In case the EMAIL or PHONE_NUMBER Alias does not refer to a bunq
+     *                                       monetary account, 'allow_bunqme' needs to be 'true' in order to trigger
+     *                                       the creation of a bunq.me request. Otherwise no request inquiry will be
+     *                                       sent.
+     * @param string $description            The description for the RequestInquiry.
+     *                                       Maximum 9000 characters. Field is required but can be an empty string.
+     * @param bool $allowBunqme              Whether or not sending a bunq.me request is
+     *                                       allowed.
+     * @param BunqId[]|null $attachment      The Attachments to attach to the
+     *                                       RequestInquiry.
+     * @param string|null $merchantReference Optional data to be included with
+     *                                       the RequestInquiry specific to the merchant. Has to be unique for the
+     *                                       same source MonetaryAccount.
+     * @param string|null $status            The status of the RequestInquiry. Ignored in
+     *                                       POST requests but can be used for revoking (cancelling) the
+     *                                       RequestInquiry by setting REVOKED with a PUT request.
+     * @param int|null $minimumAge           The minimum age the user accepting the
+     *                                       RequestInquiry must have. Defaults to not checking. If set, must be
+     *                                       between 12 and 100 inclusive.
+     * @param string|null $requireAddress    Whether a billing and shipping address
+     *                                       must be provided when paying the request. Possible values are: BILLING,
+     *                                       SHIPPING, BILLING_SHIPPING, NONE, OPTIONAL. Default is NONE.
+     * @param bool|null $wantTip             [DEPRECATED] Whether or not the accepting user
+     *                                       can give an extra tip on top of the requested Amount. Defaults to false.
+     * @param bool|null $allowAmountLower    [DEPRECATED] Whether or not the
+     *                                       accepting user can choose to accept with a lower amount than requested.
+     *                                       Defaults to false.
+     * @param bool|null $allowAmountHigher   [DEPRECATED] Whether or not the
+     *                                       accepting user can choose to accept with a higher amount than requested.
+     *                                       Defaults to false.
+     * @param string|null $redirectUrl       The URL which the user is sent to after
+     *                                       accepting or rejecting the Request.
+     */
+    public function __construct(
+        Amount $amountInquired,
+        Pointer $counterpartyAlias,
+        string $description,
+        bool $allowBunqme,
+        array $attachment = null,
+        string $merchantReference = null,
+        string $status = null,
+        int $minimumAge = null,
+        string $requireAddress = null,
+        bool $wantTip = null,
+        bool $allowAmountLower = null,
+        bool $allowAmountHigher = null,
+        string $redirectUrl = null
+    ) {
+        $this->amountInquiredFieldForRequest = $amountInquired;
+        $this->counterpartyAliasFieldForRequest = $counterpartyAlias;
+        $this->descriptionFieldForRequest = $description;
+        $this->attachmentFieldForRequest = $attachment;
+        $this->merchantReferenceFieldForRequest = $merchantReference;
+        $this->statusFieldForRequest = $status;
+        $this->minimumAgeFieldForRequest = $minimumAge;
+        $this->requireAddressFieldForRequest = $requireAddress;
+        $this->wantTipFieldForRequest = $wantTip;
+        $this->allowAmountLowerFieldForRequest = $allowAmountLower;
+        $this->allowAmountHigherFieldForRequest = $allowAmountHigher;
+        $this->allowBunqmeFieldForRequest = $allowBunqme;
+        $this->redirectUrlFieldForRequest = $redirectUrl;
+    }
 
     /**
      * Create a new payment request.
@@ -286,8 +451,6 @@ class RequestInquiry extends BunqModel
      *                                       Defaults to false.
      * @param string|null $redirectUrl       The URL which the user is sent to after
      *                                       accepting or rejecting the Request.
-     * @param int|null $eventId              The ID of the associated event if the request
-     *                                       was made using 'split the bill'.
      * @param string[] $customHeaders
      *
      * @return BunqResponseInt
@@ -307,7 +470,6 @@ class RequestInquiry extends BunqModel
         bool $allowAmountLower = null,
         bool $allowAmountHigher = null,
         string $redirectUrl = null,
-        int $eventId = null,
         array $customHeaders = []
     ): BunqResponseInt {
         $apiClient = new ApiClient(static::getApiContext());
@@ -330,7 +492,6 @@ class RequestInquiry extends BunqModel
                 self::FIELD_ALLOW_AMOUNT_HIGHER => $allowAmountHigher,
                 self::FIELD_ALLOW_BUNQME => $allowBunqme,
                 self::FIELD_REDIRECT_URL => $redirectUrl,
-                self::FIELD_EVENT_ID => $eventId,
             ],
             $customHeaders
         );
@@ -967,28 +1128,6 @@ class RequestInquiry extends BunqModel
     }
 
     /**
-     * The reference to the object used for split the bill. Can be Payment,
-     * PaymentBatch, ScheduleInstance, RequestResponse and MasterCardAction
-     *
-     * @return RequestReferenceSplitTheBillAnchorObject
-     */
-    public function getReferenceSplitTheBill()
-    {
-        return $this->referenceSplitTheBill;
-    }
-
-    /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
-     * @param RequestReferenceSplitTheBillAnchorObject $referenceSplitTheBill
-     */
-    public function setReferenceSplitTheBill($referenceSplitTheBill)
-    {
-        $this->referenceSplitTheBill = $referenceSplitTheBill;
-    }
-
-    /**
      * @return bool
      */
     public function isAllFieldNull()
@@ -1090,10 +1229,6 @@ class RequestInquiry extends BunqModel
         }
 
         if (!is_null($this->allowChat)) {
-            return false;
-        }
-
-        if (!is_null($this->referenceSplitTheBill)) {
             return false;
         }
 

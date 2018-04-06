@@ -190,6 +190,21 @@ class TokenQrRequestIdeal extends BunqModel
     protected $eligibleWhitelistId;
 
     /**
+     * The token passed from a site or read from a QR code.
+     *
+     * @var string
+     */
+    protected $tokenFieldForRequest;
+
+    /**
+     * @param string $token The token passed from a site or read from a QR code.
+     */
+    public function __construct(string $token)
+    {
+        $this->tokenFieldForRequest = $token;
+    }
+
+    /**
      * Create a request from an ideal transaction.
      *
      * @param string $token The token passed from a site or read from a QR code.

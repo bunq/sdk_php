@@ -29,6 +29,21 @@ class ChatMessageText extends BunqModel
     protected $id;
 
     /**
+     * The textual content of this message. Cannot be empty.
+     *
+     * @var string
+     */
+    protected $textFieldForRequest;
+
+    /**
+     * @param string $text The textual content of this message. Cannot be empty.
+     */
+    public function __construct(string $text)
+    {
+        $this->textFieldForRequest = $text;
+    }
+
+    /**
      * Add a new text message to a specific conversation.
      *
      * @param int $chatConversationId

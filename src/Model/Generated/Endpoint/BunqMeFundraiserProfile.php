@@ -72,6 +72,23 @@ class BunqMeFundraiserProfile extends BunqModel
     protected $redirectUrl;
 
     /**
+     * The pointer (url) which will be used to access the bunq.me fundraiser
+     * profile.
+     *
+     * @var Pointer
+     */
+    protected $pointerFieldForRequest;
+
+    /**
+     * @param Pointer $pointer The pointer (url) which will be used to access
+     *                         the bunq.me fundraiser profile.
+     */
+    public function __construct(Pointer $pointer)
+    {
+        $this->pointerFieldForRequest = $pointer;
+    }
+
+    /**
      * The color chosen for the bunq.me fundraiser profile in hexadecimal
      * format.
      *

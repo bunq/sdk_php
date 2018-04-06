@@ -77,6 +77,12 @@ abstract class BunqModel implements JsonSerializable
     ];
 
     /**
+     * Format constants.
+     */
+    const FORMAT_STRING_EMPTY = '';
+    const SUFFIX_REQUEST_FIELD = '_field_for_request';
+
+    /**
      * @param string $json
      *
      * @return static
@@ -394,7 +400,11 @@ abstract class BunqModel implements JsonSerializable
 
         foreach ($this->getNonStaticProperties() as $property) {
             $fieldName = static::determineRequestFieldName($property);
-            $array[$fieldName] = $this->{$property->getName()};
+
+            if (!is_null($this->{$property->getName()})) {
+                $fieldName = str_replace(self::SUFFIX_REQUEST_FIELD, self::FORMAT_STRING_EMPTY, $fieldName);
+                $array[$fieldName] = $this->{$property->getName()};
+            }
         }
 
         return $array;

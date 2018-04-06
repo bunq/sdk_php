@@ -75,6 +75,45 @@ class DeviceServer extends BunqModel
     protected $status;
 
     /**
+     * The description of the DeviceServer. This is only for your own reference
+     * when reading the DeviceServer again.
+     *
+     * @var string
+     */
+    protected $descriptionFieldForRequest;
+
+    /**
+     * The API key. You can request an API key in the bunq app.
+     *
+     * @var string
+     */
+    protected $secretFieldForRequest;
+
+    /**
+     * An array of IPs (v4 or v6) this DeviceServer will be able to do calls
+     * from. These will be linked to the API key.
+     *
+     * @var string[]|null
+     */
+    protected $permittedIpsFieldForRequest;
+
+    /**
+     * @param string $description         The description of the DeviceServer. This is
+     *                                    only for your own reference when reading the DeviceServer again.
+     * @param string $secret              The API key. You can request an API key in the bunq
+     *                                    app.
+     * @param string[]|null $permittedIps An array of IPs (v4 or v6) this
+     *                                    DeviceServer will be able to do calls from. These will be linked to the
+     *                                    API key.
+     */
+    public function __construct(string $description, string $secret, array $permittedIps = null)
+    {
+        $this->descriptionFieldForRequest = $description;
+        $this->secretFieldForRequest = $secret;
+        $this->permittedIpsFieldForRequest = $permittedIps;
+    }
+
+    /**
      * Create a new DeviceServer providing the installation token in the header
      * and signing the request with the private part of the key you used to
      * create the installation. The API Key that you are using will be bound to

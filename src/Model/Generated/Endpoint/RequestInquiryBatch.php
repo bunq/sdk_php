@@ -4,7 +4,6 @@ namespace bunq\Model\Generated\Endpoint;
 use bunq\Http\ApiClient;
 use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Object\Amount;
-use bunq\Model\Generated\Object\RequestReferenceSplitTheBillAnchorObject;
 
 /**
  * Create a batch of requests for payment, or show the request batches of a
@@ -28,7 +27,6 @@ class RequestInquiryBatch extends BunqModel
     const FIELD_REQUEST_INQUIRIES = 'request_inquiries';
     const FIELD_STATUS = 'status';
     const FIELD_TOTAL_AMOUNT_INQUIRED = 'total_amount_inquired';
-    const FIELD_EVENT_ID = 'event_id';
 
     /**
      * Object type.
@@ -50,12 +48,39 @@ class RequestInquiryBatch extends BunqModel
     protected $totalAmountInquired;
 
     /**
-     * The reference to the object used for split the bill. Can be Payment,
-     * PaymentBatch, ScheduleInstance, RequestResponse and MasterCardAction
+     * The list of request inquiries we want to send in 1 batch.
      *
-     * @var RequestReferenceSplitTheBillAnchorObject
+     * @var RequestInquiry[]
      */
-    protected $referenceSplitTheBill;
+    protected $requestInquiriesFieldForRequest;
+
+    /**
+     * The status of the request.
+     *
+     * @var string|null
+     */
+    protected $statusFieldForRequest;
+
+    /**
+     * The total amount originally inquired for this batch.
+     *
+     * @var Amount
+     */
+    protected $totalAmountInquiredFieldForRequest;
+
+    /**
+     * @param RequestInquiry[] $requestInquiries The list of request inquiries
+     *                                           we want to send in 1 batch.
+     * @param Amount $totalAmountInquired        The total amount originally inquired
+     *                                           for this batch.
+     * @param string|null $status                The status of the request.
+     */
+    public function __construct(array $requestInquiries, Amount $totalAmountInquired, string $status = null)
+    {
+        $this->requestInquiriesFieldForRequest = $requestInquiries;
+        $this->statusFieldForRequest = $status;
+        $this->totalAmountInquiredFieldForRequest = $totalAmountInquired;
+    }
 
     /**
      * Create a request batch by sending an array of single request objects,
@@ -67,8 +92,6 @@ class RequestInquiryBatch extends BunqModel
      *                                           for this batch.
      * @param int|null $monetaryAccountId
      * @param string|null $status                The status of the request.
-     * @param int|null $eventId                  The ID of the associated event if the request
-     *                                           batch was made using 'split the bill'.
      * @param string[] $customHeaders
      *
      * @return BunqResponseInt
@@ -78,7 +101,6 @@ class RequestInquiryBatch extends BunqModel
         Amount $totalAmountInquired,
         int $monetaryAccountId = null,
         string $status = null,
-        int $eventId = null,
         array $customHeaders = []
     ): BunqResponseInt {
         $apiClient = new ApiClient(static::getApiContext());
@@ -91,7 +113,6 @@ class RequestInquiryBatch extends BunqModel
                 self::FIELD_REQUEST_INQUIRIES => $requestInquiries,
                 self::FIELD_STATUS => $status,
                 self::FIELD_TOTAL_AMOUNT_INQUIRED => $totalAmountInquired,
-                self::FIELD_EVENT_ID => $eventId,
             ],
             $customHeaders
         );
@@ -245,28 +266,6 @@ class RequestInquiryBatch extends BunqModel
     }
 
     /**
-     * The reference to the object used for split the bill. Can be Payment,
-     * PaymentBatch, ScheduleInstance, RequestResponse and MasterCardAction
-     *
-     * @return RequestReferenceSplitTheBillAnchorObject
-     */
-    public function getReferenceSplitTheBill()
-    {
-        return $this->referenceSplitTheBill;
-    }
-
-    /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
-     * @param RequestReferenceSplitTheBillAnchorObject $referenceSplitTheBill
-     */
-    public function setReferenceSplitTheBill($referenceSplitTheBill)
-    {
-        $this->referenceSplitTheBill = $referenceSplitTheBill;
-    }
-
-    /**
      * @return bool
      */
     public function isAllFieldNull()
@@ -276,10 +275,6 @@ class RequestInquiryBatch extends BunqModel
         }
 
         if (!is_null($this->totalAmountInquired)) {
-            return false;
-        }
-
-        if (!is_null($this->referenceSplitTheBill)) {
             return false;
         }
 
