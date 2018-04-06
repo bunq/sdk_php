@@ -4,4 +4,16 @@ php:
   - 7.1
   - 7.2
 install: composer install
+before_script:
+  - apt-get build-dep curl
+  - cd /tmp
+  - wget https://curl.haxx.se/download/curl-7.59.0.tar.bz2
+  - tar -xvjf curl-7.59.0.tar.bz2
+  - cd curl-7.59.0
+  - ./configure
+  - make
+  - make install
+  - ldconfig
+  - curl --version
+
 script: vendor/bin/paratest -p 2
