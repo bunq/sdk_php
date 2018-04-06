@@ -15,5 +15,6 @@ before_script:
   - sudo make install
   - sudo ldconfig
   - curl --version
+  - cd ~/bunq/sdk_php
 
 script: vendor/bin/paratest -p 2
