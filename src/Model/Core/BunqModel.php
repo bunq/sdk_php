@@ -76,13 +76,11 @@ abstract class BunqModel implements JsonSerializable
         self::SCALAR_TYPE_FLOAT => true,
     ];
 
-
     /**
      * Format constants.
      */
     const FORMAT_STRING_EMPTY = '';
     const SUFFIX_REQUEST_FIELD = '_field_for_request';
-
 
     /**
      * @param string $json
