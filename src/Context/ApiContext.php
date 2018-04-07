@@ -11,6 +11,7 @@ use bunq\Model\Generated\Endpoint\Session;
 use bunq\Security\KeyPair;
 use bunq\Util\BunqEnumApiEnvironmentType;
 use bunq\Util\FileUtil;
+use bunq\Util\InstallationUtil;
 use GuzzleHttp\Psr7\Uri;
 
 /**
@@ -104,6 +105,9 @@ class ApiContext
         array $permittedIps = [],
         string $proxyUrl = null
     ): ApiContext {
+        InstallationUtil::assertDeviceDescriptionIsValid($description);
+        InstallationUtil::assertAllIpIsValid($permittedIps);
+
         $apiContext = new static();
         $apiContext->environmentType = $environmentType;
         $apiContext->apiKey = $apiKey;
