@@ -15,12 +15,18 @@ if (file_exists($filenameAutoloadLocal)) {
 
 $allOption = getopt('', ['environment:', 'config-file:', 'api-key:']);
 
-if (empty($allOption)) {
-    \bunq\Util\InstallationUtil::interactiveInstall();
-} else {
-    \bunq\Util\InstallationUtil::automaticInstall(
+try {
+    if (empty($allOption)) {
+        \bunq\Util\InstallationUtil::interactiveInstall();
+    } else {
+        \bunq\Util\InstallationUtil::automaticInstall(
             new \bunq\Util\BunqEnumApiEnvironmentType($allOption['environment']),
             $allOption['config-file'],
             $allOption['api-key'] ?? null
-    );
+        );
+    }
+} catch (bunq\Exception\BunqException $exception) {
+    echo sprintf(\bunq\Util\InstallationUtil::ERROR_BUNQ_EXCEPTION, $exception->getMessage());
+} catch (Exception $exception) {
+    echo sprintf(\bunq\Util\InstallationUtil::ERROR_EXCEPTION, $exception->getMessage());
 }
