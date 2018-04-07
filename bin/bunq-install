@@ -1,6 +1,10 @@
 #!/usr/bin/env php
 <?php
 
+use bunq\Util\BunqEnumApiEnvironmentType;
+use bunq\Util\InstallationUtil;
+use bunq\Exception\BunqException;
+
 $filenameAutoloadLocal = __DIR__ . '/../vendor/autoload.php';
 $filenameAutoloadVendor = __DIR__ . '/../../../autoload.php';
 
@@ -17,16 +21,16 @@ $allOption = getopt('', ['environment:', 'config-file:', 'api-key:']);
 
 try {
     if (empty($allOption)) {
-        \bunq\Util\InstallationUtil::interactiveInstall();
+        InstallationUtil::interactiveInstall();
     } else {
-        \bunq\Util\InstallationUtil::automaticInstall(
-            new \bunq\Util\BunqEnumApiEnvironmentType($allOption['environment']),
+        InstallationUtil::automaticInstall(
+            new BunqEnumApiEnvironmentType($allOption['environment']),
             $allOption['config-file'],
             $allOption['api-key'] ?? null
         );
     }
-} catch (bunq\Exception\BunqException $exception) {
-    echo sprintf(\bunq\Util\InstallationUtil::ERROR_BUNQ_EXCEPTION, $exception->getMessage());
+} catch (BunqException $exception) {
+    echo sprintf(InstallationUtil::ERROR_BUNQ_EXCEPTION, $exception->getMessage());
 } catch (Exception $exception) {
-    echo sprintf(\bunq\Util\InstallationUtil::ERROR_EXCEPTION, $exception->getMessage());
+    echo sprintf(InstallationUtil::ERROR_EXCEPTION, $exception->getMessage());
 }
