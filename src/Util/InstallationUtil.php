@@ -64,10 +64,12 @@ final class InstallationUtil
     {
         $context = static::createApiContextWithoutConstructor();
 
-        $environmentType = new BunqEnumApiEnvironmentType(static::readLine(
-            self::PROMPT_ENVIRONMENT,
-            self::ERROR_EMPTY_ENVIRONMENT
-        ));
+        $environmentType = new BunqEnumApiEnvironmentType(
+            static::readLine(
+                self::PROMPT_ENVIRONMENT,
+                self::ERROR_EMPTY_ENVIRONMENT
+            )
+        );
         static::setPrivateProperty($context, self::PROPERTY_ENVIRONMENT_TYPE, $environmentType);
 
         $apiKey = static::readLine(
@@ -124,8 +126,6 @@ final class InstallationUtil
 
         if (is_null($environmentType)) {
             $environmentType = BunqEnumApiEnvironmentType::SANDBOX();
-        } else {
-            // Environment already passed
         }
 
         static::setPrivateProperty($context, self::PROPERTY_ENVIRONMENT_TYPE, $environmentType);
