@@ -58,59 +58,54 @@ final class InstallationUtil
     const PREG_MATCH_SUCCESS = 1;
 
     /**
+     * @throws BunqException
      */
     public static function interactiveInstall()
     {
-        try {
-            $context = static::createApiContextWithoutConstructor();
+        $context = static::createApiContextWithoutConstructor();
 
-            $environmentType = new BunqEnumApiEnvironmentType(static::readLine(
-                self::PROMPT_ENVIRONMENT,
-                self::ERROR_EMPTY_ENVIRONMENT
-            ));
-            static::setPrivateProperty($context, self::PROPERTY_ENVIRONMENT_TYPE, $environmentType);
+        $environmentType = new BunqEnumApiEnvironmentType(static::readLine(
+            self::PROMPT_ENVIRONMENT,
+            self::ERROR_EMPTY_ENVIRONMENT
+        ));
+        static::setPrivateProperty($context, self::PROPERTY_ENVIRONMENT_TYPE, $environmentType);
 
-            $apiKey = static::readLine(
-                self::PROMPT_API_KEY,
-                self::ERROR_EMPTY_API_KEY
-            );
-            static::setPrivateProperty($context, self::PROPERTY_API_KEY, $apiKey);
+        $apiKey = static::readLine(
+            self::PROMPT_API_KEY,
+            self::ERROR_EMPTY_API_KEY
+        );
+        static::setPrivateProperty($context, self::PROPERTY_API_KEY, $apiKey);
 
-            $proxyUrl = static::readLineOrNull(self::PROMPT_PROXY_URL);
-            static::setPrivateProperty($context, self::PROPERTY_PROXY_URL, $proxyUrl);
+        $proxyUrl = static::readLineOrNull(self::PROMPT_PROXY_URL);
+        static::setPrivateProperty($context, self::PROPERTY_PROXY_URL, $proxyUrl);
 
-            $methodInitializeInstallationContext = static::createAccessibleReflectionMethod(
-                ApiContext::class,
-                self::METHOD_INITIALIZE_INSTALLATION_CONTEXT
-            );
-            $methodInitializeInstallationContext->invoke($context);
+        $methodInitializeInstallationContext = static::createAccessibleReflectionMethod(
+            ApiContext::class,
+            self::METHOD_INITIALIZE_INSTALLATION_CONTEXT
+        );
+        $methodInitializeInstallationContext->invoke($context);
 
-            $description = static::readLine(self::PROMPT_DESCRIPTION, self::ERROR_EMPTY_DESCRIPTION);
-            $permittedIpsInput = static::readLineOrNull(self::PROMPT_PERMITTED_IPS);
-            $permittedIps = static::formatIps($permittedIpsInput);
-            $methodRegisterDevice = static::createAccessibleReflectionMethod(
-                ApiContext::class,
-                self::METHOD_REGISTER_DEVICE
-            );
-            $methodRegisterDevice->invoke($context, $description, $permittedIps);
+        $description = static::readLine(self::PROMPT_DESCRIPTION, self::ERROR_EMPTY_DESCRIPTION);
+        $permittedIpsInput = static::readLineOrNull(self::PROMPT_PERMITTED_IPS);
+        $permittedIps = static::formatIps($permittedIpsInput);
+        $methodRegisterDevice = static::createAccessibleReflectionMethod(
+            ApiContext::class,
+            self::METHOD_REGISTER_DEVICE
+        );
+        $methodRegisterDevice->invoke($context, $description, $permittedIps);
 
-            $methodInitializeSessionContext = static::createAccessibleReflectionMethod(
-                ApiContext::class,
-                self::METHOD_INITIALIZE_SESSION_CONTEXT
-            );
-            $methodInitializeSessionContext->invoke($context);
+        $methodInitializeSessionContext = static::createAccessibleReflectionMethod(
+            ApiContext::class,
+            self::METHOD_INITIALIZE_SESSION_CONTEXT
+        );
+        $methodInitializeSessionContext->invoke($context);
 
-            $contextFileName = static::readLineOrNull(self::PROMPT_CONTEXT_FILE);
+        $contextFileName = static::readLineOrNull(self::PROMPT_CONTEXT_FILE);
 
-            if ($contextFileName === null) {
-                $context->save();
-            } else {
-                $context->save($contextFileName);
-            }
-        } catch (BunqException $exception) {
-            echo sprintf(self::ERROR_BUNQ_EXCEPTION, $exception->getMessage());
-        } catch (Exception $exception) {
-            echo sprintf(self::ERROR_EXCEPTION, $exception->getMessage());
+        if ($contextFileName === null) {
+            $context->save();
+        } else {
+            $context->save($contextFileName);
         }
     }
 
@@ -118,64 +113,58 @@ final class InstallationUtil
      * @param BunqEnumApiEnvironmentType $environmentType
      * @param string $contextFileName
      * @param string|null $apiKey
+     * @throws BunqException
      */
     public static function automaticInstall(
         BunqEnumApiEnvironmentType $environmentType,
         string $contextFileName,
         string $apiKey = null
     ) {
-        try {
-            $context = static::createApiContextWithoutConstructor();
+        $context = static::createApiContextWithoutConstructor();
 
-            if (is_null($environmentType)) {
-                $environmentType = BunqEnumApiEnvironmentType::SANDBOX();
-            } else {
-                // Environment already passed
-            }
+        if (is_null($environmentType)) {
+            $environmentType = BunqEnumApiEnvironmentType::SANDBOX();
+        } else {
+            // Environment already passed
+        }
 
-            static::setPrivateProperty($context, self::PROPERTY_ENVIRONMENT_TYPE, $environmentType);
+        static::setPrivateProperty($context, self::PROPERTY_ENVIRONMENT_TYPE, $environmentType);
 
-            if ($environmentType->equals(BunqEnumApiEnvironmentType::SANDBOX()) && is_null($apiKey)) {
-                $methodCreateSandboxUser = static::createAccessibleReflectionMethod(
-                    ApiContext::class,
-                    self::METHOD_CREATE_SANDBOX_USER
-                );
-
-                $methodCreateSandboxUser->invoke($context);
-            } elseif (!is_null($apiKey)) {
-                static::setPrivateProperty($context, self::PROPERTY_API_KEY, $apiKey);
-            } else {
-                throw new BunqException(self::ERROR_CANNOT_CREATE_API_KEY_PRODUCTION);
-            }
-
-            $methodInitializeInstallationContext = static::createAccessibleReflectionMethod(
+        if ($environmentType->equals(BunqEnumApiEnvironmentType::SANDBOX()) && is_null($apiKey)) {
+            $methodCreateSandboxUser = static::createAccessibleReflectionMethod(
                 ApiContext::class,
-                self::METHOD_INITIALIZE_INSTALLATION_CONTEXT
+                self::METHOD_CREATE_SANDBOX_USER
             );
-            $methodInitializeInstallationContext->invoke($context);
 
-            $methodRegisterDevice = static::createAccessibleReflectionMethod(
-                ApiContext::class,
-                self::METHOD_REGISTER_DEVICE
-            );
-            $methodRegisterDevice->invoke($context, gethostname(), []);
+            $methodCreateSandboxUser->invoke($context);
+        } elseif (!is_null($apiKey)) {
+            static::setPrivateProperty($context, self::PROPERTY_API_KEY, $apiKey);
+        } else {
+            throw new BunqException(self::ERROR_CANNOT_CREATE_API_KEY_PRODUCTION);
+        }
 
-            $methodInitializeSessionContext = static::createAccessibleReflectionMethod(
-                ApiContext::class,
-                self::METHOD_INITIALIZE_SESSION_CONTEXT
-            );
-            $methodInitializeSessionContext->invoke($context);
+        $methodInitializeInstallationContext = static::createAccessibleReflectionMethod(
+            ApiContext::class,
+            self::METHOD_INITIALIZE_INSTALLATION_CONTEXT
+        );
+        $methodInitializeInstallationContext->invoke($context);
 
-            if ($contextFileName === null) {
-                $context->save();
-            } else {
-                $context->save($contextFileName);
-            }
-        } catch (BunqException $exception) {
-            echo sprintf(self::ERROR_BUNQ_EXCEPTION, $exception->getMessage());
-            var_dump($exception);
-        } catch (Exception $exception) {
-            echo sprintf(self::ERROR_EXCEPTION, $exception->getMessage());
+        $methodRegisterDevice = static::createAccessibleReflectionMethod(
+            ApiContext::class,
+            self::METHOD_REGISTER_DEVICE
+        );
+        $methodRegisterDevice->invoke($context, gethostname(), []);
+
+        $methodInitializeSessionContext = static::createAccessibleReflectionMethod(
+            ApiContext::class,
+            self::METHOD_INITIALIZE_SESSION_CONTEXT
+        );
+        $methodInitializeSessionContext->invoke($context);
+
+        if ($contextFileName === null) {
+            $context->save();
+        } else {
+            $context->save($contextFileName);
         }
     }
 
