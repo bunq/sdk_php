@@ -278,12 +278,18 @@ class ApiContext
     /**
      * Check if current time is too close to the saved session expiry time and reset session if
      * needed.
+     *
+     * @return bool
      */
-    public function ensureSessionActive()
+    public function ensureSessionActive(): bool
     {
         if (!$this->isSessionActive()) {
             $this->resetSession();
+
+            return true;
         }
+
+        return false;
     }
 
     /**
