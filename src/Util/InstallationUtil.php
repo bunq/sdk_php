@@ -130,7 +130,7 @@ final class InstallationUtil
 
         static::setPrivateProperty($context, self::PROPERTY_ENVIRONMENT_TYPE, $environmentType);
 
-        if ($environmentType->equals(BunqEnumApiEnvironmentType::SANDBOX()) && is_null($apiKey)) {
+        if (static::shouldSandboxUserBeCreated($environmentType, $apiKey)) {
             $methodCreateSandboxUser = static::createAccessibleReflectionMethod(
                 ApiContext::class,
                 self::METHOD_CREATE_SANDBOX_USER
@@ -166,6 +166,19 @@ final class InstallationUtil
         } else {
             $context->save($contextFileName);
         }
+    }
+
+    /**
+     * @param BunqEnumApiEnvironmentType $environmentType
+     * @param string|null $apiKey
+     *
+     * @return bool
+     */
+    private static function shouldSandboxUserBeCreated(
+        BunqEnumApiEnvironmentType $environmentType,
+        string $apiKey = null
+    ): bool {
+        return $environmentType->equals(BunqEnumApiEnvironmentType::SANDBOX()) && is_null($apiKey);
     }
 
     /**
