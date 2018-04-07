@@ -113,13 +113,13 @@ final class InstallationUtil
 
     /**
      * @param BunqEnumApiEnvironmentType $environmentType
-     * @param string $contextFileName
+     * @param string|null $contextFileName
      * @param string|null $apiKey
      * @throws BunqException
      */
     public static function automaticInstall(
         BunqEnumApiEnvironmentType $environmentType,
-        string $contextFileName,
+        string $contextFileName = null,
         string $apiKey = null
     ) {
         $context = static::createApiContextWithoutConstructor();
