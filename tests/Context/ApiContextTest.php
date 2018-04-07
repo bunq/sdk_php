@@ -8,8 +8,9 @@ use bunq\test\BunqSdkTestBase;
 use DateTime;
 
 /**
- * @author Daniil Belyakov <daniil@bunq.com>
- * @since 20170822 Initial creation.
+ * Tests:
+ * ApiContext
+ * BunqContext
  */
 class ApiContextTest extends BunqSdkTestBase
 {
