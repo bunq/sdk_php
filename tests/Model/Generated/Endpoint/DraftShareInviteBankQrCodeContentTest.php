@@ -1,15 +1,12 @@
 <?php
 namespace bunq\test\Model\Generated\Endpoint;
 
-use bunq\Context\ApiContext;
 use bunq\Model\Generated\Endpoint\DraftShareInviteBank;
 use bunq\Model\Generated\Endpoint\DraftShareInviteBankQrCodeContent;
-use bunq\Model\Generated\Object\DraftShareInviteBankEntry;
 use bunq\Model\Generated\Object\DraftShareInviteEntry;
 use bunq\Model\Generated\Object\ShareDetail;
 use bunq\Model\Generated\Object\ShareDetailReadOnly;
 use bunq\test\BunqSdkTestBase;
-use bunq\test\Config;
 
 /**
  * Tests
@@ -67,7 +64,7 @@ class DraftShareInviteBankQrCodeContentTest extends BunqSdkTestBase
     {
         return DraftShareInviteBank::create(
             static::$expirationDate,
-            new DraftShareInviteBankEntry(
+            new DraftShareInviteEntry(
                 new ShareDetail(
                     null,
                     new ShareDetailReadOnly(true, true, true)
