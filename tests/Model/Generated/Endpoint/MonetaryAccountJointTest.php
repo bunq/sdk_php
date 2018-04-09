@@ -11,11 +11,19 @@ use bunq\Util\FileUtil;
  */
 class MonetaryAccountJointTest extends BunqSdkTestBase
 {
+    /**
+     * Path constants.
+     */
+    const PATH_TO_MONETARY_ACCOUNT_JOINT_JSON = __DIR__ . '/../../../resource/ResponseJsons/MonetaryAccountJoint.json';
 
+    /**
+     */
     public static function setUpBeforeClass()
     {
     }
 
+    /**
+     */
     public function setUp()
     {
     }
@@ -25,7 +33,7 @@ class MonetaryAccountJointTest extends BunqSdkTestBase
     public function testMonetaryAccountJointFromJson()
     {
         $jsonString =
-            FileUtil::getFileContents(__DIR__ . '/../../../resource/ResponseJsons/MonetaryAccountJoint.json');
+            FileUtil::getFileContents(self::PATH_TO_MONETARY_ACCOUNT_JOINT_JSON);
 
         $monetaryAccountJoint = MonetaryAccountJoint::createFromJsonString($jsonString);
 
