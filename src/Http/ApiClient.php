@@ -2,6 +2,7 @@
 namespace bunq\Http;
 
 use bunq\Context\ApiContext;
+use bunq\Context\BunqContext;
 use bunq\Exception\BunqException;
 use bunq\Http\Handler\HandlerUtil;
 use bunq\Http\Handler\RequestHandlerAuthentication;
@@ -223,7 +224,9 @@ class ApiClient
     private function initialize(string $uri)
     {
         if (!isset(self::URIS_NOT_REQUIRING_ACTIVE_SESSION[$uri])) {
-            $this->apiContext->ensureSessionActive();
+            if ($this->apiContext->ensureSessionActive()) {
+                BunqContext::updateApiContext($this->apiContext);
+            }
         }
 
         $this->initializeHttpClient();
