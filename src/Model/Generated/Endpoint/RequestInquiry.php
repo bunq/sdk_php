@@ -10,6 +10,7 @@ use bunq\Model\Generated\Object\Geolocation;
 use bunq\Model\Generated\Object\LabelMonetaryAccount;
 use bunq\Model\Generated\Object\LabelUser;
 use bunq\Model\Generated\Object\Pointer;
+use bunq\Model\Generated\Object\RequestReferenceSplitTheBillAnchorObject;
 
 /**
  * RequestInquiry, aka 'RFP' (Request for Payment), is one of the innovative
@@ -47,6 +48,7 @@ class RequestInquiry extends BunqModel
     const FIELD_ALLOW_AMOUNT_HIGHER = 'allow_amount_higher';
     const FIELD_ALLOW_BUNQME = 'allow_bunqme';
     const FIELD_REDIRECT_URL = 'redirect_url';
+    const FIELD_EVENT_ID = 'event_id';
 
     /**
      * Object type.
@@ -237,6 +239,14 @@ class RequestInquiry extends BunqModel
     protected $allowChat;
 
     /**
+     * The reference to the object used for split the bill. Can be Payment,
+     * PaymentBatch, ScheduleInstance, RequestResponse and MasterCardAction
+     *
+     * @var RequestReferenceSplitTheBillAnchorObject
+     */
+    protected $referenceSplitTheBill;
+
+    /**
      * The Amount requested to be paid by the person the RequestInquiry is sent
      * to. Must be bigger than 0.
      *
@@ -344,6 +354,14 @@ class RequestInquiry extends BunqModel
     protected $redirectUrlFieldForRequest;
 
     /**
+     * The ID of the associated event if the request was made using 'split the
+     * bill'.
+     *
+     * @var int|null
+     */
+    protected $eventIdFieldForRequest;
+
+    /**
      * @param Amount $amountInquired         The Amount requested to be paid by the
      *                                       person the RequestInquiry is sent to. Must be bigger than 0.
      * @param Pointer $counterpartyAlias     The Alias of the party we are
@@ -380,6 +398,8 @@ class RequestInquiry extends BunqModel
      *                                       Defaults to false.
      * @param string|null $redirectUrl       The URL which the user is sent to after
      *                                       accepting or rejecting the Request.
+     * @param int|null $eventId              The ID of the associated event if the request
+     *                                       was made using 'split the bill'.
      */
     public function __construct(
         Amount $amountInquired,
@@ -394,7 +414,8 @@ class RequestInquiry extends BunqModel
         bool $wantTip = null,
         bool $allowAmountLower = null,
         bool $allowAmountHigher = null,
-        string $redirectUrl = null
+        string $redirectUrl = null,
+        int $eventId = null
     ) {
         $this->amountInquiredFieldForRequest = $amountInquired;
         $this->counterpartyAliasFieldForRequest = $counterpartyAlias;
@@ -409,6 +430,7 @@ class RequestInquiry extends BunqModel
         $this->allowAmountHigherFieldForRequest = $allowAmountHigher;
         $this->allowBunqmeFieldForRequest = $allowBunqme;
         $this->redirectUrlFieldForRequest = $redirectUrl;
+        $this->eventIdFieldForRequest = $eventId;
     }
 
     /**
@@ -451,6 +473,8 @@ class RequestInquiry extends BunqModel
      *                                       Defaults to false.
      * @param string|null $redirectUrl       The URL which the user is sent to after
      *                                       accepting or rejecting the Request.
+     * @param int|null $eventId              The ID of the associated event if the request
+     *                                       was made using 'split the bill'.
      * @param string[] $customHeaders
      *
      * @return BunqResponseInt
@@ -470,6 +494,7 @@ class RequestInquiry extends BunqModel
         bool $allowAmountLower = null,
         bool $allowAmountHigher = null,
         string $redirectUrl = null,
+        int $eventId = null,
         array $customHeaders = []
     ): BunqResponseInt {
         $apiClient = new ApiClient(static::getApiContext());
@@ -492,6 +517,7 @@ class RequestInquiry extends BunqModel
                 self::FIELD_ALLOW_AMOUNT_HIGHER => $allowAmountHigher,
                 self::FIELD_ALLOW_BUNQME => $allowBunqme,
                 self::FIELD_REDIRECT_URL => $redirectUrl,
+                self::FIELD_EVENT_ID => $eventId,
             ],
             $customHeaders
         );
@@ -1128,6 +1154,28 @@ class RequestInquiry extends BunqModel
     }
 
     /**
+     * The reference to the object used for split the bill. Can be Payment,
+     * PaymentBatch, ScheduleInstance, RequestResponse and MasterCardAction
+     *
+     * @return RequestReferenceSplitTheBillAnchorObject
+     */
+    public function getReferenceSplitTheBill()
+    {
+        return $this->referenceSplitTheBill;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param RequestReferenceSplitTheBillAnchorObject $referenceSplitTheBill
+     */
+    public function setReferenceSplitTheBill($referenceSplitTheBill)
+    {
+        $this->referenceSplitTheBill = $referenceSplitTheBill;
+    }
+
+    /**
      * @return bool
      */
     public function isAllFieldNull()
@@ -1229,6 +1277,10 @@ class RequestInquiry extends BunqModel
         }
 
         if (!is_null($this->allowChat)) {
+            return false;
+        }
+
+        if (!is_null($this->referenceSplitTheBill)) {
             return false;
         }
 

@@ -6,6 +6,7 @@ use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Object\Amount;
 use bunq\Model\Generated\Object\LabelCard;
 use bunq\Model\Generated\Object\LabelMonetaryAccount;
+use bunq\Model\Generated\Object\RequestInquiryReference;
 
 /**
  * MasterCard transaction view.
@@ -204,6 +205,22 @@ class MasterCardAction extends BunqModel
      * @var int
      */
     protected $secureCodeId;
+
+    /**
+     * The ID of the wallet provider as defined by MasterCard. 420 = bunq
+     * Android app with Tap&Pay; 103 = Apple Pay.
+     *
+     * @var string
+     */
+    protected $walletProviderId;
+
+    /**
+     * The reference to the object used for split the bill. Can be
+     * RequestInquiry or RequestInquiryBatch
+     *
+     * @var RequestInquiryReference[]
+     */
+    protected $requestReferenceSplitTheBill;
 
     /**
      * @param int $masterCardActionId
@@ -793,6 +810,50 @@ class MasterCardAction extends BunqModel
     }
 
     /**
+     * The ID of the wallet provider as defined by MasterCard. 420 = bunq
+     * Android app with Tap&Pay; 103 = Apple Pay.
+     *
+     * @return string
+     */
+    public function getWalletProviderId()
+    {
+        return $this->walletProviderId;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param string $walletProviderId
+     */
+    public function setWalletProviderId($walletProviderId)
+    {
+        $this->walletProviderId = $walletProviderId;
+    }
+
+    /**
+     * The reference to the object used for split the bill. Can be
+     * RequestInquiry or RequestInquiryBatch
+     *
+     * @return RequestInquiryReference[]
+     */
+    public function getRequestReferenceSplitTheBill()
+    {
+        return $this->requestReferenceSplitTheBill;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param RequestInquiryReference[] $requestReferenceSplitTheBill
+     */
+    public function setRequestReferenceSplitTheBill($requestReferenceSplitTheBill)
+    {
+        $this->requestReferenceSplitTheBill = $requestReferenceSplitTheBill;
+    }
+
+    /**
      * @return bool
      */
     public function isAllFieldNull()
@@ -894,6 +955,14 @@ class MasterCardAction extends BunqModel
         }
 
         if (!is_null($this->secureCodeId)) {
+            return false;
+        }
+
+        if (!is_null($this->walletProviderId)) {
+            return false;
+        }
+
+        if (!is_null($this->requestReferenceSplitTheBill)) {
             return false;
         }
 

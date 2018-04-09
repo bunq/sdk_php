@@ -39,6 +39,16 @@ class MonetaryAccount extends BunqModel implements AnchorObjectInterface
     protected $monetaryAccountBank;
 
     /**
+     * @var MonetaryAccountJoint
+     */
+    protected $monetaryAccountJoint;
+
+    /**
+     * @var MonetaryAccountLight
+     */
+    protected $monetaryAccountLight;
+
+    /**
      * Get a specific MonetaryAccount.
      *
      * @param int $monetaryAccountId
@@ -111,6 +121,44 @@ class MonetaryAccount extends BunqModel implements AnchorObjectInterface
     }
 
     /**
+     * @return MonetaryAccountJoint
+     */
+    public function getMonetaryAccountJoint()
+    {
+        return $this->monetaryAccountJoint;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param MonetaryAccountJoint $monetaryAccountJoint
+     */
+    public function setMonetaryAccountJoint($monetaryAccountJoint)
+    {
+        $this->monetaryAccountJoint = $monetaryAccountJoint;
+    }
+
+    /**
+     * @return MonetaryAccountLight
+     */
+    public function getMonetaryAccountLight()
+    {
+        return $this->monetaryAccountLight;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param MonetaryAccountLight $monetaryAccountLight
+     */
+    public function setMonetaryAccountLight($monetaryAccountLight)
+    {
+        $this->monetaryAccountLight = $monetaryAccountLight;
+    }
+
+    /**
      * @return BunqModel
      * @throws BunqException
      */
@@ -118,6 +166,14 @@ class MonetaryAccount extends BunqModel implements AnchorObjectInterface
     {
         if (!is_null($this->monetaryAccountBank)) {
             return $this->monetaryAccountBank;
+        }
+
+        if (!is_null($this->monetaryAccountJoint)) {
+            return $this->monetaryAccountJoint;
+        }
+
+        if (!is_null($this->monetaryAccountLight)) {
+            return $this->monetaryAccountLight;
         }
 
         throw new BunqException(self::ERROR_NULL_FIELDS);
@@ -129,6 +185,14 @@ class MonetaryAccount extends BunqModel implements AnchorObjectInterface
     public function isAllFieldNull()
     {
         if (!is_null($this->monetaryAccountBank)) {
+            return false;
+        }
+
+        if (!is_null($this->monetaryAccountJoint)) {
+            return false;
+        }
+
+        if (!is_null($this->monetaryAccountLight)) {
             return false;
         }
 
