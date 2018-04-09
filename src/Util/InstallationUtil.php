@@ -90,7 +90,7 @@ final class InstallationUtil
 
         $description = static::readLine(self::PROMPT_DESCRIPTION, self::ERROR_EMPTY_DESCRIPTION);
         $allPermittedIpInput = static::readLineOrNull(self::PROMPT_ALL_PERMITTED_IP);
-        $allPermittedIp = static::formatIps($allPermittedIpInput);
+        $allPermittedIp = static::formatAllIp($allPermittedIpInput);
         $methodRegisterDevice = static::createAccessibleReflectionMethod(
             ApiContext::class,
             self::METHOD_REGISTER_DEVICE
@@ -186,7 +186,7 @@ final class InstallationUtil
      *
      * @return string[]
      */
-    private static function formatIps(string $permittedIpsInput = null): array
+    private static function formatAllIp(string $permittedIpsInput = null): array
     {
         if (is_null($permittedIpsInput)) {
             $permittedIps = [];
