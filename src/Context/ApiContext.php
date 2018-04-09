@@ -11,6 +11,7 @@ use bunq\Model\Generated\Endpoint\Session;
 use bunq\Security\KeyPair;
 use bunq\Util\BunqEnumApiEnvironmentType;
 use bunq\Util\FileUtil;
+use bunq\Util\InstallationUtil;
 use GuzzleHttp\Psr7\Uri;
 
 /**
@@ -92,7 +93,7 @@ class ApiContext
      * @param BunqEnumApiEnvironmentType $environmentType
      * @param string $apiKey
      * @param string $description
-     * @param string[] $permittedIps
+     * @param string[] $allPermittedIp
      * @param string|null $proxyUrl
      *
      * @return static
@@ -101,14 +102,17 @@ class ApiContext
         BunqEnumApiEnvironmentType $environmentType,
         string $apiKey,
         string $description,
-        array $permittedIps = [],
+        array $allPermittedIp = [],
         string $proxyUrl = null
     ): ApiContext {
+        InstallationUtil::assertDeviceDescriptionIsValid($description);
+        InstallationUtil::assertAllIpIsValid($allPermittedIp);
+
         $apiContext = new static();
         $apiContext->environmentType = $environmentType;
         $apiContext->apiKey = $apiKey;
         $apiContext->proxyUrl = $proxyUrl;
-        $apiContext->initialize($description, $permittedIps);
+        $apiContext->initialize($description, $allPermittedIp);
 
         return $apiContext;
     }
@@ -325,12 +329,16 @@ class ApiContext
     }
 
     /**
-     * @param string $fileName
+     * @param string|null $fileName
      *
      * @throws BunqException When the context couldn't be saved to the given location.
      */
-    public function save(string $fileName = self::FILENAME_CONFIG_DEFAULT)
+    public function save(string $fileName = null)
     {
+        if (is_null($fileName)) {
+            $fileName = self::FILENAME_CONFIG_DEFAULT;
+        }
+
         $saved = file_put_contents($fileName, $this->toJson());
 
         if ($saved === false) {
