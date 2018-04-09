@@ -105,11 +105,7 @@ final class InstallationUtil
 
         $contextFileName = static::readLineOrNull(self::PROMPT_CONTEXT_FILE);
 
-        if ($contextFileName === null) {
-            $context->save();
-        } else {
-            $context->save($contextFileName);
-        }
+        $context->save($contextFileName);
     }
 
     /**
@@ -286,11 +282,7 @@ final class InstallationUtil
         );
         $methodInitializeSessionContext->invoke($context);
 
-        if ($contextFileName === null) {
-            $context->save();
-        } else {
-            $context->save($contextFileName);
-        }
+        $context->save($contextFileName);
     }
 
     /**
