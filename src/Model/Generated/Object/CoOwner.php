@@ -1,0 +1,90 @@
+<?php
+namespace bunq\Model\Generated\Object;
+
+use bunq\Model\Core\BunqModel;
+
+/**
+ * @generated
+ */
+class CoOwner extends BunqModel
+{
+    /**
+     * The Alias of the co-owner.
+     *
+     * @var LabelUser[]
+     */
+    protected $alias;
+
+    /**
+     * Can be: ACCEPTED, REJECTED, PENDING or REVOKED
+     *
+     * @var string
+     */
+    protected $status;
+
+    /**
+     * @param Pointer $alias The users the account will be joint with.
+     */
+    public function __construct(Pointer $alias)
+    {
+        $this->alias = $alias;
+    }
+
+    /**
+     * The Alias of the co-owner.
+     *
+     * @return LabelUser[]
+     */
+    public function getAlias()
+    {
+        return $this->alias;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param LabelUser[] $alias
+     */
+    public function setAlias($alias)
+    {
+        $this->alias = $alias;
+    }
+
+    /**
+     * Can be: ACCEPTED, REJECTED, PENDING or REVOKED
+     *
+     * @return string
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param string $status
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isAllFieldNull()
+    {
+        if (!is_null($this->alias)) {
+            return false;
+        }
+
+        if (!is_null($this->status)) {
+            return false;
+        }
+
+        return true;
+    }
+}

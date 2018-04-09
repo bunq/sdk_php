@@ -5,10 +5,10 @@ use bunq\Http\BunqResponse;
 
 /**
  */
-class BunqResponseTabList extends BunqResponse
+class BunqResponseDraftShareInviteApiKeyList extends BunqResponse
 {
     /**
-     * @return Tab[]
+     * @return DraftShareInviteApiKey[]
      */
     public function getValue(): array
     {

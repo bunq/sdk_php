@@ -39,6 +39,7 @@ class Card extends BunqModel
     /**
      * Object type.
      */
+    const OBJECT_TYPE_PUT = 'CardDebit';
     const OBJECT_TYPE_GET = 'CardDebit';
 
     /**
@@ -370,7 +371,7 @@ class Card extends BunqModel
      *                                                          Fallback account is removed if not supplied.
      * @param string[] $customHeaders
      *
-     * @return BunqResponseInt
+     * @return BunqResponseCard
      */
     public static function update(
         int $cardId,
@@ -384,7 +385,7 @@ class Card extends BunqModel
         array $pinCodeAssignment = null,
         int $monetaryAccountIdFallback = null,
         array $customHeaders = []
-    ): BunqResponseInt {
+    ): BunqResponseCard {
         $apiClient = new ApiClient(static::getApiContext());
         $apiClient->enableEncryption();
         $responseRaw = $apiClient->put(
@@ -406,8 +407,8 @@ class Card extends BunqModel
             $customHeaders
         );
 
-        return BunqResponseInt::castFromBunqResponse(
-            static::processForId($responseRaw)
+        return BunqResponseCard::castFromBunqResponse(
+            static::fromJson($responseRaw, self::OBJECT_TYPE_PUT)
         );
     }
 

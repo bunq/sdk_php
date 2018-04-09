@@ -6,7 +6,7 @@ use bunq\Model\Core\BunqModel;
 /**
  * @generated
  */
-class DraftShareInviteBankEntry extends BunqModel
+class DraftShareInviteEntry extends BunqModel
 {
     /**
      * The share details. Only one of these objects is returned.

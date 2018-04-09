@@ -9,6 +9,7 @@ use bunq\Model\Generated\Object\AttachmentMonetaryAccountPayment;
 use bunq\Model\Generated\Object\Geolocation;
 use bunq\Model\Generated\Object\LabelMonetaryAccount;
 use bunq\Model\Generated\Object\Pointer;
+use bunq\Model\Generated\Object\RequestInquiryReference;
 
 /**
  * Using Payment, you can send payments to bunq and non-bunq users from your
@@ -213,6 +214,14 @@ class Payment extends BunqModel
      * @var bool
      */
     protected $allowChat;
+
+    /**
+     * The reference to the object used for split the bill. Can be
+     * RequestInquiry or RequestInquiryBatch
+     *
+     * @var RequestInquiryReference[]
+     */
+    protected $requestReferenceSplitTheBill;
 
     /**
      * The Amount to transfer with the Payment. Must be bigger than 0 and
@@ -898,6 +907,28 @@ class Payment extends BunqModel
     }
 
     /**
+     * The reference to the object used for split the bill. Can be
+     * RequestInquiry or RequestInquiryBatch
+     *
+     * @return RequestInquiryReference[]
+     */
+    public function getRequestReferenceSplitTheBill()
+    {
+        return $this->requestReferenceSplitTheBill;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param RequestInquiryReference[] $requestReferenceSplitTheBill
+     */
+    public function setRequestReferenceSplitTheBill($requestReferenceSplitTheBill)
+    {
+        $this->requestReferenceSplitTheBill = $requestReferenceSplitTheBill;
+    }
+
+    /**
      * @return bool
      */
     public function isAllFieldNull()
@@ -991,6 +1022,10 @@ class Payment extends BunqModel
         }
 
         if (!is_null($this->allowChat)) {
+            return false;
+        }
+
+        if (!is_null($this->requestReferenceSplitTheBill)) {
             return false;
         }
 
