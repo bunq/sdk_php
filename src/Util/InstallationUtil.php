@@ -23,6 +23,8 @@ final class InstallationUtil
     const ERROR_EMPTY_DESCRIPTION = 'Description cannot be empty.';
     const ERROR_INVALID_IP_ADDRESS = 'Invalid ip address "%s"';
     const ERROR_CANNOT_CREATE_API_KEY_PRODUCTION = 'Cannot automatically create API key for production.';
+    const ERROR_INVALID_DEVICE_DESCRIPTION =
+        '"%s" can not be used as a device description, must be a non empty string.';
 
     /**
      * Prompt constants.
@@ -275,6 +277,20 @@ final class InstallationUtil
     }
 
     /**
+     * @param string[] $allIp
+     *
+     * @return bool
+     */
+    public static function assertAllIpIsValid(array $allIp): bool
+    {
+        foreach ($allIp as $ip) {
+            static::assertIpIsValid($ip);
+        }
+
+        return true;
+    }
+
+    /**
      * @param string $ip
      *
      * @throws BunqException when the IP address is invalid
@@ -286,5 +302,20 @@ final class InstallationUtil
         } else {
             throw new BunqException(self::ERROR_INVALID_IP_ADDRESS, [$ip]);
         }
+    }
+
+    /**
+     * @param string $deviceDescription
+     *
+     * @return bool
+     * @throws BunqException
+     */
+    public static function assertDeviceDescriptionIsValid(string $deviceDescription): bool
+    {
+        if (empty($deviceDescription)) {
+            throw new BunqException(vsprintf(self::ERROR_INVALID_DEVICE_DESCRIPTION, [$deviceDescription]));
+        }
+
+        return true;
     }
 }
