@@ -329,12 +329,16 @@ class ApiContext
     }
 
     /**
-     * @param string $fileName
+     * @param string|null $fileName
      *
      * @throws BunqException When the context couldn't be saved to the given location.
      */
-    public function save(string $fileName = self::FILENAME_CONFIG_DEFAULT)
+    public function save(string $fileName = null)
     {
+        if (is_null($fileName)) {
+            $fileName = self::FILENAME_CONFIG_DEFAULT;
+        }
+
         $saved = file_put_contents($fileName, $this->toJson());
 
         if ($saved === false) {
