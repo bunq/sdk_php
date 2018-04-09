@@ -1,0 +1,3 @@
+[submodule "example"]
+	path = example
+	url = https://github.com/bunq/tinker_php.git
