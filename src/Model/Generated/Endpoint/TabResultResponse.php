@@ -3,6 +3,7 @@ namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Http\ApiClient;
 use bunq\Model\Core\BunqModel;
+use bunq\Model\Generated\Object\RequestInquiryReference;
 
 /**
  * Used to view TabResultResponse objects belonging to a tab. A
@@ -37,6 +38,14 @@ class TabResultResponse extends BunqModel
      * @var Payment
      */
     protected $payment;
+
+    /**
+     * The reference to the object used for split the bill. Can be
+     * RequestInquiry or RequestInquiryBatch
+     *
+     * @var RequestInquiryReference[]
+     */
+    protected $requestReferenceSplitTheBill;
 
     /**
      * Used to view a single TabResultResponse belonging to a tab.
@@ -146,6 +155,28 @@ class TabResultResponse extends BunqModel
     }
 
     /**
+     * The reference to the object used for split the bill. Can be
+     * RequestInquiry or RequestInquiryBatch
+     *
+     * @return RequestInquiryReference[]
+     */
+    public function getRequestReferenceSplitTheBill()
+    {
+        return $this->requestReferenceSplitTheBill;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param RequestInquiryReference[] $requestReferenceSplitTheBill
+     */
+    public function setRequestReferenceSplitTheBill($requestReferenceSplitTheBill)
+    {
+        $this->requestReferenceSplitTheBill = $requestReferenceSplitTheBill;
+    }
+
+    /**
      * @return bool
      */
     public function isAllFieldNull()
@@ -155,6 +186,10 @@ class TabResultResponse extends BunqModel
         }
 
         if (!is_null($this->payment)) {
+            return false;
+        }
+
+        if (!is_null($this->requestReferenceSplitTheBill)) {
             return false;
         }
 

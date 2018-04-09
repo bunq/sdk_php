@@ -7,6 +7,7 @@ use bunq\Model\Generated\Object\DraftPaymentAnchorObject;
 use bunq\Model\Generated\Object\DraftPaymentEntry;
 use bunq\Model\Generated\Object\DraftPaymentResponse;
 use bunq\Model\Generated\Object\LabelUser;
+use bunq\Model\Generated\Object\RequestInquiryReference;
 
 /**
  * A DraftPayment is like a regular Payment, but it needs to be accepted by
@@ -93,6 +94,14 @@ class DraftPayment extends BunqModel
      * @var DraftPaymentAnchorObject|null
      */
     protected $object;
+
+    /**
+     * The reference to the object used for split the bill. Can be
+     * RequestInquiry or RequestInquiryBatch
+     *
+     * @var RequestInquiryReference[]
+     */
+    protected $requestReferenceSplitTheBill;
 
     /**
      * The status of the DraftPayment.
@@ -471,6 +480,28 @@ class DraftPayment extends BunqModel
     }
 
     /**
+     * The reference to the object used for split the bill. Can be
+     * RequestInquiry or RequestInquiryBatch
+     *
+     * @return RequestInquiryReference[]
+     */
+    public function getRequestReferenceSplitTheBill()
+    {
+        return $this->requestReferenceSplitTheBill;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param RequestInquiryReference[] $requestReferenceSplitTheBill
+     */
+    public function setRequestReferenceSplitTheBill($requestReferenceSplitTheBill)
+    {
+        $this->requestReferenceSplitTheBill = $requestReferenceSplitTheBill;
+    }
+
+    /**
      * @return bool
      */
     public function isAllFieldNull()
@@ -504,6 +535,10 @@ class DraftPayment extends BunqModel
         }
 
         if (!is_null($this->object)) {
+            return false;
+        }
+
+        if (!is_null($this->requestReferenceSplitTheBill)) {
             return false;
         }
 
