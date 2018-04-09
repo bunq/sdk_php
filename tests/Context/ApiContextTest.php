@@ -3,11 +3,13 @@ namespace bunq\test\Context;
 
 use bunq\Context\ApiContext;
 use bunq\Context\BunqContext;
+use bunq\Exception\BunqException;
 use bunq\test\BunqSdkTestBase;
+use bunq\Util\BunqEnumApiEnvironmentType;
 
 /**
  * @author Daniil Belyakov <daniil@bunq.com>
- * @since 20170822 Initial creation.
+ * @since  20170822 Initial creation.
  */
 class ApiContextTest extends BunqSdkTestBase
 {
