@@ -32,7 +32,7 @@ final class InstallationUtil
     const PROMPT_API_KEY = 'Please provide your api key: ';
     const PROMPT_PROXY_URL = 'Provide a proxy url, leave empty for no proxy (default: no proxy): ';
     const PROMPT_DESCRIPTION = 'Provide a device description: ';
-    const PROMPT_PERMITTED_IPS = 'Provide a list of comma-separated IPs (or leave empty for current IP): ';
+    const PROMPT_ALL_PERMITTED_IP = 'Provide a list of comma-separated IPs (or leave empty for current IP): ';
     const PROMPT_CONTEXT_FILE = 'Provide a file where the bunq api context will be saved (default: bunq.conf): ';
 
     /**
@@ -89,13 +89,13 @@ final class InstallationUtil
         $methodInitializeInstallationContext->invoke($context);
 
         $description = static::readLine(self::PROMPT_DESCRIPTION, self::ERROR_EMPTY_DESCRIPTION);
-        $permittedIpsInput = static::readLineOrNull(self::PROMPT_PERMITTED_IPS);
-        $permittedIps = static::formatIps($permittedIpsInput);
+        $allPermittedIpInput = static::readLineOrNull(self::PROMPT_ALL_PERMITTED_IP);
+        $allPermittedIp = static::formatIps($allPermittedIpInput);
         $methodRegisterDevice = static::createAccessibleReflectionMethod(
             ApiContext::class,
             self::METHOD_REGISTER_DEVICE
         );
-        $methodRegisterDevice->invoke($context, $description, $permittedIps);
+        $methodRegisterDevice->invoke($context, $description, $allPermittedIp);
 
         $methodInitializeSessionContext = static::createAccessibleReflectionMethod(
             ApiContext::class,
