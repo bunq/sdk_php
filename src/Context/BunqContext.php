@@ -39,15 +39,12 @@ class BunqContext
 
     /**
      * @return ApiContext
-     * @throws BunqException
      */
     public static function getApiContext(): ApiContext
     {
-        if (is_null(static::$apiContext)) {
-            throw new BunqException(self::ERROR_API_CONTEXT_HAS_NOT_BEEN_LOADED);
-        } else {
-            return static::$apiContext;
-        }
+        static::assertApiContextHasBeenLoaded();
+
+        return static::$apiContext;
     }
 
     /**
@@ -61,5 +58,28 @@ class BunqContext
         } else {
             return static::$userContext;
         }
+    }
+
+    /**
+     * @param ApiContext $apiContext
+     */
+    public static function updateApiContext(ApiContext $apiContext)
+    {
+        static::assertApiContextHasBeenLoaded();
+
+        static::$apiContext = $apiContext;
+    }
+
+    /**
+     * @return bool
+     * @throws BunqException
+     */
+    private static function assertApiContextHasBeenLoaded(): bool
+    {
+        if (is_null(static::$apiContext)) {
+            throw new BunqException(self::ERROR_API_CONTEXT_HAS_NOT_BEEN_LOADED);
+        }
+
+        return true;
     }
 }
