@@ -61,10 +61,6 @@ class ApiContextTest extends BunqSdkTestBase
             $expireTime->format(SessionContext::FORMAT_MICROTIME);
 
         $expiredApiContext = ApiContext::fromJson(json_encode($contextJson));
-        $validApiContext = clone $expiredApiContext;
-
-        static::assertTrue($validApiContext->ensureSessionActive());
-        static::assertNotEquals($expiredApiContext, $validApiContext);
 
         BunqContext::updateApiContext(clone $expiredApiContext);
 
