@@ -69,6 +69,10 @@ class ApiContextTest extends BunqSdkTestBase
         BunqContext::getUserContext()->refreshUserContext();
 
         static::assertNotEquals($expiredApiContext, BunqContext::getApiContext());
+        static::assertNotEquals(
+            $expiredApiContext->getSessionContext()->getExpiryTime(),
+            BunqContext::getApiContext()->getSessionContext()->getExpiryTime()
+        );
         static::assertFalse(BunqContext::getApiContext()->ensureSessionActive());
     }
 }
