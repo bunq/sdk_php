@@ -17,6 +17,16 @@ class ApiContextTest extends BunqSdkTestBase
     const CONTEXT_FILE_PATH_TEST = __DIR__ . '/context-save-restore-test.conf';
 
     /**
+     * String format constants.
+     */
+    const STRING_EMPTY = '';
+
+    /**
+     * Exception message constants.
+     */
+    const EXPECTED_EXCEPTION_MESSAGE = '"" can not be used as a device description, must be a non empty string.';
+
+    /**
      */
     public function testApiContextSerializeDeserialize()
     {
@@ -35,5 +45,14 @@ class ApiContextTest extends BunqSdkTestBase
         $apiContextRestored = ApiContext::restore(self::CONTEXT_FILE_PATH_TEST);
 
         static::assertEquals($apiContextJson, $apiContextRestored->toJson());
+    }
+
+    /**
+     */
+    public function testCreateAdiContextWithInvalidDescription()
+    {
+        $this->expectException(BunqException::class);
+        $this->expectExceptionMessage(self::EXPECTED_EXCEPTION_MESSAGE);
+        ApiContext::create(BunqEnumApiEnvironmentType::SANDBOX(), self::STRING_EMPTY, false);
     }
 }
