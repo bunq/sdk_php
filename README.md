@@ -128,7 +128,7 @@ Payment::create(
 See [`tinker/BunqLib`](https://github.com/bunq/tinker_php/blob/05a38a2660e6f6db1f7efc9b915f0131c172c230/src/BunqLib.php#L240-L245)
 
 #### Reading objects
-To use the read method you must pass the identifier of the object to read (ID or UUID) except for the endpoints `User`, `UserPerson`, `UserCompany` and `Monetary Account`. The SDK will use the default IDs when none are passed. For all other endpoints you must pass the identifier.
+To use the read method you must pass the identifier of the object to read (ID or UUID) except for the endpoints `User`, `UserPerson`, `UserCompany` and `MonetaryAccount`. The SDK will use the default IDs when none are passed. For all other endpoints you must pass the identifier.
 
 This type of calls always returns a model.
 
