@@ -108,7 +108,7 @@ There is a class for each endpoint. Each class has functions for each supported 
 
 Before you can start making calls, you must ensure that you have create an ApiContext and loaded in into BunqContext as shown in the examples above. 
 
-The SDK will take care of your user Id, as this id wil never change per ApiContext. The SDK also uses your first active monetary account as primary monetary account. This is alsmot always the same as your billing account. This means, if you do not explicitly pass a monetary account id, the SDK will use the billing account id.  
+The SDK will take care of your user Id, as this id wil never change per ApiContext. The SDK also uses your first active monetary account as primary monetary account. This is almost always the same as your billing account. This means that when you do not explicitly pass a Monetary Account ID, the SDK will use the Monetary Account ID of your billing account.
 
 Take a look at [doc.bunq.com](https://doc.bunq.com) for the full documentation.
 
@@ -128,7 +128,7 @@ Payment::create(
 See [`tinker/BunqLib`](https://github.com/bunq/tinker_php/blob/05a38a2660e6f6db1f7efc9b915f0131c172c230/src/BunqLib.php#L240-L245)
 
 #### Reading objects
-To use the read method you must pass the identifier of the object to read (ID or UUID) expect for the endpoints User, UserPerson, UserCompany and monetary account. As the SDK will use default ids if not passed. For all other endpoints you must pass the identifier. 
+To use the read method you must pass the identifier of the object to read (ID or UUID) except for the endpoints `User`, `UserPerson`, `UserCompany` and `Monetary Account`. The SDK will use the default IDs when none are passed. For all other endpoints you must pass the identifier.
 
 This type of calls always returns a model.
 
@@ -142,7 +142,7 @@ printf($userCompany->getPublicNickName());
 
 ##### Example
 
-You can also retrieve this information from BunqContext, see [`tinker/setupCurrentUser`](https://github.com/bunq/tinker_php/blob/05a38a2660e6f6db1f7efc9b915f0131c172c230/src/BunqLib.php#L117-L120)
+You can also retrieve this information from `BunqContext`, see [`tinker/setupCurrentUser`](https://github.com/bunq/tinker_php/blob/05a38a2660e6f6db1f7efc9b915f0131c172c230/src/BunqLib.php#L117-L120)
 
 #### Updating objects
 ```php
