@@ -121,7 +121,7 @@ Payment::create(
     new Pointer(self::POINTER_TYPE_EMAIL, $recipient),
     $description,
     $monetaryAccount->getId()
-)
+);
 ```
 
 ##### Example
