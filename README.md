@@ -62,7 +62,7 @@ $apiContext = ApiContext::create(
     $permittedIps
 );
 
-BunqContext:loadApiContext($apiContext);
+BunqContext::loadApiContext($apiContext);
 ```
 
 The API context can then be saved with:
@@ -79,7 +79,7 @@ After saving the context, you can restore it at any time:
 ```php
 $fileName = '/path/to/bunq.conf/file/';
 $apiContext = ApiContext::restore($fileName);
-BunqContext:loadApiContext($apiContext);
+BunqContext::loadApiContext($apiContext);
 ```
 
 **Tip:** both saving and restoring the context can be done without any arguments. In this case the context will be saved to/restored from the `bunq.conf` file in the same folder with your script.
@@ -117,11 +117,11 @@ Take a look at [doc.bunq.com](https://doc.bunq.com) for the full documentation.
 BunqContext::loadApiContext($apiContext); // if it has not been loaded yet. 
 
 Payment::create(
-            new Amount($amount, self::CURRENCY_TYPE_EUR),
-            new Pointer(self::POINTER_TYPE_EMAIL, $recipient),
-            $description,
-            $monetaryAccount->getId()
-        )
+    new Amount($amount, self::CURRENCY_TYPE_EUR),
+    new Pointer(self::POINTER_TYPE_EMAIL, $recipient),
+    $description,
+    $monetaryAccount->getId()
+)
 ```
 
 ##### Example
@@ -161,7 +161,7 @@ See [`tinker/updateBankAccountDescription`](https://github.com/bunq/tinker_php/b
 ```php
 BunqContext::loadApiContext($apiContext); // if it has not been loaded yet. 
 
-CustomerStatementExport::delete($customerStatementExportId)
+CustomerStatementExport::delete($customerStatementExportId);
 ```
 
 #### Listing objects
