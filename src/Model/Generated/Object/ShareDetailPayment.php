@@ -56,6 +56,53 @@ class ShareDetailPayment extends BunqModel
     protected $budget;
 
     /**
+     * If set to true, the invited user will be able to make payments from the
+     * shared account.
+     *
+     * @var bool
+     */
+    protected $makePaymentsFieldForRequest;
+
+    /**
+     * If set to true, the invited user will be able to make draft payments from
+     * the shared account.
+     *
+     * @var bool|null
+     */
+    protected $makeDraftPaymentsFieldForRequest;
+
+    /**
+     * If set to true, the invited user will be able to view the account
+     * balance.
+     *
+     * @var bool
+     */
+    protected $viewBalanceFieldForRequest;
+
+    /**
+     * If set to true, the invited user will be able to view events from before
+     * the share was active.
+     *
+     * @var bool
+     */
+    protected $viewOldEventsFieldForRequest;
+
+    /**
+     * If set to true, the invited user will be able to view events starting
+     * from the time the share became active.
+     *
+     * @var bool
+     */
+    protected $viewNewEventsFieldForRequest;
+
+    /**
+     * The budget restriction.
+     *
+     * @var BudgetRestriction|null
+     */
+    protected $budgetFieldForRequest;
+
+    /**
      * @param bool $makePayments             If set to true, the invited user will be able
      *                                       to make payments from the shared account.
      * @param bool $viewBalance              If set to true, the invited user will be able to
@@ -76,12 +123,12 @@ class ShareDetailPayment extends BunqModel
         bool $makeDraftPayments = null,
         BudgetRestriction $budget = null
     ) {
-        $this->makePayments = $makePayments;
-        $this->makeDraftPayments = $makeDraftPayments;
-        $this->viewBalance = $viewBalance;
-        $this->viewOldEvents = $viewOldEvents;
-        $this->viewNewEvents = $viewNewEvents;
-        $this->budget = $budget;
+        $this->makePaymentsFieldForRequest = $makePayments;
+        $this->makeDraftPaymentsFieldForRequest = $makeDraftPayments;
+        $this->viewBalanceFieldForRequest = $viewBalance;
+        $this->viewOldEventsFieldForRequest = $viewOldEvents;
+        $this->viewNewEventsFieldForRequest = $viewNewEvents;
+        $this->budgetFieldForRequest = $budget;
     }
 
     /**

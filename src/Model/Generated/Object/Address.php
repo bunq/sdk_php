@@ -58,6 +58,48 @@ class Address extends BunqModel
     protected $province;
 
     /**
+     * The street.
+     *
+     * @var string
+     */
+    protected $streetFieldForRequest;
+
+    /**
+     * The house number.
+     *
+     * @var string
+     */
+    protected $houseNumberFieldForRequest;
+
+    /**
+     * The PO box.
+     *
+     * @var string|null
+     */
+    protected $poBoxFieldForRequest;
+
+    /**
+     * The postal code.
+     *
+     * @var string
+     */
+    protected $postalCodeFieldForRequest;
+
+    /**
+     * The city.
+     *
+     * @var string
+     */
+    protected $cityFieldForRequest;
+
+    /**
+     * The country as an ISO 3166-1 alpha-2 country code.
+     *
+     * @var string
+     */
+    protected $countryFieldForRequest;
+
+    /**
      * @param string $street      The street.
      * @param string $houseNumber The house number.
      * @param string $postalCode  The postal code.
@@ -73,12 +115,12 @@ class Address extends BunqModel
         string $country,
         string $poBox = null
     ) {
-        $this->street = $street;
-        $this->houseNumber = $houseNumber;
-        $this->poBox = $poBox;
-        $this->postalCode = $postalCode;
-        $this->city = $city;
-        $this->country = $country;
+        $this->streetFieldForRequest = $street;
+        $this->houseNumberFieldForRequest = $houseNumber;
+        $this->poBoxFieldForRequest = $poBox;
+        $this->postalCodeFieldForRequest = $postalCode;
+        $this->cityFieldForRequest = $city;
+        $this->countryFieldForRequest = $country;
     }
 
     /**

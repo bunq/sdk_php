@@ -9,6 +9,13 @@ use bunq\Model\Core\BunqModel;
 class CardCountryPermission extends BunqModel
 {
     /**
+     * The id of the card country permission entry.
+     *
+     * @var int
+     */
+    protected $id;
+
+    /**
      * The country to allow transactions in (e.g. NL, DE).
      *
      * @var string
@@ -23,11 +30,18 @@ class CardCountryPermission extends BunqModel
     protected $expiryTime;
 
     /**
-     * The id of the card country permission entry.
+     * The country to allow transactions in (e.g. NL, DE).
      *
-     * @var int
+     * @var string
      */
-    protected $id;
+    protected $countryFieldForRequest;
+
+    /**
+     * Expiry time of this rule.
+     *
+     * @var string|null
+     */
+    protected $expiryTimeFieldForRequest;
 
     /**
      * @param string $country         The country to allow transactions in (e.g. NL,
@@ -36,8 +50,8 @@ class CardCountryPermission extends BunqModel
      */
     public function __construct(string $country, string $expiryTime = null)
     {
-        $this->country = $country;
-        $this->expiryTime = $expiryTime;
+        $this->countryFieldForRequest = $country;
+        $this->expiryTimeFieldForRequest = $expiryTime;
     }
 
     /**

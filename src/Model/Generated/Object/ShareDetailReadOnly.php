@@ -33,6 +33,30 @@ class ShareDetailReadOnly extends BunqModel
     protected $viewNewEvents;
 
     /**
+     * If set to true, the invited user will be able to view the account
+     * balance.
+     *
+     * @var bool
+     */
+    protected $viewBalanceFieldForRequest;
+
+    /**
+     * If set to true, the invited user will be able to view events from before
+     * the share was active.
+     *
+     * @var bool
+     */
+    protected $viewOldEventsFieldForRequest;
+
+    /**
+     * If set to true, the invited user will be able to view events starting
+     * from the time the share became active.
+     *
+     * @var bool
+     */
+    protected $viewNewEventsFieldForRequest;
+
+    /**
      * @param bool $viewBalance   If set to true, the invited user will be able to
      *                            view the account balance.
      * @param bool $viewOldEvents If set to true, the invited user will be able
@@ -42,9 +66,9 @@ class ShareDetailReadOnly extends BunqModel
      */
     public function __construct(bool $viewBalance, bool $viewOldEvents, bool $viewNewEvents)
     {
-        $this->viewBalance = $viewBalance;
-        $this->viewOldEvents = $viewOldEvents;
-        $this->viewNewEvents = $viewNewEvents;
+        $this->viewBalanceFieldForRequest = $viewBalance;
+        $this->viewOldEventsFieldForRequest = $viewOldEvents;
+        $this->viewNewEventsFieldForRequest = $viewNewEvents;
     }
 
     /**

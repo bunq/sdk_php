@@ -9,11 +9,26 @@ use bunq\Model\Core\BunqModel;
 class DraftPaymentEntry extends BunqModel
 {
     /**
+     * The id of the draft payment entry.
+     *
+     * @var int
+     */
+    protected $id;
+
+    /**
      * The amount of the payment.
      *
      * @var Amount
      */
     protected $amount;
+
+    /**
+     * The LabelMonetaryAccount containing the public information of 'this'
+     * (party) side of the DraftPayment.
+     *
+     * @var LabelMonetaryAccount
+     */
+    protected $alias;
 
     /**
      * The LabelMonetaryAccount containing the public information of the other
@@ -40,6 +55,13 @@ class DraftPaymentEntry extends BunqModel
     protected $merchantReference;
 
     /**
+     * The type of the draft payment entry.
+     *
+     * @var string
+     */
+    protected $type;
+
+    /**
      * The Attachments attached to the DraftPayment.
      *
      * @var AttachmentMonetaryAccountPayment[]
@@ -47,26 +69,44 @@ class DraftPaymentEntry extends BunqModel
     protected $attachment;
 
     /**
-     * The id of the draft payment entry.
+     * The amount of the payment.
      *
-     * @var int
+     * @var Amount
      */
-    protected $id;
+    protected $amountFieldForRequest;
 
     /**
-     * The LabelMonetaryAccount containing the public information of 'this'
-     * (party) side of the DraftPayment.
+     * The Alias of the party we are transferring the money to. Can be an Alias
+     * of type EMAIL or PHONE_NUMBER (for bunq MonetaryAccounts or bunq.to
+     * payments) or IBAN (for external bank account).
      *
-     * @var LabelMonetaryAccount
+     * @var Pointer
      */
-    protected $alias;
+    protected $counterpartyAliasFieldForRequest;
 
     /**
-     * The type of the draft payment entry.
+     * The description for the DraftPayment. Maximum 140 characters for
+     * DraftPayments to external IBANs, 9000 characters for DraftPayments to
+     * only other bunq MonetaryAccounts. Field is required but can be an empty
+     * string.
      *
      * @var string
      */
-    protected $type;
+    protected $descriptionFieldForRequest;
+
+    /**
+     * Optional data to be included with the Payment specific to the merchant.
+     *
+     * @var string|null
+     */
+    protected $merchantReferenceFieldForRequest;
+
+    /**
+     * The Attachments to attach to the DraftPayment.
+     *
+     * @var AttachmentMonetaryAccountPayment[]|null
+     */
+    protected $attachmentFieldForRequest;
 
     /**
      * @param Amount $amount                                      The amount of the payment.
@@ -92,11 +132,11 @@ class DraftPaymentEntry extends BunqModel
         string $merchantReference = null,
         array $attachment = null
     ) {
-        $this->amount = $amount;
-        $this->counterpartyAlias = $counterpartyAlias;
-        $this->description = $description;
-        $this->merchantReference = $merchantReference;
-        $this->attachment = $attachment;
+        $this->amountFieldForRequest = $amount;
+        $this->counterpartyAliasFieldForRequest = $counterpartyAlias;
+        $this->descriptionFieldForRequest = $description;
+        $this->merchantReferenceFieldForRequest = $merchantReference;
+        $this->attachmentFieldForRequest = $attachment;
     }
 
     /**

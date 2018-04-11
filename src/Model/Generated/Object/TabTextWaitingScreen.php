@@ -23,13 +23,27 @@ class TabTextWaitingScreen extends BunqModel
     protected $description;
 
     /**
+     * Language of tab text
+     *
+     * @var string
+     */
+    protected $languageFieldForRequest;
+
+    /**
+     * Tab text
+     *
+     * @var string
+     */
+    protected $descriptionFieldForRequest;
+
+    /**
      * @param string $language    Language of tab text
      * @param string $description Tab text
      */
     public function __construct(string $language, string $description)
     {
-        $this->language = $language;
-        $this->description = $description;
+        $this->languageFieldForRequest = $language;
+        $this->descriptionFieldForRequest = $description;
     }
 
     /**

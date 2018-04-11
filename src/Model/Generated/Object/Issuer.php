@@ -23,13 +23,27 @@ class Issuer extends BunqModel
     protected $name;
 
     /**
+     * The BIC code.
+     *
+     * @var string
+     */
+    protected $bicFieldForRequest;
+
+    /**
+     * The name of the bank.
+     *
+     * @var string|null
+     */
+    protected $nameFieldForRequest;
+
+    /**
      * @param string $bic       The BIC code.
      * @param string|null $name The name of the bank.
      */
     public function __construct(string $bic, string $name = null)
     {
-        $this->bic = $bic;
-        $this->name = $name;
+        $this->bicFieldForRequest = $bic;
+        $this->nameFieldForRequest = $name;
     }
 
     /**

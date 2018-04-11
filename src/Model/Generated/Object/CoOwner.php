@@ -23,11 +23,18 @@ class CoOwner extends BunqModel
     protected $status;
 
     /**
+     * The users the account will be joint with.
+     *
+     * @var Pointer
+     */
+    protected $aliasFieldForRequest;
+
+    /**
      * @param Pointer $alias The users the account will be joint with.
      */
     public function __construct(Pointer $alias)
     {
-        $this->alias = $alias;
+        $this->aliasFieldForRequest = $alias;
     }
 
     /**

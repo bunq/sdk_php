@@ -31,6 +31,31 @@ class TabVisibility extends BunqModel
     protected $location;
 
     /**
+     * When true the Tab will be linked to the ACTIVE cash registers QR code. If
+     * no cash register QR code exists, one will be created.
+     *
+     * @var bool
+     */
+    protected $cashRegisterQrCodeFieldForRequest;
+
+    /**
+     * When true the Tab will be visible through its own QR code. Use
+     * ../tab/{tab-id}/qr-code-content to get the raw content of this QR code
+     *
+     * @var bool
+     */
+    protected $tabQrCodeFieldForRequest;
+
+    /**
+     * The location on which this tab will be made visible in NearPay. This
+     * location must overlap with the location of the CashRegister. If no
+     * location is provided the location of the CashRegister will be used.
+     *
+     * @var Geolocation|null
+     */
+    protected $locationFieldForRequest;
+
+    /**
      * @param bool $cashRegisterQrCode   When true the Tab will be linked to the
      *                                   ACTIVE cash registers QR code. If no cash register QR code exists, one
      *                                   will be created.
@@ -44,9 +69,9 @@ class TabVisibility extends BunqModel
      */
     public function __construct(bool $cashRegisterQrCode, bool $tabQrCode, Geolocation $location = null)
     {
-        $this->cashRegisterQrCode = $cashRegisterQrCode;
-        $this->tabQrCode = $tabQrCode;
-        $this->location = $location;
+        $this->cashRegisterQrCodeFieldForRequest = $cashRegisterQrCode;
+        $this->tabQrCodeFieldForRequest = $tabQrCode;
+        $this->locationFieldForRequest = $location;
     }
 
     /**
