@@ -45,6 +45,42 @@ class MonetaryAccountProfileFill extends BunqModel
     protected $issuer;
 
     /**
+     * The status of the profile.
+     *
+     * @var string
+     */
+    protected $statusFieldForRequest;
+
+    /**
+     * The goal balance.
+     *
+     * @var Amount
+     */
+    protected $balancePreferredFieldForRequest;
+
+    /**
+     * The low threshold balance.
+     *
+     * @var Amount
+     */
+    protected $balanceThresholdLowFieldForRequest;
+
+    /**
+     * The method used to fill the monetary account. Currently IDEAL and SOFORT
+     * is supported.
+     *
+     * @var string
+     */
+    protected $methodFillFieldForRequest;
+
+    /**
+     * The bank the fill is supposed to happen from, with BIC and bank name.
+     *
+     * @var Issuer|null
+     */
+    protected $issuerFieldForRequest;
+
+    /**
      * @param string $status              The status of the profile.
      * @param Amount $balancePreferred    The goal balance.
      * @param Amount $balanceThresholdLow The low threshold balance.
@@ -60,11 +96,11 @@ class MonetaryAccountProfileFill extends BunqModel
         string $methodFill,
         Issuer $issuer = null
     ) {
-        $this->status = $status;
-        $this->balancePreferred = $balancePreferred;
-        $this->balanceThresholdLow = $balanceThresholdLow;
-        $this->methodFill = $methodFill;
-        $this->issuer = $issuer;
+        $this->statusFieldForRequest = $status;
+        $this->balancePreferredFieldForRequest = $balancePreferred;
+        $this->balanceThresholdLowFieldForRequest = $balanceThresholdLow;
+        $this->methodFillFieldForRequest = $methodFill;
+        $this->issuerFieldForRequest = $issuer;
     }
 
     /**

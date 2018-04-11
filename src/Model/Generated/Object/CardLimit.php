@@ -9,6 +9,13 @@ use bunq\Model\Core\BunqModel;
 class CardLimit extends BunqModel
 {
     /**
+     * The id of the card limit entry.
+     *
+     * @var int
+     */
+    protected $id;
+
+    /**
      * The daily limit amount.
      *
      * @var string
@@ -31,11 +38,26 @@ class CardLimit extends BunqModel
     protected $type;
 
     /**
-     * The id of the card limit entry.
+     * The daily limit amount.
      *
-     * @var int
+     * @var string
      */
-    protected $id;
+    protected $dailyLimitFieldForRequest;
+
+    /**
+     * Currency for the daily limit.
+     *
+     * @var string
+     */
+    protected $currencyFieldForRequest;
+
+    /**
+     * The type of transaction for the limit. Can be CARD_LIMIT_ATM,
+     * CARD_LIMIT_CONTACTLESS, CARD_LIMIT_DIPPING or CARD_LIMIT_POS_ICC.
+     *
+     * @var string
+     */
+    protected $typeFieldForRequest;
 
     /**
      * @param string $dailyLimit The daily limit amount.
@@ -46,9 +68,9 @@ class CardLimit extends BunqModel
      */
     public function __construct(string $dailyLimit, string $currency, string $type)
     {
-        $this->dailyLimit = $dailyLimit;
-        $this->currency = $currency;
-        $this->type = $type;
+        $this->dailyLimitFieldForRequest = $dailyLimit;
+        $this->currencyFieldForRequest = $currency;
+        $this->typeFieldForRequest = $type;
     }
 
     /**

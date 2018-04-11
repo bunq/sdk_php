@@ -32,6 +32,28 @@ class MonetaryAccountSetting extends BunqModel
     protected $restrictionChat;
 
     /**
+     * The color chosen for the MonetaryAccount in hexadecimal format.
+     *
+     * @var string|null
+     */
+    protected $colorFieldForRequest;
+
+    /**
+     * The status of the avatar. Cannot be updated directly.
+     *
+     * @var string|null
+     */
+    protected $defaultAvatarStatusFieldForRequest;
+
+    /**
+     * The chat restriction. Possible values are ALLOW_INCOMING or
+     * BLOCK_INCOMING
+     *
+     * @var string|null
+     */
+    protected $restrictionChatFieldForRequest;
+
+    /**
      * @param string|null $color               The color chosen for the MonetaryAccount in
      *                                         hexadecimal format.
      * @param string|null $defaultAvatarStatus The status of the avatar. Cannot
@@ -44,9 +66,9 @@ class MonetaryAccountSetting extends BunqModel
         string $defaultAvatarStatus = null,
         string $restrictionChat = null
     ) {
-        $this->color = $color;
-        $this->defaultAvatarStatus = $defaultAvatarStatus;
-        $this->restrictionChat = $restrictionChat;
+        $this->colorFieldForRequest = $color;
+        $this->defaultAvatarStatusFieldForRequest = $defaultAvatarStatus;
+        $this->restrictionChatFieldForRequest = $restrictionChat;
     }
 
     /**

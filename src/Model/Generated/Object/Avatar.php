@@ -30,11 +30,18 @@ class Avatar extends BunqModel
     protected $image;
 
     /**
+     * The public UUID of the avatar.
+     *
+     * @var string
+     */
+    protected $uuidFieldForRequest;
+
+    /**
      * @param string $uuid The public UUID of the avatar.
      */
     public function __construct(string $uuid)
     {
-        $this->uuid = $uuid;
+        $this->uuidFieldForRequest = $uuid;
     }
 
     /**

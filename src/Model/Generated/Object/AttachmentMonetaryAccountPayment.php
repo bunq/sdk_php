@@ -23,11 +23,18 @@ class AttachmentMonetaryAccountPayment extends BunqModel
     protected $monetaryAccountId;
 
     /**
+     * The id of the Attachment to attach to the MonetaryAccount.
+     *
+     * @var int
+     */
+    protected $idFieldForRequest;
+
+    /**
      * @param int $id The id of the Attachment to attach to the MonetaryAccount.
      */
     public function __construct(int $id)
     {
-        $this->id = $id;
+        $this->idFieldForRequest = $id;
     }
 
     /**

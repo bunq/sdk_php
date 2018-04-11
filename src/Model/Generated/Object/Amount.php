@@ -23,14 +23,28 @@ class Amount extends BunqModel
     protected $currency;
 
     /**
+     * The amount formatted to two decimal places.
+     *
+     * @var string
+     */
+    protected $valueFieldForRequest;
+
+    /**
+     * The currency of the amount. It is an ISO 4217 formatted currency code.
+     *
+     * @var string
+     */
+    protected $currencyFieldForRequest;
+
+    /**
      * @param string $value    The amount formatted to two decimal places.
      * @param string $currency The currency of the amount. It is an ISO 4217
      *                         formatted currency code.
      */
     public function __construct(string $value, string $currency)
     {
-        $this->value = $value;
-        $this->currency = $currency;
+        $this->valueFieldForRequest = $value;
+        $this->currencyFieldForRequest = $currency;
     }
 
     /**

@@ -23,13 +23,27 @@ class TaxResident extends BunqModel
     protected $taxNumber;
 
     /**
+     * The country of the tax number.
+     *
+     * @var string
+     */
+    protected $countryFieldForRequest;
+
+    /**
+     * The tax number.
+     *
+     * @var string
+     */
+    protected $taxNumberFieldForRequest;
+
+    /**
      * @param string $country   The country of the tax number.
      * @param string $taxNumber The tax number.
      */
     public function __construct(string $country, string $taxNumber)
     {
-        $this->country = $country;
-        $this->taxNumber = $taxNumber;
+        $this->countryFieldForRequest = $country;
+        $this->taxNumberFieldForRequest = $taxNumber;
     }
 
     /**

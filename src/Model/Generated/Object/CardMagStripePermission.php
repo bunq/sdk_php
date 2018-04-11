@@ -16,11 +16,18 @@ class CardMagStripePermission extends BunqModel
     protected $expiryTime;
 
     /**
+     * Expiry time of this rule.
+     *
+     * @var string|null
+     */
+    protected $expiryTimeFieldForRequest;
+
+    /**
      * @param string|null $expiryTime Expiry time of this rule.
      */
     public function __construct(string $expiryTime = null)
     {
-        $this->expiryTime = $expiryTime;
+        $this->expiryTimeFieldForRequest = $expiryTime;
     }
 
     /**

@@ -16,11 +16,18 @@ class BunqId extends BunqModel
     protected $id;
 
     /**
+     * An integer ID of an object. Unique per object type.
+     *
+     * @var int
+     */
+    protected $idFieldForRequest;
+
+    /**
      * @param int $id An integer ID of an object. Unique per object type.
      */
     public function __construct(int $id)
     {
-        $this->id = $id;
+        $this->idFieldForRequest = $id;
     }
 
     /**
