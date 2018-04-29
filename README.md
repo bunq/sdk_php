@@ -32,6 +32,8 @@ In order to start making calls with the bunq API, you must first register your A
 In the SDKs, we group these actions and call it "creating an API context". There are two ways to do it. One is through
 our interactive script, and the other is programmatically from your code.
 
+`src/Util/InstallationUtil.php`
+
 #### Creating an API context using `bunq-install` interactive script
 After installing bunq SDK into your project, run the command below from your project root folder:
 
@@ -59,6 +61,8 @@ $apiContext = ApiContext::create(
     $deviceDescription,
     $permittedIps
 );
+
+BunqContext::loadApiContext($apiContext);
 ```
 
 The API context can then be saved with:
@@ -68,17 +72,17 @@ $fileName = '/path/to/save/bunq.conf/file/'; // Replace with your own secure loc
 $apiContext->save($fileName);
 ```
 
-**Please note:** initializing your application is a heavy task and it is recommended to do it only once per device.  
+**Please note:** *<u>initializing your application is a heavy task and it is recommended to do it only once per device.</u>*  
 
 After saving the context, you can restore it at any time:
 
 ```php
 $fileName = '/path/to/bunq.conf/file/';
 $apiContext = ApiContext::restore($fileName);
+BunqContext::loadApiContext($apiContext);
 ```
 
-**Tip:** both saving and restoring the context can be done without any arguments. In this case the context will be saved
-to/restored from the `bunq.conf` file in the same folder with your script.
+**Tip:** both saving and restoring the context can be done without any arguments. In this case the context will be saved to/restored from the `bunq.conf` file in the same folder with your script.
 
 ##### Proxy
 You can use a proxy with the bunq PHP SDK. This option must be a string. This proxy will be used for all requests done with
@@ -94,91 +98,77 @@ $apiContext = ApiContext::create(
 ```
 
 #### Safety considerations
-The file storing the context details (i.e. `bunq.conf`) is a key to your account. Anyone having access to it is able to
-perform any Public API actions with your account. Therefore, we recommend choosing a truly safe place to store it.
+The file storing the context details (i.e. `bunq.conf`) is a key to your account. Anyone having access to it is able to perform any Public API actions with your account. Therefore, we recommend choosing a truly safe place to store it.
+
+If you rather save the context in a database, you can use the `fromJson()` and `toJson()` methods. 
 
 ### Making API calls
 There is a class for each endpoint. Each class has functions for each supported action. These actions can be
 `create`, `get`, `update`, `delete` and `listing`.
 
-Sometimes API calls have dependencies, for instance `MonetaryAccount`. Making changes to a monetary account 
-always also needs a reference to a `User`. These dependencies are required as arguments when performing API calls.
+Before you can start making calls, you must ensure that you have create an ApiContext and loaded in into BunqContext as shown in the examples above. 
+
+The SDK will take care of your user Id, as this id wil never change per ApiContext. The SDK also uses your first active monetary account as primary monetary account. This is almost always the same as your billing account. This means that when you do not explicitly pass a Monetary Account ID, the SDK will use the Monetary Account ID of your billing account.
+
 Take a look at [doc.bunq.com](https://doc.bunq.com) for the full documentation.
 
 #### Creating objects
-Creating objects through the API requires an `ApiContext`, a `requestMap` and identifiers of all dependencies (such as
-User ID required for accessing a Monetary Account). Optionally, custom headers can be passed to requests.
-
 ```php
-$paymentMap = [
-    Payment::FIELD_AMOUNT => new Amount('10.00', 'EUR'),
-    Payment::FIELD_COUNTERPARTY_ALIAS => new Pointer('EMAIL', 'api-guru@bunq.io'),
-    Payment::FIELD_DESCRIPTION => 'This is a generated payment',
-];
+BunqContext::loadApiContext($apiContext); // if it has not been loaded yet. 
 
-Payment::create($bunqApiContext, $paymentMap, $userId, $monetaryAccountId);
+Payment::create(
+    new Amount($amount, self::CURRENCY_TYPE_EUR),
+    new Pointer(self::POINTER_TYPE_EMAIL, $recipient),
+    $description,
+    $monetaryAccount->getId()
+);
 ```
 
 ##### Example
-See [`example/payment_example.php`](./example/payment_example.php)
+See [`tinker/BunqLib`](https://github.com/bunq/tinker_php/blob/05a38a2660e6f6db1f7efc9b915f0131c172c230/src/BunqLib.php#L240-L245)
 
 #### Reading objects
-Reading objects through the API requires an `ApiContext`, identifiers of all dependencies (such as User ID required for
-accessing a Monetary Account), and the identifier of the object to read (ID or UUID) Optionally, custom headers can be
-passed to requests.
+To use the read method you must pass the identifier of the object to read (ID or UUID) except for the endpoints `User`, `UserPerson`, `UserCompany` and `MonetaryAccount`. The SDK will use the default IDs when none are passed. For all other endpoints you must pass the identifier.
 
 This type of calls always returns a model.
 
 ```php
-$userCompany = UserCompany::get($bunqApiContext, $userId);
+BunqContext::loadApiContext($apiContext); // if it has not been loaded yet. 
+
+$userCompany = UserCompany::get();
 
 printf($userCompany->getPublicNickName());
 ```
 
 ##### Example
-See [`example/user_example.php`](./example/user_example.php)
+
+You can also retrieve this information from `BunqContext`, see [`tinker/setupCurrentUser`](https://github.com/bunq/tinker_php/blob/05a38a2660e6f6db1f7efc9b915f0131c172c230/src/BunqLib.php#L117-L120)
 
 #### Updating objects
-Updating objects through the API goes the same way as creating objects, except that also the object to update identifier 
-(ID or UUID) is needed.
-
 ```php
-$tabUsageSingleMap = [
-    TabUsageSingle::FIELD_STATUS => 'WAITING_FOR_PAYMENT',
-    TabUsageSingle::FIELD_VISIBILITY => new TabVisibility(false, true),
-];
+BunqContext::loadApiContext($apiContext); // if it has not been loaded yet. 
 
-TabUsageSingle::update(
-    $bunqApiContext,
-    $tabUsageSingleMap,
-    $userId,
-    $monetaryAccountId,
-    $cashRegisterId,
-    $tabUsageSingleUuid
+MonetaryAccountBank::update(
+    $monetaryAccount->getId(),
+    $description
 );
 ```
 
 ##### Example
-See [`example/tab_example.php`](./example/tab_example.php)
+See [`tinker/updateBankAccountDescription`](https://github.com/bunq/tinker_php/blob/05a38a2660e6f6db1f7efc9b915f0131c172c230/src/BunqLib.php#L217-L223)
 
 #### Deleting objects
-Deleting objects through the API requires an `ApiContext`, identifiers of all dependencies (such as User ID required for
-accessing a Monetary Account), and the identifier of the object to delete (ID or UUID) Optionally, custom headers can be
-passed to requests.
-
 ```php
-CustomerStatementExport::delete($apiContext, $userId, $monetaryAccountId, $customerStatementExportId)
+BunqContext::loadApiContext($apiContext); // if it has not been loaded yet. 
+
+CustomerStatementExport::delete($customerStatementExportId);
 ```
 
-##### Example
-See [`example/customer_statement_export_example.php`](./example/customer_statement_export_example.php)
-
 #### Listing objects
-Listing objects through the API requires an `ApiContext` and identifiers of all dependencies (such as User ID required
-for accessing a Monetary Account). Optionally, custom headers can be passed to requests.
-
 ```php
-$monetaryAccountList = MonetaryAccount::listing($apiContext, $userId);
+BunqContext::loadApiContext($apiContext); // if it has not been loaded yet. 
+
+$monetaryAccountList = MonetaryAccount::listing();
 
 foreach ($monetaryAccountList as $monetaryAccount) {
     printf($monetaryAccount->getMonetaryAccountBank->getDescription() . PHP_EOL);
@@ -186,48 +176,11 @@ foreach ($monetaryAccountList as $monetaryAccount) {
 ```
 
 ##### Example
-See [`example/monetary_account_example.php`](./example/monetary_account_example.php)
-
+See [`tinker/getAllActiveBankAccount`](https://github.com/bunq/tinker_php/blob/05a38a2660e6f6db1f7efc9b915f0131c172c230/src/BunqLib.php#L192-L211)
 
 ## Running Examples
-In order to make the experience of getting into bunq PHP SDK smoother, we
-have bundled it with example use cases (located under `./example`).
 
-To run an example, please do the following:
-1. In your IDE, open the example you are interested in and adjust the constants,
-such as `API_KEY` or `USER_ID`, to hold your data.
-2. In your terminal, go to the root of bunq SDK project:
-
-```shell
-$ cd /path/to/bunq/sdk/
-```
-3. In the terminal, run:
-
-```shell
-$ php example/<something_example.php>
-```
-   Replace `<something_example.php>` with the name of the example you would like
-   to run.
-
-In order for examples to run, you would need a valid context file (`bunq.conf`)
-to be present in the bunq SDK project root directory. There are three ways to get
-a valid `bunq.conf` in the bunq PHP SDK:
-1) Copy from somewhere else (e.g. tests)
-2) Create by running the following command in your bunq SDK project root directory:
-
-```shell
-$ php example/api_context_save_example.php
-```
-
-3) Create using the interactive script for API Context creation (see details in the
-[Creating an API context](#creating-an-api-context) section above):
-
-```shell
-$ vendor/bin/bunq-install
-``` 
-
-Please do not forget to set the `_API_KEY` constant in
-`api_context_save_example.[php]` to your actual API key before running the sample!
+If you want to play around with the SDK before you actually start implementing something awesome you can use the [tinker](https://github.com/bunq/tinker_php/tree/master) project and adjust the code in the scripts as you please. 
 
 ## Running Tests
 
