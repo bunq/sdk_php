@@ -37,6 +37,34 @@ class Geolocation extends BunqModel
     protected $radius;
 
     /**
+     * The latitude for a geolocation restriction.
+     *
+     * @var string|null
+     */
+    protected $latitudeFieldForRequest;
+
+    /**
+     * The longitude for a geolocation restriction.
+     *
+     * @var string|null
+     */
+    protected $longitudeFieldForRequest;
+
+    /**
+     * The altitude for a geolocation restriction.
+     *
+     * @var string|null
+     */
+    protected $altitudeFieldForRequest;
+
+    /**
+     * The radius for a geolocation restriction.
+     *
+     * @var string|null
+     */
+    protected $radiusFieldForRequest;
+
+    /**
      * @param string|null $latitude  The latitude for a geolocation restriction.
      * @param string|null $longitude The longitude for a geolocation
      *                               restriction.
@@ -49,10 +77,10 @@ class Geolocation extends BunqModel
         string $altitude = null,
         string $radius = null
     ) {
-        $this->latitude = $latitude;
-        $this->longitude = $longitude;
-        $this->altitude = $altitude;
-        $this->radius = $radius;
+        $this->latitudeFieldForRequest = $latitude;
+        $this->longitudeFieldForRequest = $longitude;
+        $this->altitudeFieldForRequest = $altitude;
+        $this->radiusFieldForRequest = $radius;
     }
 
     /**

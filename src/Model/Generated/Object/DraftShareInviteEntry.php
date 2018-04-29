@@ -30,6 +30,27 @@ class DraftShareInviteEntry extends BunqModel
     protected $endDate;
 
     /**
+     * The share details. Only one of these objects may be passed.
+     *
+     * @var ShareDetail
+     */
+    protected $shareDetailFieldForRequest;
+
+    /**
+     * The start date of this share.
+     *
+     * @var string|null
+     */
+    protected $startDateFieldForRequest;
+
+    /**
+     * The expiration date of this share.
+     *
+     * @var string|null
+     */
+    protected $endDateFieldForRequest;
+
+    /**
      * @param ShareDetail $shareDetail The share details. Only one of these
      *                                 objects may be passed.
      * @param string|null $startDate   The start date of this share.
@@ -37,9 +58,9 @@ class DraftShareInviteEntry extends BunqModel
      */
     public function __construct(ShareDetail $shareDetail, string $startDate = null, string $endDate = null)
     {
-        $this->shareDetail = $shareDetail;
-        $this->startDate = $startDate;
-        $this->endDate = $endDate;
+        $this->shareDetailFieldForRequest = $shareDetail;
+        $this->startDateFieldForRequest = $startDate;
+        $this->endDateFieldForRequest = $endDate;
     }
 
     /**

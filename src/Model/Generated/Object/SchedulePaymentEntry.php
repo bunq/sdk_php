@@ -18,6 +18,14 @@ class SchedulePaymentEntry extends BunqModel
     protected $amount;
 
     /**
+     * The LabelMonetaryAccount containing the public information of 'this'
+     * (party) side of the Payment.
+     *
+     * @var LabelMonetaryAccount
+     */
+    protected $alias;
+
+    /**
      * The LabelMonetaryAccount containing the public information of the other
      * (counterparty) side of the Payment.
      *
@@ -49,20 +57,52 @@ class SchedulePaymentEntry extends BunqModel
     protected $merchantReference;
 
     /**
+     * The Amount to transfer with the Payment. Must be bigger 0 and smaller
+     * than the MonetaryAccount's balance.
+     *
+     * @var Amount
+     */
+    protected $amountFieldForRequest;
+
+    /**
+     * The Alias of the party we are transferring the money to. Can be an Alias
+     * of type EMAIL or PHONE (for bunq MonetaryAccounts) or IBAN (for external
+     * bank account).
+     *
+     * @var Pointer
+     */
+    protected $counterpartyAliasFieldForRequest;
+
+    /**
+     * The description for the Payment. Maximum 140 characters for Payments to
+     * external IBANs, 9000 characters for Payments to only other bunq
+     * MonetaryAccounts. Field is required but can be an empty string.
+     *
+     * @var string
+     */
+    protected $descriptionFieldForRequest;
+
+    /**
+     * The Attachments to attach to the Payment.
+     *
+     * @var BunqId[]|null
+     */
+    protected $attachmentFieldForRequest;
+
+    /**
+     * Optional data to be included with the Payment specific to the merchant.
+     *
+     * @var string|null
+     */
+    protected $merchantReferenceFieldForRequest;
+
+    /**
      * Whether or not sending a bunq.to payment is allowed. Mandatory for
      * publicApi.
      *
      * @var bool|null
      */
-    protected $allowBunqto;
-
-    /**
-     * The LabelMonetaryAccount containing the public information of 'this'
-     * (party) side of the Payment.
-     *
-     * @var LabelMonetaryAccount
-     */
-    protected $alias;
+    protected $allowBunqtoFieldForRequest;
 
     /**
      * @param Amount $amount                 The Amount to transfer with the Payment. Must be
@@ -89,12 +129,12 @@ class SchedulePaymentEntry extends BunqModel
         string $merchantReference = null,
         bool $allowBunqto = null
     ) {
-        $this->amount = $amount;
-        $this->counterpartyAlias = $counterpartyAlias;
-        $this->description = $description;
-        $this->attachment = $attachment;
-        $this->merchantReference = $merchantReference;
-        $this->allowBunqto = $allowBunqto;
+        $this->amountFieldForRequest = $amount;
+        $this->counterpartyAliasFieldForRequest = $counterpartyAlias;
+        $this->descriptionFieldForRequest = $description;
+        $this->attachmentFieldForRequest = $attachment;
+        $this->merchantReferenceFieldForRequest = $merchantReference;
+        $this->allowBunqtoFieldForRequest = $allowBunqto;
     }
 
     /**

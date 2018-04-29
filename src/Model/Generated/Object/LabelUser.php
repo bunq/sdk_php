@@ -16,20 +16,6 @@ class LabelUser extends BunqModel
     protected $uuid;
 
     /**
-     * The name to be displayed for this user, as it was given on the request.
-     *
-     * @var string
-     */
-    protected $displayName;
-
-    /**
-     * The country of the user. 000 stands for "unknown"
-     *
-     * @var string
-     */
-    protected $country;
-
-    /**
      * The current avatar of the user.
      *
      * @var Avatar
@@ -44,6 +30,41 @@ class LabelUser extends BunqModel
     protected $publicNickName;
 
     /**
+     * The name to be displayed for this user, as it was given on the request.
+     *
+     * @var string
+     */
+    protected $displayName;
+
+    /**
+     * The country of the user. 000 stands for "unknown"
+     *
+     * @var string
+     */
+    protected $country;
+
+    /**
+     * The public UUID of the label-user.
+     *
+     * @var string
+     */
+    protected $uuidFieldForRequest;
+
+    /**
+     * The name to be displayed for this user, as it was given on the request.
+     *
+     * @var string
+     */
+    protected $displayNameFieldForRequest;
+
+    /**
+     * The country of the user
+     *
+     * @var string
+     */
+    protected $countryFieldForRequest;
+
+    /**
      * @param string $uuid        The public UUID of the label-user.
      * @param string $displayName The name to be displayed for this user, as it
      *                            was given on the request.
@@ -51,9 +72,9 @@ class LabelUser extends BunqModel
      */
     public function __construct(string $uuid, string $displayName, string $country)
     {
-        $this->uuid = $uuid;
-        $this->displayName = $displayName;
-        $this->country = $country;
+        $this->uuidFieldForRequest = $uuid;
+        $this->displayNameFieldForRequest = $displayName;
+        $this->countryFieldForRequest = $country;
     }
 
     /**

@@ -30,6 +30,28 @@ class Pointer extends BunqModel
     protected $name;
 
     /**
+     * The alias type, can be: EMAIL|PHONE_NUMBER|IBAN.
+     *
+     * @var string
+     */
+    protected $typeFieldForRequest;
+
+    /**
+     * The alias value. Phone number are formatted conform E.123 without spaces
+     * (e.g., +314211234567).
+     *
+     * @var string
+     */
+    protected $valueFieldForRequest;
+
+    /**
+     * The alias name. Only required for IBANs.
+     *
+     * @var string|null
+     */
+    protected $nameFieldForRequest;
+
+    /**
      * @param string $type      The alias type, can be: EMAIL|PHONE_NUMBER|IBAN.
      * @param string $value     The alias value. Phone number are formatted conform
      *                          E.123 without spaces (e.g., +314211234567).
@@ -37,9 +59,9 @@ class Pointer extends BunqModel
      */
     public function __construct(string $type, string $value, string $name = null)
     {
-        $this->type = $type;
-        $this->value = $value;
-        $this->name = $name;
+        $this->typeFieldForRequest = $type;
+        $this->valueFieldForRequest = $value;
+        $this->nameFieldForRequest = $name;
     }
 
     /**

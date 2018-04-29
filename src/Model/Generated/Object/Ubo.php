@@ -30,6 +30,29 @@ class Ubo extends BunqModel
     protected $nationality;
 
     /**
+     * The name of the ultimate beneficiary owner.
+     *
+     * @var string|null
+     */
+    protected $nameFieldForRequest;
+
+    /**
+     * The date of birth of the ultimate beneficiary owner. Accepts ISO8601 date
+     * formats.
+     *
+     * @var string|null
+     */
+    protected $dateOfBirthFieldForRequest;
+
+    /**
+     * The nationality of the ultimate beneficiary owner. Accepts ISO8601 date
+     * formats.
+     *
+     * @var string|null
+     */
+    protected $nationalityFieldForRequest;
+
+    /**
      * @param string|null $name        The name of the ultimate beneficiary owner.
      * @param string|null $dateOfBirth The date of birth of the ultimate
      *                                 beneficiary owner. Accepts ISO8601 date formats.
@@ -38,9 +61,9 @@ class Ubo extends BunqModel
      */
     public function __construct(string $name = null, string $dateOfBirth = null, string $nationality = null)
     {
-        $this->name = $name;
-        $this->dateOfBirth = $dateOfBirth;
-        $this->nationality = $nationality;
+        $this->nameFieldForRequest = $name;
+        $this->dateOfBirthFieldForRequest = $dateOfBirth;
+        $this->nationalityFieldForRequest = $nationality;
     }
 
     /**

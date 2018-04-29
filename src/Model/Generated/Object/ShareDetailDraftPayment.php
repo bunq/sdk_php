@@ -41,6 +41,38 @@ class ShareDetailDraftPayment extends BunqModel
     protected $viewNewEvents;
 
     /**
+     * If set to true, the invited user will be able to make draft payments from
+     * the shared account.
+     *
+     * @var bool
+     */
+    protected $makeDraftPaymentsFieldForRequest;
+
+    /**
+     * If set to true, the invited user will be able to view the account
+     * balance.
+     *
+     * @var bool
+     */
+    protected $viewBalanceFieldForRequest;
+
+    /**
+     * If set to true, the invited user will be able to view events from before
+     * the share was active.
+     *
+     * @var bool
+     */
+    protected $viewOldEventsFieldForRequest;
+
+    /**
+     * If set to true, the invited user will be able to view events starting
+     * from the time the share became active.
+     *
+     * @var bool
+     */
+    protected $viewNewEventsFieldForRequest;
+
+    /**
      * @param bool $makeDraftPayments If set to true, the invited user will be
      *                                able to make draft payments from the shared account.
      * @param bool $viewBalance       If set to true, the invited user will be able to
@@ -52,10 +84,10 @@ class ShareDetailDraftPayment extends BunqModel
      */
     public function __construct(bool $makeDraftPayments, bool $viewBalance, bool $viewOldEvents, bool $viewNewEvents)
     {
-        $this->makeDraftPayments = $makeDraftPayments;
-        $this->viewBalance = $viewBalance;
-        $this->viewOldEvents = $viewOldEvents;
-        $this->viewNewEvents = $viewNewEvents;
+        $this->makeDraftPaymentsFieldForRequest = $makeDraftPayments;
+        $this->viewBalanceFieldForRequest = $viewBalance;
+        $this->viewOldEventsFieldForRequest = $viewOldEvents;
+        $this->viewNewEventsFieldForRequest = $viewNewEvents;
     }
 
     /**

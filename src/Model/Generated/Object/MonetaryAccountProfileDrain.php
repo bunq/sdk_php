@@ -37,6 +37,34 @@ class MonetaryAccountProfileDrain extends BunqModel
     protected $savingsAccountAlias;
 
     /**
+     * The status of the profile.
+     *
+     * @var string
+     */
+    protected $statusFieldForRequest;
+
+    /**
+     * The goal balance.
+     *
+     * @var Amount
+     */
+    protected $balancePreferredFieldForRequest;
+
+    /**
+     * The high threshold balance.
+     *
+     * @var Amount
+     */
+    protected $balanceThresholdHighFieldForRequest;
+
+    /**
+     * The savings monetary account.
+     *
+     * @var Pointer
+     */
+    protected $savingsAccountAliasFieldForRequest;
+
+    /**
      * @param string $status               The status of the profile.
      * @param Amount $balancePreferred     The goal balance.
      * @param Amount $balanceThresholdHigh The high threshold balance.
@@ -48,10 +76,10 @@ class MonetaryAccountProfileDrain extends BunqModel
         Amount $balanceThresholdHigh,
         Pointer $savingsAccountAlias
     ) {
-        $this->status = $status;
-        $this->balancePreferred = $balancePreferred;
-        $this->balanceThresholdHigh = $balanceThresholdHigh;
-        $this->savingsAccountAlias = $savingsAccountAlias;
+        $this->statusFieldForRequest = $status;
+        $this->balancePreferredFieldForRequest = $balancePreferred;
+        $this->balanceThresholdHighFieldForRequest = $balanceThresholdHigh;
+        $this->savingsAccountAliasFieldForRequest = $savingsAccountAlias;
     }
 
     /**

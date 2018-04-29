@@ -11,7 +11,7 @@ class CoOwner extends BunqModel
     /**
      * The Alias of the co-owner.
      *
-     * @var LabelUser[]
+     * @var LabelUser
      */
     protected $alias;
 
@@ -23,17 +23,24 @@ class CoOwner extends BunqModel
     protected $status;
 
     /**
+     * The users the account will be joint with.
+     *
+     * @var Pointer
+     */
+    protected $aliasFieldForRequest;
+
+    /**
      * @param Pointer $alias The users the account will be joint with.
      */
     public function __construct(Pointer $alias)
     {
-        $this->alias = $alias;
+        $this->aliasFieldForRequest = $alias;
     }
 
     /**
      * The Alias of the co-owner.
      *
-     * @return LabelUser[]
+     * @return LabelUser
      */
     public function getAlias()
     {
@@ -44,7 +51,7 @@ class CoOwner extends BunqModel
      * @deprecated User should not be able to set values via setters, use
      * constructor.
      *
-     * @param LabelUser[] $alias
+     * @param LabelUser $alias
      */
     public function setAlias($alias)
     {

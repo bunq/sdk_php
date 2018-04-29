@@ -16,12 +16,19 @@ class Certificate extends BunqModel
     protected $certificate;
 
     /**
+     * A single certificate in the chain in .PEM format.
+     *
+     * @var string
+     */
+    protected $certificateFieldForRequest;
+
+    /**
      * @param string $certificate A single certificate in the chain in .PEM
      *                            format.
      */
     public function __construct(string $certificate)
     {
-        $this->certificate = $certificate;
+        $this->certificateFieldForRequest = $certificate;
     }
 
     /**

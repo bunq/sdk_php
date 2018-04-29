@@ -13,9 +13,9 @@ class ShareDetail extends BunqModel
      * therefore must be overridden.
      */
     protected static $fieldNameOverrideMap = [
-        'payment' => 'ShareDetailPayment',
-        'read_only' => 'ShareDetailReadOnly',
-        'draft_payment' => 'ShareDetailDraftPayment',
+        'payment_field_for_request' => 'ShareDetailPayment',
+        'read_only_field_for_request' => 'ShareDetailReadOnly',
+        'draft_payment_field_for_request' => 'ShareDetailDraftPayment',
     ];
 
     /**
@@ -43,6 +43,30 @@ class ShareDetail extends BunqModel
     protected $draftPayment;
 
     /**
+     * The share details for a payment share. Remember to replace 'payment' with
+     * 'ShareDetailPayment' before sending a request.
+     *
+     * @var ShareDetailPayment|null
+     */
+    protected $paymentFieldForRequest;
+
+    /**
+     * The share details for viewing a share. Remember to replace 'read_only'
+     * with 'ShareDetailReadOnly' before sending a request.
+     *
+     * @var ShareDetailReadOnly|null
+     */
+    protected $readOnlyFieldForRequest;
+
+    /**
+     * The share details for a draft payment share. Remember to replace
+     * 'draft_payment' with 'ShareDetailDraftPayment' before sending a request.
+     *
+     * @var ShareDetailDraftPayment|null
+     */
+    protected $draftPaymentFieldForRequest;
+
+    /**
      * @param ShareDetailPayment|null $payment           The share details for a payment
      *                                                   share. Remember to replace 'payment' with 'ShareDetailPayment'
      *                                                   before sending a request.
@@ -58,9 +82,9 @@ class ShareDetail extends BunqModel
         ShareDetailReadOnly $readOnly = null,
         ShareDetailDraftPayment $draftPayment = null
     ) {
-        $this->payment = $payment;
-        $this->readOnly = $readOnly;
-        $this->draftPayment = $draftPayment;
+        $this->paymentFieldForRequest = $payment;
+        $this->readOnlyFieldForRequest = $readOnly;
+        $this->draftPaymentFieldForRequest = $draftPayment;
     }
 
     /**
