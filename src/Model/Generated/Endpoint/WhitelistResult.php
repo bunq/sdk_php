@@ -4,6 +4,7 @@ namespace bunq\Model\Generated\Endpoint;
 use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Object\Error;
 use bunq\Model\Generated\Object\RequestInquiryReference;
+use bunq\Model\Generated\Object\WhitelistResultViewAnchoredObject;
 
 /**
  * Whitelist an SDD so that when one comes in, it is automatically accepted.
@@ -51,7 +52,7 @@ class WhitelistResult extends BunqModel
     /**
      * The details of the external object the event was created for.
      *
-     * @var BunqModel
+     * @var WhitelistResultViewAnchoredObject
      */
     protected $object;
 
@@ -172,7 +173,7 @@ class WhitelistResult extends BunqModel
     /**
      * The details of the external object the event was created for.
      *
-     * @return BunqModel
+     * @return WhitelistResultViewAnchoredObject
      */
     public function getObject()
     {
@@ -183,7 +184,7 @@ class WhitelistResult extends BunqModel
      * @deprecated User should not be able to set values via setters, use
      * constructor.
      *
-     * @param BunqModel $object
+     * @param WhitelistResultViewAnchoredObject $object
      */
     public function setObject($object)
     {
