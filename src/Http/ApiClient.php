@@ -39,8 +39,8 @@ class ApiClient
      * Error constants.
      */
     const ERROR_ENVIRONMENT_TYPE_UNKNOWN = 'Unknown environmentType "%s"';
-    const ERROR_MAC_OS_CURL_VERSION = 'Your PHP seems to be linked to the MacOS provided curl binary. ' .
-    'This is incompatible with our SDK, please reinstall by running: "brew reinstall %s --with-homebrew-curl".%s';
+    const ERROR_MAC_OS_CURL_VERSION = 'Your PHP seems to be linked to the MacOS provided curl binary.
+        This is incompatible with our SDK, please reinstall by running: "brew reinstall %s --with-homebrew-curl".%s';
 
     /**
      * Public key locations.
@@ -130,6 +130,9 @@ class ApiClient
      */
     const COMMAND_DETERMINE_BREW_PHP_VERSION = 'brew list | egrep -e "^php[0-9]{2}$"';
 
+    /**
+     * Curl error regex constants.
+     */
     const REGEX_CURL_ERROR_CODE = '/(cURL error )(?P<errorCode>\d+)/';
     const REGEX_NAMED_GOUP_ERROR_CODE = 'errorCode';
 
@@ -389,8 +392,8 @@ class ApiClient
 
         preg_match(self::REGEX_CURL_ERROR_CODE, $exception->getMessage(), $allMatch);
 
-        return isset($allMatch[self::REGEX_NAMED_GOUP_ERROR_CODE]) &&
-            $allMatch[self::REGEX_NAMED_GOUP_ERROR_CODE] === self::ERROR_CODE_MAC_OS_CURL_BUG;
+        return isset($allMatch[self::REGEX_NAMED_GOUP_ERROR_CODE])
+            && $allMatch[self::REGEX_NAMED_GOUP_ERROR_CODE] === self::ERROR_CODE_MAC_OS_CURL_BUG;
     }
 
     /**
