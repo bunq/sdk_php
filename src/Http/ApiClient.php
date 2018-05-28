@@ -40,7 +40,7 @@ class ApiClient
      */
     const ERROR_ENVIRONMENT_TYPE_UNKNOWN = 'Unknown environmentType "%s"';
     const ERROR_MAC_OS_CURL_VERSION = 'Your PHP seems to be linked to the MacOS provided curl binary. ' .
-        'This is incompatible with our SDK, please reinstall by running: "brew reinstall %s --with-homebrew-curl".%s';
+    'This is incompatible with our SDK, please reinstall by running: "brew reinstall %s --with-homebrew-curl".%s';
 
     /**
      * Public key locations.
@@ -130,6 +130,9 @@ class ApiClient
      */
     const COMMAND_DETERMINE_BREW_PHP_VERSION = 'brew list | egrep -e "^php[0-9]{2}$"';
 
+    const REGEX_CURL_ERROR_CODE = '/(cURL error )(?P<errorCode>\d+)/';
+    const REGEX_NAMED_GOUP_ERROR_CODE = 'errorCode';
+
     /**
      * @var Client
      */
@@ -209,7 +212,7 @@ class ApiClient
                 $this->determineRequestOptions($body, $customHeaders)
             );
         } catch (RequestException $exception) {
-            if ($exception->getCode() === self::ERROR_CODE_MAC_OS_CURL_BUG && $this->isMacOs()) {
+            if ($this->isCurlErrorCodeZero($exception) && $this->isMacOs()) {
                 die(vsprintf(self::ERROR_MAC_OS_CURL_VERSION, [$this->determineVersionPhpMacOs(), PHP_EOL]));
             } else {
                 throw $exception;
@@ -373,6 +376,21 @@ class ApiClient
         }
 
         return $bodyString;
+    }
+
+    /**
+     * @param RequestException $exception
+     *
+     * @return bool
+     */
+    private function isCurlErrorCodeZero(RequestException $exception): bool
+    {
+        $allMatch = [];
+
+        preg_match(self::REGEX_CURL_ERROR_CODE, $exception->getMessage(), $allMatch);
+
+        return isset($allMatch[self::REGEX_NAMED_GOUP_ERROR_CODE]) &&
+            $allMatch[self::REGEX_NAMED_GOUP_ERROR_CODE] === self::ERROR_CODE_MAC_OS_CURL_BUG;
     }
 
     /**
