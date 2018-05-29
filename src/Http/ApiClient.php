@@ -27,8 +27,9 @@ class ApiClient
     const ERROR_ENVIRONMENT_TYPE_UNKNOWN = 'Unknown environmentType "%s"';
     const ERROR_MAC_OS_CURL_VERSION = 'Your PHP seems to be linked to the MacOS provided curl binary. ' .
     'This is incompatible with our SDK, please reinstall by running: "brew reinstall %s --with-homebrew-curl".%s';
-    const ERROR_CURL_DOES_NOT_SUPPORT_ROOT_CA_PINNING =
-        'Curl does not support root CA pinning. See https://curl.haxx.se/docs/todo.html#Support_intermediate_root_pinn';
+    const ERROR_CURL_DOES_NOT_SUPPORT_ROOT_CERTIFICATE_PINNING =
+        //@codingStandardsIgnoreLine
+        'Curl does not support root certificate pinning. See https://curl.haxx.se/docs/todo.html#Support_intermediate_root_pinn';
 
     /**
      * Endpoints not requiring active session for the request to succeed.
@@ -313,7 +314,7 @@ class ApiClient
         $environmentType = $this->apiContext->getEnvironmentType();
 
         if ($environmentType->equals(BunqEnumApiEnvironmentType::SANDBOX())) {
-            throw new BunqException(self::ERROR_CURL_DOES_NOT_SUPPORT_ROOT_CA_PINNING);
+            throw new BunqException(self::ERROR_CURL_DOES_NOT_SUPPORT_ROOT_CERTIFICATE_PINNING);
         } elseif ($environmentType->equals(BunqEnumApiEnvironmentType::PRODUCTION())) {
             return __DIR__ . self::FILE_PUBLIC_KEY_ENVIRONMENT_PRODUCTION;
         } else {
