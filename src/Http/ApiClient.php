@@ -21,6 +21,16 @@ use Psr\Http\Message\ResponseInterface;
 class ApiClient
 {
     /**
+     * Error constants.
+     */
+    const ERROR_ENVIRONMENT_TYPE_UNKNOWN = 'Unknown environmentType "%s"';
+    const ERROR_MAC_OS_CURL_VERSION = 'Your PHP seems to be linked to the MacOS provided curl binary. ' .
+    'This is incompatible with our SDK, please reinstall by running: "brew reinstall %s --with-homebrew-curl".%s';
+    const ERROR_CURL_DOES_NOT_SUPPORT_ROOT_CERTIFICATE_PINNING =
+        //@codingStandardsIgnoreLine
+        'Curl does not support root certificate pinning. See https://curl.haxx.se/docs/todo.html#Support_intermediate_root_pinn';
+
+    /**
      * Endpoints not requiring active session for the request to succeed.
      */
     const URIS_NOT_REQUIRING_ACTIVE_SESSION = [
@@ -35,16 +45,8 @@ class ApiClient
     const SESSION_SERVER_URL = 'session-server';
 
     /**
-     * Error constants.
-     */
-    const ERROR_ENVIRONMENT_TYPE_UNKNOWN = 'Unknown environmentType "%s"';
-    const ERROR_MAC_OS_CURL_VERSION = 'Your PHP seems to be linked to the MacOS provided curl binary. ' .
-        'This is incompatible with our SDK, please reinstall by running: "brew reinstall %s --with-homebrew-curl".%s';
-
-    /**
      * Public key locations.
      */
-    const FILE_PUBLIC_KEY_ENVIRONMENT_SANDBOX = '/Certificate/sandbox.public.api.bunq.com.pubkey.pem';
     const FILE_PUBLIC_KEY_ENVIRONMENT_PRODUCTION = '/Certificate/api.bunq.com.pubkey.pem';
 
     /**
@@ -237,18 +239,18 @@ class ApiClient
             $middleware = $this->determineMiddleware();
 
             $this->httpClient = new Client(
-                [
-                    self::OPTION_DEFAULTS => [
-                        self::OPTION_ALLOW_REDIRECTS => false,
-                        self::OPTION_EXCEPTIONS => false,
+                array_merge(
+                    [
+                        self::OPTION_DEFAULTS => [
+                            self::OPTION_ALLOW_REDIRECTS => false,
+                            self::OPTION_EXCEPTIONS => false,
+                        ],
+                        self::OPTION_HANDLER => $middleware,
+                        self::OPTION_VERIFY => true,
+                        self::OPTION_PROXY => $this->apiContext->getProxy(),
                     ],
-                    self::OPTION_HANDLER => $middleware,
-                    self::OPTION_VERIFY => true,
-                    self::OPTION_CURL => [
-                        CURLOPT_PINNEDPUBLICKEY => $this->determinePinnedServerPublicKey(),
-                    ],
-                    self::OPTION_PROXY => $this->apiContext->getProxy(),
-                ]
+                    $this->determinePinnedKeySetting()
+                )
             );
         }
     }
@@ -284,6 +286,22 @@ class ApiClient
     }
 
     /**
+     * @return string[]
+     */
+    private function determinePinnedKeySetting(): array
+    {
+        if ($this->apiContext->getEnvironmentType()->equals(BunqEnumApiEnvironmentType::SANDBOX())) {
+            return [];
+        } else {
+            return [
+                self::OPTION_CURL => [
+                    CURLOPT_PINNEDPUBLICKEY => $this->determinePinnedServerPublicKey(),
+                ],
+            ];
+        }
+    }
+
+    /**
      * @return string
      * @throws BunqException when the environment type is unknown.
      */
@@ -292,7 +310,7 @@ class ApiClient
         $environmentType = $this->apiContext->getEnvironmentType();
 
         if ($environmentType->equals(BunqEnumApiEnvironmentType::SANDBOX())) {
-            return __DIR__ . self::FILE_PUBLIC_KEY_ENVIRONMENT_SANDBOX;
+            throw new BunqException(self::ERROR_CURL_DOES_NOT_SUPPORT_ROOT_CERTIFICATE_PINNING);
         } elseif ($environmentType->equals(BunqEnumApiEnvironmentType::PRODUCTION())) {
             return __DIR__ . self::FILE_PUBLIC_KEY_ENVIRONMENT_PRODUCTION;
         } else {
