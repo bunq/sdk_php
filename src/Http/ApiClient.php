@@ -52,7 +52,7 @@ class ApiClient
      */
     const FORMAT_CURL_INSTALLATION_INSTRUCTIONS =
         'This is incompatible with our SDK, please reinstall by running: "brew reinstall %s --with-homebrew-curl".%s';
-    const FORMAT_ERROR_MESSAGE_MAC_CURL = '%s %s %s';
+    const FORMAT_ERROR_MESSAGE_MAC_CURL = '%s%s%s';
 
     /**
      * Body constants.
