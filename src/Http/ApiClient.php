@@ -39,14 +39,20 @@ class ApiClient
      * Error constants.
      */
     const ERROR_ENVIRONMENT_TYPE_UNKNOWN = 'Unknown environmentType "%s"';
-    const ERROR_MAC_OS_CURL_VERSION = 'Your PHP seems to be linked to the MacOS provided curl binary. ' .
-        'This is incompatible with our SDK, please reinstall by running: "brew reinstall %s --with-homebrew-curl".%s';
+    const ERROR_MAC_OS_CURL_VERSION = 'Your PHP seems to be linked to the MacOS provided curl binary.';
 
     /**
      * Public key locations.
      */
     const FILE_PUBLIC_KEY_ENVIRONMENT_SANDBOX = '/Certificate/sandbox.public.api.bunq.com.pubkey.pem';
     const FILE_PUBLIC_KEY_ENVIRONMENT_PRODUCTION = '/Certificate/api.bunq.com.pubkey.pem';
+
+    /**
+     * String format constants.
+     */
+    const FORMAT_CURL_INSTALLATION_INSTRUCTIONS =
+        'This is incompatible with our SDK, please reinstall by running: "brew reinstall %s --with-homebrew-curl".%s';
+    const FORMAT_ERROR_MESSAGE_MAC_CURL = '%s%s%s';
 
     /**
      * Body constants.
@@ -131,6 +137,12 @@ class ApiClient
     const COMMAND_DETERMINE_BREW_PHP_VERSION = 'brew list | egrep -e "^php[0-9]{2}$"';
 
     /**
+     * Curl error regex constants.
+     */
+    const REGEX_CURL_ERROR_CODE = '/(cURL error )(?P<errorCode>\d+)/';
+    const REGEX_NAMED_GOUP_ERROR_CODE = 'errorCode';
+
+    /**
      * @var Client
      */
     protected $httpClient;
@@ -192,6 +204,7 @@ class ApiClient
      * @param string[] $customHeaders
      *
      * @return BunqResponseRaw
+     * @throws BunqException
      */
     private function request(
         string $method,
@@ -209,8 +222,8 @@ class ApiClient
                 $this->determineRequestOptions($body, $customHeaders)
             );
         } catch (RequestException $exception) {
-            if ($exception->getCode() === self::ERROR_CODE_MAC_OS_CURL_BUG && $this->isMacOs()) {
-                die(vsprintf(self::ERROR_MAC_OS_CURL_VERSION, [$this->determineVersionPhpMacOs(), PHP_EOL]));
+            if ($this->isCurlErrorCodeZero($exception) && $this->isMacOs()) {
+                throw new BunqException($this->determineErrorMessageCurlZero());
             } else {
                 throw $exception;
             }
@@ -376,11 +389,40 @@ class ApiClient
     }
 
     /**
+     * @param RequestException $exception
+     *
+     * @return bool
+     */
+    private function isCurlErrorCodeZero(RequestException $exception): bool
+    {
+        $allMatch = [];
+
+        preg_match(self::REGEX_CURL_ERROR_CODE, $exception->getMessage(), $allMatch);
+
+        return isset($allMatch[self::REGEX_NAMED_GOUP_ERROR_CODE])
+            && $allMatch[self::REGEX_NAMED_GOUP_ERROR_CODE] === self::ERROR_CODE_MAC_OS_CURL_BUG;
+    }
+
+    /**
      * @return bool
      */
     private function isMacOs(): bool
     {
         return posix_uname()[self::INDEX_UNAME_SYSNAME] === self::SYSNAME_MAC_OS;
+    }
+
+    /**
+     * @return string
+     */
+    private function determineErrorMessageCurlZero(): string
+    {
+        return vsprintf(
+            vsprintf(
+                self::FORMAT_ERROR_MESSAGE_MAC_CURL,
+                [self::ERROR_MAC_OS_CURL_VERSION, PHP_EOL, self::FORMAT_CURL_INSTALLATION_INSTRUCTIONS]
+            ),
+            [$this->determineVersionPhpMacOs(), PHP_EOL]
+        );
     }
 
     /**
