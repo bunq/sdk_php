@@ -39,8 +39,8 @@ class ApiClient
      * Error constants.
      */
     const ERROR_ENVIRONMENT_TYPE_UNKNOWN = 'Unknown environmentType "%s"';
-    const ERROR_MAC_OS_CURL_VERSION = 'Your PHP seems to be linked to the MacOS provided curl binary.
-        This is incompatible with our SDK, please reinstall by running: "brew reinstall %s --with-homebrew-curl".%s';
+    const ERROR_MAC_OS_CURL_VERSION = "Your PHP seems to be linked to the MacOS provided curl binary. \n
+        This is incompatible with our SDK, please reinstall by running: \"brew reinstall %s --with-homebrew-curl\".%s";
 
     /**
      * Public key locations.
