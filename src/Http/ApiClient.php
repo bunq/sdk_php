@@ -77,7 +77,7 @@ class ApiClient
     /**
      * User agent constants.
      */
-    const HEADER_USER_AGENT_BUNQ_SDK_DEFAULT = 'bunq-sdk-php/0.13.1';
+    const HEADER_USER_AGENT_BUNQ_SDK_DEFAULT = 'bunq-sdk-php/0.13.2';
 
     /**
      * Binary request constants.
