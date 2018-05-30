@@ -1,5 +1,17 @@
 # Change Log
 
+## [0.13.2](https://github.com/bunq/sdk_php/tree/0.13.2)
+
+[Full Changelog](https://github.com/bunq/sdk_php/compare/0.13.1...0.13.2)
+
+**Closed issues:**
+
+- Move to new sandbox . [\#149](https://github.com/bunq/sdk_php/issues/149)
+
+**Merged pull requests:**
+
+-  Move to new sandbox bunq/sdk_php#149. [\#115](https://github.com/bunq/sdk_php/pull/150) ([OGKevin](https://github.com/OGKevin))
+
 ## [0.13.1](https://github.com/bunq/sdk_php/tree/0.13.1)
 
 [Full Changelog](https://github.com/bunq/sdk_php/compare/0.13.0...0.13.1)
