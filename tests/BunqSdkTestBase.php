@@ -225,6 +225,12 @@ class BunqSdkTestBase extends TestCase
             return BunqContext::getUserContext()->getUserPerson()->getAlias()[self::INDEX_FIRST];
         } elseif (BunqContext::getUserContext()->isOnlyUserCompanySet()) {
             return BunqContext::getUserContext()->getUserCompany()->getAlias()[self::INDEX_FIRST];
+        } elseif (BunqContext::getUserContext()->isOnlyUserApiKeySet()) {
+            return BunqContext::getUserContext()
+                ->getUserApiKey()
+                ->getRequestedByUser()
+                ->getReferencedObject()
+                ->getAlias()[self::INDEX_FIRST];
         } else {
             throw new BunqException(self::ERROR_COULD_NOT_DETERMINE_USER_ALIAS);
         }

@@ -4,6 +4,7 @@ namespace bunq\Model\Core;
 use bunq\Context\ApiContext;
 use bunq\Exception\BunqException;
 use bunq\Http\ApiClient;
+use bunq\Model\Generated\Endpoint\UserApiKey;
 use bunq\Model\Generated\Endpoint\UserCompany;
 use bunq\Model\Generated\Endpoint\UserPerson;
 
@@ -45,6 +46,11 @@ class SessionServer extends BunqModel
      * @var UserPerson
      */
     protected $userPerson;
+
+    /**
+     * @var UserApiKey
+     */
+    protected $userApiKey;
 
     /**
      * @param ApiContext $apiContext
@@ -94,15 +100,25 @@ class SessionServer extends BunqModel
     }
 
     /**
-     * @return UserCompany|UserPerson
+     * @return UserApiKey
+     */
+    public function getUserApiKey(): UserApiKey
+    {
+        return $this->userApiKey;
+    }
+
+    /**
+     * @return UserCompany|UserPerson|UserApiKey
      * @throws BunqException
      */
     public function getReferencedUser()
     {
-        if (is_null($this->userPerson) || !is_null($this->userCompany)) {
+        if ((is_null($this->userPerson) && is_null($this->userApiKey)) && !is_null($this->userCompany)) {
             return $this->userCompany;
-        } elseif (is_null($this->userCompany) || !is_null($this->userPerson)) {
+        } elseif (is_null($this->userCompany) && is_null($this->userApiKey) && !is_null($this->userPerson)) {
             return $this->userPerson;
+        } elseif (is_null($this->userCompany) && is_null($this->userCompany) && !is_null($this->userApiKey)) {
+            return $this->userApiKey;
         } else {
             throw new BunqException(self::ERROR_NULL_FIELDS);
         }

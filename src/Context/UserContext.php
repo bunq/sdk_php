@@ -6,6 +6,7 @@ use bunq\Model\Core\BunqModel;
 use bunq\Model\Core\SessionServer;
 use bunq\Model\Generated\Endpoint\MonetaryAccountBank;
 use bunq\Model\Generated\Endpoint\User;
+use bunq\Model\Generated\Endpoint\UserApiKey;
 use bunq\Model\Generated\Endpoint\UserCompany;
 use bunq\Model\Generated\Endpoint\UserPerson;
 
@@ -39,6 +40,11 @@ class UserContext
      * @var UserPerson
      */
     protected $userPerson;
+
+    /**
+     * @var UserApiKey
+     */
+    protected $userApiKey;
 
     /**
      * @var MonetaryAccountBank
@@ -77,6 +83,8 @@ class UserContext
             $this->userPerson = $user;
         } elseif ($user instanceof UserCompany) {
             $this->userCompany = $user;
+        } elseif ($user instanceof UserApiKey) {
+            $this->userApiKey = $user;
         } else {
             throw new BunqException(vsprintf(self::ERROR_UNEXPECTED_USER_INSTANCE, [get_class($user)]));
         }
@@ -114,7 +122,7 @@ class UserContext
      */
     public function isOnlyUserPersonSet(): bool
     {
-        return is_null($this->userCompany) && !is_null($this->userPerson);
+        return is_null($this->userCompany) && is_null($this->userApiKey) && !(is_null($this->userPerson));
     }
 
     /**
@@ -122,15 +130,23 @@ class UserContext
      */
     public function isOnlyUserCompanySet(): bool
     {
-        return is_null($this->userPerson) && !is_null($this->userCompany);
+        return is_null($this->userPerson) && is_null($this->userApiKey) && !is_null($this->userCompany);
     }
 
     /**
      * @return bool
      */
-    public function isBothUserTypeSet(): bool
+    public function isOnlyUserApiKeySet(): bool
     {
-        return !is_null($this->userCompany) && !is_null($this->userPerson);
+        return is_null($this->userApiKey) && is_null($this->userPerson) && !is_null($this->userCompany);
+    }
+
+    /**
+     * @return bool
+     */
+    public function isMoreThenOneUserTypeSet(): bool
+    {
+        return !is_null($this->userCompany) && !is_null($this->userPerson) && !is_null($this->userApiKey);
     }
 
     /**
@@ -160,6 +176,14 @@ class UserContext
     public function getUserPerson(): UserPerson
     {
         return $this->userPerson;
+    }
+
+    /**
+     * @return UserApiKey
+     */
+    public function getUserApiKey(): UserApiKey
+    {
+        return $this->userApiKey;
     }
 
     /**
