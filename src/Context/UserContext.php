@@ -144,7 +144,7 @@ class UserContext
     /**
      * @return bool
      */
-    public function isMoreThenOneUserTypeSet(): bool
+    public function areAllUserSet(): bool
     {
         return !is_null($this->userCompany) && !is_null($this->userPerson) && !is_null($this->userApiKey);
     }
