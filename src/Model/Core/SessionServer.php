@@ -145,6 +145,10 @@ class SessionServer extends BunqModel
             return false;
         }
 
+        if (!is_null($this->userApiKey)) {
+            return false;
+        }
+
         return true;
     }
 }
