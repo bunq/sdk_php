@@ -62,6 +62,13 @@ class ChatMessageUser extends BunqModel
     protected $content;
 
     /**
+     * The source of the chat message.
+     *
+     * @var string
+     */
+    protected $source;
+
+    /**
      * The id of the message.
      *
      * @return int
@@ -209,6 +216,27 @@ class ChatMessageUser extends BunqModel
     }
 
     /**
+     * The source of the chat message.
+     *
+     * @return string
+     */
+    public function getSource()
+    {
+        return $this->source;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param string $source
+     */
+    public function setSource($source)
+    {
+        $this->source = $source;
+    }
+
+    /**
      * @return bool
      */
     public function isAllFieldNull()
@@ -238,6 +266,10 @@ class ChatMessageUser extends BunqModel
         }
 
         if (!is_null($this->content)) {
+            return false;
+        }
+
+        if (!is_null($this->source)) {
             return false;
         }
 

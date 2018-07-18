@@ -46,6 +46,11 @@ class User extends BunqModel implements AnchorObjectInterface
     protected $userCompany;
 
     /**
+     * @var UserApiKey
+     */
+    protected $userApiKey;
+
+    /**
      * Get a specific user.
      *
      * @param int $userId
@@ -156,6 +161,25 @@ class User extends BunqModel implements AnchorObjectInterface
     }
 
     /**
+     * @return UserApiKey
+     */
+    public function getUserApiKey()
+    {
+        return $this->userApiKey;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param UserApiKey $userApiKey
+     */
+    public function setUserApiKey($userApiKey)
+    {
+        $this->userApiKey = $userApiKey;
+    }
+
+    /**
      * @return BunqModel
      * @throws BunqException
      */
@@ -171,6 +195,10 @@ class User extends BunqModel implements AnchorObjectInterface
 
         if (!is_null($this->userCompany)) {
             return $this->userCompany;
+        }
+
+        if (!is_null($this->userApiKey)) {
+            return $this->userApiKey;
         }
 
         throw new BunqException(self::ERROR_NULL_FIELDS);
@@ -190,6 +218,10 @@ class User extends BunqModel implements AnchorObjectInterface
         }
 
         if (!is_null($this->userCompany)) {
+            return false;
+        }
+
+        if (!is_null($this->userApiKey)) {
             return false;
         }
 

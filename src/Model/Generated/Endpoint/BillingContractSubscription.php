@@ -79,6 +79,20 @@ class BillingContractSubscription extends BunqModel
     protected $subscriptionType;
 
     /**
+     * The subscription status.
+     *
+     * @var string
+     */
+    protected $status;
+
+    /**
+     * The subscription substatus.
+     *
+     * @var string
+     */
+    protected $subStatus;
+
+    /**
      * The subscription type of the user. Can be one of PERSON_LIGHT_V1,
      * PERSON_MORE_V1, PERSON_FREE_V1, PERSON_PREMIUM_V1, COMPANY_V1, or
      * COMPANY_V2.
@@ -302,6 +316,48 @@ class BillingContractSubscription extends BunqModel
     }
 
     /**
+     * The subscription status.
+     *
+     * @return string
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param string $status
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+    }
+
+    /**
+     * The subscription substatus.
+     *
+     * @return string
+     */
+    public function getSubStatus()
+    {
+        return $this->subStatus;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param string $subStatus
+     */
+    public function setSubStatus($subStatus)
+    {
+        $this->subStatus = $subStatus;
+    }
+
+    /**
      * @return bool
      */
     public function isAllFieldNull()
@@ -331,6 +387,14 @@ class BillingContractSubscription extends BunqModel
         }
 
         if (!is_null($this->subscriptionType)) {
+            return false;
+        }
+
+        if (!is_null($this->status)) {
+            return false;
+        }
+
+        if (!is_null($this->subStatus)) {
             return false;
         }
 
