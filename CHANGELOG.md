@@ -1,19 +1,82 @@
 # Change Log
 
-## [0.13.2](https://github.com/bunq/sdk_php/tree/0.13.2)
+## [Unreleased](https://github.com/bunq/sdk_php/tree/1.0.0)
 
-[Full Changelog](https://github.com/bunq/sdk_php/compare/0.13.1...0.13.2)
+[Full Changelog](https://github.com/bunq/sdk_php/compare/0.13.2...1.0.0)
+
+**Fixed bugs:**
+
+- Fix the CustomerStatementExport Listing [\#146](https://github.com/bunq/sdk_php/issues/146)
 
 **Closed issues:**
 
-- Move to new sandbox . [\#149](https://github.com/bunq/sdk_php/issues/149)
+- add Oauth support [\#156](https://github.com/bunq/sdk_php/issues/156)
+- BunqContext class file duplicated [\#155](https://github.com/bunq/sdk_php/issues/155)
+- Update Sandbox API key procedure [\#153](https://github.com/bunq/sdk_php/issues/153)
+- Unexpected API rate limit error [\#152](https://github.com/bunq/sdk_php/issues/152)
 
 **Merged pull requests:**
 
--  Move to new sandbox bunq/sdk_php#149. [\#115](https://github.com/bunq/sdk_php/pull/150) ([OGKevin](https://github.com/OGKevin))
+- Oauth bunq/sdk\_php\#156 [\#157](https://github.com/bunq/sdk_php/pull/157) ([OGKevin](https://github.com/OGKevin))
+- Updating Sandbox API key procedure. \(bunq/sdk\_php\#153\) [\#154](https://github.com/bunq/sdk_php/pull/154) ([sandervdo](https://github.com/sandervdo))
 
-## [0.13.1](https://github.com/bunq/sdk_php/tree/0.13.1)
+## [0.13.2](https://github.com/bunq/sdk_php/tree/0.13.2) (2018-05-30)
+[Full Changelog](https://github.com/bunq/sdk_php/compare/0.13.1...0.13.2)
 
+**Implemented enhancements:**
+
+- \[php\] Update examples in readme [\#140](https://github.com/bunq/sdk_php/issues/140)
+- Separation of concerns: InstallationUtil class is displaying error messages [\#133](https://github.com/bunq/sdk_php/issues/133)
+- It is not possible to refresh userContext data [\#122](https://github.com/bunq/sdk_php/issues/122)
+- Fix/Optimise test framework for CI.  [\#120](https://github.com/bunq/sdk_php/issues/120)
+- Add more example scripts [\#98](https://github.com/bunq/sdk_php/issues/98)
+- PHP unit needs to be updated to version 6 [\#96](https://github.com/bunq/sdk_php/issues/96)
+- Auto save the session after automatic session reset has been executed  [\#94](https://github.com/bunq/sdk_php/issues/94)
+- Monetary account joint cannot be retrieved. [\#76](https://github.com/bunq/sdk_php/issues/76)
+- \[DX\] User::listing requires ugly logic to make it user-type agnostic [\#42](https://github.com/bunq/sdk_php/issues/42)
+- \[DX\] Static resource access is bad for mockability [\#41](https://github.com/bunq/sdk_php/issues/41)
+- Assert that variables are correct when creating an ApiContext with code. [\#35](https://github.com/bunq/sdk_php/issues/35)
+- Initial feedback on project \(organization\) [\#4](https://github.com/bunq/sdk_php/issues/4)
+- Fix supperflous fields error bunq/sdk\_php\#118 [\#125](https://github.com/bunq/sdk_php/pull/125) ([OGKevin](https://github.com/OGKevin))
+- Refresh user context bunq/sdk\_php\#122 [\#124](https://github.com/bunq/sdk_php/pull/124) ([OGKevin](https://github.com/OGKevin))
+- Optimise test framework auto topup \#120 [\#123](https://github.com/bunq/sdk_php/pull/123) ([OGKevin](https://github.com/OGKevin))
+- Optimise test framework bunq/sdk\_php\#120 [\#121](https://github.com/bunq/sdk_php/pull/121) ([OGKevin](https://github.com/OGKevin))
+
+**Fixed bugs:**
+
+- Parameter default should be null and not a string.  [\#137](https://github.com/bunq/sdk_php/issues/137)
+- Composer installation will generate warnings on case-insensitive systems [\#130](https://github.com/bunq/sdk_php/issues/130)
+- Can not construct a BunqMeTabEntry for use with BunqMeTab::create\(\) [\#118](https://github.com/bunq/sdk_php/issues/118)
+- cURL error 60: SSL certificate problem: unable to get local issuer certificate [\#104](https://github.com/bunq/sdk_php/issues/104)
+- Monetary account joint cannot be retrieved. [\#76](https://github.com/bunq/sdk_php/issues/76)
+
+**Closed issues:**
+
+- Add support for the undocumented user/%s/monetary-account/%s/customer-statement/%s/content call [\#147](https://github.com/bunq/sdk_php/issues/147)
+- MonetaryAccount listing succeeds on sandbox but fails on production [\#145](https://github.com/bunq/sdk_php/issues/145)
+-  Error message: The request signature is invalid. [\#129](https://github.com/bunq/sdk_php/issues/129)
+- Error: apiContext has not been loaded. [\#128](https://github.com/bunq/sdk_php/issues/128)
+- README contains 'of' instead of 'or' [\#119](https://github.com/bunq/sdk_php/issues/119)
+- TabUsageSingle with uuid "X" not found. [\#106](https://github.com/bunq/sdk_php/issues/106)
+- Move to new sandbox  [\#149](https://github.com/bunq/sdk_php/issues/149)
+
+**Merged pull requests:**
+
+- Proper check for curl error zero. \(bunq/sdk\_php\#7\) [\#148](https://github.com/bunq/sdk_php/pull/148) ([OGKevin](https://github.com/OGKevin))
+- Fix joint co owner error bunq/sdk\_php\#76 [\#144](https://github.com/bunq/sdk_php/pull/144) ([OGKevin](https://github.com/OGKevin))
+- Regenerated code to add request fields to objects. \(bunq/sdk\_php\#118\) [\#143](https://github.com/bunq/sdk_php/pull/143) ([OGKevin](https://github.com/OGKevin))
+- Update readme to point to tinker. \(bunq/sdk\_php\#140\) [\#142](https://github.com/bunq/sdk_php/pull/142) ([OGKevin](https://github.com/OGKevin))
+- Regenerated code. \(bunq/sdk\_php\#118\) [\#141](https://github.com/bunq/sdk_php/pull/141) ([OGKevin](https://github.com/OGKevin))
+- Use null as default parameter value. \(bunq/sdk\_php\#137\) [\#138](https://github.com/bunq/sdk_php/pull/138) ([OGKevin](https://github.com/OGKevin))
+- Bunq-install should display error message and not installation util. \(bunq/sdk\_php\#133\) [\#136](https://github.com/bunq/sdk_php/pull/136) ([Jorijn](https://github.com/Jorijn))
+- Assert values are correct for api context bunq/sdk\_php\#35 [\#135](https://github.com/bunq/sdk_php/pull/135) ([OGKevin](https://github.com/OGKevin))
+- Replace examples with tinker bunq/sdk\_php\#98 [\#132](https://github.com/bunq/sdk_php/pull/132) ([OGKevin](https://github.com/OGKevin))
+- Auto update bunq context bunq/sdk\_php\#94 [\#131](https://github.com/bunq/sdk_php/pull/131) ([OGKevin](https://github.com/OGKevin))
+- Fix typo in README [\#117](https://github.com/bunq/sdk_php/pull/117) ([casperboone](https://github.com/casperboone))
+- Removed userContext.php \(bunq/sdk\_php\#114\) [\#116](https://github.com/bunq/sdk_php/pull/116) ([OGKevin](https://github.com/OGKevin))
+- Move to new sandbox bunq/sdk\_php\#149 [\#150](https://github.com/bunq/sdk_php/pull/150) ([OGKevin](https://github.com/OGKevin))
+
+## [0.13.1](https://github.com/bunq/sdk_php/tree/0.13.1) (2018-03-21)
 [Full Changelog](https://github.com/bunq/sdk_php/compare/0.13.0...0.13.1)
 
 **Closed issues:**
@@ -32,6 +95,7 @@
 - Add zappr integration for better quality control  [\#91](https://github.com/bunq/sdk_php/issues/91)
 - Add more information to templates [\#89](https://github.com/bunq/sdk_php/issues/89)
 - Add response id to error messages from failed requests  [\#88](https://github.com/bunq/sdk_php/issues/88)
+- Add optional parameters to constructor  [\#82](https://github.com/bunq/sdk_php/issues/82)
 
 **Fixed bugs:**
 
