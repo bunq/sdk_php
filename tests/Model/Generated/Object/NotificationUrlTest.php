@@ -3,8 +3,6 @@ namespace bunq\test\Model\Object;
 
 use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Endpoint\BunqMeTab;
-use bunq\Model\Generated\Endpoint\ChatMessage;
-use bunq\Model\Generated\Endpoint\ChatMessageAnnouncement;
 use bunq\Model\Generated\Endpoint\DraftPayment;
 use bunq\Model\Generated\Endpoint\MasterCardAction;
 use bunq\Model\Generated\Endpoint\MonetaryAccount;
@@ -195,19 +193,6 @@ class NotificationUrlTest extends BunqSdkTestBase
             self::JSON_PATH_MASTER_CARD_ACTION_MODEL,
             MasterCardAction::class,
             self::GETTER_MASTER_CARD_ACTION
-        );
-    }
-
-    /**
-     */
-    public function testChatMessageAnnouncementModel()
-    {
-        $this->executeNotificationUrlTest(
-            self::JSON_PATH_CHAT_MESSAGE_ANNOUNCEMENT_MODEL,
-            ChatMessage::class,
-            self::GETTER_CHAT_MESSAGE,
-            self::GETTER_CHAT_MESSAGE_ANNOUNCEMENT,
-            ChatMessageAnnouncement::class
         );
     }
 
