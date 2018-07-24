@@ -617,7 +617,7 @@ class UserPerson extends BunqModel
      *
      * @return BunqResponseUserPerson
      */
-    public static function get(array $customHeaders = []): BunqResponseUserPerson
+    public static function get(int $userPersonId, array $customHeaders = []): BunqResponseUserPerson
     {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
@@ -696,6 +696,7 @@ class UserPerson extends BunqModel
      * @return BunqResponseInt
      */
     public static function update(
+        int $userPersonId,
         string $firstName = null,
         string $middleName = null,
         string $lastName = null,

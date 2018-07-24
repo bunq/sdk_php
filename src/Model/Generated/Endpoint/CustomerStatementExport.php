@@ -33,7 +33,7 @@ class CustomerStatementExport extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE_GET = 'CustomerStatementExport';
+    const OBJECT_TYPE_GET = 'CustomerStatement';
 
     /**
      * The id of the customer statement model.

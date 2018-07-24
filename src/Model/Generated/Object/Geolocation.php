@@ -65,11 +65,11 @@ class Geolocation extends BunqModel
     protected $radiusFieldForRequest;
 
     /**
-     * @param string|null $latitude  The latitude for a geolocation restriction.
+     * @param string|null $latitude The latitude for a geolocation restriction.
      * @param string|null $longitude The longitude for a geolocation
      *                               restriction.
-     * @param string|null $altitude  The altitude for a geolocation restriction.
-     * @param string|null $radius    The radius for a geolocation restriction.
+     * @param string|null $altitude The altitude for a geolocation restriction.
+     * @param string|null $radius The radius for a geolocation restriction.
      */
     public function __construct(
         string $latitude = null,

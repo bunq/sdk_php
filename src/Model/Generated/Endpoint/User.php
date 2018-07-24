@@ -58,7 +58,7 @@ class User extends BunqModel implements AnchorObjectInterface
      *
      * @return BunqResponseUser
      */
-    public static function get(array $customHeaders = []): BunqResponseUser
+    public static function get(int $userId, array $customHeaders = []): BunqResponseUser
     {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(

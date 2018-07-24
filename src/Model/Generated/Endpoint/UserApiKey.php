@@ -2,6 +2,7 @@
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Model\Core\BunqModel;
+use bunq\Model\Generated\Object\UserApiKeyAnchoredUser;
 
 /**
  * Used to view OAuth request detais in events.
@@ -34,14 +35,14 @@ class UserApiKey extends BunqModel
     /**
      * The user who requested access.
      *
-     * @var User
+     * @var UserApiKeyAnchoredUser
      */
     protected $requestedByUser;
 
     /**
      * The user who granted access.
      *
-     * @var User|null
+     * @var UserApiKeyAnchoredUser|null
      */
     protected $grantedByUser;
 
@@ -111,7 +112,7 @@ class UserApiKey extends BunqModel
     /**
      * The user who requested access.
      *
-     * @return User
+     * @return UserApiKeyAnchoredUser
      */
     public function getRequestedByUser()
     {
@@ -122,7 +123,7 @@ class UserApiKey extends BunqModel
      * @deprecated User should not be able to set values via setters, use
      * constructor.
      *
-     * @param User $requestedByUser
+     * @param UserApiKeyAnchoredUser $requestedByUser
      */
     public function setRequestedByUser($requestedByUser)
     {
@@ -132,7 +133,7 @@ class UserApiKey extends BunqModel
     /**
      * The user who granted access.
      *
-     * @return User
+     * @return UserApiKeyAnchoredUser
      */
     public function getGrantedByUser()
     {
@@ -143,7 +144,7 @@ class UserApiKey extends BunqModel
      * @deprecated User should not be able to set values via setters, use
      * constructor.
      *
-     * @param User $grantedByUser
+     * @param UserApiKeyAnchoredUser $grantedByUser
      */
     public function setGrantedByUser($grantedByUser)
     {
