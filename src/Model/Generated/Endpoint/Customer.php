@@ -22,6 +22,7 @@ class Customer extends BunqModel
      * Field constants.
      */
     const FIELD_BILLING_ACCOUNT_ID = 'billing_account_id';
+    const FIELD_INVOICE_NOTIFICATION_PREFERENCE = 'invoice_notification_preference';
 
     /**
      * Object type.
@@ -59,16 +60,27 @@ class Customer extends BunqModel
     /**
      * The primary billing account account's id.
      *
-     * @var string
+     * @var string|null
      */
     protected $billingAccountIdFieldForRequest;
 
     /**
-     * @param string $billingAccountId The primary billing account account's id.
+     * The preferred notification type for invoices
+     *
+     * @var string|null
      */
-    public function __construct(string $billingAccountId)
+    protected $invoiceNotificationPreferenceFieldForRequest;
+
+    /**
+     * @param string|null $billingAccountId              The primary billing account
+     *                                                   account's id.
+     * @param string|null $invoiceNotificationPreference The preferred
+     *                                                   notification type for invoices
+     */
+    public function __construct(string $billingAccountId = null, string $invoiceNotificationPreference = null)
     {
         $this->billingAccountIdFieldForRequest = $billingAccountId;
+        $this->invoiceNotificationPreferenceFieldForRequest = $invoiceNotificationPreference;
     }
 
     /**
@@ -122,8 +134,10 @@ class Customer extends BunqModel
 
     /**
      * @param int $customerId
-     * @param string|null $billingAccountId The primary billing account
-     *                                      account's id.
+     * @param string|null $billingAccountId              The primary billing account
+     *                                                   account's id.
+     * @param string|null $invoiceNotificationPreference The preferred
+     *                                                   notification type for invoices
      * @param string[] $customHeaders
      *
      * @return BunqResponseInt
@@ -131,6 +145,7 @@ class Customer extends BunqModel
     public static function update(
         int $customerId,
         string $billingAccountId = null,
+        string $invoiceNotificationPreference = null,
         array $customHeaders = []
     ): BunqResponseInt {
         $apiClient = new ApiClient(static::getApiContext());
@@ -139,7 +154,10 @@ class Customer extends BunqModel
                 self::ENDPOINT_URL_UPDATE,
                 [static::determineUserId(), $customerId]
             ),
-            [self::FIELD_BILLING_ACCOUNT_ID => $billingAccountId],
+            [
+                self::FIELD_BILLING_ACCOUNT_ID => $billingAccountId,
+                self::FIELD_INVOICE_NOTIFICATION_PREFERENCE => $invoiceNotificationPreference,
+            ],
             $customHeaders
         );
 

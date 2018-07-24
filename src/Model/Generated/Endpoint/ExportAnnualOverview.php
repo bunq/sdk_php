@@ -2,6 +2,7 @@
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Http\ApiClient;
+use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Object\LabelUser;
 
@@ -19,6 +20,7 @@ class ExportAnnualOverview extends BunqModel
      */
     const ENDPOINT_URL_CREATE = 'user/%s/export-annual-overview';
     const ENDPOINT_URL_READ = 'user/%s/export-annual-overview/%s';
+    const ENDPOINT_URL_DELETE = 'user/%s/export-annual-overview/%s';
     const ENDPOINT_URL_LISTING = 'user/%s/export-annual-overview';
 
     /**
@@ -129,6 +131,28 @@ class ExportAnnualOverview extends BunqModel
 
         return BunqResponseExportAnnualOverview::castFromBunqResponse(
             static::fromJson($responseRaw, self::OBJECT_TYPE_GET)
+        );
+    }
+
+    /**
+     * @param string[] $customHeaders
+     * @param int $exportAnnualOverviewId
+     *
+     * @return BunqResponseNull
+     */
+    public static function delete(int $exportAnnualOverviewId, array $customHeaders = []): BunqResponseNull
+    {
+        $apiClient = new ApiClient(static::getApiContext());
+        $responseRaw = $apiClient->delete(
+            vsprintf(
+                self::ENDPOINT_URL_DELETE,
+                [static::determineUserId(), $exportAnnualOverviewId]
+            ),
+            $customHeaders
+        );
+
+        return BunqResponseNull::castFromBunqResponse(
+            new BunqResponse(null, $responseRaw->getHeaders())
         );
     }
 

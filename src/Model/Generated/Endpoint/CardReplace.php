@@ -24,6 +24,7 @@ class CardReplace extends BunqModel
     /**
      * Field constants.
      */
+    const FIELD_NAME_ON_CARD = 'name_on_card';
     const FIELD_PIN_CODE = 'pin_code';
     const FIELD_SECOND_LINE = 'second_line';
 
@@ -33,6 +34,14 @@ class CardReplace extends BunqModel
      * @var int
      */
     protected $id;
+
+    /**
+     * The user's name as it will be on the card. Check 'card-name' for the
+     * available card names for a user.
+     *
+     * @var string|null
+     */
+    protected $nameOnCardFieldForRequest;
 
     /**
      * The plaintext pin code. Requests require encryption to be enabled.
@@ -49,12 +58,15 @@ class CardReplace extends BunqModel
     protected $secondLineFieldForRequest;
 
     /**
+     * @param string|null $nameOnCard The user's name as it will be on the card.
+     *                                Check 'card-name' for the available card names for a user.
      * @param string|null $pinCode    The plaintext pin code. Requests require
      *                                encryption to be enabled.
      * @param string|null $secondLine The second line on the card.
      */
-    public function __construct(string $pinCode = null, string $secondLine = null)
+    public function __construct(string $nameOnCard = null, string $pinCode = null, string $secondLine = null)
     {
+        $this->nameOnCardFieldForRequest = $nameOnCard;
         $this->pinCodeFieldForRequest = $pinCode;
         $this->secondLineFieldForRequest = $secondLine;
     }
@@ -63,6 +75,8 @@ class CardReplace extends BunqModel
      * Request a card replacement.
      *
      * @param int $cardId
+     * @param string|null $nameOnCard The user's name as it will be on the card.
+     *                                Check 'card-name' for the available card names for a user.
      * @param string|null $pinCode    The plaintext pin code. Requests require
      *                                encryption to be enabled.
      * @param string|null $secondLine The second line on the card.
@@ -72,6 +86,7 @@ class CardReplace extends BunqModel
      */
     public static function create(
         int $cardId,
+        string $nameOnCard = null,
         string $pinCode = null,
         string $secondLine = null,
         array $customHeaders = []
@@ -84,6 +99,7 @@ class CardReplace extends BunqModel
                 [static::determineUserId(), $cardId]
             ),
             [
+                self::FIELD_NAME_ON_CARD => $nameOnCard,
                 self::FIELD_PIN_CODE => $pinCode,
                 self::FIELD_SECOND_LINE => $secondLine,
             ],

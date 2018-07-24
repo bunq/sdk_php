@@ -12,10 +12,10 @@ use bunq\Model\Generated\Object\LabelMonetaryAccount;
 /**
  * Using this call you create a request for payment from an external token
  * provided with an ideal transaction. Make sure your iDEAL payments are
- * compliant with the iDEAL standards, by following the following manual: <a
- * href="https://www.bunq.com/files/media/legal/en/20170315_ideal_standards_en.pdf">https://www.bunq.com/files/media/legal/en/20170315_ideal_standards_en.pdf</a>.
- * It's very important to keep these points in mind when you are using the endpoint to make iDEAL payments from your
- * application.
+ * compliant with the iDEAL standards, by following the following manual:
+ * https://www.bunq.com/terms-idealstandards. It's very important to keep
+ * these points in mind when you are using the endpoint to make iDEAL
+ * payments from your application.
  *
  * @generated
  */

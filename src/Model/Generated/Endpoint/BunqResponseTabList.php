@@ -5,10 +5,10 @@ use bunq\Http\BunqResponse;
 
 /**
  */
-class BunqResponseRequestResponseChatList extends BunqResponse
+class BunqResponseTabList extends BunqResponse
 {
     /**
-     * @return RequestResponseChat[]
+     * @return Tab[]
      */
     public function getValue(): array
     {

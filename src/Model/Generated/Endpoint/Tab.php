@@ -1,22 +1,34 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
+use bunq\exception\BunqException;
 use bunq\Http\ApiClient;
+use bunq\Model\Core\AnchorObjectInterface;
 use bunq\Model\Core\BunqModel;
-use bunq\Model\Generated\Object\Amount;
-use bunq\Model\Generated\Object\LabelMonetaryAccount;
 
 /**
- * Used to read a single publicly visible tab.
+ * Once your CashRegister has been activated you can use it to create Tabs.
+ * A Tab is a template for a payment. In contrast to requests a Tab is not
+ * pointed towards a specific user. Any user can pay the Tab as long as it
+ * is made visible by you. The creation of a Tab happens with
+ * /tab-usage-single or /tab-usage-multiple. A TabUsageSingle is a Tab that
+ * can be paid once. A TabUsageMultiple is a Tab that can be paid multiple
+ * times by different users.
  *
  * @generated
  */
-class Tab extends BunqModel
+class Tab extends BunqModel implements AnchorObjectInterface
 {
+    /**
+     * Error constants.
+     */
+    const ERROR_NULL_FIELDS = 'All fields of an extended model or object are null.';
+
     /**
      * Endpoint constants.
      */
-    const ENDPOINT_URL_READ = 'tab/%s';
+    const ENDPOINT_URL_READ = 'user/%s/monetary-account/%s/cash-register/%s/tab/%s';
+    const ENDPOINT_URL_LISTING = 'user/%s/monetary-account/%s/cash-register/%s/tab';
 
     /**
      * Object type.
@@ -24,252 +36,138 @@ class Tab extends BunqModel
     const OBJECT_TYPE_GET = 'Tab';
 
     /**
-     * The uuid of the tab.
-     *
-     * @var string
+     * @var TabUsageSingle
      */
-    protected $uuid;
+    protected $tabUsageSingle;
 
     /**
-     * The label of the party that owns this tab.
-     *
-     * @var LabelMonetaryAccount
+     * @var TabUsageMultiple
      */
-    protected $alias;
+    protected $tabUsageMultiple;
 
     /**
-     * The avatar of this tab.
+     * Get a specific tab. This returns a TabUsageSingle or TabUsageMultiple.
      *
-     * @var string
-     */
-    protected $avatar;
-
-    /**
-     * The reference of the tab, as defined by the owner.
-     *
-     * @var string
-     */
-    protected $reference;
-
-    /**
-     * The short description of the tab.
-     *
-     * @var string
-     */
-    protected $description;
-
-    /**
-     * The status of the tab.
-     *
-     * @var string
-     */
-    protected $status;
-
-    /**
-     * The moment when this tab expires.
-     *
-     * @var string
-     */
-    protected $expiration;
-
-    /**
-     * The total amount of the tab.
-     *
-     * @var Amount
-     */
-    protected $amountTotal;
-
-    /**
-     * Get a publicly visible tab.
-     *
+     * @param int $cashRegisterId
      * @param string $tabUuid
+     * @param int|null $monetaryAccountId
      * @param string[] $customHeaders
      *
      * @return BunqResponseTab
      */
-    public static function get(string $tabUuid, array $customHeaders = []): BunqResponseTab
-    {
+    public static function get(
+        int $cashRegisterId,
+        string $tabUuid,
+        int $monetaryAccountId = null,
+        array $customHeaders = []
+    ): BunqResponseTab {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_READ,
-                [$tabUuid]
+                [
+                    static::determineUserId(),
+                    static::determineMonetaryAccountId($monetaryAccountId),
+                    $cashRegisterId,
+                    $tabUuid,
+                ]
             ),
             [],
             $customHeaders
         );
 
         return BunqResponseTab::castFromBunqResponse(
-            static::fromJson($responseRaw, self::OBJECT_TYPE_GET)
+            static::fromJson($responseRaw)
         );
     }
 
     /**
-     * The uuid of the tab.
+     * Get a collection of tabs.
      *
-     * @return string
+     * This method is called "listing" because "list" is a restricted PHP word
+     * and cannot be used as constants, class names, function or method names.
+     *
+     * @param int $cashRegisterId
+     * @param int|null $monetaryAccountId
+     * @param string[] $params
+     * @param string[] $customHeaders
+     *
+     * @return BunqResponseTabList
      */
-    public function getUuid()
+    public static function listing(
+        int $cashRegisterId,
+        int $monetaryAccountId = null,
+        array $params = [],
+        array $customHeaders = []
+    ): BunqResponseTabList {
+        $apiClient = new ApiClient(static::getApiContext());
+        $responseRaw = $apiClient->get(
+            vsprintf(
+                self::ENDPOINT_URL_LISTING,
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId), $cashRegisterId]
+            ),
+            $params,
+            $customHeaders
+        );
+
+        return BunqResponseTabList::castFromBunqResponse(
+            static::fromJsonList($responseRaw)
+        );
+    }
+
+    /**
+     * @return TabUsageSingle
+     */
+    public function getTabUsageSingle()
     {
-        return $this->uuid;
+        return $this->tabUsageSingle;
     }
 
     /**
      * @deprecated User should not be able to set values via setters, use
      * constructor.
      *
-     * @param string $uuid
+     * @param TabUsageSingle $tabUsageSingle
      */
-    public function setUuid($uuid)
+    public function setTabUsageSingle($tabUsageSingle)
     {
-        $this->uuid = $uuid;
+        $this->tabUsageSingle = $tabUsageSingle;
     }
 
     /**
-     * The label of the party that owns this tab.
-     *
-     * @return LabelMonetaryAccount
+     * @return TabUsageMultiple
      */
-    public function getAlias()
+    public function getTabUsageMultiple()
     {
-        return $this->alias;
-    }
-
-    /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
-     * @param LabelMonetaryAccount $alias
-     */
-    public function setAlias($alias)
-    {
-        $this->alias = $alias;
-    }
-
-    /**
-     * The avatar of this tab.
-     *
-     * @return string
-     */
-    public function getAvatar()
-    {
-        return $this->avatar;
+        return $this->tabUsageMultiple;
     }
 
     /**
      * @deprecated User should not be able to set values via setters, use
      * constructor.
      *
-     * @param string $avatar
+     * @param TabUsageMultiple $tabUsageMultiple
      */
-    public function setAvatar($avatar)
+    public function setTabUsageMultiple($tabUsageMultiple)
     {
-        $this->avatar = $avatar;
+        $this->tabUsageMultiple = $tabUsageMultiple;
     }
 
     /**
-     * The reference of the tab, as defined by the owner.
-     *
-     * @return string
+     * @return BunqModel
+     * @throws BunqException
      */
-    public function getReference()
+    public function getReferencedObject()
     {
-        return $this->reference;
-    }
+        if (!is_null($this->tabUsageSingle)) {
+            return $this->tabUsageSingle;
+        }
 
-    /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
-     * @param string $reference
-     */
-    public function setReference($reference)
-    {
-        $this->reference = $reference;
-    }
+        if (!is_null($this->tabUsageMultiple)) {
+            return $this->tabUsageMultiple;
+        }
 
-    /**
-     * The short description of the tab.
-     *
-     * @return string
-     */
-    public function getDescription()
-    {
-        return $this->description;
-    }
-
-    /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
-     * @param string $description
-     */
-    public function setDescription($description)
-    {
-        $this->description = $description;
-    }
-
-    /**
-     * The status of the tab.
-     *
-     * @return string
-     */
-    public function getStatus()
-    {
-        return $this->status;
-    }
-
-    /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
-     * @param string $status
-     */
-    public function setStatus($status)
-    {
-        $this->status = $status;
-    }
-
-    /**
-     * The moment when this tab expires.
-     *
-     * @return string
-     */
-    public function getExpiration()
-    {
-        return $this->expiration;
-    }
-
-    /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
-     * @param string $expiration
-     */
-    public function setExpiration($expiration)
-    {
-        $this->expiration = $expiration;
-    }
-
-    /**
-     * The total amount of the tab.
-     *
-     * @return Amount
-     */
-    public function getAmountTotal()
-    {
-        return $this->amountTotal;
-    }
-
-    /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
-     * @param Amount $amountTotal
-     */
-    public function setAmountTotal($amountTotal)
-    {
-        $this->amountTotal = $amountTotal;
+        throw new BunqException(self::ERROR_NULL_FIELDS);
     }
 
     /**
@@ -277,35 +175,11 @@ class Tab extends BunqModel
      */
     public function isAllFieldNull()
     {
-        if (!is_null($this->uuid)) {
+        if (!is_null($this->tabUsageSingle)) {
             return false;
         }
 
-        if (!is_null($this->alias)) {
-            return false;
-        }
-
-        if (!is_null($this->avatar)) {
-            return false;
-        }
-
-        if (!is_null($this->reference)) {
-            return false;
-        }
-
-        if (!is_null($this->description)) {
-            return false;
-        }
-
-        if (!is_null($this->status)) {
-            return false;
-        }
-
-        if (!is_null($this->expiration)) {
-            return false;
-        }
-
-        if (!is_null($this->amountTotal)) {
+        if (!is_null($this->tabUsageMultiple)) {
             return false;
         }
 

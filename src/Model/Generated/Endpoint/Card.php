@@ -32,7 +32,6 @@ class Card extends BunqModel
     const FIELD_LIMIT = 'limit';
     const FIELD_MAG_STRIPE_PERMISSION = 'mag_stripe_permission';
     const FIELD_COUNTRY_PERMISSION = 'country_permission';
-    const FIELD_MONETARY_ACCOUNT_CURRENT_ID = 'monetary_account_current_id';
     const FIELD_PIN_CODE_ASSIGNMENT = 'pin_code_assignment';
     const FIELD_MONETARY_ACCOUNT_ID_FALLBACK = 'monetary_account_id_fallback';
 
@@ -253,13 +252,6 @@ class Card extends BunqModel
     protected $countryPermissionFieldForRequest;
 
     /**
-     * The ID of the monetary account that card transactions will use.
-     *
-     * @var int|null
-     */
-    protected $monetaryAccountCurrentIdFieldForRequest;
-
-    /**
      * Array of Types, PINs, account IDs assigned to the card.
      *
      * @var CardPinAssignment[]|null
@@ -300,8 +292,6 @@ class Card extends BunqModel
      *                                                          it is allowed to use the mag stripe for the card.
      * @param CardCountryPermission[]|null $countryPermission   The countries for
      *                                                          which to grant (temporary) permissions to use the card.
-     * @param int|null $monetaryAccountCurrentId                The ID of the monetary account
-     *                                                          that card transactions will use.
      * @param CardPinAssignment[]|null $pinCodeAssignment       Array of Types, PINs,
      *                                                          account IDs assigned to the card.
      * @param int|null $monetaryAccountIdFallback               ID of the MA to be used as
@@ -315,7 +305,6 @@ class Card extends BunqModel
         array $limit = null,
         CardMagStripePermission $magStripePermission = null,
         array $countryPermission = null,
-        int $monetaryAccountCurrentId = null,
         array $pinCodeAssignment = null,
         int $monetaryAccountIdFallback = null
     ) {
@@ -325,7 +314,6 @@ class Card extends BunqModel
         $this->limitFieldForRequest = $limit;
         $this->magStripePermissionFieldForRequest = $magStripePermission;
         $this->countryPermissionFieldForRequest = $countryPermission;
-        $this->monetaryAccountCurrentIdFieldForRequest = $monetaryAccountCurrentId;
         $this->pinCodeAssignmentFieldForRequest = $pinCodeAssignment;
         $this->monetaryAccountIdFallbackFieldForRequest = $monetaryAccountIdFallback;
     }
@@ -362,8 +350,6 @@ class Card extends BunqModel
      *                                                          it is allowed to use the mag stripe for the card.
      * @param CardCountryPermission[]|null $countryPermission   The countries for
      *                                                          which to grant (temporary) permissions to use the card.
-     * @param int|null $monetaryAccountCurrentId                The ID of the monetary account
-     *                                                          that card transactions will use.
      * @param CardPinAssignment[]|null $pinCodeAssignment       Array of Types, PINs,
      *                                                          account IDs assigned to the card.
      * @param int|null $monetaryAccountIdFallback               ID of the MA to be used as
@@ -381,7 +367,6 @@ class Card extends BunqModel
         array $limit = null,
         CardMagStripePermission $magStripePermission = null,
         array $countryPermission = null,
-        int $monetaryAccountCurrentId = null,
         array $pinCodeAssignment = null,
         int $monetaryAccountIdFallback = null,
         array $customHeaders = []
@@ -400,7 +385,6 @@ class Card extends BunqModel
                 self::FIELD_LIMIT => $limit,
                 self::FIELD_MAG_STRIPE_PERMISSION => $magStripePermission,
                 self::FIELD_COUNTRY_PERMISSION => $countryPermission,
-                self::FIELD_MONETARY_ACCOUNT_CURRENT_ID => $monetaryAccountCurrentId,
                 self::FIELD_PIN_CODE_ASSIGNMENT => $pinCodeAssignment,
                 self::FIELD_MONETARY_ACCOUNT_ID_FALLBACK => $monetaryAccountIdFallback,
             ],

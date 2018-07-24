@@ -32,24 +32,25 @@ class CardPinAssignment extends BunqModel
     /**
      * The 4 digit PIN to be assigned to this account.
      *
-     * @var string
+     * @var string|null
      */
     protected $pinCodeFieldForRequest;
 
     /**
      * The ID of the monetary account to assign to this pin for the card.
      *
-     * @var int
+     * @var int|null
      */
     protected $monetaryAccountIdFieldForRequest;
 
     /**
-     * @param string $type           PIN type. Can be PRIMARY, SECONDARY or TERTIARY
-     * @param string $pinCode        The 4 digit PIN to be assigned to this account.
-     * @param int $monetaryAccountId The ID of the monetary account to assign to
-     *                               this pin for the card.
+     * @param string $type                PIN type. Can be PRIMARY, SECONDARY or TERTIARY
+     * @param string|null $pinCode        The 4 digit PIN to be assigned to this
+     *                                    account.
+     * @param int|null $monetaryAccountId The ID of the monetary account to
+     *                                    assign to this pin for the card.
      */
-    public function __construct(string $type, string $pinCode, int $monetaryAccountId)
+    public function __construct(string $type, string $pinCode = null, int $monetaryAccountId = null)
     {
         $this->typeFieldForRequest = $type;
         $this->pinCodeFieldForRequest = $pinCode;

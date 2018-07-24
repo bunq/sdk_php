@@ -2,44 +2,52 @@
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Model\Core\BunqModel;
+use bunq\Model\Generated\Object\UserApiKeyAnchoredUser;
 
 /**
- * Manages user's support conversation.
+ * Used to view OAuth request detais in events.
  *
  * @generated
  */
-class ChatConversationSupportExternal extends BunqModel
+class UserApiKey extends BunqModel
 {
     /**
-     * The id of this conversation.
+     * The id of the user.
      *
      * @var int
      */
     protected $id;
 
     /**
-     * The timestamp of the support conversation's creation.
+     * The timestamp of the user object's creation.
      *
      * @var string
      */
     protected $created;
 
     /**
-     * The timestamp of the support conversation's last update.
+     * The timestamp of the user object's last update.
      *
      * @var string
      */
     protected $updated;
 
     /**
-     * The last message posted to this conversation if any.
+     * The user who requested access.
      *
-     * @var ChatMessage
+     * @var UserApiKeyAnchoredUser
      */
-    protected $lastMessage;
+    protected $requestedByUser;
 
     /**
-     * The id of this conversation.
+     * The user who granted access.
+     *
+     * @var UserApiKeyAnchoredUser|null
+     */
+    protected $grantedByUser;
+
+    /**
+     * The id of the user.
      *
      * @return int
      */
@@ -60,7 +68,7 @@ class ChatConversationSupportExternal extends BunqModel
     }
 
     /**
-     * The timestamp of the support conversation's creation.
+     * The timestamp of the user object's creation.
      *
      * @return string
      */
@@ -81,7 +89,7 @@ class ChatConversationSupportExternal extends BunqModel
     }
 
     /**
-     * The timestamp of the support conversation's last update.
+     * The timestamp of the user object's last update.
      *
      * @return string
      */
@@ -102,24 +110,45 @@ class ChatConversationSupportExternal extends BunqModel
     }
 
     /**
-     * The last message posted to this conversation if any.
+     * The user who requested access.
      *
-     * @return ChatMessage
+     * @return UserApiKeyAnchoredUser
      */
-    public function getLastMessage()
+    public function getRequestedByUser()
     {
-        return $this->lastMessage;
+        return $this->requestedByUser;
     }
 
     /**
      * @deprecated User should not be able to set values via setters, use
      * constructor.
      *
-     * @param ChatMessage $lastMessage
+     * @param UserApiKeyAnchoredUser $requestedByUser
      */
-    public function setLastMessage($lastMessage)
+    public function setRequestedByUser($requestedByUser)
     {
-        $this->lastMessage = $lastMessage;
+        $this->requestedByUser = $requestedByUser;
+    }
+
+    /**
+     * The user who granted access.
+     *
+     * @return UserApiKeyAnchoredUser
+     */
+    public function getGrantedByUser()
+    {
+        return $this->grantedByUser;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param UserApiKeyAnchoredUser $grantedByUser
+     */
+    public function setGrantedByUser($grantedByUser)
+    {
+        $this->grantedByUser = $grantedByUser;
     }
 
     /**
@@ -139,7 +168,11 @@ class ChatConversationSupportExternal extends BunqModel
             return false;
         }
 
-        if (!is_null($this->lastMessage)) {
+        if (!is_null($this->requestedByUser)) {
+            return false;
+        }
+
+        if (!is_null($this->grantedByUser)) {
             return false;
         }
 

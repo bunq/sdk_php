@@ -16,7 +16,13 @@ class CardGeneratedCvc2 extends BunqModel
      */
     const ENDPOINT_URL_CREATE = 'user/%s/card/%s/generated-cvc2';
     const ENDPOINT_URL_READ = 'user/%s/card/%s/generated-cvc2/%s';
+    const ENDPOINT_URL_UPDATE = 'user/%s/card/%s/generated-cvc2/%s';
     const ENDPOINT_URL_LISTING = 'user/%s/card/%s/generated-cvc2';
+
+    /**
+     * Field constants.
+     */
+    const FIELD_TYPE = 'type';
 
     /**
      * Object type.
@@ -45,6 +51,13 @@ class CardGeneratedCvc2 extends BunqModel
     protected $updated;
 
     /**
+     * The type of generated cvc2. Can be STATIC or GENERATED.
+     *
+     * @var string
+     */
+    protected $type;
+
+    /**
      * The cvc2 code.
      *
      * @var string
@@ -66,14 +79,32 @@ class CardGeneratedCvc2 extends BunqModel
     protected $expiryTime;
 
     /**
+     * The type of generated cvc2. Can be STATIC or GENERATED.
+     *
+     * @var string|null
+     */
+    protected $typeFieldForRequest;
+
+    /**
+     * @param string|null $type The type of generated cvc2. Can be STATIC or
+     *                          GENERATED.
+     */
+    public function __construct(string $type = null)
+    {
+        $this->typeFieldForRequest = $type;
+    }
+
+    /**
      * Generate a new CVC2 code for a card.
      *
      * @param int $cardId
+     * @param string|null $type The type of generated cvc2. Can be STATIC or
+     *                          GENERATED.
      * @param string[] $customHeaders
      *
      * @return BunqResponseInt
      */
-    public static function create(int $cardId, array $customHeaders = []): BunqResponseInt
+    public static function create(int $cardId, string $type = null, array $customHeaders = []): BunqResponseInt
     {
         $apiClient = new ApiClient(static::getApiContext());
         $apiClient->enableEncryption();
@@ -82,7 +113,7 @@ class CardGeneratedCvc2 extends BunqModel
                 self::ENDPOINT_URL_CREATE,
                 [static::determineUserId(), $cardId]
             ),
-            [],
+            [self::FIELD_TYPE => $type],
             $customHeaders
         );
 
@@ -117,6 +148,37 @@ class CardGeneratedCvc2 extends BunqModel
 
         return BunqResponseCardGeneratedCvc2::castFromBunqResponse(
             static::fromJson($responseRaw, self::OBJECT_TYPE_GET)
+        );
+    }
+
+    /**
+     * @param int $cardId
+     * @param int $cardGeneratedCvc2Id
+     * @param string|null $type The type of generated cvc2. Can be STATIC or
+     *                          GENERATED.
+     * @param string[] $customHeaders
+     *
+     * @return BunqResponseInt
+     */
+    public static function update(
+        int $cardId,
+        int $cardGeneratedCvc2Id,
+        string $type = null,
+        array $customHeaders = []
+    ): BunqResponseInt {
+        $apiClient = new ApiClient(static::getApiContext());
+        $apiClient->enableEncryption();
+        $responseRaw = $apiClient->put(
+            vsprintf(
+                self::ENDPOINT_URL_UPDATE,
+                [static::determineUserId(), $cardId, $cardGeneratedCvc2Id]
+            ),
+            [self::FIELD_TYPE => $type],
+            $customHeaders
+        );
+
+        return BunqResponseInt::castFromBunqResponse(
+            static::processForId($responseRaw)
         );
     }
 
@@ -216,6 +278,27 @@ class CardGeneratedCvc2 extends BunqModel
     }
 
     /**
+     * The type of generated cvc2. Can be STATIC or GENERATED.
+     *
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param string $type
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+    }
+
+    /**
      * The cvc2 code.
      *
      * @return string
@@ -292,6 +375,10 @@ class CardGeneratedCvc2 extends BunqModel
         }
 
         if (!is_null($this->updated)) {
+            return false;
+        }
+
+        if (!is_null($this->type)) {
             return false;
         }
 

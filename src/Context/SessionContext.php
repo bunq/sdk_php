@@ -3,6 +3,7 @@ namespace bunq\Context;
 
 use bunq\Model\Core\SessionServer;
 use bunq\Model\Core\Token;
+use bunq\Model\Generated\Endpoint\UserApiKey;
 use DateTime;
 use JsonSerializable;
 
@@ -80,10 +81,12 @@ class SessionContext implements JsonSerializable
      */
     private static function getSessionTimeout(SessionServer $sessionServer): int
     {
-        if (is_null($sessionServer->getUserCompany())) {
-            return $sessionServer->getUserPerson()->getSessionTimeout();
+        $user = $sessionServer->getReferencedUser();
+
+        if ($user instanceof UserApiKey) {
+            return $user->getRequestedByUser()->getReferencedObject()->getSessionTimeout();
         } else {
-            return $sessionServer->getUserCompany()->getSessionTimeout();
+            return $user->getSessionTimeout();
         }
     }
 
