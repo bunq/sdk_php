@@ -177,7 +177,7 @@ class Invoice extends BunqModel
     protected $externalUrlFieldForRequest;
 
     /**
-     * @param string $status The status of the invoice.
+     * @param string $status      The status of the invoice.
      * @param string $description The description provided by the admin.
      * @param string $externalUrl The external url provided by the admin.
      */

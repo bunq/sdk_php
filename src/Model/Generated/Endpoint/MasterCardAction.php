@@ -83,6 +83,14 @@ class MasterCardAction extends BunqModel
     protected $amountFee;
 
     /**
+     * The response code by which authorised transaction can be identified as
+     * authorised by bunq.
+     *
+     * @var string
+     */
+    protected $cardAuthorisationIdResponse;
+
+    /**
      * Why the transaction was denied, if it was denied, or just ALLOWED.
      *
      * @var string
@@ -445,6 +453,28 @@ class MasterCardAction extends BunqModel
     public function setAmountFee($amountFee)
     {
         $this->amountFee = $amountFee;
+    }
+
+    /**
+     * The response code by which authorised transaction can be identified as
+     * authorised by bunq.
+     *
+     * @return string
+     */
+    public function getCardAuthorisationIdResponse()
+    {
+        return $this->cardAuthorisationIdResponse;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param string $cardAuthorisationIdResponse
+     */
+    public function setCardAuthorisationIdResponse($cardAuthorisationIdResponse)
+    {
+        $this->cardAuthorisationIdResponse = $cardAuthorisationIdResponse;
     }
 
     /**
@@ -887,6 +917,10 @@ class MasterCardAction extends BunqModel
         }
 
         if (!is_null($this->amountFee)) {
+            return false;
+        }
+
+        if (!is_null($this->cardAuthorisationIdResponse)) {
             return false;
         }
 

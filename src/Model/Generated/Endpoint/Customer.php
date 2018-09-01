@@ -58,6 +58,13 @@ class Customer extends BunqModel
     protected $billingAccountId;
 
     /**
+     * The preferred notification type for invoices.
+     *
+     * @var string
+     */
+    protected $invoiceNotificationPreference;
+
+    /**
      * The primary billing account account's id.
      *
      * @var string|null
@@ -251,6 +258,27 @@ class Customer extends BunqModel
     }
 
     /**
+     * The preferred notification type for invoices.
+     *
+     * @return string
+     */
+    public function getInvoiceNotificationPreference()
+    {
+        return $this->invoiceNotificationPreference;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param string $invoiceNotificationPreference
+     */
+    public function setInvoiceNotificationPreference($invoiceNotificationPreference)
+    {
+        $this->invoiceNotificationPreference = $invoiceNotificationPreference;
+    }
+
+    /**
      * @return bool
      */
     public function isAllFieldNull()
@@ -268,6 +296,10 @@ class Customer extends BunqModel
         }
 
         if (!is_null($this->billingAccountId)) {
+            return false;
+        }
+
+        if (!is_null($this->invoiceNotificationPreference)) {
             return false;
         }
 
