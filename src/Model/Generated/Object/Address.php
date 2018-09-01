@@ -100,12 +100,12 @@ class Address extends BunqModel
     protected $countryFieldForRequest;
 
     /**
-     * @param string $street The street.
+     * @param string $street      The street.
      * @param string $houseNumber The house number.
-     * @param string $postalCode The postal code.
-     * @param string $city The city.
-     * @param string $country The country as an ISO 3166-1 alpha-2 country code.
-     * @param string|null $poBox The PO box.
+     * @param string $postalCode  The postal code.
+     * @param string $city        The city.
+     * @param string $country     The country as an ISO 3166-1 alpha-2 country code.
+     * @param string|null $poBox  The PO box.
      */
     public function __construct(
         string $street,
