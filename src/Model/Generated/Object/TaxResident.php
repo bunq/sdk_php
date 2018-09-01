@@ -23,6 +23,13 @@ class TaxResident extends BunqModel
     protected $taxNumber;
 
     /**
+     * The status of the tax number. Either CONFIRMED or UNCONFIRMED.
+     *
+     * @var string
+     */
+    protected $status;
+
+    /**
      * The country of the tax number.
      *
      * @var string
@@ -37,13 +44,23 @@ class TaxResident extends BunqModel
     protected $taxNumberFieldForRequest;
 
     /**
-     * @param string $country   The country of the tax number.
-     * @param string $taxNumber The tax number.
+     * The status of the tax number. Either CONFIRMED or UNCONFIRMED.
+     *
+     * @var string|null
      */
-    public function __construct(string $country, string $taxNumber)
+    protected $statusFieldForRequest;
+
+    /**
+     * @param string $country     The country of the tax number.
+     * @param string $taxNumber   The tax number.
+     * @param string|null $status The status of the tax number. Either CONFIRMED
+     *                            or UNCONFIRMED.
+     */
+    public function __construct(string $country, string $taxNumber, string $status = null)
     {
         $this->countryFieldForRequest = $country;
         $this->taxNumberFieldForRequest = $taxNumber;
+        $this->statusFieldForRequest = $status;
     }
 
     /**
@@ -89,6 +106,27 @@ class TaxResident extends BunqModel
     }
 
     /**
+     * The status of the tax number. Either CONFIRMED or UNCONFIRMED.
+     *
+     * @return string
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param string $status
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+    }
+
+    /**
      * @return bool
      */
     public function isAllFieldNull()
@@ -98,6 +136,10 @@ class TaxResident extends BunqModel
         }
 
         if (!is_null($this->taxNumber)) {
+            return false;
+        }
+
+        if (!is_null($this->status)) {
             return false;
         }
 
