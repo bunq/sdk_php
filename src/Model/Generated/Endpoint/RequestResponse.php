@@ -8,6 +8,7 @@ use bunq\Model\Generated\Object\Amount;
 use bunq\Model\Generated\Object\Attachment;
 use bunq\Model\Generated\Object\Geolocation;
 use bunq\Model\Generated\Object\LabelMonetaryAccount;
+use bunq\Model\Generated\Object\LabelUser;
 use bunq\Model\Generated\Object\RequestInquiryReference;
 
 /**
@@ -79,6 +80,28 @@ class RequestResponse extends BunqModel
     protected $timeExpiry;
 
     /**
+     * The timestamp of when a refund request for the RequestResponse was
+     * claimed.
+     *
+     * @var string
+     */
+    protected $timeRefundRequested;
+
+    /**
+     * The timestamp of when the RequestResponse was refunded.
+     *
+     * @var string
+     */
+    protected $timeRefunded;
+
+    /**
+     * The label of the user that requested the refund.
+     *
+     * @var LabelUser
+     */
+    protected $userRefundRequested;
+
+    /**
      * The id of the MonetaryAccount the RequestResponse was received on.
      *
      * @var int
@@ -100,8 +123,8 @@ class RequestResponse extends BunqModel
     protected $amountResponded;
 
     /**
-     * The status of the RequestResponse. Can be ACCEPTED, PENDING, REJECTED or
-     * REVOKED.
+     * The status of the RequestResponse. Can be ACCEPTED, PENDING, REJECTED,
+     * REFUND_REQUESTED, REFUNDED or REVOKED.
      *
      * @var string
      */
@@ -507,6 +530,70 @@ class RequestResponse extends BunqModel
     }
 
     /**
+     * The timestamp of when a refund request for the RequestResponse was
+     * claimed.
+     *
+     * @return string
+     */
+    public function getTimeRefundRequested()
+    {
+        return $this->timeRefundRequested;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param string $timeRefundRequested
+     */
+    public function setTimeRefundRequested($timeRefundRequested)
+    {
+        $this->timeRefundRequested = $timeRefundRequested;
+    }
+
+    /**
+     * The timestamp of when the RequestResponse was refunded.
+     *
+     * @return string
+     */
+    public function getTimeRefunded()
+    {
+        return $this->timeRefunded;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param string $timeRefunded
+     */
+    public function setTimeRefunded($timeRefunded)
+    {
+        $this->timeRefunded = $timeRefunded;
+    }
+
+    /**
+     * The label of the user that requested the refund.
+     *
+     * @return LabelUser
+     */
+    public function getUserRefundRequested()
+    {
+        return $this->userRefundRequested;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param LabelUser $userRefundRequested
+     */
+    public function setUserRefundRequested($userRefundRequested)
+    {
+        $this->userRefundRequested = $userRefundRequested;
+    }
+
+    /**
      * The id of the MonetaryAccount the RequestResponse was received on.
      *
      * @return int
@@ -570,8 +657,8 @@ class RequestResponse extends BunqModel
     }
 
     /**
-     * The status of the RequestResponse. Can be ACCEPTED, PENDING, REJECTED or
-     * REVOKED.
+     * The status of the RequestResponse. Can be ACCEPTED, PENDING, REJECTED,
+     * REFUND_REQUESTED, REFUNDED or REVOKED.
      *
      * @return string
      */
@@ -980,6 +1067,18 @@ class RequestResponse extends BunqModel
         }
 
         if (!is_null($this->timeExpiry)) {
+            return false;
+        }
+
+        if (!is_null($this->timeRefundRequested)) {
+            return false;
+        }
+
+        if (!is_null($this->timeRefunded)) {
+            return false;
+        }
+
+        if (!is_null($this->userRefundRequested)) {
             return false;
         }
 

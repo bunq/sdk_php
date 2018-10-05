@@ -76,7 +76,7 @@ class BunqMeTabEntry extends BunqModel
     /**
      * The Amount requested to be paid. Can be optional.
      *
-     * @var Amount|null
+     * @var Amount
      */
     protected $amountInquiredFieldForRequest;
 
@@ -96,14 +96,14 @@ class BunqMeTabEntry extends BunqModel
     protected $redirectUrlFieldForRequest;
 
     /**
-     * @param string $description         The description for the bunq.me. Maximum 9000
-     *                                    characters. Field is required but can be an empty string.
-     * @param Amount|null $amountInquired The Amount requested to be paid. Can
-     *                                    be optional.
-     * @param string|null $redirectUrl    The URL which the user is sent to after
-     *                                    making a payment.
+     * @param Amount $amountInquired   The Amount requested to be paid. Can be
+     *                                 optional.
+     * @param string $description      The description for the bunq.me. Maximum 9000
+     *                                 characters. Field is required but can be an empty string.
+     * @param string|null $redirectUrl The URL which the user is sent to after
+     *                                 making a payment.
      */
-    public function __construct(string $description, Amount $amountInquired = null, string $redirectUrl = null)
+    public function __construct(Amount $amountInquired, string $description, string $redirectUrl = null)
     {
         $this->amountInquiredFieldForRequest = $amountInquired;
         $this->descriptionFieldForRequest = $description;

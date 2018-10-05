@@ -34,6 +34,27 @@ class ShareInviteBankResponse extends BunqModel
     const OBJECT_TYPE_GET = 'ShareInviteBankResponse';
 
     /**
+     * The id of the ShareInviteBankResponse.
+     *
+     * @var int
+     */
+    protected $id;
+
+    /**
+     * The timestamp of the ShareInviteBankResponse creation.
+     *
+     * @var string
+     */
+    protected $created;
+
+    /**
+     * The timestamp of the ShareInviteBankResponse last update.
+     *
+     * @var string
+     */
+    protected $updated;
+
+    /**
      * The monetary account and user who created the share.
      *
      * @var LabelMonetaryAccount
@@ -218,6 +239,69 @@ class ShareInviteBankResponse extends BunqModel
         return BunqResponseShareInviteBankResponseList::castFromBunqResponse(
             static::fromJsonList($responseRaw, self::OBJECT_TYPE_GET)
         );
+    }
+
+    /**
+     * The id of the ShareInviteBankResponse.
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param int $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * The timestamp of the ShareInviteBankResponse creation.
+     *
+     * @return string
+     */
+    public function getCreated()
+    {
+        return $this->created;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param string $created
+     */
+    public function setCreated($created)
+    {
+        $this->created = $created;
+    }
+
+    /**
+     * The timestamp of the ShareInviteBankResponse last update.
+     *
+     * @return string
+     */
+    public function getUpdated()
+    {
+        return $this->updated;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param string $updated
+     */
+    public function setUpdated($updated)
+    {
+        $this->updated = $updated;
     }
 
     /**
@@ -440,6 +524,18 @@ class ShareInviteBankResponse extends BunqModel
      */
     public function isAllFieldNull()
     {
+        if (!is_null($this->id)) {
+            return false;
+        }
+
+        if (!is_null($this->created)) {
+            return false;
+        }
+
+        if (!is_null($this->updated)) {
+            return false;
+        }
+
         if (!is_null($this->counterAlias)) {
             return false;
         }
