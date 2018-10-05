@@ -3,6 +3,7 @@ namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Http\ApiClient;
 use bunq\Model\Core\BunqModel;
+use bunq\Model\Generated\Object\Amount;
 
 /**
  * Show the limits for the authenticated user.
@@ -55,6 +56,27 @@ class CustomerLimit extends BunqModel
      * @var int
      */
     protected $limitCardDebitReplacement;
+
+    /**
+     * The number of "PREMIUM_LIMITED" invites the user has remaining.
+     *
+     * @var int
+     */
+    protected $limitInviteUserPremiumLimited;
+
+    /**
+     * The maximum amount a user is allowed to spend in a month.
+     *
+     * @var Amount
+     */
+    protected $limitAmountMonthly;
+
+    /**
+     * The amount the user has spent in the last month.
+     *
+     * @var Amount
+     */
+    protected $spentAmountMonthly;
 
     /**
      * Get all limits for the authenticated user.
@@ -190,6 +212,69 @@ class CustomerLimit extends BunqModel
     }
 
     /**
+     * The number of "PREMIUM_LIMITED" invites the user has remaining.
+     *
+     * @return int
+     */
+    public function getLimitInviteUserPremiumLimited()
+    {
+        return $this->limitInviteUserPremiumLimited;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param int $limitInviteUserPremiumLimited
+     */
+    public function setLimitInviteUserPremiumLimited($limitInviteUserPremiumLimited)
+    {
+        $this->limitInviteUserPremiumLimited = $limitInviteUserPremiumLimited;
+    }
+
+    /**
+     * The maximum amount a user is allowed to spend in a month.
+     *
+     * @return Amount
+     */
+    public function getLimitAmountMonthly()
+    {
+        return $this->limitAmountMonthly;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param Amount $limitAmountMonthly
+     */
+    public function setLimitAmountMonthly($limitAmountMonthly)
+    {
+        $this->limitAmountMonthly = $limitAmountMonthly;
+    }
+
+    /**
+     * The amount the user has spent in the last month.
+     *
+     * @return Amount
+     */
+    public function getSpentAmountMonthly()
+    {
+        return $this->spentAmountMonthly;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param Amount $spentAmountMonthly
+     */
+    public function setSpentAmountMonthly($spentAmountMonthly)
+    {
+        $this->spentAmountMonthly = $spentAmountMonthly;
+    }
+
+    /**
      * @return bool
      */
     public function isAllFieldNull()
@@ -211,6 +296,18 @@ class CustomerLimit extends BunqModel
         }
 
         if (!is_null($this->limitCardDebitReplacement)) {
+            return false;
+        }
+
+        if (!is_null($this->limitInviteUserPremiumLimited)) {
+            return false;
+        }
+
+        if (!is_null($this->limitAmountMonthly)) {
+            return false;
+        }
+
+        if (!is_null($this->spentAmountMonthly)) {
             return false;
         }
 

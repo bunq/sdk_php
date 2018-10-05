@@ -40,13 +40,21 @@ class CardBatchEntry extends BunqModel
     protected $statusFieldForRequest;
 
     /**
-     * The limits to define for the card, among CARD_LIMIT_CONTACTLESS,
-     * CARD_LIMIT_ATM, CARD_LIMIT_DIPPING and CARD_LIMIT_POS_ICC (e.g. 25 EUR
-     * for CARD_LIMIT_CONTACTLESS). All the limits must be provided on update.
+     * DEPRECATED: The limits to define for the card, among
+     * CARD_LIMIT_CONTACTLESS, CARD_LIMIT_ATM, CARD_LIMIT_DIPPING and
+     * CARD_LIMIT_POS_ICC (e.g. 25 EUR for CARD_LIMIT_CONTACTLESS). All the
+     * limits must be provided on update.
      *
      * @var CardLimit[]|null
      */
     protected $limitFieldForRequest;
+
+    /**
+     * The limit to define for the card.
+     *
+     * @var Amount|null
+     */
+    protected $cardLimitFieldForRequest;
 
     /**
      * Whether or not it is allowed to use the mag stripe for the card.
@@ -86,11 +94,12 @@ class CardBatchEntry extends BunqModel
      *                                                          Mind that all the possible choices (apart from ACTIVE
      *                                                          and DEACTIVATED) are permanent and cannot be changed
      *                                                          after.
-     * @param CardLimit[]|null $limit                           The limits to define for the card, among
-     *                                                          CARD_LIMIT_CONTACTLESS, CARD_LIMIT_ATM,
+     * @param CardLimit[]|null $limit                           DEPRECATED: The limits to define for the
+     *                                                          card, among CARD_LIMIT_CONTACTLESS, CARD_LIMIT_ATM,
      *                                                          CARD_LIMIT_DIPPING and CARD_LIMIT_POS_ICC (e.g. 25 EUR
      *                                                          for CARD_LIMIT_CONTACTLESS). All the limits must be
      *                                                          provided on update.
+     * @param Amount|null $cardLimit                            The limit to define for the card.
      * @param CardMagStripePermission|null $magStripePermission Whether or not
      *                                                          it is allowed to use the mag stripe for the card.
      * @param CardCountryPermission[]|null $countryPermission   The countries for
@@ -104,6 +113,7 @@ class CardBatchEntry extends BunqModel
         string $activationCode = null,
         string $status = null,
         array $limit = null,
+        Amount $cardLimit = null,
         CardMagStripePermission $magStripePermission = null,
         array $countryPermission = null,
         int $monetaryAccountIdFallback = null
@@ -112,6 +122,7 @@ class CardBatchEntry extends BunqModel
         $this->activationCodeFieldForRequest = $activationCode;
         $this->statusFieldForRequest = $status;
         $this->limitFieldForRequest = $limit;
+        $this->cardLimitFieldForRequest = $cardLimit;
         $this->magStripePermissionFieldForRequest = $magStripePermission;
         $this->countryPermissionFieldForRequest = $countryPermission;
         $this->monetaryAccountIdFallbackFieldForRequest = $monetaryAccountIdFallback;

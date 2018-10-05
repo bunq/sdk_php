@@ -3,6 +3,7 @@ namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Http\ApiClient;
 use bunq\Model\Core\BunqModel;
+use bunq\Model\Generated\Object\Amount;
 use bunq\Model\Generated\Object\CardCountryPermission;
 use bunq\Model\Generated\Object\CardLimit;
 use bunq\Model\Generated\Object\CardMagStripePermission;
@@ -29,6 +30,7 @@ class Card extends BunqModel
     const FIELD_PIN_CODE = 'pin_code';
     const FIELD_ACTIVATION_CODE = 'activation_code';
     const FIELD_STATUS = 'status';
+    const FIELD_CARD_LIMIT = 'card_limit';
     const FIELD_LIMIT = 'limit';
     const FIELD_MAG_STRIPE_PERMISSION = 'mag_stripe_permission';
     const FIELD_COUNTRY_PERMISSION = 'country_permission';
@@ -136,9 +138,16 @@ class Card extends BunqModel
     protected $primaryAccountNumberFourDigit;
 
     /**
-     * The limits to define for the card, among CARD_LIMIT_CONTACTLESS,
-     * CARD_LIMIT_ATM, CARD_LIMIT_DIPPING and CARD_LIMIT_POS_ICC (e.g. 25 EUR
-     * for CARD_LIMIT_CONTACTLESS)
+     * The spending limit for the cards
+     *
+     * @var Amount
+     */
+    protected $cardLimit;
+
+    /**
+     * DEPRECATED: The limits to define for the card, among
+     * CARD_LIMIT_CONTACTLESS, CARD_LIMIT_ATM, CARD_LIMIT_DIPPING and
+     * CARD_LIMIT_POS_ICC (e.g. 25 EUR for CARD_LIMIT_CONTACTLESS)
      *
      * @var CardLimit[]
      */
@@ -229,9 +238,17 @@ class Card extends BunqModel
     protected $statusFieldForRequest;
 
     /**
-     * The limits to define for the card, among CARD_LIMIT_CONTACTLESS,
-     * CARD_LIMIT_ATM, CARD_LIMIT_DIPPING and CARD_LIMIT_POS_ICC (e.g. 25 EUR
-     * for CARD_LIMIT_CONTACTLESS). All the limits must be provided on update.
+     * The spending limit for the card.
+     *
+     * @var Amount|null
+     */
+    protected $cardLimitFieldForRequest;
+
+    /**
+     * DEPRECATED: The limits to define for the card, among
+     * CARD_LIMIT_CONTACTLESS, CARD_LIMIT_ATM, CARD_LIMIT_DIPPING and
+     * CARD_LIMIT_POS_ICC (e.g. 25 EUR for CARD_LIMIT_CONTACTLESS). All the
+     * limits must be provided on update.
      *
      * @var CardLimit[]|null
      */
@@ -283,8 +300,9 @@ class Card extends BunqModel
      *                                                          Mind that all the possible choices (apart from ACTIVE
      *                                                          and DEACTIVATED) are permanent and cannot be changed
      *                                                          after.
-     * @param CardLimit[]|null $limit                           The limits to define for the card, among
-     *                                                          CARD_LIMIT_CONTACTLESS, CARD_LIMIT_ATM,
+     * @param Amount|null $cardLimit                            The spending limit for the card.
+     * @param CardLimit[]|null $limit                           DEPRECATED: The limits to define for the
+     *                                                          card, among CARD_LIMIT_CONTACTLESS, CARD_LIMIT_ATM,
      *                                                          CARD_LIMIT_DIPPING and CARD_LIMIT_POS_ICC (e.g. 25 EUR
      *                                                          for CARD_LIMIT_CONTACTLESS). All the limits must be
      *                                                          provided on update.
@@ -302,6 +320,7 @@ class Card extends BunqModel
         string $pinCode = null,
         string $activationCode = null,
         string $status = null,
+        Amount $cardLimit = null,
         array $limit = null,
         CardMagStripePermission $magStripePermission = null,
         array $countryPermission = null,
@@ -311,6 +330,7 @@ class Card extends BunqModel
         $this->pinCodeFieldForRequest = $pinCode;
         $this->activationCodeFieldForRequest = $activationCode;
         $this->statusFieldForRequest = $status;
+        $this->cardLimitFieldForRequest = $cardLimit;
         $this->limitFieldForRequest = $limit;
         $this->magStripePermissionFieldForRequest = $magStripePermission;
         $this->countryPermissionFieldForRequest = $countryPermission;
@@ -341,8 +361,9 @@ class Card extends BunqModel
      *                                                          Mind that all the possible choices (apart from ACTIVE
      *                                                          and DEACTIVATED) are permanent and cannot be changed
      *                                                          after.
-     * @param CardLimit[]|null $limit                           The limits to define for the card, among
-     *                                                          CARD_LIMIT_CONTACTLESS, CARD_LIMIT_ATM,
+     * @param Amount|null $cardLimit                            The spending limit for the card.
+     * @param CardLimit[]|null $limit                           DEPRECATED: The limits to define for the
+     *                                                          card, among CARD_LIMIT_CONTACTLESS, CARD_LIMIT_ATM,
      *                                                          CARD_LIMIT_DIPPING and CARD_LIMIT_POS_ICC (e.g. 25 EUR
      *                                                          for CARD_LIMIT_CONTACTLESS). All the limits must be
      *                                                          provided on update.
@@ -364,6 +385,7 @@ class Card extends BunqModel
         string $pinCode = null,
         string $activationCode = null,
         string $status = null,
+        Amount $cardLimit = null,
         array $limit = null,
         CardMagStripePermission $magStripePermission = null,
         array $countryPermission = null,
@@ -382,6 +404,7 @@ class Card extends BunqModel
                 self::FIELD_PIN_CODE => $pinCode,
                 self::FIELD_ACTIVATION_CODE => $activationCode,
                 self::FIELD_STATUS => $status,
+                self::FIELD_CARD_LIMIT => $cardLimit,
                 self::FIELD_LIMIT => $limit,
                 self::FIELD_MAG_STRIPE_PERMISSION => $magStripePermission,
                 self::FIELD_COUNTRY_PERMISSION => $countryPermission,
@@ -726,9 +749,30 @@ class Card extends BunqModel
     }
 
     /**
-     * The limits to define for the card, among CARD_LIMIT_CONTACTLESS,
-     * CARD_LIMIT_ATM, CARD_LIMIT_DIPPING and CARD_LIMIT_POS_ICC (e.g. 25 EUR
-     * for CARD_LIMIT_CONTACTLESS)
+     * The spending limit for the cards
+     *
+     * @return Amount
+     */
+    public function getCardLimit()
+    {
+        return $this->cardLimit;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param Amount $cardLimit
+     */
+    public function setCardLimit($cardLimit)
+    {
+        $this->cardLimit = $cardLimit;
+    }
+
+    /**
+     * DEPRECATED: The limits to define for the card, among
+     * CARD_LIMIT_CONTACTLESS, CARD_LIMIT_ATM, CARD_LIMIT_DIPPING and
+     * CARD_LIMIT_POS_ICC (e.g. 25 EUR for CARD_LIMIT_CONTACTLESS)
      *
      * @return CardLimit[]
      */
@@ -953,6 +997,10 @@ class Card extends BunqModel
         }
 
         if (!is_null($this->primaryAccountNumberFourDigit)) {
+            return false;
+        }
+
+        if (!is_null($this->cardLimit)) {
             return false;
         }
 
