@@ -142,6 +142,13 @@ class MasterCardAction extends BunqModel
     protected $panEntryModeUser;
 
     /**
+     * The setlement status in the authorisation process.
+     *
+     * @var string
+     */
+    protected $settlementStatus;
+
+    /**
      * The city where the message originates from as announced by the terminal.
      *
      * @var string
@@ -627,6 +634,27 @@ class MasterCardAction extends BunqModel
     }
 
     /**
+     * The setlement status in the authorisation process.
+     *
+     * @return string
+     */
+    public function getSettlementStatus()
+    {
+        return $this->settlementStatus;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param string $settlementStatus
+     */
+    public function setSettlementStatus($settlementStatus)
+    {
+        $this->settlementStatus = $settlementStatus;
+    }
+
+    /**
      * The city where the message originates from as announced by the terminal.
      *
      * @return string
@@ -949,6 +977,10 @@ class MasterCardAction extends BunqModel
         }
 
         if (!is_null($this->panEntryModeUser)) {
+            return false;
+        }
+
+        if (!is_null($this->settlementStatus)) {
             return false;
         }
 
