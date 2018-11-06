@@ -59,6 +59,7 @@ class UserPerson extends BunqModel
     const FIELD_CARD_LIMITS = 'card_limits';
     const FIELD_DAILY_LIMIT_WITHOUT_CONFIRMATION_LOGIN = 'daily_limit_without_confirmation_login';
     const FIELD_NOTIFICATION_FILTERS = 'notification_filters';
+    const FIELD_DISPLAY_NAME = 'display_name';
 
     /**
      * Object type.
@@ -496,6 +497,14 @@ class UserPerson extends BunqModel
     protected $notificationFiltersFieldForRequest;
 
     /**
+     * The person's legal name. Available legal names can be listed via the
+     * 'user/{user_id}/legal-name' endpoint.
+     *
+     * @var string|null
+     */
+    protected $displayNameFieldForRequest;
+
+    /**
      * @param Address $addressMain                           The user's main address.
      * @param string $avatarUuid                             The public UUID of the user's avatar.
      * @param string $documentType                           The type of identification document the
@@ -548,6 +557,9 @@ class UserPerson extends BunqModel
      * @param NotificationFilter[]|null $notificationFilters The types of
      *                                                       notifications that will result in a push notification or
      *                                                       URL callback for this UserPerson.
+     * @param string|null $displayName                       The person's legal name. Available legal
+     *                                                       names can be listed via the 'user/{user_id}/legal-name'
+     *                                                       endpoint.
      */
     public function __construct(
         Address $addressMain,
@@ -577,7 +589,8 @@ class UserPerson extends BunqModel
         int $documentBackAttachmentId = null,
         array $cardIds = null,
         array $cardLimits = null,
-        array $notificationFilters = null
+        array $notificationFilters = null,
+        string $displayName = null
     ) {
         $this->firstNameFieldForRequest = $firstName;
         $this->middleNameFieldForRequest = $middleName;
@@ -607,6 +620,7 @@ class UserPerson extends BunqModel
         $this->cardLimitsFieldForRequest = $cardLimits;
         $this->dailyLimitWithoutConfirmationLoginFieldForRequest = $dailyLimitWithoutConfirmationLogin;
         $this->notificationFiltersFieldForRequest = $notificationFilters;
+        $this->displayNameFieldForRequest = $displayName;
     }
 
     /**
@@ -691,6 +705,9 @@ class UserPerson extends BunqModel
      * @param NotificationFilter[]|null $notificationFilters  The types of
      *                                                        notifications that will result in a push notification or
      *                                                        URL callback for this UserPerson.
+     * @param string|null $displayName                        The person's legal name. Available legal
+     *                                                        names can be listed via the 'user/{user_id}/legal-name'
+     *                                                        endpoint.
      * @param string[] $customHeaders
      *
      * @return BunqResponseInt
@@ -724,6 +741,7 @@ class UserPerson extends BunqModel
         array $cardLimits = null,
         Amount $dailyLimitWithoutConfirmationLogin = null,
         array $notificationFilters = null,
+        string $displayName = null,
         array $customHeaders = []
     ): BunqResponseInt {
         $apiClient = new ApiClient(static::getApiContext());
@@ -761,6 +779,7 @@ class UserPerson extends BunqModel
                 self::FIELD_CARD_LIMITS => $cardLimits,
                 self::FIELD_DAILY_LIMIT_WITHOUT_CONFIRMATION_LOGIN => $dailyLimitWithoutConfirmationLogin,
                 self::FIELD_NOTIFICATION_FILTERS => $notificationFilters,
+                self::FIELD_DISPLAY_NAME => $displayName,
             ],
             $customHeaders
         );

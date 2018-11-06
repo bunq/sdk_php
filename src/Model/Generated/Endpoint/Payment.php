@@ -224,6 +224,13 @@ class Payment extends BunqModel
     protected $requestReferenceSplitTheBill;
 
     /**
+     * The new balance of the monetary account after the mutation.
+     *
+     * @var Amount
+     */
+    protected $balanceAfterMutation;
+
+    /**
      * The Amount to transfer with the Payment. Must be bigger than 0 and
      * smaller than the MonetaryAccount's balance.
      *
@@ -929,6 +936,27 @@ class Payment extends BunqModel
     }
 
     /**
+     * The new balance of the monetary account after the mutation.
+     *
+     * @return Amount
+     */
+    public function getBalanceAfterMutation()
+    {
+        return $this->balanceAfterMutation;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param Amount $balanceAfterMutation
+     */
+    public function setBalanceAfterMutation($balanceAfterMutation)
+    {
+        $this->balanceAfterMutation = $balanceAfterMutation;
+    }
+
+    /**
      * @return bool
      */
     public function isAllFieldNull()
@@ -1026,6 +1054,10 @@ class Payment extends BunqModel
         }
 
         if (!is_null($this->requestReferenceSplitTheBill)) {
+            return false;
+        }
+
+        if (!is_null($this->balanceAfterMutation)) {
             return false;
         }
 

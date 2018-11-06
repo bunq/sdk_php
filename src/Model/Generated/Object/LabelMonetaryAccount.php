@@ -72,6 +72,21 @@ class LabelMonetaryAccount extends BunqModel
     protected $swiftAccountNumber;
 
     /**
+     * The account number used for a Transferwise payment. May or may not be an
+     * IBAN.
+     *
+     * @var string
+     */
+    protected $transferwiseAccountNumber;
+
+    /**
+     * The bank code used for a Transferwise payment. May or may not be a BIC.
+     *
+     * @var string
+     */
+    protected $transferwiseBankCode;
+
+    /**
      * The IBAN of the monetary account.
      *
      * @return string
@@ -261,6 +276,49 @@ class LabelMonetaryAccount extends BunqModel
     }
 
     /**
+     * The account number used for a Transferwise payment. May or may not be an
+     * IBAN.
+     *
+     * @return string
+     */
+    public function getTransferwiseAccountNumber()
+    {
+        return $this->transferwiseAccountNumber;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param string $transferwiseAccountNumber
+     */
+    public function setTransferwiseAccountNumber($transferwiseAccountNumber)
+    {
+        $this->transferwiseAccountNumber = $transferwiseAccountNumber;
+    }
+
+    /**
+     * The bank code used for a Transferwise payment. May or may not be a BIC.
+     *
+     * @return string
+     */
+    public function getTransferwiseBankCode()
+    {
+        return $this->transferwiseBankCode;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param string $transferwiseBankCode
+     */
+    public function setTransferwiseBankCode($transferwiseBankCode)
+    {
+        $this->transferwiseBankCode = $transferwiseBankCode;
+    }
+
+    /**
      * @return bool
      */
     public function isAllFieldNull()
@@ -298,6 +356,14 @@ class LabelMonetaryAccount extends BunqModel
         }
 
         if (!is_null($this->swiftAccountNumber)) {
+            return false;
+        }
+
+        if (!is_null($this->transferwiseAccountNumber)) {
+            return false;
+        }
+
+        if (!is_null($this->transferwiseBankCode)) {
             return false;
         }
 
