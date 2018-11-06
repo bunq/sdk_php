@@ -79,6 +79,14 @@ class BillingContractSubscription extends BunqModel
     protected $subscriptionType;
 
     /**
+     * The subscription type the user will have after a subscription downgrade.
+     * Will be null if downgrading is not possible.
+     *
+     * @var string
+     */
+    protected $subscriptionTypeDowngrade;
+
+    /**
      * The subscription status.
      *
      * @var string
@@ -316,6 +324,28 @@ class BillingContractSubscription extends BunqModel
     }
 
     /**
+     * The subscription type the user will have after a subscription downgrade.
+     * Will be null if downgrading is not possible.
+     *
+     * @return string
+     */
+    public function getSubscriptionTypeDowngrade()
+    {
+        return $this->subscriptionTypeDowngrade;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param string $subscriptionTypeDowngrade
+     */
+    public function setSubscriptionTypeDowngrade($subscriptionTypeDowngrade)
+    {
+        $this->subscriptionTypeDowngrade = $subscriptionTypeDowngrade;
+    }
+
+    /**
      * The subscription status.
      *
      * @return string
@@ -387,6 +417,10 @@ class BillingContractSubscription extends BunqModel
         }
 
         if (!is_null($this->subscriptionType)) {
+            return false;
+        }
+
+        if (!is_null($this->subscriptionTypeDowngrade)) {
             return false;
         }
 
