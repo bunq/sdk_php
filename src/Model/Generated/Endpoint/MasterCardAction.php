@@ -55,6 +55,13 @@ class MasterCardAction extends BunqModel
     protected $amountLocal;
 
     /**
+     * The amount of the transaction in local currency.
+     *
+     * @var Amount
+     */
+    protected $amountConverted;
+
+    /**
      * The amount of the transaction in the monetary account's currency.
      *
      * @var Amount
@@ -376,6 +383,27 @@ class MasterCardAction extends BunqModel
     public function setAmountLocal($amountLocal)
     {
         $this->amountLocal = $amountLocal;
+    }
+
+    /**
+     * The amount of the transaction in local currency.
+     *
+     * @return Amount
+     */
+    public function getAmountConverted()
+    {
+        return $this->amountConverted;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param Amount $amountConverted
+     */
+    public function setAmountConverted($amountConverted)
+    {
+        $this->amountConverted = $amountConverted;
     }
 
     /**
@@ -929,6 +957,10 @@ class MasterCardAction extends BunqModel
         }
 
         if (!is_null($this->amountLocal)) {
+            return false;
+        }
+
+        if (!is_null($this->amountConverted)) {
             return false;
         }
 
