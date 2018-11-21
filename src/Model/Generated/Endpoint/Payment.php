@@ -38,6 +38,7 @@ class Payment extends BunqModel
     const FIELD_DESCRIPTION = 'description';
     const FIELD_ATTACHMENT = 'attachment';
     const FIELD_MERCHANT_REFERENCE = 'merchant_reference';
+    const FIELD_ALLOW_BUNQTO = 'allow_bunqto';
 
     /**
      * Object type.
@@ -271,6 +272,13 @@ class Payment extends BunqModel
     protected $merchantReferenceFieldForRequest;
 
     /**
+     * Whether or not sending a bunq.to payment is allowed.
+     *
+     * @var bool|null
+     */
+    protected $allowBunqtoFieldForRequest;
+
+    /**
      * @param Amount $amount                                      The Amount to transfer with the Payment. Must be
      *                                                            bigger than 0 and smaller than the MonetaryAccount's
      *                                                            balance.
@@ -288,19 +296,23 @@ class Payment extends BunqModel
      *                                                            Attachments to attach to the Payment.
      * @param string|null $merchantReference                      Optional data to be included with
      *                                                            the Payment specific to the merchant.
+     * @param bool|null $allowBunqto                              Whether or not sending a bunq.to payment is
+     *                                                            allowed.
      */
     public function __construct(
         Amount $amount,
         Pointer $counterpartyAlias,
         string $description,
         array $attachment = null,
-        string $merchantReference = null
+        string $merchantReference = null,
+        bool $allowBunqto = null
     ) {
         $this->amountFieldForRequest = $amount;
         $this->counterpartyAliasFieldForRequest = $counterpartyAlias;
         $this->descriptionFieldForRequest = $description;
         $this->attachmentFieldForRequest = $attachment;
         $this->merchantReferenceFieldForRequest = $merchantReference;
+        $this->allowBunqtoFieldForRequest = $allowBunqto;
     }
 
     /**
@@ -324,6 +336,8 @@ class Payment extends BunqModel
      *                                                            Attachments to attach to the Payment.
      * @param string|null $merchantReference                      Optional data to be included with
      *                                                            the Payment specific to the merchant.
+     * @param bool|null $allowBunqto                              Whether or not sending a bunq.to payment is
+     *                                                            allowed.
      * @param string[] $customHeaders
      *
      * @return BunqResponseInt
@@ -335,6 +349,7 @@ class Payment extends BunqModel
         int $monetaryAccountId = null,
         array $attachment = null,
         string $merchantReference = null,
+        bool $allowBunqto = null,
         array $customHeaders = []
     ): BunqResponseInt {
         $apiClient = new ApiClient(static::getApiContext());
@@ -349,6 +364,7 @@ class Payment extends BunqModel
                 self::FIELD_DESCRIPTION => $description,
                 self::FIELD_ATTACHMENT => $attachment,
                 self::FIELD_MERCHANT_REFERENCE => $merchantReference,
+                self::FIELD_ALLOW_BUNQTO => $allowBunqto,
             ],
             $customHeaders
         );

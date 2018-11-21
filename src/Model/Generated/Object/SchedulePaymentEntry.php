@@ -97,8 +97,7 @@ class SchedulePaymentEntry extends BunqModel
     protected $merchantReferenceFieldForRequest;
 
     /**
-     * Whether or not sending a bunq.to payment is allowed. Mandatory for
-     * publicApi.
+     * Whether or not sending a bunq.to payment is allowed.
      *
      * @var bool|null
      */
@@ -119,7 +118,7 @@ class SchedulePaymentEntry extends BunqModel
      * @param string|null $merchantReference Optional data to be included with
      *                                       the Payment specific to the merchant.
      * @param bool|null $allowBunqto         Whether or not sending a bunq.to payment is
-     *                                       allowed. Mandatory for publicApi.
+     *                                       allowed.
      */
     public function __construct(
         Amount $amount,
