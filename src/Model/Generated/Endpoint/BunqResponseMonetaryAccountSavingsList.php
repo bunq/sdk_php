@@ -5,12 +5,12 @@ use bunq\Http\BunqResponse;
 
 /**
  */
-class BunqResponseMonetaryAccountLight extends BunqResponse
+class BunqResponseMonetaryAccountSavingsList extends BunqResponse
 {
     /**
-     * @return MonetaryAccountLight
+     * @return MonetaryAccountSavings[]
      */
-    public function getValue(): MonetaryAccountLight
+    public function getValue(): array
     {
         return parent::getValue();
     }

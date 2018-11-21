@@ -1,7 +1,6 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
-use bunq\Http\ApiClient;
 use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Object\Address;
 use bunq\Model\Generated\Object\Amount;
@@ -17,11 +16,6 @@ use bunq\Model\Generated\Object\TaxResident;
  */
 class UserLight extends BunqModel
 {
-    /**
-     * Endpoint constants.
-     */
-    const ENDPOINT_URL_READ = 'user-light/%s';
-
     /**
      * Field constants.
      */
@@ -52,11 +46,6 @@ class UserLight extends BunqModel
     const FIELD_SESSION_TIMEOUT = 'session_timeout';
     const FIELD_DAILY_LIMIT_WITHOUT_CONFIRMATION_LOGIN = 'daily_limit_without_confirmation_login';
     const FIELD_NOTIFICATION_FILTERS = 'notification_filters';
-
-    /**
-     * Object type.
-     */
-    const OBJECT_TYPE_GET = 'UserPerson';
 
     /**
      * The id of the user.
@@ -597,31 +586,6 @@ class UserLight extends BunqModel
         $this->sessionTimeoutFieldForRequest = $sessionTimeout;
         $this->dailyLimitWithoutConfirmationLoginFieldForRequest = $dailyLimitWithoutConfirmationLogin;
         $this->notificationFiltersFieldForRequest = $notificationFilters;
-    }
-
-    /**
-     * Get a specific bunq light user.
-     *
-     * @param int $userLightId
-     * @param string[] $customHeaders
-     *
-     * @return BunqResponseUserLight
-     */
-    public static function get(int $userLightId, array $customHeaders = []): BunqResponseUserLight
-    {
-        $apiClient = new ApiClient(static::getApiContext());
-        $responseRaw = $apiClient->get(
-            vsprintf(
-                self::ENDPOINT_URL_READ,
-                [$userLightId]
-            ),
-            [],
-            $customHeaders
-        );
-
-        return BunqResponseUserLight::castFromBunqResponse(
-            static::fromJson($responseRaw, self::OBJECT_TYPE_GET)
-        );
     }
 
     /**
