@@ -14,7 +14,6 @@ class BillingContractSubscription extends BunqModel
     /**
      * Endpoint constants.
      */
-    const ENDPOINT_URL_CREATE = 'user/%s/billing-contract-subscription';
     const ENDPOINT_URL_LISTING = 'user/%s/billing-contract-subscription';
 
     /**
@@ -117,31 +116,6 @@ class BillingContractSubscription extends BunqModel
     public function __construct(string $subscriptionType)
     {
         $this->subscriptionTypeFieldForRequest = $subscriptionType;
-    }
-
-    /**
-     * @param string $subscriptionType The subscription type of the user. Can be
-     *                                 one of PERSON_LIGHT_V1, PERSON_MORE_V1, PERSON_FREE_V1,
-     *                                 PERSON_PREMIUM_V1, COMPANY_V1, or COMPANY_V2.
-     * @param string[] $customHeaders
-     *
-     * @return BunqResponseInt
-     */
-    public static function create(string $subscriptionType, array $customHeaders = []): BunqResponseInt
-    {
-        $apiClient = new ApiClient(static::getApiContext());
-        $responseRaw = $apiClient->post(
-            vsprintf(
-                self::ENDPOINT_URL_CREATE,
-                [static::determineUserId()]
-            ),
-            [self::FIELD_SUBSCRIPTION_TYPE => $subscriptionType],
-            $customHeaders
-        );
-
-        return BunqResponseInt::castFromBunqResponse(
-            static::processForId($responseRaw)
-        );
     }
 
     /**

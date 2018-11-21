@@ -1,7 +1,6 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
-use bunq\Http\ApiClient;
 use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Object\LabelMonetaryAccount;
 
@@ -16,18 +15,6 @@ use bunq\Model\Generated\Object\LabelMonetaryAccount;
 class ShareInviteBankInquiryBatch extends BunqModel
 {
     /**
-     * Endpoint constants.
-     */
-    const ENDPOINT_URL_READ = 'user/%s/monetary-account/%s/share-invite-bank-inquiry-batch/%s';
-    const ENDPOINT_URL_CREATE = 'user/%s/monetary-account/%s/share-invite-bank-inquiry-batch';
-    const ENDPOINT_URL_LISTING = 'user/%s/monetary-account/%s/share-invite-bank-inquiry-batch';
-
-    /**
-     * Object type.
-     */
-    const OBJECT_TYPE_GET = 'ShareInviteBankInquiryBatch';
-
-    /**
      * The list of share invite bank inquiries that were made.
      *
      * @var ShareInviteBankInquiry[]
@@ -41,90 +28,6 @@ class ShareInviteBankInquiryBatch extends BunqModel
      * @var LabelMonetaryAccount
      */
     protected $alias;
-
-    /**
-     * @param int $shareInviteBankInquiryBatchId
-     * @param int|null $monetaryAccountId
-     * @param string[] $customHeaders
-     *
-     * @return BunqResponseShareInviteBankInquiryBatch
-     */
-    public static function get(
-        int $shareInviteBankInquiryBatchId,
-        int $monetaryAccountId = null,
-        array $customHeaders = []
-    ): BunqResponseShareInviteBankInquiryBatch {
-        $apiClient = new ApiClient(static::getApiContext());
-        $responseRaw = $apiClient->get(
-            vsprintf(
-                self::ENDPOINT_URL_READ,
-                [
-                    static::determineUserId(),
-                    static::determineMonetaryAccountId($monetaryAccountId),
-                    $shareInviteBankInquiryBatchId,
-                ]
-            ),
-            [],
-            $customHeaders
-        );
-
-        return BunqResponseShareInviteBankInquiryBatch::castFromBunqResponse(
-            static::fromJson($responseRaw, self::OBJECT_TYPE_GET)
-        );
-    }
-
-    /**
-     * @param int|null $monetaryAccountId
-     * @param string[] $customHeaders
-     *
-     * @return BunqResponseInt
-     */
-    public static function create(int $monetaryAccountId = null, array $customHeaders = []): BunqResponseInt
-    {
-        $apiClient = new ApiClient(static::getApiContext());
-        $responseRaw = $apiClient->post(
-            vsprintf(
-                self::ENDPOINT_URL_CREATE,
-                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId)]
-            ),
-            [],
-            $customHeaders
-        );
-
-        return BunqResponseInt::castFromBunqResponse(
-            static::processForId($responseRaw)
-        );
-    }
-
-    /**
-     * This method is called "listing" because "list" is a restricted PHP word
-     * and cannot be used as constants, class names, function or method names.
-     *
-     * @param int|null $monetaryAccountId
-     * @param string[] $params
-     * @param string[] $customHeaders
-     *
-     * @return BunqResponseShareInviteBankInquiryBatchList
-     */
-    public static function listing(
-        int $monetaryAccountId = null,
-        array $params = [],
-        array $customHeaders = []
-    ): BunqResponseShareInviteBankInquiryBatchList {
-        $apiClient = new ApiClient(static::getApiContext());
-        $responseRaw = $apiClient->get(
-            vsprintf(
-                self::ENDPOINT_URL_LISTING,
-                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId)]
-            ),
-            $params,
-            $customHeaders
-        );
-
-        return BunqResponseShareInviteBankInquiryBatchList::castFromBunqResponse(
-            static::fromJsonList($responseRaw, self::OBJECT_TYPE_GET)
-        );
-    }
 
     /**
      * The list of share invite bank inquiries that were made.

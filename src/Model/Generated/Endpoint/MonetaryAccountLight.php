@@ -1,7 +1,6 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
-use bunq\Http\ApiClient;
 use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Object\Amount;
 use bunq\Model\Generated\Object\Avatar;
@@ -21,14 +20,6 @@ use bunq\Model\Generated\Object\Pointer;
 class MonetaryAccountLight extends BunqModel
 {
     /**
-     * Endpoint constants.
-     */
-    const ENDPOINT_URL_CREATE = 'user/%s/monetary-account-light';
-    const ENDPOINT_URL_READ = 'user/%s/monetary-account-light/%s';
-    const ENDPOINT_URL_UPDATE = 'user/%s/monetary-account-light/%s';
-    const ENDPOINT_URL_LISTING = 'user/%s/monetary-account-light';
-
-    /**
      * Field constants.
      */
     const FIELD_CURRENCY = 'currency';
@@ -41,11 +32,6 @@ class MonetaryAccountLight extends BunqModel
     const FIELD_REASON_DESCRIPTION = 'reason_description';
     const FIELD_NOTIFICATION_FILTERS = 'notification_filters';
     const FIELD_SETTING = 'setting';
-
-    /**
-     * Object type.
-     */
-    const OBJECT_TYPE_GET = 'MonetaryAccountLight';
 
     /**
      * The id of the MonetaryAccountLight.
@@ -378,221 +364,6 @@ class MonetaryAccountLight extends BunqModel
         $this->reasonDescriptionFieldForRequest = $reasonDescription;
         $this->notificationFiltersFieldForRequest = $notificationFilters;
         $this->settingFieldForRequest = $setting;
-    }
-
-    /**
-     * Create new MonetaryAccountLight.
-     *
-     * @param string $currency                               The currency of the MonetaryAccountLight as an
-     *                                                       ISO 4217 formatted currency code.
-     * @param string|null $description                       The description of the
-     *                                                       MonetaryAccountLight. Defaults to 'bunq account'.
-     * @param Amount|null $dailyLimit                        The daily spending limit Amount of the
-     *                                                       MonetaryAccountLight. Defaults to 1000 EUR. Currency must
-     *                                                       match the MonetaryAccountLight's currency. Limited to
-     *                                                       10000 EUR.
-     * @param string|null $avatarUuid                        The UUID of the Avatar of the
-     *                                                       MonetaryAccountLight.
-     * @param string|null $status                            The status of the MonetaryAccountLight.
-     *                                                       Ignored in POST requests (always set to ACTIVE) can be
-     *                                                       CANCELLED or PENDING_REOPEN in PUT requests to cancel
-     *                                                       (close) or reopen the MonetaryAccountLight. When updating
-     *                                                       the status and/or sub_status no other fields can be
-     *                                                       updated in the same request (and vice versa).
-     * @param string|null $subStatus                         The sub-status of the MonetaryAccountLight
-     *                                                       providing extra information regarding the status. Should
-     *                                                       be ignored for POST requests and can only be
-     *                                                       REDEMPTION_VOLUNTARY for PUT requests with status
-     *                                                       CANCELLED. When updating the status and/or sub_status no
-     *                                                       other fields can be updated in the same request (and vice
-     *                                                       versa).
-     * @param string|null $reason                            The reason for voluntarily cancelling
-     *                                                       (closing) the MonetaryAccountBank, can only be OTHER.
-     *                                                       Should only be specified if updating the status to
-     *                                                       CANCELLED.
-     * @param string|null $reasonDescription                 The optional free-form reason for
-     *                                                       voluntarily cancelling (closing) the MonetaryAccountBank.
-     *                                                       Can be any user provided message. Should only be specified
-     *                                                       if updating the status to CANCELLED.
-     * @param NotificationFilter[]|null $notificationFilters The types of
-     *                                                       notifications that will result in a push notification or
-     *                                                       URL callback for this MonetaryAccountLight.
-     * @param MonetaryAccountSetting|null $setting           The settings of the
-     *                                                       MonetaryAccountLight.
-     * @param string[] $customHeaders
-     *
-     * @return BunqResponseInt
-     */
-    public static function create(
-        string $currency,
-        string $description = null,
-        Amount $dailyLimit = null,
-        string $avatarUuid = null,
-        string $status = null,
-        string $subStatus = null,
-        string $reason = null,
-        string $reasonDescription = null,
-        array $notificationFilters = null,
-        MonetaryAccountSetting $setting = null,
-        array $customHeaders = []
-    ): BunqResponseInt {
-        $apiClient = new ApiClient(static::getApiContext());
-        $responseRaw = $apiClient->post(
-            vsprintf(
-                self::ENDPOINT_URL_CREATE,
-                [static::determineUserId()]
-            ),
-            [
-                self::FIELD_CURRENCY => $currency,
-                self::FIELD_DESCRIPTION => $description,
-                self::FIELD_DAILY_LIMIT => $dailyLimit,
-                self::FIELD_AVATAR_UUID => $avatarUuid,
-                self::FIELD_STATUS => $status,
-                self::FIELD_SUB_STATUS => $subStatus,
-                self::FIELD_REASON => $reason,
-                self::FIELD_REASON_DESCRIPTION => $reasonDescription,
-                self::FIELD_NOTIFICATION_FILTERS => $notificationFilters,
-                self::FIELD_SETTING => $setting,
-            ],
-            $customHeaders
-        );
-
-        return BunqResponseInt::castFromBunqResponse(
-            static::processForId($responseRaw)
-        );
-    }
-
-    /**
-     * Get a specific MonetaryAccountLight.
-     *
-     * @param int $monetaryAccountLightId
-     * @param string[] $customHeaders
-     *
-     * @return BunqResponseMonetaryAccountLight
-     */
-    public static function get(int $monetaryAccountLightId, array $customHeaders = []): BunqResponseMonetaryAccountLight
-    {
-        $apiClient = new ApiClient(static::getApiContext());
-        $responseRaw = $apiClient->get(
-            vsprintf(
-                self::ENDPOINT_URL_READ,
-                [static::determineUserId(), $monetaryAccountLightId]
-            ),
-            [],
-            $customHeaders
-        );
-
-        return BunqResponseMonetaryAccountLight::castFromBunqResponse(
-            static::fromJson($responseRaw, self::OBJECT_TYPE_GET)
-        );
-    }
-
-    /**
-     * Update a specific existing MonetaryAccountLight.
-     *
-     * @param int $monetaryAccountLightId
-     * @param string|null $description                       The description of the
-     *                                                       MonetaryAccountLight. Defaults to 'bunq account'.
-     * @param Amount|null $dailyLimit                        The daily spending limit Amount of the
-     *                                                       MonetaryAccountLight. Defaults to 1000 EUR. Currency must
-     *                                                       match the MonetaryAccountLight's currency. Limited to
-     *                                                       10000 EUR.
-     * @param string|null $avatarUuid                        The UUID of the Avatar of the
-     *                                                       MonetaryAccountLight.
-     * @param string|null $status                            The status of the MonetaryAccountLight.
-     *                                                       Ignored in POST requests (always set to ACTIVE) can be
-     *                                                       CANCELLED or PENDING_REOPEN in PUT requests to cancel
-     *                                                       (close) or reopen the MonetaryAccountLight. When updating
-     *                                                       the status and/or sub_status no other fields can be
-     *                                                       updated in the same request (and vice versa).
-     * @param string|null $subStatus                         The sub-status of the MonetaryAccountLight
-     *                                                       providing extra information regarding the status. Should
-     *                                                       be ignored for POST requests and can only be
-     *                                                       REDEMPTION_VOLUNTARY for PUT requests with status
-     *                                                       CANCELLED. When updating the status and/or sub_status no
-     *                                                       other fields can be updated in the same request (and vice
-     *                                                       versa).
-     * @param string|null $reason                            The reason for voluntarily cancelling
-     *                                                       (closing) the MonetaryAccountBank, can only be OTHER.
-     *                                                       Should only be specified if updating the status to
-     *                                                       CANCELLED.
-     * @param string|null $reasonDescription                 The optional free-form reason for
-     *                                                       voluntarily cancelling (closing) the MonetaryAccountBank.
-     *                                                       Can be any user provided message. Should only be specified
-     *                                                       if updating the status to CANCELLED.
-     * @param NotificationFilter[]|null $notificationFilters The types of
-     *                                                       notifications that will result in a push notification or
-     *                                                       URL callback for this MonetaryAccountLight.
-     * @param MonetaryAccountSetting|null $setting           The settings of the
-     *                                                       MonetaryAccountLight.
-     * @param string[] $customHeaders
-     *
-     * @return BunqResponseInt
-     */
-    public static function update(
-        int $monetaryAccountLightId,
-        string $description = null,
-        Amount $dailyLimit = null,
-        string $avatarUuid = null,
-        string $status = null,
-        string $subStatus = null,
-        string $reason = null,
-        string $reasonDescription = null,
-        array $notificationFilters = null,
-        MonetaryAccountSetting $setting = null,
-        array $customHeaders = []
-    ): BunqResponseInt {
-        $apiClient = new ApiClient(static::getApiContext());
-        $responseRaw = $apiClient->put(
-            vsprintf(
-                self::ENDPOINT_URL_UPDATE,
-                [static::determineUserId(), $monetaryAccountLightId]
-            ),
-            [
-                self::FIELD_DESCRIPTION => $description,
-                self::FIELD_DAILY_LIMIT => $dailyLimit,
-                self::FIELD_AVATAR_UUID => $avatarUuid,
-                self::FIELD_STATUS => $status,
-                self::FIELD_SUB_STATUS => $subStatus,
-                self::FIELD_REASON => $reason,
-                self::FIELD_REASON_DESCRIPTION => $reasonDescription,
-                self::FIELD_NOTIFICATION_FILTERS => $notificationFilters,
-                self::FIELD_SETTING => $setting,
-            ],
-            $customHeaders
-        );
-
-        return BunqResponseInt::castFromBunqResponse(
-            static::processForId($responseRaw)
-        );
-    }
-
-    /**
-     * Gets a listing of all MonetaryAccountLights of a given user.
-     *
-     * This method is called "listing" because "list" is a restricted PHP word
-     * and cannot be used as constants, class names, function or method names.
-     *
-     * @param string[] $params
-     * @param string[] $customHeaders
-     *
-     * @return BunqResponseMonetaryAccountLightList
-     */
-    public static function listing(array $params = [], array $customHeaders = []): BunqResponseMonetaryAccountLightList
-    {
-        $apiClient = new ApiClient(static::getApiContext());
-        $responseRaw = $apiClient->get(
-            vsprintf(
-                self::ENDPOINT_URL_LISTING,
-                [static::determineUserId()]
-            ),
-            $params,
-            $customHeaders
-        );
-
-        return BunqResponseMonetaryAccountLightList::castFromBunqResponse(
-            static::fromJsonList($responseRaw, self::OBJECT_TYPE_GET)
-        );
     }
 
     /**
