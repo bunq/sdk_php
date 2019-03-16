@@ -9,17 +9,19 @@ use bunq\Http\Handler\RequestHandlerAuthentication;
 use bunq\Http\Handler\RequestHandlerEncryption;
 use bunq\Http\Handler\RequestHandlerSignature;
 use bunq\Http\Handler\ResponseHandlerError;
+use bunq\Http\Handler\ResponseHandlerRateLimit;
 use bunq\Http\Handler\ResponseHandlerSignature;
 use bunq\Util\BunqEnumApiEnvironmentType;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Uri;
+use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 
 /**
  */
-class ApiClient
+class ApiClient implements RequestRetryer
 {
     /**
      * Error constants.
@@ -236,6 +238,33 @@ class ApiClient
     }
 
     /**
+     * @param RequestInterface $request
+     * @return ResponseInterface
+     */
+    public function retryRequest(RequestInterface $request): ResponseInterface {
+        $this->initialize($request->getUri());
+
+        if ($request->getBody()->isSeekable()) {
+            $request->getBody()->rewind();
+        }
+
+        $body = $request->getBody()->getContents();
+
+        if (!$this->isBinary || !empty($body)) {
+            $body = json_decode($body, true);
+        }
+
+        return $this->httpClient->request(
+            $request->getMethod(),
+            $request->getUri(),
+            $this->determineRequestOptions(
+                $body,
+                $request->getHeaders()
+            )
+        );
+    }
+
+    /**
      */
     private function initialize(string $uri)
     {
@@ -298,6 +327,7 @@ class ApiClient
         }
 
         $handlerStack->push(HandlerUtil::applyResponseHandler(new ResponseHandlerError()));
+        $handlerStack->push(HandlerUtil::applyResponseHandler(new ResponseHandlerRateLimit($this)));
 
         return $handlerStack;
     }
