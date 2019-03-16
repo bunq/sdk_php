@@ -81,3 +81,4 @@ tmp/
 
 # PhpCs
 .php_cs*
+.idea

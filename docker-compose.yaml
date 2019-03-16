@@ -1,0 +1,12 @@
+version: "3"
+
+services:
+
+  php_dev:
+    # this service can be used to develop with docker image in phpstorm
+    # this way you do not need to install php on your system
+    build:
+      context: ./
+      dockerfile: ./development/Dockerfile
+    volumes:
+      - .:/var/www/app:rw
