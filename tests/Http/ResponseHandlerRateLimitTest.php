@@ -1,4 +1,5 @@
-<?php declare(strict_types=1);
+<?php
+declare(strict_types=1);
 
 namespace bunq\test\Http;
 
@@ -6,6 +7,8 @@ use bunq\Http\Handler\ResponseHandlerRateLimit;
 use bunq\test\BunqSdkTestBase;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
+use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
 
 /**
  * Class ResponseHandlerRateLimitTest
@@ -14,14 +17,44 @@ use GuzzleHttp\Psr7\Response;
 class ResponseHandlerRateLimitTest extends BunqSdkTestBase
 {
     /**
+     * @return array
      */
-    public function testExecute()
+    public function dataProviderTestExecute(): array
     {
-        $sut = new ResponseHandlerRateLimit(new RequestRertyerForTest());
+        return [
+            'retry once' => [
+                new Response(429),
+                new Request('$method', '$uri'),
+                false,
+                1
+            ],
+            'retry twice' => [
+                new Response(429),
+                new Request('$method', '$uri'),
+                true,
+                2,
+            ],
+            'dont retry' => [
+                new Response(200),
+                new Request('$method', '$uri'),
+                true,
+                0,
+            ],
+        ];
+    }
 
-        $response = $sut->execute(new Response(429), new Request('GET', 'https://whatthecommit.com/index.txt'));
+    /**
+     * @dataProvider dataProviderTestExecute
+     */
+    public function testExecute(ResponseInterface $response, RequestInterface $request, bool $retry, int $retryCounter)
+    {
+        $retryer = new RequestRertyerForTest($retry);
+        $sut = new ResponseHandlerRateLimit($retryer);
+
+        $response = $sut->execute($response, $request);
 
         static::assertEquals(200, $response->getStatusCode());
+        static::assertEquals($retryCounter, $retryer->getCalledCounter());
     }
 
     /**
