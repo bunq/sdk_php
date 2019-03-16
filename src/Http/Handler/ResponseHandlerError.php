@@ -5,6 +5,7 @@ namespace bunq\Http\Handler;
 use bunq\Exception\ApiException;
 use bunq\Exception\BunqException;
 use bunq\Exception\ExceptionFactory;
+use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 
 /**
@@ -41,11 +42,13 @@ class ResponseHandlerError extends ResponseHandlerBase
 
     /**
      * @param ResponseInterface $response
+     * @param RequestInterface $request
      *
      * @return ResponseInterface
      * @throws ApiException when something goes wrong on the API side.
+     * @throws BunqException
      */
-    public function execute(ResponseInterface $response): ResponseInterface
+    public function execute(ResponseInterface $response, RequestInterface $request): ResponseInterface
     {
         if ($response->getStatusCode() !== self::STATUS_CODE_OK) {
             throw ExceptionFactory::createExceptionForResponse(

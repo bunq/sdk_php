@@ -3,6 +3,7 @@ namespace bunq\Http\Handler;
 
 use bunq\Exception\SecurityException;
 use bunq\Security\PublicKey;
+use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 
 /**
@@ -61,11 +62,12 @@ class ResponseHandlerSignature extends ResponseHandlerBase
 
     /**
      * @param ResponseInterface $response
+     * @param RequestInterface $request
      *
      * @return ResponseInterface
      * @throws SecurityException when the response verification fails.
      */
-    public function execute(ResponseInterface $response): ResponseInterface
+    public function execute(ResponseInterface $response, RequestInterface $request): ResponseInterface
     {
         if ($response->getStatusCode() === self::STATUS_CODE_OK) {
             if (is_null($this->publicKeyServer)) {

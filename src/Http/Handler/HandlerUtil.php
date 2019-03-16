@@ -38,8 +38,8 @@ class HandlerUtil
         return function (callable $handler) use ($responseHandler) {
             return function (RequestInterface $request, array $options) use ($handler, $responseHandler) {
                 return $handler($request, $options)->then(
-                    function (ResponseInterface $response) use ($responseHandler) {
-                        return $responseHandler->execute($response);
+                    function (ResponseInterface $response) use ($responseHandler, $request) {
+                        return $responseHandler->execute($response, $request);
                     }
                 );
             };
