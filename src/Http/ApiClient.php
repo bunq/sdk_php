@@ -241,24 +241,19 @@ class ApiClient implements RequestRetryer
      * @param RequestInterface $request
      * @return ResponseInterface
      */
-    public function retryRequest(RequestInterface $request): ResponseInterface {
+    public function retryRequest(RequestInterface $request): ResponseInterface
+    {
         $this->initialize($request->getUri());
 
         if ($request->getBody()->isSeekable()) {
             $request->getBody()->rewind();
         }
 
-        $body = $request->getBody()->getContents();
-
-        if (!$this->isBinary || !empty($body)) {
-            $body = json_decode($body, true);
-        }
-
         return $this->httpClient->request(
             $request->getMethod(),
             $request->getUri(),
             $this->determineRequestOptions(
-                $body,
+                $request->getBody()->getContents(),
                 $request->getHeaders()
             )
         );
@@ -428,13 +423,17 @@ class ApiClient implements RequestRetryer
     {
         if ($this->isBinary) {
             return $body;
-        } elseif (empty($body)) {
-            return self::BODY_EMPTY;
-        } else {
-            $bodyString = json_encode($body);
         }
 
-        return $bodyString;
+        if (empty($body)) {
+            return self::BODY_EMPTY;
+        }
+
+        if (is_array($body)) {
+            return json_encode($body);
+        }
+
+        return $body;
     }
 
     /**
