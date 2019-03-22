@@ -4,11 +4,15 @@ namespace bunq\Model\Generated\Object;
 use bunq\exception\BunqException;
 use bunq\Model\Core\AnchorObjectInterface;
 use bunq\Model\Core\BunqModel;
+use bunq\Model\Generated\Endpoint\BankSwitchServiceNetherlandsIncomingPayment;
+use bunq\Model\Generated\Endpoint\BunqMeFundraiserResult;
 use bunq\Model\Generated\Endpoint\BunqMeTab;
+use bunq\Model\Generated\Endpoint\BunqMeTabResultResponse;
 use bunq\Model\Generated\Endpoint\Card;
 use bunq\Model\Generated\Endpoint\CardDebit;
 use bunq\Model\Generated\Endpoint\DraftPayment;
 use bunq\Model\Generated\Endpoint\FeatureAnnouncement;
+use bunq\Model\Generated\Endpoint\IdealMerchantTransaction;
 use bunq\Model\Generated\Endpoint\Invoice;
 use bunq\Model\Generated\Endpoint\MasterCardAction;
 use bunq\Model\Generated\Endpoint\Payment;
@@ -16,14 +20,18 @@ use bunq\Model\Generated\Endpoint\PaymentBatch;
 use bunq\Model\Generated\Endpoint\RequestInquiry;
 use bunq\Model\Generated\Endpoint\RequestInquiryBatch;
 use bunq\Model\Generated\Endpoint\RequestResponse;
+use bunq\Model\Generated\Endpoint\RewardRecipient;
+use bunq\Model\Generated\Endpoint\RewardSender;
 use bunq\Model\Generated\Endpoint\ScheduleInstance;
 use bunq\Model\Generated\Endpoint\SchedulePayment;
 use bunq\Model\Generated\Endpoint\SchedulePaymentBatch;
 use bunq\Model\Generated\Endpoint\ShareInviteBankInquiry;
 use bunq\Model\Generated\Endpoint\ShareInviteBankInquiryBatch;
 use bunq\Model\Generated\Endpoint\ShareInviteBankResponse;
+use bunq\Model\Generated\Endpoint\SofortMerchantTransaction;
 use bunq\Model\Generated\Endpoint\TabResultInquiry;
 use bunq\Model\Generated\Endpoint\TabResultResponse;
+use bunq\Model\Generated\Endpoint\TransferwiseTransfer;
 
 /**
  * @generated
@@ -39,6 +47,16 @@ class EventObject extends BunqModel implements AnchorObjectInterface
      * @var BunqMeTab
      */
     protected $bunqMeTab;
+
+    /**
+     * @var BunqMeTabResultResponse
+     */
+    protected $bunqMeTabResultResponse;
+
+    /**
+     * @var BunqMeFundraiserResult
+     */
+    protected $bunqMeFundraiserResult;
 
     /**
      * @var Card
@@ -59,6 +77,11 @@ class EventObject extends BunqModel implements AnchorObjectInterface
      * @var FeatureAnnouncement
      */
     protected $featureAnnouncement;
+
+    /**
+     * @var IdealMerchantTransaction
+     */
+    protected $idealMerchantTransaction;
 
     /**
      * @var Invoice
@@ -86,6 +109,11 @@ class EventObject extends BunqModel implements AnchorObjectInterface
     protected $masterCardAction;
 
     /**
+     * @var BankSwitchServiceNetherlandsIncomingPayment
+     */
+    protected $bankSwitchServiceNetherlandsIncomingPayment;
+
+    /**
      * @var Payment
      */
     protected $payment;
@@ -111,6 +139,16 @@ class EventObject extends BunqModel implements AnchorObjectInterface
     protected $requestResponse;
 
     /**
+     * @var RewardRecipient
+     */
+    protected $rewardRecipient;
+
+    /**
+     * @var RewardSender
+     */
+    protected $rewardSender;
+
+    /**
      * @var ShareInviteBankInquiryBatch
      */
     protected $shareInviteBankInquiryBatch;
@@ -126,6 +164,11 @@ class EventObject extends BunqModel implements AnchorObjectInterface
     protected $shareInviteBankResponse;
 
     /**
+     * @var SofortMerchantTransaction
+     */
+    protected $sofortMerchantTransaction;
+
+    /**
      * @var TabResultInquiry
      */
     protected $tabResultInquiry;
@@ -134,6 +177,11 @@ class EventObject extends BunqModel implements AnchorObjectInterface
      * @var TabResultResponse
      */
     protected $tabResultResponse;
+
+    /**
+     * @var TransferwiseTransfer
+     */
+    protected $transferwiseTransfer;
 
     /**
      * @return BunqMeTab
@@ -152,6 +200,44 @@ class EventObject extends BunqModel implements AnchorObjectInterface
     public function setBunqMeTab($bunqMeTab)
     {
         $this->bunqMeTab = $bunqMeTab;
+    }
+
+    /**
+     * @return BunqMeTabResultResponse
+     */
+    public function getBunqMeTabResultResponse()
+    {
+        return $this->bunqMeTabResultResponse;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param BunqMeTabResultResponse $bunqMeTabResultResponse
+     */
+    public function setBunqMeTabResultResponse($bunqMeTabResultResponse)
+    {
+        $this->bunqMeTabResultResponse = $bunqMeTabResultResponse;
+    }
+
+    /**
+     * @return BunqMeFundraiserResult
+     */
+    public function getBunqMeFundraiserResult()
+    {
+        return $this->bunqMeFundraiserResult;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param BunqMeFundraiserResult $bunqMeFundraiserResult
+     */
+    public function setBunqMeFundraiserResult($bunqMeFundraiserResult)
+    {
+        $this->bunqMeFundraiserResult = $bunqMeFundraiserResult;
     }
 
     /**
@@ -228,6 +314,25 @@ class EventObject extends BunqModel implements AnchorObjectInterface
     public function setFeatureAnnouncement($featureAnnouncement)
     {
         $this->featureAnnouncement = $featureAnnouncement;
+    }
+
+    /**
+     * @return IdealMerchantTransaction
+     */
+    public function getIdealMerchantTransaction()
+    {
+        return $this->idealMerchantTransaction;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param IdealMerchantTransaction $idealMerchantTransaction
+     */
+    public function setIdealMerchantTransaction($idealMerchantTransaction)
+    {
+        $this->idealMerchantTransaction = $idealMerchantTransaction;
     }
 
     /**
@@ -326,6 +431,26 @@ class EventObject extends BunqModel implements AnchorObjectInterface
     }
 
     /**
+     * @return BankSwitchServiceNetherlandsIncomingPayment
+     */
+    public function getBankSwitchServiceNetherlandsIncomingPayment()
+    {
+        return $this->bankSwitchServiceNetherlandsIncomingPayment;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param BankSwitchServiceNetherlandsIncomingPayment
+     * $bankSwitchServiceNetherlandsIncomingPayment
+     */
+    public function setBankSwitchServiceNetherlandsIncomingPayment($bankSwitchServiceNetherlandsIncomingPayment)
+    {
+        $this->bankSwitchServiceNetherlandsIncomingPayment = $bankSwitchServiceNetherlandsIncomingPayment;
+    }
+
+    /**
      * @return Payment
      */
     public function getPayment()
@@ -421,6 +546,44 @@ class EventObject extends BunqModel implements AnchorObjectInterface
     }
 
     /**
+     * @return RewardRecipient
+     */
+    public function getRewardRecipient()
+    {
+        return $this->rewardRecipient;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param RewardRecipient $rewardRecipient
+     */
+    public function setRewardRecipient($rewardRecipient)
+    {
+        $this->rewardRecipient = $rewardRecipient;
+    }
+
+    /**
+     * @return RewardSender
+     */
+    public function getRewardSender()
+    {
+        return $this->rewardSender;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param RewardSender $rewardSender
+     */
+    public function setRewardSender($rewardSender)
+    {
+        $this->rewardSender = $rewardSender;
+    }
+
+    /**
      * @return ShareInviteBankInquiryBatch
      */
     public function getShareInviteBankInquiryBatch()
@@ -478,6 +641,25 @@ class EventObject extends BunqModel implements AnchorObjectInterface
     }
 
     /**
+     * @return SofortMerchantTransaction
+     */
+    public function getSofortMerchantTransaction()
+    {
+        return $this->sofortMerchantTransaction;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param SofortMerchantTransaction $sofortMerchantTransaction
+     */
+    public function setSofortMerchantTransaction($sofortMerchantTransaction)
+    {
+        $this->sofortMerchantTransaction = $sofortMerchantTransaction;
+    }
+
+    /**
      * @return TabResultInquiry
      */
     public function getTabResultInquiry()
@@ -516,6 +698,25 @@ class EventObject extends BunqModel implements AnchorObjectInterface
     }
 
     /**
+     * @return TransferwiseTransfer
+     */
+    public function getTransferwiseTransfer()
+    {
+        return $this->transferwiseTransfer;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param TransferwiseTransfer $transferwiseTransfer
+     */
+    public function setTransferwiseTransfer($transferwiseTransfer)
+    {
+        $this->transferwiseTransfer = $transferwiseTransfer;
+    }
+
+    /**
      * @return BunqModel
      * @throws BunqException
      */
@@ -523,6 +724,14 @@ class EventObject extends BunqModel implements AnchorObjectInterface
     {
         if (!is_null($this->bunqMeTab)) {
             return $this->bunqMeTab;
+        }
+
+        if (!is_null($this->bunqMeTabResultResponse)) {
+            return $this->bunqMeTabResultResponse;
+        }
+
+        if (!is_null($this->bunqMeFundraiserResult)) {
+            return $this->bunqMeFundraiserResult;
         }
 
         if (!is_null($this->card)) {
@@ -539,6 +748,10 @@ class EventObject extends BunqModel implements AnchorObjectInterface
 
         if (!is_null($this->featureAnnouncement)) {
             return $this->featureAnnouncement;
+        }
+
+        if (!is_null($this->idealMerchantTransaction)) {
+            return $this->idealMerchantTransaction;
         }
 
         if (!is_null($this->invoice)) {
@@ -561,6 +774,10 @@ class EventObject extends BunqModel implements AnchorObjectInterface
             return $this->masterCardAction;
         }
 
+        if (!is_null($this->bankSwitchServiceNetherlandsIncomingPayment)) {
+            return $this->bankSwitchServiceNetherlandsIncomingPayment;
+        }
+
         if (!is_null($this->payment)) {
             return $this->payment;
         }
@@ -581,6 +798,14 @@ class EventObject extends BunqModel implements AnchorObjectInterface
             return $this->requestResponse;
         }
 
+        if (!is_null($this->rewardRecipient)) {
+            return $this->rewardRecipient;
+        }
+
+        if (!is_null($this->rewardSender)) {
+            return $this->rewardSender;
+        }
+
         if (!is_null($this->shareInviteBankInquiryBatch)) {
             return $this->shareInviteBankInquiryBatch;
         }
@@ -593,12 +818,20 @@ class EventObject extends BunqModel implements AnchorObjectInterface
             return $this->shareInviteBankResponse;
         }
 
+        if (!is_null($this->sofortMerchantTransaction)) {
+            return $this->sofortMerchantTransaction;
+        }
+
         if (!is_null($this->tabResultInquiry)) {
             return $this->tabResultInquiry;
         }
 
         if (!is_null($this->tabResultResponse)) {
             return $this->tabResultResponse;
+        }
+
+        if (!is_null($this->transferwiseTransfer)) {
+            return $this->transferwiseTransfer;
         }
 
         throw new BunqException(self::ERROR_NULL_FIELDS);
@@ -610,6 +843,14 @@ class EventObject extends BunqModel implements AnchorObjectInterface
     public function isAllFieldNull()
     {
         if (!is_null($this->bunqMeTab)) {
+            return false;
+        }
+
+        if (!is_null($this->bunqMeTabResultResponse)) {
+            return false;
+        }
+
+        if (!is_null($this->bunqMeFundraiserResult)) {
             return false;
         }
 
@@ -626,6 +867,10 @@ class EventObject extends BunqModel implements AnchorObjectInterface
         }
 
         if (!is_null($this->featureAnnouncement)) {
+            return false;
+        }
+
+        if (!is_null($this->idealMerchantTransaction)) {
             return false;
         }
 
@@ -649,6 +894,10 @@ class EventObject extends BunqModel implements AnchorObjectInterface
             return false;
         }
 
+        if (!is_null($this->bankSwitchServiceNetherlandsIncomingPayment)) {
+            return false;
+        }
+
         if (!is_null($this->payment)) {
             return false;
         }
@@ -669,6 +918,14 @@ class EventObject extends BunqModel implements AnchorObjectInterface
             return false;
         }
 
+        if (!is_null($this->rewardRecipient)) {
+            return false;
+        }
+
+        if (!is_null($this->rewardSender)) {
+            return false;
+        }
+
         if (!is_null($this->shareInviteBankInquiryBatch)) {
             return false;
         }
@@ -681,11 +938,19 @@ class EventObject extends BunqModel implements AnchorObjectInterface
             return false;
         }
 
+        if (!is_null($this->sofortMerchantTransaction)) {
+            return false;
+        }
+
         if (!is_null($this->tabResultInquiry)) {
             return false;
         }
 
         if (!is_null($this->tabResultResponse)) {
+            return false;
+        }
+
+        if (!is_null($this->transferwiseTransfer)) {
             return false;
         }
 

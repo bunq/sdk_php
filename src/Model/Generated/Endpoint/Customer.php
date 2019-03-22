@@ -1,7 +1,6 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
-use bunq\Http\ApiClient;
 use bunq\Model\Core\BunqModel;
 
 /**
@@ -12,22 +11,10 @@ use bunq\Model\Core\BunqModel;
 class Customer extends BunqModel
 {
     /**
-     * Endpoint constants.
-     */
-    const ENDPOINT_URL_LISTING = 'user/%s/customer';
-    const ENDPOINT_URL_READ = 'user/%s/customer/%s';
-    const ENDPOINT_URL_UPDATE = 'user/%s/customer/%s';
-
-    /**
      * Field constants.
      */
     const FIELD_BILLING_ACCOUNT_ID = 'billing_account_id';
     const FIELD_INVOICE_NOTIFICATION_PREFERENCE = 'invoice_notification_preference';
-
-    /**
-     * Object type.
-     */
-    const OBJECT_TYPE_GET = 'Customer';
 
     /**
      * The id of the customer.
@@ -88,89 +75,6 @@ class Customer extends BunqModel
     {
         $this->billingAccountIdFieldForRequest = $billingAccountId;
         $this->invoiceNotificationPreferenceFieldForRequest = $invoiceNotificationPreference;
-    }
-
-    /**
-     * This method is called "listing" because "list" is a restricted PHP word
-     * and cannot be used as constants, class names, function or method names.
-     *
-     * @param string[] $params
-     * @param string[] $customHeaders
-     *
-     * @return BunqResponseCustomerList
-     */
-    public static function listing(array $params = [], array $customHeaders = []): BunqResponseCustomerList
-    {
-        $apiClient = new ApiClient(static::getApiContext());
-        $responseRaw = $apiClient->get(
-            vsprintf(
-                self::ENDPOINT_URL_LISTING,
-                [static::determineUserId()]
-            ),
-            $params,
-            $customHeaders
-        );
-
-        return BunqResponseCustomerList::castFromBunqResponse(
-            static::fromJsonList($responseRaw, self::OBJECT_TYPE_GET)
-        );
-    }
-
-    /**
-     * @param int $customerId
-     * @param string[] $customHeaders
-     *
-     * @return BunqResponseCustomer
-     */
-    public static function get(int $customerId, array $customHeaders = []): BunqResponseCustomer
-    {
-        $apiClient = new ApiClient(static::getApiContext());
-        $responseRaw = $apiClient->get(
-            vsprintf(
-                self::ENDPOINT_URL_READ,
-                [static::determineUserId(), $customerId]
-            ),
-            [],
-            $customHeaders
-        );
-
-        return BunqResponseCustomer::castFromBunqResponse(
-            static::fromJson($responseRaw, self::OBJECT_TYPE_GET)
-        );
-    }
-
-    /**
-     * @param int $customerId
-     * @param string|null $billingAccountId              The primary billing account
-     *                                                   account's id.
-     * @param string|null $invoiceNotificationPreference The preferred
-     *                                                   notification type for invoices
-     * @param string[] $customHeaders
-     *
-     * @return BunqResponseInt
-     */
-    public static function update(
-        int $customerId,
-        string $billingAccountId = null,
-        string $invoiceNotificationPreference = null,
-        array $customHeaders = []
-    ): BunqResponseInt {
-        $apiClient = new ApiClient(static::getApiContext());
-        $responseRaw = $apiClient->put(
-            vsprintf(
-                self::ENDPOINT_URL_UPDATE,
-                [static::determineUserId(), $customerId]
-            ),
-            [
-                self::FIELD_BILLING_ACCOUNT_ID => $billingAccountId,
-                self::FIELD_INVOICE_NOTIFICATION_PREFERENCE => $invoiceNotificationPreference,
-            ],
-            $customHeaders
-        );
-
-        return BunqResponseInt::castFromBunqResponse(
-            static::processForId($responseRaw)
-        );
     }
 
     /**

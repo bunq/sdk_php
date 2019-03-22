@@ -35,8 +35,8 @@ class ShareDetail extends BunqModel
     protected $readOnly;
 
     /**
-     * The share details for a draft payment share. Remember to replace
-     * 'draft_payment' with 'ShareDetailDraftPayment' before sending a request.
+     * The share details for a draft payment share. In the response
+     * 'draft_payment' is replaced by 'ShareDetailDraftPayment'.
      *
      * @var ShareDetailDraftPayment
      */
@@ -132,8 +132,8 @@ class ShareDetail extends BunqModel
     }
 
     /**
-     * The share details for a draft payment share. Remember to replace
-     * 'draft_payment' with 'ShareDetailDraftPayment' before sending a request.
+     * The share details for a draft payment share. In the response
+     * 'draft_payment' is replaced by 'ShareDetailDraftPayment'.
      *
      * @return ShareDetailDraftPayment
      */

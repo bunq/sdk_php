@@ -1,6 +1,7 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
+use bunq\Http\ApiClient;
 use bunq\Model\Core\BunqModel;
 
 /**
@@ -10,6 +11,16 @@ use bunq\Model\Core\BunqModel;
  */
 class BunqMeFundraiserResult extends BunqModel
 {
+    /**
+     * Endpoint constants.
+     */
+    const ENDPOINT_URL_READ = 'user/%s/monetary-account/%s/bunqme-fundraiser-result/%s';
+
+    /**
+     * Object type.
+     */
+    const OBJECT_TYPE_GET = 'BunqMeFundraiserResult';
+
     /**
      * The id of the bunq.me.
      *
@@ -44,6 +55,37 @@ class BunqMeFundraiserResult extends BunqModel
      * @var Payment[]
      */
     protected $payments;
+
+    /**
+     * @param int $bunqMeFundraiserResultId
+     * @param int|null $monetaryAccountId
+     * @param string[] $customHeaders
+     *
+     * @return BunqResponseBunqMeFundraiserResult
+     */
+    public static function get(
+        int $bunqMeFundraiserResultId,
+        int $monetaryAccountId = null,
+        array $customHeaders = []
+    ): BunqResponseBunqMeFundraiserResult {
+        $apiClient = new ApiClient(static::getApiContext());
+        $responseRaw = $apiClient->get(
+            vsprintf(
+                self::ENDPOINT_URL_READ,
+                [
+                    static::determineUserId(),
+                    static::determineMonetaryAccountId($monetaryAccountId),
+                    $bunqMeFundraiserResultId,
+                ]
+            ),
+            [],
+            $customHeaders
+        );
+
+        return BunqResponseBunqMeFundraiserResult::castFromBunqResponse(
+            static::fromJson($responseRaw, self::OBJECT_TYPE_GET)
+        );
+    }
 
     /**
      * The id of the bunq.me.
