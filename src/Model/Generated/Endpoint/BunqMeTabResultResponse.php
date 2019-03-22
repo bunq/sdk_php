@@ -1,6 +1,7 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
+use bunq\Http\ApiClient;
 use bunq\Model\Core\BunqModel;
 
 /**
@@ -13,11 +14,52 @@ use bunq\Model\Core\BunqModel;
 class BunqMeTabResultResponse extends BunqModel
 {
     /**
+     * Endpoint constants.
+     */
+    const ENDPOINT_URL_READ = 'user/%s/monetary-account/%s/bunqme-tab-result-response/%s';
+
+    /**
+     * Object type.
+     */
+    const OBJECT_TYPE_GET = 'BunqMeTabResultResponse';
+
+    /**
      * The payment made for the bunq.me tab.
      *
      * @var Payment
      */
     protected $payment;
+
+    /**
+     * @param int $bunqMeTabResultResponseId
+     * @param int|null $monetaryAccountId
+     * @param string[] $customHeaders
+     *
+     * @return BunqResponseBunqMeTabResultResponse
+     */
+    public static function get(
+        int $bunqMeTabResultResponseId,
+        int $monetaryAccountId = null,
+        array $customHeaders = []
+    ): BunqResponseBunqMeTabResultResponse {
+        $apiClient = new ApiClient(static::getApiContext());
+        $responseRaw = $apiClient->get(
+            vsprintf(
+                self::ENDPOINT_URL_READ,
+                [
+                    static::determineUserId(),
+                    static::determineMonetaryAccountId($monetaryAccountId),
+                    $bunqMeTabResultResponseId,
+                ]
+            ),
+            [],
+            $customHeaders
+        );
+
+        return BunqResponseBunqMeTabResultResponse::castFromBunqResponse(
+            static::fromJson($responseRaw, self::OBJECT_TYPE_GET)
+        );
+    }
 
     /**
      * The payment made for the bunq.me tab.

@@ -30,6 +30,13 @@ class CustomerLimit extends BunqModel
     protected $limitMonetaryAccount;
 
     /**
+     * The amount of additional monetary accounts you can create.
+     *
+     * @var int
+     */
+    protected $limitMonetaryAccountRemaining;
+
+    /**
      * The limit of Maestro cards.
      *
      * @var int
@@ -125,6 +132,27 @@ class CustomerLimit extends BunqModel
     public function setLimitMonetaryAccount($limitMonetaryAccount)
     {
         $this->limitMonetaryAccount = $limitMonetaryAccount;
+    }
+
+    /**
+     * The amount of additional monetary accounts you can create.
+     *
+     * @return int
+     */
+    public function getLimitMonetaryAccountRemaining()
+    {
+        return $this->limitMonetaryAccountRemaining;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param int $limitMonetaryAccountRemaining
+     */
+    public function setLimitMonetaryAccountRemaining($limitMonetaryAccountRemaining)
+    {
+        $this->limitMonetaryAccountRemaining = $limitMonetaryAccountRemaining;
     }
 
     /**
@@ -280,6 +308,10 @@ class CustomerLimit extends BunqModel
     public function isAllFieldNull()
     {
         if (!is_null($this->limitMonetaryAccount)) {
+            return false;
+        }
+
+        if (!is_null($this->limitMonetaryAccountRemaining)) {
             return false;
         }
 

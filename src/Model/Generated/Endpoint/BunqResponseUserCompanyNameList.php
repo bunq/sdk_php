@@ -5,10 +5,10 @@ use bunq\Http\BunqResponse;
 
 /**
  */
-class BunqResponseCustomerList extends BunqResponse
+class BunqResponseUserCompanyNameList extends BunqResponse
 {
     /**
-     * @return Customer[]
+     * @return UserCompanyName[]
      */
     public function getValue(): array
     {

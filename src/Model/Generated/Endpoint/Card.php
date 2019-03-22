@@ -8,6 +8,7 @@ use bunq\Model\Generated\Object\CardCountryPermission;
 use bunq\Model\Generated\Object\CardLimit;
 use bunq\Model\Generated\Object\CardMagStripePermission;
 use bunq\Model\Generated\Object\CardPinAssignment;
+use bunq\Model\Generated\Object\CardVirtualPrimaryAccountNumber;
 use bunq\Model\Generated\Object\LabelMonetaryAccount;
 
 /**
@@ -36,6 +37,7 @@ class Card extends BunqModel
     const FIELD_MAG_STRIPE_PERMISSION = 'mag_stripe_permission';
     const FIELD_COUNTRY_PERMISSION = 'country_permission';
     const FIELD_PIN_CODE_ASSIGNMENT = 'pin_code_assignment';
+    const FIELD_PRIMARY_ACCOUNT_NUMBERS_VIRTUAL = 'primary_account_numbers_virtual';
     const FIELD_MONETARY_ACCOUNT_ID_FALLBACK = 'monetary_account_id_fallback';
 
     /**
@@ -139,6 +141,13 @@ class Card extends BunqModel
     protected $primaryAccountNumberFourDigit;
 
     /**
+     * Array of PANs, status, description and account id for online cards.
+     *
+     * @var CardVirtualPrimaryAccountNumber[]
+     */
+    protected $primaryAccountNumbersVirtual;
+
+    /**
      * The spending limit for the card.
      *
      * @var Amount
@@ -160,13 +169,6 @@ class Card extends BunqModel
      * @var CardLimit[]
      */
     protected $limit;
-
-    /**
-     * The countries for which to grant (temporary) permissions to use the card.
-     *
-     * @var CardMagStripePermission
-     */
-    protected $magStripePermission;
 
     /**
      * The countries for which to grant (temporary) permissions to use the card.
@@ -222,9 +224,8 @@ class Card extends BunqModel
     protected $pinCodeFieldForRequest;
 
     /**
-     * The activation code required to set status to ACTIVE initially. Can only
-     * set status to ACTIVE using activation code when order_status is
-     * ACCEPTED_FOR_PRODUCTION and status is DEACTIVATED.
+     * DEPRECATED: Activate a card by setting status to ACTIVE when the
+     * order_status is ACCEPTED_FOR_PRODUCTION.
      *
      * @var string|null
      */
@@ -270,7 +271,8 @@ class Card extends BunqModel
     protected $limitFieldForRequest;
 
     /**
-     * Whether or not it is allowed to use the mag stripe for the card.
+     * DEPRECATED: Whether or not it is allowed to use the mag stripe for the
+     * card.
      *
      * @var CardMagStripePermission|null
      */
@@ -291,6 +293,13 @@ class Card extends BunqModel
     protected $pinCodeAssignmentFieldForRequest;
 
     /**
+     * Array of PANs, status, description and account id for online cards.
+     *
+     * @var CardVirtualPrimaryAccountNumber[]|null
+     */
+    protected $primaryAccountNumbersVirtualFieldForRequest;
+
+    /**
      * ID of the MA to be used as fallback for this card if insufficient
      * balance. Fallback account is removed if not supplied.
      *
@@ -301,10 +310,9 @@ class Card extends BunqModel
     /**
      * @param string|null $pinCode                              The plaintext pin code. Requests require
      *                                                          encryption to be enabled.
-     * @param string|null $activationCode                       The activation code required to set
-     *                                                          status to ACTIVE initially. Can only set status to
-     *                                                          ACTIVE using activation code when order_status is
-     *                                                          ACCEPTED_FOR_PRODUCTION and status is DEACTIVATED.
+     * @param string|null $activationCode                       DEPRECATED: Activate a card by setting
+     *                                                          status to ACTIVE when the order_status is
+     *                                                          ACCEPTED_FOR_PRODUCTION.
      * @param string|null $status                               The status to set for the card. Can be ACTIVE,
      *                                                          DEACTIVATED, LOST, STOLEN or CANCELLED, and can only be
      *                                                          set to LOST/STOLEN/CANCELLED when order status is
@@ -322,12 +330,16 @@ class Card extends BunqModel
      *                                                          CARD_LIMIT_DIPPING and CARD_LIMIT_POS_ICC (e.g. 25 EUR
      *                                                          for CARD_LIMIT_CONTACTLESS). All the limits must be
      *                                                          provided on update.
-     * @param CardMagStripePermission|null $magStripePermission Whether or not
-     *                                                          it is allowed to use the mag stripe for the card.
+     * @param CardMagStripePermission|null $magStripePermission DEPRECATED:
+     *                                                          Whether or not it is allowed to use the mag stripe for
+     *                                                          the card.
      * @param CardCountryPermission[]|null $countryPermission   The countries for
      *                                                          which to grant (temporary) permissions to use the card.
      * @param CardPinAssignment[]|null $pinCodeAssignment       Array of Types, PINs,
      *                                                          account IDs assigned to the card.
+     * @param CardVirtualPrimaryAccountNumber[]|null
+     *                                                          $primaryAccountNumbersVirtual Array of PANs, status,
+     *                                                          description and account id for online cards.
      * @param int|null $monetaryAccountIdFallback               ID of the MA to be used as
      *                                                          fallback for this card if insufficient balance.
      *                                                          Fallback account is removed if not supplied.
@@ -342,6 +354,7 @@ class Card extends BunqModel
         CardMagStripePermission $magStripePermission = null,
         array $countryPermission = null,
         array $pinCodeAssignment = null,
+        array $primaryAccountNumbersVirtual = null,
         int $monetaryAccountIdFallback = null
     ) {
         $this->pinCodeFieldForRequest = $pinCode;
@@ -353,6 +366,7 @@ class Card extends BunqModel
         $this->magStripePermissionFieldForRequest = $magStripePermission;
         $this->countryPermissionFieldForRequest = $countryPermission;
         $this->pinCodeAssignmentFieldForRequest = $pinCodeAssignment;
+        $this->primaryAccountNumbersVirtualFieldForRequest = $primaryAccountNumbersVirtual;
         $this->monetaryAccountIdFallbackFieldForRequest = $monetaryAccountIdFallback;
     }
 
@@ -365,10 +379,9 @@ class Card extends BunqModel
      * @param int $cardId
      * @param string|null $pinCode                              The plaintext pin code. Requests require
      *                                                          encryption to be enabled.
-     * @param string|null $activationCode                       The activation code required to set
-     *                                                          status to ACTIVE initially. Can only set status to
-     *                                                          ACTIVE using activation code when order_status is
-     *                                                          ACCEPTED_FOR_PRODUCTION and status is DEACTIVATED.
+     * @param string|null $activationCode                       DEPRECATED: Activate a card by setting
+     *                                                          status to ACTIVE when the order_status is
+     *                                                          ACCEPTED_FOR_PRODUCTION.
      * @param string|null $status                               The status to set for the card. Can be ACTIVE,
      *                                                          DEACTIVATED, LOST, STOLEN or CANCELLED, and can only be
      *                                                          set to LOST/STOLEN/CANCELLED when order status is
@@ -386,12 +399,16 @@ class Card extends BunqModel
      *                                                          CARD_LIMIT_DIPPING and CARD_LIMIT_POS_ICC (e.g. 25 EUR
      *                                                          for CARD_LIMIT_CONTACTLESS). All the limits must be
      *                                                          provided on update.
-     * @param CardMagStripePermission|null $magStripePermission Whether or not
-     *                                                          it is allowed to use the mag stripe for the card.
+     * @param CardMagStripePermission|null $magStripePermission DEPRECATED:
+     *                                                          Whether or not it is allowed to use the mag stripe for
+     *                                                          the card.
      * @param CardCountryPermission[]|null $countryPermission   The countries for
      *                                                          which to grant (temporary) permissions to use the card.
      * @param CardPinAssignment[]|null $pinCodeAssignment       Array of Types, PINs,
      *                                                          account IDs assigned to the card.
+     * @param CardVirtualPrimaryAccountNumber[]|null
+     *                                                          $primaryAccountNumbersVirtual Array of PANs, status,
+     *                                                          description and account id for online cards.
      * @param int|null $monetaryAccountIdFallback               ID of the MA to be used as
      *                                                          fallback for this card if insufficient balance.
      *                                                          Fallback account is removed if not supplied.
@@ -410,6 +427,7 @@ class Card extends BunqModel
         CardMagStripePermission $magStripePermission = null,
         array $countryPermission = null,
         array $pinCodeAssignment = null,
+        array $primaryAccountNumbersVirtual = null,
         int $monetaryAccountIdFallback = null,
         array $customHeaders = []
     ): BunqResponseCard {
@@ -430,6 +448,7 @@ class Card extends BunqModel
                 self::FIELD_MAG_STRIPE_PERMISSION => $magStripePermission,
                 self::FIELD_COUNTRY_PERMISSION => $countryPermission,
                 self::FIELD_PIN_CODE_ASSIGNMENT => $pinCodeAssignment,
+                self::FIELD_PRIMARY_ACCOUNT_NUMBERS_VIRTUAL => $primaryAccountNumbersVirtual,
                 self::FIELD_MONETARY_ACCOUNT_ID_FALLBACK => $monetaryAccountIdFallback,
             ],
             $customHeaders
@@ -770,6 +789,27 @@ class Card extends BunqModel
     }
 
     /**
+     * Array of PANs, status, description and account id for online cards.
+     *
+     * @return CardVirtualPrimaryAccountNumber[]
+     */
+    public function getPrimaryAccountNumbersVirtual()
+    {
+        return $this->primaryAccountNumbersVirtual;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param CardVirtualPrimaryAccountNumber[] $primaryAccountNumbersVirtual
+     */
+    public function setPrimaryAccountNumbersVirtual($primaryAccountNumbersVirtual)
+    {
+        $this->primaryAccountNumbersVirtual = $primaryAccountNumbersVirtual;
+    }
+
+    /**
      * The spending limit for the card.
      *
      * @return Amount
@@ -832,27 +872,6 @@ class Card extends BunqModel
     public function setLimit($limit)
     {
         $this->limit = $limit;
-    }
-
-    /**
-     * The countries for which to grant (temporary) permissions to use the card.
-     *
-     * @return CardMagStripePermission
-     */
-    public function getMagStripePermission()
-    {
-        return $this->magStripePermission;
-    }
-
-    /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
-     * @param CardMagStripePermission $magStripePermission
-     */
-    public function setMagStripePermission($magStripePermission)
-    {
-        $this->magStripePermission = $magStripePermission;
     }
 
     /**
@@ -1042,6 +1061,10 @@ class Card extends BunqModel
             return false;
         }
 
+        if (!is_null($this->primaryAccountNumbersVirtual)) {
+            return false;
+        }
+
         if (!is_null($this->cardLimit)) {
             return false;
         }
@@ -1051,10 +1074,6 @@ class Card extends BunqModel
         }
 
         if (!is_null($this->limit)) {
-            return false;
-        }
-
-        if (!is_null($this->magStripePermission)) {
             return false;
         }
 

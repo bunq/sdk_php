@@ -5,6 +5,7 @@ use bunq\Http\ApiClient;
 use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Object\Amount;
 use bunq\Model\Generated\Object\Avatar;
+use bunq\Model\Generated\Object\CoOwner;
 use bunq\Model\Generated\Object\MonetaryAccountSetting;
 use bunq\Model\Generated\Object\NotificationFilter;
 use bunq\Model\Generated\Object\Pointer;
@@ -35,6 +36,7 @@ class MonetaryAccountSavings extends BunqModel
     const FIELD_SUB_STATUS = 'sub_status';
     const FIELD_REASON = 'reason';
     const FIELD_REASON_DESCRIPTION = 'reason_description';
+    const FIELD_ALL_CO_OWNER = 'all_co_owner';
     const FIELD_NOTIFICATION_FILTERS = 'notification_filters';
     const FIELD_SETTING = 'setting';
     const FIELD_SAVINGS_GOAL = 'savings_goal';
@@ -168,6 +170,13 @@ class MonetaryAccountSavings extends BunqModel
     protected $reasonDescription;
 
     /**
+     * The users the account will be joint with.
+     *
+     * @var CoOwner[]
+     */
+    protected $allCoOwner;
+
+    /**
      * The id of the User who owns the MonetaryAccountSavings.
      *
      * @var int
@@ -285,6 +294,13 @@ class MonetaryAccountSavings extends BunqModel
     protected $reasonDescriptionFieldForRequest;
 
     /**
+     * The users the account will be joint with.
+     *
+     * @var CoOwner[]|null
+     */
+    protected $allCoOwnerFieldForRequest;
+
+    /**
      * The types of notifications that will result in a push notification or URL
      * callback for this MonetaryAccountSavings.
      *
@@ -342,6 +358,8 @@ class MonetaryAccountSavings extends BunqModel
      *                                                       MonetaryAccountSavings. Can be any user provided message.
      *                                                       Should only be specified if updating the status to
      *                                                       CANCELLED.
+     * @param CoOwner[]|null $allCoOwner                     The users the account will be joint
+     *                                                       with.
      * @param NotificationFilter[]|null $notificationFilters The types of
      *                                                       notifications that will result in a push notification or
      *                                                       URL callback for this MonetaryAccountSavings.
@@ -358,6 +376,7 @@ class MonetaryAccountSavings extends BunqModel
         string $subStatus = null,
         string $reason = null,
         string $reasonDescription = null,
+        array $allCoOwner = null,
         array $notificationFilters = null,
         MonetaryAccountSetting $setting = null
     ) {
@@ -369,6 +388,7 @@ class MonetaryAccountSavings extends BunqModel
         $this->subStatusFieldForRequest = $subStatus;
         $this->reasonFieldForRequest = $reason;
         $this->reasonDescriptionFieldForRequest = $reasonDescription;
+        $this->allCoOwnerFieldForRequest = $allCoOwner;
         $this->notificationFiltersFieldForRequest = $notificationFilters;
         $this->settingFieldForRequest = $setting;
         $this->savingsGoalFieldForRequest = $savingsGoal;
@@ -412,6 +432,8 @@ class MonetaryAccountSavings extends BunqModel
      *                                                       MonetaryAccountSavings. Can be any user provided message.
      *                                                       Should only be specified if updating the status to
      *                                                       CANCELLED.
+     * @param CoOwner[]|null $allCoOwner                     The users the account will be joint
+     *                                                       with.
      * @param NotificationFilter[]|null $notificationFilters The types of
      *                                                       notifications that will result in a push notification or
      *                                                       URL callback for this MonetaryAccountSavings.
@@ -431,6 +453,7 @@ class MonetaryAccountSavings extends BunqModel
         string $subStatus = null,
         string $reason = null,
         string $reasonDescription = null,
+        array $allCoOwner = null,
         array $notificationFilters = null,
         MonetaryAccountSetting $setting = null,
         array $customHeaders = []
@@ -450,6 +473,7 @@ class MonetaryAccountSavings extends BunqModel
                 self::FIELD_SUB_STATUS => $subStatus,
                 self::FIELD_REASON => $reason,
                 self::FIELD_REASON_DESCRIPTION => $reasonDescription,
+                self::FIELD_ALL_CO_OWNER => $allCoOwner,
                 self::FIELD_NOTIFICATION_FILTERS => $notificationFilters,
                 self::FIELD_SETTING => $setting,
                 self::FIELD_SAVINGS_GOAL => $savingsGoal,
@@ -953,6 +977,27 @@ class MonetaryAccountSavings extends BunqModel
     }
 
     /**
+     * The users the account will be joint with.
+     *
+     * @return CoOwner[]
+     */
+    public function getAllCoOwner()
+    {
+        return $this->allCoOwner;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param CoOwner[] $allCoOwner
+     */
+    public function setAllCoOwner($allCoOwner)
+    {
+        $this->allCoOwner = $allCoOwner;
+    }
+
+    /**
      * The id of the User who owns the MonetaryAccountSavings.
      *
      * @return int
@@ -1146,6 +1191,10 @@ class MonetaryAccountSavings extends BunqModel
         }
 
         if (!is_null($this->reasonDescription)) {
+            return false;
+        }
+
+        if (!is_null($this->allCoOwner)) {
             return false;
         }
 
