@@ -20,7 +20,7 @@ class ExportStatementPayment extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE_GET = 'Id';
+    const OBJECT_TYPE_GET = 'ExportStatementPayment';
 
     /**
      * The id of the single payment statement model.
