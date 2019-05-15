@@ -632,10 +632,11 @@ class RequestInquiry extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param int $id
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setId($id)
     {
@@ -653,10 +654,11 @@ class RequestInquiry extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param string $created
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setCreated($created)
     {
@@ -674,10 +676,11 @@ class RequestInquiry extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param string $updated
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setUpdated($updated)
     {
@@ -695,10 +698,11 @@ class RequestInquiry extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param string $timeResponded
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setTimeResponded($timeResponded)
     {
@@ -716,10 +720,11 @@ class RequestInquiry extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param string $timeExpiry
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setTimeExpiry($timeExpiry)
     {
@@ -737,10 +742,11 @@ class RequestInquiry extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param int $monetaryAccountId
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setMonetaryAccountId($monetaryAccountId)
     {
@@ -758,10 +764,11 @@ class RequestInquiry extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param Amount $amountInquired
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setAmountInquired($amountInquired)
     {
@@ -779,10 +786,11 @@ class RequestInquiry extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param Amount $amountResponded
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setAmountResponded($amountResponded)
     {
@@ -801,10 +809,11 @@ class RequestInquiry extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param LabelUser $userAliasCreated
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setUserAliasCreated($userAliasCreated)
     {
@@ -823,10 +832,11 @@ class RequestInquiry extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param LabelUser $userAliasRevoked
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setUserAliasRevoked($userAliasRevoked)
     {
@@ -845,10 +855,11 @@ class RequestInquiry extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param LabelMonetaryAccount $counterpartyAlias
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setCounterpartyAlias($counterpartyAlias)
     {
@@ -866,10 +877,11 @@ class RequestInquiry extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param string $description
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setDescription($description)
     {
@@ -888,10 +900,11 @@ class RequestInquiry extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param string $merchantReference
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setMerchantReference($merchantReference)
     {
@@ -909,10 +922,11 @@ class RequestInquiry extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param BunqId[] $attachment
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setAttachment($attachment)
     {
@@ -930,10 +944,11 @@ class RequestInquiry extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param string $status
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setStatus($status)
     {
@@ -951,10 +966,11 @@ class RequestInquiry extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param int $batchId
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setBatchId($batchId)
     {
@@ -972,10 +988,11 @@ class RequestInquiry extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param int $scheduledId
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setScheduledId($scheduledId)
     {
@@ -993,10 +1010,11 @@ class RequestInquiry extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param int $minimumAge
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setMinimumAge($minimumAge)
     {
@@ -1014,10 +1032,11 @@ class RequestInquiry extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param string $requireAddress
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setRequireAddress($requireAddress)
     {
@@ -1035,10 +1054,11 @@ class RequestInquiry extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param string $bunqmeShareUrl
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setBunqmeShareUrl($bunqmeShareUrl)
     {
@@ -1057,10 +1077,11 @@ class RequestInquiry extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param string $redirectUrl
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setRedirectUrl($redirectUrl)
     {
@@ -1079,10 +1100,11 @@ class RequestInquiry extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param Address $addressShipping
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setAddressShipping($addressShipping)
     {
@@ -1101,10 +1123,11 @@ class RequestInquiry extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param Address $addressBilling
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setAddressBilling($addressBilling)
     {
@@ -1122,10 +1145,11 @@ class RequestInquiry extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param Geolocation $geolocation
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setGeolocation($geolocation)
     {
@@ -1143,10 +1167,11 @@ class RequestInquiry extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param bool $allowChat
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setAllowChat($allowChat)
     {
@@ -1165,10 +1190,11 @@ class RequestInquiry extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param RequestReferenceSplitTheBillAnchorObject $referenceSplitTheBill
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setReferenceSplitTheBill($referenceSplitTheBill)
     {

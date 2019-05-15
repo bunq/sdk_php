@@ -123,10 +123,11 @@ class TabResultResponse extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param Tab $tab
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setTab($tab)
     {
@@ -144,10 +145,11 @@ class TabResultResponse extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param Payment $payment
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setPayment($payment)
     {
@@ -166,10 +168,11 @@ class TabResultResponse extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param RequestInquiryReference[] $requestReferenceSplitTheBill
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setRequestReferenceSplitTheBill($requestReferenceSplitTheBill)
     {

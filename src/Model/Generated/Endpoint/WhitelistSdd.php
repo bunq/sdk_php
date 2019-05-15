@@ -303,10 +303,11 @@ class WhitelistSdd extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param int $id
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setId($id)
     {
@@ -325,10 +326,11 @@ class WhitelistSdd extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param int $monetaryAccountIncomingId
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setMonetaryAccountIncomingId($monetaryAccountIncomingId)
     {
@@ -347,10 +349,11 @@ class WhitelistSdd extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param int $monetaryAccountPayingId
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setMonetaryAccountPayingId($monetaryAccountPayingId)
     {
@@ -368,10 +371,11 @@ class WhitelistSdd extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param string $type
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setType($type)
     {
@@ -389,10 +393,11 @@ class WhitelistSdd extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param string $status
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setStatus($status)
     {
@@ -410,10 +415,11 @@ class WhitelistSdd extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param string $creditSchemeIdentifier
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setCreditSchemeIdentifier($creditSchemeIdentifier)
     {
@@ -431,10 +437,11 @@ class WhitelistSdd extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param string $mandateIdentifier
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setMandateIdentifier($mandateIdentifier)
     {
@@ -452,10 +459,11 @@ class WhitelistSdd extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param LabelMonetaryAccount $counterpartyAlias
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setCounterpartyAlias($counterpartyAlias)
     {
@@ -473,10 +481,11 @@ class WhitelistSdd extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param Amount $maximumAmountPerMonth
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setMaximumAmountPerMonth($maximumAmountPerMonth)
     {
@@ -494,10 +503,11 @@ class WhitelistSdd extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param LabelUser $userAliasCreated
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setUserAliasCreated($userAliasCreated)
     {

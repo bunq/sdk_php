@@ -617,10 +617,11 @@ class TabUsageMultiple extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param string $uuid
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setUuid($uuid)
     {
@@ -638,10 +639,11 @@ class TabUsageMultiple extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param string $created
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setCreated($created)
     {
@@ -659,10 +661,11 @@ class TabUsageMultiple extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param string $updated
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setUpdated($updated)
     {
@@ -680,10 +683,11 @@ class TabUsageMultiple extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param string $description
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setDescription($description)
     {
@@ -701,10 +705,11 @@ class TabUsageMultiple extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param string $status
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setStatus($status)
     {
@@ -722,10 +727,11 @@ class TabUsageMultiple extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param Amount $amountTotal
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setAmountTotal($amountTotal)
     {
@@ -744,10 +750,11 @@ class TabUsageMultiple extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param string $qrCodeToken
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setQrCodeToken($qrCodeToken)
     {
@@ -766,10 +773,11 @@ class TabUsageMultiple extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param string $tabUrl
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setTabUrl($tabUrl)
     {
@@ -788,10 +796,11 @@ class TabUsageMultiple extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param TabVisibility $visibility
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setVisibility($visibility)
     {
@@ -809,10 +818,11 @@ class TabUsageMultiple extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param bool $minimumAge
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setMinimumAge($minimumAge)
     {
@@ -831,10 +841,11 @@ class TabUsageMultiple extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param string $requireAddress
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setRequireAddress($requireAddress)
     {
@@ -852,10 +863,11 @@ class TabUsageMultiple extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param string $redirectUrl
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setRedirectUrl($redirectUrl)
     {
@@ -873,10 +885,11 @@ class TabUsageMultiple extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param string $expiration
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setExpiration($expiration)
     {
@@ -894,10 +907,11 @@ class TabUsageMultiple extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param LabelMonetaryAccount $alias
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setAlias($alias)
     {
@@ -915,10 +929,11 @@ class TabUsageMultiple extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param Geolocation $cashRegisterLocation
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setCashRegisterLocation($cashRegisterLocation)
     {
@@ -936,10 +951,11 @@ class TabUsageMultiple extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param TabItem[] $tabItem
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setTabItem($tabItem)
     {
@@ -958,10 +974,11 @@ class TabUsageMultiple extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param BunqId[] $tabAttachment
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setTabAttachment($tabAttachment)
     {

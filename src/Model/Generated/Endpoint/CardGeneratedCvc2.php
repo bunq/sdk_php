@@ -225,10 +225,11 @@ class CardGeneratedCvc2 extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param int $id
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setId($id)
     {
@@ -246,10 +247,11 @@ class CardGeneratedCvc2 extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param string $created
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setCreated($created)
     {
@@ -267,10 +269,11 @@ class CardGeneratedCvc2 extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param string $updated
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setUpdated($updated)
     {
@@ -288,10 +291,11 @@ class CardGeneratedCvc2 extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param string $type
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setType($type)
     {
@@ -309,10 +313,11 @@ class CardGeneratedCvc2 extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param string $cvc2
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setCvc2($cvc2)
     {
@@ -330,10 +335,11 @@ class CardGeneratedCvc2 extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param string $status
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setStatus($status)
     {
@@ -351,10 +357,11 @@ class CardGeneratedCvc2 extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param string $expiryTime
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setExpiryTime($expiryTime)
     {

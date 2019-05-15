@@ -198,10 +198,11 @@ class SofortMerchantTransaction extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param int $monetaryAccountId
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setMonetaryAccountId($monetaryAccountId)
     {
@@ -219,10 +220,11 @@ class SofortMerchantTransaction extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param LabelMonetaryAccount $alias
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setAlias($alias)
     {
@@ -240,10 +242,11 @@ class SofortMerchantTransaction extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param LabelMonetaryAccount $counterpartyAlias
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setCounterpartyAlias($counterpartyAlias)
     {
@@ -262,10 +265,11 @@ class SofortMerchantTransaction extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param Amount $amountGuaranteed
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setAmountGuaranteed($amountGuaranteed)
     {
@@ -283,10 +287,11 @@ class SofortMerchantTransaction extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param Amount $amountRequested
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setAmountRequested($amountRequested)
     {
@@ -304,10 +309,11 @@ class SofortMerchantTransaction extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param string $issuer
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setIssuer($issuer)
     {
@@ -325,10 +331,11 @@ class SofortMerchantTransaction extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param string $issuerAuthenticationUrl
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setIssuerAuthenticationUrl($issuerAuthenticationUrl)
     {
@@ -346,10 +353,11 @@ class SofortMerchantTransaction extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param string $status
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setStatus($status)
     {
@@ -367,10 +375,11 @@ class SofortMerchantTransaction extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param Error[] $errorMessage
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setErrorMessage($errorMessage)
     {
@@ -388,10 +397,11 @@ class SofortMerchantTransaction extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param string $transactionIdentifier
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setTransactionIdentifier($transactionIdentifier)
     {

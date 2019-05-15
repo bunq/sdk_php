@@ -240,10 +240,11 @@ class TokenQrRequestIdeal extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param int $id
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setId($id)
     {
@@ -261,10 +262,11 @@ class TokenQrRequestIdeal extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param string $timeResponded
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setTimeResponded($timeResponded)
     {
@@ -282,10 +284,11 @@ class TokenQrRequestIdeal extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param string $timeExpiry
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setTimeExpiry($timeExpiry)
     {
@@ -303,10 +306,11 @@ class TokenQrRequestIdeal extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param int $monetaryAccountId
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setMonetaryAccountId($monetaryAccountId)
     {
@@ -324,10 +328,11 @@ class TokenQrRequestIdeal extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param Amount $amountInquired
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setAmountInquired($amountInquired)
     {
@@ -345,10 +350,11 @@ class TokenQrRequestIdeal extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param Amount $amountResponded
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setAmountResponded($amountResponded)
     {
@@ -367,10 +373,11 @@ class TokenQrRequestIdeal extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param LabelMonetaryAccount $alias
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setAlias($alias)
     {
@@ -389,10 +396,11 @@ class TokenQrRequestIdeal extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param LabelMonetaryAccount $counterpartyAlias
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setCounterpartyAlias($counterpartyAlias)
     {
@@ -411,10 +419,11 @@ class TokenQrRequestIdeal extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param string $description
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setDescription($description)
     {
@@ -432,10 +441,11 @@ class TokenQrRequestIdeal extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param Attachment[] $attachment
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setAttachment($attachment)
     {
@@ -453,10 +463,11 @@ class TokenQrRequestIdeal extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param string $status
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setStatus($status)
     {
@@ -474,10 +485,11 @@ class TokenQrRequestIdeal extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param int $minimumAge
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setMinimumAge($minimumAge)
     {
@@ -495,10 +507,11 @@ class TokenQrRequestIdeal extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param string $requireAddress
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setRequireAddress($requireAddress)
     {
@@ -517,10 +530,11 @@ class TokenQrRequestIdeal extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param Address $addressShipping
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setAddressShipping($addressShipping)
     {
@@ -539,10 +553,11 @@ class TokenQrRequestIdeal extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param Address $addressBilling
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setAddressBilling($addressBilling)
     {
@@ -560,10 +575,11 @@ class TokenQrRequestIdeal extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param Geolocation $geolocation
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setGeolocation($geolocation)
     {
@@ -582,10 +598,11 @@ class TokenQrRequestIdeal extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param string $redirectUrl
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setRedirectUrl($redirectUrl)
     {
@@ -603,10 +620,11 @@ class TokenQrRequestIdeal extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param string $type
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setType($type)
     {
@@ -624,10 +642,11 @@ class TokenQrRequestIdeal extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param string $subType
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setSubType($subType)
     {
@@ -645,10 +664,11 @@ class TokenQrRequestIdeal extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param bool $allowChat
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setAllowChat($allowChat)
     {
@@ -666,10 +686,11 @@ class TokenQrRequestIdeal extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param int $eligibleWhitelistId
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setEligibleWhitelistId($eligibleWhitelistId)
     {

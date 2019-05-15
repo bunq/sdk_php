@@ -164,10 +164,11 @@ class BankSwitchServiceNetherlandsIncoming extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param LabelUser $userAlias
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setUserAlias($userAlias)
     {
@@ -185,10 +186,11 @@ class BankSwitchServiceNetherlandsIncoming extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param LabelMonetaryAccount $alias
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setAlias($alias)
     {
@@ -206,10 +208,11 @@ class BankSwitchServiceNetherlandsIncoming extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param LabelMonetaryAccount $counterpartyAlias
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setCounterpartyAlias($counterpartyAlias)
     {
@@ -227,10 +230,11 @@ class BankSwitchServiceNetherlandsIncoming extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param string $status
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setStatus($status)
     {
@@ -248,10 +252,11 @@ class BankSwitchServiceNetherlandsIncoming extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param string $subStatus
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setSubStatus($subStatus)
     {
@@ -269,10 +274,11 @@ class BankSwitchServiceNetherlandsIncoming extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param string $timeStartDesired
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setTimeStartDesired($timeStartDesired)
     {
@@ -290,10 +296,11 @@ class BankSwitchServiceNetherlandsIncoming extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param string $timeStartActual
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setTimeStartActual($timeStartActual)
     {
@@ -311,10 +318,11 @@ class BankSwitchServiceNetherlandsIncoming extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param string $timeEnd
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setTimeEnd($timeEnd)
     {
@@ -332,10 +340,11 @@ class BankSwitchServiceNetherlandsIncoming extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param Attachment $attachment
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setAttachment($attachment)
     {

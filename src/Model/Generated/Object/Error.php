@@ -33,10 +33,11 @@ class Error extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param string $errorDescription
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setErrorDescription($errorDescription)
     {
@@ -54,10 +55,11 @@ class Error extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param string $errorDescriptionTranslated
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setErrorDescriptionTranslated($errorDescriptionTranslated)
     {

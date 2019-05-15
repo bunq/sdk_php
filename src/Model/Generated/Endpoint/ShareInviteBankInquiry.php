@@ -9,10 +9,11 @@ use bunq\Model\Generated\Object\Pointer;
 use bunq\Model\Generated\Object\ShareDetail;
 
 /**
- * Used to share a monetary account with another bunq user, as in the
- * 'Connect' feature in the bunq app. Allow the creation of share inquiries
- * that, in the same way as request inquiries, can be revoked by the user
- * creating them or accepted/rejected by the other party.
+ * [DEPRECATED - use /share-invite-monetary-account-inquiry] Used to share a
+ * monetary account with another bunq user, as in the 'Connect' feature in
+ * the bunq app. Allow the creation of share inquiries that, in the same way
+ * as request inquiries, can be revoked by the user creating them or
+ * accepted/rejected by the other party.
  *
  * @generated
  */
@@ -215,8 +216,9 @@ class ShareInviteBankInquiry extends BunqModel
     }
 
     /**
-     * Create a new share inquiry for a monetary account, specifying the
-     * permission the other bunq user will have on it.
+     * [DEPRECATED - use /share-invite-monetary-account-inquiry] Create a new
+     * share inquiry for a monetary account, specifying the permission the other
+     * bunq user will have on it.
      *
      * @param Pointer $counterUserAlias        The pointer of the user to share with.
      * @param ShareDetail $shareDetail         The share details. Only one of these
@@ -271,7 +273,8 @@ class ShareInviteBankInquiry extends BunqModel
     }
 
     /**
-     * Get the details of a specific share inquiry.
+     * [DEPRECATED - use /share-invite-monetary-account-inquiry] Get the details
+     * of a specific share inquiry.
      *
      * @param int $shareInviteBankInquiryId
      * @param int|null $monetaryAccountId
@@ -304,8 +307,9 @@ class ShareInviteBankInquiry extends BunqModel
     }
 
     /**
-     * Update the details of a share. This includes updating status (revoking or
-     * cancelling it), granted permission and validity period of this share.
+     * [DEPRECATED - use /share-invite-monetary-account-inquiry] Update the
+     * details of a share. This includes updating status (revoking or cancelling
+     * it), granted permission and validity period of this share.
      *
      * @param int $shareInviteBankInquiryId
      * @param int|null $monetaryAccountId
@@ -356,9 +360,9 @@ class ShareInviteBankInquiry extends BunqModel
     }
 
     /**
-     * Get a list with all the share inquiries for a monetary account, only if
-     * the requesting user has permission to change the details of the various
-     * ones.
+     * [DEPRECATED - use /share-invite-monetary-account-inquiry] Get a list with
+     * all the share inquiries for a monetary account, only if the requesting
+     * user has permission to change the details of the various ones.
      *
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
@@ -400,10 +404,11 @@ class ShareInviteBankInquiry extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param LabelMonetaryAccount $alias
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setAlias($alias)
     {
@@ -421,10 +426,11 @@ class ShareInviteBankInquiry extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param LabelUser $userAliasCreated
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setUserAliasCreated($userAliasCreated)
     {
@@ -442,10 +448,11 @@ class ShareInviteBankInquiry extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param LabelUser $userAliasRevoked
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setUserAliasRevoked($userAliasRevoked)
     {
@@ -463,10 +470,11 @@ class ShareInviteBankInquiry extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param LabelUser $counterUserAlias
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setCounterUserAlias($counterUserAlias)
     {
@@ -484,10 +492,11 @@ class ShareInviteBankInquiry extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param int $monetaryAccountId
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setMonetaryAccountId($monetaryAccountId)
     {
@@ -505,10 +514,11 @@ class ShareInviteBankInquiry extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param int $draftShareInviteBankId
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setDraftShareInviteBankId($draftShareInviteBankId)
     {
@@ -526,10 +536,11 @@ class ShareInviteBankInquiry extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param ShareDetail $shareDetail
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setShareDetail($shareDetail)
     {
@@ -550,10 +561,11 @@ class ShareInviteBankInquiry extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param string $status
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setStatus($status)
     {
@@ -571,10 +583,11 @@ class ShareInviteBankInquiry extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param string $shareType
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setShareType($shareType)
     {
@@ -592,10 +605,11 @@ class ShareInviteBankInquiry extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param string $startDate
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setStartDate($startDate)
     {
@@ -613,10 +627,11 @@ class ShareInviteBankInquiry extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param string $endDate
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setEndDate($endDate)
     {
@@ -634,10 +649,11 @@ class ShareInviteBankInquiry extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param int $id
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setId($id)
     {

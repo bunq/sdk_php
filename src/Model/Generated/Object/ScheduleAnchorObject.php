@@ -36,10 +36,11 @@ class ScheduleAnchorObject extends BunqModel implements AnchorObjectInterface
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param Payment $payment
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setPayment($payment)
     {
@@ -55,10 +56,11 @@ class ScheduleAnchorObject extends BunqModel implements AnchorObjectInterface
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param PaymentBatch $paymentBatch
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setPaymentBatch($paymentBatch)
     {

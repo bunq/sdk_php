@@ -73,10 +73,11 @@ class UserCompanyName extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param string[] $nameArray
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setNameArray($nameArray)
     {

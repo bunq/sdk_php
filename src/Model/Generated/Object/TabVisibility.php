@@ -85,10 +85,11 @@ class TabVisibility extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param bool $cashRegisterQrCode
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setCashRegisterQrCode($cashRegisterQrCode)
     {
@@ -107,10 +108,11 @@ class TabVisibility extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param bool $tabQrCode
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setTabQrCode($tabQrCode)
     {
@@ -128,10 +130,11 @@ class TabVisibility extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param Geolocation $location
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setLocation($location)
     {

@@ -98,10 +98,11 @@ class Device extends BunqModel implements AnchorObjectInterface
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param DeviceServer $deviceServer
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setDeviceServer($deviceServer)
     {

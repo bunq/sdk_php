@@ -58,6 +58,20 @@ class Address extends BunqModel
     protected $province;
 
     /**
+     * The appartment, building or other extra information for addresses.
+     *
+     * @var string
+     */
+    protected $extra;
+
+    /**
+     * The name on the mailbox (only used for Postal addresses).
+     *
+     * @var string
+     */
+    protected $mailboxName;
+
+    /**
      * The street.
      *
      * @var string
@@ -100,12 +114,30 @@ class Address extends BunqModel
     protected $countryFieldForRequest;
 
     /**
-     * @param string $street      The street.
-     * @param string $houseNumber The house number.
-     * @param string $postalCode  The postal code.
-     * @param string $city        The city.
-     * @param string $country     The country as an ISO 3166-1 alpha-2 country code.
-     * @param string|null $poBox  The PO box.
+     * The appartment, building or other extra information for addresses.
+     *
+     * @var string|null
+     */
+    protected $extraFieldForRequest;
+
+    /**
+     * The name on the mailbox (only used for Postal addresses).
+     *
+     * @var string|null
+     */
+    protected $mailboxNameFieldForRequest;
+
+    /**
+     * @param string $street           The street.
+     * @param string $houseNumber      The house number.
+     * @param string $postalCode       The postal code.
+     * @param string $city             The city.
+     * @param string $country          The country as an ISO 3166-1 alpha-2 country code.
+     * @param string|null $poBox       The PO box.
+     * @param string|null $extra       The appartment, building or other extra
+     *                                 information for addresses.
+     * @param string|null $mailboxName The name on the mailbox (only used for
+     *                                 Postal addresses).
      */
     public function __construct(
         string $street,
@@ -113,7 +145,9 @@ class Address extends BunqModel
         string $postalCode,
         string $city,
         string $country,
-        string $poBox = null
+        string $poBox = null,
+        string $extra = null,
+        string $mailboxName = null
     ) {
         $this->streetFieldForRequest = $street;
         $this->houseNumberFieldForRequest = $houseNumber;
@@ -121,6 +155,8 @@ class Address extends BunqModel
         $this->postalCodeFieldForRequest = $postalCode;
         $this->cityFieldForRequest = $city;
         $this->countryFieldForRequest = $country;
+        $this->extraFieldForRequest = $extra;
+        $this->mailboxNameFieldForRequest = $mailboxName;
     }
 
     /**
@@ -134,10 +170,11 @@ class Address extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param string $street
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setStreet($street)
     {
@@ -155,10 +192,11 @@ class Address extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param string $houseNumber
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setHouseNumber($houseNumber)
     {
@@ -176,10 +214,11 @@ class Address extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param string $poBox
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setPoBox($poBox)
     {
@@ -197,10 +236,11 @@ class Address extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param string $postalCode
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setPostalCode($postalCode)
     {
@@ -218,10 +258,11 @@ class Address extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param string $city
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setCity($city)
     {
@@ -239,10 +280,11 @@ class Address extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param string $country
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setCountry($country)
     {
@@ -260,14 +302,59 @@ class Address extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param string $province
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setProvince($province)
     {
         $this->province = $province;
+    }
+
+    /**
+     * The appartment, building or other extra information for addresses.
+     *
+     * @return string
+     */
+    public function getExtra()
+    {
+        return $this->extra;
+    }
+
+    /**
+     * @param string $extra
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
+     */
+    public function setExtra($extra)
+    {
+        $this->extra = $extra;
+    }
+
+    /**
+     * The name on the mailbox (only used for Postal addresses).
+     *
+     * @return string
+     */
+    public function getMailboxName()
+    {
+        return $this->mailboxName;
+    }
+
+    /**
+     * @param string $mailboxName
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
+     */
+    public function setMailboxName($mailboxName)
+    {
+        $this->mailboxName = $mailboxName;
     }
 
     /**
@@ -300,6 +387,14 @@ class Address extends BunqModel
         }
 
         if (!is_null($this->province)) {
+            return false;
+        }
+
+        if (!is_null($this->extra)) {
+            return false;
+        }
+
+        if (!is_null($this->mailboxName)) {
             return false;
         }
 
