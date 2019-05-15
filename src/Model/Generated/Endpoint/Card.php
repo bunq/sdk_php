@@ -7,6 +7,7 @@ use bunq\Model\Generated\Object\Amount;
 use bunq\Model\Generated\Object\CardCountryPermission;
 use bunq\Model\Generated\Object\CardMagStripePermission;
 use bunq\Model\Generated\Object\CardPinAssignment;
+use bunq\Model\Generated\Object\CardPrimaryAccountNumber;
 use bunq\Model\Generated\Object\CardVirtualPrimaryAccountNumber;
 use bunq\Model\Generated\Object\LabelMonetaryAccount;
 
@@ -36,6 +37,7 @@ class Card extends BunqModel
     const FIELD_COUNTRY_PERMISSION = 'country_permission';
     const FIELD_PIN_CODE_ASSIGNMENT = 'pin_code_assignment';
     const FIELD_PRIMARY_ACCOUNT_NUMBERS_VIRTUAL = 'primary_account_numbers_virtual';
+    const FIELD_PRIMARY_ACCOUNT_NUMBERS = 'primary_account_numbers';
     const FIELD_MONETARY_ACCOUNT_ID_FALLBACK = 'monetary_account_id_fallback';
 
     /**
@@ -144,6 +146,13 @@ class Card extends BunqModel
      * @var CardVirtualPrimaryAccountNumber[]
      */
     protected $primaryAccountNumbersVirtual;
+
+    /**
+     * Array of PANs and their attributes.
+     *
+     * @var CardPrimaryAccountNumber[]
+     */
+    protected $primaryAccountNumbers;
 
     /**
      * The spending limit for the card.
@@ -279,6 +288,13 @@ class Card extends BunqModel
     protected $primaryAccountNumbersVirtualFieldForRequest;
 
     /**
+     * Array of PANs and their attributes.
+     *
+     * @var CardPrimaryAccountNumber[]|null
+     */
+    protected $primaryAccountNumbersFieldForRequest;
+
+    /**
      * ID of the MA to be used as fallback for this card if insufficient
      * balance. Fallback account is removed if not supplied.
      *
@@ -287,36 +303,41 @@ class Card extends BunqModel
     protected $monetaryAccountIdFallbackFieldForRequest;
 
     /**
-     * @param string|null $pinCode                              The plaintext pin code. Requests require
-     *                                                          encryption to be enabled.
-     * @param string|null $activationCode                       DEPRECATED: Activate a card by setting
-     *                                                          status to ACTIVE when the order_status is
-     *                                                          ACCEPTED_FOR_PRODUCTION.
-     * @param string|null $status                               The status to set for the card. Can be ACTIVE,
-     *                                                          DEACTIVATED, LOST, STOLEN or CANCELLED, and can only be
-     *                                                          set to LOST/STOLEN/CANCELLED when order status is
-     *                                                          ACCEPTED_FOR_PRODUCTION/DELIVERED_TO_CUSTOMER/CARD_UPDATE_REQUESTED/CARD_UPDATE_SENT/CARD_UPDATE_ACCEPTED.
-     *                                                          Can only be set to DEACTIVATED after initial
-     *                                                          activation, i.e. order_status is
-     *                                                          DELIVERED_TO_CUSTOMER/CARD_UPDATE_REQUESTED/CARD_UPDATE_SENT/CARD_UPDATE_ACCEPTED.
-     *                                                          Mind that all the possible choices (apart from ACTIVE
-     *                                                          and DEACTIVATED) are permanent and cannot be changed
-     *                                                          after.
-     * @param Amount|null $cardLimit                            The spending limit for the card.
-     * @param Amount|null $cardLimitAtm                         The ATM spending limit for the card.
-     * @param CardMagStripePermission|null $magStripePermission DEPRECATED:
-     *                                                          Whether or not it is allowed to use the mag stripe for
-     *                                                          the card.
-     * @param CardCountryPermission[]|null $countryPermission   The countries for
-     *                                                          which to grant (temporary) permissions to use the card.
-     * @param CardPinAssignment[]|null $pinCodeAssignment       Array of Types, PINs,
-     *                                                          account IDs assigned to the card.
+     * @param string|null $pinCode                                   The plaintext pin code. Requests require
+     *                                                               encryption to be enabled.
+     * @param string|null $activationCode                            DEPRECATED: Activate a card by setting
+     *                                                               status to ACTIVE when the order_status is
+     *                                                               ACCEPTED_FOR_PRODUCTION.
+     * @param string|null $status                                    The status to set for the card. Can be ACTIVE,
+     *                                                               DEACTIVATED, LOST, STOLEN or CANCELLED, and can
+     *                                                               only be set to LOST/STOLEN/CANCELLED when order
+     *                                                               status is
+     *                                                               ACCEPTED_FOR_PRODUCTION/DELIVERED_TO_CUSTOMER/CARD_UPDATE_REQUESTED/CARD_UPDATE_SENT/CARD_UPDATE_ACCEPTED.
+     *                                                               Can only be set to DEACTIVATED after initial
+     *                                                               activation, i.e. order_status is
+     *                                                               DELIVERED_TO_CUSTOMER/CARD_UPDATE_REQUESTED/CARD_UPDATE_SENT/CARD_UPDATE_ACCEPTED.
+     *                                                               Mind that all the possible choices (apart from
+     *                                                               ACTIVE and DEACTIVATED) are permanent and cannot
+     *                                                               be changed after.
+     * @param Amount|null $cardLimit                                 The spending limit for the card.
+     * @param Amount|null $cardLimitAtm                              The ATM spending limit for the card.
+     * @param CardMagStripePermission|null $magStripePermission      DEPRECATED:
+     *                                                               Whether or not it is allowed to use the mag stripe
+     *                                                               for the card.
+     * @param CardCountryPermission[]|null $countryPermission        The countries for
+     *                                                               which to grant (temporary) permissions to use the
+     *                                                               card.
+     * @param CardPinAssignment[]|null $pinCodeAssignment            Array of Types, PINs,
+     *                                                               account IDs assigned to the card.
      * @param CardVirtualPrimaryAccountNumber[]|null
-     *                                                          $primaryAccountNumbersVirtual Array of PANs, status,
-     *                                                          description and account id for online cards.
-     * @param int|null $monetaryAccountIdFallback               ID of the MA to be used as
-     *                                                          fallback for this card if insufficient balance.
-     *                                                          Fallback account is removed if not supplied.
+     *                                                               $primaryAccountNumbersVirtual Array of PANs,
+     *                                                               status, description and account id for online
+     *                                                               cards.
+     * @param CardPrimaryAccountNumber[]|null $primaryAccountNumbers Array of
+     *                                                               PANs and their attributes.
+     * @param int|null $monetaryAccountIdFallback                    ID of the MA to be used as
+     *                                                               fallback for this card if insufficient balance.
+     *                                                               Fallback account is removed if not supplied.
      */
     public function __construct(
         string $pinCode = null,
@@ -328,6 +349,7 @@ class Card extends BunqModel
         array $countryPermission = null,
         array $pinCodeAssignment = null,
         array $primaryAccountNumbersVirtual = null,
+        array $primaryAccountNumbers = null,
         int $monetaryAccountIdFallback = null
     ) {
         $this->pinCodeFieldForRequest = $pinCode;
@@ -339,6 +361,7 @@ class Card extends BunqModel
         $this->countryPermissionFieldForRequest = $countryPermission;
         $this->pinCodeAssignmentFieldForRequest = $pinCodeAssignment;
         $this->primaryAccountNumbersVirtualFieldForRequest = $primaryAccountNumbersVirtual;
+        $this->primaryAccountNumbersFieldForRequest = $primaryAccountNumbers;
         $this->monetaryAccountIdFallbackFieldForRequest = $monetaryAccountIdFallback;
     }
 
@@ -349,36 +372,41 @@ class Card extends BunqModel
      * endpoint.
      *
      * @param int $cardId
-     * @param string|null $pinCode                              The plaintext pin code. Requests require
-     *                                                          encryption to be enabled.
-     * @param string|null $activationCode                       DEPRECATED: Activate a card by setting
-     *                                                          status to ACTIVE when the order_status is
-     *                                                          ACCEPTED_FOR_PRODUCTION.
-     * @param string|null $status                               The status to set for the card. Can be ACTIVE,
-     *                                                          DEACTIVATED, LOST, STOLEN or CANCELLED, and can only be
-     *                                                          set to LOST/STOLEN/CANCELLED when order status is
-     *                                                          ACCEPTED_FOR_PRODUCTION/DELIVERED_TO_CUSTOMER/CARD_UPDATE_REQUESTED/CARD_UPDATE_SENT/CARD_UPDATE_ACCEPTED.
-     *                                                          Can only be set to DEACTIVATED after initial
-     *                                                          activation, i.e. order_status is
-     *                                                          DELIVERED_TO_CUSTOMER/CARD_UPDATE_REQUESTED/CARD_UPDATE_SENT/CARD_UPDATE_ACCEPTED.
-     *                                                          Mind that all the possible choices (apart from ACTIVE
-     *                                                          and DEACTIVATED) are permanent and cannot be changed
-     *                                                          after.
-     * @param Amount|null $cardLimit                            The spending limit for the card.
-     * @param Amount|null $cardLimitAtm                         The ATM spending limit for the card.
-     * @param CardMagStripePermission|null $magStripePermission DEPRECATED:
-     *                                                          Whether or not it is allowed to use the mag stripe for
-     *                                                          the card.
-     * @param CardCountryPermission[]|null $countryPermission   The countries for
-     *                                                          which to grant (temporary) permissions to use the card.
-     * @param CardPinAssignment[]|null $pinCodeAssignment       Array of Types, PINs,
-     *                                                          account IDs assigned to the card.
+     * @param string|null $pinCode                                   The plaintext pin code. Requests require
+     *                                                               encryption to be enabled.
+     * @param string|null $activationCode                            DEPRECATED: Activate a card by setting
+     *                                                               status to ACTIVE when the order_status is
+     *                                                               ACCEPTED_FOR_PRODUCTION.
+     * @param string|null $status                                    The status to set for the card. Can be ACTIVE,
+     *                                                               DEACTIVATED, LOST, STOLEN or CANCELLED, and can
+     *                                                               only be set to LOST/STOLEN/CANCELLED when order
+     *                                                               status is
+     *                                                               ACCEPTED_FOR_PRODUCTION/DELIVERED_TO_CUSTOMER/CARD_UPDATE_REQUESTED/CARD_UPDATE_SENT/CARD_UPDATE_ACCEPTED.
+     *                                                               Can only be set to DEACTIVATED after initial
+     *                                                               activation, i.e. order_status is
+     *                                                               DELIVERED_TO_CUSTOMER/CARD_UPDATE_REQUESTED/CARD_UPDATE_SENT/CARD_UPDATE_ACCEPTED.
+     *                                                               Mind that all the possible choices (apart from
+     *                                                               ACTIVE and DEACTIVATED) are permanent and cannot
+     *                                                               be changed after.
+     * @param Amount|null $cardLimit                                 The spending limit for the card.
+     * @param Amount|null $cardLimitAtm                              The ATM spending limit for the card.
+     * @param CardMagStripePermission|null $magStripePermission      DEPRECATED:
+     *                                                               Whether or not it is allowed to use the mag stripe
+     *                                                               for the card.
+     * @param CardCountryPermission[]|null $countryPermission        The countries for
+     *                                                               which to grant (temporary) permissions to use the
+     *                                                               card.
+     * @param CardPinAssignment[]|null $pinCodeAssignment            Array of Types, PINs,
+     *                                                               account IDs assigned to the card.
      * @param CardVirtualPrimaryAccountNumber[]|null
-     *                                                          $primaryAccountNumbersVirtual Array of PANs, status,
-     *                                                          description and account id for online cards.
-     * @param int|null $monetaryAccountIdFallback               ID of the MA to be used as
-     *                                                          fallback for this card if insufficient balance.
-     *                                                          Fallback account is removed if not supplied.
+     *                                                               $primaryAccountNumbersVirtual Array of PANs,
+     *                                                               status, description and account id for online
+     *                                                               cards.
+     * @param CardPrimaryAccountNumber[]|null $primaryAccountNumbers Array of
+     *                                                               PANs and their attributes.
+     * @param int|null $monetaryAccountIdFallback                    ID of the MA to be used as
+     *                                                               fallback for this card if insufficient balance.
+     *                                                               Fallback account is removed if not supplied.
      * @param string[] $customHeaders
      *
      * @return BunqResponseCard
@@ -394,6 +422,7 @@ class Card extends BunqModel
         array $countryPermission = null,
         array $pinCodeAssignment = null,
         array $primaryAccountNumbersVirtual = null,
+        array $primaryAccountNumbers = null,
         int $monetaryAccountIdFallback = null,
         array $customHeaders = []
     ): BunqResponseCard {
@@ -414,6 +443,7 @@ class Card extends BunqModel
                 self::FIELD_COUNTRY_PERMISSION => $countryPermission,
                 self::FIELD_PIN_CODE_ASSIGNMENT => $pinCodeAssignment,
                 self::FIELD_PRIMARY_ACCOUNT_NUMBERS_VIRTUAL => $primaryAccountNumbersVirtual,
+                self::FIELD_PRIMARY_ACCOUNT_NUMBERS => $primaryAccountNumbers,
                 self::FIELD_MONETARY_ACCOUNT_ID_FALLBACK => $monetaryAccountIdFallback,
             ],
             $customHeaders
@@ -789,6 +819,28 @@ class Card extends BunqModel
     }
 
     /**
+     * Array of PANs and their attributes.
+     *
+     * @return CardPrimaryAccountNumber[]
+     */
+    public function getPrimaryAccountNumbers()
+    {
+        return $this->primaryAccountNumbers;
+    }
+
+    /**
+     * @param CardPrimaryAccountNumber[] $primaryAccountNumbers
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
+     */
+    public function setPrimaryAccountNumbers($primaryAccountNumbers)
+    {
+        $this->primaryAccountNumbers = $primaryAccountNumbers;
+    }
+
+    /**
      * The spending limit for the card.
      *
      * @return Amount
@@ -1026,6 +1078,10 @@ class Card extends BunqModel
         }
 
         if (!is_null($this->primaryAccountNumbersVirtual)) {
+            return false;
+        }
+
+        if (!is_null($this->primaryAccountNumbers)) {
             return false;
         }
 
