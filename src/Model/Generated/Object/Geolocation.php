@@ -65,11 +65,11 @@ class Geolocation extends BunqModel
     protected $radiusFieldForRequest;
 
     /**
-     * @param string|null $latitude  The latitude for a geolocation restriction.
+     * @param string|null $latitude The latitude for a geolocation restriction.
      * @param string|null $longitude The longitude for a geolocation
      *                               restriction.
-     * @param string|null $altitude  The altitude for a geolocation restriction.
-     * @param string|null $radius    The radius for a geolocation restriction.
+     * @param string|null $altitude The altitude for a geolocation restriction.
+     * @param string|null $radius The radius for a geolocation restriction.
      */
     public function __construct(
         string $latitude = null,
@@ -94,10 +94,11 @@ class Geolocation extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param float $latitude
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setLatitude($latitude)
     {
@@ -115,10 +116,11 @@ class Geolocation extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param float $longitude
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setLongitude($longitude)
     {
@@ -136,10 +138,11 @@ class Geolocation extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param float $altitude
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setAltitude($altitude)
     {
@@ -157,10 +160,11 @@ class Geolocation extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param float $radius
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setRadius($radius)
     {

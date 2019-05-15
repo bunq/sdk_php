@@ -6,6 +6,7 @@ use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 
 /**
+ * [DEPRECATED - use /share-invite-monetary-account-inquiry/ID/amount-used]
  * When you have connected your monetary account bank to a user, and given
  * this user a (for example) daily budget of 10 EUR. If this users has used
  * his entire budget or part of it, this call can be used to reset the
@@ -22,6 +23,7 @@ class ShareInviteBankAmountUsed extends BunqModel
     const ENDPOINT_URL_DELETE = 'user/%s/monetary-account/%s/share-invite-bank-inquiry/%s/amount-used/%s';
 
     /**
+     * [DEPRECATED - use /share-invite-monetary-account-inquiry/ID/amount-used]
      * Reset the available budget for a bank account share. To be called without
      * any ID at the end of the path.
      *

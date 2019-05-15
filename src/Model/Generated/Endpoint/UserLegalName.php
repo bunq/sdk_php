@@ -65,10 +65,11 @@ class UserLegalName extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param string[] $legalNames
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setLegalNames($legalNames)
     {

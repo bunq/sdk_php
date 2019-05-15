@@ -83,10 +83,11 @@ class ShareDetailReadOnly extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param bool $viewBalance
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setViewBalance($viewBalance)
     {
@@ -105,10 +106,11 @@ class ShareDetailReadOnly extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param bool $viewOldEvents
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setViewOldEvents($viewOldEvents)
     {
@@ -127,10 +129,11 @@ class ShareDetailReadOnly extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param bool $viewNewEvents
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setViewNewEvents($viewNewEvents)
     {

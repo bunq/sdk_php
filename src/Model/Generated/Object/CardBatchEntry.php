@@ -16,15 +16,6 @@ class CardBatchEntry extends BunqModel
     protected $idFieldForRequest;
 
     /**
-     * The activation code required to set status to ACTIVE initially. Can only
-     * set status to ACTIVE using activation code when order_status is
-     * ACCEPTED_FOR_PRODUCTION and status is DEACTIVATED.
-     *
-     * @var string|null
-     */
-    protected $activationCodeFieldForRequest;
-
-    /**
      * The status to set for the card. Can be ACTIVE, DEACTIVATED, LOST, STOLEN
      * or CANCELLED, and can only be set to LOST/STOLEN/CANCELLED when order
      * status is
@@ -54,14 +45,6 @@ class CardBatchEntry extends BunqModel
     protected $cardLimitAtmFieldForRequest;
 
     /**
-     * DEPRECATED: The limits to define for the card, among CARD_LIMIT_ATM and
-     * CARD_LIMIT_POS_ICC. All the limits must be provided on update.
-     *
-     * @var CardLimit[]|null
-     */
-    protected $limitFieldForRequest;
-
-    /**
      * The countries for which to grant (temporary) permissions to use the card.
      *
      * @var CardCountryPermission[]|null
@@ -78,10 +61,6 @@ class CardBatchEntry extends BunqModel
 
     /**
      * @param int $id                                         The ID of the card that needs to be updated.
-     * @param string|null $activationCode                     The activation code required to set
-     *                                                        status to ACTIVE initially. Can only set status to ACTIVE
-     *                                                        using activation code when order_status is
-     *                                                        ACCEPTED_FOR_PRODUCTION and status is DEACTIVATED.
      * @param string|null $status                             The status to set for the card. Can be ACTIVE,
      *                                                        DEACTIVATED, LOST, STOLEN or CANCELLED, and can only be
      *                                                        set to LOST/STOLEN/CANCELLED when order status is
@@ -93,9 +72,6 @@ class CardBatchEntry extends BunqModel
      *                                                        DEACTIVATED) are permanent and cannot be changed after.
      * @param Amount|null $cardLimit                          The spending limit for the card.
      * @param Amount|null $cardLimitAtm                       The ATM spending limit for the card.
-     * @param CardLimit[]|null $limit                         DEPRECATED: The limits to define for the
-     *                                                        card, among CARD_LIMIT_ATM and CARD_LIMIT_POS_ICC. All
-     *                                                        the limits must be provided on update.
      * @param CardCountryPermission[]|null $countryPermission The countries for
      *                                                        which to grant (temporary) permissions to use the card.
      * @param int|null $monetaryAccountIdFallback             ID of the MA to be used as
@@ -104,20 +80,16 @@ class CardBatchEntry extends BunqModel
      */
     public function __construct(
         int $id,
-        string $activationCode = null,
         string $status = null,
         Amount $cardLimit = null,
         Amount $cardLimitAtm = null,
-        array $limit = null,
         array $countryPermission = null,
         int $monetaryAccountIdFallback = null
     ) {
         $this->idFieldForRequest = $id;
-        $this->activationCodeFieldForRequest = $activationCode;
         $this->statusFieldForRequest = $status;
         $this->cardLimitFieldForRequest = $cardLimit;
         $this->cardLimitAtmFieldForRequest = $cardLimitAtm;
-        $this->limitFieldForRequest = $limit;
         $this->countryPermissionFieldForRequest = $countryPermission;
         $this->monetaryAccountIdFallbackFieldForRequest = $monetaryAccountIdFallback;
     }

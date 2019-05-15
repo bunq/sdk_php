@@ -124,10 +124,11 @@ class Tab extends BunqModel implements AnchorObjectInterface
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param TabUsageSingle $tabUsageSingle
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setTabUsageSingle($tabUsageSingle)
     {
@@ -143,10 +144,11 @@ class Tab extends BunqModel implements AnchorObjectInterface
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param TabUsageMultiple $tabUsageMultiple
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setTabUsageMultiple($tabUsageMultiple)
     {

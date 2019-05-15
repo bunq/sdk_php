@@ -5,6 +5,7 @@ use bunq\exception\BunqException;
 use bunq\Model\Core\AnchorObjectInterface;
 use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Endpoint\UserCompany;
+use bunq\Model\Generated\Endpoint\UserPaymentServiceProvider;
 use bunq\Model\Generated\Endpoint\UserPerson;
 
 /**
@@ -28,6 +29,11 @@ class UserApiKeyAnchoredUser extends BunqModel implements AnchorObjectInterface
     protected $userCompany;
 
     /**
+     * @var UserPaymentServiceProvider
+     */
+    protected $userPaymentServiceProvider;
+
+    /**
      * @return UserPerson
      */
     public function getUserPerson()
@@ -36,10 +42,11 @@ class UserApiKeyAnchoredUser extends BunqModel implements AnchorObjectInterface
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param UserPerson $userPerson
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setUserPerson($userPerson)
     {
@@ -55,14 +62,35 @@ class UserApiKeyAnchoredUser extends BunqModel implements AnchorObjectInterface
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param UserCompany $userCompany
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setUserCompany($userCompany)
     {
         $this->userCompany = $userCompany;
+    }
+
+    /**
+     * @return UserPaymentServiceProvider
+     */
+    public function getUserPaymentServiceProvider()
+    {
+        return $this->userPaymentServiceProvider;
+    }
+
+    /**
+     * @param UserPaymentServiceProvider $userPaymentServiceProvider
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
+     */
+    public function setUserPaymentServiceProvider($userPaymentServiceProvider)
+    {
+        $this->userPaymentServiceProvider = $userPaymentServiceProvider;
     }
 
     /**
@@ -79,6 +107,10 @@ class UserApiKeyAnchoredUser extends BunqModel implements AnchorObjectInterface
             return $this->userCompany;
         }
 
+        if (!is_null($this->userPaymentServiceProvider)) {
+            return $this->userPaymentServiceProvider;
+        }
+
         throw new BunqException(self::ERROR_NULL_FIELDS);
     }
 
@@ -92,6 +124,10 @@ class UserApiKeyAnchoredUser extends BunqModel implements AnchorObjectInterface
         }
 
         if (!is_null($this->userCompany)) {
+            return false;
+        }
+
+        if (!is_null($this->userPaymentServiceProvider)) {
             return false;
         }
 

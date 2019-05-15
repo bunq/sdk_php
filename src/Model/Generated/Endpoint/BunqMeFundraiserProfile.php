@@ -72,6 +72,13 @@ class BunqMeFundraiserProfile extends BunqModel
     protected $redirectUrl;
 
     /**
+     * Provided if the user has enabled their invite link.
+     *
+     * @var string
+     */
+    protected $inviteProfileName;
+
+    /**
      * The pointer (url) which will be used to access the bunq.me fundraiser
      * profile.
      *
@@ -100,10 +107,11 @@ class BunqMeFundraiserProfile extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param string $color
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setColor($color)
     {
@@ -122,10 +130,11 @@ class BunqMeFundraiserProfile extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param LabelMonetaryAccount $alias
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setAlias($alias)
     {
@@ -143,10 +152,11 @@ class BunqMeFundraiserProfile extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param string $description
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setDescription($description)
     {
@@ -164,10 +174,11 @@ class BunqMeFundraiserProfile extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param AttachmentPublic[] $attachment
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setAttachment($attachment)
     {
@@ -186,10 +197,11 @@ class BunqMeFundraiserProfile extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param Pointer $pointer
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setPointer($pointer)
     {
@@ -208,10 +220,11 @@ class BunqMeFundraiserProfile extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param string $status
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setStatus($status)
     {
@@ -229,14 +242,37 @@ class BunqMeFundraiserProfile extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param string $redirectUrl
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setRedirectUrl($redirectUrl)
     {
         $this->redirectUrl = $redirectUrl;
+    }
+
+    /**
+     * Provided if the user has enabled their invite link.
+     *
+     * @return string
+     */
+    public function getInviteProfileName()
+    {
+        return $this->inviteProfileName;
+    }
+
+    /**
+     * @param string $inviteProfileName
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
+     */
+    public function setInviteProfileName($inviteProfileName)
+    {
+        $this->inviteProfileName = $inviteProfileName;
     }
 
     /**
@@ -269,6 +305,10 @@ class BunqMeFundraiserProfile extends BunqModel
         }
 
         if (!is_null($this->redirectUrl)) {
+            return false;
+        }
+
+        if (!is_null($this->inviteProfileName)) {
             return false;
         }
 

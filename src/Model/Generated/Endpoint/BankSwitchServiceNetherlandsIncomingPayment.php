@@ -78,10 +78,11 @@ class BankSwitchServiceNetherlandsIncomingPayment extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param BankSwitchServiceNetherlandsIncoming $bankSwitchService
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setBankSwitchService($bankSwitchService)
     {
@@ -99,10 +100,11 @@ class BankSwitchServiceNetherlandsIncomingPayment extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param Payment $payment
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setPayment($payment)
     {

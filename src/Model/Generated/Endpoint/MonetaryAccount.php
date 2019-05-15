@@ -115,10 +115,11 @@ class MonetaryAccount extends BunqModel implements AnchorObjectInterface
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param MonetaryAccountBank $monetaryAccountBank
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setMonetaryAccountBank($monetaryAccountBank)
     {
@@ -134,10 +135,11 @@ class MonetaryAccount extends BunqModel implements AnchorObjectInterface
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param MonetaryAccountJoint $monetaryAccountJoint
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setMonetaryAccountJoint($monetaryAccountJoint)
     {
@@ -153,10 +155,11 @@ class MonetaryAccount extends BunqModel implements AnchorObjectInterface
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param MonetaryAccountLight $monetaryAccountLight
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setMonetaryAccountLight($monetaryAccountLight)
     {
@@ -172,10 +175,11 @@ class MonetaryAccount extends BunqModel implements AnchorObjectInterface
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param MonetaryAccountSavings $monetaryAccountSavings
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setMonetaryAccountSavings($monetaryAccountSavings)
     {
