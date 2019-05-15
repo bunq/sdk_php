@@ -99,10 +99,11 @@ class ShareDetail extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param ShareDetailPayment $payment
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setPayment($payment)
     {
@@ -121,10 +122,11 @@ class ShareDetail extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param ShareDetailReadOnly $readOnly
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setReadOnly($readOnly)
     {
@@ -143,10 +145,11 @@ class ShareDetail extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param ShareDetailDraftPayment $draftPayment
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setDraftPayment($draftPayment)
     {

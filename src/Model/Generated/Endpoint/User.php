@@ -51,6 +51,11 @@ class User extends BunqModel implements AnchorObjectInterface
     protected $userApiKey;
 
     /**
+     * @var UserPaymentServiceProvider
+     */
+    protected $userPaymentServiceProvider;
+
+    /**
      * Get a specific user.
      *
      * @param int $userId
@@ -112,10 +117,11 @@ class User extends BunqModel implements AnchorObjectInterface
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param UserLight $userLight
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setUserLight($userLight)
     {
@@ -131,10 +137,11 @@ class User extends BunqModel implements AnchorObjectInterface
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param UserPerson $userPerson
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setUserPerson($userPerson)
     {
@@ -150,10 +157,11 @@ class User extends BunqModel implements AnchorObjectInterface
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param UserCompany $userCompany
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setUserCompany($userCompany)
     {
@@ -169,14 +177,35 @@ class User extends BunqModel implements AnchorObjectInterface
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param UserApiKey $userApiKey
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setUserApiKey($userApiKey)
     {
         $this->userApiKey = $userApiKey;
+    }
+
+    /**
+     * @return UserPaymentServiceProvider
+     */
+    public function getUserPaymentServiceProvider()
+    {
+        return $this->userPaymentServiceProvider;
+    }
+
+    /**
+     * @param UserPaymentServiceProvider $userPaymentServiceProvider
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
+     */
+    public function setUserPaymentServiceProvider($userPaymentServiceProvider)
+    {
+        $this->userPaymentServiceProvider = $userPaymentServiceProvider;
     }
 
     /**
@@ -201,6 +230,10 @@ class User extends BunqModel implements AnchorObjectInterface
             return $this->userApiKey;
         }
 
+        if (!is_null($this->userPaymentServiceProvider)) {
+            return $this->userPaymentServiceProvider;
+        }
+
         throw new BunqException(self::ERROR_NULL_FIELDS);
     }
 
@@ -222,6 +255,10 @@ class User extends BunqModel implements AnchorObjectInterface
         }
 
         if (!is_null($this->userApiKey)) {
+            return false;
+        }
+
+        if (!is_null($this->userPaymentServiceProvider)) {
             return false;
         }
 

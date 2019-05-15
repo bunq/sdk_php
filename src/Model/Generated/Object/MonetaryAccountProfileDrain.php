@@ -93,10 +93,11 @@ class MonetaryAccountProfileDrain extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param string $status
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setStatus($status)
     {
@@ -114,10 +115,11 @@ class MonetaryAccountProfileDrain extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param Amount $balancePreferred
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setBalancePreferred($balancePreferred)
     {
@@ -135,10 +137,11 @@ class MonetaryAccountProfileDrain extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param Amount $balanceThresholdHigh
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setBalanceThresholdHigh($balanceThresholdHigh)
     {
@@ -156,10 +159,11 @@ class MonetaryAccountProfileDrain extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param LabelMonetaryAccount $savingsAccountAlias
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setSavingsAccountAlias($savingsAccountAlias)
     {

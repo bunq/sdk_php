@@ -267,10 +267,11 @@ class NoteTextBankSwitchServiceNetherlandsIncomingPayment extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param int $id
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setId($id)
     {
@@ -288,10 +289,11 @@ class NoteTextBankSwitchServiceNetherlandsIncomingPayment extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param string $created
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setCreated($created)
     {
@@ -309,10 +311,11 @@ class NoteTextBankSwitchServiceNetherlandsIncomingPayment extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param string $updated
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setUpdated($updated)
     {
@@ -330,10 +333,11 @@ class NoteTextBankSwitchServiceNetherlandsIncomingPayment extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param LabelUser $labelUserCreator
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setLabelUserCreator($labelUserCreator)
     {
@@ -351,10 +355,11 @@ class NoteTextBankSwitchServiceNetherlandsIncomingPayment extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param string $content
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setContent($content)
     {

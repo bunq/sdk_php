@@ -95,10 +95,11 @@ class TabItemShopBatch extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param TabItemShop[] $tabItems
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setTabItems($tabItems)
     {

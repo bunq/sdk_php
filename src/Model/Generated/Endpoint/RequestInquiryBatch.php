@@ -263,10 +263,11 @@ class RequestInquiryBatch extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param RequestInquiry[] $requestInquiries
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setRequestInquiries($requestInquiries)
     {
@@ -284,10 +285,11 @@ class RequestInquiryBatch extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param Amount $totalAmountInquired
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setTotalAmountInquired($totalAmountInquired)
     {
@@ -306,10 +308,11 @@ class RequestInquiryBatch extends BunqModel
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param RequestReferenceSplitTheBillAnchorObject $referenceSplitTheBill
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setReferenceSplitTheBill($referenceSplitTheBill)
     {

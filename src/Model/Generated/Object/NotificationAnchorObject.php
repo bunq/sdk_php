@@ -156,10 +156,11 @@ class NotificationAnchorObject extends BunqModel implements AnchorObjectInterfac
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param BunqMeFundraiserResult $bunqMeFundraiserResult
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setBunqMeFundraiserResult($bunqMeFundraiserResult)
     {
@@ -175,10 +176,11 @@ class NotificationAnchorObject extends BunqModel implements AnchorObjectInterfac
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param BunqMeTab $bunqMeTab
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setBunqMeTab($bunqMeTab)
     {
@@ -194,10 +196,11 @@ class NotificationAnchorObject extends BunqModel implements AnchorObjectInterfac
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param BunqMeTabResultInquiry $bunqMeTabResultInquiry
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setBunqMeTabResultInquiry($bunqMeTabResultInquiry)
     {
@@ -213,10 +216,11 @@ class NotificationAnchorObject extends BunqModel implements AnchorObjectInterfac
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param BunqMeTabResultResponse $bunqMeTabResultResponse
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setBunqMeTabResultResponse($bunqMeTabResultResponse)
     {
@@ -232,10 +236,11 @@ class NotificationAnchorObject extends BunqModel implements AnchorObjectInterfac
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param ChatMessage $chatMessage
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setChatMessage($chatMessage)
     {
@@ -251,10 +256,11 @@ class NotificationAnchorObject extends BunqModel implements AnchorObjectInterfac
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param DraftPayment $draftPayment
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setDraftPayment($draftPayment)
     {
@@ -270,10 +276,11 @@ class NotificationAnchorObject extends BunqModel implements AnchorObjectInterfac
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param IdealMerchantTransaction $idealMerchantTransaction
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setIdealMerchantTransaction($idealMerchantTransaction)
     {
@@ -289,10 +296,11 @@ class NotificationAnchorObject extends BunqModel implements AnchorObjectInterfac
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param Invoice $invoice
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setInvoice($invoice)
     {
@@ -308,10 +316,11 @@ class NotificationAnchorObject extends BunqModel implements AnchorObjectInterfac
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param MasterCardAction $masterCardAction
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setMasterCardAction($masterCardAction)
     {
@@ -327,10 +336,11 @@ class NotificationAnchorObject extends BunqModel implements AnchorObjectInterfac
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param MonetaryAccount $monetaryAccount
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setMonetaryAccount($monetaryAccount)
     {
@@ -346,10 +356,11 @@ class NotificationAnchorObject extends BunqModel implements AnchorObjectInterfac
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param Payment $payment
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setPayment($payment)
     {
@@ -365,10 +376,11 @@ class NotificationAnchorObject extends BunqModel implements AnchorObjectInterfac
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param PaymentBatch $paymentBatch
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setPaymentBatch($paymentBatch)
     {
@@ -384,10 +396,11 @@ class NotificationAnchorObject extends BunqModel implements AnchorObjectInterfac
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param RequestInquiry $requestInquiry
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setRequestInquiry($requestInquiry)
     {
@@ -403,10 +416,11 @@ class NotificationAnchorObject extends BunqModel implements AnchorObjectInterfac
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param RequestInquiryBatch $requestInquiryBatch
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setRequestInquiryBatch($requestInquiryBatch)
     {
@@ -422,10 +436,11 @@ class NotificationAnchorObject extends BunqModel implements AnchorObjectInterfac
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param RequestResponse $requestResponse
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setRequestResponse($requestResponse)
     {
@@ -441,10 +456,11 @@ class NotificationAnchorObject extends BunqModel implements AnchorObjectInterfac
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param ShareInviteBankInquiry $shareInviteBankInquiry
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setShareInviteBankInquiry($shareInviteBankInquiry)
     {
@@ -460,10 +476,11 @@ class NotificationAnchorObject extends BunqModel implements AnchorObjectInterfac
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param ShareInviteBankResponse $shareInviteBankResponse
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setShareInviteBankResponse($shareInviteBankResponse)
     {
@@ -479,10 +496,11 @@ class NotificationAnchorObject extends BunqModel implements AnchorObjectInterfac
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param SchedulePayment $scheduledPayment
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setScheduledPayment($scheduledPayment)
     {
@@ -498,10 +516,11 @@ class NotificationAnchorObject extends BunqModel implements AnchorObjectInterfac
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param ScheduleInstance $scheduledInstance
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setScheduledInstance($scheduledInstance)
     {
@@ -517,10 +536,11 @@ class NotificationAnchorObject extends BunqModel implements AnchorObjectInterfac
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param TabResultInquiry $tabResultInquiry
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setTabResultInquiry($tabResultInquiry)
     {
@@ -536,10 +556,11 @@ class NotificationAnchorObject extends BunqModel implements AnchorObjectInterfac
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param TabResultResponse $tabResultResponse
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setTabResultResponse($tabResultResponse)
     {
@@ -555,10 +576,11 @@ class NotificationAnchorObject extends BunqModel implements AnchorObjectInterfac
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param User $user
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setUser($user)
     {

@@ -78,10 +78,11 @@ class RequestReferenceSplitTheBillAnchorObject extends BunqModel implements Anch
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param Invoice $billingInvoice
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setBillingInvoice($billingInvoice)
     {
@@ -97,10 +98,11 @@ class RequestReferenceSplitTheBillAnchorObject extends BunqModel implements Anch
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param DraftPayment $draftPayment
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setDraftPayment($draftPayment)
     {
@@ -116,10 +118,11 @@ class RequestReferenceSplitTheBillAnchorObject extends BunqModel implements Anch
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param MasterCardAction $masterCardAction
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setMasterCardAction($masterCardAction)
     {
@@ -135,10 +138,11 @@ class RequestReferenceSplitTheBillAnchorObject extends BunqModel implements Anch
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param Payment $payment
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setPayment($payment)
     {
@@ -154,10 +158,11 @@ class RequestReferenceSplitTheBillAnchorObject extends BunqModel implements Anch
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param PaymentBatch $paymentBatch
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setPaymentBatch($paymentBatch)
     {
@@ -173,10 +178,11 @@ class RequestReferenceSplitTheBillAnchorObject extends BunqModel implements Anch
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param RequestResponse $requestResponse
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setRequestResponse($requestResponse)
     {
@@ -192,10 +198,11 @@ class RequestReferenceSplitTheBillAnchorObject extends BunqModel implements Anch
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param ScheduleInstance $scheduleInstance
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setScheduleInstance($scheduleInstance)
     {
@@ -211,10 +218,11 @@ class RequestReferenceSplitTheBillAnchorObject extends BunqModel implements Anch
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param TabResultResponse $tabResultResponse
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setTabResultResponse($tabResultResponse)
     {
@@ -230,10 +238,11 @@ class RequestReferenceSplitTheBillAnchorObject extends BunqModel implements Anch
     }
 
     /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
      * @param WhitelistResult $whitelistResult
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
      */
     public function setWhitelistResult($whitelistResult)
     {
