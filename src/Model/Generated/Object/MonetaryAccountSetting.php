@@ -1,4 +1,5 @@
 <?php
+
 namespace bunq\Model\Generated\Object;
 
 use bunq\Model\Core\BunqModel;
@@ -14,6 +15,13 @@ class MonetaryAccountSetting extends BunqModel
      * @var string
      */
     protected $color;
+
+    /**
+     * The icon chosen for the MonetaryAccount.
+     *
+     * @var string
+     */
+    protected $icon;
 
     /**
      * The status of the avatar. Can be either AVATAR_DEFAULT, AVATAR_CUSTOM or
@@ -39,6 +47,13 @@ class MonetaryAccountSetting extends BunqModel
     protected $colorFieldForRequest;
 
     /**
+     * The icon chosen for the MonetaryAccount.
+     *
+     * @var string|null
+     */
+    protected $iconFieldForRequest;
+
+    /**
      * The status of the avatar. Cannot be updated directly.
      *
      * @var string|null
@@ -54,19 +69,22 @@ class MonetaryAccountSetting extends BunqModel
     protected $restrictionChatFieldForRequest;
 
     /**
-     * @param string|null $color The color chosen for the MonetaryAccount in
+     * @param string|null $color               The color chosen for the MonetaryAccount in
      *                                         hexadecimal format.
+     * @param string|null $icon                The icon chosen for the MonetaryAccount.
      * @param string|null $defaultAvatarStatus The status of the avatar. Cannot
      *                                         be updated directly.
-     * @param string|null $restrictionChat The chat restriction. Possible values
+     * @param string|null $restrictionChat     The chat restriction. Possible values
      *                                         are ALLOW_INCOMING or BLOCK_INCOMING
      */
     public function __construct(
         string $color = null,
+        string $icon = null,
         string $defaultAvatarStatus = null,
         string $restrictionChat = null
     ) {
         $this->colorFieldForRequest = $color;
+        $this->iconFieldForRequest = $icon;
         $this->defaultAvatarStatusFieldForRequest = $defaultAvatarStatus;
         $this->restrictionChatFieldForRequest = $restrictionChat;
     }
@@ -91,6 +109,28 @@ class MonetaryAccountSetting extends BunqModel
     public function setColor($color)
     {
         $this->color = $color;
+    }
+
+    /**
+     * The icon chosen for the MonetaryAccount.
+     *
+     * @return string
+     */
+    public function getIcon()
+    {
+        return $this->icon;
+    }
+
+    /**
+     * @param string $icon
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
+     */
+    public function setIcon($icon)
+    {
+        $this->icon = $icon;
     }
 
     /**
@@ -145,6 +185,10 @@ class MonetaryAccountSetting extends BunqModel
     public function isAllFieldNull()
     {
         if (!is_null($this->color)) {
+            return false;
+        }
+
+        if (!is_null($this->icon)) {
             return false;
         }
 

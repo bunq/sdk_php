@@ -1,4 +1,5 @@
 <?php
+
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Http\ApiClient;
@@ -82,7 +83,7 @@ class ConfirmationOfFunds extends BunqModel
             ),
             [
                 self::FIELD_POINTER_IBAN => $pointerIban,
-                self::FIELD_AMOUNT => $amount,
+                self::FIELD_AMOUNT => $amount
             ],
             $customHeaders
         );

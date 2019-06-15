@@ -1,4 +1,5 @@
 <?php
+
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Http\ApiClient;
@@ -149,7 +150,7 @@ class DraftShareInviteBank extends BunqModel
             [
                 self::FIELD_STATUS => $status,
                 self::FIELD_EXPIRATION => $expiration,
-                self::FIELD_DRAFT_SHARE_SETTINGS => $draftShareSettings,
+                self::FIELD_DRAFT_SHARE_SETTINGS => $draftShareSettings
             ],
             $customHeaders
         );
@@ -216,7 +217,7 @@ class DraftShareInviteBank extends BunqModel
             [
                 self::FIELD_STATUS => $status,
                 self::FIELD_EXPIRATION => $expiration,
-                self::FIELD_DRAFT_SHARE_SETTINGS => $draftShareSettings,
+                self::FIELD_DRAFT_SHARE_SETTINGS => $draftShareSettings
             ],
             $customHeaders
         );

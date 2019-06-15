@@ -1,4 +1,5 @@
 <?php
+
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Http\ApiClient;
@@ -455,7 +456,7 @@ class TabUsageSingle extends BunqModel
                 self::FIELD_REDIRECT_URL => $redirectUrl,
                 self::FIELD_VISIBILITY => $visibility,
                 self::FIELD_EXPIRATION => $expiration,
-                self::FIELD_TAB_ATTACHMENT => $tabAttachment,
+                self::FIELD_TAB_ATTACHMENT => $tabAttachment
             ],
             $customHeaders
         );
@@ -514,7 +515,7 @@ class TabUsageSingle extends BunqModel
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
                     $cashRegisterId,
-                    $tabUsageSingleUuid,
+                    $tabUsageSingleUuid
                 ]
             ),
             [
@@ -522,7 +523,7 @@ class TabUsageSingle extends BunqModel
                 self::FIELD_AMOUNT_TOTAL => $amountTotal,
                 self::FIELD_VISIBILITY => $visibility,
                 self::FIELD_EXPIRATION => $expiration,
-                self::FIELD_TAB_ATTACHMENT => $tabAttachment,
+                self::FIELD_TAB_ATTACHMENT => $tabAttachment
             ],
             $customHeaders
         );
@@ -555,7 +556,7 @@ class TabUsageSingle extends BunqModel
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
                     $cashRegisterId,
-                    $tabUsageSingleUuid,
+                    $tabUsageSingleUuid
                 ]
             ),
             $customHeaders
@@ -590,7 +591,7 @@ class TabUsageSingle extends BunqModel
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
                     $cashRegisterId,
-                    $tabUsageSingleUuid,
+                    $tabUsageSingleUuid
                 ]
             ),
             [],

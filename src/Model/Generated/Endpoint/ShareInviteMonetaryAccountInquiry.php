@@ -1,4 +1,5 @@
 <?php
+
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Http\ApiClient;
@@ -262,7 +263,7 @@ class ShareInviteMonetaryAccountInquiry extends BunqModel
                 self::FIELD_STATUS => $status,
                 self::FIELD_SHARE_TYPE => $shareType,
                 self::FIELD_START_DATE => $startDate,
-                self::FIELD_END_DATE => $endDate,
+                self::FIELD_END_DATE => $endDate
             ],
             $customHeaders
         );
@@ -294,7 +295,7 @@ class ShareInviteMonetaryAccountInquiry extends BunqModel
                 [
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
-                    $shareInviteMonetaryAccountInquiryId,
+                    $shareInviteMonetaryAccountInquiryId
                 ]
             ),
             [],
@@ -342,14 +343,14 @@ class ShareInviteMonetaryAccountInquiry extends BunqModel
                 [
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
-                    $shareInviteMonetaryAccountInquiryId,
+                    $shareInviteMonetaryAccountInquiryId
                 ]
             ),
             [
                 self::FIELD_SHARE_DETAIL => $shareDetail,
                 self::FIELD_STATUS => $status,
                 self::FIELD_START_DATE => $startDate,
-                self::FIELD_END_DATE => $endDate,
+                self::FIELD_END_DATE => $endDate
             ],
             $customHeaders
         );

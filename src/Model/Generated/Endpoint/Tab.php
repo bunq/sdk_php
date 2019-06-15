@@ -1,4 +1,5 @@
 <?php
+
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\exception\BunqException;
@@ -69,7 +70,7 @@ class Tab extends BunqModel implements AnchorObjectInterface
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
                     $cashRegisterId,
-                    $tabUuid,
+                    $tabUuid
                 ]
             ),
             [],

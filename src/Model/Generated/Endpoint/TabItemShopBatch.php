@@ -1,4 +1,5 @@
 <?php
+
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Http\ApiClient;
@@ -72,7 +73,7 @@ class TabItemShopBatch extends BunqModel
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
                     $cashRegisterId,
-                    $tabUuid,
+                    $tabUuid
                 ]
             ),
             [self::FIELD_TAB_ITEMS => $tabItems],

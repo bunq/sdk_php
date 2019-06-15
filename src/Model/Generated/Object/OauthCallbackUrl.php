@@ -1,4 +1,5 @@
 <?php
+
 namespace bunq\Model\Generated\Object;
 
 use bunq\Model\Core\BunqModel;
@@ -8,13 +9,6 @@ use bunq\Model\Core\BunqModel;
  */
 class OauthCallbackUrl extends BunqModel
 {
-    /**
-     * The Callback URL.
-     *
-     * @var string
-     */
-    protected $url;
-
     /**
      * The id of the callback URL.
      *
@@ -39,24 +33,9 @@ class OauthCallbackUrl extends BunqModel
     /**
      * The Callback URL.
      *
-     * @return string
+     * @var string
      */
-    public function getUrl()
-    {
-        return $this->url;
-    }
-
-    /**
-     * @param string $url
-     *
-     * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
-     */
-    public function setUrl($url)
-    {
-        $this->url = $url;
-    }
+    protected $url;
 
     /**
      * The id of the callback URL.
@@ -125,14 +104,32 @@ class OauthCallbackUrl extends BunqModel
     }
 
     /**
+     * The Callback URL.
+     *
+     * @return string
+     */
+    public function getUrl()
+    {
+        return $this->url;
+    }
+
+    /**
+     * @param string $url
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
+     */
+    public function setUrl($url)
+    {
+        $this->url = $url;
+    }
+
+    /**
      * @return bool
      */
     public function isAllFieldNull()
     {
-        if (!is_null($this->url)) {
-            return false;
-        }
-
         if (!is_null($this->id)) {
             return false;
         }
@@ -142,6 +139,10 @@ class OauthCallbackUrl extends BunqModel
         }
 
         if (!is_null($this->updated)) {
+            return false;
+        }
+
+        if (!is_null($this->url)) {
             return false;
         }
 

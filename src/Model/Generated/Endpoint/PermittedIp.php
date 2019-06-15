@@ -1,4 +1,5 @@
 <?php
+
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Http\ApiClient;
@@ -126,7 +127,7 @@ class PermittedIp extends BunqModel
             ),
             [
                 self::FIELD_IP => $ip,
-                self::FIELD_STATUS => $status,
+                self::FIELD_STATUS => $status
             ],
             $customHeaders
         );

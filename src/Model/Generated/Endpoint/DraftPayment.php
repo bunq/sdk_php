@@ -1,4 +1,5 @@
 <?php
+
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Http\ApiClient;
@@ -196,7 +197,7 @@ class DraftPayment extends BunqModel
                 self::FIELD_STATUS => $status,
                 self::FIELD_ENTRIES => $entries,
                 self::FIELD_PREVIOUS_UPDATED_TIMESTAMP => $previousUpdatedTimestamp,
-                self::FIELD_NUMBER_OF_REQUIRED_ACCEPTS => $numberOfRequiredAccepts,
+                self::FIELD_NUMBER_OF_REQUIRED_ACCEPTS => $numberOfRequiredAccepts
             ],
             $customHeaders
         );
@@ -239,7 +240,7 @@ class DraftPayment extends BunqModel
             [
                 self::FIELD_STATUS => $status,
                 self::FIELD_ENTRIES => $entries,
-                self::FIELD_PREVIOUS_UPDATED_TIMESTAMP => $previousUpdatedTimestamp,
+                self::FIELD_PREVIOUS_UPDATED_TIMESTAMP => $previousUpdatedTimestamp
             ],
             $customHeaders
         );

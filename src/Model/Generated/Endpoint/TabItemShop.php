@@ -1,4 +1,5 @@
 <?php
+
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Http\ApiClient;
@@ -210,7 +211,7 @@ class TabItemShop extends BunqModel
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
                     $cashRegisterId,
-                    $tabUuid,
+                    $tabUuid
                 ]
             ),
             [
@@ -219,7 +220,7 @@ class TabItemShop extends BunqModel
                 self::FIELD_AVATAR_ATTACHMENT_UUID => $avatarAttachmentUuid,
                 self::FIELD_TAB_ATTACHMENT => $tabAttachment,
                 self::FIELD_QUANTITY => $quantity,
-                self::FIELD_AMOUNT => $amount,
+                self::FIELD_AMOUNT => $amount
             ],
             $customHeaders
         );
@@ -273,7 +274,7 @@ class TabItemShop extends BunqModel
                     static::determineMonetaryAccountId($monetaryAccountId),
                     $cashRegisterId,
                     $tabUuid,
-                    $tabItemShopId,
+                    $tabItemShopId
                 ]
             ),
             [
@@ -282,7 +283,7 @@ class TabItemShop extends BunqModel
                 self::FIELD_AVATAR_ATTACHMENT_UUID => $avatarAttachmentUuid,
                 self::FIELD_TAB_ATTACHMENT => $tabAttachment,
                 self::FIELD_QUANTITY => $quantity,
-                self::FIELD_AMOUNT => $amount,
+                self::FIELD_AMOUNT => $amount
             ],
             $customHeaders
         );
@@ -318,7 +319,7 @@ class TabItemShop extends BunqModel
                     static::determineMonetaryAccountId($monetaryAccountId),
                     $cashRegisterId,
                     $tabUuid,
-                    $tabItemShopId,
+                    $tabItemShopId
                 ]
             ),
             $customHeaders
@@ -358,7 +359,7 @@ class TabItemShop extends BunqModel
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
                     $cashRegisterId,
-                    $tabUuid,
+                    $tabUuid
                 ]
             ),
             $params,
@@ -397,7 +398,7 @@ class TabItemShop extends BunqModel
                     static::determineMonetaryAccountId($monetaryAccountId),
                     $cashRegisterId,
                     $tabUuid,
-                    $tabItemShopId,
+                    $tabItemShopId
                 ]
             ),
             [],

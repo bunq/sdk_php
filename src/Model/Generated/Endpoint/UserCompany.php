@@ -1,4 +1,5 @@
 <?php
+
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Http\ApiClient;
@@ -560,7 +561,7 @@ class UserCompany extends BunqModel
                 self::FIELD_SUB_STATUS => $subStatus,
                 self::FIELD_SESSION_TIMEOUT => $sessionTimeout,
                 self::FIELD_DAILY_LIMIT_WITHOUT_CONFIRMATION_LOGIN => $dailyLimitWithoutConfirmationLogin,
-                self::FIELD_NOTIFICATION_FILTERS => $notificationFilters,
+                self::FIELD_NOTIFICATION_FILTERS => $notificationFilters
             ],
             $customHeaders
         );

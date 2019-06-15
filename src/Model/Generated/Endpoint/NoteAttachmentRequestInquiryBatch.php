@@ -1,4 +1,5 @@
 <?php
+
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Http\ApiClient;
@@ -125,12 +126,12 @@ class NoteAttachmentRequestInquiryBatch extends BunqModel
                 [
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
-                    $requestInquiryBatchId,
+                    $requestInquiryBatchId
                 ]
             ),
             [
                 self::FIELD_DESCRIPTION => $description,
-                self::FIELD_ATTACHMENT_ID => $attachmentId,
+                self::FIELD_ATTACHMENT_ID => $attachmentId
             ],
             $customHeaders
         );
@@ -164,7 +165,7 @@ class NoteAttachmentRequestInquiryBatch extends BunqModel
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
                     $requestInquiryBatchId,
-                    $noteAttachmentRequestInquiryBatchId,
+                    $noteAttachmentRequestInquiryBatchId
                 ]
             ),
             [self::FIELD_DESCRIPTION => $description],
@@ -197,7 +198,7 @@ class NoteAttachmentRequestInquiryBatch extends BunqModel
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
                     $requestInquiryBatchId,
-                    $noteAttachmentRequestInquiryBatchId,
+                    $noteAttachmentRequestInquiryBatchId
                 ]
             ),
             $customHeaders
@@ -234,7 +235,7 @@ class NoteAttachmentRequestInquiryBatch extends BunqModel
                 [
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
-                    $requestInquiryBatchId,
+                    $requestInquiryBatchId
                 ]
             ),
             $params,
@@ -268,7 +269,7 @@ class NoteAttachmentRequestInquiryBatch extends BunqModel
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
                     $requestInquiryBatchId,
-                    $noteAttachmentRequestInquiryBatchId,
+                    $noteAttachmentRequestInquiryBatchId
                 ]
             ),
             [],

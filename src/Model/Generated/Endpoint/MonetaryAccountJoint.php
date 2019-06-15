@@ -1,4 +1,5 @@
 <?php
+
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Http\ApiClient;
@@ -114,7 +115,7 @@ class MonetaryAccountJoint extends BunqModel
     protected $overdraftLimit;
 
     /**
-     * The current balance Amount of the MonetaryAccountJoint.
+     * The current available balance Amount of the MonetaryAccountJoint.
      *
      * @var Amount
      */
@@ -470,7 +471,7 @@ class MonetaryAccountJoint extends BunqModel
                 self::FIELD_REASON_DESCRIPTION => $reasonDescription,
                 self::FIELD_ALL_CO_OWNER => $allCoOwner,
                 self::FIELD_NOTIFICATION_FILTERS => $notificationFilters,
-                self::FIELD_SETTING => $setting,
+                self::FIELD_SETTING => $setting
             ],
             $customHeaders
         );
@@ -571,7 +572,7 @@ class MonetaryAccountJoint extends BunqModel
                 self::FIELD_REASON => $reason,
                 self::FIELD_REASON_DESCRIPTION => $reasonDescription,
                 self::FIELD_NOTIFICATION_FILTERS => $notificationFilters,
-                self::FIELD_SETTING => $setting,
+                self::FIELD_SETTING => $setting
             ],
             $customHeaders
         );
@@ -809,7 +810,7 @@ class MonetaryAccountJoint extends BunqModel
     }
 
     /**
-     * The current balance Amount of the MonetaryAccountJoint.
+     * The current available balance Amount of the MonetaryAccountJoint.
      *
      * @return Amount
      */

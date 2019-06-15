@@ -1,4 +1,5 @@
 <?php
+
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Model\Core\BunqModel;
@@ -93,11 +94,18 @@ class MonetaryAccountLight extends BunqModel
     protected $dailySpent;
 
     /**
-     * The current balance Amount of the MonetaryAccountLight.
+     * The current available balance Amount of the MonetaryAccountLight.
      *
      * @var Amount
      */
     protected $balance;
+
+    /**
+     * The current real balance Amount of the MonetaryAccountLight.
+     *
+     * @var Amount
+     */
+    protected $balanceReal;
 
     /**
      * The Aliases for the MonetaryAccountLight.
@@ -546,7 +554,7 @@ class MonetaryAccountLight extends BunqModel
     }
 
     /**
-     * The current balance Amount of the MonetaryAccountLight.
+     * The current available balance Amount of the MonetaryAccountLight.
      *
      * @return Amount
      */
@@ -565,6 +573,28 @@ class MonetaryAccountLight extends BunqModel
     public function setBalance($balance)
     {
         $this->balance = $balance;
+    }
+
+    /**
+     * The current real balance Amount of the MonetaryAccountLight.
+     *
+     * @return Amount
+     */
+    public function getBalanceReal()
+    {
+        return $this->balanceReal;
+    }
+
+    /**
+     * @param Amount $balanceReal
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
+     */
+    public function setBalanceReal($balanceReal)
+    {
+        $this->balanceReal = $balanceReal;
     }
 
     /**
@@ -964,6 +994,10 @@ class MonetaryAccountLight extends BunqModel
         }
 
         if (!is_null($this->balance)) {
+            return false;
+        }
+
+        if (!is_null($this->balanceReal)) {
             return false;
         }
 

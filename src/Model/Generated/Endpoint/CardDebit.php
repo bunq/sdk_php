@@ -1,4 +1,5 @@
 <?php
+
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Http\ApiClient;
@@ -303,7 +304,7 @@ class CardDebit extends BunqModel
                 self::FIELD_ALIAS => $alias,
                 self::FIELD_TYPE => $type,
                 self::FIELD_PIN_CODE_ASSIGNMENT => $pinCodeAssignment,
-                self::FIELD_MONETARY_ACCOUNT_ID_FALLBACK => $monetaryAccountIdFallback,
+                self::FIELD_MONETARY_ACCOUNT_ID_FALLBACK => $monetaryAccountIdFallback
             ],
             $customHeaders
         );

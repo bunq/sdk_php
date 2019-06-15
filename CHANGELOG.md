@@ -1,5 +1,8 @@
 # Change Log
 
+## [1.10.2](https://github.com/bunq/sdk_php/tree/1.10.2) (2019-05-15)
+[Full Changelog](https://github.com/bunq/sdk_php/compare/1.10.1...1.10.2)
+
 ## [1.10.1](https://github.com/bunq/sdk_php/tree/1.10.1) (2019-05-15)
 [Full Changelog](https://github.com/bunq/sdk_php/compare/1.10.0...1.10.1)
 
