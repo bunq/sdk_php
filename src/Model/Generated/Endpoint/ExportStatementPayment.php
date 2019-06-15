@@ -1,4 +1,5 @@
 <?php
+
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Http\ApiClient;
@@ -99,7 +100,7 @@ class ExportStatementPayment extends BunqModel
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
                     $eventId,
-                    $exportStatementPaymentId,
+                    $exportStatementPaymentId
                 ]
             ),
             [],

@@ -1,4 +1,5 @@
 <?php
+
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Http\ApiClient;
@@ -135,7 +136,7 @@ class NoteTextRequestResponse extends BunqModel
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
                     $requestResponseId,
-                    $noteTextRequestResponseId,
+                    $noteTextRequestResponseId
                 ]
             ),
             [self::FIELD_CONTENT => $content],
@@ -168,7 +169,7 @@ class NoteTextRequestResponse extends BunqModel
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
                     $requestResponseId,
-                    $noteTextRequestResponseId,
+                    $noteTextRequestResponseId
                 ]
             ),
             $customHeaders
@@ -235,7 +236,7 @@ class NoteTextRequestResponse extends BunqModel
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
                     $requestResponseId,
-                    $noteTextRequestResponseId,
+                    $noteTextRequestResponseId
                 ]
             ),
             [],

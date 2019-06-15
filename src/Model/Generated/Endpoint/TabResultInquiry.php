@@ -1,4 +1,5 @@
 <?php
+
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Http\ApiClient;
@@ -65,7 +66,7 @@ class TabResultInquiry extends BunqModel
                     static::determineMonetaryAccountId($monetaryAccountId),
                     $cashRegisterId,
                     $tabUuid,
-                    $tabResultInquiryId,
+                    $tabResultInquiryId
                 ]
             ),
             [],
@@ -106,7 +107,7 @@ class TabResultInquiry extends BunqModel
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
                     $cashRegisterId,
-                    $tabUuid,
+                    $tabUuid
                 ]
             ),
             $params,

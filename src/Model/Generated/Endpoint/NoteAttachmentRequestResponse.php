@@ -1,4 +1,5 @@
 <?php
+
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Http\ApiClient;
@@ -126,7 +127,7 @@ class NoteAttachmentRequestResponse extends BunqModel
             ),
             [
                 self::FIELD_DESCRIPTION => $description,
-                self::FIELD_ATTACHMENT_ID => $attachmentId,
+                self::FIELD_ATTACHMENT_ID => $attachmentId
             ],
             $customHeaders
         );
@@ -160,7 +161,7 @@ class NoteAttachmentRequestResponse extends BunqModel
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
                     $requestResponseId,
-                    $noteAttachmentRequestResponseId,
+                    $noteAttachmentRequestResponseId
                 ]
             ),
             [self::FIELD_DESCRIPTION => $description],
@@ -193,7 +194,7 @@ class NoteAttachmentRequestResponse extends BunqModel
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
                     $requestResponseId,
-                    $noteAttachmentRequestResponseId,
+                    $noteAttachmentRequestResponseId
                 ]
             ),
             $customHeaders
@@ -260,7 +261,7 @@ class NoteAttachmentRequestResponse extends BunqModel
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
                     $requestResponseId,
-                    $noteAttachmentRequestResponseId,
+                    $noteAttachmentRequestResponseId
                 ]
             ),
             [],

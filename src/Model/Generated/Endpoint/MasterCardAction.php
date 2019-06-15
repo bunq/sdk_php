@@ -1,4 +1,5 @@
 <?php
+
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Http\ApiClient;
@@ -154,6 +155,13 @@ class MasterCardAction extends BunqModel
      * @var string
      */
     protected $settlementStatus;
+
+    /**
+     * The maturity date.
+     *
+     * @var string
+     */
+    protected $maturityDate;
 
     /**
      * The city where the message originates from as announced by the terminal.
@@ -694,6 +702,28 @@ class MasterCardAction extends BunqModel
     }
 
     /**
+     * The maturity date.
+     *
+     * @return string
+     */
+    public function getMaturityDate()
+    {
+        return $this->maturityDate;
+    }
+
+    /**
+     * @param string $maturityDate
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
+     */
+    public function setMaturityDate($maturityDate)
+    {
+        $this->maturityDate = $maturityDate;
+    }
+
+    /**
      * The city where the message originates from as announced by the terminal.
      *
      * @return string
@@ -1014,6 +1044,10 @@ class MasterCardAction extends BunqModel
         }
 
         if (!is_null($this->settlementStatus)) {
+            return false;
+        }
+
+        if (!is_null($this->maturityDate)) {
             return false;
         }
 

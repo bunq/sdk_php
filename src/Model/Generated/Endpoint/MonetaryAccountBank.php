@@ -1,4 +1,5 @@
 <?php
+
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Http\ApiClient;
@@ -116,7 +117,7 @@ class MonetaryAccountBank extends BunqModel
     protected $overdraftLimit;
 
     /**
-     * The current balance Amount of the MonetaryAccountBank.
+     * The current available balance Amount of the MonetaryAccountBank.
      *
      * @var Amount
      */
@@ -422,7 +423,7 @@ class MonetaryAccountBank extends BunqModel
                 self::FIELD_REASON => $reason,
                 self::FIELD_REASON_DESCRIPTION => $reasonDescription,
                 self::FIELD_NOTIFICATION_FILTERS => $notificationFilters,
-                self::FIELD_SETTING => $setting,
+                self::FIELD_SETTING => $setting
             ],
             $customHeaders
         );
@@ -528,7 +529,7 @@ class MonetaryAccountBank extends BunqModel
                 self::FIELD_REASON => $reason,
                 self::FIELD_REASON_DESCRIPTION => $reasonDescription,
                 self::FIELD_NOTIFICATION_FILTERS => $notificationFilters,
-                self::FIELD_SETTING => $setting,
+                self::FIELD_SETTING => $setting
             ],
             $customHeaders
         );
@@ -768,7 +769,7 @@ class MonetaryAccountBank extends BunqModel
     }
 
     /**
-     * The current balance Amount of the MonetaryAccountBank.
+     * The current available balance Amount of the MonetaryAccountBank.
      *
      * @return Amount
      */

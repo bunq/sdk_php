@@ -1,4 +1,5 @@
 <?php
+
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Http\ApiClient;
@@ -145,7 +146,7 @@ class SofortMerchantTransaction extends BunqModel
                 [
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
-                    $sofortMerchantTransactionId,
+                    $sofortMerchantTransactionId
                 ]
             ),
             [],

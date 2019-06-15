@@ -1,4 +1,5 @@
 <?php
+
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Http\ApiClient;
@@ -51,18 +52,33 @@ class CustomerLimit extends BunqModel
     protected $limitCardDebitMastercard;
 
     /**
-     * The limit of wildcards, e.g. Maestro or MasterCard cards.
+     * DEPRECTATED: The limit of wildcards, e.g. Maestro or MasterCard cards.
      *
      * @var int
      */
     protected $limitCardDebitWildcard;
 
     /**
-     * The limit of free replacement cards.
+     * The limit of wildcards, e.g. Maestro or MasterCard cards.
+     *
+     * @var int
+     */
+    protected $limitCardWildcard;
+
+    /**
+     * DEPRECTATED: The limit of free replacement debit cards, replaced by:
+     * limit_card_replacement
      *
      * @var int
      */
     protected $limitCardDebitReplacement;
+
+    /**
+     * The limit of free replacement cards.
+     *
+     * @var int
+     */
+    protected $limitCardReplacement;
 
     /**
      * The maximum amount a user is allowed to spend in a month.
@@ -195,7 +211,7 @@ class CustomerLimit extends BunqModel
     }
 
     /**
-     * The limit of wildcards, e.g. Maestro or MasterCard cards.
+     * DEPRECTATED: The limit of wildcards, e.g. Maestro or MasterCard cards.
      *
      * @return int
      */
@@ -217,7 +233,30 @@ class CustomerLimit extends BunqModel
     }
 
     /**
-     * The limit of free replacement cards.
+     * The limit of wildcards, e.g. Maestro or MasterCard cards.
+     *
+     * @return int
+     */
+    public function getLimitCardWildcard()
+    {
+        return $this->limitCardWildcard;
+    }
+
+    /**
+     * @param int $limitCardWildcard
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
+     */
+    public function setLimitCardWildcard($limitCardWildcard)
+    {
+        $this->limitCardWildcard = $limitCardWildcard;
+    }
+
+    /**
+     * DEPRECTATED: The limit of free replacement debit cards, replaced by:
+     * limit_card_replacement
      *
      * @return int
      */
@@ -236,6 +275,28 @@ class CustomerLimit extends BunqModel
     public function setLimitCardDebitReplacement($limitCardDebitReplacement)
     {
         $this->limitCardDebitReplacement = $limitCardDebitReplacement;
+    }
+
+    /**
+     * The limit of free replacement cards.
+     *
+     * @return int
+     */
+    public function getLimitCardReplacement()
+    {
+        return $this->limitCardReplacement;
+    }
+
+    /**
+     * @param int $limitCardReplacement
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
+     */
+    public function setLimitCardReplacement($limitCardReplacement)
+    {
+        $this->limitCardReplacement = $limitCardReplacement;
     }
 
     /**
@@ -307,7 +368,15 @@ class CustomerLimit extends BunqModel
             return false;
         }
 
+        if (!is_null($this->limitCardWildcard)) {
+            return false;
+        }
+
         if (!is_null($this->limitCardDebitReplacement)) {
+            return false;
+        }
+
+        if (!is_null($this->limitCardReplacement)) {
             return false;
         }
 

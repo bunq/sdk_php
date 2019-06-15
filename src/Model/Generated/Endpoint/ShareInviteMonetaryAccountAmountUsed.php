@@ -1,4 +1,5 @@
 <?php
+
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Http\ApiClient;
@@ -44,7 +45,7 @@ class ShareInviteMonetaryAccountAmountUsed extends BunqModel
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
                     $shareInviteMonetaryAccountInquiryId,
-                    $shareInviteMonetaryAccountAmountUsedId,
+                    $shareInviteMonetaryAccountAmountUsedId
                 ]
             ),
             $customHeaders
