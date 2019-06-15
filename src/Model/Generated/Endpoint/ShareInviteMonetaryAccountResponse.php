@@ -1,4 +1,5 @@
 <?php
+
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Http\ApiClient;
@@ -219,7 +220,7 @@ class ShareInviteMonetaryAccountResponse extends BunqModel
             ),
             [
                 self::FIELD_STATUS => $status,
-                self::FIELD_CARD_ID => $cardId,
+                self::FIELD_CARD_ID => $cardId
             ],
             $customHeaders
         );

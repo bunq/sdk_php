@@ -1,4 +1,5 @@
 <?php
+
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Http\ApiClient;
@@ -101,7 +102,7 @@ class CardReplace extends BunqModel
             [
                 self::FIELD_NAME_ON_CARD => $nameOnCard,
                 self::FIELD_PIN_CODE => $pinCode,
-                self::FIELD_SECOND_LINE => $secondLine,
+                self::FIELD_SECOND_LINE => $secondLine
             ],
             $customHeaders
         );

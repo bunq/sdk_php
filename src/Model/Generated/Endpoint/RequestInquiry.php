@@ -1,4 +1,5 @@
 <?php
+
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Http\ApiClient;
@@ -517,7 +518,7 @@ class RequestInquiry extends BunqModel
                 self::FIELD_ALLOW_AMOUNT_HIGHER => $allowAmountHigher,
                 self::FIELD_ALLOW_BUNQME => $allowBunqme,
                 self::FIELD_REDIRECT_URL => $redirectUrl,
-                self::FIELD_EVENT_ID => $eventId,
+                self::FIELD_EVENT_ID => $eventId
             ],
             $customHeaders
         );

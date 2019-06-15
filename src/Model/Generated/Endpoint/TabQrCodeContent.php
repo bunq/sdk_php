@@ -1,4 +1,5 @@
 <?php
+
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Http\ApiClient;
@@ -53,7 +54,7 @@ class TabQrCodeContent extends BunqModel
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
                     $cashRegisterId,
-                    $tabUuid,
+                    $tabUuid
                 ]
             ),
             [],

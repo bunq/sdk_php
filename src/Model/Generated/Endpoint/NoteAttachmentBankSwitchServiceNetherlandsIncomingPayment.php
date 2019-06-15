@@ -1,4 +1,5 @@
 <?php
+
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Http\ApiClient;
@@ -125,12 +126,12 @@ class NoteAttachmentBankSwitchServiceNetherlandsIncomingPayment extends BunqMode
                 [
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
-                    $switchServicePaymentId,
+                    $switchServicePaymentId
                 ]
             ),
             [
                 self::FIELD_DESCRIPTION => $description,
-                self::FIELD_ATTACHMENT_ID => $attachmentId,
+                self::FIELD_ATTACHMENT_ID => $attachmentId
             ],
             $customHeaders
         );
@@ -164,7 +165,7 @@ class NoteAttachmentBankSwitchServiceNetherlandsIncomingPayment extends BunqMode
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
                     $switchServicePaymentId,
-                    $noteAttachmentBankSwitchServiceNetherlandsIncomingPaymentId,
+                    $noteAttachmentBankSwitchServiceNetherlandsIncomingPaymentId
                 ]
             ),
             [self::FIELD_DESCRIPTION => $description],
@@ -197,7 +198,7 @@ class NoteAttachmentBankSwitchServiceNetherlandsIncomingPayment extends BunqMode
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
                     $switchServicePaymentId,
-                    $noteAttachmentBankSwitchServiceNetherlandsIncomingPaymentId,
+                    $noteAttachmentBankSwitchServiceNetherlandsIncomingPaymentId
                 ]
             ),
             $customHeaders
@@ -235,7 +236,7 @@ class NoteAttachmentBankSwitchServiceNetherlandsIncomingPayment extends BunqMode
                 [
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
-                    $switchServicePaymentId,
+                    $switchServicePaymentId
                 ]
             ),
             $params,
@@ -270,7 +271,7 @@ class NoteAttachmentBankSwitchServiceNetherlandsIncomingPayment extends BunqMode
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
                     $switchServicePaymentId,
-                    $noteAttachmentBankSwitchServiceNetherlandsIncomingPaymentId,
+                    $noteAttachmentBankSwitchServiceNetherlandsIncomingPaymentId
                 ]
             ),
             [],

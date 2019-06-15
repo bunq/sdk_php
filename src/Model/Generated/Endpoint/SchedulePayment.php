@@ -1,4 +1,5 @@
 <?php
+
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Http\ApiClient;
@@ -95,7 +96,7 @@ class SchedulePayment extends BunqModel
             ),
             [
                 self::FIELD_PAYMENT => $payment,
-                self::FIELD_SCHEDULE => $schedule,
+                self::FIELD_SCHEDULE => $schedule
             ],
             $customHeaders
         );
@@ -212,7 +213,7 @@ class SchedulePayment extends BunqModel
             ),
             [
                 self::FIELD_PAYMENT => $payment,
-                self::FIELD_SCHEDULE => $schedule,
+                self::FIELD_SCHEDULE => $schedule
             ],
             $customHeaders
         );

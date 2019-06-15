@@ -1,4 +1,5 @@
 <?php
+
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Http\ApiClient;
@@ -128,12 +129,12 @@ class NoteAttachmentScheduleInstance extends BunqModel
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
                     $scheduleId,
-                    $scheduleInstanceId,
+                    $scheduleInstanceId
                 ]
             ),
             [
                 self::FIELD_DESCRIPTION => $description,
-                self::FIELD_ATTACHMENT_ID => $attachmentId,
+                self::FIELD_ATTACHMENT_ID => $attachmentId
             ],
             $customHeaders
         );
@@ -170,7 +171,7 @@ class NoteAttachmentScheduleInstance extends BunqModel
                     static::determineMonetaryAccountId($monetaryAccountId),
                     $scheduleId,
                     $scheduleInstanceId,
-                    $noteAttachmentScheduleInstanceId,
+                    $noteAttachmentScheduleInstanceId
                 ]
             ),
             [self::FIELD_DESCRIPTION => $description],
@@ -206,7 +207,7 @@ class NoteAttachmentScheduleInstance extends BunqModel
                     static::determineMonetaryAccountId($monetaryAccountId),
                     $scheduleId,
                     $scheduleInstanceId,
-                    $noteAttachmentScheduleInstanceId,
+                    $noteAttachmentScheduleInstanceId
                 ]
             ),
             $customHeaders
@@ -246,7 +247,7 @@ class NoteAttachmentScheduleInstance extends BunqModel
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
                     $scheduleId,
-                    $scheduleInstanceId,
+                    $scheduleInstanceId
                 ]
             ),
             $params,
@@ -283,7 +284,7 @@ class NoteAttachmentScheduleInstance extends BunqModel
                     static::determineMonetaryAccountId($monetaryAccountId),
                     $scheduleId,
                     $scheduleInstanceId,
-                    $noteAttachmentScheduleInstanceId,
+                    $noteAttachmentScheduleInstanceId
                 ]
             ),
             [],

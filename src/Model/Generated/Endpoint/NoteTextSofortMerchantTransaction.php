@@ -1,4 +1,5 @@
 <?php
+
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Http\ApiClient;
@@ -103,7 +104,7 @@ class NoteTextSofortMerchantTransaction extends BunqModel
                 [
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
-                    $sofortMerchantTransactionId,
+                    $sofortMerchantTransactionId
                 ]
             ),
             [self::FIELD_CONTENT => $content],
@@ -139,7 +140,7 @@ class NoteTextSofortMerchantTransaction extends BunqModel
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
                     $sofortMerchantTransactionId,
-                    $noteTextSofortMerchantTransactionId,
+                    $noteTextSofortMerchantTransactionId
                 ]
             ),
             [self::FIELD_CONTENT => $content],
@@ -172,7 +173,7 @@ class NoteTextSofortMerchantTransaction extends BunqModel
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
                     $sofortMerchantTransactionId,
-                    $noteTextSofortMerchantTransactionId,
+                    $noteTextSofortMerchantTransactionId
                 ]
             ),
             $customHeaders
@@ -209,7 +210,7 @@ class NoteTextSofortMerchantTransaction extends BunqModel
                 [
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
-                    $sofortMerchantTransactionId,
+                    $sofortMerchantTransactionId
                 ]
             ),
             $params,
@@ -243,7 +244,7 @@ class NoteTextSofortMerchantTransaction extends BunqModel
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
                     $sofortMerchantTransactionId,
-                    $noteTextSofortMerchantTransactionId,
+                    $noteTextSofortMerchantTransactionId
                 ]
             ),
             [],

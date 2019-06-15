@@ -1,4 +1,5 @@
 <?php
+
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Http\ApiClient;
@@ -186,7 +187,7 @@ class CustomerStatementExport extends BunqModel
                 self::FIELD_STATEMENT_FORMAT => $statementFormat,
                 self::FIELD_DATE_START => $dateStart,
                 self::FIELD_DATE_END => $dateEnd,
-                self::FIELD_REGIONAL_FORMAT => $regionalFormat,
+                self::FIELD_REGIONAL_FORMAT => $regionalFormat
             ],
             $customHeaders
         );
@@ -215,7 +216,7 @@ class CustomerStatementExport extends BunqModel
                 [
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
-                    $customerStatementExportId,
+                    $customerStatementExportId
                 ]
             ),
             [],
@@ -275,7 +276,7 @@ class CustomerStatementExport extends BunqModel
                 [
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
-                    $customerStatementExportId,
+                    $customerStatementExportId
                 ]
             ),
             $customHeaders

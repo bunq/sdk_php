@@ -1,4 +1,5 @@
 <?php
+
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Http\ApiClient;
@@ -141,7 +142,7 @@ class RequestInquiryBatch extends BunqModel
                 self::FIELD_REQUEST_INQUIRIES => $requestInquiries,
                 self::FIELD_STATUS => $status,
                 self::FIELD_TOTAL_AMOUNT_INQUIRED => $totalAmountInquired,
-                self::FIELD_EVENT_ID => $eventId,
+                self::FIELD_EVENT_ID => $eventId
             ],
             $customHeaders
         );
@@ -175,7 +176,7 @@ class RequestInquiryBatch extends BunqModel
                 [
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
-                    $requestInquiryBatchId,
+                    $requestInquiryBatchId
                 ]
             ),
             [self::FIELD_STATUS => $status],
@@ -208,7 +209,7 @@ class RequestInquiryBatch extends BunqModel
                 [
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
-                    $requestInquiryBatchId,
+                    $requestInquiryBatchId
                 ]
             ),
             [],

@@ -1,4 +1,5 @@
 <?php
+
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Http\ApiClient;
@@ -149,7 +150,7 @@ class BunqMeTab extends BunqModel
             ),
             [
                 self::FIELD_BUNQME_TAB_ENTRY => $bunqmeTabEntry,
-                self::FIELD_STATUS => $status,
+                self::FIELD_STATUS => $status
             ],
             $customHeaders
         );

@@ -1,4 +1,5 @@
 <?php
+
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Http\ApiClient;
@@ -364,7 +365,7 @@ class Payment extends BunqModel
                 self::FIELD_DESCRIPTION => $description,
                 self::FIELD_ATTACHMENT => $attachment,
                 self::FIELD_MERCHANT_REFERENCE => $merchantReference,
-                self::FIELD_ALLOW_BUNQTO => $allowBunqto,
+                self::FIELD_ALLOW_BUNQTO => $allowBunqto
             ],
             $customHeaders
         );

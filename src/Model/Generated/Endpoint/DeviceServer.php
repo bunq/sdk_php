@@ -1,4 +1,5 @@
 <?php
+
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Http\ApiClient;
@@ -149,7 +150,7 @@ class DeviceServer extends BunqModel
             [
                 self::FIELD_DESCRIPTION => $description,
                 self::FIELD_SECRET => $secret,
-                self::FIELD_PERMITTED_IPS => $permittedIps,
+                self::FIELD_PERMITTED_IPS => $permittedIps
             ],
             $customHeaders
         );

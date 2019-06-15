@@ -1,4 +1,5 @@
 <?php
+
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Http\ApiClient;
@@ -88,7 +89,7 @@ class SchedulePaymentBatch extends BunqModel
             ),
             [
                 self::FIELD_PAYMENTS => $payments,
-                self::FIELD_SCHEDULE => $schedule,
+                self::FIELD_SCHEDULE => $schedule
             ],
             $customHeaders
         );
@@ -122,12 +123,12 @@ class SchedulePaymentBatch extends BunqModel
                 [
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
-                    $schedulePaymentBatchId,
+                    $schedulePaymentBatchId
                 ]
             ),
             [
                 self::FIELD_PAYMENTS => $payments,
-                self::FIELD_SCHEDULE => $schedule,
+                self::FIELD_SCHEDULE => $schedule
             ],
             $customHeaders
         );
@@ -155,7 +156,7 @@ class SchedulePaymentBatch extends BunqModel
                 [
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
-                    $schedulePaymentBatchId,
+                    $schedulePaymentBatchId
                 ]
             ),
             $customHeaders
