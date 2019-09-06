@@ -54,7 +54,7 @@ class TabQrCodeContent extends BunqModel
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
                     $cashRegisterId,
-                    $tabUuid
+                    $tabUuid,
                 ]
             ),
             [],

@@ -33,6 +33,7 @@ class DraftPayment extends BunqModel
     const FIELD_ENTRIES = 'entries';
     const FIELD_PREVIOUS_UPDATED_TIMESTAMP = 'previous_updated_timestamp';
     const FIELD_NUMBER_OF_REQUIRED_ACCEPTS = 'number_of_required_accepts';
+    const FIELD_SCHEDULE = 'schedule';
 
     /**
      * Object type.
@@ -105,6 +106,13 @@ class DraftPayment extends BunqModel
     protected $requestReferenceSplitTheBill;
 
     /**
+     * The schedule details.
+     *
+     * @var Schedule
+     */
+    protected $schedule;
+
+    /**
      * The status of the DraftPayment.
      *
      * @var string|null
@@ -136,6 +144,13 @@ class DraftPayment extends BunqModel
     protected $numberOfRequiredAcceptsFieldForRequest;
 
     /**
+     * The schedule details when creating or updating a scheduled payment.
+     *
+     * @var Schedule|null
+     */
+    protected $scheduleFieldForRequest;
+
+    /**
      * @param DraftPaymentEntry[] $entries          The list of entries in the
      *                                              DraftPayment. Each entry will result in a payment when the
      *                                              DraftPayment is accepted.
@@ -147,17 +162,21 @@ class DraftPayment extends BunqModel
      * @param string|null $previousUpdatedTimestamp The last updated_timestamp
      *                                              that you received for this DraftPayment. This needs to be provided
      *                                              to prevent race conditions.
+     * @param Schedule|null $schedule               The schedule details when creating or
+     *                                              updating a scheduled payment.
      */
     public function __construct(
         array $entries,
         int $numberOfRequiredAccepts,
         string $status = null,
-        string $previousUpdatedTimestamp = null
+        string $previousUpdatedTimestamp = null,
+        Schedule $schedule = null
     ) {
         $this->statusFieldForRequest = $status;
         $this->entriesFieldForRequest = $entries;
         $this->previousUpdatedTimestampFieldForRequest = $previousUpdatedTimestamp;
         $this->numberOfRequiredAcceptsFieldForRequest = $numberOfRequiredAccepts;
+        $this->scheduleFieldForRequest = $schedule;
     }
 
     /**
@@ -175,6 +194,8 @@ class DraftPayment extends BunqModel
      * @param string|null $previousUpdatedTimestamp The last updated_timestamp
      *                                              that you received for this DraftPayment. This needs to be provided
      *                                              to prevent race conditions.
+     * @param Schedule|null $schedule               The schedule details when creating or
+     *                                              updating a scheduled payment.
      * @param string[] $customHeaders
      *
      * @return BunqResponseInt
@@ -185,6 +206,7 @@ class DraftPayment extends BunqModel
         int $monetaryAccountId = null,
         string $status = null,
         string $previousUpdatedTimestamp = null,
+        Schedule $schedule = null,
         array $customHeaders = []
     ): BunqResponseInt {
         $apiClient = new ApiClient(static::getApiContext());
@@ -197,7 +219,8 @@ class DraftPayment extends BunqModel
                 self::FIELD_STATUS => $status,
                 self::FIELD_ENTRIES => $entries,
                 self::FIELD_PREVIOUS_UPDATED_TIMESTAMP => $previousUpdatedTimestamp,
-                self::FIELD_NUMBER_OF_REQUIRED_ACCEPTS => $numberOfRequiredAccepts
+                self::FIELD_NUMBER_OF_REQUIRED_ACCEPTS => $numberOfRequiredAccepts,
+                self::FIELD_SCHEDULE => $schedule,
             ],
             $customHeaders
         );
@@ -219,6 +242,8 @@ class DraftPayment extends BunqModel
      * @param string|null $previousUpdatedTimestamp The last updated_timestamp
      *                                              that you received for this DraftPayment. This needs to be provided
      *                                              to prevent race conditions.
+     * @param Schedule|null $schedule               The schedule details when creating or
+     *                                              updating a scheduled payment.
      * @param string[] $customHeaders
      *
      * @return BunqResponseInt
@@ -229,6 +254,7 @@ class DraftPayment extends BunqModel
         string $status = null,
         array $entries = null,
         string $previousUpdatedTimestamp = null,
+        Schedule $schedule = null,
         array $customHeaders = []
     ): BunqResponseInt {
         $apiClient = new ApiClient(static::getApiContext());
@@ -240,7 +266,8 @@ class DraftPayment extends BunqModel
             [
                 self::FIELD_STATUS => $status,
                 self::FIELD_ENTRIES => $entries,
-                self::FIELD_PREVIOUS_UPDATED_TIMESTAMP => $previousUpdatedTimestamp
+                self::FIELD_PREVIOUS_UPDATED_TIMESTAMP => $previousUpdatedTimestamp,
+                self::FIELD_SCHEDULE => $schedule,
             ],
             $customHeaders
         );
@@ -512,6 +539,28 @@ class DraftPayment extends BunqModel
     }
 
     /**
+     * The schedule details.
+     *
+     * @return Schedule
+     */
+    public function getSchedule()
+    {
+        return $this->schedule;
+    }
+
+    /**
+     * @param Schedule $schedule
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
+     */
+    public function setSchedule($schedule)
+    {
+        $this->schedule = $schedule;
+    }
+
+    /**
      * @return bool
      */
     public function isAllFieldNull()
@@ -549,6 +598,10 @@ class DraftPayment extends BunqModel
         }
 
         if (!is_null($this->requestReferenceSplitTheBill)) {
+            return false;
+        }
+
+        if (!is_null($this->schedule)) {
             return false;
         }
 

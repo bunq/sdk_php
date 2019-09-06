@@ -160,7 +160,7 @@ class CashRegisterQrCode extends BunqModel
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
                     $cashRegisterId,
-                    $cashRegisterQrCodeId
+                    $cashRegisterQrCodeId,
                 ]
             ),
             [self::FIELD_STATUS => $status],
@@ -197,7 +197,7 @@ class CashRegisterQrCode extends BunqModel
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
                     $cashRegisterId,
-                    $cashRegisterQrCodeId
+                    $cashRegisterQrCodeId,
                 ]
             ),
             [],

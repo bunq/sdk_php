@@ -157,6 +157,14 @@ class MasterCardAction extends BunqModel
     protected $settlementStatus;
 
     /**
+     * The clearing status of the authorisation. Can be 'PENDING',
+     * 'FIRST_PRESENTMENT_COMPLETE' or 'REFUND_LENIENCY'.
+     *
+     * @var string
+     */
+    protected $clearingStatus;
+
+    /**
      * The maturity date.
      *
      * @var string
@@ -205,6 +213,14 @@ class MasterCardAction extends BunqModel
      * @var string
      */
     protected $reservationExpiryTime;
+
+    /**
+     * The time when the processing of the clearing is expired, refunding the
+     * authorisation.
+     *
+     * @var string
+     */
+    protected $clearingExpiryTime;
 
     /**
      * The type of the limit applied to validate if this MasterCardAction was
@@ -702,6 +718,29 @@ class MasterCardAction extends BunqModel
     }
 
     /**
+     * The clearing status of the authorisation. Can be 'PENDING',
+     * 'FIRST_PRESENTMENT_COMPLETE' or 'REFUND_LENIENCY'.
+     *
+     * @return string
+     */
+    public function getClearingStatus()
+    {
+        return $this->clearingStatus;
+    }
+
+    /**
+     * @param string $clearingStatus
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
+     */
+    public function setClearingStatus($clearingStatus)
+    {
+        $this->clearingStatus = $clearingStatus;
+    }
+
+    /**
      * The maturity date.
      *
      * @return string
@@ -854,6 +893,29 @@ class MasterCardAction extends BunqModel
     public function setReservationExpiryTime($reservationExpiryTime)
     {
         $this->reservationExpiryTime = $reservationExpiryTime;
+    }
+
+    /**
+     * The time when the processing of the clearing is expired, refunding the
+     * authorisation.
+     *
+     * @return string
+     */
+    public function getClearingExpiryTime()
+    {
+        return $this->clearingExpiryTime;
+    }
+
+    /**
+     * @param string $clearingExpiryTime
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
+     */
+    public function setClearingExpiryTime($clearingExpiryTime)
+    {
+        $this->clearingExpiryTime = $clearingExpiryTime;
     }
 
     /**
@@ -1047,6 +1109,10 @@ class MasterCardAction extends BunqModel
             return false;
         }
 
+        if (!is_null($this->clearingStatus)) {
+            return false;
+        }
+
         if (!is_null($this->maturityDate)) {
             return false;
         }
@@ -1072,6 +1138,10 @@ class MasterCardAction extends BunqModel
         }
 
         if (!is_null($this->reservationExpiryTime)) {
+            return false;
+        }
+
+        if (!is_null($this->clearingExpiryTime)) {
             return false;
         }
 

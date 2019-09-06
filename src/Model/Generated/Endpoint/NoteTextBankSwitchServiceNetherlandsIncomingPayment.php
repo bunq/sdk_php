@@ -104,7 +104,7 @@ class NoteTextBankSwitchServiceNetherlandsIncomingPayment extends BunqModel
                 [
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
-                    $switchServicePaymentId
+                    $switchServicePaymentId,
                 ]
             ),
             [self::FIELD_CONTENT => $content],
@@ -140,7 +140,7 @@ class NoteTextBankSwitchServiceNetherlandsIncomingPayment extends BunqModel
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
                     $switchServicePaymentId,
-                    $noteTextBankSwitchServiceNetherlandsIncomingPaymentId
+                    $noteTextBankSwitchServiceNetherlandsIncomingPaymentId,
                 ]
             ),
             [self::FIELD_CONTENT => $content],
@@ -173,7 +173,7 @@ class NoteTextBankSwitchServiceNetherlandsIncomingPayment extends BunqModel
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
                     $switchServicePaymentId,
-                    $noteTextBankSwitchServiceNetherlandsIncomingPaymentId
+                    $noteTextBankSwitchServiceNetherlandsIncomingPaymentId,
                 ]
             ),
             $customHeaders
@@ -211,7 +211,7 @@ class NoteTextBankSwitchServiceNetherlandsIncomingPayment extends BunqModel
                 [
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
-                    $switchServicePaymentId
+                    $switchServicePaymentId,
                 ]
             ),
             $params,
@@ -245,7 +245,7 @@ class NoteTextBankSwitchServiceNetherlandsIncomingPayment extends BunqModel
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
                     $switchServicePaymentId,
-                    $noteTextBankSwitchServiceNetherlandsIncomingPaymentId
+                    $noteTextBankSwitchServiceNetherlandsIncomingPaymentId,
                 ]
             ),
             [],

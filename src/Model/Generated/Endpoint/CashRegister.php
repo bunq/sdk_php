@@ -234,7 +234,7 @@ class CashRegister extends BunqModel
                 self::FIELD_AVATAR_UUID => $avatarUuid,
                 self::FIELD_LOCATION => $location,
                 self::FIELD_NOTIFICATION_FILTERS => $notificationFilters,
-                self::FIELD_TAB_TEXT_WAITING_SCREEN => $tabTextWaitingScreen
+                self::FIELD_TAB_TEXT_WAITING_SCREEN => $tabTextWaitingScreen,
             ],
             $customHeaders
         );
@@ -320,7 +320,7 @@ class CashRegister extends BunqModel
                 self::FIELD_AVATAR_UUID => $avatarUuid,
                 self::FIELD_LOCATION => $location,
                 self::FIELD_NOTIFICATION_FILTERS => $notificationFilters,
-                self::FIELD_TAB_TEXT_WAITING_SCREEN => $tabTextWaitingScreen
+                self::FIELD_TAB_TEXT_WAITING_SCREEN => $tabTextWaitingScreen,
             ],
             $customHeaders
         );

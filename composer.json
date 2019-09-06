@@ -44,7 +44,7 @@
         "phpstan/phpstan": "^0.8",
         "phpunit/phpunit": "^6.0.13",
         "sebastian/phpcpd": "^3.0",
-        "sensiolabs/security-checker": "^4.1"
+        "sensiolabs/security-checker": "^5.0"
     },
     "bin": [
         "bin/bunq-install"

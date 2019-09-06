@@ -126,12 +126,12 @@ class NoteAttachmentIdealMerchantTransaction extends BunqModel
                 [
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
-                    $idealMerchantTransactionId
+                    $idealMerchantTransactionId,
                 ]
             ),
             [
                 self::FIELD_DESCRIPTION => $description,
-                self::FIELD_ATTACHMENT_ID => $attachmentId
+                self::FIELD_ATTACHMENT_ID => $attachmentId,
             ],
             $customHeaders
         );
@@ -165,7 +165,7 @@ class NoteAttachmentIdealMerchantTransaction extends BunqModel
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
                     $idealMerchantTransactionId,
-                    $noteAttachmentIdealMerchantTransactionId
+                    $noteAttachmentIdealMerchantTransactionId,
                 ]
             ),
             [self::FIELD_DESCRIPTION => $description],
@@ -198,7 +198,7 @@ class NoteAttachmentIdealMerchantTransaction extends BunqModel
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
                     $idealMerchantTransactionId,
-                    $noteAttachmentIdealMerchantTransactionId
+                    $noteAttachmentIdealMerchantTransactionId,
                 ]
             ),
             $customHeaders
@@ -235,7 +235,7 @@ class NoteAttachmentIdealMerchantTransaction extends BunqModel
                 [
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
-                    $idealMerchantTransactionId
+                    $idealMerchantTransactionId,
                 ]
             ),
             $params,
@@ -269,7 +269,7 @@ class NoteAttachmentIdealMerchantTransaction extends BunqModel
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
                     $idealMerchantTransactionId,
-                    $noteAttachmentIdealMerchantTransactionId
+                    $noteAttachmentIdealMerchantTransactionId,
                 ]
             ),
             [],

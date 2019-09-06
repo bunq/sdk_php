@@ -104,7 +104,7 @@ class NoteTextIdealMerchantTransaction extends BunqModel
                 [
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
-                    $idealMerchantTransactionId
+                    $idealMerchantTransactionId,
                 ]
             ),
             [self::FIELD_CONTENT => $content],
@@ -140,7 +140,7 @@ class NoteTextIdealMerchantTransaction extends BunqModel
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
                     $idealMerchantTransactionId,
-                    $noteTextIdealMerchantTransactionId
+                    $noteTextIdealMerchantTransactionId,
                 ]
             ),
             [self::FIELD_CONTENT => $content],
@@ -173,7 +173,7 @@ class NoteTextIdealMerchantTransaction extends BunqModel
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
                     $idealMerchantTransactionId,
-                    $noteTextIdealMerchantTransactionId
+                    $noteTextIdealMerchantTransactionId,
                 ]
             ),
             $customHeaders
@@ -210,7 +210,7 @@ class NoteTextIdealMerchantTransaction extends BunqModel
                 [
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
-                    $idealMerchantTransactionId
+                    $idealMerchantTransactionId,
                 ]
             ),
             $params,
@@ -244,7 +244,7 @@ class NoteTextIdealMerchantTransaction extends BunqModel
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
                     $idealMerchantTransactionId,
-                    $noteTextIdealMerchantTransactionId
+                    $noteTextIdealMerchantTransactionId,
                 ]
             ),
             [],

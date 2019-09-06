@@ -33,6 +33,7 @@ class SchedulePayment extends BunqModel
      * Object type.
      */
     const OBJECT_TYPE_GET = 'ScheduledPayment';
+    const OBJECT_TYPE_PUT = 'ScheduledPayment';
 
     /**
      * The payment details.
@@ -47,6 +48,13 @@ class SchedulePayment extends BunqModel
      * @var Schedule
      */
     protected $schedule;
+
+    /**
+     * The schedule status.
+     *
+     * @var string
+     */
+    protected $status;
 
     /**
      * The payment details.
@@ -96,7 +104,7 @@ class SchedulePayment extends BunqModel
             ),
             [
                 self::FIELD_PAYMENT => $payment,
-                self::FIELD_SCHEDULE => $schedule
+                self::FIELD_SCHEDULE => $schedule,
             ],
             $customHeaders
         );
@@ -196,7 +204,7 @@ class SchedulePayment extends BunqModel
      *                                           updating a scheduled payment.
      * @param string[] $customHeaders
      *
-     * @return BunqResponseInt
+     * @return BunqResponseSchedulePayment
      */
     public static function update(
         int $schedulePaymentId,
@@ -204,7 +212,7 @@ class SchedulePayment extends BunqModel
         SchedulePaymentEntry $payment = null,
         Schedule $schedule = null,
         array $customHeaders = []
-    ): BunqResponseInt {
+    ): BunqResponseSchedulePayment {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->put(
             vsprintf(
@@ -213,13 +221,13 @@ class SchedulePayment extends BunqModel
             ),
             [
                 self::FIELD_PAYMENT => $payment,
-                self::FIELD_SCHEDULE => $schedule
+                self::FIELD_SCHEDULE => $schedule,
             ],
             $customHeaders
         );
 
-        return BunqResponseInt::castFromBunqResponse(
-            static::processForId($responseRaw)
+        return BunqResponseSchedulePayment::castFromBunqResponse(
+            static::fromJson($responseRaw, self::OBJECT_TYPE_PUT)
         );
     }
 
@@ -268,6 +276,28 @@ class SchedulePayment extends BunqModel
     }
 
     /**
+     * The schedule status.
+     *
+     * @return string
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * @param string $status
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+    }
+
+    /**
      * @return bool
      */
     public function isAllFieldNull()
@@ -277,6 +307,10 @@ class SchedulePayment extends BunqModel
         }
 
         if (!is_null($this->schedule)) {
+            return false;
+        }
+
+        if (!is_null($this->status)) {
             return false;
         }
 

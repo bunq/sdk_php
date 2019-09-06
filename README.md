@@ -127,6 +127,18 @@ Payment::create(
 ##### Example
 See [`tinker/BunqLib`](https://github.com/bunq/tinker_php/blob/05a38a2660e6f6db1f7efc9b915f0131c172c230/src/BunqLib.php#L240-L245)
 
+##### NotificationFilters / Callbacks
+**Note!** Due to an in internal change in the way we handle `NotificationFilters` (Callbacks), you should not use the default classes included in this SDK. 
+Please make sure you make use of the associated `Internal`-classes. For example when you need `NotificationFilterUrlUser`, make use of `NotificationFilterUrlUserInternal`.
+You can use every method of these classes, except for the `create()` method. **Always use `createWithListResponse()` instead.**
+
+##### Example
+```
+NotificationFilterPushUserInternal::createWithListResponse(...)
+NotificationFilterUrlUserInternal::createWithListResponse(...)
+NotificationFilterUrlMonetaryAccountInternal::createWithListResponse(...)
+```
+
 #### Reading objects
 To use the read method you must pass the identifier of the object to read (ID or UUID) except for the endpoints `User`, `UserPerson`, `UserCompany` and `MonetaryAccount`. The SDK will use the default IDs when none are passed. For all other endpoints you must pass the identifier.
 

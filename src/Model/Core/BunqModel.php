@@ -7,6 +7,7 @@ use bunq\Exception\BunqException;
 use bunq\Http\BunqResponse;
 use bunq\Http\BunqResponseRaw;
 use bunq\Http\Pagination;
+use bunq\Util\FileUtil;
 use bunq\Util\ModelUtil;
 use JsonSerializable;
 use ReflectionClass;
@@ -108,7 +109,7 @@ abstract class BunqModel implements JsonSerializable
             return self::createFromResponseArrayAnchorObject($responseArray);
         }
 
-        if (is_string($wrapper)) {
+        if (is_string($wrapper) && isset($responseArray[$wrapper])) {
             $responseArray = $responseArray[$wrapper];
         }
 
@@ -300,7 +301,11 @@ abstract class BunqModel implements JsonSerializable
         $responseArray = ModelUtil::deserializeResponseArray($json);
         $response = $responseArray[self::FIELD_RESPONSE];
         $value = static::createListFromResponseArray($response, $wrapper);
-        $pagination = Pagination::restore($responseArray[self::FIELD_PAGINATION]);
+        $pagination = null;
+
+        if (isset($responseArray[self::FIELD_PAGINATION])) {
+            $pagination = Pagination::restore($responseArray[self::FIELD_PAGINATION]);
+        }
 
         return new BunqResponse($value, $responseRaw->getHeaders(), $pagination);
     }
@@ -347,6 +352,21 @@ abstract class BunqModel implements JsonSerializable
         $value = static::createListFromResponseArray($response, $wrapper);
 
         return new BunqResponse($value[self::INDEX_FIRST], $responseRaw->getHeaders());
+    }
+
+    /**
+     * @param $path
+     *
+     * @return BunqModel
+     * @throws BunqException
+     */
+    public static function fromJsonFile($path): BunqModel
+    {
+        $decodedArray = ModelUtil::deserializeResponseArray(
+            FileUtil::getFileContents($path)
+        );
+
+        return static::createInstanceFromResponseArray($decodedArray);
     }
 
     /**

@@ -199,7 +199,7 @@ class WhitelistSdd extends BunqModel
             [
                 self::FIELD_MONETARY_ACCOUNT_PAYING_ID => $monetaryAccountPayingId,
                 self::FIELD_REQUEST_ID => $requestId,
-                self::FIELD_MAXIMUM_AMOUNT_PER_MONTH => $maximumAmountPerMonth
+                self::FIELD_MAXIMUM_AMOUNT_PER_MONTH => $maximumAmountPerMonth,
             ],
             $customHeaders
         );
@@ -233,7 +233,7 @@ class WhitelistSdd extends BunqModel
             ),
             [
                 self::FIELD_MONETARY_ACCOUNT_PAYING_ID => $monetaryAccountPayingId,
-                self::FIELD_MAXIMUM_AMOUNT_PER_MONTH => $maximumAmountPerMonth
+                self::FIELD_MAXIMUM_AMOUNT_PER_MONTH => $maximumAmountPerMonth,
             ],
             $customHeaders
         );

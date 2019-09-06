@@ -123,7 +123,7 @@ class ScheduleInstance extends BunqModel
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
                     $scheduleId,
-                    $scheduleInstanceId
+                    $scheduleInstanceId,
                 ]
             ),
             [],
@@ -160,7 +160,7 @@ class ScheduleInstance extends BunqModel
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
                     $scheduleId,
-                    $scheduleInstanceId
+                    $scheduleInstanceId,
                 ]
             ),
             [self::FIELD_STATE => $state],

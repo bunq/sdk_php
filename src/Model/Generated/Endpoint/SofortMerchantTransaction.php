@@ -146,7 +146,7 @@ class SofortMerchantTransaction extends BunqModel
                 [
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
-                    $sofortMerchantTransactionId
+                    $sofortMerchantTransactionId,
                 ]
             ),
             [],

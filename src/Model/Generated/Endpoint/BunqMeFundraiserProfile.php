@@ -43,9 +43,9 @@ class BunqMeFundraiserProfile extends BunqModel
     protected $description;
 
     /**
-     * The attachments attached to the fundraiser profile.
+     * The attachment attached to the fundraiser profile.
      *
-     * @var AttachmentPublic[]
+     * @var AttachmentPublic
      */
     protected $attachment;
 
@@ -165,9 +165,9 @@ class BunqMeFundraiserProfile extends BunqModel
     }
 
     /**
-     * The attachments attached to the fundraiser profile.
+     * The attachment attached to the fundraiser profile.
      *
-     * @return AttachmentPublic[]
+     * @return AttachmentPublic
      */
     public function getAttachment()
     {
@@ -175,7 +175,7 @@ class BunqMeFundraiserProfile extends BunqModel
     }
 
     /**
-     * @param AttachmentPublic[] $attachment
+     * @param AttachmentPublic $attachment
      *
      * @deprecated User should not be able to set values via setters, use
      *             constructor.

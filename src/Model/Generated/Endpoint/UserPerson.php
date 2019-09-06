@@ -748,7 +748,7 @@ class UserPerson extends BunqModel
                 self::FIELD_SESSION_TIMEOUT => $sessionTimeout,
                 self::FIELD_DAILY_LIMIT_WITHOUT_CONFIRMATION_LOGIN => $dailyLimitWithoutConfirmationLogin,
                 self::FIELD_NOTIFICATION_FILTERS => $notificationFilters,
-                self::FIELD_DISPLAY_NAME => $displayName
+                self::FIELD_DISPLAY_NAME => $displayName,
             ],
             $customHeaders
         );

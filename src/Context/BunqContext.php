@@ -3,6 +3,8 @@ namespace bunq\Context;
 
 use bunq\Exception\BunqException;
 
+/**
+ */
 class BunqContext
 {
     /**

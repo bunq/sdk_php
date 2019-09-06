@@ -107,7 +107,7 @@ class NoteTextWhitelistResult extends BunqModel
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
                     $whitelistId,
-                    $whitelistResultId
+                    $whitelistResultId,
                 ]
             ),
             [self::FIELD_CONTENT => $content],
@@ -146,7 +146,7 @@ class NoteTextWhitelistResult extends BunqModel
                     static::determineMonetaryAccountId($monetaryAccountId),
                     $whitelistId,
                     $whitelistResultId,
-                    $noteTextWhitelistResultId
+                    $noteTextWhitelistResultId,
                 ]
             ),
             [self::FIELD_CONTENT => $content],
@@ -182,7 +182,7 @@ class NoteTextWhitelistResult extends BunqModel
                     static::determineMonetaryAccountId($monetaryAccountId),
                     $whitelistId,
                     $whitelistResultId,
-                    $noteTextWhitelistResultId
+                    $noteTextWhitelistResultId,
                 ]
             ),
             $customHeaders
@@ -222,7 +222,7 @@ class NoteTextWhitelistResult extends BunqModel
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
                     $whitelistId,
-                    $whitelistResultId
+                    $whitelistResultId,
                 ]
             ),
             $params,
@@ -259,7 +259,7 @@ class NoteTextWhitelistResult extends BunqModel
                     static::determineMonetaryAccountId($monetaryAccountId),
                     $whitelistId,
                     $whitelistResultId,
-                    $noteTextWhitelistResultId
+                    $noteTextWhitelistResultId,
                 ]
             ),
             [],

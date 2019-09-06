@@ -151,7 +151,7 @@ class DraftShareInviteApiKey extends BunqModel
             [
                 self::FIELD_STATUS => $status,
                 self::FIELD_SUB_STATUS => $subStatus,
-                self::FIELD_EXPIRATION => $expiration
+                self::FIELD_EXPIRATION => $expiration,
             ],
             $customHeaders
         );
@@ -219,7 +219,7 @@ class DraftShareInviteApiKey extends BunqModel
             [
                 self::FIELD_STATUS => $status,
                 self::FIELD_SUB_STATUS => $subStatus,
-                self::FIELD_EXPIRATION => $expiration
+                self::FIELD_EXPIRATION => $expiration,
             ],
             $customHeaders
         );

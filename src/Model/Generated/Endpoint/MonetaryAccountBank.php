@@ -6,6 +6,7 @@ use bunq\Http\ApiClient;
 use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Object\Amount;
 use bunq\Model\Generated\Object\Avatar;
+use bunq\Model\Generated\Object\BunqId;
 use bunq\Model\Generated\Object\MonetaryAccountSetting;
 use bunq\Model\Generated\Object\NotificationFilter;
 use bunq\Model\Generated\Object\Pointer;
@@ -199,6 +200,20 @@ class MonetaryAccountBank extends BunqModel
      * @var MonetaryAccountSetting
      */
     protected $setting;
+
+    /**
+     * The id of the AutoSave.
+     *
+     * @var int
+     */
+    protected $autoSaveId;
+
+    /**
+     * The ids of the AutoSave.
+     *
+     * @var BunqId[]
+     */
+    protected $allAutoSaveId;
 
     /**
      * The currency of the MonetaryAccountBank as an ISO 4217 formatted currency
@@ -423,7 +438,7 @@ class MonetaryAccountBank extends BunqModel
                 self::FIELD_REASON => $reason,
                 self::FIELD_REASON_DESCRIPTION => $reasonDescription,
                 self::FIELD_NOTIFICATION_FILTERS => $notificationFilters,
-                self::FIELD_SETTING => $setting
+                self::FIELD_SETTING => $setting,
             ],
             $customHeaders
         );
@@ -529,7 +544,7 @@ class MonetaryAccountBank extends BunqModel
                 self::FIELD_REASON => $reason,
                 self::FIELD_REASON_DESCRIPTION => $reasonDescription,
                 self::FIELD_NOTIFICATION_FILTERS => $notificationFilters,
-                self::FIELD_SETTING => $setting
+                self::FIELD_SETTING => $setting,
             ],
             $customHeaders
         );
@@ -1018,6 +1033,50 @@ class MonetaryAccountBank extends BunqModel
     }
 
     /**
+     * The id of the AutoSave.
+     *
+     * @return int
+     */
+    public function getAutoSaveId()
+    {
+        return $this->autoSaveId;
+    }
+
+    /**
+     * @param int $autoSaveId
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
+     */
+    public function setAutoSaveId($autoSaveId)
+    {
+        $this->autoSaveId = $autoSaveId;
+    }
+
+    /**
+     * The ids of the AutoSave.
+     *
+     * @return BunqId[]
+     */
+    public function getAllAutoSaveId()
+    {
+        return $this->allAutoSaveId;
+    }
+
+    /**
+     * @param BunqId[] $allAutoSaveId
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
+     */
+    public function setAllAutoSaveId($allAutoSaveId)
+    {
+        $this->allAutoSaveId = $allAutoSaveId;
+    }
+
+    /**
      * @return bool
      */
     public function isAllFieldNull()
@@ -1099,6 +1158,14 @@ class MonetaryAccountBank extends BunqModel
         }
 
         if (!is_null($this->setting)) {
+            return false;
+        }
+
+        if (!is_null($this->autoSaveId)) {
+            return false;
+        }
+
+        if (!is_null($this->allAutoSaveId)) {
             return false;
         }
 

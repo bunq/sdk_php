@@ -69,7 +69,7 @@ class TabResultResponse extends BunqModel
                 [
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
-                    $tabResultResponseId
+                    $tabResultResponseId,
                 ]
             ),
             [],

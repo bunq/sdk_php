@@ -127,7 +127,7 @@ class NoteAttachmentPaymentBatch extends BunqModel
             ),
             [
                 self::FIELD_DESCRIPTION => $description,
-                self::FIELD_ATTACHMENT_ID => $attachmentId
+                self::FIELD_ATTACHMENT_ID => $attachmentId,
             ],
             $customHeaders
         );
@@ -161,7 +161,7 @@ class NoteAttachmentPaymentBatch extends BunqModel
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
                     $paymentBatchId,
-                    $noteAttachmentPaymentBatchId
+                    $noteAttachmentPaymentBatchId,
                 ]
             ),
             [self::FIELD_DESCRIPTION => $description],
@@ -194,7 +194,7 @@ class NoteAttachmentPaymentBatch extends BunqModel
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
                     $paymentBatchId,
-                    $noteAttachmentPaymentBatchId
+                    $noteAttachmentPaymentBatchId,
                 ]
             ),
             $customHeaders
@@ -261,7 +261,7 @@ class NoteAttachmentPaymentBatch extends BunqModel
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
                     $paymentBatchId,
-                    $noteAttachmentPaymentBatchId
+                    $noteAttachmentPaymentBatchId,
                 ]
             ),
             [],

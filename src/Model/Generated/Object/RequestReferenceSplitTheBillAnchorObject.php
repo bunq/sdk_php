@@ -13,6 +13,7 @@ use bunq\Model\Generated\Endpoint\PaymentBatch;
 use bunq\Model\Generated\Endpoint\RequestResponse;
 use bunq\Model\Generated\Endpoint\ScheduleInstance;
 use bunq\Model\Generated\Endpoint\TabResultResponse;
+use bunq\Model\Generated\Endpoint\TransferwiseTransfer;
 use bunq\Model\Generated\Endpoint\WhitelistResult;
 
 /**
@@ -69,6 +70,11 @@ class RequestReferenceSplitTheBillAnchorObject extends BunqModel implements Anch
      * @var WhitelistResult|null
      */
     protected $whitelistResult;
+
+    /**
+     * @var TransferwiseTransfer|null
+     */
+    protected $transferwisePayment;
 
     /**
      * @return Invoice
@@ -251,6 +257,26 @@ class RequestReferenceSplitTheBillAnchorObject extends BunqModel implements Anch
     }
 
     /**
+     * @return TransferwiseTransfer
+     */
+    public function getTransferwisePayment()
+    {
+        return $this->transferwisePayment;
+    }
+
+    /**
+     * @param TransferwiseTransfer $transferwisePayment
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
+     */
+    public function setTransferwisePayment($transferwisePayment)
+    {
+        $this->transferwisePayment = $transferwisePayment;
+    }
+
+    /**
      * @return BunqModel
      * @throws BunqException
      */
@@ -290,6 +316,10 @@ class RequestReferenceSplitTheBillAnchorObject extends BunqModel implements Anch
 
         if (!is_null($this->whitelistResult)) {
             return $this->whitelistResult;
+        }
+
+        if (!is_null($this->transferwisePayment)) {
+            return $this->transferwisePayment;
         }
 
         throw new BunqException(self::ERROR_NULL_FIELDS);
@@ -333,6 +363,10 @@ class RequestReferenceSplitTheBillAnchorObject extends BunqModel implements Anch
         }
 
         if (!is_null($this->whitelistResult)) {
+            return false;
+        }
+
+        if (!is_null($this->transferwisePayment)) {
             return false;
         }
 

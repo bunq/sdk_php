@@ -100,7 +100,7 @@ class ExportStatementPayment extends BunqModel
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
                     $eventId,
-                    $exportStatementPaymentId
+                    $exportStatementPaymentId,
                 ]
             ),
             [],
