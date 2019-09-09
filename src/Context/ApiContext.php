@@ -125,9 +125,9 @@ class ApiContext
      * @param BunqEnumApiEnvironmentType $environmentType
      * @param Certificate $publicCertificate
      * @param PrivateKey $privateKey
-     * @param array $allChainCertificate
+     * @param Certificate[] $allChainCertificate
      * @param string $description
-     * @param array $allPermittedIp
+     * @param string[] $allPermittedIp
      * @param string|null $proxyUrl
      *
      * @return ApiContext

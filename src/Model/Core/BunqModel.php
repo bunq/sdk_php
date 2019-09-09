@@ -355,12 +355,11 @@ abstract class BunqModel implements JsonSerializable
     }
 
     /**
-     * @param $path
+     * @param string $path
      *
      * @return BunqModel
-     * @throws BunqException
      */
-    public static function fromJsonFile($path): BunqModel
+    public static function fromJsonFile(string $path): BunqModel
     {
         $decodedArray = ModelUtil::deserializeResponseArray(
             FileUtil::getFileContents($path)

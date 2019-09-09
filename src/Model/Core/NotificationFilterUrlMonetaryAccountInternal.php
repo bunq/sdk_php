@@ -4,6 +4,7 @@ namespace bunq\Model\Core;
 use bunq\Http\ApiClient;
 use bunq\Model\Generated\Endpoint\BunqResponseNotificationFilterUrlMonetaryAccountList;
 use bunq\Model\Generated\Endpoint\NotificationFilterUrlMonetaryAccount;
+use bunq\Model\Generated\Object\NotificationFilterUrl;
 
 /**
  */
@@ -13,9 +14,8 @@ class NotificationFilterUrlMonetaryAccountInternal extends NotificationFilterUrl
      * Create notification filters with list response type.
      *
      * @param int|null $monetaryAccountId
-     * @param array $allNotificationFilter
-     *
-     * @param array $allCustomHeader
+     * @param NotificationFilterUrl[] $allNotificationFilter
+     * @param string[] $allCustomHeader
      *
      * @return BunqResponseNotificationFilterUrlMonetaryAccountList
      */
@@ -23,7 +23,7 @@ class NotificationFilterUrlMonetaryAccountInternal extends NotificationFilterUrl
         int $monetaryAccountId = null,
         array $allNotificationFilter = [],
         array $allCustomHeader = []
-    ) {
+    ): BunqResponseNotificationFilterUrlMonetaryAccountList {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->post(
             vsprintf(

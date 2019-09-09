@@ -85,7 +85,6 @@ BunqContext::loadApiContext($apiContext);
 **Tip:** both saving and restoring the context can be done without any arguments. In this case the context will be saved to/restored from the `bunq.conf` file in the same folder with your script.
 
 ##### PSD2
-
 It is possible to create an ApiContext as PSD2 Service Provider. Although this might seem a complex task, we wrote some helper implementations to get you started.
 You need to create a certificate and private key to get you started. Our sandbox environment currently accepts all certificates, if these criteria are met:
 - Up to 64 characters

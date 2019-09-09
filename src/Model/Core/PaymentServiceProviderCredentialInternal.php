@@ -13,7 +13,6 @@ use bunq\Model\Generated\Endpoint\UserCredentialPasswordIp;
  */
 class PaymentServiceProviderCredentialInternal extends PaymentServiceProviderCredential
 {
-
     /**
      * Field constants.
      */
@@ -31,7 +30,7 @@ class PaymentServiceProviderCredentialInternal extends PaymentServiceProviderCre
      *                                                             with the private key belonging to the QSEAL
      *                                                             certificate.
      * @param ApiContext $apiContext
-     * @param array $allCustomHeader
+     * @param string[] $allCustomHeader
      *
      * @return BunqResponseUserCredentialPasswordIp
      */
@@ -41,7 +40,7 @@ class PaymentServiceProviderCredentialInternal extends PaymentServiceProviderCre
         string $clientPublicKeySignature,
         ApiContext $apiContext,
         array $allCustomHeader = []
-    ) {
+    ): BunqResponseUserCredentialPasswordIp {
         $apiClient = new ApiClient($apiContext);
         $responseRaw = $apiClient->post(
             self::ENDPOINT_URL_CREATE,
@@ -67,6 +66,7 @@ class PaymentServiceProviderCredentialInternal extends PaymentServiceProviderCre
     protected static function fromRawResponse(BunqResponseRaw $responseRaw): BunqResponse
     {
         $allCredential = UserCredentialPasswordIp::fromJson($responseRaw, self::FIELD_OBJECT_TYPE);
+
         return new BunqResponseUserCredentialPasswordIp($allCredential->getValue(), $responseRaw->getHeaders());
     }
 }

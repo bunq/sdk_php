@@ -101,9 +101,10 @@ class OauthAuthorizationUri extends BunqModel
      * @return string
      * @throws BunqException
      */
-    private static function determineTokenUriFormat()
+    private static function determineTokenUriFormat(): string
     {
         $environmentType = BunqContext::getApiContext()->getEnvironmentType();
+
         if ($environmentType->equals(BunqEnumApiEnvironmentType::SANDBOX())) {
             return self::AUTH_URI_FORMAT_SANDBOX;
         } elseif ($environmentType->equals(BunqEnumApiEnvironmentType::PRODUCTION())) {

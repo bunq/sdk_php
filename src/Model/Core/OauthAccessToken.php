@@ -55,7 +55,7 @@ class OauthAccessToken extends BunqModel
      *
      * @param string $accessToken
      * @param string $tokenType
-     * @param string $state
+     * @param string|null $state
      */
     protected function __construct(
         string $accessToken,
@@ -166,9 +166,10 @@ class OauthAccessToken extends BunqModel
      * @return string
      * @throws BunqException
      */
-    private static function determineTokenUriFormat()
+    private static function determineTokenUriFormat(): string
     {
         $environmentType = BunqContext::getApiContext()->getEnvironmentType();
+
         if ($environmentType->equals(BunqEnumApiEnvironmentType::SANDBOX())) {
             return self::TOKEN_URI_FORMAT_SANDBOX;
         } elseif ($environmentType->equals(BunqEnumApiEnvironmentType::PRODUCTION())) {

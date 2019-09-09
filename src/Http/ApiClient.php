@@ -283,6 +283,8 @@ class ApiClient
 
     /**
      * Initialize definitions if needed.
+     *
+     * Defines CURLOPT_PINNEDPUBLICKEY for PHP <7.0.7.
      */
     private function initializeAllDefinitionIfNeeded()
     {
