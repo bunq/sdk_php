@@ -126,12 +126,12 @@ class NoteAttachmentBunqMeFundraiserResult extends BunqModel
                 [
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
-                    $bunqmeFundraiserResultId
+                    $bunqmeFundraiserResultId,
                 ]
             ),
             [
                 self::FIELD_DESCRIPTION => $description,
-                self::FIELD_ATTACHMENT_ID => $attachmentId
+                self::FIELD_ATTACHMENT_ID => $attachmentId,
             ],
             $customHeaders
         );
@@ -165,7 +165,7 @@ class NoteAttachmentBunqMeFundraiserResult extends BunqModel
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
                     $bunqmeFundraiserResultId,
-                    $noteAttachmentBunqMeFundraiserResultId
+                    $noteAttachmentBunqMeFundraiserResultId,
                 ]
             ),
             [self::FIELD_DESCRIPTION => $description],
@@ -198,7 +198,7 @@ class NoteAttachmentBunqMeFundraiserResult extends BunqModel
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
                     $bunqmeFundraiserResultId,
-                    $noteAttachmentBunqMeFundraiserResultId
+                    $noteAttachmentBunqMeFundraiserResultId,
                 ]
             ),
             $customHeaders
@@ -235,7 +235,7 @@ class NoteAttachmentBunqMeFundraiserResult extends BunqModel
                 [
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
-                    $bunqmeFundraiserResultId
+                    $bunqmeFundraiserResultId,
                 ]
             ),
             $params,
@@ -269,7 +269,7 @@ class NoteAttachmentBunqMeFundraiserResult extends BunqModel
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
                     $bunqmeFundraiserResultId,
-                    $noteAttachmentBunqMeFundraiserResultId
+                    $noteAttachmentBunqMeFundraiserResultId,
                 ]
             ),
             [],

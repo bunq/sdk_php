@@ -6,6 +6,7 @@ use bunq\Http\ApiClient;
 use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Object\Amount;
 use bunq\Model\Generated\Object\Avatar;
+use bunq\Model\Generated\Object\BunqId;
 use bunq\Model\Generated\Object\CoOwner;
 use bunq\Model\Generated\Object\MonetaryAccountSetting;
 use bunq\Model\Generated\Object\NotificationFilter;
@@ -222,6 +223,20 @@ class MonetaryAccountSavings extends BunqModel
     protected $savingsGoalProgress;
 
     /**
+     * The id of the AutoSave.
+     *
+     * @var int
+     */
+    protected $autoSaveId;
+
+    /**
+     * The ids of the AutoSave.
+     *
+     * @var BunqId[]
+     */
+    protected $allAutoSaveId;
+
+    /**
      * The currency of the MonetaryAccountSavings as an ISO 4217 formatted
      * currency code.
      *
@@ -319,15 +334,13 @@ class MonetaryAccountSavings extends BunqModel
     /**
      * The Savings Goal set for this MonetaryAccountSavings.
      *
-     * @var Amount
+     * @var Amount|null
      */
     protected $savingsGoalFieldForRequest;
 
     /**
      * @param string $currency                               The currency of the MonetaryAccountSavings as an
      *                                                       ISO 4217 formatted currency code.
-     * @param Amount $savingsGoal                            The Savings Goal set for this
-     *                                                       MonetaryAccountSavings.
      * @param string|null $description                       The description of the
      *                                                       MonetaryAccountSavings. Defaults to 'bunq account'.
      * @param Amount|null $dailyLimit                        The daily spending limit Amount of the
@@ -366,10 +379,11 @@ class MonetaryAccountSavings extends BunqModel
      *                                                       URL callback for this MonetaryAccountSavings.
      * @param MonetaryAccountSetting|null $setting           The settings of the
      *                                                       MonetaryAccountSavings.
+     * @param Amount|null $savingsGoal                       The Savings Goal set for this
+     *                                                       MonetaryAccountSavings.
      */
     public function __construct(
         string $currency,
-        Amount $savingsGoal,
         string $description = null,
         Amount $dailyLimit = null,
         string $avatarUuid = null,
@@ -379,7 +393,8 @@ class MonetaryAccountSavings extends BunqModel
         string $reasonDescription = null,
         array $allCoOwner = null,
         array $notificationFilters = null,
-        MonetaryAccountSetting $setting = null
+        MonetaryAccountSetting $setting = null,
+        Amount $savingsGoal = null
     ) {
         $this->currencyFieldForRequest = $currency;
         $this->descriptionFieldForRequest = $description;
@@ -400,8 +415,6 @@ class MonetaryAccountSavings extends BunqModel
      *
      * @param string $currency                               The currency of the MonetaryAccountSavings as an
      *                                                       ISO 4217 formatted currency code.
-     * @param Amount $savingsGoal                            The Savings Goal set for this
-     *                                                       MonetaryAccountSavings.
      * @param string|null $description                       The description of the
      *                                                       MonetaryAccountSavings. Defaults to 'bunq account'.
      * @param Amount|null $dailyLimit                        The daily spending limit Amount of the
@@ -440,13 +453,14 @@ class MonetaryAccountSavings extends BunqModel
      *                                                       URL callback for this MonetaryAccountSavings.
      * @param MonetaryAccountSetting|null $setting           The settings of the
      *                                                       MonetaryAccountSavings.
+     * @param Amount|null $savingsGoal                       The Savings Goal set for this
+     *                                                       MonetaryAccountSavings.
      * @param string[] $customHeaders
      *
      * @return BunqResponseInt
      */
     public static function create(
         string $currency,
-        Amount $savingsGoal,
         string $description = null,
         Amount $dailyLimit = null,
         string $avatarUuid = null,
@@ -457,6 +471,7 @@ class MonetaryAccountSavings extends BunqModel
         array $allCoOwner = null,
         array $notificationFilters = null,
         MonetaryAccountSetting $setting = null,
+        Amount $savingsGoal = null,
         array $customHeaders = []
     ): BunqResponseInt {
         $apiClient = new ApiClient(static::getApiContext());
@@ -477,7 +492,7 @@ class MonetaryAccountSavings extends BunqModel
                 self::FIELD_ALL_CO_OWNER => $allCoOwner,
                 self::FIELD_NOTIFICATION_FILTERS => $notificationFilters,
                 self::FIELD_SETTING => $setting,
-                self::FIELD_SAVINGS_GOAL => $savingsGoal
+                self::FIELD_SAVINGS_GOAL => $savingsGoal,
             ],
             $customHeaders
         );
@@ -590,7 +605,7 @@ class MonetaryAccountSavings extends BunqModel
                 self::FIELD_REASON_DESCRIPTION => $reasonDescription,
                 self::FIELD_NOTIFICATION_FILTERS => $notificationFilters,
                 self::FIELD_SETTING => $setting,
-                self::FIELD_SAVINGS_GOAL => $savingsGoal
+                self::FIELD_SAVINGS_GOAL => $savingsGoal,
             ],
             $customHeaders
         );
@@ -1150,6 +1165,50 @@ class MonetaryAccountSavings extends BunqModel
     }
 
     /**
+     * The id of the AutoSave.
+     *
+     * @return int
+     */
+    public function getAutoSaveId()
+    {
+        return $this->autoSaveId;
+    }
+
+    /**
+     * @param int $autoSaveId
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
+     */
+    public function setAutoSaveId($autoSaveId)
+    {
+        $this->autoSaveId = $autoSaveId;
+    }
+
+    /**
+     * The ids of the AutoSave.
+     *
+     * @return BunqId[]
+     */
+    public function getAllAutoSaveId()
+    {
+        return $this->allAutoSaveId;
+    }
+
+    /**
+     * @param BunqId[] $allAutoSaveId
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
+     */
+    public function setAllAutoSaveId($allAutoSaveId)
+    {
+        $this->allAutoSaveId = $allAutoSaveId;
+    }
+
+    /**
      * @return bool
      */
     public function isAllFieldNull()
@@ -1243,6 +1302,14 @@ class MonetaryAccountSavings extends BunqModel
         }
 
         if (!is_null($this->savingsGoalProgress)) {
+            return false;
+        }
+
+        if (!is_null($this->autoSaveId)) {
+            return false;
+        }
+
+        if (!is_null($this->allAutoSaveId)) {
             return false;
         }
 

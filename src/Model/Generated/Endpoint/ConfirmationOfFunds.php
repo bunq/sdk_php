@@ -83,7 +83,7 @@ class ConfirmationOfFunds extends BunqModel
             ),
             [
                 self::FIELD_POINTER_IBAN => $pointerIban,
-                self::FIELD_AMOUNT => $amount
+                self::FIELD_AMOUNT => $amount,
             ],
             $customHeaders
         );

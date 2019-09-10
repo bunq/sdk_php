@@ -177,7 +177,7 @@ class IdealMerchantTransaction extends BunqModel
             ),
             [
                 self::FIELD_AMOUNT_REQUESTED => $amountRequested,
-                self::FIELD_ISSUER => $issuer
+                self::FIELD_ISSUER => $issuer,
             ],
             $customHeaders
         );
@@ -206,7 +206,7 @@ class IdealMerchantTransaction extends BunqModel
                 [
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
-                    $idealMerchantTransactionId
+                    $idealMerchantTransactionId,
                 ]
             ),
             [],

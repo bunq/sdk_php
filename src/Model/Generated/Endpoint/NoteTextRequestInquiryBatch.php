@@ -104,7 +104,7 @@ class NoteTextRequestInquiryBatch extends BunqModel
                 [
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
-                    $requestInquiryBatchId
+                    $requestInquiryBatchId,
                 ]
             ),
             [self::FIELD_CONTENT => $content],
@@ -140,7 +140,7 @@ class NoteTextRequestInquiryBatch extends BunqModel
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
                     $requestInquiryBatchId,
-                    $noteTextRequestInquiryBatchId
+                    $noteTextRequestInquiryBatchId,
                 ]
             ),
             [self::FIELD_CONTENT => $content],
@@ -173,7 +173,7 @@ class NoteTextRequestInquiryBatch extends BunqModel
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
                     $requestInquiryBatchId,
-                    $noteTextRequestInquiryBatchId
+                    $noteTextRequestInquiryBatchId,
                 ]
             ),
             $customHeaders
@@ -210,7 +210,7 @@ class NoteTextRequestInquiryBatch extends BunqModel
                 [
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
-                    $requestInquiryBatchId
+                    $requestInquiryBatchId,
                 ]
             ),
             $params,
@@ -244,7 +244,7 @@ class NoteTextRequestInquiryBatch extends BunqModel
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
                     $requestInquiryBatchId,
-                    $noteTextRequestInquiryBatchId
+                    $noteTextRequestInquiryBatchId,
                 ]
             ),
             [],

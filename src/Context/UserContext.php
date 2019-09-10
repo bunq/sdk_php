@@ -3,13 +3,15 @@ namespace bunq\Context;
 
 use bunq\Exception\BunqException;
 use bunq\Model\Core\BunqModel;
-use bunq\Model\Core\SessionServer;
 use bunq\Model\Generated\Endpoint\MonetaryAccountBank;
 use bunq\Model\Generated\Endpoint\User;
 use bunq\Model\Generated\Endpoint\UserApiKey;
 use bunq\Model\Generated\Endpoint\UserCompany;
+use bunq\Model\Generated\Endpoint\UserPaymentServiceProvider;
 use bunq\Model\Generated\Endpoint\UserPerson;
 
+/**
+ */
 class UserContext
 {
     /**
@@ -45,6 +47,11 @@ class UserContext
      * @var UserApiKey
      */
     protected $userApiKey;
+
+    /**
+     * @var UserPaymentServiceProvider
+     */
+    protected $userPaymentServiceProvider;
 
     /**
      * @var MonetaryAccountBank
@@ -85,6 +92,8 @@ class UserContext
             $this->userCompany = $user;
         } elseif ($user instanceof UserApiKey) {
             $this->userApiKey = $user;
+        } elseif ($user instanceof UserPaymentServiceProvider) {
+            $this->userPaymentServiceProvider = $user;
         } else {
             throw new BunqException(vsprintf(self::ERROR_UNEXPECTED_USER_INSTANCE, [get_class($user)]));
         }
@@ -95,6 +104,10 @@ class UserContext
      */
     public function initMainMonetaryAccount()
     {
+        if (!is_null($this->userPaymentServiceProvider)) {
+            return;
+        }
+
         $allMonetaryAccount = MonetaryAccountBank::listing()->getValue();
 
         foreach ($allMonetaryAccount as $account) {

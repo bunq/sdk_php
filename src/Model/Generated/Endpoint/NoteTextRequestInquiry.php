@@ -136,7 +136,7 @@ class NoteTextRequestInquiry extends BunqModel
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
                     $requestInquiryId,
-                    $noteTextRequestInquiryId
+                    $noteTextRequestInquiryId,
                 ]
             ),
             [self::FIELD_CONTENT => $content],
@@ -169,7 +169,7 @@ class NoteTextRequestInquiry extends BunqModel
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
                     $requestInquiryId,
-                    $noteTextRequestInquiryId
+                    $noteTextRequestInquiryId,
                 ]
             ),
             $customHeaders
@@ -236,7 +236,7 @@ class NoteTextRequestInquiry extends BunqModel
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
                     $requestInquiryId,
-                    $noteTextRequestInquiryId
+                    $noteTextRequestInquiryId,
                 ]
             ),
             [],

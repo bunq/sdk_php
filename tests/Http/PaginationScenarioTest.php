@@ -28,6 +28,11 @@ class PaginationScenarioTest extends BunqSdkTestBase
     const PAYMENT_DESCRIPTION = 'PHP test Payment';
 
     /**
+     * RateLimit constants.
+     */
+    const RATE_LIMIT_TIMEOUT = 1;
+
+    /**
      */
     public function testApiScenarioPaymentListingWithPagination()
     {
@@ -38,8 +43,14 @@ class PaginationScenarioTest extends BunqSdkTestBase
 
         $responseLatest = static::listPayments($paginationCountOnly->getUrlParamsCountOnly());
         $paginationLatest = $responseLatest->getPagination();
+
+        sleep(self::RATE_LIMIT_TIMEOUT);
+
         $responsePrevious = static::listPayments($paginationLatest->getUrlParamsPreviousPage());
         $paginationPrevious = $responsePrevious->getPagination();
+
+        sleep(self::RATE_LIMIT_TIMEOUT);
+
         $responsePreviousNext = static::listPayments($paginationPrevious->getUrlParamsNextPage());
 
         $paymentsActual = array_merge($responsePreviousNext->getValue(), $responsePrevious->getValue());
@@ -55,6 +66,7 @@ class PaginationScenarioTest extends BunqSdkTestBase
 
         for ($i = self::NUMBER_ZERO; $i < self::getPaymentsMissingCount(); ++$i) {
             $this->createPayment();
+            sleep(self::RATE_LIMIT_TIMEOUT);
         }
     }
 

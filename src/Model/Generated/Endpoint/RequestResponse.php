@@ -353,7 +353,7 @@ class RequestResponse extends BunqModel
                 self::FIELD_AMOUNT_RESPONDED => $amountResponded,
                 self::FIELD_STATUS => $status,
                 self::FIELD_ADDRESS_SHIPPING => $addressShipping,
-                self::FIELD_ADDRESS_BILLING => $addressBilling
+                self::FIELD_ADDRESS_BILLING => $addressBilling,
             ],
             $customHeaders
         );

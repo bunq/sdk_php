@@ -107,7 +107,7 @@ class NoteTextScheduleInstance extends BunqModel
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
                     $scheduleId,
-                    $scheduleInstanceId
+                    $scheduleInstanceId,
                 ]
             ),
             [self::FIELD_CONTENT => $content],
@@ -146,7 +146,7 @@ class NoteTextScheduleInstance extends BunqModel
                     static::determineMonetaryAccountId($monetaryAccountId),
                     $scheduleId,
                     $scheduleInstanceId,
-                    $noteTextScheduleInstanceId
+                    $noteTextScheduleInstanceId,
                 ]
             ),
             [self::FIELD_CONTENT => $content],
@@ -182,7 +182,7 @@ class NoteTextScheduleInstance extends BunqModel
                     static::determineMonetaryAccountId($monetaryAccountId),
                     $scheduleId,
                     $scheduleInstanceId,
-                    $noteTextScheduleInstanceId
+                    $noteTextScheduleInstanceId,
                 ]
             ),
             $customHeaders
@@ -222,7 +222,7 @@ class NoteTextScheduleInstance extends BunqModel
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
                     $scheduleId,
-                    $scheduleInstanceId
+                    $scheduleInstanceId,
                 ]
             ),
             $params,
@@ -259,7 +259,7 @@ class NoteTextScheduleInstance extends BunqModel
                     static::determineMonetaryAccountId($monetaryAccountId),
                     $scheduleId,
                     $scheduleInstanceId,
-                    $noteTextScheduleInstanceId
+                    $noteTextScheduleInstanceId,
                 ]
             ),
             [],

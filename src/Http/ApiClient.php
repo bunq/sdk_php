@@ -39,11 +39,13 @@ class ApiClient
         self::DEVICE_SERVER_URL => true,
         self::INSTALLATION_URL => true,
         self::SESSION_SERVER_URL => true,
+        self::PAYMENT_SERVICE_PROVIDER_CREDENTIAL_URL => true,
     ];
     const SANDBOX_USER_URL = 'sandbox-user';
     const DEVICE_SERVER_URL = 'device-server';
     const INSTALLATION_URL = 'installation';
     const SESSION_SERVER_URL = 'session-server';
+    const PAYMENT_SERVICE_PROVIDER_CREDENTIAL_URL = 'payment-service-provider-credential';
 
     /**
      * Public key locations.
@@ -85,7 +87,7 @@ class ApiClient
     /**
      * User agent constants.
      */
-    const HEADER_USER_AGENT_BUNQ_SDK_DEFAULT = 'bunq-sdk-php/1.10.16';
+    const HEADER_USER_AGENT_BUNQ_SDK_DEFAULT = 'bunq-sdk-php/1.12.0';
 
     /**
      * Binary request constants.
@@ -144,6 +146,12 @@ class ApiClient
      */
     const REGEX_CURL_ERROR_CODE = '/(cURL error )(?P<errorCode>\d+)/';
     const REGEX_NAMED_GOUP_ERROR_CODE = 'errorCode';
+
+    /**
+     * Curl option constants.
+     */
+    const CURL_FIELD_KEY_PINNING = 'CURLOPT_PINNEDPUBLICKEY';
+    const CURL_VALUE_KEY_PINNING = 10230;
 
     /**
      * @var Client
@@ -253,6 +261,7 @@ class ApiClient
     private function initializeHttpClient()
     {
         if (is_null($this->httpClient)) {
+            $this->initializeAllDefinitionIfNeeded();
             $middleware = $this->determineMiddleware();
 
             $this->httpClient = new Client(
@@ -269,6 +278,20 @@ class ApiClient
                     $this->determinePinnedKeySetting()
                 )
             );
+        }
+    }
+
+    /**
+     * Initialize definitions if needed.
+     *
+     * Defines CURLOPT_PINNEDPUBLICKEY for PHP <7.0.7.
+     */
+    private function initializeAllDefinitionIfNeeded()
+    {
+        if (defined(self::CURL_FIELD_KEY_PINNING)) {
+            // Do nothing.
+        } else {
+            define(self::CURL_FIELD_KEY_PINNING, self::CURL_VALUE_KEY_PINNING);
         }
     }
 

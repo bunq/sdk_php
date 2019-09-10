@@ -70,7 +70,7 @@ class Tab extends BunqModel implements AnchorObjectInterface
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
                     $cashRegisterId,
-                    $tabUuid
+                    $tabUuid,
                 ]
             ),
             [],

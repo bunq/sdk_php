@@ -263,7 +263,7 @@ class ShareInviteBankInquiry extends BunqModel
                 self::FIELD_STATUS => $status,
                 self::FIELD_SHARE_TYPE => $shareType,
                 self::FIELD_START_DATE => $startDate,
-                self::FIELD_END_DATE => $endDate
+                self::FIELD_END_DATE => $endDate,
             ],
             $customHeaders
         );
@@ -295,7 +295,7 @@ class ShareInviteBankInquiry extends BunqModel
                 [
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
-                    $shareInviteBankInquiryId
+                    $shareInviteBankInquiryId,
                 ]
             ),
             [],
@@ -343,14 +343,14 @@ class ShareInviteBankInquiry extends BunqModel
                 [
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
-                    $shareInviteBankInquiryId
+                    $shareInviteBankInquiryId,
                 ]
             ),
             [
                 self::FIELD_SHARE_DETAIL => $shareDetail,
                 self::FIELD_STATUS => $status,
                 self::FIELD_START_DATE => $startDate,
-                self::FIELD_END_DATE => $endDate
+                self::FIELD_END_DATE => $endDate,
             ],
             $customHeaders
         );

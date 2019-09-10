@@ -4,14 +4,18 @@ namespace bunq\Context;
 use bunq\Exception\BunqException;
 use bunq\Model\Core\DeviceServerInternal;
 use bunq\Model\Core\Installation;
+use bunq\Model\Core\PaymentServiceProviderCredentialInternal;
 use bunq\Model\Core\SandboxUserInternal;
 use bunq\Model\Core\SessionServer;
 use bunq\Model\Core\Token;
 use bunq\Model\Generated\Endpoint\Session;
+use bunq\Model\Generated\Object\Certificate;
 use bunq\Security\KeyPair;
+use bunq\Security\PrivateKey;
 use bunq\Util\BunqEnumApiEnvironmentType;
 use bunq\Util\FileUtil;
 use bunq\Util\InstallationUtil;
+use bunq\Util\SecurityUtil;
 use GuzzleHttp\Psr7\Uri;
 
 /**
@@ -118,6 +122,46 @@ class ApiContext
     }
 
     /**
+     * @param BunqEnumApiEnvironmentType $environmentType
+     * @param Certificate $publicCertificate
+     * @param PrivateKey $privateKey
+     * @param Certificate[] $allChainCertificate
+     * @param string $description
+     * @param string[] $allPermittedIp
+     * @param string|null $proxyUrl
+     *
+     * @return ApiContext
+     */
+    public static function createForPsd2(
+        BunqEnumApiEnvironmentType $environmentType,
+        Certificate $publicCertificate,
+        PrivateKey $privateKey,
+        array $allChainCertificate,
+        string $description,
+        array $allPermittedIp = [],
+        string $proxyUrl = null
+    ): ApiContext {
+        InstallationUtil::assertDeviceDescriptionIsValid($description);
+        InstallationUtil::assertAllIpIsValid($allPermittedIp);
+
+        $apiContext = new static();
+        $apiContext->environmentType = $environmentType;
+        $apiContext->proxyUrl = $proxyUrl;
+
+        $apiContext->initializeInstallationContext();
+        $apiContext->initializePsd2Credential(
+            $publicCertificate,
+            $privateKey,
+            $allChainCertificate
+        );
+
+        $apiContext->registerDevice($description, $allPermittedIp);
+        $apiContext->initializeSessionContext();
+
+        return $apiContext;
+    }
+
+    /**
      */
     private function createSandboxUser()
     {
@@ -153,6 +197,34 @@ class ApiContext
     }
 
     /**
+     * @param Certificate $publicCertificate
+     * @param PrivateKey $privateKey
+     * @param Certificate[] $allChainCertificate
+     */
+    private function initializePsd2Credential(
+        Certificate $publicCertificate,
+        PrivateKey $privateKey,
+        array $allChainCertificate
+    ) {
+        $sessionToken = $this->installationContext->getInstallationToken();
+        $clientKeyPair = $this->installationContext->getKeyPairClient();
+
+        $stringToSign = SecurityUtil::getPublicKeyFormattedString(
+            $clientKeyPair->getPublicKey()
+        ) . $sessionToken->getToken();
+
+        $keySignature = $privateKey->sign($stringToSign);
+        $paymentProviderResponse = PaymentServiceProviderCredentialInternal::createWithApiContext(
+            $publicCertificate->getCertificate(),
+            SecurityUtil::getCertificateChainString($allChainCertificate),
+            $keySignature,
+            $this
+        );
+
+        $this->apiKey = $paymentProviderResponse->getValue()->getTokenValue();
+    }
+
+    /**
      * @param string $description
      * @param string[] $permittedIps
      */
@@ -183,7 +255,7 @@ class ApiContext
      */
     public static function restore(string $fileName = self::FILENAME_CONFIG_DEFAULT): ApiContext
     {
-        $contextJsonString = self::getContextJsonString($fileName);
+        $contextJsonString = static::getContextJsonString($fileName);
 
         return static::fromJson($contextJsonString);
     }

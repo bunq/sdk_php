@@ -182,7 +182,7 @@ class EventObject extends BunqModel implements AnchorObjectInterface
     /**
      * @var TransferwiseTransfer
      */
-    protected $transferwiseTransfer;
+    protected $transferwisePayment;
 
     /**
      * @return BunqMeTab
@@ -728,21 +728,21 @@ class EventObject extends BunqModel implements AnchorObjectInterface
     /**
      * @return TransferwiseTransfer
      */
-    public function getTransferwiseTransfer()
+    public function getTransferwisePayment()
     {
-        return $this->transferwiseTransfer;
+        return $this->transferwisePayment;
     }
 
     /**
-     * @param TransferwiseTransfer $transferwiseTransfer
+     * @param TransferwiseTransfer $transferwisePayment
      *
      * @deprecated User should not be able to set values via setters, use
      *             constructor.
      *
      */
-    public function setTransferwiseTransfer($transferwiseTransfer)
+    public function setTransferwisePayment($transferwisePayment)
     {
-        $this->transferwiseTransfer = $transferwiseTransfer;
+        $this->transferwisePayment = $transferwisePayment;
     }
 
     /**
@@ -859,8 +859,8 @@ class EventObject extends BunqModel implements AnchorObjectInterface
             return $this->tabResultResponse;
         }
 
-        if (!is_null($this->transferwiseTransfer)) {
-            return $this->transferwiseTransfer;
+        if (!is_null($this->transferwisePayment)) {
+            return $this->transferwisePayment;
         }
 
         throw new BunqException(self::ERROR_NULL_FIELDS);
@@ -979,7 +979,7 @@ class EventObject extends BunqModel implements AnchorObjectInterface
             return false;
         }
 
-        if (!is_null($this->transferwiseTransfer)) {
+        if (!is_null($this->transferwisePayment)) {
             return false;
         }
 

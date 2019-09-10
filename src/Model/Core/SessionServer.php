@@ -6,6 +6,7 @@ use bunq\Exception\BunqException;
 use bunq\Http\ApiClient;
 use bunq\Model\Generated\Endpoint\UserApiKey;
 use bunq\Model\Generated\Endpoint\UserCompany;
+use bunq\Model\Generated\Endpoint\UserPaymentServiceProvider;
 use bunq\Model\Generated\Endpoint\UserPerson;
 
 /**
@@ -51,6 +52,11 @@ class SessionServer extends BunqModel
      * @var UserApiKey
      */
     protected $userApiKey;
+
+    /**
+     * @var UserPaymentServiceProvider
+     */
+    protected $userPaymentServiceProvider;
 
     /**
      * @param ApiContext $apiContext
@@ -108,17 +114,19 @@ class SessionServer extends BunqModel
     }
 
     /**
-     * @return UserCompany|UserPerson|UserApiKey
+     * @return UserCompany|UserPerson|UserApiKey|UserPaymentServiceProvider
      * @throws BunqException
      */
     public function getReferencedUser()
     {
-        if ((is_null($this->userPerson) && is_null($this->userApiKey)) && !is_null($this->userCompany)) {
+        if ((is_null($this->userPerson) && is_null($this->userApiKey)) && !is_null($this->userCompany) && is_null($this->userPaymentServiceProvider)) {
             return $this->userCompany;
-        } elseif (is_null($this->userCompany) && is_null($this->userApiKey) && !is_null($this->userPerson)) {
+        } elseif (is_null($this->userCompany) && is_null($this->userApiKey) && !is_null($this->userPerson) && is_null($this->userPaymentServiceProvider)) {
             return $this->userPerson;
-        } elseif (is_null($this->userCompany) && is_null($this->userCompany) && !is_null($this->userApiKey)) {
+        } elseif (is_null($this->userCompany) && is_null($this->userCompany) && !is_null($this->userApiKey) && is_null($this->userPaymentServiceProvider)) {
             return $this->userApiKey;
+        } elseif (is_null($this->userCompany) && is_null($this->userCompany) && is_null($this->userApiKey) && !is_null($this->userPaymentServiceProvider)) {
+            return $this->userPaymentServiceProvider;
         } else {
             throw new BunqException(self::ERROR_NULL_FIELDS);
         }
@@ -146,6 +154,10 @@ class SessionServer extends BunqModel
         }
 
         if (!is_null($this->userApiKey)) {
+            return false;
+        }
+
+        if (!is_null($this->userPaymentServiceProvider)) {
             return false;
         }
 

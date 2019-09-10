@@ -6,12 +6,12 @@ use bunq\Http\BunqResponse;
 
 /**
  */
-class BunqResponseCustomerStatementExportList extends BunqResponse
+class BunqResponseCardCredit extends BunqResponse
 {
     /**
-     * @return CustomerStatementExport[]
+     * @return CardCredit
      */
-    public function getValue(): array
+    public function getValue(): CardCredit
     {
         return parent::getValue();
     }

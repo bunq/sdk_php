@@ -88,6 +88,13 @@ class LabelMonetaryAccount extends BunqModel
     protected $transferwiseBankCode;
 
     /**
+     * The merchant category code.
+     *
+     * @var string
+     */
+    protected $merchantCategoryCode;
+
+    /**
      * The IBAN of the monetary account.
      *
      * @return string
@@ -331,6 +338,28 @@ class LabelMonetaryAccount extends BunqModel
     }
 
     /**
+     * The merchant category code.
+     *
+     * @return string
+     */
+    public function getMerchantCategoryCode()
+    {
+        return $this->merchantCategoryCode;
+    }
+
+    /**
+     * @param string $merchantCategoryCode
+     *
+     * @deprecated User should not be able to set values via setters, use
+     *             constructor.
+     *
+     */
+    public function setMerchantCategoryCode($merchantCategoryCode)
+    {
+        $this->merchantCategoryCode = $merchantCategoryCode;
+    }
+
+    /**
      * @return bool
      */
     public function isAllFieldNull()
@@ -376,6 +405,10 @@ class LabelMonetaryAccount extends BunqModel
         }
 
         if (!is_null($this->transferwiseBankCode)) {
+            return false;
+        }
+
+        if (!is_null($this->merchantCategoryCode)) {
             return false;
         }
 
