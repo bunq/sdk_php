@@ -50,7 +50,7 @@ class SchedulePayment extends BunqModel
     protected $schedule;
 
     /**
-     * The schedule status.
+     * The schedule status, options: ACTIVE, FINISHED, CANCELLED.
      *
      * @var string
      */
@@ -276,7 +276,7 @@ class SchedulePayment extends BunqModel
     }
 
     /**
-     * The schedule status.
+     * The schedule status, options: ACTIVE, FINISHED, CANCELLED.
      *
      * @return string
      */

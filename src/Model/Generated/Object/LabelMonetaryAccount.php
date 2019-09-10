@@ -88,7 +88,7 @@ class LabelMonetaryAccount extends BunqModel
     protected $transferwiseBankCode;
 
     /**
-     * The merchant category code/
+     * The merchant category code.
      *
      * @var string
      */
@@ -338,7 +338,7 @@ class LabelMonetaryAccount extends BunqModel
     }
 
     /**
-     * The merchant category code/
+     * The merchant category code.
      *
      * @return string
      */
