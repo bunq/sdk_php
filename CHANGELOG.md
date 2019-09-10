@@ -1,5 +1,25 @@
 # Change Log
 
+## [Unreleased](https://github.com/bunq/sdk_php/tree/HEAD)
+
+[Full Changelog](https://github.com/bunq/sdk_php/compare/1.10.16...HEAD)
+
+**Closed issues:**
+
+- Fout! Use of undefined constant CURLOPT\_PINNEDPUBLICKEY - assumed 'CURLOPT\_PINNEDPUBLICKEY' \(this will throw an Error in a future version of PHP\) [\#178](https://github.com/bunq/sdk_php/issues/178)
+- NotificationFilterUrlMonetaryAccount::create fails [\#177](https://github.com/bunq/sdk_php/issues/177)
+- TransferwiseTransfer property on EventObject is not populated [\#176](https://github.com/bunq/sdk_php/issues/176)
+- Bad schedule payment update response\(sdk\_php\) [\#173](https://github.com/bunq/sdk_php/issues/173)
+- Allow access to `merchant\_category\_code` in the `counterparty\_alias` [\#171](https://github.com/bunq/sdk_php/issues/171)
+- Not receive schedule payment status \(sdk\_php\) [\#170](https://github.com/bunq/sdk_php/issues/170)
+
+**Merged pull requests:**
+
+- Fix NotificationFilter, Model issues and implement PSD2 [\#179](https://github.com/bunq/sdk_php/pull/179) ([NickvandeGroes](https://github.com/NickvandeGroes))
+
+## [1.10.16](https://github.com/bunq/sdk_php/tree/1.10.16) (2019-06-15)
+[Full Changelog](https://github.com/bunq/sdk_php/compare/1.10.2...1.10.16)
+
 ## [1.10.2](https://github.com/bunq/sdk_php/tree/1.10.2) (2019-05-15)
 [Full Changelog](https://github.com/bunq/sdk_php/compare/1.10.1...1.10.2)
 
