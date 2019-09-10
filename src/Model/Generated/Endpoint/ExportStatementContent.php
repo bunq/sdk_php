@@ -14,7 +14,7 @@ use bunq\Model\Core\BunqModel;
  *
  * @generated
  */
-class CustomerStatementExportContent extends BunqModel
+class ExportStatementContent extends BunqModel
 {
     /**
      * Endpoint constants.
@@ -24,7 +24,7 @@ class CustomerStatementExportContent extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE_GET = 'CustomerStatementExportContent';
+    const OBJECT_TYPE_GET = 'ExportStatementContent';
 
     /**
      * This method is called "listing" because "list" is a restricted PHP word
@@ -48,7 +48,7 @@ class CustomerStatementExportContent extends BunqModel
                 [
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
-                    $customerStatementId
+                    $customerStatementId,
                 ]
             ),
             [],

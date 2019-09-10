@@ -13,7 +13,7 @@ use bunq\Model\Generated\Object\LabelMonetaryAccount;
  *
  * @generated
  */
-class CustomerStatementExport extends BunqModel
+class ExportStatement extends BunqModel
 {
     /**
      * Endpoint constants.
@@ -30,6 +30,7 @@ class CustomerStatementExport extends BunqModel
     const FIELD_DATE_START = 'date_start';
     const FIELD_DATE_END = 'date_end';
     const FIELD_REGIONAL_FORMAT = 'regional_format';
+    const FIELD_INCLUDE_ATTACHMENT = 'include_attachment';
 
     /**
      * Object type.
@@ -136,35 +137,49 @@ class CustomerStatementExport extends BunqModel
     protected $regionalFormatFieldForRequest;
 
     /**
-     * @param string $statementFormat     The format type of statement. Allowed
-     *                                    values: MT940, CSV, PDF.
-     * @param string $dateStart           The start date for making statements.
-     * @param string $dateEnd             The end date for making statements.
-     * @param string|null $regionalFormat Required for CSV exports. The regional
-     *                                    format of the statement, can be UK_US (comma-separated) or EUROPEAN
-     *                                    (semicolon-separated).
+     * Only for PDF exports. Includes attachments to mutations in the export,
+     * such as scanned receipts.
+     *
+     * @var bool|null
+     */
+    protected $includeAttachmentFieldForRequest;
+
+    /**
+     * @param string $statementFormat      The format type of statement. Allowed
+     *                                     values: MT940, CSV, PDF.
+     * @param string $dateStart            The start date for making statements.
+     * @param string $dateEnd              The end date for making statements.
+     * @param string|null $regionalFormat  Required for CSV exports. The regional
+     *                                     format of the statement, can be UK_US (comma-separated) or EUROPEAN
+     *                                     (semicolon-separated).
+     * @param bool|null $includeAttachment Only for PDF exports. Includes
+     *                                     attachments to mutations in the export, such as scanned receipts.
      */
     public function __construct(
         string $statementFormat,
         string $dateStart,
         string $dateEnd,
-        string $regionalFormat = null
+        string $regionalFormat = null,
+        bool $includeAttachment = null
     ) {
         $this->statementFormatFieldForRequest = $statementFormat;
         $this->dateStartFieldForRequest = $dateStart;
         $this->dateEndFieldForRequest = $dateEnd;
         $this->regionalFormatFieldForRequest = $regionalFormat;
+        $this->includeAttachmentFieldForRequest = $includeAttachment;
     }
 
     /**
-     * @param string $statementFormat     The format type of statement. Allowed
-     *                                    values: MT940, CSV, PDF.
-     * @param string $dateStart           The start date for making statements.
-     * @param string $dateEnd             The end date for making statements.
+     * @param string $statementFormat      The format type of statement. Allowed
+     *                                     values: MT940, CSV, PDF.
+     * @param string $dateStart            The start date for making statements.
+     * @param string $dateEnd              The end date for making statements.
      * @param int|null $monetaryAccountId
-     * @param string|null $regionalFormat Required for CSV exports. The regional
-     *                                    format of the statement, can be UK_US (comma-separated) or EUROPEAN
-     *                                    (semicolon-separated).
+     * @param string|null $regionalFormat  Required for CSV exports. The regional
+     *                                     format of the statement, can be UK_US (comma-separated) or EUROPEAN
+     *                                     (semicolon-separated).
+     * @param bool|null $includeAttachment Only for PDF exports. Includes
+     *                                     attachments to mutations in the export, such as scanned receipts.
      * @param string[] $customHeaders
      *
      * @return BunqResponseInt
@@ -175,6 +190,7 @@ class CustomerStatementExport extends BunqModel
         string $dateEnd,
         int $monetaryAccountId = null,
         string $regionalFormat = null,
+        bool $includeAttachment = null,
         array $customHeaders = []
     ): BunqResponseInt {
         $apiClient = new ApiClient(static::getApiContext());
@@ -187,7 +203,8 @@ class CustomerStatementExport extends BunqModel
                 self::FIELD_STATEMENT_FORMAT => $statementFormat,
                 self::FIELD_DATE_START => $dateStart,
                 self::FIELD_DATE_END => $dateEnd,
-                self::FIELD_REGIONAL_FORMAT => $regionalFormat
+                self::FIELD_REGIONAL_FORMAT => $regionalFormat,
+                self::FIELD_INCLUDE_ATTACHMENT => $includeAttachment,
             ],
             $customHeaders
         );
@@ -198,32 +215,28 @@ class CustomerStatementExport extends BunqModel
     }
 
     /**
-     * @param int $customerStatementExportId
+     * @param int $exportStatementId
      * @param int|null $monetaryAccountId
      * @param string[] $customHeaders
      *
-     * @return BunqResponseCustomerStatementExport
+     * @return BunqResponseExportStatement
      */
     public static function get(
-        int $customerStatementExportId,
+        int $exportStatementId,
         int $monetaryAccountId = null,
         array $customHeaders = []
-    ): BunqResponseCustomerStatementExport {
+    ): BunqResponseExportStatement {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_READ,
-                [
-                    static::determineUserId(),
-                    static::determineMonetaryAccountId($monetaryAccountId),
-                    $customerStatementExportId
-                ]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId), $exportStatementId]
             ),
             [],
             $customHeaders
         );
 
-        return BunqResponseCustomerStatementExport::castFromBunqResponse(
+        return BunqResponseExportStatement::castFromBunqResponse(
             static::fromJson($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
@@ -236,13 +249,13 @@ class CustomerStatementExport extends BunqModel
      * @param string[] $params
      * @param string[] $customHeaders
      *
-     * @return BunqResponseCustomerStatementExportList
+     * @return BunqResponseExportStatementList
      */
     public static function listing(
         int $monetaryAccountId = null,
         array $params = [],
         array $customHeaders = []
-    ): BunqResponseCustomerStatementExportList {
+    ): BunqResponseExportStatementList {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
@@ -253,19 +266,19 @@ class CustomerStatementExport extends BunqModel
             $customHeaders
         );
 
-        return BunqResponseCustomerStatementExportList::castFromBunqResponse(
+        return BunqResponseExportStatementList::castFromBunqResponse(
             static::fromJsonList($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 
     /**
      * @param string[] $customHeaders
-     * @param int $customerStatementExportId
+     * @param int $exportStatementId
      *
      * @return BunqResponseNull
      */
     public static function delete(
-        int $customerStatementExportId,
+        int $exportStatementId,
         int $monetaryAccountId = null,
         array $customHeaders = []
     ): BunqResponseNull {
@@ -273,11 +286,7 @@ class CustomerStatementExport extends BunqModel
         $responseRaw = $apiClient->delete(
             vsprintf(
                 self::ENDPOINT_URL_DELETE,
-                [
-                    static::determineUserId(),
-                    static::determineMonetaryAccountId($monetaryAccountId),
-                    $customerStatementExportId
-                ]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId), $exportStatementId]
             ),
             $customHeaders
         );

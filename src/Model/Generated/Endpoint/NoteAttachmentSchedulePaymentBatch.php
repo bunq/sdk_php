@@ -126,12 +126,12 @@ class NoteAttachmentSchedulePaymentBatch extends BunqModel
                 [
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
-                    $schedulePaymentBatchId
+                    $schedulePaymentBatchId,
                 ]
             ),
             [
                 self::FIELD_DESCRIPTION => $description,
-                self::FIELD_ATTACHMENT_ID => $attachmentId
+                self::FIELD_ATTACHMENT_ID => $attachmentId,
             ],
             $customHeaders
         );
@@ -165,7 +165,7 @@ class NoteAttachmentSchedulePaymentBatch extends BunqModel
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
                     $schedulePaymentBatchId,
-                    $noteAttachmentSchedulePaymentBatchId
+                    $noteAttachmentSchedulePaymentBatchId,
                 ]
             ),
             [self::FIELD_DESCRIPTION => $description],
@@ -198,7 +198,7 @@ class NoteAttachmentSchedulePaymentBatch extends BunqModel
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
                     $schedulePaymentBatchId,
-                    $noteAttachmentSchedulePaymentBatchId
+                    $noteAttachmentSchedulePaymentBatchId,
                 ]
             ),
             $customHeaders
@@ -235,7 +235,7 @@ class NoteAttachmentSchedulePaymentBatch extends BunqModel
                 [
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
-                    $schedulePaymentBatchId
+                    $schedulePaymentBatchId,
                 ]
             ),
             $params,
@@ -269,7 +269,7 @@ class NoteAttachmentSchedulePaymentBatch extends BunqModel
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
                     $schedulePaymentBatchId,
-                    $noteAttachmentSchedulePaymentBatchId
+                    $noteAttachmentSchedulePaymentBatchId,
                 ]
             ),
             [],

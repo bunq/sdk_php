@@ -45,7 +45,7 @@ class ShareInviteMonetaryAccountAmountUsed extends BunqModel
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
                     $shareInviteMonetaryAccountInquiryId,
-                    $shareInviteMonetaryAccountAmountUsedId
+                    $shareInviteMonetaryAccountAmountUsedId,
                 ]
             ),
             $customHeaders

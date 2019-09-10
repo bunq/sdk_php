@@ -104,7 +104,7 @@ class NoteTextSchedulePaymentBatch extends BunqModel
                 [
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
-                    $schedulePaymentBatchId
+                    $schedulePaymentBatchId,
                 ]
             ),
             [self::FIELD_CONTENT => $content],
@@ -140,7 +140,7 @@ class NoteTextSchedulePaymentBatch extends BunqModel
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
                     $schedulePaymentBatchId,
-                    $noteTextSchedulePaymentBatchId
+                    $noteTextSchedulePaymentBatchId,
                 ]
             ),
             [self::FIELD_CONTENT => $content],
@@ -173,7 +173,7 @@ class NoteTextSchedulePaymentBatch extends BunqModel
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
                     $schedulePaymentBatchId,
-                    $noteTextSchedulePaymentBatchId
+                    $noteTextSchedulePaymentBatchId,
                 ]
             ),
             $customHeaders
@@ -210,7 +210,7 @@ class NoteTextSchedulePaymentBatch extends BunqModel
                 [
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
-                    $schedulePaymentBatchId
+                    $schedulePaymentBatchId,
                 ]
             ),
             $params,
@@ -244,7 +244,7 @@ class NoteTextSchedulePaymentBatch extends BunqModel
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
                     $schedulePaymentBatchId,
-                    $noteTextSchedulePaymentBatchId
+                    $noteTextSchedulePaymentBatchId,
                 ]
             ),
             [],

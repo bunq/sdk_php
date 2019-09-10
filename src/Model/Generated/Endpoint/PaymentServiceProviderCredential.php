@@ -182,7 +182,7 @@ class PaymentServiceProviderCredential extends BunqModel
             [
                 self::FIELD_CLIENT_PAYMENT_SERVICE_PROVIDER_CERTIFICATE => $clientPaymentServiceProviderCertificate,
                 self::FIELD_CLIENT_PAYMENT_SERVICE_PROVIDER_CERTIFICATE_CHAIN => $clientPaymentServiceProviderCertificateChain,
-                self::FIELD_CLIENT_PUBLIC_KEY_SIGNATURE => $clientPublicKeySignature
+                self::FIELD_CLIENT_PUBLIC_KEY_SIGNATURE => $clientPublicKeySignature,
             ],
             $customHeaders
         );

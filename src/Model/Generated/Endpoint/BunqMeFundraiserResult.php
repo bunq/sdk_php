@@ -76,7 +76,7 @@ class BunqMeFundraiserResult extends BunqModel
                 [
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
-                    $bunqMeFundraiserResultId
+                    $bunqMeFundraiserResultId,
                 ]
             ),
             [],

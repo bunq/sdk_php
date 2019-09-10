@@ -24,14 +24,24 @@ class CardDebitTest extends BunqSdkTestBase
     const CARD_PIN_CODE_ASSIGNMENT = 'PRIMARY';
 
     /**
+     * Card type.
+     */
+    const CARD_TYPE_MAESTRO = 'MASTERCARD';
+
+    /**
      * The prefix for the second line on the card.
      */
-    const CARD_SECOND_LINE_PREFIX = 'card_';
+    const CARD_SECOND_LINE_PREFIX = 'card-';
 
     /**
      *  Index number of the first item in an array.
      */
     const INDEX_FIRST = 0;
+
+    /**
+     *  Index number of the second item in an array.
+     */
+    const INDEX_SECOND = 1;
 
     /**
      * @var string
@@ -53,10 +63,10 @@ class CardDebitTest extends BunqSdkTestBase
     public function testOrderingDebitCard()
     {
         $cardDebit = CardDebit::create(
-            uniqid(self::CARD_SECOND_LINE_PREFIX),
+            $this->generateCardDescription(),
             static::$nameOnCard[self::INDEX_FIRST],
+            self::CARD_TYPE_MAESTRO,
             $this->getUserAlias(),
-            null,
             [
                 new CardPinAssignment(
                     self::CARD_PIN_CODE_ASSIGNMENT,
@@ -71,5 +81,18 @@ class CardDebitTest extends BunqSdkTestBase
         static::assertEquals($cardDebit->getNameOnCard(), $card->getNameOnCard());
         static::assertEquals($cardDebit->getCreated(), $card->getCreated());
         static::assertEquals($cardDebit->getSecondLine(), $card->getSecondLine());
+    }
+
+    /**
+     * @param int $length
+     *
+     * @return string
+     */
+    private function generateCardDescription($length = 6): string
+    {
+        $allCharacter = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $mixedString = str_shuffle(str_repeat($allCharacter, ceil($length / strlen($allCharacter))));
+
+        return self::CARD_SECOND_LINE_PREFIX . substr($mixedString, self::INDEX_SECOND, $length);
     }
 }

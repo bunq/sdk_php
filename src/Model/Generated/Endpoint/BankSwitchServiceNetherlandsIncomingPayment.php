@@ -56,7 +56,7 @@ class BankSwitchServiceNetherlandsIncomingPayment extends BunqModel
                 [
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
-                    $bankSwitchServiceNetherlandsIncomingPaymentId
+                    $bankSwitchServiceNetherlandsIncomingPaymentId,
                 ]
             ),
             [],

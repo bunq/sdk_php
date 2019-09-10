@@ -206,7 +206,7 @@ class CardDebit extends BunqModel
     /**
      * The type of card to order. Can be MAESTRO or MASTERCARD.
      *
-     * @var string|null
+     * @var string
      */
     protected $typeFieldForRequest;
 
@@ -231,12 +231,12 @@ class CardDebit extends BunqModel
      *                                                    and it can be empty.
      * @param string $nameOnCard                          The user's name as it will be on the card.
      *                                                    Check 'card-name' for the available card names for a user.
+     * @param string $type                                The type of card to order. Can be MAESTRO or
+     *                                                    MASTERCARD.
      * @param Pointer|null $alias                         The pointer to the monetary account that will
      *                                                    be connected at first with the card. Its IBAN code is also
      *                                                    the one that will be printed on the card itself. The pointer
      *                                                    must be of type IBAN.
-     * @param string|null $type                           The type of card to order. Can be MAESTRO or
-     *                                                    MASTERCARD.
      * @param CardPinAssignment[]|null $pinCodeAssignment Array of Types, PINs,
      *                                                    account IDs assigned to the card.
      * @param int|null $monetaryAccountIdFallback         ID of the MA to be used as
@@ -246,8 +246,8 @@ class CardDebit extends BunqModel
     public function __construct(
         string $secondLine,
         string $nameOnCard,
+        string $type,
         Pointer $alias = null,
-        string $type = null,
         array $pinCodeAssignment = null,
         int $monetaryAccountIdFallback = null
     ) {
@@ -267,12 +267,12 @@ class CardDebit extends BunqModel
      *                                                    and it can be empty.
      * @param string $nameOnCard                          The user's name as it will be on the card.
      *                                                    Check 'card-name' for the available card names for a user.
+     * @param string $type                                The type of card to order. Can be MAESTRO or
+     *                                                    MASTERCARD.
      * @param Pointer|null $alias                         The pointer to the monetary account that will
      *                                                    be connected at first with the card. Its IBAN code is also
      *                                                    the one that will be printed on the card itself. The pointer
      *                                                    must be of type IBAN.
-     * @param string|null $type                           The type of card to order. Can be MAESTRO or
-     *                                                    MASTERCARD.
      * @param CardPinAssignment[]|null $pinCodeAssignment Array of Types, PINs,
      *                                                    account IDs assigned to the card.
      * @param int|null $monetaryAccountIdFallback         ID of the MA to be used as
@@ -285,8 +285,8 @@ class CardDebit extends BunqModel
     public static function create(
         string $secondLine,
         string $nameOnCard,
+        string $type,
         Pointer $alias = null,
-        string $type = null,
         array $pinCodeAssignment = null,
         int $monetaryAccountIdFallback = null,
         array $customHeaders = []
@@ -304,7 +304,7 @@ class CardDebit extends BunqModel
                 self::FIELD_ALIAS => $alias,
                 self::FIELD_TYPE => $type,
                 self::FIELD_PIN_CODE_ASSIGNMENT => $pinCodeAssignment,
-                self::FIELD_MONETARY_ACCOUNT_ID_FALLBACK => $monetaryAccountIdFallback
+                self::FIELD_MONETARY_ACCOUNT_ID_FALLBACK => $monetaryAccountIdFallback,
             ],
             $customHeaders
         );

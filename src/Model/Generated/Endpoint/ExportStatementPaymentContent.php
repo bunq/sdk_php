@@ -48,7 +48,7 @@ class ExportStatementPaymentContent extends BunqModel
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
                     $eventId,
-                    $statementId
+                    $statementId,
                 ]
             ),
             [],

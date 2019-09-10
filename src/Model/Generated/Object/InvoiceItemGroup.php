@@ -54,7 +54,7 @@ class InvoiceItemGroup extends BunqModel
     /**
      * The invoice items in the group.
      *
-     * @var InvoiceItem
+     * @var InvoiceItem[]
      */
     protected $item;
 
@@ -193,7 +193,7 @@ class InvoiceItemGroup extends BunqModel
     /**
      * The invoice items in the group.
      *
-     * @return InvoiceItem
+     * @return InvoiceItem[]
      */
     public function getItem()
     {
@@ -201,7 +201,7 @@ class InvoiceItemGroup extends BunqModel
     }
 
     /**
-     * @param InvoiceItem $item
+     * @param InvoiceItem[] $item
      *
      * @deprecated User should not be able to set values via setters, use
      *             constructor.

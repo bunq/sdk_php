@@ -136,7 +136,7 @@ class NoteTextDraftPayment extends BunqModel
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
                     $draftPaymentId,
-                    $noteTextDraftPaymentId
+                    $noteTextDraftPaymentId,
                 ]
             ),
             [self::FIELD_CONTENT => $content],
@@ -169,7 +169,7 @@ class NoteTextDraftPayment extends BunqModel
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
                     $draftPaymentId,
-                    $noteTextDraftPaymentId
+                    $noteTextDraftPaymentId,
                 ]
             ),
             $customHeaders
@@ -236,7 +236,7 @@ class NoteTextDraftPayment extends BunqModel
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
                     $draftPaymentId,
-                    $noteTextDraftPaymentId
+                    $noteTextDraftPaymentId,
                 ]
             ),
             [],

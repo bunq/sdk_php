@@ -150,7 +150,7 @@ class DraftShareInviteBank extends BunqModel
             [
                 self::FIELD_STATUS => $status,
                 self::FIELD_EXPIRATION => $expiration,
-                self::FIELD_DRAFT_SHARE_SETTINGS => $draftShareSettings
+                self::FIELD_DRAFT_SHARE_SETTINGS => $draftShareSettings,
             ],
             $customHeaders
         );
@@ -217,7 +217,7 @@ class DraftShareInviteBank extends BunqModel
             [
                 self::FIELD_STATUS => $status,
                 self::FIELD_EXPIRATION => $expiration,
-                self::FIELD_DRAFT_SHARE_SETTINGS => $draftShareSettings
+                self::FIELD_DRAFT_SHARE_SETTINGS => $draftShareSettings,
             ],
             $customHeaders
         );

@@ -126,12 +126,12 @@ class NoteAttachmentSofortMerchantTransaction extends BunqModel
                 [
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
-                    $sofortMerchantTransactionId
+                    $sofortMerchantTransactionId,
                 ]
             ),
             [
                 self::FIELD_DESCRIPTION => $description,
-                self::FIELD_ATTACHMENT_ID => $attachmentId
+                self::FIELD_ATTACHMENT_ID => $attachmentId,
             ],
             $customHeaders
         );
@@ -165,7 +165,7 @@ class NoteAttachmentSofortMerchantTransaction extends BunqModel
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
                     $sofortMerchantTransactionId,
-                    $noteAttachmentSofortMerchantTransactionId
+                    $noteAttachmentSofortMerchantTransactionId,
                 ]
             ),
             [self::FIELD_DESCRIPTION => $description],
@@ -198,7 +198,7 @@ class NoteAttachmentSofortMerchantTransaction extends BunqModel
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
                     $sofortMerchantTransactionId,
-                    $noteAttachmentSofortMerchantTransactionId
+                    $noteAttachmentSofortMerchantTransactionId,
                 ]
             ),
             $customHeaders
@@ -235,7 +235,7 @@ class NoteAttachmentSofortMerchantTransaction extends BunqModel
                 [
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
-                    $sofortMerchantTransactionId
+                    $sofortMerchantTransactionId,
                 ]
             ),
             $params,
@@ -269,7 +269,7 @@ class NoteAttachmentSofortMerchantTransaction extends BunqModel
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
                     $sofortMerchantTransactionId,
-                    $noteAttachmentSofortMerchantTransactionId
+                    $noteAttachmentSofortMerchantTransactionId,
                 ]
             ),
             [],

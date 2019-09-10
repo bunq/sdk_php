@@ -2,9 +2,7 @@
 namespace bunq\test\Model\Generated\Endpoint;
 
 use bunq\Model\Generated\Endpoint\BunqResponseInt;
-use bunq\Model\Generated\Endpoint\ChatMessageText;
 use bunq\Model\Generated\Endpoint\Payment;
-use bunq\Model\Generated\Endpoint\PaymentChat;
 use bunq\Model\Generated\Object\Amount;
 use bunq\test\BunqSdkTestBase;
 

@@ -7,8 +7,6 @@
         <testsuite name="ParaTest Fixtures">
             <directory>./tests/</directory>
         </testsuite>
-    </testsuites>
-    <testsuites>
         <testsuite name="Test Suite">
             <directory>./tests</directory>
         </testsuite>

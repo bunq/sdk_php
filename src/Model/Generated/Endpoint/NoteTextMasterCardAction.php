@@ -136,7 +136,7 @@ class NoteTextMasterCardAction extends BunqModel
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
                     $mastercardActionId,
-                    $noteTextMasterCardActionId
+                    $noteTextMasterCardActionId,
                 ]
             ),
             [self::FIELD_CONTENT => $content],
@@ -169,7 +169,7 @@ class NoteTextMasterCardAction extends BunqModel
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
                     $mastercardActionId,
-                    $noteTextMasterCardActionId
+                    $noteTextMasterCardActionId,
                 ]
             ),
             $customHeaders
@@ -236,7 +236,7 @@ class NoteTextMasterCardAction extends BunqModel
                     static::determineUserId(),
                     static::determineMonetaryAccountId($monetaryAccountId),
                     $mastercardActionId,
-                    $noteTextMasterCardActionId
+                    $noteTextMasterCardActionId,
                 ]
             ),
             [],
