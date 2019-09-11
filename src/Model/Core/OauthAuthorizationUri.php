@@ -13,8 +13,8 @@ class OauthAuthorizationUri extends BunqModel
     /**
      * Uri constants.
      */
-    const AUTH_URI_FORMAT_PRODUCTION = 'https://oauth.bunq.com/auth?';
-    const AUTH_URI_FORMAT_SANDBOX = 'https://oauth.sandbox.bunq.com/auth?';
+    const AUTH_URI_FORMAT_PRODUCTION = 'https://oauth.bunq.com/auth?%s';
+    const AUTH_URI_FORMAT_SANDBOX = 'https://oauth.sandbox.bunq.com/auth?%s';
 
     /**
      * Field constants.

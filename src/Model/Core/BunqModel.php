@@ -210,6 +210,15 @@ abstract class BunqModel implements JsonSerializable
                 /** @var BunqModel $modelClassNameQualified */
                 $modelClassNameQualified = ModelUtil::determineModelClassNameQualified($fieldType);
 
+                $parentClassName = $property->getDeclaringClass()->getName();
+                $additionalWrappingKey = BunqModelWrapper::determineWrappingKey($parentClassName, $property->getName());
+
+                if (!is_null($additionalWrappingKey)) {
+                    if (isset($contents[$additionalWrappingKey])) {
+                        return $modelClassNameQualified::createFromResponseArray($contents[$additionalWrappingKey]);
+                    }
+                }
+
                 return $modelClassNameQualified::createFromResponseArray($contents);
             }
         } else {
