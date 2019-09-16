@@ -2,7 +2,18 @@
 
 ## [Unreleased](https://github.com/bunq/sdk_php/tree/HEAD)
 
-[Full Changelog](https://github.com/bunq/sdk_php/compare/1.10.16...HEAD)
+[Full Changelog](https://github.com/bunq/sdk_php/compare/1.12.0...HEAD)
+
+**Closed issues:**
+
+- 123456 [\#180](https://github.com/bunq/sdk_php/issues/180)
+
+**Merged pull requests:**
+
+- Fix decoding of double-wrapped objects. Updated OAuth endpoints. [\#181](https://github.com/bunq/sdk_php/pull/181) ([NickvandeGroes](https://github.com/NickvandeGroes))
+
+## [1.12.0](https://github.com/bunq/sdk_php/tree/1.12.0) (2019-09-10)
+[Full Changelog](https://github.com/bunq/sdk_php/compare/1.10.16...1.12.0)
 
 **Closed issues:**
 
@@ -145,6 +156,7 @@
 **Merged pull requests:**
 
 - Removed userContext.php \(bunq/sdk\_php\#114\) [\#116](https://github.com/bunq/sdk_php/pull/116) ([OGKevin](https://github.com/OGKevin))
+- Add response id to request error. \(bunq/sdk\_php\#88\) [\#93](https://github.com/bunq/sdk_php/pull/93) ([OGKevin](https://github.com/OGKevin))
 - Move to new sandbox bunq/sdk\_php\#149 [\#150](https://github.com/bunq/sdk_php/pull/150) ([OGKevin](https://github.com/OGKevin))
 
 ## [0.13.1](https://github.com/bunq/sdk_php/tree/0.13.1) (2018-03-21)
@@ -191,7 +203,6 @@
 - Throw exception when private key generation fails. \(bunq/sdk\_php\#102\) [\#105](https://github.com/bunq/sdk_php/pull/105) ([OGKevin](https://github.com/OGKevin))
 - Added missing field id for TokenQrRequestIdeal. \(bunq/sdk\_php\#97\) [\#100](https://github.com/bunq/sdk_php/pull/100) ([OGKevin](https://github.com/OGKevin))
 - Regenerated code to add missing id field. \(bunq/sdk\_php\#81\) [\#95](https://github.com/bunq/sdk_php/pull/95) ([OGKevin](https://github.com/OGKevin))
-- Add response id to request error. \(bunq/sdk\_php\#88\) [\#93](https://github.com/bunq/sdk_php/pull/93) ([OGKevin](https://github.com/OGKevin))
 - Configure Zappr [\#92](https://github.com/bunq/sdk_php/pull/92) ([OGKevin](https://github.com/OGKevin))
 - Add more info to templates. \(bunq/sdk\_php\#89\) [\#90](https://github.com/bunq/sdk_php/pull/90) ([OGKevin](https://github.com/OGKevin))
 - Bunq update 7  [\#113](https://github.com/bunq/sdk_php/pull/113) ([OGKevin](https://github.com/OGKevin))
@@ -312,6 +323,7 @@
 - \#33 bunq response [\#34](https://github.com/bunq/sdk_php/pull/34) ([dnl-blkv](https://github.com/dnl-blkv))
 - \#5 Allow setting a proxy [\#27](https://github.com/bunq/sdk_php/pull/27) ([qurben](https://github.com/qurben))
 - Introduction of Grumphp [\#24](https://github.com/bunq/sdk_php/pull/24) ([cafferata](https://github.com/cafferata))
+- Restructure project [\#12](https://github.com/bunq/sdk_php/pull/12) ([LauLaman](https://github.com/LauLaman))
 
 **Fixed bugs:**
 
@@ -330,7 +342,6 @@
 - Changes the composer PHP requirement [\#19](https://github.com/bunq/sdk_php/pull/19) ([cafferata](https://github.com/cafferata))
 - Removed the default PHPStorm constructor header\(s\) [\#18](https://github.com/bunq/sdk_php/pull/18) ([cafferata](https://github.com/cafferata))
 - Add readme for tests. [\#16](https://github.com/bunq/sdk_php/pull/16) ([OGKevin](https://github.com/OGKevin))
-- Restructure project [\#12](https://github.com/bunq/sdk_php/pull/12) ([LauLaman](https://github.com/LauLaman))
 - Add PHP-CS and PHPStan dependencies and scripts to execute [\#3](https://github.com/bunq/sdk_php/pull/3) ([holtkamp](https://github.com/holtkamp))
 - Add first series of unit-tests [\#1](https://github.com/bunq/sdk_php/pull/1) ([OGKevin](https://github.com/OGKevin))
 
