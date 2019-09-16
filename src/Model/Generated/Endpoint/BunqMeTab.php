@@ -1,8 +1,9 @@
 <?php
-
 namespace bunq\Model\Generated\Endpoint;
 
+use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
+use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 
 /**
@@ -114,44 +115,36 @@ class BunqMeTab extends BunqModel
 
     /**
      * @param BunqMeTabEntry $bunqmeTabEntry The bunq.me entry containing the
-     *                                       payment information.
-     * @param string|null $status            The status of the bunq.me. Ignored in POST
-     *                                       requests but can be used for cancelling the bunq.me by setting status as
-     *                                       CANCELLED with a PUT request.
+     * payment information.
+     * @param string|null $status The status of the bunq.me. Ignored in POST
+     * requests but can be used for cancelling the bunq.me by setting status as
+     * CANCELLED with a PUT request.
      */
-    public function __construct(BunqMeTabEntry $bunqmeTabEntry, string $status = null)
+    public function __construct(BunqMeTabEntry  $bunqmeTabEntry, string  $status = null)
     {
         $this->bunqmeTabEntryFieldForRequest = $bunqmeTabEntry;
         $this->statusFieldForRequest = $status;
-    }
-
-    /**
+    }    /**
      * @param BunqMeTabEntry $bunqmeTabEntry The bunq.me entry containing the
-     *                                       payment information.
+     * payment information.
      * @param int|null $monetaryAccountId
-     * @param string|null $status            The status of the bunq.me. Ignored in POST
-     *                                       requests but can be used for cancelling the bunq.me by setting status as
-     *                                       CANCELLED with a PUT request.
+     * @param string|null $status The status of the bunq.me. Ignored in POST
+     * requests but can be used for cancelling the bunq.me by setting status as
+     * CANCELLED with a PUT request.
      * @param string[] $customHeaders
      *
      * @return BunqResponseInt
      */
-    public static function create(
-        BunqMeTabEntry $bunqmeTabEntry,
-        int $monetaryAccountId = null,
-        string $status = null,
-        array $customHeaders = []
-    ): BunqResponseInt {
+    public static function create(BunqMeTabEntry  $bunqmeTabEntry, int $monetaryAccountId = null, string  $status = null, array $customHeaders = []): BunqResponseInt
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->post(
             vsprintf(
                 self::ENDPOINT_URL_CREATE,
                 [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId)]
             ),
-            [
-                self::FIELD_BUNQME_TAB_ENTRY => $bunqmeTabEntry,
-                self::FIELD_STATUS => $status,
-            ],
+             [self::FIELD_BUNQME_TAB_ENTRY => $bunqmeTabEntry,
+self::FIELD_STATUS => $status],
             $customHeaders
         );
 
@@ -164,18 +157,14 @@ class BunqMeTab extends BunqModel
      * @param int $bunqMeTabId
      * @param int|null $monetaryAccountId
      * @param string|null $status The status of the bunq.me. Ignored in POST
-     *                            requests but can be used for cancelling the bunq.me by setting status as
-     *                            CANCELLED with a PUT request.
+     * requests but can be used for cancelling the bunq.me by setting status as
+     * CANCELLED with a PUT request.
      * @param string[] $customHeaders
      *
      * @return BunqResponseInt
      */
-    public static function update(
-        int $bunqMeTabId,
-        int $monetaryAccountId = null,
-        string $status = null,
-        array $customHeaders = []
-    ): BunqResponseInt {
+    public static function update(int $bunqMeTabId, int $monetaryAccountId = null, string  $status = null, array $customHeaders = []): BunqResponseInt
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->put(
             vsprintf(
@@ -201,11 +190,8 @@ class BunqMeTab extends BunqModel
      *
      * @return BunqResponseBunqMeTabList
      */
-    public static function listing(
-        int $monetaryAccountId = null,
-        array $params = [],
-        array $customHeaders = []
-    ): BunqResponseBunqMeTabList {
+    public static function listing(int $monetaryAccountId = null, array $params = [], array $customHeaders = []): BunqResponseBunqMeTabList
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
@@ -228,11 +214,8 @@ class BunqMeTab extends BunqModel
      *
      * @return BunqResponseBunqMeTab
      */
-    public static function get(
-        int $bunqMeTabId,
-        int $monetaryAccountId = null,
-        array $customHeaders = []
-    ): BunqResponseBunqMeTab {
+    public static function get(int $bunqMeTabId, int $monetaryAccountId = null, array $customHeaders = []): BunqResponseBunqMeTab
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
@@ -259,11 +242,10 @@ class BunqMeTab extends BunqModel
     }
 
     /**
-     * @param int $id
-     *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
+     * @param int $id
      */
     public function setId($id)
     {
@@ -281,11 +263,10 @@ class BunqMeTab extends BunqModel
     }
 
     /**
-     * @param string $created
-     *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
+     * @param string $created
      */
     public function setCreated($created)
     {
@@ -303,11 +284,10 @@ class BunqMeTab extends BunqModel
     }
 
     /**
-     * @param string $updated
-     *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
+     * @param string $updated
      */
     public function setUpdated($updated)
     {
@@ -325,11 +305,10 @@ class BunqMeTab extends BunqModel
     }
 
     /**
-     * @param string $timeExpiry
-     *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
+     * @param string $timeExpiry
      */
     public function setTimeExpiry($timeExpiry)
     {
@@ -347,11 +326,10 @@ class BunqMeTab extends BunqModel
     }
 
     /**
-     * @param int $monetaryAccountId
-     *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
+     * @param int $monetaryAccountId
      */
     public function setMonetaryAccountId($monetaryAccountId)
     {
@@ -370,11 +348,10 @@ class BunqMeTab extends BunqModel
     }
 
     /**
-     * @param string $status
-     *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
+     * @param string $status
      */
     public function setStatus($status)
     {
@@ -392,11 +369,10 @@ class BunqMeTab extends BunqModel
     }
 
     /**
-     * @param string $bunqmeTabShareUrl
-     *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
+     * @param string $bunqmeTabShareUrl
      */
     public function setBunqmeTabShareUrl($bunqmeTabShareUrl)
     {
@@ -414,11 +390,10 @@ class BunqMeTab extends BunqModel
     }
 
     /**
-     * @param BunqMeTabEntry $bunqmeTabEntry
-     *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
+     * @param BunqMeTabEntry $bunqmeTabEntry
      */
     public function setBunqmeTabEntry($bunqmeTabEntry)
     {
@@ -436,11 +411,10 @@ class BunqMeTab extends BunqModel
     }
 
     /**
-     * @param BunqMeTabResultInquiry[] $resultInquiries
-     *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
+     * @param BunqMeTabResultInquiry[] $resultInquiries
      */
     public function setResultInquiries($resultInquiries)
     {

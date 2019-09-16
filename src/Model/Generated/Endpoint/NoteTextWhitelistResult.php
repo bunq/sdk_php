@@ -1,7 +1,7 @@
 <?php
-
 namespace bunq\Model\Generated\Endpoint;
 
+use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
 use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
@@ -78,12 +78,10 @@ class NoteTextWhitelistResult extends BunqModel
     /**
      * @param string|null $content The content of the note.
      */
-    public function __construct(string $content = null)
+    public function __construct(string  $content = null)
     {
         $this->contentFieldForRequest = $content;
-    }
-
-    /**
+    }    /**
      * @param int $whitelistId
      * @param int $whitelistResultId
      * @param int|null $monetaryAccountId
@@ -92,25 +90,15 @@ class NoteTextWhitelistResult extends BunqModel
      *
      * @return BunqResponseInt
      */
-    public static function create(
-        int $whitelistId,
-        int $whitelistResultId,
-        int $monetaryAccountId = null,
-        string $content = null,
-        array $customHeaders = []
-    ): BunqResponseInt {
+    public static function create(int $whitelistId, int $whitelistResultId, int $monetaryAccountId = null, string  $content = null, array $customHeaders = []): BunqResponseInt
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->post(
             vsprintf(
                 self::ENDPOINT_URL_CREATE,
-                [
-                    static::determineUserId(),
-                    static::determineMonetaryAccountId($monetaryAccountId),
-                    $whitelistId,
-                    $whitelistResultId,
-                ]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId), $whitelistId, $whitelistResultId]
             ),
-            [self::FIELD_CONTENT => $content],
+             [self::FIELD_CONTENT => $content],
             $customHeaders
         );
 
@@ -129,25 +117,13 @@ class NoteTextWhitelistResult extends BunqModel
      *
      * @return BunqResponseInt
      */
-    public static function update(
-        int $whitelistId,
-        int $whitelistResultId,
-        int $noteTextWhitelistResultId,
-        int $monetaryAccountId = null,
-        string $content = null,
-        array $customHeaders = []
-    ): BunqResponseInt {
+    public static function update(int $whitelistId, int $whitelistResultId, int $noteTextWhitelistResultId, int $monetaryAccountId = null, string  $content = null, array $customHeaders = []): BunqResponseInt
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->put(
             vsprintf(
                 self::ENDPOINT_URL_UPDATE,
-                [
-                    static::determineUserId(),
-                    static::determineMonetaryAccountId($monetaryAccountId),
-                    $whitelistId,
-                    $whitelistResultId,
-                    $noteTextWhitelistResultId,
-                ]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId), $whitelistId, $whitelistResultId, $noteTextWhitelistResultId]
             ),
             [self::FIELD_CONTENT => $content],
             $customHeaders
@@ -166,24 +142,13 @@ class NoteTextWhitelistResult extends BunqModel
      *
      * @return BunqResponseNull
      */
-    public static function delete(
-        int $whitelistId,
-        int $whitelistResultId,
-        int $noteTextWhitelistResultId,
-        int $monetaryAccountId = null,
-        array $customHeaders = []
-    ): BunqResponseNull {
+    public static function delete(int $whitelistId, int $whitelistResultId, int $noteTextWhitelistResultId, int $monetaryAccountId = null, array $customHeaders = []): BunqResponseNull
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->delete(
             vsprintf(
                 self::ENDPOINT_URL_DELETE,
-                [
-                    static::determineUserId(),
-                    static::determineMonetaryAccountId($monetaryAccountId),
-                    $whitelistId,
-                    $whitelistResultId,
-                    $noteTextWhitelistResultId,
-                ]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId), $whitelistId, $whitelistResultId, $noteTextWhitelistResultId]
             ),
             $customHeaders
         );
@@ -207,23 +172,13 @@ class NoteTextWhitelistResult extends BunqModel
      *
      * @return BunqResponseNoteTextWhitelistResultList
      */
-    public static function listing(
-        int $whitelistId,
-        int $whitelistResultId,
-        int $monetaryAccountId = null,
-        array $params = [],
-        array $customHeaders = []
-    ): BunqResponseNoteTextWhitelistResultList {
+    public static function listing(int $whitelistId, int $whitelistResultId, int $monetaryAccountId = null, array $params = [], array $customHeaders = []): BunqResponseNoteTextWhitelistResultList
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_LISTING,
-                [
-                    static::determineUserId(),
-                    static::determineMonetaryAccountId($monetaryAccountId),
-                    $whitelistId,
-                    $whitelistResultId,
-                ]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId), $whitelistId, $whitelistResultId]
             ),
             $params,
             $customHeaders
@@ -243,24 +198,13 @@ class NoteTextWhitelistResult extends BunqModel
      *
      * @return BunqResponseNoteTextWhitelistResult
      */
-    public static function get(
-        int $whitelistId,
-        int $whitelistResultId,
-        int $noteTextWhitelistResultId,
-        int $monetaryAccountId = null,
-        array $customHeaders = []
-    ): BunqResponseNoteTextWhitelistResult {
+    public static function get(int $whitelistId, int $whitelistResultId, int $noteTextWhitelistResultId, int $monetaryAccountId = null, array $customHeaders = []): BunqResponseNoteTextWhitelistResult
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_READ,
-                [
-                    static::determineUserId(),
-                    static::determineMonetaryAccountId($monetaryAccountId),
-                    $whitelistId,
-                    $whitelistResultId,
-                    $noteTextWhitelistResultId,
-                ]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId), $whitelistId, $whitelistResultId, $noteTextWhitelistResultId]
             ),
             [],
             $customHeaders
@@ -282,11 +226,10 @@ class NoteTextWhitelistResult extends BunqModel
     }
 
     /**
-     * @param int $id
-     *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
+     * @param int $id
      */
     public function setId($id)
     {
@@ -304,11 +247,10 @@ class NoteTextWhitelistResult extends BunqModel
     }
 
     /**
-     * @param string $created
-     *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
+     * @param string $created
      */
     public function setCreated($created)
     {
@@ -326,11 +268,10 @@ class NoteTextWhitelistResult extends BunqModel
     }
 
     /**
-     * @param string $updated
-     *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
+     * @param string $updated
      */
     public function setUpdated($updated)
     {
@@ -348,11 +289,10 @@ class NoteTextWhitelistResult extends BunqModel
     }
 
     /**
-     * @param LabelUser $labelUserCreator
-     *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
+     * @param LabelUser $labelUserCreator
      */
     public function setLabelUserCreator($labelUserCreator)
     {
@@ -370,11 +310,10 @@ class NoteTextWhitelistResult extends BunqModel
     }
 
     /**
-     * @param string $content
-     *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
+     * @param string $content
      */
     public function setContent($content)
     {
