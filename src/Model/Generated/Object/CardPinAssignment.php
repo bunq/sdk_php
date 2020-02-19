@@ -1,5 +1,4 @@
 <?php
-
 namespace bunq\Model\Generated\Object;
 
 use bunq\Model\Core\BunqModel;
@@ -45,11 +44,11 @@ class CardPinAssignment extends BunqModel
     protected $monetaryAccountIdFieldForRequest;
 
     /**
-     * @param string $type                PIN type. Can be PRIMARY, SECONDARY or TERTIARY
-     * @param string|null $pinCode        The 4 digit PIN to be assigned to this
-     *                                    account.
+     * @param string $type PIN type. Can be PRIMARY, SECONDARY or TERTIARY
+     * @param string|null $pinCode The 4 digit PIN to be assigned to this
+     * account.
      * @param int|null $monetaryAccountId The ID of the monetary account to
-     *                                    assign to this pin for the card.
+     * assign to this pin for the card.
      */
     public function __construct(string $type, string $pinCode = null, int $monetaryAccountId = null)
     {
@@ -72,7 +71,7 @@ class CardPinAssignment extends BunqModel
      * @param string $type
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setType($type)
@@ -94,7 +93,7 @@ class CardPinAssignment extends BunqModel
      * @param int $monetaryAccountId
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setMonetaryAccountId($monetaryAccountId)

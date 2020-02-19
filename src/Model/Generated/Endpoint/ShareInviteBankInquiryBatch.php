@@ -1,5 +1,4 @@
 <?php
-
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Model\Core\BunqModel;
@@ -18,7 +17,7 @@ class ShareInviteBankInquiryBatch extends BunqModel
     /**
      * The list of share invite bank inquiries that were made.
      *
-     * @var ShareInviteBankInquiry[]
+     * @var ShareInviteMonetaryAccountInquiry[]
      */
     protected $shareInviteBankInquiries;
 
@@ -33,7 +32,7 @@ class ShareInviteBankInquiryBatch extends BunqModel
     /**
      * The list of share invite bank inquiries that were made.
      *
-     * @return ShareInviteBankInquiry[]
+     * @return ShareInviteMonetaryAccountInquiry[]
      */
     public function getShareInviteBankInquiries()
     {
@@ -41,10 +40,10 @@ class ShareInviteBankInquiryBatch extends BunqModel
     }
 
     /**
-     * @param ShareInviteBankInquiry[] $shareInviteBankInquiries
+     * @param ShareInviteMonetaryAccountInquiry[] $shareInviteBankInquiries
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setShareInviteBankInquiries($shareInviteBankInquiries)
@@ -67,7 +66,7 @@ class ShareInviteBankInquiryBatch extends BunqModel
      * @param LabelMonetaryAccount $alias
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setAlias($alias)

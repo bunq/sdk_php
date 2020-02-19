@@ -1,5 +1,4 @@
 <?php
-
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Http\ApiClient;
@@ -92,8 +91,8 @@ class NoteAttachmentRequestResponse extends BunqModel
     protected $attachmentIdFieldForRequest;
 
     /**
-     * @param int $attachmentId        The reference to the uploaded file to attach to
-     *                                 this note.
+     * @param int $attachmentId The reference to the uploaded file to attach to
+     * this note.
      * @param string|null $description Optional description of the attachment.
      */
     public function __construct(int $attachmentId, string $description = null)
@@ -104,8 +103,8 @@ class NoteAttachmentRequestResponse extends BunqModel
 
     /**
      * @param int $requestResponseId
-     * @param int $attachmentId        The reference to the uploaded file to attach to
-     *                                 this note.
+     * @param int $attachmentId The reference to the uploaded file to attach to
+     * this note.
      * @param int|null $monetaryAccountId
      * @param string|null $description Optional description of the attachment.
      * @param string[] $customHeaders
@@ -287,7 +286,7 @@ class NoteAttachmentRequestResponse extends BunqModel
      * @param int $id
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setId($id)
@@ -309,7 +308,7 @@ class NoteAttachmentRequestResponse extends BunqModel
      * @param string $created
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setCreated($created)
@@ -331,7 +330,7 @@ class NoteAttachmentRequestResponse extends BunqModel
      * @param string $updated
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setUpdated($updated)
@@ -353,7 +352,7 @@ class NoteAttachmentRequestResponse extends BunqModel
      * @param LabelUser $labelUserCreator
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setLabelUserCreator($labelUserCreator)
@@ -375,7 +374,7 @@ class NoteAttachmentRequestResponse extends BunqModel
      * @param string $description
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setDescription($description)
@@ -397,7 +396,7 @@ class NoteAttachmentRequestResponse extends BunqModel
      * @param AttachmentMonetaryAccountPayment[] $attachment
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setAttachment($attachment)

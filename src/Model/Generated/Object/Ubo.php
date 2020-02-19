@@ -1,5 +1,4 @@
 <?php
-
 namespace bunq\Model\Generated\Object;
 
 use bunq\Model\Core\BunqModel;
@@ -54,11 +53,11 @@ class Ubo extends BunqModel
     protected $nationalityFieldForRequest;
 
     /**
-     * @param string|null $name        The name of the ultimate beneficiary owner.
+     * @param string|null $name The name of the ultimate beneficiary owner.
      * @param string|null $dateOfBirth The date of birth of the ultimate
-     *                                 beneficiary owner. Accepts ISO8601 date formats.
+     * beneficiary owner. Accepts ISO8601 date formats.
      * @param string|null $nationality The nationality of the ultimate
-     *                                 beneficiary owner. Accepts ISO8601 date formats.
+     * beneficiary owner. Accepts ISO8601 date formats.
      */
     public function __construct(string $name = null, string $dateOfBirth = null, string $nationality = null)
     {
@@ -81,7 +80,7 @@ class Ubo extends BunqModel
      * @param string $name
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setName($name)
@@ -103,7 +102,7 @@ class Ubo extends BunqModel
      * @param string $dateOfBirth
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setDateOfBirth($dateOfBirth)
@@ -125,7 +124,7 @@ class Ubo extends BunqModel
      * @param string $nationality
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setNationality($nationality)

@@ -1,5 +1,4 @@
 <?php
-
 namespace bunq\Model\Generated\Object;
 
 use bunq\Model\Core\BunqModel;
@@ -59,10 +58,10 @@ class NotificationFilterUrl extends BunqModel
     protected $notificationTargetFieldForRequest;
 
     /**
-     * @param string $category           The notification category that will match this
-     *                                   notification filter.
+     * @param string $category The notification category that will match this
+     * notification filter.
      * @param string $notificationTarget The URL to which the callback should be
-     *                                   made.
+     * made.
      */
     public function __construct(string $category, string $notificationTarget)
     {
@@ -84,7 +83,7 @@ class NotificationFilterUrl extends BunqModel
      * @param int $id
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setId($id)
@@ -106,7 +105,7 @@ class NotificationFilterUrl extends BunqModel
      * @param string $created
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setCreated($created)
@@ -128,7 +127,7 @@ class NotificationFilterUrl extends BunqModel
      * @param string $updated
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setUpdated($updated)
@@ -150,7 +149,7 @@ class NotificationFilterUrl extends BunqModel
      * @param string $category
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setCategory($category)
@@ -172,7 +171,7 @@ class NotificationFilterUrl extends BunqModel
      * @param string $notificationTarget
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setNotificationTarget($notificationTarget)

@@ -1,5 +1,4 @@
 <?php
-
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\exception\BunqException;
@@ -102,7 +101,7 @@ class Device extends BunqModel implements AnchorObjectInterface
      * @param DeviceServer $deviceServer
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setDeviceServer($deviceServer)

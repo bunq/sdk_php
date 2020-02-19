@@ -1,8 +1,6 @@
 <?php
-
 namespace bunq\Model\Generated\Endpoint;
 
-use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
 use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
@@ -283,40 +281,40 @@ class TabUsageMultiple extends BunqModel
     protected $tabAttachmentFieldForRequest;
 
     /**
-     * @param string $description            The description of the TabUsageMultiple.
-     *                                       Maximum 9000 characters. Field is required but can be an empty string.
-     * @param string $status                 The status of the TabUsageMultiple. On creation the
-     *                                       status must be set to OPEN. You can change the status from OPEN to
-     *                                       PAYABLE. If the TabUsageMultiple gets paid the status will remain
-     *                                       PAYABLE.
-     * @param Amount $amountTotal            The total amount of the Tab. Must be a
-     *                                       positive amount. As long as the tab has the status OPEN you can change
-     *                                       the total amount. This amount is not affected by the amounts of the
-     *                                       TabItems. However, if you've created any TabItems for a Tab the sum of
-     *                                       the amounts of these items must be equal to the total_amount of the Tab
-     *                                       when you change its status to PAYABLE
-     * @param bool|null $allowAmountHigher   [DEPRECATED] Whether or not a higher
-     *                                       amount can be paid.
-     * @param bool|null $allowAmountLower    [DEPRECATED] Whether or not a lower
-     *                                       amount can be paid.
-     * @param bool|null $wantTip             [DEPRECATED] Whether or not the user paying the
-     *                                       Tab should be asked if he wants to give a tip. When want_tip is set to
-     *                                       true, allow_amount_higher must also be set to true and allow_amount_lower
-     *                                       must be false.
-     * @param int|null $minimumAge           The minimum age of the user paying the Tab.
-     * @param string|null $requireAddress    Whether a billing and shipping address
-     *                                       must be provided when paying the Tab. Possible values are: BILLING,
-     *                                       SHIPPING, BILLING_SHIPPING, NONE, OPTIONAL. Default is NONE.
-     * @param string|null $redirectUrl       The URL which the user is sent to after
-     *                                       paying the Tab.
+     * @param string $description The description of the TabUsageMultiple.
+     * Maximum 9000 characters. Field is required but can be an empty string.
+     * @param string $status The status of the TabUsageMultiple. On creation the
+     * status must be set to OPEN. You can change the status from OPEN to
+     * PAYABLE. If the TabUsageMultiple gets paid the status will remain
+     * PAYABLE.
+     * @param Amount $amountTotal The total amount of the Tab. Must be a
+     * positive amount. As long as the tab has the status OPEN you can change
+     * the total amount. This amount is not affected by the amounts of the
+     * TabItems. However, if you've created any TabItems for a Tab the sum of
+     * the amounts of these items must be equal to the total_amount of the Tab
+     * when you change its status to PAYABLE
+     * @param bool|null $allowAmountHigher [DEPRECATED] Whether or not a higher
+     * amount can be paid.
+     * @param bool|null $allowAmountLower [DEPRECATED] Whether or not a lower
+     * amount can be paid.
+     * @param bool|null $wantTip [DEPRECATED] Whether or not the user paying the
+     * Tab should be asked if he wants to give a tip. When want_tip is set to
+     * true, allow_amount_higher must also be set to true and allow_amount_lower
+     * must be false.
+     * @param int|null $minimumAge The minimum age of the user paying the Tab.
+     * @param string|null $requireAddress Whether a billing and shipping address
+     * must be provided when paying the Tab. Possible values are: BILLING,
+     * SHIPPING, BILLING_SHIPPING, NONE, OPTIONAL. Default is NONE.
+     * @param string|null $redirectUrl The URL which the user is sent to after
+     * paying the Tab.
      * @param TabVisibility|null $visibility The visibility of a Tab. A Tab can
-     *                                       be visible trough NearPay, the QR code of the CashRegister and its own QR
-     *                                       code.
-     * @param string|null $expiration        The moment when this Tab expires. Can be
-     *                                       at most 365 days into the future.
-     * @param BunqId[]|null $tabAttachment   An array of attachments that describe
-     *                                       the tab. Uploaded through the POST /user/{userid}/attachment-tab
-     *                                       endpoint.
+     * be visible trough NearPay, the QR code of the CashRegister and its own QR
+     * code.
+     * @param string|null $expiration The moment when this Tab expires. Can be
+     * at most 365 days into the future.
+     * @param BunqId[]|null $tabAttachment An array of attachments that describe
+     * the tab. Uploaded through the POST /user/{userid}/attachment-tab
+     * endpoint.
      */
     public function __construct(
         string $description,
@@ -350,41 +348,41 @@ class TabUsageMultiple extends BunqModel
      * Create a TabUsageMultiple. On creation the status must be set to OPEN
      *
      * @param int $cashRegisterId
-     * @param string $description            The description of the TabUsageMultiple.
-     *                                       Maximum 9000 characters. Field is required but can be an empty string.
-     * @param string $status                 The status of the TabUsageMultiple. On creation the
-     *                                       status must be set to OPEN. You can change the status from OPEN to
-     *                                       PAYABLE. If the TabUsageMultiple gets paid the status will remain
-     *                                       PAYABLE.
-     * @param Amount $amountTotal            The total amount of the Tab. Must be a
-     *                                       positive amount. As long as the tab has the status OPEN you can change
-     *                                       the total amount. This amount is not affected by the amounts of the
-     *                                       TabItems. However, if you've created any TabItems for a Tab the sum of
-     *                                       the amounts of these items must be equal to the total_amount of the Tab
-     *                                       when you change its status to PAYABLE
+     * @param string $description The description of the TabUsageMultiple.
+     * Maximum 9000 characters. Field is required but can be an empty string.
+     * @param string $status The status of the TabUsageMultiple. On creation the
+     * status must be set to OPEN. You can change the status from OPEN to
+     * PAYABLE. If the TabUsageMultiple gets paid the status will remain
+     * PAYABLE.
+     * @param Amount $amountTotal The total amount of the Tab. Must be a
+     * positive amount. As long as the tab has the status OPEN you can change
+     * the total amount. This amount is not affected by the amounts of the
+     * TabItems. However, if you've created any TabItems for a Tab the sum of
+     * the amounts of these items must be equal to the total_amount of the Tab
+     * when you change its status to PAYABLE
      * @param int|null $monetaryAccountId
-     * @param bool|null $allowAmountHigher   [DEPRECATED] Whether or not a higher
-     *                                       amount can be paid.
-     * @param bool|null $allowAmountLower    [DEPRECATED] Whether or not a lower
-     *                                       amount can be paid.
-     * @param bool|null $wantTip             [DEPRECATED] Whether or not the user paying the
-     *                                       Tab should be asked if he wants to give a tip. When want_tip is set to
-     *                                       true, allow_amount_higher must also be set to true and allow_amount_lower
-     *                                       must be false.
-     * @param int|null $minimumAge           The minimum age of the user paying the Tab.
-     * @param string|null $requireAddress    Whether a billing and shipping address
-     *                                       must be provided when paying the Tab. Possible values are: BILLING,
-     *                                       SHIPPING, BILLING_SHIPPING, NONE, OPTIONAL. Default is NONE.
-     * @param string|null $redirectUrl       The URL which the user is sent to after
-     *                                       paying the Tab.
+     * @param bool|null $allowAmountHigher [DEPRECATED] Whether or not a higher
+     * amount can be paid.
+     * @param bool|null $allowAmountLower [DEPRECATED] Whether or not a lower
+     * amount can be paid.
+     * @param bool|null $wantTip [DEPRECATED] Whether or not the user paying the
+     * Tab should be asked if he wants to give a tip. When want_tip is set to
+     * true, allow_amount_higher must also be set to true and allow_amount_lower
+     * must be false.
+     * @param int|null $minimumAge The minimum age of the user paying the Tab.
+     * @param string|null $requireAddress Whether a billing and shipping address
+     * must be provided when paying the Tab. Possible values are: BILLING,
+     * SHIPPING, BILLING_SHIPPING, NONE, OPTIONAL. Default is NONE.
+     * @param string|null $redirectUrl The URL which the user is sent to after
+     * paying the Tab.
      * @param TabVisibility|null $visibility The visibility of a Tab. A Tab can
-     *                                       be visible trough NearPay, the QR code of the CashRegister and its own QR
-     *                                       code.
-     * @param string|null $expiration        The moment when this Tab expires. Can be
-     *                                       at most 365 days into the future.
-     * @param BunqId[]|null $tabAttachment   An array of attachments that describe
-     *                                       the tab. Uploaded through the POST /user/{userid}/attachment-tab
-     *                                       endpoint.
+     * be visible trough NearPay, the QR code of the CashRegister and its own QR
+     * code.
+     * @param string|null $expiration The moment when this Tab expires. Can be
+     * at most 365 days into the future.
+     * @param BunqId[]|null $tabAttachment An array of attachments that describe
+     * the tab. Uploaded through the POST /user/{userid}/attachment-tab
+     * endpoint.
      * @param string[] $customHeaders
      *
      * @return BunqResponseString
@@ -445,24 +443,24 @@ class TabUsageMultiple extends BunqModel
      * @param int $cashRegisterId
      * @param string $tabUsageMultipleUuid
      * @param int|null $monetaryAccountId
-     * @param string|null $status            The status of the TabUsageMultiple. On
-     *                                       creation the status must be set to OPEN. You can change the status from
-     *                                       OPEN to PAYABLE. If the TabUsageMultiple gets paid the status will remain
-     *                                       PAYABLE.
-     * @param Amount|null $amountTotal       The total amount of the Tab. Must be a
-     *                                       positive amount. As long as the tab has the status OPEN you can change
-     *                                       the total amount. This amount is not affected by the amounts of the
-     *                                       TabItems. However, if you've created any TabItems for a Tab the sum of
-     *                                       the amounts of these items must be equal to the total_amount of the Tab
-     *                                       when you change its status to PAYABLE
+     * @param string|null $status The status of the TabUsageMultiple. On
+     * creation the status must be set to OPEN. You can change the status from
+     * OPEN to PAYABLE. If the TabUsageMultiple gets paid the status will remain
+     * PAYABLE.
+     * @param Amount|null $amountTotal The total amount of the Tab. Must be a
+     * positive amount. As long as the tab has the status OPEN you can change
+     * the total amount. This amount is not affected by the amounts of the
+     * TabItems. However, if you've created any TabItems for a Tab the sum of
+     * the amounts of these items must be equal to the total_amount of the Tab
+     * when you change its status to PAYABLE
      * @param TabVisibility|null $visibility The visibility of a Tab. A Tab can
-     *                                       be visible trough NearPay, the QR code of the CashRegister and its own QR
-     *                                       code.
-     * @param string|null $expiration        The moment when this Tab expires. Can be
-     *                                       at most 365 days into the future.
-     * @param BunqId[]|null $tabAttachment   An array of attachments that describe
-     *                                       the tab. Uploaded through the POST /user/{userid}/attachment-tab
-     *                                       endpoint.
+     * be visible trough NearPay, the QR code of the CashRegister and its own QR
+     * code.
+     * @param string|null $expiration The moment when this Tab expires. Can be
+     * at most 365 days into the future.
+     * @param BunqId[]|null $tabAttachment An array of attachments that describe
+     * the tab. Uploaded through the POST /user/{userid}/attachment-tab
+     * endpoint.
      * @param string[] $customHeaders
      *
      * @return BunqResponseString
@@ -622,7 +620,7 @@ class TabUsageMultiple extends BunqModel
      * @param string $uuid
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setUuid($uuid)
@@ -644,7 +642,7 @@ class TabUsageMultiple extends BunqModel
      * @param string $created
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setCreated($created)
@@ -666,7 +664,7 @@ class TabUsageMultiple extends BunqModel
      * @param string $updated
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setUpdated($updated)
@@ -688,7 +686,7 @@ class TabUsageMultiple extends BunqModel
      * @param string $description
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setDescription($description)
@@ -710,7 +708,7 @@ class TabUsageMultiple extends BunqModel
      * @param string $status
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setStatus($status)
@@ -732,7 +730,7 @@ class TabUsageMultiple extends BunqModel
      * @param Amount $amountTotal
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setAmountTotal($amountTotal)
@@ -755,7 +753,7 @@ class TabUsageMultiple extends BunqModel
      * @param string $qrCodeToken
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setQrCodeToken($qrCodeToken)
@@ -778,7 +776,7 @@ class TabUsageMultiple extends BunqModel
      * @param string $tabUrl
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setTabUrl($tabUrl)
@@ -801,7 +799,7 @@ class TabUsageMultiple extends BunqModel
      * @param TabVisibility $visibility
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setVisibility($visibility)
@@ -823,7 +821,7 @@ class TabUsageMultiple extends BunqModel
      * @param bool $minimumAge
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setMinimumAge($minimumAge)
@@ -846,7 +844,7 @@ class TabUsageMultiple extends BunqModel
      * @param string $requireAddress
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setRequireAddress($requireAddress)
@@ -868,7 +866,7 @@ class TabUsageMultiple extends BunqModel
      * @param string $redirectUrl
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setRedirectUrl($redirectUrl)
@@ -890,7 +888,7 @@ class TabUsageMultiple extends BunqModel
      * @param string $expiration
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setExpiration($expiration)
@@ -912,7 +910,7 @@ class TabUsageMultiple extends BunqModel
      * @param LabelMonetaryAccount $alias
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setAlias($alias)
@@ -934,7 +932,7 @@ class TabUsageMultiple extends BunqModel
      * @param Geolocation $cashRegisterLocation
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setCashRegisterLocation($cashRegisterLocation)
@@ -956,7 +954,7 @@ class TabUsageMultiple extends BunqModel
      * @param TabItem[] $tabItem
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setTabItem($tabItem)
@@ -979,7 +977,7 @@ class TabUsageMultiple extends BunqModel
      * @param BunqId[] $tabAttachment
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setTabAttachment($tabAttachment)

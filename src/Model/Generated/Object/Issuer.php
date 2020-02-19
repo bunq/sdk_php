@@ -1,5 +1,4 @@
 <?php
-
 namespace bunq\Model\Generated\Object;
 
 use bunq\Model\Core\BunqModel;
@@ -38,7 +37,7 @@ class Issuer extends BunqModel
     protected $nameFieldForRequest;
 
     /**
-     * @param string $bic       The BIC code.
+     * @param string $bic The BIC code.
      * @param string|null $name The name of the bank.
      */
     public function __construct(string $bic, string $name = null)
@@ -61,7 +60,7 @@ class Issuer extends BunqModel
      * @param string $bic
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setBic($bic)
@@ -83,7 +82,7 @@ class Issuer extends BunqModel
      * @param string $name
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setName($name)

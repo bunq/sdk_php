@@ -1,5 +1,4 @@
 <?php
-
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Http\ApiClient;
@@ -60,11 +59,11 @@ class CardReplace extends BunqModel
     protected $secondLineFieldForRequest;
 
     /**
-     * @param string|null $nameOnCard                     The user's name as it will be on the card.
-     *                                                    Check 'card-name' for the available card names for a user.
+     * @param string|null $nameOnCard The user's name as it will be on the card.
+     * Check 'card-name' for the available card names for a user.
      * @param CardPinAssignment[]|null $pinCodeAssignment Array of Types, PINs,
-     *                                                    account IDs assigned to the card.
-     * @param string|null $secondLine                     The second line on the card.
+     * account IDs assigned to the card.
+     * @param string|null $secondLine The second line on the card.
      */
     public function __construct(string $nameOnCard = null, array $pinCodeAssignment = null, string $secondLine = null)
     {
@@ -77,11 +76,11 @@ class CardReplace extends BunqModel
      * Request a card replacement.
      *
      * @param int $cardId
-     * @param string|null $nameOnCard                     The user's name as it will be on the card.
-     *                                                    Check 'card-name' for the available card names for a user.
+     * @param string|null $nameOnCard The user's name as it will be on the card.
+     * Check 'card-name' for the available card names for a user.
      * @param CardPinAssignment[]|null $pinCodeAssignment Array of Types, PINs,
-     *                                                    account IDs assigned to the card.
-     * @param string|null $secondLine                     The second line on the card.
+     * account IDs assigned to the card.
+     * @param string|null $secondLine The second line on the card.
      * @param string[] $customHeaders
      *
      * @return BunqResponseInt
@@ -94,7 +93,6 @@ class CardReplace extends BunqModel
         array $customHeaders = []
     ): BunqResponseInt {
         $apiClient = new ApiClient(static::getApiContext());
-        $apiClient->enableEncryption();
         $responseRaw = $apiClient->post(
             vsprintf(
                 self::ENDPOINT_URL_CREATE,
@@ -127,7 +125,7 @@ class CardReplace extends BunqModel
      * @param int $id
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setId($id)

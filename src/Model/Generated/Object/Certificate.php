@@ -1,5 +1,4 @@
 <?php
-
 namespace bunq\Model\Generated\Object;
 
 use bunq\Model\Core\BunqModel;
@@ -25,7 +24,7 @@ class Certificate extends BunqModel
 
     /**
      * @param string $certificate A single certificate in the chain in .PEM
-     *                            format.
+     * format.
      */
     public function __construct(string $certificate)
     {
@@ -46,7 +45,7 @@ class Certificate extends BunqModel
      * @param string $certificate
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setCertificate($certificate)

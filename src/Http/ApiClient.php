@@ -6,7 +6,6 @@ use bunq\Context\BunqContext;
 use bunq\Exception\BunqException;
 use bunq\Http\Handler\HandlerUtil;
 use bunq\Http\Handler\RequestHandlerAuthentication;
-use bunq\Http\Handler\RequestHandlerEncryption;
 use bunq\Http\Handler\RequestHandlerSignature;
 use bunq\Http\Handler\ResponseHandlerError;
 use bunq\Http\Handler\ResponseHandlerSignature;
@@ -169,11 +168,6 @@ class ApiClient
     protected $isBinary;
 
     /**
-     * @var bool
-     */
-    protected $isEncrypted;
-
-    /**
      * @param ApiContext $apiContext
      */
     public function __construct(ApiContext $apiContext)
@@ -186,13 +180,6 @@ class ApiClient
     public function enableBinary()
     {
         $this->isBinary = true;
-    }
-
-    /**
-     */
-    public function enableEncryption()
-    {
-        $this->isEncrypted = true;
     }
 
     /**
@@ -307,11 +294,6 @@ class ApiClient
         } else {
             $sessionToken = $this->apiContext->getSessionToken();
             $handlerStack->push(HandlerUtil::applyRequestHandler(new RequestHandlerAuthentication($sessionToken)));
-
-            if ($this->isEncrypted) {
-                $publicKey = $this->apiContext->getInstallationContext()->getPublicKeyServer();
-                $handlerStack->push(HandlerUtil::applyRequestHandler(new RequestHandlerEncryption($publicKey)));
-            }
 
             $privateKey = $this->apiContext->getInstallationContext()->getKeyPairClient()->getPrivateKey();
             $handlerStack->push(HandlerUtil::applyRequestHandler(new RequestHandlerSignature($privateKey)));

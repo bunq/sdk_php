@@ -13,8 +13,8 @@ use bunq\Model\Generated\Endpoint\RequestInquiry;
 use bunq\Model\Generated\Endpoint\RequestResponse;
 use bunq\Model\Generated\Endpoint\ScheduleInstance;
 use bunq\Model\Generated\Endpoint\SchedulePayment;
-use bunq\Model\Generated\Endpoint\ShareInviteBankInquiry;
-use bunq\Model\Generated\Endpoint\ShareInviteBankResponse;
+use bunq\Model\Generated\Endpoint\ShareInviteMonetaryAccountInquiry;
+use bunq\Model\Generated\Endpoint\ShareInviteMonetaryAccountResponse;
 use bunq\Model\Generated\Object\NotificationUrl;
 use bunq\test\BunqSdkTestBase;
 use bunq\Util\FileUtil;
@@ -107,7 +107,7 @@ class NotificationUrlTest extends BunqSdkTestBase
             MonetaryAccountBank::class
         );
     }
-    
+
     /**
      */
     public function testPaymentBatchModel()
@@ -158,7 +158,7 @@ class NotificationUrlTest extends BunqSdkTestBase
     {
         $this->executeNotificationUrlTest(
             self::JSON_PATH_SHARE_INVITE_BANK_RESPONSE_MODEL,
-            ShareInviteBankResponse::class,
+            ShareInviteMonetaryAccountResponse::class,
             self::GETTER_SHARE_INVITE_BANK_RESPONSE
         );
     }
@@ -180,7 +180,7 @@ class NotificationUrlTest extends BunqSdkTestBase
     {
         $this->executeNotificationUrlTest(
             self::JSON_PATH_SHARE_INVITE_BANK_INQUIRY_MODEL,
-            ShareInviteBankInquiry::class,
+            ShareInviteMonetaryAccountInquiry::class,
             self::GETTER_SHARE_INVITE_BANK_INQUIRY
         );
     }

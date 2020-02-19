@@ -1,5 +1,4 @@
 <?php
-
 namespace bunq\Model\Generated\Object;
 
 use bunq\Model\Core\BunqModel;
@@ -65,7 +64,7 @@ class LabelCard extends BunqModel
      * @param string $uuid
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setUuid($uuid)
@@ -87,7 +86,7 @@ class LabelCard extends BunqModel
      * @param string $type
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setType($type)
@@ -109,7 +108,7 @@ class LabelCard extends BunqModel
      * @param string $secondLine
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setSecondLine($secondLine)
@@ -131,7 +130,7 @@ class LabelCard extends BunqModel
      * @param string $expiryDate
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setExpiryDate($expiryDate)
@@ -153,7 +152,7 @@ class LabelCard extends BunqModel
      * @param string $status
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setStatus($status)
@@ -175,7 +174,7 @@ class LabelCard extends BunqModel
      * @param LabelUser $labelUser
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setLabelUser($labelUser)

@@ -1,5 +1,4 @@
 <?php
-
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Http\ApiClient;
@@ -88,7 +87,7 @@ class CardBatch extends BunqModel
      * @param BunqId[] $updatedCardIds
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setUpdatedCardIds($updatedCardIds)

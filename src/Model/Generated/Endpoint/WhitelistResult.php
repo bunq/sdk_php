@@ -1,5 +1,4 @@
 <?php
-
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Model\Core\BunqModel;
@@ -35,6 +34,13 @@ class WhitelistResult extends BunqModel
      * @var string
      */
     protected $status;
+
+    /**
+     * The subStatus of the WhitelistResult.
+     *
+     * @var string
+     */
+    protected $subStatus;
 
     /**
      * The message when the whitelist result has failed due to user error.
@@ -79,7 +85,7 @@ class WhitelistResult extends BunqModel
      * @param int $id
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setId($id)
@@ -102,7 +108,7 @@ class WhitelistResult extends BunqModel
      * @param int $monetaryAccountPayingId
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setMonetaryAccountPayingId($monetaryAccountPayingId)
@@ -124,12 +130,34 @@ class WhitelistResult extends BunqModel
      * @param string $status
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setStatus($status)
     {
         $this->status = $status;
+    }
+
+    /**
+     * The subStatus of the WhitelistResult.
+     *
+     * @return string
+     */
+    public function getSubStatus()
+    {
+        return $this->subStatus;
+    }
+
+    /**
+     * @param string $subStatus
+     *
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     */
+    public function setSubStatus($subStatus)
+    {
+        $this->subStatus = $subStatus;
     }
 
     /**
@@ -146,7 +174,7 @@ class WhitelistResult extends BunqModel
      * @param Error[] $errorMessage
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setErrorMessage($errorMessage)
@@ -168,7 +196,7 @@ class WhitelistResult extends BunqModel
      * @param Whitelist $whitelist
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setWhitelist($whitelist)
@@ -190,7 +218,7 @@ class WhitelistResult extends BunqModel
      * @param WhitelistResultViewAnchoredObject $object
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setObject($object)
@@ -213,7 +241,7 @@ class WhitelistResult extends BunqModel
      * @param RequestInquiryReference[] $requestReferenceSplitTheBill
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setRequestReferenceSplitTheBill($requestReferenceSplitTheBill)
@@ -235,6 +263,10 @@ class WhitelistResult extends BunqModel
         }
 
         if (!is_null($this->status)) {
+            return false;
+        }
+
+        if (!is_null($this->subStatus)) {
             return false;
         }
 

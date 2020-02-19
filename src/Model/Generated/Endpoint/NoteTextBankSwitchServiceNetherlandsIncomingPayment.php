@@ -1,8 +1,6 @@
 <?php
-
 namespace bunq\Model\Generated\Endpoint;
 
-use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
 use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
@@ -272,7 +270,7 @@ class NoteTextBankSwitchServiceNetherlandsIncomingPayment extends BunqModel
      * @param int $id
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setId($id)
@@ -294,7 +292,7 @@ class NoteTextBankSwitchServiceNetherlandsIncomingPayment extends BunqModel
      * @param string $created
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setCreated($created)
@@ -316,7 +314,7 @@ class NoteTextBankSwitchServiceNetherlandsIncomingPayment extends BunqModel
      * @param string $updated
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setUpdated($updated)
@@ -338,7 +336,7 @@ class NoteTextBankSwitchServiceNetherlandsIncomingPayment extends BunqModel
      * @param LabelUser $labelUserCreator
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setLabelUserCreator($labelUserCreator)
@@ -360,7 +358,7 @@ class NoteTextBankSwitchServiceNetherlandsIncomingPayment extends BunqModel
      * @param string $content
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setContent($content)

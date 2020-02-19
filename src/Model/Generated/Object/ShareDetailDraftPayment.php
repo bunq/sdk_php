@@ -1,5 +1,4 @@
 <?php
-
 namespace bunq\Model\Generated\Object;
 
 use bunq\Model\Core\BunqModel;
@@ -75,13 +74,13 @@ class ShareDetailDraftPayment extends BunqModel
 
     /**
      * @param bool $makeDraftPayments If set to true, the invited user will be
-     *                                able to make draft payments from the shared account.
-     * @param bool $viewBalance       If set to true, the invited user will be able to
-     *                                view the account balance.
-     * @param bool $viewOldEvents     If set to true, the invited user will be able
-     *                                to view events from before the share was active.
-     * @param bool $viewNewEvents     If set to true, the invited user will be able
-     *                                to view events starting from the time the share became active.
+     * able to make draft payments from the shared account.
+     * @param bool $viewBalance If set to true, the invited user will be able to
+     * view the account balance.
+     * @param bool $viewOldEvents If set to true, the invited user will be able
+     * to view events from before the share was active.
+     * @param bool $viewNewEvents If set to true, the invited user will be able
+     * to view events starting from the time the share became active.
      */
     public function __construct(bool $makeDraftPayments, bool $viewBalance, bool $viewOldEvents, bool $viewNewEvents)
     {
@@ -106,7 +105,7 @@ class ShareDetailDraftPayment extends BunqModel
      * @param bool $makeDraftPayments
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setMakeDraftPayments($makeDraftPayments)
@@ -129,7 +128,7 @@ class ShareDetailDraftPayment extends BunqModel
      * @param bool $viewBalance
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setViewBalance($viewBalance)
@@ -152,7 +151,7 @@ class ShareDetailDraftPayment extends BunqModel
      * @param bool $viewOldEvents
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setViewOldEvents($viewOldEvents)
@@ -175,7 +174,7 @@ class ShareDetailDraftPayment extends BunqModel
      * @param bool $viewNewEvents
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setViewNewEvents($viewNewEvents)

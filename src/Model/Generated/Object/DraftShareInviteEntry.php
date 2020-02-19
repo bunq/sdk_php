@@ -1,5 +1,4 @@
 <?php
-
 namespace bunq\Model\Generated\Object;
 
 use bunq\Model\Core\BunqModel;
@@ -53,9 +52,9 @@ class DraftShareInviteEntry extends BunqModel
 
     /**
      * @param ShareDetail $shareDetail The share details. Only one of these
-     *                                 objects may be passed.
-     * @param string|null $startDate   The start date of this share.
-     * @param string|null $endDate     The expiration date of this share.
+     * objects may be passed.
+     * @param string|null $startDate The start date of this share.
+     * @param string|null $endDate The expiration date of this share.
      */
     public function __construct(ShareDetail $shareDetail, string $startDate = null, string $endDate = null)
     {
@@ -78,7 +77,7 @@ class DraftShareInviteEntry extends BunqModel
      * @param ShareDetail $shareDetail
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setShareDetail($shareDetail)
@@ -100,7 +99,7 @@ class DraftShareInviteEntry extends BunqModel
      * @param string $startDate
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setStartDate($startDate)
@@ -122,7 +121,7 @@ class DraftShareInviteEntry extends BunqModel
      * @param string $endDate
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setEndDate($endDate)

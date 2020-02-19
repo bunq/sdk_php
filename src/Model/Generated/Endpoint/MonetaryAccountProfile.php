@@ -1,5 +1,4 @@
 <?php
-
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Model\Core\BunqModel;
@@ -49,10 +48,10 @@ class MonetaryAccountProfile extends BunqModel
     protected $profileDrainFieldForRequest;
 
     /**
-     * @param MonetaryAccountProfileFill|null $profileFill   The profile settings
-     *                                                       for triggering the fill of a monetary account.
+     * @param MonetaryAccountProfileFill|null $profileFill The profile settings
+     * for triggering the fill of a monetary account.
      * @param MonetaryAccountProfileDrain|null $profileDrain The profile
-     *                                                       settings for moving excesses to a savings account
+     * settings for moving excesses to a savings account
      */
     public function __construct(
         MonetaryAccountProfileFill $profileFill = null,
@@ -76,7 +75,7 @@ class MonetaryAccountProfile extends BunqModel
      * @param MonetaryAccountProfileFill $profileFill
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setProfileFill($profileFill)
@@ -98,7 +97,7 @@ class MonetaryAccountProfile extends BunqModel
      * @param MonetaryAccountProfileDrain $profileDrain
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setProfileDrain($profileDrain)

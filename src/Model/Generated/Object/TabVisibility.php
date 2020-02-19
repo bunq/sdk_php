@@ -1,5 +1,4 @@
 <?php
-
 namespace bunq\Model\Generated\Object;
 
 use bunq\Model\Core\BunqModel;
@@ -57,16 +56,16 @@ class TabVisibility extends BunqModel
     protected $locationFieldForRequest;
 
     /**
-     * @param bool $cashRegisterQrCode   When true the Tab will be linked to the
-     *                                   ACTIVE cash registers QR code. If no cash register QR code exists, one
-     *                                   will be created.
-     * @param bool $tabQrCode            When true the Tab will be visible through its own
-     *                                   QR code. Use ../tab/{tab-id}/qr-code-content to get the raw content of
-     *                                   this QR code
+     * @param bool $cashRegisterQrCode When true the Tab will be linked to the
+     * ACTIVE cash registers QR code. If no cash register QR code exists, one
+     * will be created.
+     * @param bool $tabQrCode When true the Tab will be visible through its own
+     * QR code. Use ../tab/{tab-id}/qr-code-content to get the raw content of
+     * this QR code
      * @param Geolocation|null $location The location on which this tab will be
-     *                                   made visible in NearPay. This location must overlap with the location of
-     *                                   the CashRegister. If no location is provided the location of the
-     *                                   CashRegister will be used.
+     * made visible in NearPay. This location must overlap with the location of
+     * the CashRegister. If no location is provided the location of the
+     * CashRegister will be used.
      */
     public function __construct(bool $cashRegisterQrCode, bool $tabQrCode, Geolocation $location = null)
     {
@@ -89,7 +88,7 @@ class TabVisibility extends BunqModel
      * @param bool $cashRegisterQrCode
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setCashRegisterQrCode($cashRegisterQrCode)
@@ -112,7 +111,7 @@ class TabVisibility extends BunqModel
      * @param bool $tabQrCode
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setTabQrCode($tabQrCode)
@@ -134,7 +133,7 @@ class TabVisibility extends BunqModel
      * @param Geolocation $location
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setLocation($location)

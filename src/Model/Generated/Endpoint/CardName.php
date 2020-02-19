@@ -1,5 +1,4 @@
 <?php
-
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Http\ApiClient;
@@ -76,7 +75,7 @@ class CardName extends BunqModel
      * @param string[] $possibleCardNameArray
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setPossibleCardNameArray($possibleCardNameArray)

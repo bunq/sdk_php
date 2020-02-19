@@ -1,5 +1,4 @@
 <?php
-
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Http\ApiClient;
@@ -55,7 +54,6 @@ class UserPerson extends BunqModel
     const FIELD_LEGAL_GUARDIAN_ALIAS = 'legal_guardian_alias';
     const FIELD_SESSION_TIMEOUT = 'session_timeout';
     const FIELD_DAILY_LIMIT_WITHOUT_CONFIRMATION_LOGIN = 'daily_limit_without_confirmation_login';
-    const FIELD_NOTIFICATION_FILTERS = 'notification_filters';
     const FIELD_DISPLAY_NAME = 'display_name';
 
     /**
@@ -472,14 +470,6 @@ class UserPerson extends BunqModel
     protected $dailyLimitWithoutConfirmationLoginFieldForRequest;
 
     /**
-     * The types of notifications that will result in a push notification or URL
-     * callback for this UserPerson.
-     *
-     * @var NotificationFilter[]|null
-     */
-    protected $notificationFiltersFieldForRequest;
-
-    /**
      * The person's legal name. Available legal names can be listed via the
      * 'user/{user_id}/legal-name' endpoint.
      *
@@ -488,58 +478,52 @@ class UserPerson extends BunqModel
     protected $displayNameFieldForRequest;
 
     /**
-     * @param Address $addressMain                           The user's main address.
-     * @param string $avatarUuid                             The public UUID of the user's avatar.
-     * @param string $documentType                           The type of identification document the
-     *                                                       person registered with.
-     * @param string $documentNumber                         The identification document number the
-     *                                                       person registered with.
-     * @param string $documentCountryOfIssuance              The country which issued the
-     *                                                       identification document the person registered with.
-     * @param int $documentFrontAttachmentId                 The reference to the uploaded
-     *                                                       picture/scan of the front side of the identification
-     *                                                       document.
-     * @param string $dateOfBirth                            The person's date of birth. Accepts ISO8601
-     *                                                       date formats.
-     * @param string $placeOfBirth                           The person's place of birth.
-     * @param string $countryOfBirth                         The person's country of birth. Formatted as
-     *                                                       a SO 3166-1 alpha-2 country code.
-     * @param string $nationality                            The person's nationality. Formatted as a SO
-     *                                                       3166-1 alpha-2 country code.
-     * @param string $language                               The person's preferred language. Formatted as a
-     *                                                       ISO 639-1 language code plus a ISO 3166-1 alpha-2 country
-     *                                                       code, seperated by an underscore.
-     * @param string $region                                 The person's preferred region. Formatted as a ISO
-     *                                                       639-1 language code plus a ISO 3166-1 alpha-2 country
-     *                                                       code, seperated by an underscore.
-     * @param string $gender                                 The person's gender. Can be: MALE, FEMALE and
-     *                                                       UNKNOWN.
-     * @param string $status                                 The user status. You are not allowed to update the
-     *                                                       status via PUT.
-     * @param string $subStatus                              The user sub-status. Can be updated to SUBMIT if
-     *                                                       status is RECOVERY.
-     * @param Pointer $legalGuardianAlias                    The legal guardian of the user.
-     *                                                       Required for minors.
-     * @param int $sessionTimeout                            The setting for the session timeout of the
-     *                                                       user in seconds.
-     * @param Amount $dailyLimitWithoutConfirmationLogin     The amount the user can
-     *                                                       pay in the session without asking for credentials.
-     * @param string|null $firstName                         The person's first name.
-     * @param string|null $middleName                        The person's middle name.
-     * @param string|null $lastName                          The person's last name.
-     * @param string|null $publicNickName                    The person's public nick name.
-     * @param Address|null $addressPostal                    The person's postal address.
-     * @param TaxResident[]|null $taxResident                The user's tax residence numbers
-     *                                                       for different countries.
-     * @param int|null $documentBackAttachmentId             The reference to the uploaded
-     *                                                       picture/scan of the back side of the identification
-     *                                                       document.
-     * @param NotificationFilter[]|null $notificationFilters The types of
-     *                                                       notifications that will result in a push notification or
-     *                                                       URL callback for this UserPerson.
-     * @param string|null $displayName                       The person's legal name. Available legal
-     *                                                       names can be listed via the 'user/{user_id}/legal-name'
-     *                                                       endpoint.
+     * @param Address $addressMain The user's main address.
+     * @param string $avatarUuid The public UUID of the user's avatar.
+     * @param string $documentType The type of identification document the
+     * person registered with.
+     * @param string $documentNumber The identification document number the
+     * person registered with.
+     * @param string $documentCountryOfIssuance The country which issued the
+     * identification document the person registered with.
+     * @param int $documentFrontAttachmentId The reference to the uploaded
+     * picture/scan of the front side of the identification document.
+     * @param string $dateOfBirth The person's date of birth. Accepts ISO8601
+     * date formats.
+     * @param string $placeOfBirth The person's place of birth.
+     * @param string $countryOfBirth The person's country of birth. Formatted as
+     * a SO 3166-1 alpha-2 country code.
+     * @param string $nationality The person's nationality. Formatted as a SO
+     * 3166-1 alpha-2 country code.
+     * @param string $language The person's preferred language. Formatted as a
+     * ISO 639-1 language code plus a ISO 3166-1 alpha-2 country code, seperated
+     * by an underscore.
+     * @param string $region The person's preferred region. Formatted as a ISO
+     * 639-1 language code plus a ISO 3166-1 alpha-2 country code, seperated by
+     * an underscore.
+     * @param string $gender The person's gender. Can be: MALE, FEMALE and
+     * UNKNOWN.
+     * @param string $status The user status. You are not allowed to update the
+     * status via PUT.
+     * @param string $subStatus The user sub-status. Can be updated to SUBMIT if
+     * status is RECOVERY.
+     * @param Pointer $legalGuardianAlias The legal guardian of the user.
+     * Required for minors.
+     * @param int $sessionTimeout The setting for the session timeout of the
+     * user in seconds.
+     * @param Amount $dailyLimitWithoutConfirmationLogin The amount the user can
+     * pay in the session without asking for credentials.
+     * @param string|null $firstName The person's first name.
+     * @param string|null $middleName The person's middle name.
+     * @param string|null $lastName The person's last name.
+     * @param string|null $publicNickName The person's public nick name.
+     * @param Address|null $addressPostal The person's postal address.
+     * @param TaxResident[]|null $taxResident The user's tax residence numbers
+     * for different countries.
+     * @param int|null $documentBackAttachmentId The reference to the uploaded
+     * picture/scan of the back side of the identification document.
+     * @param string|null $displayName The person's legal name. Available legal
+     * names can be listed via the 'user/{user_id}/legal-name' endpoint.
      */
     public function __construct(
         Address $addressMain,
@@ -567,7 +551,6 @@ class UserPerson extends BunqModel
         Address $addressPostal = null,
         array $taxResident = null,
         int $documentBackAttachmentId = null,
-        array $notificationFilters = null,
         string $displayName = null
     ) {
         $this->firstNameFieldForRequest = $firstName;
@@ -595,7 +578,6 @@ class UserPerson extends BunqModel
         $this->legalGuardianAliasFieldForRequest = $legalGuardianAlias;
         $this->sessionTimeoutFieldForRequest = $sessionTimeout;
         $this->dailyLimitWithoutConfirmationLoginFieldForRequest = $dailyLimitWithoutConfirmationLogin;
-        $this->notificationFiltersFieldForRequest = $notificationFilters;
         $this->displayNameFieldForRequest = $displayName;
     }
 
@@ -628,59 +610,52 @@ class UserPerson extends BunqModel
      * Modify a specific person object's data.
      *
      * @param int $userPersonId
-     * @param string|null $firstName                          The person's first name.
-     * @param string|null $middleName                         The person's middle name.
-     * @param string|null $lastName                           The person's last name.
-     * @param string|null $publicNickName                     The person's public nick name.
-     * @param Address|null $addressMain                       The user's main address.
-     * @param Address|null $addressPostal                     The person's postal address.
-     * @param string|null $avatarUuid                         The public UUID of the user's avatar.
-     * @param TaxResident[]|null $taxResident                 The user's tax residence numbers
-     *                                                        for different countries.
-     * @param string|null $documentType                       The type of identification document the
-     *                                                        person registered with.
-     * @param string|null $documentNumber                     The identification document number the
-     *                                                        person registered with.
-     * @param string|null $documentCountryOfIssuance          The country which issued
-     *                                                        the identification document the person registered with.
-     * @param int|null $documentFrontAttachmentId             The reference to the uploaded
-     *                                                        picture/scan of the front side of the identification
-     *                                                        document.
-     * @param int|null $documentBackAttachmentId              The reference to the uploaded
-     *                                                        picture/scan of the back side of the identification
-     *                                                        document.
-     * @param string|null $dateOfBirth                        The person's date of birth. Accepts
-     *                                                        ISO8601 date formats.
-     * @param string|null $placeOfBirth                       The person's place of birth.
-     * @param string|null $countryOfBirth                     The person's country of birth.
-     *                                                        Formatted as a SO 3166-1 alpha-2 country code.
-     * @param string|null $nationality                        The person's nationality. Formatted as a
-     *                                                        SO 3166-1 alpha-2 country code.
-     * @param string|null $language                           The person's preferred language. Formatted
-     *                                                        as a ISO 639-1 language code plus a ISO 3166-1 alpha-2
-     *                                                        country code, seperated by an underscore.
-     * @param string|null $region                             The person's preferred region. Formatted as a
-     *                                                        ISO 639-1 language code plus a ISO 3166-1 alpha-2 country
-     *                                                        code, seperated by an underscore.
-     * @param string|null $gender                             The person's gender. Can be: MALE, FEMALE and
-     *                                                        UNKNOWN.
-     * @param string|null $status                             The user status. You are not allowed to update
-     *                                                        the status via PUT.
-     * @param string|null $subStatus                          The user sub-status. Can be updated to
-     *                                                        SUBMIT if status is RECOVERY.
-     * @param Pointer|null $legalGuardianAlias                The legal guardian of the user.
-     *                                                        Required for minors.
-     * @param int|null $sessionTimeout                        The setting for the session timeout of
-     *                                                        the user in seconds.
+     * @param string|null $firstName The person's first name.
+     * @param string|null $middleName The person's middle name.
+     * @param string|null $lastName The person's last name.
+     * @param string|null $publicNickName The person's public nick name.
+     * @param Address|null $addressMain The user's main address.
+     * @param Address|null $addressPostal The person's postal address.
+     * @param string|null $avatarUuid The public UUID of the user's avatar.
+     * @param TaxResident[]|null $taxResident The user's tax residence numbers
+     * for different countries.
+     * @param string|null $documentType The type of identification document the
+     * person registered with.
+     * @param string|null $documentNumber The identification document number the
+     * person registered with.
+     * @param string|null $documentCountryOfIssuance The country which issued
+     * the identification document the person registered with.
+     * @param int|null $documentFrontAttachmentId The reference to the uploaded
+     * picture/scan of the front side of the identification document.
+     * @param int|null $documentBackAttachmentId The reference to the uploaded
+     * picture/scan of the back side of the identification document.
+     * @param string|null $dateOfBirth The person's date of birth. Accepts
+     * ISO8601 date formats.
+     * @param string|null $placeOfBirth The person's place of birth.
+     * @param string|null $countryOfBirth The person's country of birth.
+     * Formatted as a SO 3166-1 alpha-2 country code.
+     * @param string|null $nationality The person's nationality. Formatted as a
+     * SO 3166-1 alpha-2 country code.
+     * @param string|null $language The person's preferred language. Formatted
+     * as a ISO 639-1 language code plus a ISO 3166-1 alpha-2 country code,
+     * seperated by an underscore.
+     * @param string|null $region The person's preferred region. Formatted as a
+     * ISO 639-1 language code plus a ISO 3166-1 alpha-2 country code, seperated
+     * by an underscore.
+     * @param string|null $gender The person's gender. Can be: MALE, FEMALE and
+     * UNKNOWN.
+     * @param string|null $status The user status. You are not allowed to update
+     * the status via PUT.
+     * @param string|null $subStatus The user sub-status. Can be updated to
+     * SUBMIT if status is RECOVERY.
+     * @param Pointer|null $legalGuardianAlias The legal guardian of the user.
+     * Required for minors.
+     * @param int|null $sessionTimeout The setting for the session timeout of
+     * the user in seconds.
      * @param Amount|null $dailyLimitWithoutConfirmationLogin The amount the
-     *                                                        user can pay in the session without asking for
-     *                                                        credentials.
-     * @param NotificationFilter[]|null $notificationFilters  The types of
-     *                                                        notifications that will result in a push notification or
-     *                                                        URL callback for this UserPerson.
-     * @param string|null $displayName                        The person's legal name. Available legal
-     *                                                        names can be listed via the 'user/{user_id}/legal-name'
-     *                                                        endpoint.
+     * user can pay in the session without asking for credentials.
+     * @param string|null $displayName The person's legal name. Available legal
+     * names can be listed via the 'user/{user_id}/legal-name' endpoint.
      * @param string[] $customHeaders
      *
      * @return BunqResponseInt
@@ -711,7 +686,6 @@ class UserPerson extends BunqModel
         Pointer $legalGuardianAlias = null,
         int $sessionTimeout = null,
         Amount $dailyLimitWithoutConfirmationLogin = null,
-        array $notificationFilters = null,
         string $displayName = null,
         array $customHeaders = []
     ): BunqResponseInt {
@@ -747,7 +721,6 @@ class UserPerson extends BunqModel
                 self::FIELD_LEGAL_GUARDIAN_ALIAS => $legalGuardianAlias,
                 self::FIELD_SESSION_TIMEOUT => $sessionTimeout,
                 self::FIELD_DAILY_LIMIT_WITHOUT_CONFIRMATION_LOGIN => $dailyLimitWithoutConfirmationLogin,
-                self::FIELD_NOTIFICATION_FILTERS => $notificationFilters,
                 self::FIELD_DISPLAY_NAME => $displayName,
             ],
             $customHeaders
@@ -772,7 +745,7 @@ class UserPerson extends BunqModel
      * @param int $id
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setId($id)
@@ -794,7 +767,7 @@ class UserPerson extends BunqModel
      * @param string $created
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setCreated($created)
@@ -816,7 +789,7 @@ class UserPerson extends BunqModel
      * @param string $updated
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setUpdated($updated)
@@ -838,7 +811,7 @@ class UserPerson extends BunqModel
      * @param string $publicUuid
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setPublicUuid($publicUuid)
@@ -860,7 +833,7 @@ class UserPerson extends BunqModel
      * @param string $firstName
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setFirstName($firstName)
@@ -882,7 +855,7 @@ class UserPerson extends BunqModel
      * @param string $middleName
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setMiddleName($middleName)
@@ -904,7 +877,7 @@ class UserPerson extends BunqModel
      * @param string $lastName
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setLastName($lastName)
@@ -926,7 +899,7 @@ class UserPerson extends BunqModel
      * @param string $legalName
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setLegalName($legalName)
@@ -948,7 +921,7 @@ class UserPerson extends BunqModel
      * @param string $displayName
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setDisplayName($displayName)
@@ -970,7 +943,7 @@ class UserPerson extends BunqModel
      * @param string $publicNickName
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setPublicNickName($publicNickName)
@@ -992,7 +965,7 @@ class UserPerson extends BunqModel
      * @param Pointer[] $alias
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setAlias($alias)
@@ -1014,7 +987,7 @@ class UserPerson extends BunqModel
      * @param TaxResident[] $taxResident
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setTaxResident($taxResident)
@@ -1036,7 +1009,7 @@ class UserPerson extends BunqModel
      * @param string $documentType
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setDocumentType($documentType)
@@ -1058,7 +1031,7 @@ class UserPerson extends BunqModel
      * @param string $documentNumber
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setDocumentNumber($documentNumber)
@@ -1081,7 +1054,7 @@ class UserPerson extends BunqModel
      * @param string $documentCountryOfIssuance
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setDocumentCountryOfIssuance($documentCountryOfIssuance)
@@ -1103,7 +1076,7 @@ class UserPerson extends BunqModel
      * @param Address $addressMain
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setAddressMain($addressMain)
@@ -1125,7 +1098,7 @@ class UserPerson extends BunqModel
      * @param Address $addressPostal
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setAddressPostal($addressPostal)
@@ -1147,7 +1120,7 @@ class UserPerson extends BunqModel
      * @param string $dateOfBirth
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setDateOfBirth($dateOfBirth)
@@ -1169,7 +1142,7 @@ class UserPerson extends BunqModel
      * @param string $placeOfBirth
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setPlaceOfBirth($placeOfBirth)
@@ -1192,7 +1165,7 @@ class UserPerson extends BunqModel
      * @param string $countryOfBirth
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setCountryOfBirth($countryOfBirth)
@@ -1214,7 +1187,7 @@ class UserPerson extends BunqModel
      * @param string $nationality
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setNationality($nationality)
@@ -1237,7 +1210,7 @@ class UserPerson extends BunqModel
      * @param string $language
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setLanguage($language)
@@ -1260,7 +1233,7 @@ class UserPerson extends BunqModel
      * @param string $region
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setRegion($region)
@@ -1282,7 +1255,7 @@ class UserPerson extends BunqModel
      * @param string $gender
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setGender($gender)
@@ -1304,7 +1277,7 @@ class UserPerson extends BunqModel
      * @param Avatar $avatar
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setAvatar($avatar)
@@ -1326,7 +1299,7 @@ class UserPerson extends BunqModel
      * @param string $versionTermsOfService
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setVersionTermsOfService($versionTermsOfService)
@@ -1349,7 +1322,7 @@ class UserPerson extends BunqModel
      * @param string $status
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setStatus($status)
@@ -1373,7 +1346,7 @@ class UserPerson extends BunqModel
      * @param string $subStatus
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setSubStatus($subStatus)
@@ -1395,7 +1368,7 @@ class UserPerson extends BunqModel
      * @param int $sessionTimeout
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setSessionTimeout($sessionTimeout)
@@ -1418,7 +1391,7 @@ class UserPerson extends BunqModel
      * @param Amount $dailyLimitWithoutConfirmationLogin
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setDailyLimitWithoutConfirmationLogin($dailyLimitWithoutConfirmationLogin)
@@ -1441,7 +1414,7 @@ class UserPerson extends BunqModel
      * @param NotificationFilter[] $notificationFilters
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setNotificationFilters($notificationFilters)

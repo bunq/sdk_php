@@ -1,10 +1,7 @@
 <?php
-
 namespace bunq\Model\Generated\Endpoint;
 
-use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
-use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Object\Error;
 use bunq\Model\Generated\Object\RequestInquiryReference;
@@ -96,7 +93,7 @@ class ScheduleInstance extends BunqModel
 
     /**
      * @param string $state Change the state of the scheduleInstance from
-     *                      FAILED_USER_ERROR to RETRY.
+     * FAILED_USER_ERROR to RETRY.
      */
     public function __construct(string $state)
     {
@@ -142,7 +139,7 @@ class ScheduleInstance extends BunqModel
      * @param int $scheduleInstanceId
      * @param int|null $monetaryAccountId
      * @param string|null $state Change the state of the scheduleInstance from
-     *                           FAILED_USER_ERROR to RETRY.
+     * FAILED_USER_ERROR to RETRY.
      * @param string[] $customHeaders
      *
      * @return BunqResponseInt
@@ -221,7 +218,7 @@ class ScheduleInstance extends BunqModel
      * @param string $state
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setState($state)
@@ -243,7 +240,7 @@ class ScheduleInstance extends BunqModel
      * @param string $timeStart
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setTimeStart($timeStart)
@@ -265,7 +262,7 @@ class ScheduleInstance extends BunqModel
      * @param string $timeEnd
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setTimeEnd($timeEnd)
@@ -288,7 +285,7 @@ class ScheduleInstance extends BunqModel
      * @param Error[] $errorMessage
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setErrorMessage($errorMessage)
@@ -310,7 +307,7 @@ class ScheduleInstance extends BunqModel
      * @param ScheduleAnchorObject $scheduledObject
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setScheduledObject($scheduledObject)
@@ -332,7 +329,7 @@ class ScheduleInstance extends BunqModel
      * @param ScheduleInstanceAnchorObject $resultObject
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setResultObject($resultObject)
@@ -355,7 +352,7 @@ class ScheduleInstance extends BunqModel
      * @param RequestInquiryReference[] $requestReferenceSplitTheBill
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setRequestReferenceSplitTheBill($requestReferenceSplitTheBill)

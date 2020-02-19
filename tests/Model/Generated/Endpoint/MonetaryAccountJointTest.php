@@ -18,18 +18,6 @@ class MonetaryAccountJointTest extends BunqSdkTestBase
 
     /**
      */
-    public static function setUpBeforeClass()
-    {
-    }
-
-    /**
-     */
-    public function setUp()
-    {
-    }
-
-    /**
-     */
     public function testMonetaryAccountJointFromJson()
     {
         $jsonString =

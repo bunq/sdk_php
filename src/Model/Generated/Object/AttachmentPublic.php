@@ -1,5 +1,4 @@
 <?php
-
 namespace bunq\Model\Generated\Object;
 
 use bunq\Model\Core\BunqModel;
@@ -44,7 +43,7 @@ class AttachmentPublic extends BunqModel
      * @param string $uuid
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setUuid($uuid)
@@ -66,7 +65,7 @@ class AttachmentPublic extends BunqModel
      * @param string $description
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setDescription($description)
@@ -88,7 +87,7 @@ class AttachmentPublic extends BunqModel
      * @param string $contentType
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setContentType($contentType)

@@ -1,17 +1,13 @@
 <?php
-
 namespace bunq\Model\Generated\Endpoint;
 
-use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
-use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Object\Amount;
 use bunq\Model\Generated\Object\Avatar;
 use bunq\Model\Generated\Object\BunqId;
 use bunq\Model\Generated\Object\CoOwner;
 use bunq\Model\Generated\Object\MonetaryAccountSetting;
-use bunq\Model\Generated\Object\NotificationFilter;
 use bunq\Model\Generated\Object\Pointer;
 
 /**
@@ -41,7 +37,6 @@ class MonetaryAccountSavings extends BunqModel
     const FIELD_REASON = 'reason';
     const FIELD_REASON_DESCRIPTION = 'reason_description';
     const FIELD_ALL_CO_OWNER = 'all_co_owner';
-    const FIELD_NOTIFICATION_FILTERS = 'notification_filters';
     const FIELD_SETTING = 'setting';
     const FIELD_SAVINGS_GOAL = 'savings_goal';
 
@@ -102,13 +97,6 @@ class MonetaryAccountSavings extends BunqModel
      * @var Amount
      */
     protected $dailyLimit;
-
-    /**
-     * Total Amount of money spent today. Timezone aware.
-     *
-     * @var Amount
-     */
-    protected $dailySpent;
 
     /**
      * The maximum Amount the MonetaryAccountSavings can be 'in the red'. Must
@@ -193,14 +181,6 @@ class MonetaryAccountSavings extends BunqModel
      * @var MonetaryAccountProfile
      */
     protected $monetaryAccountProfile;
-
-    /**
-     * The types of notifications that will result in a push notification or URL
-     * callback for this MonetaryAccountSavings.
-     *
-     * @var NotificationFilter[]
-     */
-    protected $notificationFilters;
 
     /**
      * The settings of the MonetaryAccountSavings.
@@ -319,14 +299,6 @@ class MonetaryAccountSavings extends BunqModel
     protected $allCoOwnerFieldForRequest;
 
     /**
-     * The types of notifications that will result in a push notification or URL
-     * callback for this MonetaryAccountSavings.
-     *
-     * @var NotificationFilter[]|null
-     */
-    protected $notificationFiltersFieldForRequest;
-
-    /**
      * The settings of the MonetaryAccountSavings.
      *
      * @var MonetaryAccountSetting|null
@@ -341,48 +313,40 @@ class MonetaryAccountSavings extends BunqModel
     protected $savingsGoalFieldForRequest;
 
     /**
-     * @param string $currency                               The currency of the MonetaryAccountSavings as an
-     *                                                       ISO 4217 formatted currency code.
-     * @param string|null $description                       The description of the
-     *                                                       MonetaryAccountSavings. Defaults to 'bunq account'.
-     * @param Amount|null $dailyLimit                        The daily spending limit Amount of the
-     *                                                       MonetaryAccountSavings. Defaults to 1000 EUR. Currency
-     *                                                       must match the MonetaryAccountSavings's currency. Limited
-     *                                                       to 10000 EUR.
-     * @param string|null $avatarUuid                        The UUID of the Avatar of the
-     *                                                       MonetaryAccountSavings.
-     * @param string|null $status                            The status of the MonetaryAccountSavings.
-     *                                                       Ignored in POST requests (always set to ACTIVE) can be
-     *                                                       CANCELLED or PENDING_REOPEN in PUT requests to cancel
-     *                                                       (close) or reopen the MonetaryAccountSavings. When
-     *                                                       updating the status and/or sub_status no other fields can
-     *                                                       be updated in the same request (and vice versa).
-     * @param string|null $subStatus                         The sub-status of the
-     *                                                       MonetaryAccountSavings providing extra information
-     *                                                       regarding the status. Should be ignored for POST requests.
-     *                                                       In case of PUT requests with status CANCELLED it can only
-     *                                                       be REDEMPTION_VOLUNTARY, while with status PENDING_REOPEN
-     *                                                       it can only be NONE. When updating the status and/or
-     *                                                       sub_status no other fields can be updated in the same
-     *                                                       request (and vice versa).
-     * @param string|null $reason                            The reason for voluntarily cancelling
-     *                                                       (closing) the MonetaryAccountSavings, can only be OTHER.
-     *                                                       Should only be specified if updating the status to
-     *                                                       CANCELLED.
-     * @param string|null $reasonDescription                 The optional free-form reason for
-     *                                                       voluntarily cancelling (closing) the
-     *                                                       MonetaryAccountSavings. Can be any user provided message.
-     *                                                       Should only be specified if updating the status to
-     *                                                       CANCELLED.
-     * @param CoOwner[]|null $allCoOwner                     The users the account will be joint
-     *                                                       with.
-     * @param NotificationFilter[]|null $notificationFilters The types of
-     *                                                       notifications that will result in a push notification or
-     *                                                       URL callback for this MonetaryAccountSavings.
-     * @param MonetaryAccountSetting|null $setting           The settings of the
-     *                                                       MonetaryAccountSavings.
-     * @param Amount|null $savingsGoal                       The Savings Goal set for this
-     *                                                       MonetaryAccountSavings.
+     * @param string $currency The currency of the MonetaryAccountSavings as an
+     * ISO 4217 formatted currency code.
+     * @param string|null $description The description of the
+     * MonetaryAccountSavings. Defaults to 'bunq account'.
+     * @param Amount|null $dailyLimit The daily spending limit Amount of the
+     * MonetaryAccountSavings. Defaults to 1000 EUR. Currency must match the
+     * MonetaryAccountSavings's currency. Limited to 10000 EUR.
+     * @param string|null $avatarUuid The UUID of the Avatar of the
+     * MonetaryAccountSavings.
+     * @param string|null $status The status of the MonetaryAccountSavings.
+     * Ignored in POST requests (always set to ACTIVE) can be CANCELLED or
+     * PENDING_REOPEN in PUT requests to cancel (close) or reopen the
+     * MonetaryAccountSavings. When updating the status and/or sub_status no
+     * other fields can be updated in the same request (and vice versa).
+     * @param string|null $subStatus The sub-status of the
+     * MonetaryAccountSavings providing extra information regarding the status.
+     * Should be ignored for POST requests. In case of PUT requests with status
+     * CANCELLED it can only be REDEMPTION_VOLUNTARY, while with status
+     * PENDING_REOPEN it can only be NONE. When updating the status and/or
+     * sub_status no other fields can be updated in the same request (and vice
+     * versa).
+     * @param string|null $reason The reason for voluntarily cancelling
+     * (closing) the MonetaryAccountSavings, can only be OTHER. Should only be
+     * specified if updating the status to CANCELLED.
+     * @param string|null $reasonDescription The optional free-form reason for
+     * voluntarily cancelling (closing) the MonetaryAccountSavings. Can be any
+     * user provided message. Should only be specified if updating the status to
+     * CANCELLED.
+     * @param CoOwner[]|null $allCoOwner The users the account will be joint
+     * with.
+     * @param MonetaryAccountSetting|null $setting The settings of the
+     * MonetaryAccountSavings.
+     * @param Amount|null $savingsGoal The Savings Goal set for this
+     * MonetaryAccountSavings.
      */
     public function __construct(
         string $currency,
@@ -394,7 +358,6 @@ class MonetaryAccountSavings extends BunqModel
         string $reason = null,
         string $reasonDescription = null,
         array $allCoOwner = null,
-        array $notificationFilters = null,
         MonetaryAccountSetting $setting = null,
         Amount $savingsGoal = null
     ) {
@@ -407,7 +370,6 @@ class MonetaryAccountSavings extends BunqModel
         $this->reasonFieldForRequest = $reason;
         $this->reasonDescriptionFieldForRequest = $reasonDescription;
         $this->allCoOwnerFieldForRequest = $allCoOwner;
-        $this->notificationFiltersFieldForRequest = $notificationFilters;
         $this->settingFieldForRequest = $setting;
         $this->savingsGoalFieldForRequest = $savingsGoal;
     }
@@ -415,48 +377,40 @@ class MonetaryAccountSavings extends BunqModel
     /**
      * Create new MonetaryAccountSavings.
      *
-     * @param string $currency                               The currency of the MonetaryAccountSavings as an
-     *                                                       ISO 4217 formatted currency code.
-     * @param string|null $description                       The description of the
-     *                                                       MonetaryAccountSavings. Defaults to 'bunq account'.
-     * @param Amount|null $dailyLimit                        The daily spending limit Amount of the
-     *                                                       MonetaryAccountSavings. Defaults to 1000 EUR. Currency
-     *                                                       must match the MonetaryAccountSavings's currency. Limited
-     *                                                       to 10000 EUR.
-     * @param string|null $avatarUuid                        The UUID of the Avatar of the
-     *                                                       MonetaryAccountSavings.
-     * @param string|null $status                            The status of the MonetaryAccountSavings.
-     *                                                       Ignored in POST requests (always set to ACTIVE) can be
-     *                                                       CANCELLED or PENDING_REOPEN in PUT requests to cancel
-     *                                                       (close) or reopen the MonetaryAccountSavings. When
-     *                                                       updating the status and/or sub_status no other fields can
-     *                                                       be updated in the same request (and vice versa).
-     * @param string|null $subStatus                         The sub-status of the
-     *                                                       MonetaryAccountSavings providing extra information
-     *                                                       regarding the status. Should be ignored for POST requests.
-     *                                                       In case of PUT requests with status CANCELLED it can only
-     *                                                       be REDEMPTION_VOLUNTARY, while with status PENDING_REOPEN
-     *                                                       it can only be NONE. When updating the status and/or
-     *                                                       sub_status no other fields can be updated in the same
-     *                                                       request (and vice versa).
-     * @param string|null $reason                            The reason for voluntarily cancelling
-     *                                                       (closing) the MonetaryAccountSavings, can only be OTHER.
-     *                                                       Should only be specified if updating the status to
-     *                                                       CANCELLED.
-     * @param string|null $reasonDescription                 The optional free-form reason for
-     *                                                       voluntarily cancelling (closing) the
-     *                                                       MonetaryAccountSavings. Can be any user provided message.
-     *                                                       Should only be specified if updating the status to
-     *                                                       CANCELLED.
-     * @param CoOwner[]|null $allCoOwner                     The users the account will be joint
-     *                                                       with.
-     * @param NotificationFilter[]|null $notificationFilters The types of
-     *                                                       notifications that will result in a push notification or
-     *                                                       URL callback for this MonetaryAccountSavings.
-     * @param MonetaryAccountSetting|null $setting           The settings of the
-     *                                                       MonetaryAccountSavings.
-     * @param Amount|null $savingsGoal                       The Savings Goal set for this
-     *                                                       MonetaryAccountSavings.
+     * @param string $currency The currency of the MonetaryAccountSavings as an
+     * ISO 4217 formatted currency code.
+     * @param string|null $description The description of the
+     * MonetaryAccountSavings. Defaults to 'bunq account'.
+     * @param Amount|null $dailyLimit The daily spending limit Amount of the
+     * MonetaryAccountSavings. Defaults to 1000 EUR. Currency must match the
+     * MonetaryAccountSavings's currency. Limited to 10000 EUR.
+     * @param string|null $avatarUuid The UUID of the Avatar of the
+     * MonetaryAccountSavings.
+     * @param string|null $status The status of the MonetaryAccountSavings.
+     * Ignored in POST requests (always set to ACTIVE) can be CANCELLED or
+     * PENDING_REOPEN in PUT requests to cancel (close) or reopen the
+     * MonetaryAccountSavings. When updating the status and/or sub_status no
+     * other fields can be updated in the same request (and vice versa).
+     * @param string|null $subStatus The sub-status of the
+     * MonetaryAccountSavings providing extra information regarding the status.
+     * Should be ignored for POST requests. In case of PUT requests with status
+     * CANCELLED it can only be REDEMPTION_VOLUNTARY, while with status
+     * PENDING_REOPEN it can only be NONE. When updating the status and/or
+     * sub_status no other fields can be updated in the same request (and vice
+     * versa).
+     * @param string|null $reason The reason for voluntarily cancelling
+     * (closing) the MonetaryAccountSavings, can only be OTHER. Should only be
+     * specified if updating the status to CANCELLED.
+     * @param string|null $reasonDescription The optional free-form reason for
+     * voluntarily cancelling (closing) the MonetaryAccountSavings. Can be any
+     * user provided message. Should only be specified if updating the status to
+     * CANCELLED.
+     * @param CoOwner[]|null $allCoOwner The users the account will be joint
+     * with.
+     * @param MonetaryAccountSetting|null $setting The settings of the
+     * MonetaryAccountSavings.
+     * @param Amount|null $savingsGoal The Savings Goal set for this
+     * MonetaryAccountSavings.
      * @param string[] $customHeaders
      *
      * @return BunqResponseInt
@@ -471,7 +425,6 @@ class MonetaryAccountSavings extends BunqModel
         string $reason = null,
         string $reasonDescription = null,
         array $allCoOwner = null,
-        array $notificationFilters = null,
         MonetaryAccountSetting $setting = null,
         Amount $savingsGoal = null,
         array $customHeaders = []
@@ -492,7 +445,6 @@ class MonetaryAccountSavings extends BunqModel
                 self::FIELD_REASON => $reason,
                 self::FIELD_REASON_DESCRIPTION => $reasonDescription,
                 self::FIELD_ALL_CO_OWNER => $allCoOwner,
-                self::FIELD_NOTIFICATION_FILTERS => $notificationFilters,
                 self::FIELD_SETTING => $setting,
                 self::FIELD_SAVINGS_GOAL => $savingsGoal,
             ],
@@ -535,44 +487,36 @@ class MonetaryAccountSavings extends BunqModel
      * Update a specific existing MonetaryAccountSavings.
      *
      * @param int $monetaryAccountSavingsId
-     * @param string|null $description                       The description of the
-     *                                                       MonetaryAccountSavings. Defaults to 'bunq account'.
-     * @param Amount|null $dailyLimit                        The daily spending limit Amount of the
-     *                                                       MonetaryAccountSavings. Defaults to 1000 EUR. Currency
-     *                                                       must match the MonetaryAccountSavings's currency. Limited
-     *                                                       to 10000 EUR.
-     * @param string|null $avatarUuid                        The UUID of the Avatar of the
-     *                                                       MonetaryAccountSavings.
-     * @param string|null $status                            The status of the MonetaryAccountSavings.
-     *                                                       Ignored in POST requests (always set to ACTIVE) can be
-     *                                                       CANCELLED or PENDING_REOPEN in PUT requests to cancel
-     *                                                       (close) or reopen the MonetaryAccountSavings. When
-     *                                                       updating the status and/or sub_status no other fields can
-     *                                                       be updated in the same request (and vice versa).
-     * @param string|null $subStatus                         The sub-status of the
-     *                                                       MonetaryAccountSavings providing extra information
-     *                                                       regarding the status. Should be ignored for POST requests.
-     *                                                       In case of PUT requests with status CANCELLED it can only
-     *                                                       be REDEMPTION_VOLUNTARY, while with status PENDING_REOPEN
-     *                                                       it can only be NONE. When updating the status and/or
-     *                                                       sub_status no other fields can be updated in the same
-     *                                                       request (and vice versa).
-     * @param string|null $reason                            The reason for voluntarily cancelling
-     *                                                       (closing) the MonetaryAccountSavings, can only be OTHER.
-     *                                                       Should only be specified if updating the status to
-     *                                                       CANCELLED.
-     * @param string|null $reasonDescription                 The optional free-form reason for
-     *                                                       voluntarily cancelling (closing) the
-     *                                                       MonetaryAccountSavings. Can be any user provided message.
-     *                                                       Should only be specified if updating the status to
-     *                                                       CANCELLED.
-     * @param NotificationFilter[]|null $notificationFilters The types of
-     *                                                       notifications that will result in a push notification or
-     *                                                       URL callback for this MonetaryAccountSavings.
-     * @param MonetaryAccountSetting|null $setting           The settings of the
-     *                                                       MonetaryAccountSavings.
-     * @param Amount|null $savingsGoal                       The Savings Goal set for this
-     *                                                       MonetaryAccountSavings.
+     * @param string|null $description The description of the
+     * MonetaryAccountSavings. Defaults to 'bunq account'.
+     * @param Amount|null $dailyLimit The daily spending limit Amount of the
+     * MonetaryAccountSavings. Defaults to 1000 EUR. Currency must match the
+     * MonetaryAccountSavings's currency. Limited to 10000 EUR.
+     * @param string|null $avatarUuid The UUID of the Avatar of the
+     * MonetaryAccountSavings.
+     * @param string|null $status The status of the MonetaryAccountSavings.
+     * Ignored in POST requests (always set to ACTIVE) can be CANCELLED or
+     * PENDING_REOPEN in PUT requests to cancel (close) or reopen the
+     * MonetaryAccountSavings. When updating the status and/or sub_status no
+     * other fields can be updated in the same request (and vice versa).
+     * @param string|null $subStatus The sub-status of the
+     * MonetaryAccountSavings providing extra information regarding the status.
+     * Should be ignored for POST requests. In case of PUT requests with status
+     * CANCELLED it can only be REDEMPTION_VOLUNTARY, while with status
+     * PENDING_REOPEN it can only be NONE. When updating the status and/or
+     * sub_status no other fields can be updated in the same request (and vice
+     * versa).
+     * @param string|null $reason The reason for voluntarily cancelling
+     * (closing) the MonetaryAccountSavings, can only be OTHER. Should only be
+     * specified if updating the status to CANCELLED.
+     * @param string|null $reasonDescription The optional free-form reason for
+     * voluntarily cancelling (closing) the MonetaryAccountSavings. Can be any
+     * user provided message. Should only be specified if updating the status to
+     * CANCELLED.
+     * @param MonetaryAccountSetting|null $setting The settings of the
+     * MonetaryAccountSavings.
+     * @param Amount|null $savingsGoal The Savings Goal set for this
+     * MonetaryAccountSavings.
      * @param string[] $customHeaders
      *
      * @return BunqResponseInt
@@ -586,7 +530,6 @@ class MonetaryAccountSavings extends BunqModel
         string $subStatus = null,
         string $reason = null,
         string $reasonDescription = null,
-        array $notificationFilters = null,
         MonetaryAccountSetting $setting = null,
         Amount $savingsGoal = null,
         array $customHeaders = []
@@ -605,7 +548,6 @@ class MonetaryAccountSavings extends BunqModel
                 self::FIELD_SUB_STATUS => $subStatus,
                 self::FIELD_REASON => $reason,
                 self::FIELD_REASON_DESCRIPTION => $reasonDescription,
-                self::FIELD_NOTIFICATION_FILTERS => $notificationFilters,
                 self::FIELD_SETTING => $setting,
                 self::FIELD_SAVINGS_GOAL => $savingsGoal,
             ],
@@ -661,7 +603,7 @@ class MonetaryAccountSavings extends BunqModel
      * @param int $id
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setId($id)
@@ -683,7 +625,7 @@ class MonetaryAccountSavings extends BunqModel
      * @param string $created
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setCreated($created)
@@ -705,7 +647,7 @@ class MonetaryAccountSavings extends BunqModel
      * @param string $updated
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setUpdated($updated)
@@ -727,7 +669,7 @@ class MonetaryAccountSavings extends BunqModel
      * @param Avatar $avatar
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setAvatar($avatar)
@@ -750,7 +692,7 @@ class MonetaryAccountSavings extends BunqModel
      * @param string $currency
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setCurrency($currency)
@@ -773,7 +715,7 @@ class MonetaryAccountSavings extends BunqModel
      * @param string $description
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setDescription($description)
@@ -797,34 +739,12 @@ class MonetaryAccountSavings extends BunqModel
      * @param Amount $dailyLimit
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setDailyLimit($dailyLimit)
     {
         $this->dailyLimit = $dailyLimit;
-    }
-
-    /**
-     * Total Amount of money spent today. Timezone aware.
-     *
-     * @return Amount
-     */
-    public function getDailySpent()
-    {
-        return $this->dailySpent;
-    }
-
-    /**
-     * @param Amount $dailySpent
-     *
-     * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
-     */
-    public function setDailySpent($dailySpent)
-    {
-        $this->dailySpent = $dailySpent;
     }
 
     /**
@@ -842,7 +762,7 @@ class MonetaryAccountSavings extends BunqModel
      * @param Amount $overdraftLimit
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setOverdraftLimit($overdraftLimit)
@@ -864,7 +784,7 @@ class MonetaryAccountSavings extends BunqModel
      * @param Amount $balance
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setBalance($balance)
@@ -886,7 +806,7 @@ class MonetaryAccountSavings extends BunqModel
      * @param Pointer[] $alias
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setAlias($alias)
@@ -908,7 +828,7 @@ class MonetaryAccountSavings extends BunqModel
      * @param string $publicUuid
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setPublicUuid($publicUuid)
@@ -931,7 +851,7 @@ class MonetaryAccountSavings extends BunqModel
      * @param string $status
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setStatus($status)
@@ -956,7 +876,7 @@ class MonetaryAccountSavings extends BunqModel
      * @param string $subStatus
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setSubStatus($subStatus)
@@ -979,7 +899,7 @@ class MonetaryAccountSavings extends BunqModel
      * @param string $reason
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setReason($reason)
@@ -1002,7 +922,7 @@ class MonetaryAccountSavings extends BunqModel
      * @param string $reasonDescription
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setReasonDescription($reasonDescription)
@@ -1024,7 +944,7 @@ class MonetaryAccountSavings extends BunqModel
      * @param CoOwner[] $allCoOwner
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setAllCoOwner($allCoOwner)
@@ -1046,7 +966,7 @@ class MonetaryAccountSavings extends BunqModel
      * @param int $userId
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setUserId($userId)
@@ -1068,35 +988,12 @@ class MonetaryAccountSavings extends BunqModel
      * @param MonetaryAccountProfile $monetaryAccountProfile
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setMonetaryAccountProfile($monetaryAccountProfile)
     {
         $this->monetaryAccountProfile = $monetaryAccountProfile;
-    }
-
-    /**
-     * The types of notifications that will result in a push notification or URL
-     * callback for this MonetaryAccountSavings.
-     *
-     * @return NotificationFilter[]
-     */
-    public function getNotificationFilters()
-    {
-        return $this->notificationFilters;
-    }
-
-    /**
-     * @param NotificationFilter[] $notificationFilters
-     *
-     * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
-     */
-    public function setNotificationFilters($notificationFilters)
-    {
-        $this->notificationFilters = $notificationFilters;
     }
 
     /**
@@ -1113,7 +1010,7 @@ class MonetaryAccountSavings extends BunqModel
      * @param MonetaryAccountSetting $setting
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setSetting($setting)
@@ -1135,7 +1032,7 @@ class MonetaryAccountSavings extends BunqModel
      * @param Amount $savingsGoal
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setSavingsGoal($savingsGoal)
@@ -1158,7 +1055,7 @@ class MonetaryAccountSavings extends BunqModel
      * @param float $savingsGoalProgress
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setSavingsGoalProgress($savingsGoalProgress)
@@ -1180,7 +1077,7 @@ class MonetaryAccountSavings extends BunqModel
      * @param int $autoSaveId
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setAutoSaveId($autoSaveId)
@@ -1202,7 +1099,7 @@ class MonetaryAccountSavings extends BunqModel
      * @param BunqId[] $allAutoSaveId
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setAllAutoSaveId($allAutoSaveId)
@@ -1240,10 +1137,6 @@ class MonetaryAccountSavings extends BunqModel
         }
 
         if (!is_null($this->dailyLimit)) {
-            return false;
-        }
-
-        if (!is_null($this->dailySpent)) {
             return false;
         }
 
@@ -1288,10 +1181,6 @@ class MonetaryAccountSavings extends BunqModel
         }
 
         if (!is_null($this->monetaryAccountProfile)) {
-            return false;
-        }
-
-        if (!is_null($this->notificationFilters)) {
             return false;
         }
 

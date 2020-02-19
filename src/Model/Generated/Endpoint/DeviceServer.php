@@ -1,5 +1,4 @@
 <?php
-
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Http\ApiClient;
@@ -99,13 +98,13 @@ class DeviceServer extends BunqModel
     protected $permittedIpsFieldForRequest;
 
     /**
-     * @param string $description         The description of the DeviceServer. This is
-     *                                    only for your own reference when reading the DeviceServer again.
-     * @param string $secret              The API key. You can request an API key in the bunq
-     *                                    app.
+     * @param string $description The description of the DeviceServer. This is
+     * only for your own reference when reading the DeviceServer again.
+     * @param string $secret The API key. You can request an API key in the bunq
+     * app.
      * @param string[]|null $permittedIps An array of IPs (v4 or v6) this
-     *                                    DeviceServer will be able to do calls from. These will be linked to the
-     *                                    API key.
+     * DeviceServer will be able to do calls from. These will be linked to the
+     * API key.
      */
     public function __construct(string $description, string $secret, array $permittedIps = null)
     {
@@ -124,13 +123,13 @@ class DeviceServer extends BunqModel
      * at this link <a href="https://bunq.com/en/apikey-dynamic-ip"
      * target="_blank">https://bunq.com/en/apikey-dynamic-ip</a>.
      *
-     * @param string $description         The description of the DeviceServer. This is
-     *                                    only for your own reference when reading the DeviceServer again.
-     * @param string $secret              The API key. You can request an API key in the bunq
-     *                                    app.
+     * @param string $description The description of the DeviceServer. This is
+     * only for your own reference when reading the DeviceServer again.
+     * @param string $secret The API key. You can request an API key in the bunq
+     * app.
      * @param string[]|null $permittedIps An array of IPs (v4 or v6) this
-     *                                    DeviceServer will be able to do calls from. These will be linked to the
-     *                                    API key.
+     * DeviceServer will be able to do calls from. These will be linked to the
+     * API key.
      * @param string[] $customHeaders
      *
      * @return BunqResponseInt
@@ -227,7 +226,7 @@ class DeviceServer extends BunqModel
      * @param int $id
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setId($id)
@@ -249,7 +248,7 @@ class DeviceServer extends BunqModel
      * @param string $created
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setCreated($created)
@@ -271,7 +270,7 @@ class DeviceServer extends BunqModel
      * @param string $updated
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setUpdated($updated)
@@ -293,7 +292,7 @@ class DeviceServer extends BunqModel
      * @param string $description
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setDescription($description)
@@ -315,7 +314,7 @@ class DeviceServer extends BunqModel
      * @param string $ip
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setIp($ip)
@@ -338,7 +337,7 @@ class DeviceServer extends BunqModel
      * @param string $status
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setStatus($status)

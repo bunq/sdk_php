@@ -1,10 +1,7 @@
 <?php
-
 namespace bunq\Model\Generated\Endpoint;
 
-use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
-use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Object\Avatar;
 
@@ -83,7 +80,7 @@ class FeatureAnnouncement extends BunqModel
      * @param Avatar $avatar
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setAvatar($avatar)
@@ -105,7 +102,7 @@ class FeatureAnnouncement extends BunqModel
      * @param string $title
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setTitle($title)
@@ -127,7 +124,7 @@ class FeatureAnnouncement extends BunqModel
      * @param string $subTitle
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setSubTitle($subTitle)

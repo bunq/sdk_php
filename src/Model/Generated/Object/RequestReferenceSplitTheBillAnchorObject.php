@@ -1,5 +1,4 @@
 <?php
-
 namespace bunq\Model\Generated\Object;
 
 use bunq\exception\BunqException;
@@ -88,7 +87,7 @@ class RequestReferenceSplitTheBillAnchorObject extends BunqModel implements Anch
      * @param Invoice $billingInvoice
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setBillingInvoice($billingInvoice)
@@ -108,7 +107,7 @@ class RequestReferenceSplitTheBillAnchorObject extends BunqModel implements Anch
      * @param DraftPayment $draftPayment
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setDraftPayment($draftPayment)
@@ -128,7 +127,7 @@ class RequestReferenceSplitTheBillAnchorObject extends BunqModel implements Anch
      * @param MasterCardAction $masterCardAction
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setMasterCardAction($masterCardAction)
@@ -148,7 +147,7 @@ class RequestReferenceSplitTheBillAnchorObject extends BunqModel implements Anch
      * @param Payment $payment
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setPayment($payment)
@@ -168,7 +167,7 @@ class RequestReferenceSplitTheBillAnchorObject extends BunqModel implements Anch
      * @param PaymentBatch $paymentBatch
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setPaymentBatch($paymentBatch)
@@ -188,7 +187,7 @@ class RequestReferenceSplitTheBillAnchorObject extends BunqModel implements Anch
      * @param RequestResponse $requestResponse
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setRequestResponse($requestResponse)
@@ -208,7 +207,7 @@ class RequestReferenceSplitTheBillAnchorObject extends BunqModel implements Anch
      * @param ScheduleInstance $scheduleInstance
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setScheduleInstance($scheduleInstance)
@@ -228,7 +227,7 @@ class RequestReferenceSplitTheBillAnchorObject extends BunqModel implements Anch
      * @param TabResultResponse $tabResultResponse
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setTabResultResponse($tabResultResponse)
@@ -248,7 +247,7 @@ class RequestReferenceSplitTheBillAnchorObject extends BunqModel implements Anch
      * @param WhitelistResult $whitelistResult
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setWhitelistResult($whitelistResult)
@@ -268,7 +267,7 @@ class RequestReferenceSplitTheBillAnchorObject extends BunqModel implements Anch
      * @param TransferwiseTransfer $transferwisePayment
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setTransferwisePayment($transferwisePayment)
