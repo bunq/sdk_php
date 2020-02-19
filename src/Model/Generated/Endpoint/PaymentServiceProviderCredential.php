@@ -1,5 +1,4 @@
 <?php
-
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Http\ApiClient;
@@ -105,16 +104,14 @@ class PaymentServiceProviderCredential extends BunqModel
     protected $clientPublicKeySignatureFieldForRequest;
 
     /**
-     * @param string $clientPaymentServiceProviderCertificate      Payment Services
-     *                                                             Directive 2 compatible QSEAL certificate
+     * @param string $clientPaymentServiceProviderCertificate Payment Services
+     * Directive 2 compatible QSEAL certificate
      * @param string $clientPaymentServiceProviderCertificateChain Intermediate
-     *                                                             and root certificate belonging to the provided
-     *                                                             certificate.
-     * @param string $clientPublicKeySignature                     The Base64 encoded signature of
-     *                                                             the public key provided during installation and with
-     *                                                             the installation token appended as a nonce. Signed
-     *                                                             with the private key belonging to the QSEAL
-     *                                                             certificate.
+     * and root certificate belonging to the provided certificate.
+     * @param string $clientPublicKeySignature The Base64 encoded signature of
+     * the public key provided during installation and with the installation
+     * token appended as a nonce. Signed with the private key belonging to the
+     * QSEAL certificate.
      */
     public function __construct(
         string $clientPaymentServiceProviderCertificate,
@@ -153,16 +150,14 @@ class PaymentServiceProviderCredential extends BunqModel
     }
 
     /**
-     * @param string $clientPaymentServiceProviderCertificate      Payment Services
-     *                                                             Directive 2 compatible QSEAL certificate
+     * @param string $clientPaymentServiceProviderCertificate Payment Services
+     * Directive 2 compatible QSEAL certificate
      * @param string $clientPaymentServiceProviderCertificateChain Intermediate
-     *                                                             and root certificate belonging to the provided
-     *                                                             certificate.
-     * @param string $clientPublicKeySignature                     The Base64 encoded signature of
-     *                                                             the public key provided during installation and with
-     *                                                             the installation token appended as a nonce. Signed
-     *                                                             with the private key belonging to the QSEAL
-     *                                                             certificate.
+     * and root certificate belonging to the provided certificate.
+     * @param string $clientPublicKeySignature The Base64 encoded signature of
+     * the public key provided during installation and with the installation
+     * token appended as a nonce. Signed with the private key belonging to the
+     * QSEAL certificate.
      * @param string[] $customHeaders
      *
      * @return BunqResponseInt
@@ -206,7 +201,7 @@ class PaymentServiceProviderCredential extends BunqModel
      * @param int $id
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setId($id)
@@ -228,7 +223,7 @@ class PaymentServiceProviderCredential extends BunqModel
      * @param string $created
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setCreated($created)
@@ -250,7 +245,7 @@ class PaymentServiceProviderCredential extends BunqModel
      * @param string $updated
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setUpdated($updated)
@@ -272,7 +267,7 @@ class PaymentServiceProviderCredential extends BunqModel
      * @param string $status
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setStatus($status)
@@ -294,7 +289,7 @@ class PaymentServiceProviderCredential extends BunqModel
      * @param string $expiryTime
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setExpiryTime($expiryTime)
@@ -316,7 +311,7 @@ class PaymentServiceProviderCredential extends BunqModel
      * @param string $tokenValue
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setTokenValue($tokenValue)
@@ -339,7 +334,7 @@ class PaymentServiceProviderCredential extends BunqModel
      * @param PermittedDevice $permittedDevice
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setPermittedDevice($permittedDevice)

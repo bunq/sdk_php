@@ -1,10 +1,7 @@
 <?php
-
 namespace bunq\Model\Generated\Endpoint;
 
-use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
-use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Object\Amount;
 use bunq\Model\Generated\Object\RequestReferenceSplitTheBillAnchorObject;
@@ -91,12 +88,12 @@ class RequestInquiryBatch extends BunqModel
 
     /**
      * @param RequestInquiry[] $requestInquiries The list of request inquiries
-     *                                           we want to send in 1 batch.
-     * @param Amount $totalAmountInquired        The total amount originally inquired
-     *                                           for this batch.
-     * @param string|null $status                The status of the request.
-     * @param int|null $eventId                  The ID of the associated event if the request
-     *                                           batch was made using 'split the bill'.
+     * we want to send in 1 batch.
+     * @param Amount $totalAmountInquired The total amount originally inquired
+     * for this batch.
+     * @param string|null $status The status of the request.
+     * @param int|null $eventId The ID of the associated event if the request
+     * batch was made using 'split the bill'.
      */
     public function __construct(
         array $requestInquiries,
@@ -115,13 +112,13 @@ class RequestInquiryBatch extends BunqModel
      * that will become part of the batch.
      *
      * @param RequestInquiry[] $requestInquiries The list of request inquiries
-     *                                           we want to send in 1 batch.
-     * @param Amount $totalAmountInquired        The total amount originally inquired
-     *                                           for this batch.
+     * we want to send in 1 batch.
+     * @param Amount $totalAmountInquired The total amount originally inquired
+     * for this batch.
      * @param int|null $monetaryAccountId
-     * @param string|null $status                The status of the request.
-     * @param int|null $eventId                  The ID of the associated event if the request
-     *                                           batch was made using 'split the bill'.
+     * @param string|null $status The status of the request.
+     * @param int|null $eventId The ID of the associated event if the request
+     * batch was made using 'split the bill'.
      * @param string[] $customHeaders
      *
      * @return BunqResponseInt
@@ -269,7 +266,7 @@ class RequestInquiryBatch extends BunqModel
      * @param RequestInquiry[] $requestInquiries
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setRequestInquiries($requestInquiries)
@@ -291,7 +288,7 @@ class RequestInquiryBatch extends BunqModel
      * @param Amount $totalAmountInquired
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setTotalAmountInquired($totalAmountInquired)
@@ -314,7 +311,7 @@ class RequestInquiryBatch extends BunqModel
      * @param RequestReferenceSplitTheBillAnchorObject $referenceSplitTheBill
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setReferenceSplitTheBill($referenceSplitTheBill)

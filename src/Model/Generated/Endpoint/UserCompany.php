@@ -1,5 +1,4 @@
 <?php
-
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Http\ApiClient;
@@ -46,7 +45,6 @@ class UserCompany extends BunqModel
     const FIELD_SUB_STATUS = 'sub_status';
     const FIELD_SESSION_TIMEOUT = 'session_timeout';
     const FIELD_DAILY_LIMIT_WITHOUT_CONFIRMATION_LOGIN = 'daily_limit_without_confirmation_login';
-    const FIELD_NOTIFICATION_FILTERS = 'notification_filters';
 
     /**
      * Object type.
@@ -271,6 +269,13 @@ class UserCompany extends BunqModel
     protected $billingContract;
 
     /**
+     * The user deny reason.
+     *
+     * @var string
+     */
+    protected $denyReason;
+
+    /**
      * The company name.
      *
      * @var string|null
@@ -382,44 +387,32 @@ class UserCompany extends BunqModel
     protected $dailyLimitWithoutConfirmationLoginFieldForRequest;
 
     /**
-     * The types of notifications that will result in a push notification or URL
-     * callback for this UserCompany.
-     *
-     * @var NotificationFilter[]|null
-     */
-    protected $notificationFiltersFieldForRequest;
-
-    /**
-     * @param Address $addressMain                            The user's main address.
-     * @param string $language                                The person's preferred language. Formatted as a
-     *                                                        ISO 639-1 language code plus a ISO 3166-1 alpha-2 country
-     *                                                        code, seperated by an underscore.
-     * @param string $region                                  The person's preferred region. Formatted as a ISO
-     *                                                        639-1 language code plus a ISO 3166-1 alpha-2 country
-     *                                                        code, seperated by an underscore.
-     * @param string|null $name                               The company name.
-     * @param string|null $publicNickName                     The company's nick name.
-     * @param string|null $avatarUuid                         The public UUID of the company's avatar.
-     * @param Address|null $addressPostal                     The company's postal address.
-     * @param string|null $country                            The country where the company is registered.
-     * @param Ubo[]|null $ubo                                 The names and birth dates of the company's
-     *                                                        ultimate beneficiary owners. Minimum zero, maximum four.
-     * @param string|null $chamberOfCommerceNumber            The company's chamber of
-     *                                                        commerce number.
-     * @param string|null $legalForm                          The company's legal form.
-     * @param string|null $status                             The user status. Can be: ACTIVE, SIGNUP,
-     *                                                        RECOVERY.
-     * @param string|null $subStatus                          The user sub-status. Can be: NONE,
-     *                                                        FACE_RESET, APPROVAL, APPROVAL_DIRECTOR, APPROVAL_PARENT,
-     *                                                        APPROVAL_SUPPORT, COUNTER_IBAN, IDEAL or SUBMIT.
-     * @param int|null $sessionTimeout                        The setting for the session timeout of
-     *                                                        the company in seconds.
+     * @param Address $addressMain The user's main address.
+     * @param string $language The person's preferred language. Formatted as a
+     * ISO 639-1 language code plus a ISO 3166-1 alpha-2 country code, seperated
+     * by an underscore.
+     * @param string $region The person's preferred region. Formatted as a ISO
+     * 639-1 language code plus a ISO 3166-1 alpha-2 country code, seperated by
+     * an underscore.
+     * @param string|null $name The company name.
+     * @param string|null $publicNickName The company's nick name.
+     * @param string|null $avatarUuid The public UUID of the company's avatar.
+     * @param Address|null $addressPostal The company's postal address.
+     * @param string|null $country The country where the company is registered.
+     * @param Ubo[]|null $ubo The names and birth dates of the company's
+     * ultimate beneficiary owners. Minimum zero, maximum four.
+     * @param string|null $chamberOfCommerceNumber The company's chamber of
+     * commerce number.
+     * @param string|null $legalForm The company's legal form.
+     * @param string|null $status The user status. Can be: ACTIVE, SIGNUP,
+     * RECOVERY.
+     * @param string|null $subStatus The user sub-status. Can be: NONE,
+     * FACE_RESET, APPROVAL, APPROVAL_DIRECTOR, APPROVAL_PARENT,
+     * APPROVAL_SUPPORT, COUNTER_IBAN, IDEAL or SUBMIT.
+     * @param int|null $sessionTimeout The setting for the session timeout of
+     * the company in seconds.
      * @param Amount|null $dailyLimitWithoutConfirmationLogin The amount the
-     *                                                        company can pay in the session without asking for
-     *                                                        credentials.
-     * @param NotificationFilter[]|null $notificationFilters  The types of
-     *                                                        notifications that will result in a push notification or
-     *                                                        URL callback for this UserCompany.
+     * company can pay in the session without asking for credentials.
      */
     public function __construct(
         Address $addressMain,
@@ -436,8 +429,7 @@ class UserCompany extends BunqModel
         string $status = null,
         string $subStatus = null,
         int $sessionTimeout = null,
-        Amount $dailyLimitWithoutConfirmationLogin = null,
-        array $notificationFilters = null
+        Amount $dailyLimitWithoutConfirmationLogin = null
     ) {
         $this->nameFieldForRequest = $name;
         $this->publicNickNameFieldForRequest = $publicNickName;
@@ -454,7 +446,6 @@ class UserCompany extends BunqModel
         $this->subStatusFieldForRequest = $subStatus;
         $this->sessionTimeoutFieldForRequest = $sessionTimeout;
         $this->dailyLimitWithoutConfirmationLoginFieldForRequest = $dailyLimitWithoutConfirmationLogin;
-        $this->notificationFiltersFieldForRequest = $notificationFilters;
     }
 
     /**
@@ -486,36 +477,32 @@ class UserCompany extends BunqModel
      * Modify a specific company's data.
      *
      * @param int $userCompanyId
-     * @param string|null $name                               The company name.
-     * @param string|null $publicNickName                     The company's nick name.
-     * @param string|null $avatarUuid                         The public UUID of the company's avatar.
-     * @param Address|null $addressMain                       The user's main address.
-     * @param Address|null $addressPostal                     The company's postal address.
-     * @param string|null $language                           The person's preferred language. Formatted
-     *                                                        as a ISO 639-1 language code plus a ISO 3166-1 alpha-2
-     *                                                        country code, seperated by an underscore.
-     * @param string|null $region                             The person's preferred region. Formatted as a
-     *                                                        ISO 639-1 language code plus a ISO 3166-1 alpha-2 country
-     *                                                        code, seperated by an underscore.
-     * @param string|null $country                            The country where the company is registered.
-     * @param Ubo[]|null $ubo                                 The names and birth dates of the company's
-     *                                                        ultimate beneficiary owners. Minimum zero, maximum four.
-     * @param string|null $chamberOfCommerceNumber            The company's chamber of
-     *                                                        commerce number.
-     * @param string|null $legalForm                          The company's legal form.
-     * @param string|null $status                             The user status. Can be: ACTIVE, SIGNUP,
-     *                                                        RECOVERY.
-     * @param string|null $subStatus                          The user sub-status. Can be: NONE,
-     *                                                        FACE_RESET, APPROVAL, APPROVAL_DIRECTOR, APPROVAL_PARENT,
-     *                                                        APPROVAL_SUPPORT, COUNTER_IBAN, IDEAL or SUBMIT.
-     * @param int|null $sessionTimeout                        The setting for the session timeout of
-     *                                                        the company in seconds.
+     * @param string|null $name The company name.
+     * @param string|null $publicNickName The company's nick name.
+     * @param string|null $avatarUuid The public UUID of the company's avatar.
+     * @param Address|null $addressMain The user's main address.
+     * @param Address|null $addressPostal The company's postal address.
+     * @param string|null $language The person's preferred language. Formatted
+     * as a ISO 639-1 language code plus a ISO 3166-1 alpha-2 country code,
+     * seperated by an underscore.
+     * @param string|null $region The person's preferred region. Formatted as a
+     * ISO 639-1 language code plus a ISO 3166-1 alpha-2 country code, seperated
+     * by an underscore.
+     * @param string|null $country The country where the company is registered.
+     * @param Ubo[]|null $ubo The names and birth dates of the company's
+     * ultimate beneficiary owners. Minimum zero, maximum four.
+     * @param string|null $chamberOfCommerceNumber The company's chamber of
+     * commerce number.
+     * @param string|null $legalForm The company's legal form.
+     * @param string|null $status The user status. Can be: ACTIVE, SIGNUP,
+     * RECOVERY.
+     * @param string|null $subStatus The user sub-status. Can be: NONE,
+     * FACE_RESET, APPROVAL, APPROVAL_DIRECTOR, APPROVAL_PARENT,
+     * APPROVAL_SUPPORT, COUNTER_IBAN, IDEAL or SUBMIT.
+     * @param int|null $sessionTimeout The setting for the session timeout of
+     * the company in seconds.
      * @param Amount|null $dailyLimitWithoutConfirmationLogin The amount the
-     *                                                        company can pay in the session without asking for
-     *                                                        credentials.
-     * @param NotificationFilter[]|null $notificationFilters  The types of
-     *                                                        notifications that will result in a push notification or
-     *                                                        URL callback for this UserCompany.
+     * company can pay in the session without asking for credentials.
      * @param string[] $customHeaders
      *
      * @return BunqResponseInt
@@ -536,7 +523,6 @@ class UserCompany extends BunqModel
         string $subStatus = null,
         int $sessionTimeout = null,
         Amount $dailyLimitWithoutConfirmationLogin = null,
-        array $notificationFilters = null,
         array $customHeaders = []
     ): BunqResponseInt {
         $apiClient = new ApiClient(static::getApiContext());
@@ -561,7 +547,6 @@ class UserCompany extends BunqModel
                 self::FIELD_SUB_STATUS => $subStatus,
                 self::FIELD_SESSION_TIMEOUT => $sessionTimeout,
                 self::FIELD_DAILY_LIMIT_WITHOUT_CONFIRMATION_LOGIN => $dailyLimitWithoutConfirmationLogin,
-                self::FIELD_NOTIFICATION_FILTERS => $notificationFilters,
             ],
             $customHeaders
         );
@@ -585,7 +570,7 @@ class UserCompany extends BunqModel
      * @param int $id
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setId($id)
@@ -607,7 +592,7 @@ class UserCompany extends BunqModel
      * @param string $created
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setCreated($created)
@@ -629,7 +614,7 @@ class UserCompany extends BunqModel
      * @param string $updated
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setUpdated($updated)
@@ -651,7 +636,7 @@ class UserCompany extends BunqModel
      * @param string $publicUuid
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setPublicUuid($publicUuid)
@@ -673,7 +658,7 @@ class UserCompany extends BunqModel
      * @param string $name
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setName($name)
@@ -695,7 +680,7 @@ class UserCompany extends BunqModel
      * @param string $displayName
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setDisplayName($displayName)
@@ -717,7 +702,7 @@ class UserCompany extends BunqModel
      * @param string $publicNickName
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setPublicNickName($publicNickName)
@@ -739,7 +724,7 @@ class UserCompany extends BunqModel
      * @param Pointer[] $alias
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setAlias($alias)
@@ -761,7 +746,7 @@ class UserCompany extends BunqModel
      * @param string $chamberOfCommerceNumber
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setChamberOfCommerceNumber($chamberOfCommerceNumber)
@@ -783,7 +768,7 @@ class UserCompany extends BunqModel
      * @param string $legalForm
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setLegalForm($legalForm)
@@ -805,7 +790,7 @@ class UserCompany extends BunqModel
      * @param string $typeOfBusinessEntity
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setTypeOfBusinessEntity($typeOfBusinessEntity)
@@ -827,7 +812,7 @@ class UserCompany extends BunqModel
      * @param string $sectorOfIndustry
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setSectorOfIndustry($sectorOfIndustry)
@@ -849,7 +834,7 @@ class UserCompany extends BunqModel
      * @param string $counterBankIban
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setCounterBankIban($counterBankIban)
@@ -871,7 +856,7 @@ class UserCompany extends BunqModel
      * @param Avatar $avatar
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setAvatar($avatar)
@@ -893,7 +878,7 @@ class UserCompany extends BunqModel
      * @param Address $addressMain
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setAddressMain($addressMain)
@@ -915,7 +900,7 @@ class UserCompany extends BunqModel
      * @param Address $addressPostal
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setAddressPostal($addressPostal)
@@ -937,7 +922,7 @@ class UserCompany extends BunqModel
      * @param string $versionTermsOfService
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setVersionTermsOfService($versionTermsOfService)
@@ -959,7 +944,7 @@ class UserCompany extends BunqModel
      * @param LabelUser $directorAlias
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setDirectorAlias($directorAlias)
@@ -982,7 +967,7 @@ class UserCompany extends BunqModel
      * @param string $language
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setLanguage($language)
@@ -1004,7 +989,7 @@ class UserCompany extends BunqModel
      * @param string $country
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setCountry($country)
@@ -1027,7 +1012,7 @@ class UserCompany extends BunqModel
      * @param string $region
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setRegion($region)
@@ -1050,7 +1035,7 @@ class UserCompany extends BunqModel
      * @param Ubo[] $ubo
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setUbo($ubo)
@@ -1072,7 +1057,7 @@ class UserCompany extends BunqModel
      * @param string $status
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setStatus($status)
@@ -1096,7 +1081,7 @@ class UserCompany extends BunqModel
      * @param string $subStatus
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setSubStatus($subStatus)
@@ -1118,7 +1103,7 @@ class UserCompany extends BunqModel
      * @param int $sessionTimeout
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setSessionTimeout($sessionTimeout)
@@ -1141,7 +1126,7 @@ class UserCompany extends BunqModel
      * @param Amount $dailyLimitWithoutConfirmationLogin
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setDailyLimitWithoutConfirmationLogin($dailyLimitWithoutConfirmationLogin)
@@ -1164,7 +1149,7 @@ class UserCompany extends BunqModel
      * @param NotificationFilter[] $notificationFilters
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setNotificationFilters($notificationFilters)
@@ -1186,7 +1171,7 @@ class UserCompany extends BunqModel
      * @param Customer $customer
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setCustomer($customer)
@@ -1208,7 +1193,7 @@ class UserCompany extends BunqModel
      * @param CustomerLimit $customerLimit
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setCustomerLimit($customerLimit)
@@ -1230,12 +1215,34 @@ class UserCompany extends BunqModel
      * @param BillingContractSubscription[] $billingContract
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setBillingContract($billingContract)
     {
         $this->billingContract = $billingContract;
+    }
+
+    /**
+     * The user deny reason.
+     *
+     * @return string
+     */
+    public function getDenyReason()
+    {
+        return $this->denyReason;
+    }
+
+    /**
+     * @param string $denyReason
+     *
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     */
+    public function setDenyReason($denyReason)
+    {
+        $this->denyReason = $denyReason;
     }
 
     /**
@@ -1360,6 +1367,10 @@ class UserCompany extends BunqModel
         }
 
         if (!is_null($this->billingContract)) {
+            return false;
+        }
+
+        if (!is_null($this->denyReason)) {
             return false;
         }
 

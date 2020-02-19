@@ -1,5 +1,4 @@
 <?php
-
 namespace bunq\Model\Generated\Object;
 
 use bunq\Model\Core\BunqModel;
@@ -86,7 +85,7 @@ class InvoiceItem extends BunqModel
      * @param string $billingDate
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setBillingDate($billingDate)
@@ -108,7 +107,7 @@ class InvoiceItem extends BunqModel
      * @param string $typeDescription
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setTypeDescription($typeDescription)
@@ -130,7 +129,7 @@ class InvoiceItem extends BunqModel
      * @param string $typeDescriptionTranslated
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setTypeDescriptionTranslated($typeDescriptionTranslated)
@@ -152,7 +151,7 @@ class InvoiceItem extends BunqModel
      * @param Amount $unitVatExclusive
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setUnitVatExclusive($unitVatExclusive)
@@ -174,7 +173,7 @@ class InvoiceItem extends BunqModel
      * @param Amount $unitVatInclusive
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setUnitVatInclusive($unitVatInclusive)
@@ -196,7 +195,7 @@ class InvoiceItem extends BunqModel
      * @param float $vat
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setVat($vat)
@@ -218,7 +217,7 @@ class InvoiceItem extends BunqModel
      * @param float $quantity
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setQuantity($quantity)
@@ -240,7 +239,7 @@ class InvoiceItem extends BunqModel
      * @param Amount $totalVatExclusive
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setTotalVatExclusive($totalVatExclusive)
@@ -262,7 +261,7 @@ class InvoiceItem extends BunqModel
      * @param Amount $totalVatInclusive
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setTotalVatInclusive($totalVatInclusive)

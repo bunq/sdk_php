@@ -1,5 +1,4 @@
 <?php
-
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\exception\BunqException;
@@ -128,7 +127,7 @@ class Tab extends BunqModel implements AnchorObjectInterface
      * @param TabUsageSingle $tabUsageSingle
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setTabUsageSingle($tabUsageSingle)
@@ -148,7 +147,7 @@ class Tab extends BunqModel implements AnchorObjectInterface
      * @param TabUsageMultiple $tabUsageMultiple
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setTabUsageMultiple($tabUsageMultiple)

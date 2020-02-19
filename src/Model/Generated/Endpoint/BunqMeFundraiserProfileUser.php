@@ -1,5 +1,4 @@
 <?php
-
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Http\ApiClient;
@@ -153,18 +152,18 @@ class BunqMeFundraiserProfileUser extends BunqModel
 
     /**
      * @param int $monetaryAccountId ID of the monetary account on which you
-     *                                          want to receive bunq.me fundraiser payments.
+     * want to receive bunq.me fundraiser payments.
      * @param string $description The description of the bunq.me fundraiser
-     *                                          profile. Maximum 9000 characters. Field is required but can be an empty
-     *                                          string.
+     * profile. Maximum 9000 characters. Field is required but can be an empty
+     * string.
      * @param Pointer $pointer The pointer (url) which will be used to access
-     *                                          the bunq.me fundraiser profile.
+     * the bunq.me fundraiser profile.
      * @param string|null $color The color chosen for the bunq.me fundraiser
-     *                                          profile in hexadecimal format.
+     * profile in hexadecimal format.
      * @param string|null $attachmentPublicUuid The public UUID of the public
-     *                                          attachment from which an avatar image must be created.
+     * attachment from which an avatar image must be created.
      * @param string|null $redirectUrl The URL which the user is sent to when a
-     *                                          payment is completed.
+     * payment is completed.
      * @param string|null $status The status of the bunq.me fundraiser profile.
      */
     public function __construct(
@@ -252,7 +251,7 @@ class BunqMeFundraiserProfileUser extends BunqModel
      * @param int $monetaryAccountId
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setMonetaryAccountId($monetaryAccountId)
@@ -275,7 +274,7 @@ class BunqMeFundraiserProfileUser extends BunqModel
      * @param string $color
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setColor($color)
@@ -298,7 +297,7 @@ class BunqMeFundraiserProfileUser extends BunqModel
      * @param LabelMonetaryAccount $alias
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setAlias($alias)
@@ -320,7 +319,7 @@ class BunqMeFundraiserProfileUser extends BunqModel
      * @param string $description
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setDescription($description)
@@ -342,7 +341,7 @@ class BunqMeFundraiserProfileUser extends BunqModel
      * @param AttachmentPublic $attachment
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setAttachment($attachment)
@@ -365,7 +364,7 @@ class BunqMeFundraiserProfileUser extends BunqModel
      * @param Pointer $pointer
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setPointer($pointer)
@@ -387,7 +386,7 @@ class BunqMeFundraiserProfileUser extends BunqModel
      * @param string $redirectUrl
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setRedirectUrl($redirectUrl)
@@ -410,7 +409,7 @@ class BunqMeFundraiserProfileUser extends BunqModel
      * @param string $status
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setStatus($status)

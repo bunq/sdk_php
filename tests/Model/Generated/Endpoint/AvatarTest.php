@@ -6,7 +6,6 @@ use bunq\Model\Generated\Endpoint\AttachmentPublic;
 use bunq\Model\Generated\Endpoint\AttachmentPublicContent;
 use bunq\Model\Generated\Endpoint\Avatar;
 use bunq\test\BunqSdkTestBase;
-use bunq\test\Config;
 use bunq\Util\FileUtil;
 
 /**

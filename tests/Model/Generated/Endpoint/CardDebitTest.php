@@ -29,6 +29,11 @@ class CardDebitTest extends BunqSdkTestBase
     const CARD_TYPE_MAESTRO = 'MASTERCARD';
 
     /**
+     * Product type.
+     */
+    const PRODUCT_TYPE_MASTERCARD_DEBIT = 'MASTERCARD_DEBIT';
+
+    /**
      * The prefix for the second line on the card.
      */
     const CARD_SECOND_LINE_PREFIX = 'card-';
@@ -67,6 +72,7 @@ class CardDebitTest extends BunqSdkTestBase
             static::$nameOnCard[self::INDEX_FIRST],
             self::CARD_TYPE_MAESTRO,
             $this->getUserAlias(),
+            self::PRODUCT_TYPE_MASTERCARD_DEBIT,
             [
                 new CardPinAssignment(
                     self::CARD_PIN_CODE_ASSIGNMENT,

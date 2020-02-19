@@ -1,5 +1,4 @@
 <?php
-
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Http\ApiClient;
@@ -48,8 +47,7 @@ class NotificationFilterPushUser extends BunqModel
 
     /**
      * @param NotificationFilterPush[]|null $notificationFilters The types of
-     *                                                           notifications that will result in a push notification
-     *                                                           for this user.
+     * notifications that will result in a push notification for this user.
      */
     public function __construct(array $notificationFilters = null)
     {
@@ -58,8 +56,7 @@ class NotificationFilterPushUser extends BunqModel
 
     /**
      * @param NotificationFilterPush[]|null $notificationFilters The types of
-     *                                                           notifications that will result in a push notification
-     *                                                           for this user.
+     * notifications that will result in a push notification for this user.
      * @param string[] $customHeaders
      *
      * @return BunqResponseNotificationFilterPushUser
@@ -126,7 +123,7 @@ class NotificationFilterPushUser extends BunqModel
      * @param NotificationFilterPush[] $notificationFilters
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setNotificationFilters($notificationFilters)

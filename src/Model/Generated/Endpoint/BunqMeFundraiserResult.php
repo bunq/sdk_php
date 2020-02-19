@@ -1,10 +1,7 @@
 <?php
-
 namespace bunq\Model\Generated\Endpoint;
 
-use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
-use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 
 /**
@@ -104,7 +101,7 @@ class BunqMeFundraiserResult extends BunqModel
      * @param int $id
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setId($id)
@@ -126,7 +123,7 @@ class BunqMeFundraiserResult extends BunqModel
      * @param string $created
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setCreated($created)
@@ -148,7 +145,7 @@ class BunqMeFundraiserResult extends BunqModel
      * @param string $updated
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setUpdated($updated)
@@ -170,7 +167,7 @@ class BunqMeFundraiserResult extends BunqModel
      * @param BunqMeFundraiserProfile $bunqmeFundraiserProfile
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setBunqmeFundraiserProfile($bunqmeFundraiserProfile)
@@ -192,7 +189,7 @@ class BunqMeFundraiserResult extends BunqModel
      * @param Payment[] $payments
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setPayments($payments)

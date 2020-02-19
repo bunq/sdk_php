@@ -1,5 +1,4 @@
 <?php
-
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Model\Core\BunqModel;
@@ -123,9 +122,9 @@ class TransferwiseQuote extends BunqModel
      * @param string $currencySource The source currency.
      * @param string $currencyTarget The target currency.
      * @param Amount|null $amountSource The source amount. Required if target
-     *                                  amount is left empty.
+     * amount is left empty.
      * @param Amount|null $amountTarget The target amount. Required if source
-     *                                  amount is left empty.
+     * amount is left empty.
      */
     public function __construct(
         string $currencySource,
@@ -153,7 +152,7 @@ class TransferwiseQuote extends BunqModel
      * @param int $id
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setId($id)
@@ -175,7 +174,7 @@ class TransferwiseQuote extends BunqModel
      * @param string $created
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setCreated($created)
@@ -197,7 +196,7 @@ class TransferwiseQuote extends BunqModel
      * @param string $updated
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setUpdated($updated)
@@ -219,7 +218,7 @@ class TransferwiseQuote extends BunqModel
      * @param string $timeExpiry
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setTimeExpiry($timeExpiry)
@@ -241,7 +240,7 @@ class TransferwiseQuote extends BunqModel
      * @param string $quoteId
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setQuoteId($quoteId)
@@ -263,7 +262,7 @@ class TransferwiseQuote extends BunqModel
      * @param Amount $amountSource
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setAmountSource($amountSource)
@@ -285,7 +284,7 @@ class TransferwiseQuote extends BunqModel
      * @param Amount $amountTarget
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setAmountTarget($amountTarget)
@@ -307,7 +306,7 @@ class TransferwiseQuote extends BunqModel
      * @param Amount $amountFee
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setAmountFee($amountFee)
@@ -329,7 +328,7 @@ class TransferwiseQuote extends BunqModel
      * @param string $rate
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setRate($rate)
@@ -351,7 +350,7 @@ class TransferwiseQuote extends BunqModel
      * @param string $timeDeliveryEstimate
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setTimeDeliveryEstimate($timeDeliveryEstimate)

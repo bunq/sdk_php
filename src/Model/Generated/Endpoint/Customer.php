@@ -1,5 +1,4 @@
 <?php
-
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Model\Core\BunqModel;
@@ -67,10 +66,10 @@ class Customer extends BunqModel
     protected $invoiceNotificationPreferenceFieldForRequest;
 
     /**
-     * @param string|null $billingAccountId              The primary billing account
-     *                                                   account's id.
+     * @param string|null $billingAccountId The primary billing account
+     * account's id.
      * @param string|null $invoiceNotificationPreference The preferred
-     *                                                   notification type for invoices
+     * notification type for invoices
      */
     public function __construct(string $billingAccountId = null, string $invoiceNotificationPreference = null)
     {
@@ -92,7 +91,7 @@ class Customer extends BunqModel
      * @param int $id
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setId($id)
@@ -114,7 +113,7 @@ class Customer extends BunqModel
      * @param string $created
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setCreated($created)
@@ -136,7 +135,7 @@ class Customer extends BunqModel
      * @param string $updated
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setUpdated($updated)
@@ -158,7 +157,7 @@ class Customer extends BunqModel
      * @param string $billingAccountId
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setBillingAccountId($billingAccountId)
@@ -180,7 +179,7 @@ class Customer extends BunqModel
      * @param string $invoiceNotificationPreference
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setInvoiceNotificationPreference($invoiceNotificationPreference)

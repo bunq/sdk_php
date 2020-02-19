@@ -1,5 +1,4 @@
 <?php
-
 namespace bunq\Model\Generated\Object;
 
 use bunq\Model\Core\BunqModel;
@@ -104,16 +103,16 @@ class ShareDetailPayment extends BunqModel
     protected $budgetFieldForRequest;
 
     /**
-     * @param bool $makePayments             If set to true, the invited user will be able
-     *                                       to make payments from the shared account.
-     * @param bool $viewBalance              If set to true, the invited user will be able to
-     *                                       view the account balance.
-     * @param bool $viewOldEvents            If set to true, the invited user will be able
-     *                                       to view events from before the share was active.
-     * @param bool $viewNewEvents            If set to true, the invited user will be able
-     *                                       to view events starting from the time the share became active.
-     * @param bool|null $makeDraftPayments   If set to true, the invited user will
-     *                                       be able to make draft payments from the shared account.
+     * @param bool $makePayments If set to true, the invited user will be able
+     * to make payments from the shared account.
+     * @param bool $viewBalance If set to true, the invited user will be able to
+     * view the account balance.
+     * @param bool $viewOldEvents If set to true, the invited user will be able
+     * to view events from before the share was active.
+     * @param bool $viewNewEvents If set to true, the invited user will be able
+     * to view events starting from the time the share became active.
+     * @param bool|null $makeDraftPayments If set to true, the invited user will
+     * be able to make draft payments from the shared account.
      * @param BudgetRestriction|null $budget The budget restriction.
      */
     public function __construct(
@@ -147,7 +146,7 @@ class ShareDetailPayment extends BunqModel
      * @param bool $makePayments
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setMakePayments($makePayments)
@@ -170,7 +169,7 @@ class ShareDetailPayment extends BunqModel
      * @param bool $makeDraftPayments
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setMakeDraftPayments($makeDraftPayments)
@@ -193,7 +192,7 @@ class ShareDetailPayment extends BunqModel
      * @param bool $viewBalance
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setViewBalance($viewBalance)
@@ -216,7 +215,7 @@ class ShareDetailPayment extends BunqModel
      * @param bool $viewOldEvents
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setViewOldEvents($viewOldEvents)
@@ -239,7 +238,7 @@ class ShareDetailPayment extends BunqModel
      * @param bool $viewNewEvents
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setViewNewEvents($viewNewEvents)
@@ -261,7 +260,7 @@ class ShareDetailPayment extends BunqModel
      * @param BudgetRestriction $budget
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setBudget($budget)

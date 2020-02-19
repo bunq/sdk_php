@@ -1,12 +1,10 @@
 <?php
-
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Http\ApiClient;
 use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Object\Avatar;
 use bunq\Model\Generated\Object\Geolocation;
-use bunq\Model\Generated\Object\NotificationFilter;
 use bunq\Model\Generated\Object\TabTextWaitingScreen;
 
 /**
@@ -38,7 +36,6 @@ class CashRegister extends BunqModel
     const FIELD_STATUS = 'status';
     const FIELD_AVATAR_UUID = 'avatar_uuid';
     const FIELD_LOCATION = 'location';
-    const FIELD_NOTIFICATION_FILTERS = 'notification_filters';
     const FIELD_TAB_TEXT_WAITING_SCREEN = 'tab_text_waiting_screen';
 
     /**
@@ -97,14 +94,6 @@ class CashRegister extends BunqModel
     protected $location;
 
     /**
-     * The types of notifications that will result in a push notification or URL
-     * callback for this CashRegister.
-     *
-     * @var NotificationFilter[]
-     */
-    protected $notificationFilters;
-
-    /**
      * The tab text for waiting screen of CashRegister.
      *
      * @var TabTextWaitingScreen[]
@@ -142,14 +131,6 @@ class CashRegister extends BunqModel
     protected $locationFieldForRequest;
 
     /**
-     * The types of notifications that will result in a push notification or URL
-     * callback for this CashRegister.
-     *
-     * @var NotificationFilter[]|null
-     */
-    protected $notificationFiltersFieldForRequest;
-
-    /**
      * The tab text for waiting screen of CashRegister.
      *
      * @var TabTextWaitingScreen[]|null
@@ -157,33 +138,28 @@ class CashRegister extends BunqModel
     protected $tabTextWaitingScreenFieldForRequest;
 
     /**
-     * @param string $name                                      The name of the CashRegister. Must be unique for this
-     *                                                          MonetaryAccount.
-     * @param string $status                                    The status of the CashRegister. Can only be created
-     *                                                          or updated with PENDING_APPROVAL or CLOSED.
-     * @param string $avatarUuid                                The UUID of the avatar of the CashRegister. Use
-     *                                                          the calls /attachment-public and /avatar to create a
-     *                                                          new Avatar and get its UUID.
-     * @param Geolocation|null $location                        The geolocation of the CashRegister.
-     * @param NotificationFilter[]|null $notificationFilters    The types of
-     *                                                          notifications that will result in a push notification
-     *                                                          or URL callback for this CashRegister.
+     * @param string $name The name of the CashRegister. Must be unique for this
+     * MonetaryAccount.
+     * @param string $status The status of the CashRegister. Can only be created
+     * or updated with PENDING_APPROVAL or CLOSED.
+     * @param string $avatarUuid The UUID of the avatar of the CashRegister. Use
+     * the calls /attachment-public and /avatar to create a new Avatar and get
+     * its UUID.
+     * @param Geolocation|null $location The geolocation of the CashRegister.
      * @param TabTextWaitingScreen[]|null $tabTextWaitingScreen The tab text for
-     *                                                          waiting screen of CashRegister.
+     * waiting screen of CashRegister.
      */
     public function __construct(
         string $name,
         string $status,
         string $avatarUuid,
         Geolocation $location = null,
-        array $notificationFilters = null,
         array $tabTextWaitingScreen = null
     ) {
         $this->nameFieldForRequest = $name;
         $this->statusFieldForRequest = $status;
         $this->avatarUuidFieldForRequest = $avatarUuid;
         $this->locationFieldForRequest = $location;
-        $this->notificationFiltersFieldForRequest = $notificationFilters;
         $this->tabTextWaitingScreenFieldForRequest = $tabTextWaitingScreen;
     }
 
@@ -194,20 +170,17 @@ class CashRegister extends BunqModel
      * sandbox testing environment an CashRegister will be automatically
      * approved immediately after creation.
      *
-     * @param string $name                                      The name of the CashRegister. Must be unique for this
-     *                                                          MonetaryAccount.
-     * @param string $status                                    The status of the CashRegister. Can only be created
-     *                                                          or updated with PENDING_APPROVAL or CLOSED.
-     * @param string $avatarUuid                                The UUID of the avatar of the CashRegister. Use
-     *                                                          the calls /attachment-public and /avatar to create a
-     *                                                          new Avatar and get its UUID.
+     * @param string $name The name of the CashRegister. Must be unique for this
+     * MonetaryAccount.
+     * @param string $status The status of the CashRegister. Can only be created
+     * or updated with PENDING_APPROVAL or CLOSED.
+     * @param string $avatarUuid The UUID of the avatar of the CashRegister. Use
+     * the calls /attachment-public and /avatar to create a new Avatar and get
+     * its UUID.
      * @param int|null $monetaryAccountId
-     * @param Geolocation|null $location                        The geolocation of the CashRegister.
-     * @param NotificationFilter[]|null $notificationFilters    The types of
-     *                                                          notifications that will result in a push notification
-     *                                                          or URL callback for this CashRegister.
+     * @param Geolocation|null $location The geolocation of the CashRegister.
      * @param TabTextWaitingScreen[]|null $tabTextWaitingScreen The tab text for
-     *                                                          waiting screen of CashRegister.
+     * waiting screen of CashRegister.
      * @param string[] $customHeaders
      *
      * @return BunqResponseInt
@@ -218,7 +191,6 @@ class CashRegister extends BunqModel
         string $avatarUuid,
         int $monetaryAccountId = null,
         Geolocation $location = null,
-        array $notificationFilters = null,
         array $tabTextWaitingScreen = null,
         array $customHeaders = []
     ): BunqResponseInt {
@@ -233,7 +205,6 @@ class CashRegister extends BunqModel
                 self::FIELD_STATUS => $status,
                 self::FIELD_AVATAR_UUID => $avatarUuid,
                 self::FIELD_LOCATION => $location,
-                self::FIELD_NOTIFICATION_FILTERS => $notificationFilters,
                 self::FIELD_TAB_TEXT_WAITING_SCREEN => $tabTextWaitingScreen,
             ],
             $customHeaders
@@ -280,19 +251,16 @@ class CashRegister extends BunqModel
      *
      * @param int $cashRegisterId
      * @param int|null $monetaryAccountId
-     * @param string|null $name                                 The name of the CashRegister. Must be unique for
-     *                                                          this MonetaryAccount.
-     * @param string|null $status                               The status of the CashRegister. Can only be
-     *                                                          created or updated with PENDING_APPROVAL or CLOSED.
-     * @param string|null $avatarUuid                           The UUID of the avatar of the
-     *                                                          CashRegister. Use the calls /attachment-public and
-     *                                                          /avatar to create a new Avatar and get its UUID.
-     * @param Geolocation|null $location                        The geolocation of the CashRegister.
-     * @param NotificationFilter[]|null $notificationFilters    The types of
-     *                                                          notifications that will result in a push notification
-     *                                                          or URL callback for this CashRegister.
+     * @param string|null $name The name of the CashRegister. Must be unique for
+     * this MonetaryAccount.
+     * @param string|null $status The status of the CashRegister. Can only be
+     * created or updated with PENDING_APPROVAL or CLOSED.
+     * @param string|null $avatarUuid The UUID of the avatar of the
+     * CashRegister. Use the calls /attachment-public and /avatar to create a
+     * new Avatar and get its UUID.
+     * @param Geolocation|null $location The geolocation of the CashRegister.
      * @param TabTextWaitingScreen[]|null $tabTextWaitingScreen The tab text for
-     *                                                          waiting screen of CashRegister.
+     * waiting screen of CashRegister.
      * @param string[] $customHeaders
      *
      * @return BunqResponseInt
@@ -304,7 +272,6 @@ class CashRegister extends BunqModel
         string $status = null,
         string $avatarUuid = null,
         Geolocation $location = null,
-        array $notificationFilters = null,
         array $tabTextWaitingScreen = null,
         array $customHeaders = []
     ): BunqResponseInt {
@@ -319,7 +286,6 @@ class CashRegister extends BunqModel
                 self::FIELD_STATUS => $status,
                 self::FIELD_AVATAR_UUID => $avatarUuid,
                 self::FIELD_LOCATION => $location,
-                self::FIELD_NOTIFICATION_FILTERS => $notificationFilters,
                 self::FIELD_TAB_TEXT_WAITING_SCREEN => $tabTextWaitingScreen,
             ],
             $customHeaders
@@ -376,7 +342,7 @@ class CashRegister extends BunqModel
      * @param int $id
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setId($id)
@@ -398,7 +364,7 @@ class CashRegister extends BunqModel
      * @param string $created
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setCreated($created)
@@ -420,7 +386,7 @@ class CashRegister extends BunqModel
      * @param string $updated
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setUpdated($updated)
@@ -442,7 +408,7 @@ class CashRegister extends BunqModel
      * @param string $name
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setName($name)
@@ -465,7 +431,7 @@ class CashRegister extends BunqModel
      * @param string $status
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setStatus($status)
@@ -487,7 +453,7 @@ class CashRegister extends BunqModel
      * @param Avatar $avatar
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setAvatar($avatar)
@@ -509,35 +475,12 @@ class CashRegister extends BunqModel
      * @param Geolocation $location
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setLocation($location)
     {
         $this->location = $location;
-    }
-
-    /**
-     * The types of notifications that will result in a push notification or URL
-     * callback for this CashRegister.
-     *
-     * @return NotificationFilter[]
-     */
-    public function getNotificationFilters()
-    {
-        return $this->notificationFilters;
-    }
-
-    /**
-     * @param NotificationFilter[] $notificationFilters
-     *
-     * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
-     */
-    public function setNotificationFilters($notificationFilters)
-    {
-        $this->notificationFilters = $notificationFilters;
     }
 
     /**
@@ -554,7 +497,7 @@ class CashRegister extends BunqModel
      * @param TabTextWaitingScreen[] $tabTextWaitingScreen
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setTabTextWaitingScreen($tabTextWaitingScreen)
@@ -592,10 +535,6 @@ class CashRegister extends BunqModel
         }
 
         if (!is_null($this->location)) {
-            return false;
-        }
-
-        if (!is_null($this->notificationFilters)) {
             return false;
         }
 

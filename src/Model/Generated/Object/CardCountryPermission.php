@@ -1,5 +1,4 @@
 <?php
-
 namespace bunq\Model\Generated\Object;
 
 use bunq\Model\Core\BunqModel;
@@ -45,8 +44,8 @@ class CardCountryPermission extends BunqModel
     protected $expiryTimeFieldForRequest;
 
     /**
-     * @param string $country         The country to allow transactions in (e.g. NL,
-     *                                DE).
+     * @param string $country The country to allow transactions in (e.g. NL,
+     * DE).
      * @param string|null $expiryTime Expiry time of this rule.
      */
     public function __construct(string $country, string $expiryTime = null)
@@ -69,7 +68,7 @@ class CardCountryPermission extends BunqModel
      * @param int $id
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setId($id)
@@ -91,7 +90,7 @@ class CardCountryPermission extends BunqModel
      * @param string $country
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setCountry($country)
@@ -113,7 +112,7 @@ class CardCountryPermission extends BunqModel
      * @param string $expiryTime
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setExpiryTime($expiryTime)

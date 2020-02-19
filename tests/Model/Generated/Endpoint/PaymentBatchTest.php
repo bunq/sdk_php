@@ -4,8 +4,6 @@ namespace bunq\test\Model\Generated\Endpoint;
 use bunq\Model\Generated\Endpoint\Payment;
 use bunq\Model\Generated\Endpoint\PaymentBatch;
 use bunq\Model\Generated\Object\Amount;
-use bunq\Model\Generated\Object\LabelMonetaryAccount;
-use bunq\Model\Generated\Object\Pointer;
 use bunq\test\BunqSdkTestBase;
 
 /**
@@ -23,6 +21,11 @@ class PaymentBatchTest extends BunqSdkTestBase
     const MAXIMUM_PAYMENT_ENTRIES = 10;
 
     /**
+     * Threshold constants.
+     */
+    const MONETARY_ACCOUNT_BALANCE_THRESHOLD = 0.10;
+
+    /**
      */
     public function testSendBatchPayment()
     {
@@ -36,6 +39,8 @@ class PaymentBatchTest extends BunqSdkTestBase
      */
     private function createPaymentArray(): array
     {
+        $this->skipTestIfNeededDueToInsufficientBalance();
+
         $allPayment = [];
 
         while (count($allPayment) < self::MAXIMUM_PAYMENT_ENTRIES) {

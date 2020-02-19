@@ -1,10 +1,7 @@
 <?php
-
 namespace bunq\Model\Generated\Endpoint;
 
-use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
-use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Object\Amount;
 use bunq\Model\Generated\Object\Pointer;
@@ -55,8 +52,8 @@ class ConfirmationOfFunds extends BunqModel
 
     /**
      * @param Pointer $pointerIban The pointer (IBAN) of the account we're
-     *                             querying.
-     * @param Amount $amount       The amount we want to check for.
+     * querying.
+     * @param Amount $amount The amount we want to check for.
      */
     public function __construct(Pointer $pointerIban, Amount $amount)
     {
@@ -66,8 +63,8 @@ class ConfirmationOfFunds extends BunqModel
 
     /**
      * @param Pointer $pointerIban The pointer (IBAN) of the account we're
-     *                             querying.
-     * @param Amount $amount       The amount we want to check for.
+     * querying.
+     * @param Amount $amount The amount we want to check for.
      * @param string[] $customHeaders
      *
      * @return BunqResponseConfirmationOfFunds
@@ -109,7 +106,7 @@ class ConfirmationOfFunds extends BunqModel
      * @param bool $hasSufficientFunds
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setHasSufficientFunds($hasSufficientFunds)

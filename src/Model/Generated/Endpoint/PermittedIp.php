@@ -1,5 +1,4 @@
 <?php
-
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Http\ApiClient;
@@ -65,10 +64,10 @@ class PermittedIp extends BunqModel
     protected $statusFieldForRequest;
 
     /**
-     * @param string $ip          The IP address.
+     * @param string $ip The IP address.
      * @param string|null $status The status of the IP. May be "ACTIVE" or
-     *                            "INACTIVE". It is only possible to make requests from "ACTIVE" IP
-     *                            addresses. Only "ACTIVE" IPs will be billed.
+     * "INACTIVE". It is only possible to make requests from "ACTIVE" IP
+     * addresses. Only "ACTIVE" IPs will be billed.
      */
     public function __construct(string $ip, string $status = null)
     {
@@ -105,10 +104,10 @@ class PermittedIp extends BunqModel
 
     /**
      * @param int $credentialPasswordIpId
-     * @param string $ip          The IP address.
+     * @param string $ip The IP address.
      * @param string|null $status The status of the IP. May be "ACTIVE" or
-     *                            "INACTIVE". It is only possible to make requests from "ACTIVE" IP
-     *                            addresses. Only "ACTIVE" IPs will be billed.
+     * "INACTIVE". It is only possible to make requests from "ACTIVE" IP
+     * addresses. Only "ACTIVE" IPs will be billed.
      * @param string[] $customHeaders
      *
      * @return BunqResponseInt
@@ -171,8 +170,8 @@ class PermittedIp extends BunqModel
      * @param int $credentialPasswordIpId
      * @param int $permittedIpId
      * @param string|null $status The status of the IP. May be "ACTIVE" or
-     *                            "INACTIVE". It is only possible to make requests from "ACTIVE" IP
-     *                            addresses. Only "ACTIVE" IPs will be billed.
+     * "INACTIVE". It is only possible to make requests from "ACTIVE" IP
+     * addresses. Only "ACTIVE" IPs will be billed.
      * @param string[] $customHeaders
      *
      * @return BunqResponseInt
@@ -212,7 +211,7 @@ class PermittedIp extends BunqModel
      * @param string $ip
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setIp($ip)
@@ -236,7 +235,7 @@ class PermittedIp extends BunqModel
      * @param string $status
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setStatus($status)

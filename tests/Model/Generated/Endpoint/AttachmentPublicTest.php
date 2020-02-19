@@ -5,7 +5,6 @@ use bunq\Http\ApiClient;
 use bunq\Model\Generated\Endpoint\AttachmentPublic;
 use bunq\Model\Generated\Endpoint\AttachmentPublicContent;
 use bunq\test\BunqSdkTestBase;
-use bunq\test\Config;
 use bunq\Util\FileUtil;
 
 /**

@@ -1,5 +1,4 @@
 <?php
-
 namespace bunq\Model\Generated\Object;
 
 use bunq\Model\Core\BunqModel;
@@ -53,9 +52,9 @@ class Pointer extends BunqModel
     protected $nameFieldForRequest;
 
     /**
-     * @param string $type      The alias type, can be: EMAIL|PHONE_NUMBER|IBAN.
-     * @param string $value     The alias value. Phone number are formatted conform
-     *                          E.123 without spaces (e.g., +314211234567).
+     * @param string $type The alias type, can be: EMAIL|PHONE_NUMBER|IBAN.
+     * @param string $value The alias value. Phone number are formatted conform
+     * E.123 without spaces (e.g., +314211234567).
      * @param string|null $name The alias name. Only required for IBANs.
      */
     public function __construct(string $type, string $value, string $name = null)
@@ -79,7 +78,7 @@ class Pointer extends BunqModel
      * @param string $type
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setType($type)
@@ -101,7 +100,7 @@ class Pointer extends BunqModel
      * @param string $value
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setValue($value)
@@ -123,7 +122,7 @@ class Pointer extends BunqModel
      * @param string $name
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setName($name)

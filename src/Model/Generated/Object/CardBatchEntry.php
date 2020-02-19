@@ -1,5 +1,4 @@
 <?php
-
 namespace bunq\Model\Generated\Object;
 
 use bunq\Model\Core\BunqModel;
@@ -61,23 +60,23 @@ class CardBatchEntry extends BunqModel
     protected $monetaryAccountIdFallbackFieldForRequest;
 
     /**
-     * @param int $id                                         The ID of the card that needs to be updated.
-     * @param string|null $status                             The status to set for the card. Can be ACTIVE,
-     *                                                        DEACTIVATED, LOST, STOLEN or CANCELLED, and can only be
-     *                                                        set to LOST/STOLEN/CANCELLED when order status is
-     *                                                        ACCEPTED_FOR_PRODUCTION/DELIVERED_TO_CUSTOMER/CARD_UPDATE_REQUESTED/CARD_UPDATE_SENT/CARD_UPDATE_ACCEPTED.
-     *                                                        Can only be set to DEACTIVATED after initial activation,
-     *                                                        i.e. order_status is
-     *                                                        DELIVERED_TO_CUSTOMER/CARD_UPDATE_REQUESTED/CARD_UPDATE_SENT/CARD_UPDATE_ACCEPTED.
-     *                                                        Mind that all the possible choices (apart from ACTIVE and
-     *                                                        DEACTIVATED) are permanent and cannot be changed after.
-     * @param Amount|null $cardLimit                          The spending limit for the card.
-     * @param Amount|null $cardLimitAtm                       The ATM spending limit for the card.
+     * @param int $id The ID of the card that needs to be updated.
+     * @param string|null $status The status to set for the card. Can be ACTIVE,
+     * DEACTIVATED, LOST, STOLEN or CANCELLED, and can only be set to
+     * LOST/STOLEN/CANCELLED when order status is
+     * ACCEPTED_FOR_PRODUCTION/DELIVERED_TO_CUSTOMER/CARD_UPDATE_REQUESTED/CARD_UPDATE_SENT/CARD_UPDATE_ACCEPTED.
+     * Can only be set to DEACTIVATED after initial activation, i.e.
+     * order_status is
+     * DELIVERED_TO_CUSTOMER/CARD_UPDATE_REQUESTED/CARD_UPDATE_SENT/CARD_UPDATE_ACCEPTED.
+     * Mind that all the possible choices (apart from ACTIVE and DEACTIVATED)
+     * are permanent and cannot be changed after.
+     * @param Amount|null $cardLimit The spending limit for the card.
+     * @param Amount|null $cardLimitAtm The ATM spending limit for the card.
      * @param CardCountryPermission[]|null $countryPermission The countries for
-     *                                                        which to grant (temporary) permissions to use the card.
-     * @param int|null $monetaryAccountIdFallback             ID of the MA to be used as
-     *                                                        fallback for this card if insufficient balance. Fallback
-     *                                                        account is removed if not supplied.
+     * which to grant (temporary) permissions to use the card.
+     * @param int|null $monetaryAccountIdFallback ID of the MA to be used as
+     * fallback for this card if insufficient balance. Fallback account is
+     * removed if not supplied.
      */
     public function __construct(
         int $id,

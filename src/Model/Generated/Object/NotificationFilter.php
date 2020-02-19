@@ -1,5 +1,4 @@
 <?php
-
 namespace bunq\Model\Generated\Object;
 
 use bunq\Model\Core\BunqModel;
@@ -71,19 +70,19 @@ class NotificationFilter extends BunqModel
 
     /**
      * @param string $notificationDeliveryMethod The delivery method via which
-     *                                           notifications that match this notification filter will be delivered.
-     *                                           Possible choices are PUSH for delivery via push notification and URL
-     *                                           for delivery via URL callback.
-     * @param string $notificationTarget         The target of notifications that match
-     *                                           this notification filter. For URL notification filters this is the URL
-     *                                           to which the callback will be made. For PUSH notifications filters
-     *                                           this should always be null.
-     * @param string $category                   The notification category that will match this
-     *                                           notification filter. Possible choices are BILLING,
-     *                                           CARD_TRANSACTION_FAILED, CARD_TRANSACTION_SUCCESSFUL, CHAT,
-     *                                           DRAFT_PAYMENT, IDEAL, SOFORT, MONETARY_ACCOUNT_PROFILE, MUTATION,
-     *                                           PAYMENT, PROMOTION, REQUEST, SCHEDULE_RESULT, SCHEDULE_STATUS, SHARE,
-     *                                           SUPPORT, TAB_RESULT, USER_APPROVAL.
+     * notifications that match this notification filter will be delivered.
+     * Possible choices are PUSH for delivery via push notification and URL for
+     * delivery via URL callback.
+     * @param string $notificationTarget The target of notifications that match
+     * this notification filter. For URL notification filters this is the URL to
+     * which the callback will be made. For PUSH notifications filters this
+     * should always be null.
+     * @param string $category The notification category that will match this
+     * notification filter. Possible choices are BILLING,
+     * CARD_TRANSACTION_FAILED, CARD_TRANSACTION_SUCCESSFUL, CHAT,
+     * DRAFT_PAYMENT, IDEAL, SOFORT, MONETARY_ACCOUNT_PROFILE, MUTATION,
+     * PAYMENT, PROMOTION, REQUEST, SCHEDULE_RESULT, SCHEDULE_STATUS, SHARE,
+     * SUPPORT, TAB_RESULT, USER_APPROVAL.
      */
     public function __construct(string $notificationDeliveryMethod, string $notificationTarget, string $category)
     {
@@ -108,7 +107,7 @@ class NotificationFilter extends BunqModel
      * @param string $notificationDeliveryMethod
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setNotificationDeliveryMethod($notificationDeliveryMethod)
@@ -132,7 +131,7 @@ class NotificationFilter extends BunqModel
      * @param string $notificationTarget
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setNotificationTarget($notificationTarget)
@@ -159,7 +158,7 @@ class NotificationFilter extends BunqModel
      * @param string $category
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setCategory($category)

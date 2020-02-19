@@ -1,10 +1,7 @@
 <?php
-
 namespace bunq\Model\Generated\Endpoint;
 
-use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
-use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 
 /**
@@ -41,7 +38,7 @@ class TabItemShopBatch extends BunqModel
 
     /**
      * @param TabItemShop[] $tabItems The list of tab items we want to create in
-     *                                a single batch. Limited to 50 items per batch.
+     * a single batch. Limited to 50 items per batch.
      */
     public function __construct(array $tabItems)
     {
@@ -54,7 +51,7 @@ class TabItemShopBatch extends BunqModel
      * @param int $cashRegisterId
      * @param string $tabUuid
      * @param TabItemShop[] $tabItems The list of tab items we want to create in
-     *                                a single batch. Limited to 50 items per batch.
+     * a single batch. Limited to 50 items per batch.
      * @param int|null $monetaryAccountId
      * @param string[] $customHeaders
      *
@@ -101,7 +98,7 @@ class TabItemShopBatch extends BunqModel
      * @param TabItemShop[] $tabItems
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setTabItems($tabItems)

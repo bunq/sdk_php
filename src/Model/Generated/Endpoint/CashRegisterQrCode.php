@@ -1,10 +1,7 @@
 <?php
-
 namespace bunq\Model\Generated\Endpoint;
 
-use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
-use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 
 /**
@@ -91,8 +88,8 @@ class CashRegisterQrCode extends BunqModel
 
     /**
      * @param string $status The status of the QR code. ACTIVE or INACTIVE. Only
-     *                       one QR code can be ACTIVE for a CashRegister at any time. Setting a QR
-     *                       code to ACTIVE will deactivate any other CashRegister QR codes.
+     * one QR code can be ACTIVE for a CashRegister at any time. Setting a QR
+     * code to ACTIVE will deactivate any other CashRegister QR codes.
      */
     public function __construct(string $status)
     {
@@ -105,8 +102,8 @@ class CashRegisterQrCode extends BunqModel
      *
      * @param int $cashRegisterId
      * @param string $status The status of the QR code. ACTIVE or INACTIVE. Only
-     *                       one QR code can be ACTIVE for a CashRegister at any time. Setting a QR
-     *                       code to ACTIVE will deactivate any other CashRegister QR codes.
+     * one QR code can be ACTIVE for a CashRegister at any time. Setting a QR
+     * code to ACTIVE will deactivate any other CashRegister QR codes.
      * @param int|null $monetaryAccountId
      * @param string[] $customHeaders
      *
@@ -141,8 +138,8 @@ class CashRegisterQrCode extends BunqModel
      * @param int $cashRegisterQrCodeId
      * @param int|null $monetaryAccountId
      * @param string|null $status The status of the QR code. ACTIVE or INACTIVE.
-     *                            Only one QR code can be ACTIVE for a CashRegister at any time. Setting a
-     *                            QR code to ACTIVE will deactivate any other CashRegister QR codes.
+     * Only one QR code can be ACTIVE for a CashRegister at any time. Setting a
+     * QR code to ACTIVE will deactivate any other CashRegister QR codes.
      * @param string[] $customHeaders
      *
      * @return BunqResponseInt
@@ -260,7 +257,7 @@ class CashRegisterQrCode extends BunqModel
      * @param int $id
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setId($id)
@@ -282,7 +279,7 @@ class CashRegisterQrCode extends BunqModel
      * @param string $created
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setCreated($created)
@@ -304,7 +301,7 @@ class CashRegisterQrCode extends BunqModel
      * @param string $updated
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setUpdated($updated)
@@ -328,7 +325,7 @@ class CashRegisterQrCode extends BunqModel
      * @param string $status
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setStatus($status)
@@ -350,7 +347,7 @@ class CashRegisterQrCode extends BunqModel
      * @param CashRegister $cashRegister
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setCashRegister($cashRegister)
@@ -372,7 +369,7 @@ class CashRegisterQrCode extends BunqModel
      * @param Tab $tabObject
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setTabObject($tabObject)

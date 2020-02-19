@@ -1,12 +1,10 @@
 <?php
-
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Object\Amount;
 use bunq\Model\Generated\Object\Avatar;
 use bunq\Model\Generated\Object\MonetaryAccountSetting;
-use bunq\Model\Generated\Object\NotificationFilter;
 use bunq\Model\Generated\Object\Pointer;
 
 /**
@@ -31,7 +29,6 @@ class MonetaryAccountLight extends BunqModel
     const FIELD_SUB_STATUS = 'sub_status';
     const FIELD_REASON = 'reason';
     const FIELD_REASON_DESCRIPTION = 'reason_description';
-    const FIELD_NOTIFICATION_FILTERS = 'notification_filters';
     const FIELD_SETTING = 'setting';
 
     /**
@@ -85,13 +82,6 @@ class MonetaryAccountLight extends BunqModel
      * @var Amount
      */
     protected $dailyLimit;
-
-    /**
-     * Total Amount of money spent today. Timezone aware.
-     *
-     * @var Amount
-     */
-    protected $dailySpent;
 
     /**
      * The current available balance Amount of the MonetaryAccountLight.
@@ -212,14 +202,6 @@ class MonetaryAccountLight extends BunqModel
     protected $budgetWithdrawalYearMaximum;
 
     /**
-     * The types of notifications that will result in a push notification or URL
-     * callback for this MonetaryAccountLight.
-     *
-     * @var NotificationFilter[]
-     */
-    protected $notificationFilters;
-
-    /**
      * The settings of the MonetaryAccountLight.
      *
      * @var MonetaryAccountSetting
@@ -298,14 +280,6 @@ class MonetaryAccountLight extends BunqModel
     protected $reasonDescriptionFieldForRequest;
 
     /**
-     * The types of notifications that will result in a push notification or URL
-     * callback for this MonetaryAccountLight.
-     *
-     * @var NotificationFilter[]|null
-     */
-    protected $notificationFiltersFieldForRequest;
-
-    /**
      * The settings of the MonetaryAccountLight.
      *
      * @var MonetaryAccountSetting|null
@@ -313,42 +287,34 @@ class MonetaryAccountLight extends BunqModel
     protected $settingFieldForRequest;
 
     /**
-     * @param string $currency                               The currency of the MonetaryAccountLight as an
-     *                                                       ISO 4217 formatted currency code.
-     * @param string|null $description                       The description of the
-     *                                                       MonetaryAccountLight. Defaults to 'bunq account'.
-     * @param Amount|null $dailyLimit                        The daily spending limit Amount of the
-     *                                                       MonetaryAccountLight. Defaults to 1000 EUR. Currency must
-     *                                                       match the MonetaryAccountLight's currency. Limited to
-     *                                                       10000 EUR.
-     * @param string|null $avatarUuid                        The UUID of the Avatar of the
-     *                                                       MonetaryAccountLight.
-     * @param string|null $status                            The status of the MonetaryAccountLight.
-     *                                                       Ignored in POST requests (always set to ACTIVE) can be
-     *                                                       CANCELLED or PENDING_REOPEN in PUT requests to cancel
-     *                                                       (close) or reopen the MonetaryAccountLight. When updating
-     *                                                       the status and/or sub_status no other fields can be
-     *                                                       updated in the same request (and vice versa).
-     * @param string|null $subStatus                         The sub-status of the MonetaryAccountLight
-     *                                                       providing extra information regarding the status. Should
-     *                                                       be ignored for POST requests and can only be
-     *                                                       REDEMPTION_VOLUNTARY for PUT requests with status
-     *                                                       CANCELLED. When updating the status and/or sub_status no
-     *                                                       other fields can be updated in the same request (and vice
-     *                                                       versa).
-     * @param string|null $reason                            The reason for voluntarily cancelling
-     *                                                       (closing) the MonetaryAccountBank, can only be OTHER.
-     *                                                       Should only be specified if updating the status to
-     *                                                       CANCELLED.
-     * @param string|null $reasonDescription                 The optional free-form reason for
-     *                                                       voluntarily cancelling (closing) the MonetaryAccountBank.
-     *                                                       Can be any user provided message. Should only be specified
-     *                                                       if updating the status to CANCELLED.
-     * @param NotificationFilter[]|null $notificationFilters The types of
-     *                                                       notifications that will result in a push notification or
-     *                                                       URL callback for this MonetaryAccountLight.
-     * @param MonetaryAccountSetting|null $setting           The settings of the
-     *                                                       MonetaryAccountLight.
+     * @param string $currency The currency of the MonetaryAccountLight as an
+     * ISO 4217 formatted currency code.
+     * @param string|null $description The description of the
+     * MonetaryAccountLight. Defaults to 'bunq account'.
+     * @param Amount|null $dailyLimit The daily spending limit Amount of the
+     * MonetaryAccountLight. Defaults to 1000 EUR. Currency must match the
+     * MonetaryAccountLight's currency. Limited to 10000 EUR.
+     * @param string|null $avatarUuid The UUID of the Avatar of the
+     * MonetaryAccountLight.
+     * @param string|null $status The status of the MonetaryAccountLight.
+     * Ignored in POST requests (always set to ACTIVE) can be CANCELLED or
+     * PENDING_REOPEN in PUT requests to cancel (close) or reopen the
+     * MonetaryAccountLight. When updating the status and/or sub_status no other
+     * fields can be updated in the same request (and vice versa).
+     * @param string|null $subStatus The sub-status of the MonetaryAccountLight
+     * providing extra information regarding the status. Should be ignored for
+     * POST requests and can only be REDEMPTION_VOLUNTARY for PUT requests with
+     * status CANCELLED. When updating the status and/or sub_status no other
+     * fields can be updated in the same request (and vice versa).
+     * @param string|null $reason The reason for voluntarily cancelling
+     * (closing) the MonetaryAccountBank, can only be OTHER. Should only be
+     * specified if updating the status to CANCELLED.
+     * @param string|null $reasonDescription The optional free-form reason for
+     * voluntarily cancelling (closing) the MonetaryAccountBank. Can be any user
+     * provided message. Should only be specified if updating the status to
+     * CANCELLED.
+     * @param MonetaryAccountSetting|null $setting The settings of the
+     * MonetaryAccountLight.
      */
     public function __construct(
         string $currency,
@@ -359,7 +325,6 @@ class MonetaryAccountLight extends BunqModel
         string $subStatus = null,
         string $reason = null,
         string $reasonDescription = null,
-        array $notificationFilters = null,
         MonetaryAccountSetting $setting = null
     ) {
         $this->currencyFieldForRequest = $currency;
@@ -370,7 +335,6 @@ class MonetaryAccountLight extends BunqModel
         $this->subStatusFieldForRequest = $subStatus;
         $this->reasonFieldForRequest = $reason;
         $this->reasonDescriptionFieldForRequest = $reasonDescription;
-        $this->notificationFiltersFieldForRequest = $notificationFilters;
         $this->settingFieldForRequest = $setting;
     }
 
@@ -388,7 +352,7 @@ class MonetaryAccountLight extends BunqModel
      * @param int $id
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setId($id)
@@ -410,7 +374,7 @@ class MonetaryAccountLight extends BunqModel
      * @param string $created
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setCreated($created)
@@ -432,7 +396,7 @@ class MonetaryAccountLight extends BunqModel
      * @param string $updated
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setUpdated($updated)
@@ -454,7 +418,7 @@ class MonetaryAccountLight extends BunqModel
      * @param Avatar $avatar
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setAvatar($avatar)
@@ -477,7 +441,7 @@ class MonetaryAccountLight extends BunqModel
      * @param string $currency
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setCurrency($currency)
@@ -499,7 +463,7 @@ class MonetaryAccountLight extends BunqModel
      * @param string $description
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setDescription($description)
@@ -523,34 +487,12 @@ class MonetaryAccountLight extends BunqModel
      * @param Amount $dailyLimit
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setDailyLimit($dailyLimit)
     {
         $this->dailyLimit = $dailyLimit;
-    }
-
-    /**
-     * Total Amount of money spent today. Timezone aware.
-     *
-     * @return Amount
-     */
-    public function getDailySpent()
-    {
-        return $this->dailySpent;
-    }
-
-    /**
-     * @param Amount $dailySpent
-     *
-     * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
-     */
-    public function setDailySpent($dailySpent)
-    {
-        $this->dailySpent = $dailySpent;
     }
 
     /**
@@ -567,7 +509,7 @@ class MonetaryAccountLight extends BunqModel
      * @param Amount $balance
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setBalance($balance)
@@ -589,7 +531,7 @@ class MonetaryAccountLight extends BunqModel
      * @param Amount $balanceReal
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setBalanceReal($balanceReal)
@@ -611,7 +553,7 @@ class MonetaryAccountLight extends BunqModel
      * @param Pointer[] $alias
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setAlias($alias)
@@ -633,7 +575,7 @@ class MonetaryAccountLight extends BunqModel
      * @param string $publicUuid
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setPublicUuid($publicUuid)
@@ -656,7 +598,7 @@ class MonetaryAccountLight extends BunqModel
      * @param string $status
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setStatus($status)
@@ -681,7 +623,7 @@ class MonetaryAccountLight extends BunqModel
      * @param string $subStatus
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setSubStatus($subStatus)
@@ -704,7 +646,7 @@ class MonetaryAccountLight extends BunqModel
      * @param string $reason
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setReason($reason)
@@ -727,7 +669,7 @@ class MonetaryAccountLight extends BunqModel
      * @param string $reasonDescription
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setReasonDescription($reasonDescription)
@@ -749,7 +691,7 @@ class MonetaryAccountLight extends BunqModel
      * @param int $userId
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setUserId($userId)
@@ -771,7 +713,7 @@ class MonetaryAccountLight extends BunqModel
      * @param Amount $balanceMaximum
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setBalanceMaximum($balanceMaximum)
@@ -793,7 +735,7 @@ class MonetaryAccountLight extends BunqModel
      * @param Amount $budgetMonthUsed
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setBudgetMonthUsed($budgetMonthUsed)
@@ -815,7 +757,7 @@ class MonetaryAccountLight extends BunqModel
      * @param Amount $budgetMonthMaximum
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setBudgetMonthMaximum($budgetMonthMaximum)
@@ -837,7 +779,7 @@ class MonetaryAccountLight extends BunqModel
      * @param Amount $budgetYearUsed
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setBudgetYearUsed($budgetYearUsed)
@@ -859,7 +801,7 @@ class MonetaryAccountLight extends BunqModel
      * @param Amount $budgetYearMaximum
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setBudgetYearMaximum($budgetYearMaximum)
@@ -881,7 +823,7 @@ class MonetaryAccountLight extends BunqModel
      * @param Amount $budgetWithdrawalYearUsed
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setBudgetWithdrawalYearUsed($budgetWithdrawalYearUsed)
@@ -903,35 +845,12 @@ class MonetaryAccountLight extends BunqModel
      * @param Amount $budgetWithdrawalYearMaximum
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setBudgetWithdrawalYearMaximum($budgetWithdrawalYearMaximum)
     {
         $this->budgetWithdrawalYearMaximum = $budgetWithdrawalYearMaximum;
-    }
-
-    /**
-     * The types of notifications that will result in a push notification or URL
-     * callback for this MonetaryAccountLight.
-     *
-     * @return NotificationFilter[]
-     */
-    public function getNotificationFilters()
-    {
-        return $this->notificationFilters;
-    }
-
-    /**
-     * @param NotificationFilter[] $notificationFilters
-     *
-     * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
-     */
-    public function setNotificationFilters($notificationFilters)
-    {
-        $this->notificationFilters = $notificationFilters;
     }
 
     /**
@@ -948,7 +867,7 @@ class MonetaryAccountLight extends BunqModel
      * @param MonetaryAccountSetting $setting
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setSetting($setting)
@@ -986,10 +905,6 @@ class MonetaryAccountLight extends BunqModel
         }
 
         if (!is_null($this->dailyLimit)) {
-            return false;
-        }
-
-        if (!is_null($this->dailySpent)) {
             return false;
         }
 
@@ -1054,10 +969,6 @@ class MonetaryAccountLight extends BunqModel
         }
 
         if (!is_null($this->budgetWithdrawalYearMaximum)) {
-            return false;
-        }
-
-        if (!is_null($this->notificationFilters)) {
             return false;
         }
 

@@ -1,5 +1,4 @@
 <?php
-
 namespace bunq\Model\Generated\Object;
 
 use bunq\Model\Core\BunqModel;
@@ -52,10 +51,10 @@ class TaxResident extends BunqModel
     protected $statusFieldForRequest;
 
     /**
-     * @param string $country     The country of the tax number.
-     * @param string $taxNumber   The tax number.
+     * @param string $country The country of the tax number.
+     * @param string $taxNumber The tax number.
      * @param string|null $status The status of the tax number. Either CONFIRMED
-     *                            or UNCONFIRMED.
+     * or UNCONFIRMED.
      */
     public function __construct(string $country, string $taxNumber, string $status = null)
     {
@@ -78,7 +77,7 @@ class TaxResident extends BunqModel
      * @param string $country
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setCountry($country)
@@ -100,7 +99,7 @@ class TaxResident extends BunqModel
      * @param string $taxNumber
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setTaxNumber($taxNumber)
@@ -122,7 +121,7 @@ class TaxResident extends BunqModel
      * @param string $status
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setStatus($status)

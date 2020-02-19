@@ -1,8 +1,6 @@
 <?php
-
 namespace bunq\Model\Generated\Endpoint;
 
-use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
 use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
@@ -59,7 +57,7 @@ class CertificatePinned extends BunqModel
 
     /**
      * @param Certificate[] $certificateChain The certificate chain in .PEM
-     *                                        format.
+     * format.
      */
     public function __construct(array $certificateChain)
     {
@@ -70,7 +68,7 @@ class CertificatePinned extends BunqModel
      * Pin the certificate chain.
      *
      * @param Certificate[] $certificateChain The certificate chain in .PEM
-     *                                        format.
+     * format.
      * @param string[] $customHeaders
      *
      * @return BunqResponseInt
@@ -184,7 +182,7 @@ class CertificatePinned extends BunqModel
      * @param string $certificateChain
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setCertificateChain($certificateChain)
@@ -206,7 +204,7 @@ class CertificatePinned extends BunqModel
      * @param int $id
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setId($id)

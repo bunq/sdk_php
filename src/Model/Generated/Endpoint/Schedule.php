@@ -1,5 +1,4 @@
 <?php
-
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Http\ApiClient;
@@ -109,9 +108,9 @@ class Schedule extends BunqModel
     /**
      * @param string $timeStart The schedule start time (UTC).
      * @param string $recurrenceUnit The schedule recurrence unit, options:
-     *                               ONCE, HOURLY, DAILY, WEEKLY, MONTHLY, YEARLY
+     * ONCE, HOURLY, DAILY, WEEKLY, MONTHLY, YEARLY
      * @param int $recurrenceSize The schedule recurrence size. For example size
-     *                               4 and unit WEEKLY means the recurrence is every 4 weeks.
+     * 4 and unit WEEKLY means the recurrence is every 4 weeks.
      * @param string|null $timeEnd The schedule end time (UTC).
      */
     public function __construct(string $timeStart, string $recurrenceUnit, int $recurrenceSize, string $timeEnd = null)
@@ -201,7 +200,7 @@ class Schedule extends BunqModel
      * @param string $timeStart
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setTimeStart($timeStart)
@@ -223,7 +222,7 @@ class Schedule extends BunqModel
      * @param string $timeEnd
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setTimeEnd($timeEnd)
@@ -246,7 +245,7 @@ class Schedule extends BunqModel
      * @param string $recurrenceUnit
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setRecurrenceUnit($recurrenceUnit)
@@ -269,7 +268,7 @@ class Schedule extends BunqModel
      * @param int $recurrenceSize
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setRecurrenceSize($recurrenceSize)
@@ -291,7 +290,7 @@ class Schedule extends BunqModel
      * @param string $status
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setStatus($status)
@@ -313,7 +312,7 @@ class Schedule extends BunqModel
      * @param ScheduleAnchorObject $object
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setObject($object)

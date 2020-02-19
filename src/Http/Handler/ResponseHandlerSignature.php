@@ -71,28 +71,64 @@ class ResponseHandlerSignature extends ResponseHandlerBase
             if (is_null($this->publicKeyServer)) {
                 // No installation yet.
                 return $response;
+            } elseif ($this->isResponseSignatureHeaderWithBodyValid($response)) {
+                return $response;
+            } elseif ($this->isResponseSignatureBodyValid($response)) {
+                return $response;
             } else {
-                $toVerify =
-                    $response->getStatusCode() .
-                    self::NEWLINE .
-                    $this->determineHeaderStringForSignedResponse($response->getHeaders()) .
-                    self::NEWLINE . self::NEWLINE .
-                    $response->getBody()->getContents();
-
-                $signature = base64_decode($response->getHeaderLine(self::HEADER_SERVER_SIGNATURE));
-                $publicKey = $this->publicKeyServer->getKey();
-
-                $signatureResult = openssl_verify($toVerify, $signature, $publicKey, OPENSSL_ALGO_SHA256);
-
-                if ($signatureResult === self::RESULT_SIGNATURE_CORRECT) {
-                    return $response;
-                } else {
-                    throw new SecurityException(self::ERROR_VERIFYING_RESPONSE_FAILED);
-                }
+                throw new SecurityException(self::ERROR_VERIFYING_RESPONSE_FAILED);
             }
         } else {
             return $response;
         }
+    }
+
+    /**
+     * @deprecated
+     *
+     * @param ResponseInterface $response
+     *
+     * @return bool
+     */
+    private function isResponseSignatureHeaderWithBodyValid(ResponseInterface $response): bool
+    {
+        $response->getBody()->seek(self::INDEX_FIRST);
+
+        $toVerify =
+            $response->getStatusCode() .
+            self::NEWLINE .
+            $this->determineHeaderStringForSignedResponse($response->getHeaders()) .
+            self::NEWLINE . self::NEWLINE .
+            $response->getBody()->getContents();
+
+        $signature = base64_decode($response->getHeaderLine(self::HEADER_SERVER_SIGNATURE));
+        $publicKey = $this->publicKeyServer->getKey();
+
+        $signatureResult = openssl_verify($toVerify, $signature, $publicKey, OPENSSL_ALGO_SHA256);
+
+        return $signatureResult === self::RESULT_SIGNATURE_CORRECT;
+    }
+
+    /**
+     * @param ResponseInterface $response
+     *
+     * @return bool
+     */
+    private function isResponseSignatureBodyValid(ResponseInterface $response): bool
+    {
+        $response->getBody()->seek(self::INDEX_FIRST);
+
+        $signature = base64_decode($response->getHeaderLine(self::HEADER_SERVER_SIGNATURE));
+        $publicKey = $this->publicKeyServer->getKey();
+
+        $signatureResult = openssl_verify(
+            $response->getBody()->getContents(),
+            $signature,
+            $publicKey,
+            OPENSSL_ALGO_SHA256
+        );
+
+        return $signatureResult === self::RESULT_SIGNATURE_CORRECT;
     }
 
     /**
