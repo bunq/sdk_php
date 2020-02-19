@@ -1,10 +1,7 @@
 <?php
-
 namespace bunq\Model\Generated\Endpoint;
 
-use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
-use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 
 /**
@@ -84,7 +81,7 @@ class BankSwitchServiceNetherlandsIncomingPayment extends BunqModel
      * @param BankSwitchServiceNetherlandsIncoming $bankSwitchService
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setBankSwitchService($bankSwitchService)
@@ -106,7 +103,7 @@ class BankSwitchServiceNetherlandsIncomingPayment extends BunqModel
      * @param Payment $payment
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setPayment($payment)

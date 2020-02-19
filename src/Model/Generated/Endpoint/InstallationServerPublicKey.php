@@ -1,5 +1,4 @@
 <?php
-
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Http\ApiClient;
@@ -77,7 +76,7 @@ class InstallationServerPublicKey extends BunqModel
      * @param string $serverPublicKey
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setServerPublicKey($serverPublicKey)

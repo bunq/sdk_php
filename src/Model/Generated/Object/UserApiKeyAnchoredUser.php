@@ -1,5 +1,4 @@
 <?php
-
 namespace bunq\Model\Generated\Object;
 
 use bunq\exception\BunqException;
@@ -46,7 +45,7 @@ class UserApiKeyAnchoredUser extends BunqModel implements AnchorObjectInterface
      * @param UserPerson $userPerson
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setUserPerson($userPerson)
@@ -66,7 +65,7 @@ class UserApiKeyAnchoredUser extends BunqModel implements AnchorObjectInterface
      * @param UserCompany $userCompany
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setUserCompany($userCompany)
@@ -86,7 +85,7 @@ class UserApiKeyAnchoredUser extends BunqModel implements AnchorObjectInterface
      * @param UserPaymentServiceProvider $userPaymentServiceProvider
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setUserPaymentServiceProvider($userPaymentServiceProvider)

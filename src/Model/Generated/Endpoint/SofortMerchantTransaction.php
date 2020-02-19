@@ -1,5 +1,4 @@
 <?php
-
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Http\ApiClient;
@@ -119,7 +118,7 @@ class SofortMerchantTransaction extends BunqModel
 
     /**
      * @param Amount $amountRequested The requested amount of money to add.
-     * @param string|null $issuer     The BIC of the issuing bank to ask for money.
+     * @param string|null $issuer The BIC of the issuing bank to ask for money.
      */
     public function __construct(Amount $amountRequested, string $issuer = null)
     {
@@ -202,7 +201,7 @@ class SofortMerchantTransaction extends BunqModel
      * @param int $monetaryAccountId
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setMonetaryAccountId($monetaryAccountId)
@@ -224,7 +223,7 @@ class SofortMerchantTransaction extends BunqModel
      * @param LabelMonetaryAccount $alias
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setAlias($alias)
@@ -246,7 +245,7 @@ class SofortMerchantTransaction extends BunqModel
      * @param LabelMonetaryAccount $counterpartyAlias
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setCounterpartyAlias($counterpartyAlias)
@@ -269,7 +268,7 @@ class SofortMerchantTransaction extends BunqModel
      * @param Amount $amountGuaranteed
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setAmountGuaranteed($amountGuaranteed)
@@ -291,7 +290,7 @@ class SofortMerchantTransaction extends BunqModel
      * @param Amount $amountRequested
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setAmountRequested($amountRequested)
@@ -313,7 +312,7 @@ class SofortMerchantTransaction extends BunqModel
      * @param string $issuer
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setIssuer($issuer)
@@ -335,7 +334,7 @@ class SofortMerchantTransaction extends BunqModel
      * @param string $issuerAuthenticationUrl
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setIssuerAuthenticationUrl($issuerAuthenticationUrl)
@@ -357,7 +356,7 @@ class SofortMerchantTransaction extends BunqModel
      * @param string $status
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setStatus($status)
@@ -379,7 +378,7 @@ class SofortMerchantTransaction extends BunqModel
      * @param Error[] $errorMessage
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setErrorMessage($errorMessage)
@@ -401,7 +400,7 @@ class SofortMerchantTransaction extends BunqModel
      * @param string $transactionIdentifier
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setTransactionIdentifier($transactionIdentifier)

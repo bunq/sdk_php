@@ -1,5 +1,4 @@
 <?php
-
 namespace bunq\Model\Generated\Object;
 
 use bunq\Model\Core\BunqModel;
@@ -46,7 +45,7 @@ class WhitelistResultViewAnchoredObject extends BunqModel
      * @param int $id
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setId($id)
@@ -68,7 +67,7 @@ class WhitelistResultViewAnchoredObject extends BunqModel
      * @param RequestResponse $requestResponse
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setRequestResponse($requestResponse)
@@ -90,7 +89,7 @@ class WhitelistResultViewAnchoredObject extends BunqModel
      * @param DraftPayment $draftPayment
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setDraftPayment($draftPayment)

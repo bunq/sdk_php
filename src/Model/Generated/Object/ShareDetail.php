@@ -1,5 +1,4 @@
 <?php
-
 namespace bunq\Model\Generated\Object;
 
 use bunq\Model\Core\BunqModel;
@@ -68,15 +67,15 @@ class ShareDetail extends BunqModel
     protected $draftPaymentFieldForRequest;
 
     /**
-     * @param ShareDetailPayment|null $payment           The share details for a payment
-     *                                                   share. Remember to replace 'payment' with 'ShareDetailPayment'
-     *                                                   before sending a request.
-     * @param ShareDetailReadOnly|null $readOnly         The share details for viewing a
-     *                                                   share. Remember to replace 'read_only' with
-     *                                                   'ShareDetailReadOnly' before sending a request.
+     * @param ShareDetailPayment|null $payment The share details for a payment
+     * share. Remember to replace 'payment' with 'ShareDetailPayment' before
+     * sending a request.
+     * @param ShareDetailReadOnly|null $readOnly The share details for viewing a
+     * share. Remember to replace 'read_only' with 'ShareDetailReadOnly' before
+     * sending a request.
      * @param ShareDetailDraftPayment|null $draftPayment The share details for a
-     *                                                   draft payment share. Remember to replace 'draft_payment' with
-     *                                                   'ShareDetailDraftPayment' before sending a request.
+     * draft payment share. Remember to replace 'draft_payment' with
+     * 'ShareDetailDraftPayment' before sending a request.
      */
     public function __construct(
         ShareDetailPayment $payment = null,
@@ -103,7 +102,7 @@ class ShareDetail extends BunqModel
      * @param ShareDetailPayment $payment
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setPayment($payment)
@@ -126,7 +125,7 @@ class ShareDetail extends BunqModel
      * @param ShareDetailReadOnly $readOnly
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setReadOnly($readOnly)
@@ -149,7 +148,7 @@ class ShareDetail extends BunqModel
      * @param ShareDetailDraftPayment $draftPayment
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setDraftPayment($draftPayment)

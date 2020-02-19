@@ -1,5 +1,4 @@
 <?php
-
 namespace bunq\Model\Generated\Object;
 
 use bunq\Model\Core\BunqModel;
@@ -40,10 +39,10 @@ class BudgetRestriction extends BunqModel
     protected $frequencyFieldForRequest;
 
     /**
-     * @param Amount|null $amount    The amount of the budget given to the invited
-     *                               user.
+     * @param Amount|null $amount The amount of the budget given to the invited
+     * user.
      * @param string|null $frequency The duration for a budget restriction.
-     *                               Valid values are DAILY, WEEKLY, MONTHLY, YEARLY.
+     * Valid values are DAILY, WEEKLY, MONTHLY, YEARLY.
      */
     public function __construct(Amount $amount = null, string $frequency = null)
     {
@@ -65,7 +64,7 @@ class BudgetRestriction extends BunqModel
      * @param Amount $amount
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setAmount($amount)
@@ -88,7 +87,7 @@ class BudgetRestriction extends BunqModel
      * @param string $frequency
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setFrequency($frequency)

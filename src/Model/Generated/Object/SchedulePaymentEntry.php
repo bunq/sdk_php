@@ -1,5 +1,4 @@
 <?php
-
 namespace bunq\Model\Generated\Object;
 
 use bunq\Model\Core\BunqModel;
@@ -105,21 +104,21 @@ class SchedulePaymentEntry extends BunqModel
     protected $allowBunqtoFieldForRequest;
 
     /**
-     * @param Amount $amount                 The Amount to transfer with the Payment. Must be
-     *                                       bigger 0 and smaller than the MonetaryAccount's balance.
-     * @param Pointer $counterpartyAlias     The Alias of the party we are
-     *                                       transferring the money to. Can be an Alias of type EMAIL or PHONE (for
-     *                                       bunq MonetaryAccounts) or IBAN (for external bank account).
-     * @param string $description            The description for the Payment. Maximum 140
-     *                                       characters for Payments to external IBANs, 9000 characters for Payments
-     *                                       to only other bunq MonetaryAccounts. Field is required but can be an
-     *                                       empty string.
-     * @param BunqId[]|null $attachment      The Attachments to attach to the
-     *                                       Payment.
+     * @param Amount $amount The Amount to transfer with the Payment. Must be
+     * bigger 0 and smaller than the MonetaryAccount's balance.
+     * @param Pointer $counterpartyAlias The Alias of the party we are
+     * transferring the money to. Can be an Alias of type EMAIL or PHONE (for
+     * bunq MonetaryAccounts) or IBAN (for external bank account).
+     * @param string $description The description for the Payment. Maximum 140
+     * characters for Payments to external IBANs, 9000 characters for Payments
+     * to only other bunq MonetaryAccounts. Field is required but can be an
+     * empty string.
+     * @param BunqId[]|null $attachment The Attachments to attach to the
+     * Payment.
      * @param string|null $merchantReference Optional data to be included with
-     *                                       the Payment specific to the merchant.
-     * @param bool|null $allowBunqto         Whether or not sending a bunq.to payment is
-     *                                       allowed.
+     * the Payment specific to the merchant.
+     * @param bool|null $allowBunqto Whether or not sending a bunq.to payment is
+     * allowed.
      */
     public function __construct(
         Amount $amount,
@@ -153,7 +152,7 @@ class SchedulePaymentEntry extends BunqModel
      * @param Amount $amount
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setAmount($amount)
@@ -176,7 +175,7 @@ class SchedulePaymentEntry extends BunqModel
      * @param LabelMonetaryAccount $alias
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setAlias($alias)
@@ -199,7 +198,7 @@ class SchedulePaymentEntry extends BunqModel
      * @param LabelMonetaryAccount $counterpartyAlias
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setCounterpartyAlias($counterpartyAlias)
@@ -223,7 +222,7 @@ class SchedulePaymentEntry extends BunqModel
      * @param string $description
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setDescription($description)
@@ -245,7 +244,7 @@ class SchedulePaymentEntry extends BunqModel
      * @param AttachmentMonetaryAccountPayment[] $attachment
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setAttachment($attachment)
@@ -267,7 +266,7 @@ class SchedulePaymentEntry extends BunqModel
      * @param string $merchantReference
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setMerchantReference($merchantReference)

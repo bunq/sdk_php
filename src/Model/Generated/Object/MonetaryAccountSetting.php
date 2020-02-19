@@ -1,5 +1,4 @@
 <?php
-
 namespace bunq\Model\Generated\Object;
 
 use bunq\Model\Core\BunqModel;
@@ -69,13 +68,13 @@ class MonetaryAccountSetting extends BunqModel
     protected $restrictionChatFieldForRequest;
 
     /**
-     * @param string|null $color               The color chosen for the MonetaryAccount in
-     *                                         hexadecimal format.
-     * @param string|null $icon                The icon chosen for the MonetaryAccount.
+     * @param string|null $color The color chosen for the MonetaryAccount in
+     * hexadecimal format.
+     * @param string|null $icon The icon chosen for the MonetaryAccount.
      * @param string|null $defaultAvatarStatus The status of the avatar. Cannot
-     *                                         be updated directly.
-     * @param string|null $restrictionChat     The chat restriction. Possible values
-     *                                         are ALLOW_INCOMING or BLOCK_INCOMING
+     * be updated directly.
+     * @param string|null $restrictionChat The chat restriction. Possible values
+     * are ALLOW_INCOMING or BLOCK_INCOMING
      */
     public function __construct(
         string $color = null,
@@ -103,7 +102,7 @@ class MonetaryAccountSetting extends BunqModel
      * @param string $color
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setColor($color)
@@ -125,7 +124,7 @@ class MonetaryAccountSetting extends BunqModel
      * @param string $icon
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setIcon($icon)
@@ -148,7 +147,7 @@ class MonetaryAccountSetting extends BunqModel
      * @param string $defaultAvatarStatus
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setDefaultAvatarStatus($defaultAvatarStatus)
@@ -171,7 +170,7 @@ class MonetaryAccountSetting extends BunqModel
      * @param string $restrictionChat
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setRestrictionChat($restrictionChat)

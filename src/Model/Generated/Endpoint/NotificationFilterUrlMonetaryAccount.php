@@ -1,10 +1,7 @@
 <?php
-
 namespace bunq\Model\Generated\Endpoint;
 
-use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
-use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Object\NotificationFilterUrl;
 
@@ -49,8 +46,8 @@ class NotificationFilterUrlMonetaryAccount extends BunqModel
 
     /**
      * @param NotificationFilterUrl[]|null $notificationFilters The types of
-     *                                                          notifications that will result in a url notification
-     *                                                          for this monetary account.
+     * notifications that will result in a url notification for this monetary
+     * account.
      */
     public function __construct(array $notificationFilters = null)
     {
@@ -60,8 +57,8 @@ class NotificationFilterUrlMonetaryAccount extends BunqModel
     /**
      * @param int|null $monetaryAccountId
      * @param NotificationFilterUrl[]|null $notificationFilters The types of
-     *                                                          notifications that will result in a url notification
-     *                                                          for this monetary account.
+     * notifications that will result in a url notification for this monetary
+     * account.
      * @param string[] $customHeaders
      *
      * @return BunqResponseInt
@@ -131,7 +128,7 @@ class NotificationFilterUrlMonetaryAccount extends BunqModel
      * @param NotificationFilterUrl[] $notificationFilters
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setNotificationFilters($notificationFilters)

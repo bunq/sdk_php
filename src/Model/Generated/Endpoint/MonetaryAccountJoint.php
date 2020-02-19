@@ -1,17 +1,13 @@
 <?php
-
 namespace bunq\Model\Generated\Endpoint;
 
-use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
-use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Object\Amount;
 use bunq\Model\Generated\Object\Avatar;
 use bunq\Model\Generated\Object\BunqId;
 use bunq\Model\Generated\Object\CoOwner;
 use bunq\Model\Generated\Object\MonetaryAccountSetting;
-use bunq\Model\Generated\Object\NotificationFilter;
 use bunq\Model\Generated\Object\Pointer;
 
 /**
@@ -43,7 +39,6 @@ class MonetaryAccountJoint extends BunqModel
     const FIELD_REASON = 'reason';
     const FIELD_REASON_DESCRIPTION = 'reason_description';
     const FIELD_ALL_CO_OWNER = 'all_co_owner';
-    const FIELD_NOTIFICATION_FILTERS = 'notification_filters';
     const FIELD_SETTING = 'setting';
 
     /**
@@ -102,13 +97,6 @@ class MonetaryAccountJoint extends BunqModel
      * @var Amount
      */
     protected $dailyLimit;
-
-    /**
-     * Total Amount of money spent today. Timezone aware.
-     *
-     * @var Amount
-     */
-    protected $dailySpent;
 
     /**
      * The maximum Amount the MonetaryAccountJoint can be 'in the red'.
@@ -192,14 +180,6 @@ class MonetaryAccountJoint extends BunqModel
      * @var MonetaryAccountProfile
      */
     protected $monetaryAccountProfile;
-
-    /**
-     * The types of notifications that will result in a push notification or URL
-     * callback for this MonetaryAccountJoint.
-     *
-     * @var NotificationFilter[]
-     */
-    protected $notificationFilters;
 
     /**
      * The settings of the MonetaryAccountJoint.
@@ -318,14 +298,6 @@ class MonetaryAccountJoint extends BunqModel
     protected $allCoOwnerFieldForRequest;
 
     /**
-     * The types of notifications that will result in a push notification or URL
-     * callback for this MonetaryAccountJoint.
-     *
-     * @var NotificationFilter[]|null
-     */
-    protected $notificationFiltersFieldForRequest;
-
-    /**
      * The settings of the MonetaryAccountJoint.
      *
      * @var MonetaryAccountSetting|null
@@ -333,48 +305,40 @@ class MonetaryAccountJoint extends BunqModel
     protected $settingFieldForRequest;
 
     /**
-     * @param string $currency                               The currency of the MonetaryAccountJoint as an
-     *                                                       ISO 4217 formatted currency code.
-     * @param CoOwner[] $allCoOwner                          The users the account will be joint with.
-     * @param string|null $description                       The description of the
-     *                                                       MonetaryAccountJoint. Defaults to 'bunq account'.
-     * @param Amount|null $dailyLimit                        The daily spending limit Amount of the
-     *                                                       MonetaryAccountJoint. Defaults to 1000 EUR. Currency must
-     *                                                       match the MonetaryAccountJoint's currency. Limited to
-     *                                                       10000 EUR.
-     * @param Amount|null $overdraftLimit                    The maximum Amount the
-     *                                                       MonetaryAccountJoint can be 'in the red'. Must be 0 EUR or
-     *                                                       omitted.
-     * @param Pointer[]|null $alias                          The Aliases to add to MonetaryAccountJoint.
-     *                                                       Must all be confirmed first. Can mostly be ignored.
-     * @param string|null $avatarUuid                        The UUID of the Avatar of the
-     *                                                       MonetaryAccountJoint.
-     * @param string|null $status                            The status of the MonetaryAccountJoint.
-     *                                                       Ignored in POST requests (always set to ACTIVE) can be
-     *                                                       CANCELLED or PENDING_REOPEN in PUT requests to cancel
-     *                                                       (close) or reopen the MonetaryAccountJoint. When updating
-     *                                                       the status and/or sub_status no other fields can be
-     *                                                       updated in the same request (and vice versa).
-     * @param string|null $subStatus                         The sub-status of the MonetaryAccountJoint
-     *                                                       providing extra information regarding the status. Should
-     *                                                       be ignored for POST requests. In case of PUT requests with
-     *                                                       status CANCELLED it can only be REDEMPTION_VOLUNTARY,
-     *                                                       while with status PENDING_REOPEN it can only be NONE. When
-     *                                                       updating the status and/or sub_status no other fields can
-     *                                                       be updated in the same request (and vice versa).
-     * @param string|null $reason                            The reason for voluntarily cancelling
-     *                                                       (closing) the MonetaryAccountJoint, can only be OTHER.
-     *                                                       Should only be specified if updating the status to
-     *                                                       CANCELLED.
-     * @param string|null $reasonDescription                 The optional free-form reason for
-     *                                                       voluntarily cancelling (closing) the MonetaryAccountJoint.
-     *                                                       Can be any user provided message. Should only be specified
-     *                                                       if updating the status to CANCELLED.
-     * @param NotificationFilter[]|null $notificationFilters The types of
-     *                                                       notifications that will result in a push notification or
-     *                                                       URL callback for this MonetaryAccountJoint.
-     * @param MonetaryAccountSetting|null $setting           The settings of the
-     *                                                       MonetaryAccountJoint.
+     * @param string $currency The currency of the MonetaryAccountJoint as an
+     * ISO 4217 formatted currency code.
+     * @param CoOwner[] $allCoOwner The users the account will be joint with.
+     * @param string|null $description The description of the
+     * MonetaryAccountJoint. Defaults to 'bunq account'.
+     * @param Amount|null $dailyLimit The daily spending limit Amount of the
+     * MonetaryAccountJoint. Defaults to 1000 EUR. Currency must match the
+     * MonetaryAccountJoint's currency. Limited to 10000 EUR.
+     * @param Amount|null $overdraftLimit The maximum Amount the
+     * MonetaryAccountJoint can be 'in the red'. Must be 0 EUR or omitted.
+     * @param Pointer[]|null $alias The Aliases to add to MonetaryAccountJoint.
+     * Must all be confirmed first. Can mostly be ignored.
+     * @param string|null $avatarUuid The UUID of the Avatar of the
+     * MonetaryAccountJoint.
+     * @param string|null $status The status of the MonetaryAccountJoint.
+     * Ignored in POST requests (always set to ACTIVE) can be CANCELLED or
+     * PENDING_REOPEN in PUT requests to cancel (close) or reopen the
+     * MonetaryAccountJoint. When updating the status and/or sub_status no other
+     * fields can be updated in the same request (and vice versa).
+     * @param string|null $subStatus The sub-status of the MonetaryAccountJoint
+     * providing extra information regarding the status. Should be ignored for
+     * POST requests. In case of PUT requests with status CANCELLED it can only
+     * be REDEMPTION_VOLUNTARY, while with status PENDING_REOPEN it can only be
+     * NONE. When updating the status and/or sub_status no other fields can be
+     * updated in the same request (and vice versa).
+     * @param string|null $reason The reason for voluntarily cancelling
+     * (closing) the MonetaryAccountJoint, can only be OTHER. Should only be
+     * specified if updating the status to CANCELLED.
+     * @param string|null $reasonDescription The optional free-form reason for
+     * voluntarily cancelling (closing) the MonetaryAccountJoint. Can be any
+     * user provided message. Should only be specified if updating the status to
+     * CANCELLED.
+     * @param MonetaryAccountSetting|null $setting The settings of the
+     * MonetaryAccountJoint.
      */
     public function __construct(
         string $currency,
@@ -388,7 +352,6 @@ class MonetaryAccountJoint extends BunqModel
         string $subStatus = null,
         string $reason = null,
         string $reasonDescription = null,
-        array $notificationFilters = null,
         MonetaryAccountSetting $setting = null
     ) {
         $this->currencyFieldForRequest = $currency;
@@ -402,53 +365,44 @@ class MonetaryAccountJoint extends BunqModel
         $this->reasonFieldForRequest = $reason;
         $this->reasonDescriptionFieldForRequest = $reasonDescription;
         $this->allCoOwnerFieldForRequest = $allCoOwner;
-        $this->notificationFiltersFieldForRequest = $notificationFilters;
         $this->settingFieldForRequest = $setting;
     }
 
     /**
-     * @param string $currency                               The currency of the MonetaryAccountJoint as an
-     *                                                       ISO 4217 formatted currency code.
-     * @param CoOwner[] $allCoOwner                          The users the account will be joint with.
-     * @param string|null $description                       The description of the
-     *                                                       MonetaryAccountJoint. Defaults to 'bunq account'.
-     * @param Amount|null $dailyLimit                        The daily spending limit Amount of the
-     *                                                       MonetaryAccountJoint. Defaults to 1000 EUR. Currency must
-     *                                                       match the MonetaryAccountJoint's currency. Limited to
-     *                                                       10000 EUR.
-     * @param Amount|null $overdraftLimit                    The maximum Amount the
-     *                                                       MonetaryAccountJoint can be 'in the red'. Must be 0 EUR or
-     *                                                       omitted.
-     * @param Pointer[]|null $alias                          The Aliases to add to MonetaryAccountJoint.
-     *                                                       Must all be confirmed first. Can mostly be ignored.
-     * @param string|null $avatarUuid                        The UUID of the Avatar of the
-     *                                                       MonetaryAccountJoint.
-     * @param string|null $status                            The status of the MonetaryAccountJoint.
-     *                                                       Ignored in POST requests (always set to ACTIVE) can be
-     *                                                       CANCELLED or PENDING_REOPEN in PUT requests to cancel
-     *                                                       (close) or reopen the MonetaryAccountJoint. When updating
-     *                                                       the status and/or sub_status no other fields can be
-     *                                                       updated in the same request (and vice versa).
-     * @param string|null $subStatus                         The sub-status of the MonetaryAccountJoint
-     *                                                       providing extra information regarding the status. Should
-     *                                                       be ignored for POST requests. In case of PUT requests with
-     *                                                       status CANCELLED it can only be REDEMPTION_VOLUNTARY,
-     *                                                       while with status PENDING_REOPEN it can only be NONE. When
-     *                                                       updating the status and/or sub_status no other fields can
-     *                                                       be updated in the same request (and vice versa).
-     * @param string|null $reason                            The reason for voluntarily cancelling
-     *                                                       (closing) the MonetaryAccountJoint, can only be OTHER.
-     *                                                       Should only be specified if updating the status to
-     *                                                       CANCELLED.
-     * @param string|null $reasonDescription                 The optional free-form reason for
-     *                                                       voluntarily cancelling (closing) the MonetaryAccountJoint.
-     *                                                       Can be any user provided message. Should only be specified
-     *                                                       if updating the status to CANCELLED.
-     * @param NotificationFilter[]|null $notificationFilters The types of
-     *                                                       notifications that will result in a push notification or
-     *                                                       URL callback for this MonetaryAccountJoint.
-     * @param MonetaryAccountSetting|null $setting           The settings of the
-     *                                                       MonetaryAccountJoint.
+     * @param string $currency The currency of the MonetaryAccountJoint as an
+     * ISO 4217 formatted currency code.
+     * @param CoOwner[] $allCoOwner The users the account will be joint with.
+     * @param string|null $description The description of the
+     * MonetaryAccountJoint. Defaults to 'bunq account'.
+     * @param Amount|null $dailyLimit The daily spending limit Amount of the
+     * MonetaryAccountJoint. Defaults to 1000 EUR. Currency must match the
+     * MonetaryAccountJoint's currency. Limited to 10000 EUR.
+     * @param Amount|null $overdraftLimit The maximum Amount the
+     * MonetaryAccountJoint can be 'in the red'. Must be 0 EUR or omitted.
+     * @param Pointer[]|null $alias The Aliases to add to MonetaryAccountJoint.
+     * Must all be confirmed first. Can mostly be ignored.
+     * @param string|null $avatarUuid The UUID of the Avatar of the
+     * MonetaryAccountJoint.
+     * @param string|null $status The status of the MonetaryAccountJoint.
+     * Ignored in POST requests (always set to ACTIVE) can be CANCELLED or
+     * PENDING_REOPEN in PUT requests to cancel (close) or reopen the
+     * MonetaryAccountJoint. When updating the status and/or sub_status no other
+     * fields can be updated in the same request (and vice versa).
+     * @param string|null $subStatus The sub-status of the MonetaryAccountJoint
+     * providing extra information regarding the status. Should be ignored for
+     * POST requests. In case of PUT requests with status CANCELLED it can only
+     * be REDEMPTION_VOLUNTARY, while with status PENDING_REOPEN it can only be
+     * NONE. When updating the status and/or sub_status no other fields can be
+     * updated in the same request (and vice versa).
+     * @param string|null $reason The reason for voluntarily cancelling
+     * (closing) the MonetaryAccountJoint, can only be OTHER. Should only be
+     * specified if updating the status to CANCELLED.
+     * @param string|null $reasonDescription The optional free-form reason for
+     * voluntarily cancelling (closing) the MonetaryAccountJoint. Can be any
+     * user provided message. Should only be specified if updating the status to
+     * CANCELLED.
+     * @param MonetaryAccountSetting|null $setting The settings of the
+     * MonetaryAccountJoint.
      * @param string[] $customHeaders
      *
      * @return BunqResponseInt
@@ -465,7 +419,6 @@ class MonetaryAccountJoint extends BunqModel
         string $subStatus = null,
         string $reason = null,
         string $reasonDescription = null,
-        array $notificationFilters = null,
         MonetaryAccountSetting $setting = null,
         array $customHeaders = []
     ): BunqResponseInt {
@@ -487,7 +440,6 @@ class MonetaryAccountJoint extends BunqModel
                 self::FIELD_REASON => $reason,
                 self::FIELD_REASON_DESCRIPTION => $reasonDescription,
                 self::FIELD_ALL_CO_OWNER => $allCoOwner,
-                self::FIELD_NOTIFICATION_FILTERS => $notificationFilters,
                 self::FIELD_SETTING => $setting,
             ],
             $customHeaders
@@ -523,40 +475,33 @@ class MonetaryAccountJoint extends BunqModel
 
     /**
      * @param int $monetaryAccountJointId
-     * @param string|null $description                       The description of the
-     *                                                       MonetaryAccountJoint. Defaults to 'bunq account'.
-     * @param Amount|null $dailyLimit                        The daily spending limit Amount of the
-     *                                                       MonetaryAccountJoint. Defaults to 1000 EUR. Currency must
-     *                                                       match the MonetaryAccountJoint's currency. Limited to
-     *                                                       10000 EUR.
-     * @param string|null $avatarUuid                        The UUID of the Avatar of the
-     *                                                       MonetaryAccountJoint.
-     * @param string|null $status                            The status of the MonetaryAccountJoint.
-     *                                                       Ignored in POST requests (always set to ACTIVE) can be
-     *                                                       CANCELLED or PENDING_REOPEN in PUT requests to cancel
-     *                                                       (close) or reopen the MonetaryAccountJoint. When updating
-     *                                                       the status and/or sub_status no other fields can be
-     *                                                       updated in the same request (and vice versa).
-     * @param string|null $subStatus                         The sub-status of the MonetaryAccountJoint
-     *                                                       providing extra information regarding the status. Should
-     *                                                       be ignored for POST requests. In case of PUT requests with
-     *                                                       status CANCELLED it can only be REDEMPTION_VOLUNTARY,
-     *                                                       while with status PENDING_REOPEN it can only be NONE. When
-     *                                                       updating the status and/or sub_status no other fields can
-     *                                                       be updated in the same request (and vice versa).
-     * @param string|null $reason                            The reason for voluntarily cancelling
-     *                                                       (closing) the MonetaryAccountJoint, can only be OTHER.
-     *                                                       Should only be specified if updating the status to
-     *                                                       CANCELLED.
-     * @param string|null $reasonDescription                 The optional free-form reason for
-     *                                                       voluntarily cancelling (closing) the MonetaryAccountJoint.
-     *                                                       Can be any user provided message. Should only be specified
-     *                                                       if updating the status to CANCELLED.
-     * @param NotificationFilter[]|null $notificationFilters The types of
-     *                                                       notifications that will result in a push notification or
-     *                                                       URL callback for this MonetaryAccountJoint.
-     * @param MonetaryAccountSetting|null $setting           The settings of the
-     *                                                       MonetaryAccountJoint.
+     * @param string|null $description The description of the
+     * MonetaryAccountJoint. Defaults to 'bunq account'.
+     * @param Amount|null $dailyLimit The daily spending limit Amount of the
+     * MonetaryAccountJoint. Defaults to 1000 EUR. Currency must match the
+     * MonetaryAccountJoint's currency. Limited to 10000 EUR.
+     * @param string|null $avatarUuid The UUID of the Avatar of the
+     * MonetaryAccountJoint.
+     * @param string|null $status The status of the MonetaryAccountJoint.
+     * Ignored in POST requests (always set to ACTIVE) can be CANCELLED or
+     * PENDING_REOPEN in PUT requests to cancel (close) or reopen the
+     * MonetaryAccountJoint. When updating the status and/or sub_status no other
+     * fields can be updated in the same request (and vice versa).
+     * @param string|null $subStatus The sub-status of the MonetaryAccountJoint
+     * providing extra information regarding the status. Should be ignored for
+     * POST requests. In case of PUT requests with status CANCELLED it can only
+     * be REDEMPTION_VOLUNTARY, while with status PENDING_REOPEN it can only be
+     * NONE. When updating the status and/or sub_status no other fields can be
+     * updated in the same request (and vice versa).
+     * @param string|null $reason The reason for voluntarily cancelling
+     * (closing) the MonetaryAccountJoint, can only be OTHER. Should only be
+     * specified if updating the status to CANCELLED.
+     * @param string|null $reasonDescription The optional free-form reason for
+     * voluntarily cancelling (closing) the MonetaryAccountJoint. Can be any
+     * user provided message. Should only be specified if updating the status to
+     * CANCELLED.
+     * @param MonetaryAccountSetting|null $setting The settings of the
+     * MonetaryAccountJoint.
      * @param string[] $customHeaders
      *
      * @return BunqResponseInt
@@ -570,7 +515,6 @@ class MonetaryAccountJoint extends BunqModel
         string $subStatus = null,
         string $reason = null,
         string $reasonDescription = null,
-        array $notificationFilters = null,
         MonetaryAccountSetting $setting = null,
         array $customHeaders = []
     ): BunqResponseInt {
@@ -588,7 +532,6 @@ class MonetaryAccountJoint extends BunqModel
                 self::FIELD_SUB_STATUS => $subStatus,
                 self::FIELD_REASON => $reason,
                 self::FIELD_REASON_DESCRIPTION => $reasonDescription,
-                self::FIELD_NOTIFICATION_FILTERS => $notificationFilters,
                 self::FIELD_SETTING => $setting,
             ],
             $customHeaders
@@ -639,7 +582,7 @@ class MonetaryAccountJoint extends BunqModel
      * @param int $id
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setId($id)
@@ -661,7 +604,7 @@ class MonetaryAccountJoint extends BunqModel
      * @param string $created
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setCreated($created)
@@ -683,7 +626,7 @@ class MonetaryAccountJoint extends BunqModel
      * @param string $updated
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setUpdated($updated)
@@ -705,7 +648,7 @@ class MonetaryAccountJoint extends BunqModel
      * @param Avatar $avatar
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setAvatar($avatar)
@@ -728,7 +671,7 @@ class MonetaryAccountJoint extends BunqModel
      * @param string $currency
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setCurrency($currency)
@@ -750,7 +693,7 @@ class MonetaryAccountJoint extends BunqModel
      * @param string $description
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setDescription($description)
@@ -774,34 +717,12 @@ class MonetaryAccountJoint extends BunqModel
      * @param Amount $dailyLimit
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setDailyLimit($dailyLimit)
     {
         $this->dailyLimit = $dailyLimit;
-    }
-
-    /**
-     * Total Amount of money spent today. Timezone aware.
-     *
-     * @return Amount
-     */
-    public function getDailySpent()
-    {
-        return $this->dailySpent;
-    }
-
-    /**
-     * @param Amount $dailySpent
-     *
-     * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
-     */
-    public function setDailySpent($dailySpent)
-    {
-        $this->dailySpent = $dailySpent;
     }
 
     /**
@@ -818,7 +739,7 @@ class MonetaryAccountJoint extends BunqModel
      * @param Amount $overdraftLimit
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setOverdraftLimit($overdraftLimit)
@@ -840,7 +761,7 @@ class MonetaryAccountJoint extends BunqModel
      * @param Amount $balance
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setBalance($balance)
@@ -862,7 +783,7 @@ class MonetaryAccountJoint extends BunqModel
      * @param Pointer[] $alias
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setAlias($alias)
@@ -884,7 +805,7 @@ class MonetaryAccountJoint extends BunqModel
      * @param string $publicUuid
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setPublicUuid($publicUuid)
@@ -907,7 +828,7 @@ class MonetaryAccountJoint extends BunqModel
      * @param string $status
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setStatus($status)
@@ -932,7 +853,7 @@ class MonetaryAccountJoint extends BunqModel
      * @param string $subStatus
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setSubStatus($subStatus)
@@ -955,7 +876,7 @@ class MonetaryAccountJoint extends BunqModel
      * @param string $reason
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setReason($reason)
@@ -978,7 +899,7 @@ class MonetaryAccountJoint extends BunqModel
      * @param string $reasonDescription
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setReasonDescription($reasonDescription)
@@ -1000,7 +921,7 @@ class MonetaryAccountJoint extends BunqModel
      * @param CoOwner[] $allCoOwner
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setAllCoOwner($allCoOwner)
@@ -1022,7 +943,7 @@ class MonetaryAccountJoint extends BunqModel
      * @param int $userId
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setUserId($userId)
@@ -1044,35 +965,12 @@ class MonetaryAccountJoint extends BunqModel
      * @param MonetaryAccountProfile $monetaryAccountProfile
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setMonetaryAccountProfile($monetaryAccountProfile)
     {
         $this->monetaryAccountProfile = $monetaryAccountProfile;
-    }
-
-    /**
-     * The types of notifications that will result in a push notification or URL
-     * callback for this MonetaryAccountJoint.
-     *
-     * @return NotificationFilter[]
-     */
-    public function getNotificationFilters()
-    {
-        return $this->notificationFilters;
-    }
-
-    /**
-     * @param NotificationFilter[] $notificationFilters
-     *
-     * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
-     */
-    public function setNotificationFilters($notificationFilters)
-    {
-        $this->notificationFilters = $notificationFilters;
     }
 
     /**
@@ -1089,7 +987,7 @@ class MonetaryAccountJoint extends BunqModel
      * @param MonetaryAccountSetting $setting
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setSetting($setting)
@@ -1111,7 +1009,7 @@ class MonetaryAccountJoint extends BunqModel
      * @param int $autoSaveId
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setAutoSaveId($autoSaveId)
@@ -1133,7 +1031,7 @@ class MonetaryAccountJoint extends BunqModel
      * @param BunqId[] $allAutoSaveId
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setAllAutoSaveId($allAutoSaveId)
@@ -1171,10 +1069,6 @@ class MonetaryAccountJoint extends BunqModel
         }
 
         if (!is_null($this->dailyLimit)) {
-            return false;
-        }
-
-        if (!is_null($this->dailySpent)) {
             return false;
         }
 
@@ -1219,10 +1113,6 @@ class MonetaryAccountJoint extends BunqModel
         }
 
         if (!is_null($this->monetaryAccountProfile)) {
-            return false;
-        }
-
-        if (!is_null($this->notificationFilters)) {
             return false;
         }
 

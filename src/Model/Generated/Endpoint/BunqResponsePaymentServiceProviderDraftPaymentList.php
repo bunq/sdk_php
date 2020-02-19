@@ -1,15 +1,14 @@
 <?php
-
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Http\BunqResponse;
 
 /**
  */
-class BunqResponseShareInviteBankInquiryList extends BunqResponse
+class BunqResponsePaymentServiceProviderDraftPaymentList extends BunqResponse
 {
     /**
-     * @return ShareInviteBankInquiry[]
+     * @return PaymentServiceProviderDraftPayment[]
      */
     public function getValue(): array
     {

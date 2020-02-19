@@ -1,5 +1,4 @@
 <?php
-
 namespace bunq\Model\Generated\Object;
 
 use bunq\Model\Core\BunqModel;
@@ -66,10 +65,10 @@ class LabelUser extends BunqModel
     protected $countryFieldForRequest;
 
     /**
-     * @param string $uuid        The public UUID of the label-user.
+     * @param string $uuid The public UUID of the label-user.
      * @param string $displayName The name to be displayed for this user, as it
-     *                            was given on the request.
-     * @param string $country     The country of the user
+     * was given on the request.
+     * @param string $country The country of the user
      */
     public function __construct(string $uuid, string $displayName, string $country)
     {
@@ -92,7 +91,7 @@ class LabelUser extends BunqModel
      * @param string $uuid
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setUuid($uuid)
@@ -114,7 +113,7 @@ class LabelUser extends BunqModel
      * @param Avatar $avatar
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setAvatar($avatar)
@@ -136,7 +135,7 @@ class LabelUser extends BunqModel
      * @param string $publicNickName
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setPublicNickName($publicNickName)
@@ -158,7 +157,7 @@ class LabelUser extends BunqModel
      * @param string $displayName
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setDisplayName($displayName)
@@ -180,7 +179,7 @@ class LabelUser extends BunqModel
      * @param string $country
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setCountry($country)

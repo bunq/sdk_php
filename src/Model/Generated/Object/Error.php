@@ -1,5 +1,4 @@
 <?php
-
 namespace bunq\Model\Generated\Object;
 
 use bunq\Model\Core\BunqModel;
@@ -37,7 +36,7 @@ class Error extends BunqModel
      * @param string $errorDescription
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setErrorDescription($errorDescription)
@@ -59,7 +58,7 @@ class Error extends BunqModel
      * @param string $errorDescriptionTranslated
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setErrorDescriptionTranslated($errorDescriptionTranslated)

@@ -1,8 +1,6 @@
 <?php
-
 namespace bunq\Model\Generated\Endpoint;
 
-use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
 use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
@@ -146,15 +144,15 @@ class ExportStatement extends BunqModel
     protected $includeAttachmentFieldForRequest;
 
     /**
-     * @param string $statementFormat      The format type of statement. Allowed
-     *                                     values: MT940, CSV, PDF.
-     * @param string $dateStart            The start date for making statements.
-     * @param string $dateEnd              The end date for making statements.
-     * @param string|null $regionalFormat  Required for CSV exports. The regional
-     *                                     format of the statement, can be UK_US (comma-separated) or EUROPEAN
-     *                                     (semicolon-separated).
+     * @param string $statementFormat The format type of statement. Allowed
+     * values: MT940, CSV, PDF.
+     * @param string $dateStart The start date for making statements.
+     * @param string $dateEnd The end date for making statements.
+     * @param string|null $regionalFormat Required for CSV exports. The regional
+     * format of the statement, can be UK_US (comma-separated) or EUROPEAN
+     * (semicolon-separated).
      * @param bool|null $includeAttachment Only for PDF exports. Includes
-     *                                     attachments to mutations in the export, such as scanned receipts.
+     * attachments to mutations in the export, such as scanned receipts.
      */
     public function __construct(
         string $statementFormat,
@@ -171,16 +169,16 @@ class ExportStatement extends BunqModel
     }
 
     /**
-     * @param string $statementFormat      The format type of statement. Allowed
-     *                                     values: MT940, CSV, PDF.
-     * @param string $dateStart            The start date for making statements.
-     * @param string $dateEnd              The end date for making statements.
+     * @param string $statementFormat The format type of statement. Allowed
+     * values: MT940, CSV, PDF.
+     * @param string $dateStart The start date for making statements.
+     * @param string $dateEnd The end date for making statements.
      * @param int|null $monetaryAccountId
-     * @param string|null $regionalFormat  Required for CSV exports. The regional
-     *                                     format of the statement, can be UK_US (comma-separated) or EUROPEAN
-     *                                     (semicolon-separated).
+     * @param string|null $regionalFormat Required for CSV exports. The regional
+     * format of the statement, can be UK_US (comma-separated) or EUROPEAN
+     * (semicolon-separated).
      * @param bool|null $includeAttachment Only for PDF exports. Includes
-     *                                     attachments to mutations in the export, such as scanned receipts.
+     * attachments to mutations in the export, such as scanned receipts.
      * @param string[] $customHeaders
      *
      * @return BunqResponseInt
@@ -311,7 +309,7 @@ class ExportStatement extends BunqModel
      * @param int $id
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setId($id)
@@ -333,7 +331,7 @@ class ExportStatement extends BunqModel
      * @param string $created
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setCreated($created)
@@ -355,7 +353,7 @@ class ExportStatement extends BunqModel
      * @param string $updated
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setUpdated($updated)
@@ -377,7 +375,7 @@ class ExportStatement extends BunqModel
      * @param string $dateStart
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setDateStart($dateStart)
@@ -399,7 +397,7 @@ class ExportStatement extends BunqModel
      * @param string $dateEnd
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setDateEnd($dateEnd)
@@ -421,7 +419,7 @@ class ExportStatement extends BunqModel
      * @param string $status
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setStatus($status)
@@ -443,7 +441,7 @@ class ExportStatement extends BunqModel
      * @param int $statementNumber
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setStatementNumber($statementNumber)
@@ -465,7 +463,7 @@ class ExportStatement extends BunqModel
      * @param string $statementFormat
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setStatementFormat($statementFormat)
@@ -487,7 +485,7 @@ class ExportStatement extends BunqModel
      * @param string $regionalFormat
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setRegionalFormat($regionalFormat)
@@ -509,7 +507,7 @@ class ExportStatement extends BunqModel
      * @param LabelMonetaryAccount $aliasMonetaryAccount
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setAliasMonetaryAccount($aliasMonetaryAccount)

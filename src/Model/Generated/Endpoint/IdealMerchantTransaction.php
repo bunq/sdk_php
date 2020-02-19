@@ -1,10 +1,7 @@
 <?php
-
 namespace bunq\Model\Generated\Endpoint;
 
-use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
-use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Object\Amount;
 use bunq\Model\Generated\Object\LabelMonetaryAccount;
@@ -149,7 +146,7 @@ class IdealMerchantTransaction extends BunqModel
 
     /**
      * @param Amount $amountRequested The requested amount of money to add.
-     * @param string $issuer          The BIC of the issuing bank to ask for money.
+     * @param string $issuer The BIC of the issuing bank to ask for money.
      */
     public function __construct(Amount $amountRequested, string $issuer)
     {
@@ -159,7 +156,7 @@ class IdealMerchantTransaction extends BunqModel
 
     /**
      * @param Amount $amountRequested The requested amount of money to add.
-     * @param string $issuer          The BIC of the issuing bank to ask for money.
+     * @param string $issuer The BIC of the issuing bank to ask for money.
      * @param int|null $monetaryAccountId
      * @param string[] $customHeaders
      *
@@ -264,7 +261,7 @@ class IdealMerchantTransaction extends BunqModel
      * @param int $monetaryAccountId
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setMonetaryAccountId($monetaryAccountId)
@@ -286,7 +283,7 @@ class IdealMerchantTransaction extends BunqModel
      * @param LabelMonetaryAccount $alias
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setAlias($alias)
@@ -308,7 +305,7 @@ class IdealMerchantTransaction extends BunqModel
      * @param LabelMonetaryAccount $counterpartyAlias
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setCounterpartyAlias($counterpartyAlias)
@@ -331,7 +328,7 @@ class IdealMerchantTransaction extends BunqModel
      * @param Amount $amountGuaranteed
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setAmountGuaranteed($amountGuaranteed)
@@ -353,7 +350,7 @@ class IdealMerchantTransaction extends BunqModel
      * @param Amount $amountRequested
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setAmountRequested($amountRequested)
@@ -375,7 +372,7 @@ class IdealMerchantTransaction extends BunqModel
      * @param string $expiration
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setExpiration($expiration)
@@ -397,7 +394,7 @@ class IdealMerchantTransaction extends BunqModel
      * @param string $issuer
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setIssuer($issuer)
@@ -419,7 +416,7 @@ class IdealMerchantTransaction extends BunqModel
      * @param string $issuerName
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setIssuerName($issuerName)
@@ -441,7 +438,7 @@ class IdealMerchantTransaction extends BunqModel
      * @param string $issuerAuthenticationUrl
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setIssuerAuthenticationUrl($issuerAuthenticationUrl)
@@ -463,7 +460,7 @@ class IdealMerchantTransaction extends BunqModel
      * @param string $purchaseIdentifier
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setPurchaseIdentifier($purchaseIdentifier)
@@ -485,7 +482,7 @@ class IdealMerchantTransaction extends BunqModel
      * @param string $status
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setStatus($status)
@@ -507,7 +504,7 @@ class IdealMerchantTransaction extends BunqModel
      * @param string $statusTimestamp
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setStatusTimestamp($statusTimestamp)
@@ -529,7 +526,7 @@ class IdealMerchantTransaction extends BunqModel
      * @param string $transactionIdentifier
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setTransactionIdentifier($transactionIdentifier)
@@ -551,7 +548,7 @@ class IdealMerchantTransaction extends BunqModel
      * @param bool $allowChat
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setAllowChat($allowChat)

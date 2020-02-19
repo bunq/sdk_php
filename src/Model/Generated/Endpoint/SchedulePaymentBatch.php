@@ -1,8 +1,6 @@
 <?php
-
 namespace bunq\Model\Generated\Endpoint;
 
-use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
 use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
@@ -58,8 +56,8 @@ class SchedulePaymentBatch extends BunqModel
 
     /**
      * @param SchedulePaymentEntry[] $payments The payment details.
-     * @param Schedule $schedule               The schedule details when creating a scheduled
-     *                                         payment.
+     * @param Schedule $schedule The schedule details when creating a scheduled
+     * payment.
      */
     public function __construct(array $payments, Schedule $schedule)
     {
@@ -69,8 +67,8 @@ class SchedulePaymentBatch extends BunqModel
 
     /**
      * @param SchedulePaymentEntry[] $payments The payment details.
-     * @param Schedule $schedule               The schedule details when creating a scheduled
-     *                                         payment.
+     * @param Schedule $schedule The schedule details when creating a scheduled
+     * payment.
      * @param int|null $monetaryAccountId
      * @param string[] $customHeaders
      *
@@ -104,8 +102,8 @@ class SchedulePaymentBatch extends BunqModel
      * @param int $schedulePaymentBatchId
      * @param int|null $monetaryAccountId
      * @param SchedulePaymentEntry[]|null $payments The payment details.
-     * @param Schedule|null $schedule               The schedule details when creating a
-     *                                              scheduled payment.
+     * @param Schedule|null $schedule The schedule details when creating a
+     * scheduled payment.
      * @param string[] $customHeaders
      *
      * @return BunqResponseInt
@@ -182,7 +180,7 @@ class SchedulePaymentBatch extends BunqModel
      * @param SchedulePaymentEntry[] $payments
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setPayments($payments)
@@ -204,7 +202,7 @@ class SchedulePaymentBatch extends BunqModel
      * @param Schedule $schedule
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setSchedule($schedule)

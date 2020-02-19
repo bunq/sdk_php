@@ -1,5 +1,4 @@
 <?php
-
 namespace bunq\Model\Generated\Object;
 
 use bunq\Model\Core\BunqModel;
@@ -66,8 +65,8 @@ class MonetaryAccountProfileDrain extends BunqModel
     protected $savingsAccountAliasFieldForRequest;
 
     /**
-     * @param string $status               The status of the profile.
-     * @param Amount $balancePreferred     The goal balance.
+     * @param string $status The status of the profile.
+     * @param Amount $balancePreferred The goal balance.
      * @param Amount $balanceThresholdHigh The high threshold balance.
      * @param Pointer $savingsAccountAlias The savings monetary account.
      */
@@ -97,7 +96,7 @@ class MonetaryAccountProfileDrain extends BunqModel
      * @param string $status
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setStatus($status)
@@ -119,7 +118,7 @@ class MonetaryAccountProfileDrain extends BunqModel
      * @param Amount $balancePreferred
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setBalancePreferred($balancePreferred)
@@ -141,7 +140,7 @@ class MonetaryAccountProfileDrain extends BunqModel
      * @param Amount $balanceThresholdHigh
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setBalanceThresholdHigh($balanceThresholdHigh)
@@ -163,7 +162,7 @@ class MonetaryAccountProfileDrain extends BunqModel
      * @param LabelMonetaryAccount $savingsAccountAlias
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setSavingsAccountAlias($savingsAccountAlias)

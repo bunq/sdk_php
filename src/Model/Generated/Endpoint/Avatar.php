@@ -1,5 +1,4 @@
 <?php
-
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Http\ApiClient;
@@ -60,7 +59,7 @@ class Avatar extends BunqModel
 
     /**
      * @param string $attachmentPublicUuid The public UUID of the public
-     *                                     attachment from which an avatar image must be created.
+     * attachment from which an avatar image must be created.
      */
     public function __construct(string $attachmentPublicUuid)
     {
@@ -69,7 +68,7 @@ class Avatar extends BunqModel
 
     /**
      * @param string $attachmentPublicUuid The public UUID of the public
-     *                                     attachment from which an avatar image must be created.
+     * attachment from which an avatar image must be created.
      * @param string[] $customHeaders
      *
      * @return BunqResponseString
@@ -128,7 +127,7 @@ class Avatar extends BunqModel
      * @param string $uuid
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setUuid($uuid)
@@ -150,7 +149,7 @@ class Avatar extends BunqModel
      * @param Image[] $image
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setImage($image)

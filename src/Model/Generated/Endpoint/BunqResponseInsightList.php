@@ -1,17 +1,16 @@
 <?php
-
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Http\BunqResponse;
 
 /**
  */
-class BunqResponseTransferwiseTransfer extends BunqResponse
+class BunqResponseInsightList extends BunqResponse
 {
     /**
-     * @return TransferwiseTransfer
+     * @return Insight[]
      */
-    public function getValue(): TransferwiseTransfer
+    public function getValue(): array
     {
         return parent::getValue();
     }

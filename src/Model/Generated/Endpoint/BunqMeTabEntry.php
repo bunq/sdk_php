@@ -1,5 +1,4 @@
 <?php
-
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Model\Core\BunqModel;
@@ -97,12 +96,12 @@ class BunqMeTabEntry extends BunqModel
     protected $redirectUrlFieldForRequest;
 
     /**
-     * @param Amount $amountInquired   The Amount requested to be paid. Can be
-     *                                 optional.
-     * @param string $description      The description for the bunq.me. Maximum 9000
-     *                                 characters. Field is required but can be an empty string.
+     * @param Amount $amountInquired The Amount requested to be paid. Can be
+     * optional.
+     * @param string $description The description for the bunq.me. Maximum 9000
+     * characters. Field is required but can be an empty string.
      * @param string|null $redirectUrl The URL which the user is sent to after
-     *                                 making a payment.
+     * making a payment.
      */
     public function __construct(Amount $amountInquired, string $description, string $redirectUrl = null)
     {
@@ -125,7 +124,7 @@ class BunqMeTabEntry extends BunqModel
      * @param string $uuid
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setUuid($uuid)
@@ -147,7 +146,7 @@ class BunqMeTabEntry extends BunqModel
      * @param Amount $amountInquired
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setAmountInquired($amountInquired)
@@ -170,7 +169,7 @@ class BunqMeTabEntry extends BunqModel
      * @param LabelMonetaryAccount $alias
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setAlias($alias)
@@ -192,7 +191,7 @@ class BunqMeTabEntry extends BunqModel
      * @param string $description
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setDescription($description)
@@ -215,7 +214,7 @@ class BunqMeTabEntry extends BunqModel
      * @param string $status
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setStatus($status)
@@ -237,7 +236,7 @@ class BunqMeTabEntry extends BunqModel
      * @param string $redirectUrl
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setRedirectUrl($redirectUrl)
@@ -259,7 +258,7 @@ class BunqMeTabEntry extends BunqModel
      * @param BunqMeMerchantAvailable[] $merchantAvailable
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setMerchantAvailable($merchantAvailable)

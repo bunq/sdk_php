@@ -1,10 +1,7 @@
 <?php
-
 namespace bunq\Model\Generated\Endpoint;
 
-use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
-use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Object\LabelMonetaryAccount;
 use bunq\Model\Generated\Object\LabelUser;
@@ -153,12 +150,12 @@ class ShareInviteMonetaryAccountResponse extends BunqModel
 
     /**
      * @param string|null $status The status of the share. Can be PENDING,
-     *                            REVOKED (the user deletes the share inquiry before it's accepted),
-     *                            ACCEPTED, CANCELLED (the user deletes an active share) or
-     *                            CANCELLATION_PENDING, CANCELLATION_ACCEPTED, CANCELLATION_REJECTED (for
-     *                            canceling mutual connects)
-     * @param int|null $cardId    The card to link to the shared monetary account.
-     *                            Used only if share_detail is ShareDetailCardPayment.
+     * REVOKED (the user deletes the share inquiry before it's accepted),
+     * ACCEPTED, CANCELLED (the user deletes an active share) or
+     * CANCELLATION_PENDING, CANCELLATION_ACCEPTED, CANCELLATION_REJECTED (for
+     * canceling mutual connects)
+     * @param int|null $cardId The card to link to the shared monetary account.
+     * Used only if share_detail is ShareDetailCardPayment.
      */
     public function __construct(string $status = null, int $cardId = null)
     {
@@ -198,12 +195,12 @@ class ShareInviteMonetaryAccountResponse extends BunqModel
      *
      * @param int $shareInviteMonetaryAccountResponseId
      * @param string|null $status The status of the share. Can be PENDING,
-     *                            REVOKED (the user deletes the share inquiry before it's accepted),
-     *                            ACCEPTED, CANCELLED (the user deletes an active share) or
-     *                            CANCELLATION_PENDING, CANCELLATION_ACCEPTED, CANCELLATION_REJECTED (for
-     *                            canceling mutual connects)
-     * @param int|null $cardId    The card to link to the shared monetary account.
-     *                            Used only if share_detail is ShareDetailCardPayment.
+     * REVOKED (the user deletes the share inquiry before it's accepted),
+     * ACCEPTED, CANCELLED (the user deletes an active share) or
+     * CANCELLATION_PENDING, CANCELLATION_ACCEPTED, CANCELLATION_REJECTED (for
+     * canceling mutual connects)
+     * @param int|null $cardId The card to link to the shared monetary account.
+     * Used only if share_detail is ShareDetailCardPayment.
      * @param string[] $customHeaders
      *
      * @return BunqResponseInt
@@ -276,7 +273,7 @@ class ShareInviteMonetaryAccountResponse extends BunqModel
      * @param int $id
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setId($id)
@@ -298,7 +295,7 @@ class ShareInviteMonetaryAccountResponse extends BunqModel
      * @param string $created
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setCreated($created)
@@ -320,7 +317,7 @@ class ShareInviteMonetaryAccountResponse extends BunqModel
      * @param string $updated
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setUpdated($updated)
@@ -342,7 +339,7 @@ class ShareInviteMonetaryAccountResponse extends BunqModel
      * @param LabelMonetaryAccount $counterAlias
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setCounterAlias($counterAlias)
@@ -364,7 +361,7 @@ class ShareInviteMonetaryAccountResponse extends BunqModel
      * @param LabelUser $userAliasCancelled
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setUserAliasCancelled($userAliasCancelled)
@@ -387,7 +384,7 @@ class ShareInviteMonetaryAccountResponse extends BunqModel
      * @param int $monetaryAccountId
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setMonetaryAccountId($monetaryAccountId)
@@ -409,7 +406,7 @@ class ShareInviteMonetaryAccountResponse extends BunqModel
      * @param int $draftShareInviteBankId
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setDraftShareInviteBankId($draftShareInviteBankId)
@@ -431,7 +428,7 @@ class ShareInviteMonetaryAccountResponse extends BunqModel
      * @param ShareDetail $shareDetail
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setShareDetail($shareDetail)
@@ -456,7 +453,7 @@ class ShareInviteMonetaryAccountResponse extends BunqModel
      * @param string $status
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setStatus($status)
@@ -478,7 +475,7 @@ class ShareInviteMonetaryAccountResponse extends BunqModel
      * @param string $shareType
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setShareType($shareType)
@@ -500,7 +497,7 @@ class ShareInviteMonetaryAccountResponse extends BunqModel
      * @param string $startDate
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setStartDate($startDate)
@@ -522,7 +519,7 @@ class ShareInviteMonetaryAccountResponse extends BunqModel
      * @param string $endDate
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setEndDate($endDate)
@@ -545,7 +542,7 @@ class ShareInviteMonetaryAccountResponse extends BunqModel
      * @param string $description
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setDescription($description)

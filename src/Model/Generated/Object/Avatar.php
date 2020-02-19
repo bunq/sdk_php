@@ -1,5 +1,4 @@
 <?php
-
 namespace bunq\Model\Generated\Object;
 
 use bunq\Model\Core\BunqModel;
@@ -59,7 +58,7 @@ class Avatar extends BunqModel
      * @param string $uuid
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setUuid($uuid)
@@ -81,7 +80,7 @@ class Avatar extends BunqModel
      * @param string $anchorUuid
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setAnchorUuid($anchorUuid)
@@ -103,7 +102,7 @@ class Avatar extends BunqModel
      * @param Image[] $image
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setImage($image)

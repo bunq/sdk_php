@@ -1,5 +1,4 @@
 <?php
-
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Model\Core\BunqModel;
@@ -89,7 +88,7 @@ class BunqMeFundraiserProfile extends BunqModel
 
     /**
      * @param Pointer $pointer The pointer (url) which will be used to access
-     *                         the bunq.me fundraiser profile.
+     * the bunq.me fundraiser profile.
      */
     public function __construct(Pointer $pointer)
     {
@@ -111,7 +110,7 @@ class BunqMeFundraiserProfile extends BunqModel
      * @param string $color
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setColor($color)
@@ -134,7 +133,7 @@ class BunqMeFundraiserProfile extends BunqModel
      * @param LabelMonetaryAccount $alias
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setAlias($alias)
@@ -156,7 +155,7 @@ class BunqMeFundraiserProfile extends BunqModel
      * @param string $description
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setDescription($description)
@@ -178,7 +177,7 @@ class BunqMeFundraiserProfile extends BunqModel
      * @param AttachmentPublic $attachment
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setAttachment($attachment)
@@ -201,7 +200,7 @@ class BunqMeFundraiserProfile extends BunqModel
      * @param Pointer $pointer
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setPointer($pointer)
@@ -224,7 +223,7 @@ class BunqMeFundraiserProfile extends BunqModel
      * @param string $status
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setStatus($status)
@@ -246,7 +245,7 @@ class BunqMeFundraiserProfile extends BunqModel
      * @param string $redirectUrl
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setRedirectUrl($redirectUrl)
@@ -268,7 +267,7 @@ class BunqMeFundraiserProfile extends BunqModel
      * @param string $inviteProfileName
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setInviteProfileName($inviteProfileName)

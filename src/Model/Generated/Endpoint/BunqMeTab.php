@@ -1,9 +1,7 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
-use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
-use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 
 /**
@@ -120,11 +118,13 @@ class BunqMeTab extends BunqModel
      * requests but can be used for cancelling the bunq.me by setting status as
      * CANCELLED with a PUT request.
      */
-    public function __construct(BunqMeTabEntry  $bunqmeTabEntry, string  $status = null)
+    public function __construct(BunqMeTabEntry $bunqmeTabEntry, string $status = null)
     {
         $this->bunqmeTabEntryFieldForRequest = $bunqmeTabEntry;
         $this->statusFieldForRequest = $status;
-    }    /**
+    }
+
+    /**
      * @param BunqMeTabEntry $bunqmeTabEntry The bunq.me entry containing the
      * payment information.
      * @param int|null $monetaryAccountId
@@ -135,16 +135,22 @@ class BunqMeTab extends BunqModel
      *
      * @return BunqResponseInt
      */
-    public static function create(BunqMeTabEntry  $bunqmeTabEntry, int $monetaryAccountId = null, string  $status = null, array $customHeaders = []): BunqResponseInt
-    {
+    public static function create(
+        BunqMeTabEntry $bunqmeTabEntry,
+        int $monetaryAccountId = null,
+        string $status = null,
+        array $customHeaders = []
+    ): BunqResponseInt {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->post(
             vsprintf(
                 self::ENDPOINT_URL_CREATE,
                 [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId)]
             ),
-             [self::FIELD_BUNQME_TAB_ENTRY => $bunqmeTabEntry,
-self::FIELD_STATUS => $status],
+            [
+                self::FIELD_BUNQME_TAB_ENTRY => $bunqmeTabEntry,
+                self::FIELD_STATUS => $status,
+            ],
             $customHeaders
         );
 
@@ -163,8 +169,12 @@ self::FIELD_STATUS => $status],
      *
      * @return BunqResponseInt
      */
-    public static function update(int $bunqMeTabId, int $monetaryAccountId = null, string  $status = null, array $customHeaders = []): BunqResponseInt
-    {
+    public static function update(
+        int $bunqMeTabId,
+        int $monetaryAccountId = null,
+        string $status = null,
+        array $customHeaders = []
+    ): BunqResponseInt {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->put(
             vsprintf(
@@ -190,8 +200,11 @@ self::FIELD_STATUS => $status],
      *
      * @return BunqResponseBunqMeTabList
      */
-    public static function listing(int $monetaryAccountId = null, array $params = [], array $customHeaders = []): BunqResponseBunqMeTabList
-    {
+    public static function listing(
+        int $monetaryAccountId = null,
+        array $params = [],
+        array $customHeaders = []
+    ): BunqResponseBunqMeTabList {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
@@ -214,8 +227,11 @@ self::FIELD_STATUS => $status],
      *
      * @return BunqResponseBunqMeTab
      */
-    public static function get(int $bunqMeTabId, int $monetaryAccountId = null, array $customHeaders = []): BunqResponseBunqMeTab
-    {
+    public static function get(
+        int $bunqMeTabId,
+        int $monetaryAccountId = null,
+        array $customHeaders = []
+    ): BunqResponseBunqMeTab {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
@@ -242,10 +258,11 @@ self::FIELD_STATUS => $status],
     }
 
     /**
+     * @param int $id
+     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
      *
-     * @param int $id
      */
     public function setId($id)
     {
@@ -263,10 +280,11 @@ self::FIELD_STATUS => $status],
     }
 
     /**
+     * @param string $created
+     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
      *
-     * @param string $created
      */
     public function setCreated($created)
     {
@@ -284,10 +302,11 @@ self::FIELD_STATUS => $status],
     }
 
     /**
+     * @param string $updated
+     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
      *
-     * @param string $updated
      */
     public function setUpdated($updated)
     {
@@ -305,10 +324,11 @@ self::FIELD_STATUS => $status],
     }
 
     /**
+     * @param string $timeExpiry
+     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
      *
-     * @param string $timeExpiry
      */
     public function setTimeExpiry($timeExpiry)
     {
@@ -326,10 +346,11 @@ self::FIELD_STATUS => $status],
     }
 
     /**
+     * @param int $monetaryAccountId
+     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
      *
-     * @param int $monetaryAccountId
      */
     public function setMonetaryAccountId($monetaryAccountId)
     {
@@ -348,10 +369,11 @@ self::FIELD_STATUS => $status],
     }
 
     /**
+     * @param string $status
+     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
      *
-     * @param string $status
      */
     public function setStatus($status)
     {
@@ -369,10 +391,11 @@ self::FIELD_STATUS => $status],
     }
 
     /**
+     * @param string $bunqmeTabShareUrl
+     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
      *
-     * @param string $bunqmeTabShareUrl
      */
     public function setBunqmeTabShareUrl($bunqmeTabShareUrl)
     {
@@ -390,10 +413,11 @@ self::FIELD_STATUS => $status],
     }
 
     /**
+     * @param BunqMeTabEntry $bunqmeTabEntry
+     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
      *
-     * @param BunqMeTabEntry $bunqmeTabEntry
      */
     public function setBunqmeTabEntry($bunqmeTabEntry)
     {
@@ -411,10 +435,11 @@ self::FIELD_STATUS => $status],
     }
 
     /**
+     * @param BunqMeTabResultInquiry[] $resultInquiries
+     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
      *
-     * @param BunqMeTabResultInquiry[] $resultInquiries
      */
     public function setResultInquiries($resultInquiries)
     {

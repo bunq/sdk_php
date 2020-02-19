@@ -1,5 +1,4 @@
 <?php
-
 namespace bunq\Model\Generated\Object;
 
 use bunq\Model\Core\BunqModel;
@@ -38,9 +37,9 @@ class Amount extends BunqModel
     protected $currencyFieldForRequest;
 
     /**
-     * @param string $value    The amount formatted to two decimal places.
+     * @param string $value The amount formatted to two decimal places.
      * @param string $currency The currency of the amount. It is an ISO 4217
-     *                         formatted currency code.
+     * formatted currency code.
      */
     public function __construct(string $value, string $currency)
     {
@@ -62,7 +61,7 @@ class Amount extends BunqModel
      * @param string $value
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setValue($value)
@@ -84,7 +83,7 @@ class Amount extends BunqModel
      * @param string $currency
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
+     * constructor.
      *
      */
     public function setCurrency($currency)
