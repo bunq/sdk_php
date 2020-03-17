@@ -416,6 +416,10 @@ class ApiContext
         if (is_null($fileName)) {
             $fileName = self::FILENAME_CONFIG_DEFAULT;
         }
+        
+        if(file_exists(dirname($fileName)) === false) {
+            mkdir(dirname($fileName), 0777, true);
+        }
 
         $saved = file_put_contents($fileName, $this->toJson());
 
