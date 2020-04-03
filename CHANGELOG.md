@@ -1,5 +1,20 @@
 # Change Log
 
+## [Unreleased](https://github.com/bunq/sdk_php/tree/HEAD)
+
+[Full Changelog](https://github.com/bunq/sdk_php/compare/1.13.0...HEAD)
+
+**Closed issues:**
+
+- Decoding error when trying to create a CVC2 code [\#167](https://github.com/bunq/sdk_php/issues/167)
+
+**Merged pull requests:**
+
+- Use correct oauth token url for sandbox [\#193](https://github.com/bunq/sdk_php/pull/193) ([thijsdejong](https://github.com/thijsdejong))
+
+## [1.13.0](https://github.com/bunq/sdk_php/tree/1.13.0) (2020-02-19)
+[Full Changelog](https://github.com/bunq/sdk_php/compare/1.12.1...1.13.0)
+
 ## [1.12.1](https://github.com/bunq/sdk_php/tree/1.12.1) (2019-09-16)
 [Full Changelog](https://github.com/bunq/sdk_php/compare/1.12.0...1.12.1)
 
@@ -263,6 +278,7 @@
 
 **Merged pull requests:**
 
+- toJson\(\) fails on ApiContext of an user person due to session context [\#57](https://github.com/bunq/sdk_php/pull/57) ([DennisSnijder](https://github.com/DennisSnijder))
 - Feature/fix draft payment object \#63 [\#66](https://github.com/bunq/sdk_php/pull/66) ([OGKevin](https://github.com/OGKevin))
 - Feature/add missing cvc fields \#64 [\#65](https://github.com/bunq/sdk_php/pull/65) ([OGKevin](https://github.com/OGKevin))
 
@@ -272,10 +288,6 @@
 **Fixed bugs:**
 
 - toJson\(\) fails on ApiContext of an user person due to session context [\#56](https://github.com/bunq/sdk_php/issues/56)
-
-**Merged pull requests:**
-
-- toJson\(\) fails on ApiContext of an user person due to session context [\#57](https://github.com/bunq/sdk_php/pull/57) ([DennisSnijder](https://github.com/DennisSnijder))
 
 ## [0.12.0](https://github.com/bunq/sdk_php/tree/0.12.0) (2017-10-11)
 [Full Changelog](https://github.com/bunq/sdk_php/compare/0.11.0...0.12.0)
@@ -320,7 +332,6 @@
 - Allow to configure Guzzle options / use a proxy to ensure static IP address [\#5](https://github.com/bunq/sdk_php/issues/5)
 - Cleanup; add toJson and fromJson to ApiContext \[\#39\] [\#40](https://github.com/bunq/sdk_php/pull/40) ([dnl-blkv](https://github.com/dnl-blkv))
 - \#33 bunq response [\#34](https://github.com/bunq/sdk_php/pull/34) ([dnl-blkv](https://github.com/dnl-blkv))
-- \#5 Allow setting a proxy [\#27](https://github.com/bunq/sdk_php/pull/27) ([qurben](https://github.com/qurben))
 - Introduction of Grumphp [\#24](https://github.com/bunq/sdk_php/pull/24) ([cafferata](https://github.com/cafferata))
 
 **Fixed bugs:**
@@ -337,6 +348,7 @@
 
 - Remove phpstan [\#28](https://github.com/bunq/sdk_php/issues/28)
 - Suggestion: use Objects instead of arrays [\#22](https://github.com/bunq/sdk_php/issues/22)
+- \#5 Allow setting a proxy [\#27](https://github.com/bunq/sdk_php/pull/27) ([qurben](https://github.com/qurben))
 - Changes the composer PHP requirement [\#19](https://github.com/bunq/sdk_php/pull/19) ([cafferata](https://github.com/cafferata))
 - Removed the default PHPStorm constructor header\(s\) [\#18](https://github.com/bunq/sdk_php/pull/18) ([cafferata](https://github.com/cafferata))
 - Add readme for tests. [\#16](https://github.com/bunq/sdk_php/pull/16) ([OGKevin](https://github.com/OGKevin))
