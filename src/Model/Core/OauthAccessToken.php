@@ -26,7 +26,7 @@ class OauthAccessToken extends BunqModel
     /**
      * Token constants.
      */
-    const TOKEN_URI_FORMAT_SANDBOX = 'https://api.oauth.sandbox.bunq.com/v1/token?%s';
+    const TOKEN_URI_FORMAT_SANDBOX = 'https://api-oauth.sandbox.bunq.com/v1/token?%s';
     const TOKEN_URI_FORMAT_PRODUCTION = 'https://api.oauth.bunq.com/v1/token?%s';
 
     /**
