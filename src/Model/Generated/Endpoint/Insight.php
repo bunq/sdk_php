@@ -91,7 +91,6 @@ class Insight extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setCategory($category)
     {
@@ -113,7 +112,6 @@ class Insight extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setCategoryTranslated($categoryTranslated)
     {
@@ -135,7 +133,6 @@ class Insight extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setAmountTotal($amountTotal)
     {
@@ -157,7 +154,6 @@ class Insight extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setNumberOfTransactions($numberOfTransactions)
     {

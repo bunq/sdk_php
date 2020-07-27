@@ -83,7 +83,6 @@ class Tab extends BunqModel implements AnchorObjectInterface
 
     /**
      * Get a collection of tabs.
-     *
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
@@ -128,7 +127,6 @@ class Tab extends BunqModel implements AnchorObjectInterface
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setTabUsageSingle($tabUsageSingle)
     {
@@ -148,7 +146,6 @@ class Tab extends BunqModel implements AnchorObjectInterface
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setTabUsageMultiple($tabUsageMultiple)
     {

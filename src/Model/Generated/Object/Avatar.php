@@ -59,7 +59,6 @@ class Avatar extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setUuid($uuid)
     {
@@ -81,7 +80,6 @@ class Avatar extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setAnchorUuid($anchorUuid)
     {
@@ -103,7 +101,6 @@ class Avatar extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setImage($image)
     {

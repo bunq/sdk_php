@@ -122,7 +122,6 @@ class Event extends BunqModel
      * from the response, when not provided user events are displayed. User
      * events are events that are not related to a monetary account (for
      * example: connect invites).
-     *
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
@@ -163,7 +162,6 @@ class Event extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setId($id)
     {
@@ -185,7 +183,6 @@ class Event extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setCreated($created)
     {
@@ -207,7 +204,6 @@ class Event extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setUpdated($updated)
     {
@@ -229,7 +225,6 @@ class Event extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setAction($action)
     {
@@ -251,7 +246,6 @@ class Event extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setUserId($userId)
     {
@@ -274,7 +268,6 @@ class Event extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setMonetaryAccountId($monetaryAccountId)
     {
@@ -296,7 +289,6 @@ class Event extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setObject($object)
     {
@@ -320,7 +312,6 @@ class Event extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setStatus($status)
     {

@@ -156,7 +156,6 @@ class Schedule extends BunqModel
      * type={SCHEDULE_DEFINITION_PAYMENT,SCHEDULE_DEFINITION_PAYMENT_BATCH} is
      * provided only schedule definition object that relate to these definitions
      * are returned.
-     *
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
@@ -201,7 +200,6 @@ class Schedule extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setTimeStart($timeStart)
     {
@@ -223,7 +221,6 @@ class Schedule extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setTimeEnd($timeEnd)
     {
@@ -246,7 +243,6 @@ class Schedule extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setRecurrenceUnit($recurrenceUnit)
     {
@@ -269,7 +265,6 @@ class Schedule extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setRecurrenceSize($recurrenceSize)
     {
@@ -291,7 +286,6 @@ class Schedule extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setStatus($status)
     {
@@ -313,7 +307,6 @@ class Schedule extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setObject($object)
     {

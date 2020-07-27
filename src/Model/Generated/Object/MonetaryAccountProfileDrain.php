@@ -97,7 +97,6 @@ class MonetaryAccountProfileDrain extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setStatus($status)
     {
@@ -119,7 +118,6 @@ class MonetaryAccountProfileDrain extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setBalancePreferred($balancePreferred)
     {
@@ -141,7 +139,6 @@ class MonetaryAccountProfileDrain extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setBalanceThresholdHigh($balanceThresholdHigh)
     {
@@ -163,7 +160,6 @@ class MonetaryAccountProfileDrain extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setSavingsAccountAlias($savingsAccountAlias)
     {

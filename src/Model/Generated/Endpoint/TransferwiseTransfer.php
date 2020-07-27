@@ -1,6 +1,7 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
+use bunq\Http\ApiClient;
 use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Object\Amount;
 use bunq\Model\Generated\Object\LabelMonetaryAccount;
@@ -13,10 +14,22 @@ use bunq\Model\Generated\Object\LabelMonetaryAccount;
 class TransferwiseTransfer extends BunqModel
 {
     /**
+     * Endpoint constants.
+     */
+    const ENDPOINT_URL_CREATE = 'user/%s/transferwise-quote/%s/transferwise-transfer';
+    const ENDPOINT_URL_READ = 'user/%s/transferwise-quote/%s/transferwise-transfer/%s';
+    const ENDPOINT_URL_LISTING = 'user/%s/transferwise-quote/%s/transferwise-transfer';
+
+    /**
      * Field constants.
      */
     const FIELD_MONETARY_ACCOUNT_ID = 'monetary_account_id';
     const FIELD_RECIPIENT_ID = 'recipient_id';
+
+    /**
+     * Object type.
+     */
+    const OBJECT_TYPE_GET = 'TransferwisePayment';
 
     /**
      * The LabelMonetaryAccount containing the public information of 'this'
@@ -138,6 +151,96 @@ class TransferwiseTransfer extends BunqModel
     }
 
     /**
+     * @param int $transferwiseQuoteId
+     * @param string $monetaryAccountId The id of the monetary account the
+     * payment should be made from.
+     * @param string $recipientId The id of the target account.
+     * @param string[] $customHeaders
+     *
+     * @return BunqResponseInt
+     */
+    public static function create(
+        int $transferwiseQuoteId,
+        string $monetaryAccountId,
+        string $recipientId,
+        array $customHeaders = []
+    ): BunqResponseInt {
+        $apiClient = new ApiClient(static::getApiContext());
+        $responseRaw = $apiClient->post(
+            vsprintf(
+                self::ENDPOINT_URL_CREATE,
+                [static::determineUserId(), $transferwiseQuoteId]
+            ),
+            [
+                self::FIELD_MONETARY_ACCOUNT_ID => $monetaryAccountId,
+                self::FIELD_RECIPIENT_ID => $recipientId,
+            ],
+            $customHeaders
+        );
+
+        return BunqResponseInt::castFromBunqResponse(
+            static::processForId($responseRaw)
+        );
+    }
+
+    /**
+     * @param int $transferwiseQuoteId
+     * @param int $transferwiseTransferId
+     * @param string[] $customHeaders
+     *
+     * @return BunqResponseTransferwiseTransfer
+     */
+    public static function get(
+        int $transferwiseQuoteId,
+        int $transferwiseTransferId,
+        array $customHeaders = []
+    ): BunqResponseTransferwiseTransfer {
+        $apiClient = new ApiClient(static::getApiContext());
+        $responseRaw = $apiClient->get(
+            vsprintf(
+                self::ENDPOINT_URL_READ,
+                [static::determineUserId(), $transferwiseQuoteId, $transferwiseTransferId]
+            ),
+            [],
+            $customHeaders
+        );
+
+        return BunqResponseTransferwiseTransfer::castFromBunqResponse(
+            static::fromJson($responseRaw, self::OBJECT_TYPE_GET)
+        );
+    }
+
+    /**
+     * This method is called "listing" because "list" is a restricted PHP word
+     * and cannot be used as constants, class names, function or method names.
+     *
+     * @param int $transferwiseQuoteId
+     * @param string[] $params
+     * @param string[] $customHeaders
+     *
+     * @return BunqResponseTransferwiseTransferList
+     */
+    public static function listing(
+        int $transferwiseQuoteId,
+        array $params = [],
+        array $customHeaders = []
+    ): BunqResponseTransferwiseTransferList {
+        $apiClient = new ApiClient(static::getApiContext());
+        $responseRaw = $apiClient->get(
+            vsprintf(
+                self::ENDPOINT_URL_LISTING,
+                [static::determineUserId(), $transferwiseQuoteId]
+            ),
+            $params,
+            $customHeaders
+        );
+
+        return BunqResponseTransferwiseTransferList::castFromBunqResponse(
+            static::fromJsonList($responseRaw, self::OBJECT_TYPE_GET)
+        );
+    }
+
+    /**
      * The LabelMonetaryAccount containing the public information of 'this'
      * (party) side of the Payment.
      *
@@ -153,7 +256,6 @@ class TransferwiseTransfer extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setAlias($alias)
     {
@@ -176,7 +278,6 @@ class TransferwiseTransfer extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setCounterpartyAlias($counterpartyAlias)
     {
@@ -198,7 +299,6 @@ class TransferwiseTransfer extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setStatus($status)
     {
@@ -220,7 +320,6 @@ class TransferwiseTransfer extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setSubStatus($subStatus)
     {
@@ -242,7 +341,6 @@ class TransferwiseTransfer extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setStatusTransferwise($statusTransferwise)
     {
@@ -265,7 +363,6 @@ class TransferwiseTransfer extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setStatusTransferwiseIssue($statusTransferwiseIssue)
     {
@@ -287,7 +384,6 @@ class TransferwiseTransfer extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setAmountSource($amountSource)
     {
@@ -309,7 +405,6 @@ class TransferwiseTransfer extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setAmountTarget($amountTarget)
     {
@@ -331,7 +426,6 @@ class TransferwiseTransfer extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setRate($rate)
     {
@@ -353,7 +447,6 @@ class TransferwiseTransfer extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setReference($reference)
     {
@@ -375,7 +468,6 @@ class TransferwiseTransfer extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setPayInReference($payInReference)
     {
@@ -397,7 +489,6 @@ class TransferwiseTransfer extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setTimeDeliveryEstimate($timeDeliveryEstimate)
     {
@@ -419,7 +510,6 @@ class TransferwiseTransfer extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setQuote($quote)
     {

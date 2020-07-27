@@ -78,7 +78,6 @@ class TaxResident extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setCountry($country)
     {
@@ -100,7 +99,6 @@ class TaxResident extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setTaxNumber($taxNumber)
     {
@@ -122,7 +120,6 @@ class TaxResident extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setStatus($status)
     {

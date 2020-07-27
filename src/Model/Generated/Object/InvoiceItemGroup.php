@@ -72,7 +72,6 @@ class InvoiceItemGroup extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setType($type)
     {
@@ -94,7 +93,6 @@ class InvoiceItemGroup extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setTypeDescription($typeDescription)
     {
@@ -116,7 +114,6 @@ class InvoiceItemGroup extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setTypeDescriptionTranslated($typeDescriptionTranslated)
     {
@@ -138,7 +135,6 @@ class InvoiceItemGroup extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setInstanceDescription($instanceDescription)
     {
@@ -160,7 +156,6 @@ class InvoiceItemGroup extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setProductVatExclusive($productVatExclusive)
     {
@@ -182,7 +177,6 @@ class InvoiceItemGroup extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setProductVatInclusive($productVatInclusive)
     {
@@ -204,7 +198,6 @@ class InvoiceItemGroup extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setItem($item)
     {

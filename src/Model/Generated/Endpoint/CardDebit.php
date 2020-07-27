@@ -104,8 +104,12 @@ class CardDebit extends BunqModel
     protected $status;
 
     /**
-     * The order status of the card. After ordering the card it will be
-     * NEW_CARD_REQUEST_RECEIVED.
+     * The order status of the card. Can be NEW_CARD_REQUEST_RECEIVED,
+     * CARD_REQUEST_PENDING, SENT_FOR_PRODUCTION, ACCEPTED_FOR_PRODUCTION,
+     * DELIVERED_TO_CUSTOMER, CARD_UPDATE_REQUESTED, CARD_UPDATE_PENDING,
+     * CARD_UPDATE_SENT, CARD_UPDATE_ACCEPTED, VIRTUAL_DELIVERY,
+     * NEW_CARD_REQUEST_PENDING_USER_APPROVAL, SENT_FOR_DELIVERY or
+     * NEW_CARD_REQUEST_CANCELLED.
      *
      * @var string
      */
@@ -170,6 +174,13 @@ class CardDebit extends BunqModel
      * @var string
      */
     protected $country;
+
+    /**
+     * A tracking link provided by our shipment provider.
+     *
+     * @var string
+     */
+    protected $cardShipmentTrackingUrl;
 
     /**
      * The second line of text on the card, used as name/description for it. It
@@ -332,7 +343,6 @@ class CardDebit extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setId($id)
     {
@@ -354,7 +364,6 @@ class CardDebit extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setCreated($created)
     {
@@ -376,7 +385,6 @@ class CardDebit extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setUpdated($updated)
     {
@@ -398,7 +406,6 @@ class CardDebit extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setPublicUuid($publicUuid)
     {
@@ -420,7 +427,6 @@ class CardDebit extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setType($type)
     {
@@ -442,7 +448,6 @@ class CardDebit extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setSubType($subType)
     {
@@ -464,7 +469,6 @@ class CardDebit extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setSecondLine($secondLine)
     {
@@ -486,7 +490,6 @@ class CardDebit extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setNameOnCard($nameOnCard)
     {
@@ -509,7 +512,6 @@ class CardDebit extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setStatus($status)
     {
@@ -517,8 +519,12 @@ class CardDebit extends BunqModel
     }
 
     /**
-     * The order status of the card. After ordering the card it will be
-     * NEW_CARD_REQUEST_RECEIVED.
+     * The order status of the card. Can be NEW_CARD_REQUEST_RECEIVED,
+     * CARD_REQUEST_PENDING, SENT_FOR_PRODUCTION, ACCEPTED_FOR_PRODUCTION,
+     * DELIVERED_TO_CUSTOMER, CARD_UPDATE_REQUESTED, CARD_UPDATE_PENDING,
+     * CARD_UPDATE_SENT, CARD_UPDATE_ACCEPTED, VIRTUAL_DELIVERY,
+     * NEW_CARD_REQUEST_PENDING_USER_APPROVAL, SENT_FOR_DELIVERY or
+     * NEW_CARD_REQUEST_CANCELLED.
      *
      * @return string
      */
@@ -532,7 +538,6 @@ class CardDebit extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setOrderStatus($orderStatus)
     {
@@ -554,7 +559,6 @@ class CardDebit extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setExpiryDate($expiryDate)
     {
@@ -576,7 +580,6 @@ class CardDebit extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setCountryPermission($countryPermission)
     {
@@ -599,7 +602,6 @@ class CardDebit extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setLabelMonetaryAccountOrdered($labelMonetaryAccountOrdered)
     {
@@ -622,7 +624,6 @@ class CardDebit extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setLabelMonetaryAccountCurrent($labelMonetaryAccountCurrent)
     {
@@ -644,7 +645,6 @@ class CardDebit extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setAlias($alias)
     {
@@ -666,7 +666,6 @@ class CardDebit extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setPinCodeAssignment($pinCodeAssignment)
     {
@@ -689,7 +688,6 @@ class CardDebit extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setMonetaryAccountIdFallback($monetaryAccountIdFallback)
     {
@@ -712,11 +710,31 @@ class CardDebit extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setCountry($country)
     {
         $this->country = $country;
+    }
+
+    /**
+     * A tracking link provided by our shipment provider.
+     *
+     * @return string
+     */
+    public function getCardShipmentTrackingUrl()
+    {
+        return $this->cardShipmentTrackingUrl;
+    }
+
+    /**
+     * @param string $cardShipmentTrackingUrl
+     *
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     */
+    public function setCardShipmentTrackingUrl($cardShipmentTrackingUrl)
+    {
+        $this->cardShipmentTrackingUrl = $cardShipmentTrackingUrl;
     }
 
     /**
@@ -793,6 +811,10 @@ class CardDebit extends BunqModel
         }
 
         if (!is_null($this->country)) {
+            return false;
+        }
+
+        if (!is_null($this->cardShipmentTrackingUrl)) {
             return false;
         }
 

@@ -86,7 +86,6 @@ class InvoiceItem extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setBillingDate($billingDate)
     {
@@ -108,7 +107,6 @@ class InvoiceItem extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setTypeDescription($typeDescription)
     {
@@ -130,7 +128,6 @@ class InvoiceItem extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setTypeDescriptionTranslated($typeDescriptionTranslated)
     {
@@ -152,7 +149,6 @@ class InvoiceItem extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setUnitVatExclusive($unitVatExclusive)
     {
@@ -174,7 +170,6 @@ class InvoiceItem extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setUnitVatInclusive($unitVatInclusive)
     {
@@ -196,7 +191,6 @@ class InvoiceItem extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setVat($vat)
     {
@@ -218,7 +212,6 @@ class InvoiceItem extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setQuantity($quantity)
     {
@@ -240,7 +233,6 @@ class InvoiceItem extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setTotalVatExclusive($totalVatExclusive)
     {
@@ -262,7 +254,6 @@ class InvoiceItem extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setTotalVatInclusive($totalVatInclusive)
     {

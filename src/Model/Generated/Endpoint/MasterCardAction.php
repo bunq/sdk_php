@@ -239,13 +239,6 @@ class MasterCardAction extends BunqModel
     protected $appliedLimit;
 
     /**
-     * Whether or not chat messages are allowed.
-     *
-     * @var bool
-     */
-    protected $allowChat;
-
-    /**
      * The secure code id for this mastercard action or null.
      *
      * @var int
@@ -340,7 +333,6 @@ class MasterCardAction extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setId($id)
     {
@@ -362,7 +354,6 @@ class MasterCardAction extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setMonetaryAccountId($monetaryAccountId)
     {
@@ -384,7 +375,6 @@ class MasterCardAction extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setCardId($cardId)
     {
@@ -406,7 +396,6 @@ class MasterCardAction extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setAmountLocal($amountLocal)
     {
@@ -428,7 +417,6 @@ class MasterCardAction extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setAmountConverted($amountConverted)
     {
@@ -450,7 +438,6 @@ class MasterCardAction extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setAmountBilling($amountBilling)
     {
@@ -472,7 +459,6 @@ class MasterCardAction extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setAmountOriginalLocal($amountOriginalLocal)
     {
@@ -494,7 +480,6 @@ class MasterCardAction extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setAmountOriginalBilling($amountOriginalBilling)
     {
@@ -516,7 +501,6 @@ class MasterCardAction extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setAmountFee($amountFee)
     {
@@ -539,7 +523,6 @@ class MasterCardAction extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setCardAuthorisationIdResponse($cardAuthorisationIdResponse)
     {
@@ -561,7 +544,6 @@ class MasterCardAction extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setDecision($decision)
     {
@@ -584,7 +566,6 @@ class MasterCardAction extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setPaymentStatus($paymentStatus)
     {
@@ -606,7 +587,6 @@ class MasterCardAction extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setDecisionDescription($decisionDescription)
     {
@@ -629,7 +609,6 @@ class MasterCardAction extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setDecisionDescriptionTranslated($decisionDescriptionTranslated)
     {
@@ -651,7 +630,6 @@ class MasterCardAction extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setDescription($description)
     {
@@ -673,7 +651,6 @@ class MasterCardAction extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setAuthorisationStatus($authorisationStatus)
     {
@@ -695,7 +672,6 @@ class MasterCardAction extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setAuthorisationType($authorisationType)
     {
@@ -718,7 +694,6 @@ class MasterCardAction extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setPanEntryModeUser($panEntryModeUser)
     {
@@ -740,7 +715,6 @@ class MasterCardAction extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setSettlementStatus($settlementStatus)
     {
@@ -763,7 +737,6 @@ class MasterCardAction extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setClearingStatus($clearingStatus)
     {
@@ -785,7 +758,6 @@ class MasterCardAction extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setMaturityDate($maturityDate)
     {
@@ -807,7 +779,6 @@ class MasterCardAction extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setCity($city)
     {
@@ -830,7 +801,6 @@ class MasterCardAction extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setAlias($alias)
     {
@@ -852,7 +822,6 @@ class MasterCardAction extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setCounterpartyAlias($counterpartyAlias)
     {
@@ -874,7 +843,6 @@ class MasterCardAction extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setLabelCard($labelCard)
     {
@@ -896,7 +864,6 @@ class MasterCardAction extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setTokenStatus($tokenStatus)
     {
@@ -918,7 +885,6 @@ class MasterCardAction extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setReservationExpiryTime($reservationExpiryTime)
     {
@@ -941,7 +907,6 @@ class MasterCardAction extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setClearingExpiryTime($clearingExpiryTime)
     {
@@ -965,33 +930,10 @@ class MasterCardAction extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setAppliedLimit($appliedLimit)
     {
         $this->appliedLimit = $appliedLimit;
-    }
-
-    /**
-     * Whether or not chat messages are allowed.
-     *
-     * @return bool
-     */
-    public function getAllowChat()
-    {
-        return $this->allowChat;
-    }
-
-    /**
-     * @param bool $allowChat
-     *
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
-     */
-    public function setAllowChat($allowChat)
-    {
-        $this->allowChat = $allowChat;
     }
 
     /**
@@ -1009,7 +951,6 @@ class MasterCardAction extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setSecureCodeId($secureCodeId)
     {
@@ -1032,7 +973,6 @@ class MasterCardAction extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setWalletProviderId($walletProviderId)
     {
@@ -1055,7 +995,6 @@ class MasterCardAction extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setRequestReferenceSplitTheBill($requestReferenceSplitTheBill)
     {
@@ -1180,10 +1119,6 @@ class MasterCardAction extends BunqModel
         }
 
         if (!is_null($this->appliedLimit)) {
-            return false;
-        }
-
-        if (!is_null($this->allowChat)) {
             return false;
         }
 

@@ -245,7 +245,6 @@ class SchedulePayment extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setPayment($payment)
     {
@@ -267,7 +266,6 @@ class SchedulePayment extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setSchedule($schedule)
     {
@@ -289,7 +287,6 @@ class SchedulePayment extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setStatus($status)
     {

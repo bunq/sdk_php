@@ -92,7 +92,6 @@ class LabelUser extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setUuid($uuid)
     {
@@ -114,7 +113,6 @@ class LabelUser extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setAvatar($avatar)
     {
@@ -136,7 +134,6 @@ class LabelUser extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setPublicNickName($publicNickName)
     {
@@ -158,7 +155,6 @@ class LabelUser extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setDisplayName($displayName)
     {
@@ -180,7 +176,6 @@ class LabelUser extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setCountry($country)
     {

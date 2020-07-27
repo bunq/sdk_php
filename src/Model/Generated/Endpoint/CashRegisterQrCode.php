@@ -210,7 +210,6 @@ class CashRegisterQrCode extends BunqModel
 
     /**
      * Get a collection of QR code information from a given CashRegister
-     *
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
@@ -258,7 +257,6 @@ class CashRegisterQrCode extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setId($id)
     {
@@ -280,7 +278,6 @@ class CashRegisterQrCode extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setCreated($created)
     {
@@ -302,7 +299,6 @@ class CashRegisterQrCode extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setUpdated($updated)
     {
@@ -326,7 +322,6 @@ class CashRegisterQrCode extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setStatus($status)
     {
@@ -348,7 +343,6 @@ class CashRegisterQrCode extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setCashRegister($cashRegister)
     {
@@ -370,7 +364,6 @@ class CashRegisterQrCode extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setTabObject($tabObject)
     {

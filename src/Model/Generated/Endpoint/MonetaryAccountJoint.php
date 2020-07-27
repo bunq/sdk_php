@@ -189,13 +189,6 @@ class MonetaryAccountJoint extends BunqModel
     protected $setting;
 
     /**
-     * The id of the AutoSave.
-     *
-     * @var int
-     */
-    protected $autoSaveId;
-
-    /**
      * The ids of the AutoSave.
      *
      * @var BunqId[]
@@ -583,7 +576,6 @@ class MonetaryAccountJoint extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setId($id)
     {
@@ -605,7 +597,6 @@ class MonetaryAccountJoint extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setCreated($created)
     {
@@ -627,7 +618,6 @@ class MonetaryAccountJoint extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setUpdated($updated)
     {
@@ -649,7 +639,6 @@ class MonetaryAccountJoint extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setAvatar($avatar)
     {
@@ -672,7 +661,6 @@ class MonetaryAccountJoint extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setCurrency($currency)
     {
@@ -694,7 +682,6 @@ class MonetaryAccountJoint extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setDescription($description)
     {
@@ -718,7 +705,6 @@ class MonetaryAccountJoint extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setDailyLimit($dailyLimit)
     {
@@ -740,7 +726,6 @@ class MonetaryAccountJoint extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setOverdraftLimit($overdraftLimit)
     {
@@ -762,7 +747,6 @@ class MonetaryAccountJoint extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setBalance($balance)
     {
@@ -784,7 +768,6 @@ class MonetaryAccountJoint extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setAlias($alias)
     {
@@ -806,7 +789,6 @@ class MonetaryAccountJoint extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setPublicUuid($publicUuid)
     {
@@ -829,7 +811,6 @@ class MonetaryAccountJoint extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setStatus($status)
     {
@@ -854,7 +835,6 @@ class MonetaryAccountJoint extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setSubStatus($subStatus)
     {
@@ -877,7 +857,6 @@ class MonetaryAccountJoint extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setReason($reason)
     {
@@ -900,7 +879,6 @@ class MonetaryAccountJoint extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setReasonDescription($reasonDescription)
     {
@@ -922,7 +900,6 @@ class MonetaryAccountJoint extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setAllCoOwner($allCoOwner)
     {
@@ -944,7 +921,6 @@ class MonetaryAccountJoint extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setUserId($userId)
     {
@@ -966,7 +942,6 @@ class MonetaryAccountJoint extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setMonetaryAccountProfile($monetaryAccountProfile)
     {
@@ -988,33 +963,10 @@ class MonetaryAccountJoint extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setSetting($setting)
     {
         $this->setting = $setting;
-    }
-
-    /**
-     * The id of the AutoSave.
-     *
-     * @return int
-     */
-    public function getAutoSaveId()
-    {
-        return $this->autoSaveId;
-    }
-
-    /**
-     * @param int $autoSaveId
-     *
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
-     */
-    public function setAutoSaveId($autoSaveId)
-    {
-        $this->autoSaveId = $autoSaveId;
     }
 
     /**
@@ -1032,7 +984,6 @@ class MonetaryAccountJoint extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setAllAutoSaveId($allAutoSaveId)
     {
@@ -1117,10 +1068,6 @@ class MonetaryAccountJoint extends BunqModel
         }
 
         if (!is_null($this->setting)) {
-            return false;
-        }
-
-        if (!is_null($this->autoSaveId)) {
             return false;
         }
 

@@ -205,13 +205,6 @@ class MonetaryAccountSavings extends BunqModel
     protected $savingsGoalProgress;
 
     /**
-     * The id of the AutoSave.
-     *
-     * @var int
-     */
-    protected $autoSaveId;
-
-    /**
      * The ids of the AutoSave.
      *
      * @var BunqId[]
@@ -561,7 +554,6 @@ class MonetaryAccountSavings extends BunqModel
 
     /**
      * Gets a listing of all MonetaryAccountSavingss of a given user.
-     *
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
@@ -604,7 +596,6 @@ class MonetaryAccountSavings extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setId($id)
     {
@@ -626,7 +617,6 @@ class MonetaryAccountSavings extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setCreated($created)
     {
@@ -648,7 +638,6 @@ class MonetaryAccountSavings extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setUpdated($updated)
     {
@@ -670,7 +659,6 @@ class MonetaryAccountSavings extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setAvatar($avatar)
     {
@@ -693,7 +681,6 @@ class MonetaryAccountSavings extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setCurrency($currency)
     {
@@ -716,7 +703,6 @@ class MonetaryAccountSavings extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setDescription($description)
     {
@@ -740,7 +726,6 @@ class MonetaryAccountSavings extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setDailyLimit($dailyLimit)
     {
@@ -763,7 +748,6 @@ class MonetaryAccountSavings extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setOverdraftLimit($overdraftLimit)
     {
@@ -785,7 +769,6 @@ class MonetaryAccountSavings extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setBalance($balance)
     {
@@ -807,7 +790,6 @@ class MonetaryAccountSavings extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setAlias($alias)
     {
@@ -829,7 +811,6 @@ class MonetaryAccountSavings extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setPublicUuid($publicUuid)
     {
@@ -852,7 +833,6 @@ class MonetaryAccountSavings extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setStatus($status)
     {
@@ -877,7 +857,6 @@ class MonetaryAccountSavings extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setSubStatus($subStatus)
     {
@@ -900,7 +879,6 @@ class MonetaryAccountSavings extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setReason($reason)
     {
@@ -923,7 +901,6 @@ class MonetaryAccountSavings extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setReasonDescription($reasonDescription)
     {
@@ -945,7 +922,6 @@ class MonetaryAccountSavings extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setAllCoOwner($allCoOwner)
     {
@@ -967,7 +943,6 @@ class MonetaryAccountSavings extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setUserId($userId)
     {
@@ -989,7 +964,6 @@ class MonetaryAccountSavings extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setMonetaryAccountProfile($monetaryAccountProfile)
     {
@@ -1011,7 +985,6 @@ class MonetaryAccountSavings extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setSetting($setting)
     {
@@ -1033,7 +1006,6 @@ class MonetaryAccountSavings extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setSavingsGoal($savingsGoal)
     {
@@ -1056,33 +1028,10 @@ class MonetaryAccountSavings extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setSavingsGoalProgress($savingsGoalProgress)
     {
         $this->savingsGoalProgress = $savingsGoalProgress;
-    }
-
-    /**
-     * The id of the AutoSave.
-     *
-     * @return int
-     */
-    public function getAutoSaveId()
-    {
-        return $this->autoSaveId;
-    }
-
-    /**
-     * @param int $autoSaveId
-     *
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
-     */
-    public function setAutoSaveId($autoSaveId)
-    {
-        $this->autoSaveId = $autoSaveId;
     }
 
     /**
@@ -1100,7 +1049,6 @@ class MonetaryAccountSavings extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setAllAutoSaveId($allAutoSaveId)
     {
@@ -1193,10 +1141,6 @@ class MonetaryAccountSavings extends BunqModel
         }
 
         if (!is_null($this->savingsGoalProgress)) {
-            return false;
-        }
-
-        if (!is_null($this->autoSaveId)) {
             return false;
         }
 

@@ -87,7 +87,6 @@ class CustomerLimit extends BunqModel
 
     /**
      * Get all limits for the authenticated user.
-     *
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
@@ -128,7 +127,6 @@ class CustomerLimit extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setLimitMonetaryAccount($limitMonetaryAccount)
     {
@@ -150,7 +148,6 @@ class CustomerLimit extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setLimitMonetaryAccountRemaining($limitMonetaryAccountRemaining)
     {
@@ -172,7 +169,6 @@ class CustomerLimit extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setLimitCardDebitMaestro($limitCardDebitMaestro)
     {
@@ -194,7 +190,6 @@ class CustomerLimit extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setLimitCardDebitMastercard($limitCardDebitMastercard)
     {
@@ -216,7 +211,6 @@ class CustomerLimit extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setLimitCardDebitWildcard($limitCardDebitWildcard)
     {
@@ -238,7 +232,6 @@ class CustomerLimit extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setLimitCardWildcard($limitCardWildcard)
     {
@@ -260,7 +253,6 @@ class CustomerLimit extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setLimitCardReplacement($limitCardReplacement)
     {
@@ -282,7 +274,6 @@ class CustomerLimit extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setLimitAmountMonthly($limitAmountMonthly)
     {
@@ -304,7 +295,6 @@ class CustomerLimit extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setSpentAmountMonthly($spentAmountMonthly)
     {

@@ -46,7 +46,6 @@ class WhitelistResultViewAnchoredObject extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setId($id)
     {
@@ -68,7 +67,6 @@ class WhitelistResultViewAnchoredObject extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setRequestResponse($requestResponse)
     {
@@ -90,7 +88,6 @@ class WhitelistResultViewAnchoredObject extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setDraftPayment($draftPayment)
     {

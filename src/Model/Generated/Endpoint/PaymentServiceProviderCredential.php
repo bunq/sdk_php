@@ -202,7 +202,6 @@ class PaymentServiceProviderCredential extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setId($id)
     {
@@ -224,7 +223,6 @@ class PaymentServiceProviderCredential extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setCreated($created)
     {
@@ -246,7 +244,6 @@ class PaymentServiceProviderCredential extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setUpdated($updated)
     {
@@ -268,7 +265,6 @@ class PaymentServiceProviderCredential extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setStatus($status)
     {
@@ -290,7 +286,6 @@ class PaymentServiceProviderCredential extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setExpiryTime($expiryTime)
     {
@@ -312,7 +307,6 @@ class PaymentServiceProviderCredential extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setTokenValue($tokenValue)
     {
@@ -335,7 +329,6 @@ class PaymentServiceProviderCredential extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setPermittedDevice($permittedDevice)
     {

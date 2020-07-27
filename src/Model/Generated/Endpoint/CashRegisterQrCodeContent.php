@@ -25,7 +25,6 @@ class CashRegisterQrCodeContent extends BunqModel
 
     /**
      * Show the raw contents of a QR code
-     *
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *

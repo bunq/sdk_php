@@ -298,7 +298,6 @@ class CashRegister extends BunqModel
 
     /**
      * Get a collection of CashRegister for a given user and monetary account.
-     *
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
@@ -343,7 +342,6 @@ class CashRegister extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setId($id)
     {
@@ -365,7 +363,6 @@ class CashRegister extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setCreated($created)
     {
@@ -387,7 +384,6 @@ class CashRegister extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setUpdated($updated)
     {
@@ -409,7 +405,6 @@ class CashRegister extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setName($name)
     {
@@ -432,7 +427,6 @@ class CashRegister extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setStatus($status)
     {
@@ -454,7 +448,6 @@ class CashRegister extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setAvatar($avatar)
     {
@@ -476,7 +469,6 @@ class CashRegister extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setLocation($location)
     {
@@ -498,7 +490,6 @@ class CashRegister extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setTabTextWaitingScreen($tabTextWaitingScreen)
     {

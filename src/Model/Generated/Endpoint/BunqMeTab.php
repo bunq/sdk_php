@@ -262,7 +262,6 @@ class BunqMeTab extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setId($id)
     {
@@ -284,7 +283,6 @@ class BunqMeTab extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setCreated($created)
     {
@@ -306,7 +304,6 @@ class BunqMeTab extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setUpdated($updated)
     {
@@ -328,7 +325,6 @@ class BunqMeTab extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setTimeExpiry($timeExpiry)
     {
@@ -350,7 +346,6 @@ class BunqMeTab extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setMonetaryAccountId($monetaryAccountId)
     {
@@ -373,7 +368,6 @@ class BunqMeTab extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setStatus($status)
     {
@@ -395,7 +389,6 @@ class BunqMeTab extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setBunqmeTabShareUrl($bunqmeTabShareUrl)
     {
@@ -417,7 +410,6 @@ class BunqMeTab extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setBunqmeTabEntry($bunqmeTabEntry)
     {
@@ -439,7 +431,6 @@ class BunqMeTab extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setResultInquiries($resultInquiries)
     {
