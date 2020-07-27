@@ -310,7 +310,6 @@ class ExportStatement extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setId($id)
     {
@@ -332,7 +331,6 @@ class ExportStatement extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setCreated($created)
     {
@@ -354,7 +352,6 @@ class ExportStatement extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setUpdated($updated)
     {
@@ -376,7 +373,6 @@ class ExportStatement extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setDateStart($dateStart)
     {
@@ -398,7 +394,6 @@ class ExportStatement extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setDateEnd($dateEnd)
     {
@@ -420,7 +415,6 @@ class ExportStatement extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setStatus($status)
     {
@@ -442,7 +436,6 @@ class ExportStatement extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setStatementNumber($statementNumber)
     {
@@ -464,7 +457,6 @@ class ExportStatement extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setStatementFormat($statementFormat)
     {
@@ -486,7 +478,6 @@ class ExportStatement extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setRegionalFormat($regionalFormat)
     {
@@ -508,7 +499,6 @@ class ExportStatement extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setAliasMonetaryAccount($aliasMonetaryAccount)
     {

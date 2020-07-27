@@ -604,7 +604,6 @@ class TabUsageSingle extends BunqModel
 
     /**
      * Get a collection of TabUsageSingle.
-     *
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
@@ -651,7 +650,6 @@ class TabUsageSingle extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setUuid($uuid)
     {
@@ -673,7 +671,6 @@ class TabUsageSingle extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setCreated($created)
     {
@@ -695,7 +692,6 @@ class TabUsageSingle extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setUpdated($updated)
     {
@@ -717,7 +713,6 @@ class TabUsageSingle extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setMerchantReference($merchantReference)
     {
@@ -739,7 +734,6 @@ class TabUsageSingle extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setDescription($description)
     {
@@ -762,7 +756,6 @@ class TabUsageSingle extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setStatus($status)
     {
@@ -784,7 +777,6 @@ class TabUsageSingle extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setAmountTotal($amountTotal)
     {
@@ -806,7 +798,6 @@ class TabUsageSingle extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setAmountPaid($amountPaid)
     {
@@ -829,7 +820,6 @@ class TabUsageSingle extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setQrCodeToken($qrCodeToken)
     {
@@ -852,7 +842,6 @@ class TabUsageSingle extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setTabUrl($tabUrl)
     {
@@ -875,7 +864,6 @@ class TabUsageSingle extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setVisibility($visibility)
     {
@@ -897,7 +885,6 @@ class TabUsageSingle extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setMinimumAge($minimumAge)
     {
@@ -920,7 +907,6 @@ class TabUsageSingle extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setRequireAddress($requireAddress)
     {
@@ -942,7 +928,6 @@ class TabUsageSingle extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setRedirectUrl($redirectUrl)
     {
@@ -964,7 +949,6 @@ class TabUsageSingle extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setExpiration($expiration)
     {
@@ -986,7 +970,6 @@ class TabUsageSingle extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setAlias($alias)
     {
@@ -1008,7 +991,6 @@ class TabUsageSingle extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setCashRegisterLocation($cashRegisterLocation)
     {
@@ -1030,7 +1012,6 @@ class TabUsageSingle extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setTabItem($tabItem)
     {
@@ -1053,7 +1034,6 @@ class TabUsageSingle extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setTabAttachment($tabAttachment)
     {

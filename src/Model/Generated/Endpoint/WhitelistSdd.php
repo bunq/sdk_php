@@ -266,7 +266,6 @@ class WhitelistSdd extends BunqModel
 
     /**
      * Get a listing of all SDD whitelist entries for a target monetary account.
-     *
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
@@ -307,7 +306,6 @@ class WhitelistSdd extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setId($id)
     {
@@ -330,7 +328,6 @@ class WhitelistSdd extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setMonetaryAccountIncomingId($monetaryAccountIncomingId)
     {
@@ -353,7 +350,6 @@ class WhitelistSdd extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setMonetaryAccountPayingId($monetaryAccountPayingId)
     {
@@ -375,7 +371,6 @@ class WhitelistSdd extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setType($type)
     {
@@ -397,7 +392,6 @@ class WhitelistSdd extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setStatus($status)
     {
@@ -419,7 +413,6 @@ class WhitelistSdd extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setCreditSchemeIdentifier($creditSchemeIdentifier)
     {
@@ -441,7 +434,6 @@ class WhitelistSdd extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setMandateIdentifier($mandateIdentifier)
     {
@@ -463,7 +455,6 @@ class WhitelistSdd extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setCounterpartyAlias($counterpartyAlias)
     {
@@ -485,7 +476,6 @@ class WhitelistSdd extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setMaximumAmountPerMonth($maximumAmountPerMonth)
     {
@@ -507,7 +497,6 @@ class WhitelistSdd extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setUserAliasCreated($userAliasCreated)
     {

@@ -286,7 +286,6 @@ class PaymentServiceProviderDraftPayment extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setSenderIban($senderIban)
     {
@@ -308,7 +307,6 @@ class PaymentServiceProviderDraftPayment extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setReceiverIban($receiverIban)
     {
@@ -330,7 +328,6 @@ class PaymentServiceProviderDraftPayment extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setAmount($amount)
     {
@@ -352,7 +349,6 @@ class PaymentServiceProviderDraftPayment extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setStatus($status)
     {

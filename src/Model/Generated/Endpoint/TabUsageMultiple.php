@@ -574,7 +574,6 @@ class TabUsageMultiple extends BunqModel
 
     /**
      * Get a collection of TabUsageMultiple.
-     *
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
@@ -621,7 +620,6 @@ class TabUsageMultiple extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setUuid($uuid)
     {
@@ -643,7 +641,6 @@ class TabUsageMultiple extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setCreated($created)
     {
@@ -665,7 +662,6 @@ class TabUsageMultiple extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setUpdated($updated)
     {
@@ -687,7 +683,6 @@ class TabUsageMultiple extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setDescription($description)
     {
@@ -709,7 +704,6 @@ class TabUsageMultiple extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setStatus($status)
     {
@@ -731,7 +725,6 @@ class TabUsageMultiple extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setAmountTotal($amountTotal)
     {
@@ -754,7 +747,6 @@ class TabUsageMultiple extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setQrCodeToken($qrCodeToken)
     {
@@ -777,7 +769,6 @@ class TabUsageMultiple extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setTabUrl($tabUrl)
     {
@@ -800,7 +791,6 @@ class TabUsageMultiple extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setVisibility($visibility)
     {
@@ -822,7 +812,6 @@ class TabUsageMultiple extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setMinimumAge($minimumAge)
     {
@@ -845,7 +834,6 @@ class TabUsageMultiple extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setRequireAddress($requireAddress)
     {
@@ -867,7 +855,6 @@ class TabUsageMultiple extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setRedirectUrl($redirectUrl)
     {
@@ -889,7 +876,6 @@ class TabUsageMultiple extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setExpiration($expiration)
     {
@@ -911,7 +897,6 @@ class TabUsageMultiple extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setAlias($alias)
     {
@@ -933,7 +918,6 @@ class TabUsageMultiple extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setCashRegisterLocation($cashRegisterLocation)
     {
@@ -955,7 +939,6 @@ class TabUsageMultiple extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setTabItem($tabItem)
     {
@@ -978,7 +961,6 @@ class TabUsageMultiple extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setTabAttachment($tabAttachment)
     {

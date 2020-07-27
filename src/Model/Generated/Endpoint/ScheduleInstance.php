@@ -219,7 +219,6 @@ class ScheduleInstance extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setState($state)
     {
@@ -241,7 +240,6 @@ class ScheduleInstance extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setTimeStart($timeStart)
     {
@@ -263,7 +261,6 @@ class ScheduleInstance extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setTimeEnd($timeEnd)
     {
@@ -286,7 +283,6 @@ class ScheduleInstance extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setErrorMessage($errorMessage)
     {
@@ -308,7 +304,6 @@ class ScheduleInstance extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setScheduledObject($scheduledObject)
     {
@@ -330,7 +325,6 @@ class ScheduleInstance extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setResultObject($resultObject)
     {
@@ -353,7 +347,6 @@ class ScheduleInstance extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setRequestReferenceSplitTheBill($requestReferenceSplitTheBill)
     {

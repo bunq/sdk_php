@@ -53,14 +53,14 @@ class BunqSdkTestBase extends TestCase
      * Full name of context config file to use for testing.
      */
     const FILE_PATH_CONTEXT_CONFIG = __DIR__ . '/../bunq-test.conf';
-    const FILE_PATH_AVATAR = '/resource/bunq_App_Icon_Square@4x.png';
+    const FILE_PATH_AVATAR = '/resource/vader.png';
 
     /**
      * Attachment constants.
      */
     const ATTACHMENT_CONTENT_TYPE = 'image/png';
     const ATTACHMENT_DESCRIPTION = 'TEST PNG PHP';
-    const ATTACHMENT_PATH_IN = '/bunq_App_Icon_Square@4x.png';
+    const ATTACHMENT_PATH_IN = '/vader.png';
 
     /**
      * Default constants.

@@ -46,7 +46,6 @@ class UserApiKeyAnchoredUser extends BunqModel implements AnchorObjectInterface
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setUserPerson($userPerson)
     {
@@ -66,7 +65,6 @@ class UserApiKeyAnchoredUser extends BunqModel implements AnchorObjectInterface
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setUserCompany($userCompany)
     {
@@ -86,7 +84,6 @@ class UserApiKeyAnchoredUser extends BunqModel implements AnchorObjectInterface
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setUserPaymentServiceProvider($userPaymentServiceProvider)
     {

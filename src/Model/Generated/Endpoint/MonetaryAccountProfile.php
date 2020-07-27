@@ -76,7 +76,6 @@ class MonetaryAccountProfile extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setProfileFill($profileFill)
     {
@@ -98,7 +97,6 @@ class MonetaryAccountProfile extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setProfileDrain($profileDrain)
     {

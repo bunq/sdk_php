@@ -107,7 +107,6 @@ class ConfirmationOfFunds extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setHasSufficientFunds($hasSufficientFunds)
     {

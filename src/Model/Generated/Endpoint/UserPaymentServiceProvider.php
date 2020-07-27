@@ -163,7 +163,6 @@ class UserPaymentServiceProvider extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setId($id)
     {
@@ -185,7 +184,6 @@ class UserPaymentServiceProvider extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setCreated($created)
     {
@@ -207,7 +205,6 @@ class UserPaymentServiceProvider extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setUpdated($updated)
     {
@@ -229,7 +226,6 @@ class UserPaymentServiceProvider extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setCertificateDistinguishedName($certificateDistinguishedName)
     {
@@ -251,7 +247,6 @@ class UserPaymentServiceProvider extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setAlias($alias)
     {
@@ -273,7 +268,6 @@ class UserPaymentServiceProvider extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setAvatar($avatar)
     {
@@ -295,7 +289,6 @@ class UserPaymentServiceProvider extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setStatus($status)
     {
@@ -317,7 +310,6 @@ class UserPaymentServiceProvider extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setSubStatus($subStatus)
     {
@@ -339,7 +331,6 @@ class UserPaymentServiceProvider extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setPublicUuid($publicUuid)
     {
@@ -361,7 +352,6 @@ class UserPaymentServiceProvider extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setDisplayName($displayName)
     {
@@ -383,7 +373,6 @@ class UserPaymentServiceProvider extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setPublicNickName($publicNickName)
     {
@@ -406,7 +395,6 @@ class UserPaymentServiceProvider extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setLanguage($language)
     {
@@ -429,7 +417,6 @@ class UserPaymentServiceProvider extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setRegion($region)
     {
@@ -451,7 +438,6 @@ class UserPaymentServiceProvider extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setSessionTimeout($sessionTimeout)
     {

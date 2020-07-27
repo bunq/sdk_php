@@ -69,7 +69,6 @@ class CardCountryPermission extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setId($id)
     {
@@ -91,7 +90,6 @@ class CardCountryPermission extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setCountry($country)
     {
@@ -113,7 +111,6 @@ class CardCountryPermission extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setExpiryTime($expiryTime)
     {

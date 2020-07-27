@@ -24,7 +24,6 @@ class ExportRibContent extends BunqModel
 
     /**
      * Used to retrieve the raw content of an RIB.
-     *
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *

@@ -222,7 +222,6 @@ class RequestInquiryBatch extends BunqModel
 
     /**
      * Return all the request batches for a monetary account.
-     *
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
@@ -267,7 +266,6 @@ class RequestInquiryBatch extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setRequestInquiries($requestInquiries)
     {
@@ -289,7 +287,6 @@ class RequestInquiryBatch extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setTotalAmountInquired($totalAmountInquired)
     {
@@ -312,7 +309,6 @@ class RequestInquiryBatch extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setReferenceSplitTheBill($referenceSplitTheBill)
     {

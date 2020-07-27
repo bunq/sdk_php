@@ -331,7 +331,6 @@ class TabItemShop extends BunqModel
 
     /**
      * Get a collection of TabItems from a given Tab.
-     *
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
@@ -424,7 +423,6 @@ class TabItemShop extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setId($id)
     {
@@ -446,7 +444,6 @@ class TabItemShop extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setDescription($description)
     {
@@ -468,7 +465,6 @@ class TabItemShop extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setEanCode($eanCode)
     {
@@ -491,7 +487,6 @@ class TabItemShop extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setAvatarAttachment($avatarAttachment)
     {
@@ -513,7 +508,6 @@ class TabItemShop extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setTabAttachment($tabAttachment)
     {
@@ -535,7 +529,6 @@ class TabItemShop extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setQuantity($quantity)
     {
@@ -557,7 +550,6 @@ class TabItemShop extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setAmount($amount)
     {

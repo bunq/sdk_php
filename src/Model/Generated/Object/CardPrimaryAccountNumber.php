@@ -115,7 +115,6 @@ class CardPrimaryAccountNumber extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setId($id)
     {
@@ -137,7 +136,6 @@ class CardPrimaryAccountNumber extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setUuid($uuid)
     {
@@ -159,7 +157,6 @@ class CardPrimaryAccountNumber extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setDescription($description)
     {
@@ -181,7 +178,6 @@ class CardPrimaryAccountNumber extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setStatus($status)
     {
@@ -204,7 +200,6 @@ class CardPrimaryAccountNumber extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setMonetaryAccountId($monetaryAccountId)
     {
@@ -226,7 +221,6 @@ class CardPrimaryAccountNumber extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setFourDigit($fourDigit)
     {

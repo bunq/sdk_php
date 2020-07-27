@@ -120,7 +120,6 @@ class BillingContractSubscription extends BunqModel
 
     /**
      * Get all subscription billing contract for the authenticated user.
-     *
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
@@ -163,7 +162,6 @@ class BillingContractSubscription extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setId($id)
     {
@@ -185,7 +183,6 @@ class BillingContractSubscription extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setCreated($created)
     {
@@ -207,7 +204,6 @@ class BillingContractSubscription extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setUpdated($updated)
     {
@@ -229,7 +225,6 @@ class BillingContractSubscription extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setContractDateStart($contractDateStart)
     {
@@ -251,7 +246,6 @@ class BillingContractSubscription extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setContractDateEnd($contractDateEnd)
     {
@@ -273,7 +267,6 @@ class BillingContractSubscription extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setContractVersion($contractVersion)
     {
@@ -297,7 +290,6 @@ class BillingContractSubscription extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setSubscriptionType($subscriptionType)
     {
@@ -320,7 +312,6 @@ class BillingContractSubscription extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setSubscriptionTypeDowngrade($subscriptionTypeDowngrade)
     {
@@ -342,7 +333,6 @@ class BillingContractSubscription extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setStatus($status)
     {
@@ -364,7 +354,6 @@ class BillingContractSubscription extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setSubStatus($subStatus)
     {

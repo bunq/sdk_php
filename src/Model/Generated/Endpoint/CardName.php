@@ -34,7 +34,6 @@ class CardName extends BunqModel
 
     /**
      * Return all the accepted card names for a specific user.
-     *
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
@@ -76,7 +75,6 @@ class CardName extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setPossibleCardNameArray($possibleCardNameArray)
     {

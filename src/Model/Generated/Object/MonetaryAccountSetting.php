@@ -103,7 +103,6 @@ class MonetaryAccountSetting extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setColor($color)
     {
@@ -125,7 +124,6 @@ class MonetaryAccountSetting extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setIcon($icon)
     {
@@ -148,7 +146,6 @@ class MonetaryAccountSetting extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setDefaultAvatarStatus($defaultAvatarStatus)
     {
@@ -171,7 +168,6 @@ class MonetaryAccountSetting extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setRestrictionChat($restrictionChat)
     {

@@ -118,7 +118,6 @@ class MonetaryAccountProfileFill extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setStatus($status)
     {
@@ -140,7 +139,6 @@ class MonetaryAccountProfileFill extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setBalancePreferred($balancePreferred)
     {
@@ -162,7 +160,6 @@ class MonetaryAccountProfileFill extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setBalanceThresholdLow($balanceThresholdLow)
     {
@@ -185,7 +182,6 @@ class MonetaryAccountProfileFill extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setMethodFill($methodFill)
     {
@@ -207,7 +203,6 @@ class MonetaryAccountProfileFill extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setIssuer($issuer)
     {

@@ -28,7 +28,6 @@ class DraftShareInviteBankQrCodeContent extends BunqModel
      * Returns the raw content of the QR code that links to this draft share
      * invite. The raw content is the binary representation of a file, without
      * any JSON wrapping.
-     *
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *

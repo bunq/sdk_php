@@ -5,10 +5,10 @@ use bunq\Http\BunqResponse;
 
 /**
  */
-class BunqResponseBancontactMerchantTransactionList extends BunqResponse
+class BunqResponseTransferwiseCurrencyList extends BunqResponse
 {
     /**
-     * @return BancontactMerchantTransaction[]
+     * @return TransferwiseCurrency[]
      */
     public function getValue(): array
     {

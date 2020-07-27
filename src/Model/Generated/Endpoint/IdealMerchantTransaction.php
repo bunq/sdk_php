@@ -124,13 +124,6 @@ class IdealMerchantTransaction extends BunqModel
     protected $transactionIdentifier;
 
     /**
-     * Whether or not chat messages are allowed.
-     *
-     * @var bool
-     */
-    protected $allowChat;
-
-    /**
      * The requested amount of money to add.
      *
      * @var Amount
@@ -262,7 +255,6 @@ class IdealMerchantTransaction extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setMonetaryAccountId($monetaryAccountId)
     {
@@ -284,7 +276,6 @@ class IdealMerchantTransaction extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setAlias($alias)
     {
@@ -306,7 +297,6 @@ class IdealMerchantTransaction extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setCounterpartyAlias($counterpartyAlias)
     {
@@ -329,7 +319,6 @@ class IdealMerchantTransaction extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setAmountGuaranteed($amountGuaranteed)
     {
@@ -351,7 +340,6 @@ class IdealMerchantTransaction extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setAmountRequested($amountRequested)
     {
@@ -373,7 +361,6 @@ class IdealMerchantTransaction extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setExpiration($expiration)
     {
@@ -395,7 +382,6 @@ class IdealMerchantTransaction extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setIssuer($issuer)
     {
@@ -417,7 +403,6 @@ class IdealMerchantTransaction extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setIssuerName($issuerName)
     {
@@ -439,7 +424,6 @@ class IdealMerchantTransaction extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setIssuerAuthenticationUrl($issuerAuthenticationUrl)
     {
@@ -461,7 +445,6 @@ class IdealMerchantTransaction extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setPurchaseIdentifier($purchaseIdentifier)
     {
@@ -483,7 +466,6 @@ class IdealMerchantTransaction extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setStatus($status)
     {
@@ -505,7 +487,6 @@ class IdealMerchantTransaction extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setStatusTimestamp($statusTimestamp)
     {
@@ -527,33 +508,10 @@ class IdealMerchantTransaction extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setTransactionIdentifier($transactionIdentifier)
     {
         $this->transactionIdentifier = $transactionIdentifier;
-    }
-
-    /**
-     * Whether or not chat messages are allowed.
-     *
-     * @return bool
-     */
-    public function getAllowChat()
-    {
-        return $this->allowChat;
-    }
-
-    /**
-     * @param bool $allowChat
-     *
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
-     */
-    public function setAllowChat($allowChat)
-    {
-        $this->allowChat = $allowChat;
     }
 
     /**
@@ -610,10 +568,6 @@ class IdealMerchantTransaction extends BunqModel
         }
 
         if (!is_null($this->transactionIdentifier)) {
-            return false;
-        }
-
-        if (!is_null($this->allowChat)) {
             return false;
         }
 

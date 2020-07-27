@@ -210,7 +210,6 @@ class NoteAttachmentBankSwitchServiceNetherlandsIncomingPayment extends BunqMode
 
     /**
      * Manage the notes for a given user.
-     *
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
@@ -297,7 +296,6 @@ class NoteAttachmentBankSwitchServiceNetherlandsIncomingPayment extends BunqMode
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setId($id)
     {
@@ -319,7 +317,6 @@ class NoteAttachmentBankSwitchServiceNetherlandsIncomingPayment extends BunqMode
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setCreated($created)
     {
@@ -341,7 +338,6 @@ class NoteAttachmentBankSwitchServiceNetherlandsIncomingPayment extends BunqMode
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setUpdated($updated)
     {
@@ -363,7 +359,6 @@ class NoteAttachmentBankSwitchServiceNetherlandsIncomingPayment extends BunqMode
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setLabelUserCreator($labelUserCreator)
     {
@@ -385,7 +380,6 @@ class NoteAttachmentBankSwitchServiceNetherlandsIncomingPayment extends BunqMode
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setDescription($description)
     {
@@ -407,7 +401,6 @@ class NoteAttachmentBankSwitchServiceNetherlandsIncomingPayment extends BunqMode
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setAttachment($attachment)
     {
