@@ -146,28 +146,6 @@ class UserPerson extends BunqModel
     protected $taxResident;
 
     /**
-     * The type of identification document the person registered with.
-     *
-     * @var string
-     */
-    protected $documentType;
-
-    /**
-     * The identification document number the person registered with.
-     *
-     * @var string
-     */
-    protected $documentNumber;
-
-    /**
-     * The country which issued the identification document the person
-     * registered with.
-     *
-     * @var string
-     */
-    protected $documentCountryOfIssuance;
-
-    /**
      * The person's main address.
      *
      * @var Address
@@ -286,6 +264,13 @@ class UserPerson extends BunqModel
      * @var NotificationFilter[]
      */
     protected $notificationFilters;
+
+    /**
+     * The relations for this user.
+     *
+     * @var RelationUser[]
+     */
+    protected $relations;
 
     /**
      * The person's first name.
@@ -746,7 +731,6 @@ class UserPerson extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setId($id)
     {
@@ -768,7 +752,6 @@ class UserPerson extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setCreated($created)
     {
@@ -790,7 +773,6 @@ class UserPerson extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setUpdated($updated)
     {
@@ -812,7 +794,6 @@ class UserPerson extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setPublicUuid($publicUuid)
     {
@@ -834,7 +815,6 @@ class UserPerson extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setFirstName($firstName)
     {
@@ -856,7 +836,6 @@ class UserPerson extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setMiddleName($middleName)
     {
@@ -878,7 +857,6 @@ class UserPerson extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setLastName($lastName)
     {
@@ -900,7 +878,6 @@ class UserPerson extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setLegalName($legalName)
     {
@@ -922,7 +899,6 @@ class UserPerson extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setDisplayName($displayName)
     {
@@ -944,7 +920,6 @@ class UserPerson extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setPublicNickName($publicNickName)
     {
@@ -966,7 +941,6 @@ class UserPerson extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setAlias($alias)
     {
@@ -988,78 +962,10 @@ class UserPerson extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setTaxResident($taxResident)
     {
         $this->taxResident = $taxResident;
-    }
-
-    /**
-     * The type of identification document the person registered with.
-     *
-     * @return string
-     */
-    public function getDocumentType()
-    {
-        return $this->documentType;
-    }
-
-    /**
-     * @param string $documentType
-     *
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
-     */
-    public function setDocumentType($documentType)
-    {
-        $this->documentType = $documentType;
-    }
-
-    /**
-     * The identification document number the person registered with.
-     *
-     * @return string
-     */
-    public function getDocumentNumber()
-    {
-        return $this->documentNumber;
-    }
-
-    /**
-     * @param string $documentNumber
-     *
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
-     */
-    public function setDocumentNumber($documentNumber)
-    {
-        $this->documentNumber = $documentNumber;
-    }
-
-    /**
-     * The country which issued the identification document the person
-     * registered with.
-     *
-     * @return string
-     */
-    public function getDocumentCountryOfIssuance()
-    {
-        return $this->documentCountryOfIssuance;
-    }
-
-    /**
-     * @param string $documentCountryOfIssuance
-     *
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
-     */
-    public function setDocumentCountryOfIssuance($documentCountryOfIssuance)
-    {
-        $this->documentCountryOfIssuance = $documentCountryOfIssuance;
     }
 
     /**
@@ -1077,7 +983,6 @@ class UserPerson extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setAddressMain($addressMain)
     {
@@ -1099,7 +1004,6 @@ class UserPerson extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setAddressPostal($addressPostal)
     {
@@ -1121,7 +1025,6 @@ class UserPerson extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setDateOfBirth($dateOfBirth)
     {
@@ -1143,7 +1046,6 @@ class UserPerson extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setPlaceOfBirth($placeOfBirth)
     {
@@ -1166,7 +1068,6 @@ class UserPerson extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setCountryOfBirth($countryOfBirth)
     {
@@ -1188,7 +1089,6 @@ class UserPerson extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setNationality($nationality)
     {
@@ -1211,7 +1111,6 @@ class UserPerson extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setLanguage($language)
     {
@@ -1234,7 +1133,6 @@ class UserPerson extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setRegion($region)
     {
@@ -1256,7 +1154,6 @@ class UserPerson extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setGender($gender)
     {
@@ -1278,7 +1175,6 @@ class UserPerson extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setAvatar($avatar)
     {
@@ -1300,7 +1196,6 @@ class UserPerson extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setVersionTermsOfService($versionTermsOfService)
     {
@@ -1323,7 +1218,6 @@ class UserPerson extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setStatus($status)
     {
@@ -1347,7 +1241,6 @@ class UserPerson extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setSubStatus($subStatus)
     {
@@ -1369,7 +1262,6 @@ class UserPerson extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setSessionTimeout($sessionTimeout)
     {
@@ -1392,7 +1284,6 @@ class UserPerson extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setDailyLimitWithoutConfirmationLogin($dailyLimitWithoutConfirmationLogin)
     {
@@ -1415,11 +1306,31 @@ class UserPerson extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setNotificationFilters($notificationFilters)
     {
         $this->notificationFilters = $notificationFilters;
+    }
+
+    /**
+     * The relations for this user.
+     *
+     * @return RelationUser[]
+     */
+    public function getRelations()
+    {
+        return $this->relations;
+    }
+
+    /**
+     * @param RelationUser[] $relations
+     *
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     */
+    public function setRelations($relations)
+    {
+        $this->relations = $relations;
     }
 
     /**
@@ -1472,18 +1383,6 @@ class UserPerson extends BunqModel
         }
 
         if (!is_null($this->taxResident)) {
-            return false;
-        }
-
-        if (!is_null($this->documentType)) {
-            return false;
-        }
-
-        if (!is_null($this->documentNumber)) {
-            return false;
-        }
-
-        if (!is_null($this->documentCountryOfIssuance)) {
             return false;
         }
 
@@ -1548,6 +1447,10 @@ class UserPerson extends BunqModel
         }
 
         if (!is_null($this->notificationFilters)) {
+            return false;
+        }
+
+        if (!is_null($this->relations)) {
             return false;
         }
 

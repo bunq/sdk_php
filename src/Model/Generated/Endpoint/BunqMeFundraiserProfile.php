@@ -111,7 +111,6 @@ class BunqMeFundraiserProfile extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setColor($color)
     {
@@ -134,7 +133,6 @@ class BunqMeFundraiserProfile extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setAlias($alias)
     {
@@ -156,7 +154,6 @@ class BunqMeFundraiserProfile extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setDescription($description)
     {
@@ -178,7 +175,6 @@ class BunqMeFundraiserProfile extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setAttachment($attachment)
     {
@@ -201,7 +197,6 @@ class BunqMeFundraiserProfile extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setPointer($pointer)
     {
@@ -224,7 +219,6 @@ class BunqMeFundraiserProfile extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setStatus($status)
     {
@@ -246,7 +240,6 @@ class BunqMeFundraiserProfile extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setRedirectUrl($redirectUrl)
     {
@@ -268,7 +261,6 @@ class BunqMeFundraiserProfile extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setInviteProfileName($inviteProfileName)
     {

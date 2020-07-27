@@ -223,13 +223,6 @@ class RequestResponse extends BunqModel
     protected $addressShipping;
 
     /**
-     * Whether or not chat messages are allowed.
-     *
-     * @var bool
-     */
-    protected $allowChat;
-
-    /**
      * The credit scheme id provided by the counterparty for DIRECT_DEBIT
      * inquiries.
      *
@@ -364,7 +357,6 @@ class RequestResponse extends BunqModel
 
     /**
      * Get all RequestResponses for a MonetaryAccount.
-     *
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
@@ -438,7 +430,6 @@ class RequestResponse extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setId($id)
     {
@@ -460,7 +451,6 @@ class RequestResponse extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setCreated($created)
     {
@@ -483,7 +473,6 @@ class RequestResponse extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setUpdated($updated)
     {
@@ -505,7 +494,6 @@ class RequestResponse extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setTimeResponded($timeResponded)
     {
@@ -527,7 +515,6 @@ class RequestResponse extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setTimeExpiry($timeExpiry)
     {
@@ -550,7 +537,6 @@ class RequestResponse extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setTimeRefundRequested($timeRefundRequested)
     {
@@ -572,7 +558,6 @@ class RequestResponse extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setTimeRefunded($timeRefunded)
     {
@@ -594,7 +579,6 @@ class RequestResponse extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setUserRefundRequested($userRefundRequested)
     {
@@ -616,7 +600,6 @@ class RequestResponse extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setMonetaryAccountId($monetaryAccountId)
     {
@@ -638,7 +621,6 @@ class RequestResponse extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setAmountInquired($amountInquired)
     {
@@ -660,7 +642,6 @@ class RequestResponse extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setAmountResponded($amountResponded)
     {
@@ -683,7 +664,6 @@ class RequestResponse extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setStatus($status)
     {
@@ -706,7 +686,6 @@ class RequestResponse extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setDescription($description)
     {
@@ -729,7 +708,6 @@ class RequestResponse extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setAlias($alias)
     {
@@ -752,7 +730,6 @@ class RequestResponse extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setCounterpartyAlias($counterpartyAlias)
     {
@@ -774,7 +751,6 @@ class RequestResponse extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setAttachment($attachment)
     {
@@ -796,7 +772,6 @@ class RequestResponse extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setMinimumAge($minimumAge)
     {
@@ -818,7 +793,6 @@ class RequestResponse extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setRequireAddress($requireAddress)
     {
@@ -840,7 +814,6 @@ class RequestResponse extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setGeolocation($geolocation)
     {
@@ -863,7 +836,6 @@ class RequestResponse extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setType($type)
     {
@@ -886,7 +858,6 @@ class RequestResponse extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setSubType($subType)
     {
@@ -909,7 +880,6 @@ class RequestResponse extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setRedirectUrl($redirectUrl)
     {
@@ -932,7 +902,6 @@ class RequestResponse extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setAddressBilling($addressBilling)
     {
@@ -955,33 +924,10 @@ class RequestResponse extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setAddressShipping($addressShipping)
     {
         $this->addressShipping = $addressShipping;
-    }
-
-    /**
-     * Whether or not chat messages are allowed.
-     *
-     * @return bool
-     */
-    public function getAllowChat()
-    {
-        return $this->allowChat;
-    }
-
-    /**
-     * @param bool $allowChat
-     *
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
-     */
-    public function setAllowChat($allowChat)
-    {
-        $this->allowChat = $allowChat;
     }
 
     /**
@@ -1000,7 +946,6 @@ class RequestResponse extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setCreditSchemeIdentifier($creditSchemeIdentifier)
     {
@@ -1022,7 +967,6 @@ class RequestResponse extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setMandateIdentifier($mandateIdentifier)
     {
@@ -1044,7 +988,6 @@ class RequestResponse extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setEligibleWhitelistId($eligibleWhitelistId)
     {
@@ -1067,7 +1010,6 @@ class RequestResponse extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setRequestReferenceSplitTheBill($requestReferenceSplitTheBill)
     {
@@ -1172,10 +1114,6 @@ class RequestResponse extends BunqModel
         }
 
         if (!is_null($this->addressShipping)) {
-            return false;
-        }
-
-        if (!is_null($this->allowChat)) {
             return false;
         }
 

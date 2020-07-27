@@ -164,7 +164,6 @@ class PaymentAutoAllocateInstance extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setId($id)
     {
@@ -186,7 +185,6 @@ class PaymentAutoAllocateInstance extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setCreated($created)
     {
@@ -208,7 +206,6 @@ class PaymentAutoAllocateInstance extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setUpdated($updated)
     {
@@ -230,7 +227,6 @@ class PaymentAutoAllocateInstance extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setPaymentAutoAllocateId($paymentAutoAllocateId)
     {
@@ -252,7 +248,6 @@ class PaymentAutoAllocateInstance extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setStatus($status)
     {
@@ -274,7 +269,6 @@ class PaymentAutoAllocateInstance extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setErrorMessage($errorMessage)
     {
@@ -296,7 +290,6 @@ class PaymentAutoAllocateInstance extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setPaymentBatch($paymentBatch)
     {
@@ -318,7 +311,6 @@ class PaymentAutoAllocateInstance extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setPaymentId($paymentId)
     {

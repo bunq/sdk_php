@@ -102,6 +102,13 @@ class ShareInviteMonetaryAccountResponse extends BunqModel
     protected $status;
 
     /**
+     * All of the relation users towards this MA.
+     *
+     * @var RelationUser
+     */
+    protected $relationUser;
+
+    /**
      * The share type, either STANDARD or MUTUAL.
      *
      * @var string
@@ -231,7 +238,6 @@ class ShareInviteMonetaryAccountResponse extends BunqModel
 
     /**
      * Return all the shares a user was invited to.
-     *
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
@@ -274,7 +280,6 @@ class ShareInviteMonetaryAccountResponse extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setId($id)
     {
@@ -296,7 +301,6 @@ class ShareInviteMonetaryAccountResponse extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setCreated($created)
     {
@@ -318,7 +322,6 @@ class ShareInviteMonetaryAccountResponse extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setUpdated($updated)
     {
@@ -340,7 +343,6 @@ class ShareInviteMonetaryAccountResponse extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setCounterAlias($counterAlias)
     {
@@ -362,7 +364,6 @@ class ShareInviteMonetaryAccountResponse extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setUserAliasCancelled($userAliasCancelled)
     {
@@ -385,7 +386,6 @@ class ShareInviteMonetaryAccountResponse extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setMonetaryAccountId($monetaryAccountId)
     {
@@ -407,7 +407,6 @@ class ShareInviteMonetaryAccountResponse extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setDraftShareInviteBankId($draftShareInviteBankId)
     {
@@ -429,7 +428,6 @@ class ShareInviteMonetaryAccountResponse extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setShareDetail($shareDetail)
     {
@@ -454,11 +452,31 @@ class ShareInviteMonetaryAccountResponse extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setStatus($status)
     {
         $this->status = $status;
+    }
+
+    /**
+     * All of the relation users towards this MA.
+     *
+     * @return RelationUser
+     */
+    public function getRelationUser()
+    {
+        return $this->relationUser;
+    }
+
+    /**
+     * @param RelationUser $relationUser
+     *
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     */
+    public function setRelationUser($relationUser)
+    {
+        $this->relationUser = $relationUser;
     }
 
     /**
@@ -476,7 +494,6 @@ class ShareInviteMonetaryAccountResponse extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setShareType($shareType)
     {
@@ -498,7 +515,6 @@ class ShareInviteMonetaryAccountResponse extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setStartDate($startDate)
     {
@@ -520,7 +536,6 @@ class ShareInviteMonetaryAccountResponse extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setEndDate($endDate)
     {
@@ -543,7 +558,6 @@ class ShareInviteMonetaryAccountResponse extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setDescription($description)
     {
@@ -588,6 +602,10 @@ class ShareInviteMonetaryAccountResponse extends BunqModel
         }
 
         if (!is_null($this->status)) {
+            return false;
+        }
+
+        if (!is_null($this->relationUser)) {
             return false;
         }
 

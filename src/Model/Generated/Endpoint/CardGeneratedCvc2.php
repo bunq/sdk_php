@@ -182,7 +182,6 @@ class CardGeneratedCvc2 extends BunqModel
 
     /**
      * Get all generated CVC2 codes for a card.
-     *
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
@@ -227,7 +226,6 @@ class CardGeneratedCvc2 extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setId($id)
     {
@@ -249,7 +247,6 @@ class CardGeneratedCvc2 extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setCreated($created)
     {
@@ -271,7 +268,6 @@ class CardGeneratedCvc2 extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setUpdated($updated)
     {
@@ -293,7 +289,6 @@ class CardGeneratedCvc2 extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setType($type)
     {
@@ -315,7 +310,6 @@ class CardGeneratedCvc2 extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setCvc2($cvc2)
     {
@@ -337,7 +331,6 @@ class CardGeneratedCvc2 extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setStatus($status)
     {
@@ -359,7 +352,6 @@ class CardGeneratedCvc2 extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setExpiryTime($expiryTime)
     {

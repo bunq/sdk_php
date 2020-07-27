@@ -203,7 +203,6 @@ class InvoiceByUser extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setId($id)
     {
@@ -225,7 +224,6 @@ class InvoiceByUser extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setCreated($created)
     {
@@ -247,7 +245,6 @@ class InvoiceByUser extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setUpdated($updated)
     {
@@ -269,7 +266,6 @@ class InvoiceByUser extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setInvoiceDate($invoiceDate)
     {
@@ -291,7 +287,6 @@ class InvoiceByUser extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setInvoiceNumber($invoiceNumber)
     {
@@ -313,7 +308,6 @@ class InvoiceByUser extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setStatus($status)
     {
@@ -335,7 +329,6 @@ class InvoiceByUser extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setGroup($group)
     {
@@ -357,7 +350,6 @@ class InvoiceByUser extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setTotalVatInclusive($totalVatInclusive)
     {
@@ -379,7 +371,6 @@ class InvoiceByUser extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setTotalVatExclusive($totalVatExclusive)
     {
@@ -401,7 +392,6 @@ class InvoiceByUser extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setTotalVat($totalVat)
     {
@@ -424,7 +414,6 @@ class InvoiceByUser extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setAlias($alias)
     {
@@ -446,7 +435,6 @@ class InvoiceByUser extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setAddress($address)
     {
@@ -468,7 +456,6 @@ class InvoiceByUser extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setCounterpartyAlias($counterpartyAlias)
     {
@@ -490,7 +477,6 @@ class InvoiceByUser extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setCounterpartyAddress($counterpartyAddress)
     {
@@ -512,7 +498,6 @@ class InvoiceByUser extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setChamberOfCommerceNumber($chamberOfCommerceNumber)
     {
@@ -534,7 +519,6 @@ class InvoiceByUser extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setVatNumber($vatNumber)
     {

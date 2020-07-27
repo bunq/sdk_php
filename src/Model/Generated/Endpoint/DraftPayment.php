@@ -276,7 +276,6 @@ class DraftPayment extends BunqModel
 
     /**
      * Get a listing of all DraftPayments from a given MonetaryAccount.
-     *
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
@@ -350,7 +349,6 @@ class DraftPayment extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setId($id)
     {
@@ -372,7 +370,6 @@ class DraftPayment extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setMonetaryAccountId($monetaryAccountId)
     {
@@ -394,7 +391,6 @@ class DraftPayment extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setUserAliasCreated($userAliasCreated)
     {
@@ -416,7 +412,6 @@ class DraftPayment extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setResponses($responses)
     {
@@ -438,7 +433,6 @@ class DraftPayment extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setStatus($status)
     {
@@ -460,7 +454,6 @@ class DraftPayment extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setType($type)
     {
@@ -482,7 +475,6 @@ class DraftPayment extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setEntries($entries)
     {
@@ -505,7 +497,6 @@ class DraftPayment extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setObject($object)
     {
@@ -528,7 +519,6 @@ class DraftPayment extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setRequestReferenceSplitTheBill($requestReferenceSplitTheBill)
     {
@@ -550,7 +540,6 @@ class DraftPayment extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setSchedule($schedule)
     {

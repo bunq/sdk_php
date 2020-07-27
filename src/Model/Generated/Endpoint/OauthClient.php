@@ -195,7 +195,6 @@ class OauthClient extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setId($id)
     {
@@ -218,7 +217,6 @@ class OauthClient extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setStatus($status)
     {
@@ -240,7 +238,6 @@ class OauthClient extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setClientId($clientId)
     {
@@ -262,7 +259,6 @@ class OauthClient extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setSecret($secret)
     {
@@ -284,7 +280,6 @@ class OauthClient extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setCallbackUrl($callbackUrl)
     {

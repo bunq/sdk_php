@@ -1,8 +1,17 @@
-# Change Log
+# Changelog
 
 ## [Unreleased](https://github.com/bunq/sdk_php/tree/HEAD)
 
-[Full Changelog](https://github.com/bunq/sdk_php/compare/1.13.0...HEAD)
+[Full Changelog](https://github.com/bunq/sdk_php/compare/1.13.1...HEAD)
+
+**Closed issues:**
+
+- Balance is null [\#194](https://github.com/bunq/sdk_php/issues/194)
+- Switch to new Request Signing [\#190](https://github.com/bunq/sdk_php/issues/190)
+
+## [1.13.1](https://github.com/bunq/sdk_php/tree/1.13.1) (2020-04-03)
+
+[Full Changelog](https://github.com/bunq/sdk_php/compare/1.13.0...1.13.1)
 
 **Closed issues:**
 
@@ -13,9 +22,11 @@
 - Use correct oauth token url for sandbox [\#193](https://github.com/bunq/sdk_php/pull/193) ([thijsdejong](https://github.com/thijsdejong))
 
 ## [1.13.0](https://github.com/bunq/sdk_php/tree/1.13.0) (2020-02-19)
+
 [Full Changelog](https://github.com/bunq/sdk_php/compare/1.12.1...1.13.0)
 
 ## [1.12.1](https://github.com/bunq/sdk_php/tree/1.12.1) (2019-09-16)
+
 [Full Changelog](https://github.com/bunq/sdk_php/compare/1.12.0...1.12.1)
 
 **Closed issues:**
@@ -27,6 +38,7 @@
 - Fix decoding of double-wrapped objects. Updated OAuth endpoints. [\#181](https://github.com/bunq/sdk_php/pull/181) ([NickvandeGroes](https://github.com/NickvandeGroes))
 
 ## [1.12.0](https://github.com/bunq/sdk_php/tree/1.12.0) (2019-09-10)
+
 [Full Changelog](https://github.com/bunq/sdk_php/compare/1.10.16...1.12.0)
 
 **Closed issues:**
@@ -43,15 +55,19 @@
 - Fix NotificationFilter, Model issues and implement PSD2 [\#179](https://github.com/bunq/sdk_php/pull/179) ([NickvandeGroes](https://github.com/NickvandeGroes))
 
 ## [1.10.16](https://github.com/bunq/sdk_php/tree/1.10.16) (2019-06-15)
+
 [Full Changelog](https://github.com/bunq/sdk_php/compare/1.10.2...1.10.16)
 
 ## [1.10.2](https://github.com/bunq/sdk_php/tree/1.10.2) (2019-05-15)
+
 [Full Changelog](https://github.com/bunq/sdk_php/compare/1.10.1...1.10.2)
 
 ## [1.10.1](https://github.com/bunq/sdk_php/tree/1.10.1) (2019-05-15)
+
 [Full Changelog](https://github.com/bunq/sdk_php/compare/1.10.0...1.10.1)
 
 ## [1.10.0](https://github.com/bunq/sdk_php/tree/1.10.0) (2019-03-22)
+
 [Full Changelog](https://github.com/bunq/sdk_php/compare/1.2.2...1.10.0)
 
 **Fixed bugs:**
@@ -65,12 +81,15 @@
 - QUESITION: Does BUNQ-INSTALL make API Key Wildcard if no IP is given for permitted IP? [\#168](https://github.com/bunq/sdk_php/issues/168)
 
 ## [1.2.2](https://github.com/bunq/sdk_php/tree/1.2.2) (2018-11-21)
+
 [Full Changelog](https://github.com/bunq/sdk_php/compare/1.2.1...1.2.2)
 
 ## [1.2.1](https://github.com/bunq/sdk_php/tree/1.2.1) (2018-11-21)
+
 [Full Changelog](https://github.com/bunq/sdk_php/compare/1.2.0...1.2.1)
 
 ## [1.2.0](https://github.com/bunq/sdk_php/tree/1.2.0) (2018-11-06)
+
 [Full Changelog](https://github.com/bunq/sdk_php/compare/1.1.0...1.2.0)
 
 **Closed issues:**
@@ -79,6 +98,7 @@
 - In addCallbackUrl voor Tinker geeft error Bunq PHP [\#161](https://github.com/bunq/sdk_php/issues/161)
 
 ## [1.1.0](https://github.com/bunq/sdk_php/tree/1.1.0) (2018-10-05)
+
 [Full Changelog](https://github.com/bunq/sdk_php/compare/1.0.1...1.1.0)
 
 **Closed issues:**
@@ -88,6 +108,7 @@
 - \[epic\] Revamp readme  [\#139](https://github.com/bunq/sdk_php/issues/139)
 
 ## [1.0.1](https://github.com/bunq/sdk_php/tree/1.0.1) (2018-09-01)
+
 [Full Changelog](https://github.com/bunq/sdk_php/compare/1.0.0...1.0.1)
 
 **Closed issues:**
@@ -95,6 +116,7 @@
 - FatalThrowableError when using linkCardToBankAccount [\#158](https://github.com/bunq/sdk_php/issues/158)
 
 ## [1.0.0](https://github.com/bunq/sdk_php/tree/1.0.0) (2018-07-24)
+
 [Full Changelog](https://github.com/bunq/sdk_php/compare/0.13.2...1.0.0)
 
 **Implemented enhancements:**
@@ -119,7 +141,6 @@
 - Parameter default should be null and not a string.  [\#137](https://github.com/bunq/sdk_php/issues/137)
 - Composer installation will generate warnings on case-insensitive systems [\#130](https://github.com/bunq/sdk_php/issues/130)
 - Can not construct a BunqMeTabEntry for use with BunqMeTab::create\(\) [\#118](https://github.com/bunq/sdk_php/issues/118)
-- Monetary account joint cannot be retrieved. [\#76](https://github.com/bunq/sdk_php/issues/76)
 
 **Closed issues:**
 
@@ -132,6 +153,7 @@
 **Merged pull requests:**
 
 - Updating Sandbox API key procedure. \(bunq/sdk\_php\#153\) [\#154](https://github.com/bunq/sdk_php/pull/154) ([sandervdo](https://github.com/sandervdo))
+- Removed userContext.php \(bunq/sdk\_php\#114\) [\#116](https://github.com/bunq/sdk_php/pull/116) ([OGKevin](https://github.com/OGKevin))
 - Oauth bunq/sdk\_php\#156 [\#157](https://github.com/bunq/sdk_php/pull/157) ([OGKevin](https://github.com/OGKevin))
 - Proper check for curl error zero. \(bunq/sdk\_php\#7\) [\#148](https://github.com/bunq/sdk_php/pull/148) ([OGKevin](https://github.com/OGKevin))
 - Fix joint co owner error bunq/sdk\_php\#76 [\#144](https://github.com/bunq/sdk_php/pull/144) ([OGKevin](https://github.com/OGKevin))
@@ -146,6 +168,7 @@
 - Fix typo in README [\#117](https://github.com/bunq/sdk_php/pull/117) ([casperboone](https://github.com/casperboone))
 
 ## [0.13.2](https://github.com/bunq/sdk_php/tree/0.13.2) (2018-05-30)
+
 [Full Changelog](https://github.com/bunq/sdk_php/compare/0.13.1...0.13.2)
 
 **Implemented enhancements:**
@@ -169,10 +192,10 @@
 
 **Merged pull requests:**
 
-- Removed userContext.php \(bunq/sdk\_php\#114\) [\#116](https://github.com/bunq/sdk_php/pull/116) ([OGKevin](https://github.com/OGKevin))
 - Move to new sandbox bunq/sdk\_php\#149 [\#150](https://github.com/bunq/sdk_php/pull/150) ([OGKevin](https://github.com/OGKevin))
 
 ## [0.13.1](https://github.com/bunq/sdk_php/tree/0.13.1) (2018-03-21)
+
 [Full Changelog](https://github.com/bunq/sdk_php/compare/0.13.0...0.13.1)
 
 **Closed issues:**
@@ -184,6 +207,7 @@
 - Renamed filename accordingly. [\#115](https://github.com/bunq/sdk_php/pull/115) ([OGKevin](https://github.com/OGKevin))
 
 ## [0.13.0](https://github.com/bunq/sdk_php/tree/0.13.0) (2018-03-20)
+
 [Full Changelog](https://github.com/bunq/sdk_php/compare/0.12.4...0.13.0)
 
 **Implemented enhancements:**
@@ -222,6 +246,7 @@
 - Bunq update 7  [\#113](https://github.com/bunq/sdk_php/pull/113) ([OGKevin](https://github.com/OGKevin))
 
 ## [0.12.4](https://github.com/bunq/sdk_php/tree/0.12.4) (2017-12-21)
+
 [Full Changelog](https://github.com/bunq/sdk_php/compare/0.12.3...0.12.4)
 
 **Implemented enhancements:**
@@ -247,6 +272,7 @@
 - Allow permitted IPs to be null in the interactive installer [\#78](https://github.com/bunq/sdk_php/pull/78) ([mbernson](https://github.com/mbernson))
 
 ## [0.12.3](https://github.com/bunq/sdk_php/tree/0.12.3) (2017-11-15)
+
 [Full Changelog](https://github.com/bunq/sdk_php/compare/0.12.2...0.12.3)
 
 **Implemented enhancements:**
@@ -262,6 +288,7 @@
 - Feature/callback models \#67 [\#69](https://github.com/bunq/sdk_php/pull/69) ([OGKevin](https://github.com/OGKevin))
 
 ## [0.12.2](https://github.com/bunq/sdk_php/tree/0.12.2) (2017-11-08)
+
 [Full Changelog](https://github.com/bunq/sdk_php/compare/0.12.1...0.12.2)
 
 **Implemented enhancements:**
@@ -278,18 +305,23 @@
 
 **Merged pull requests:**
 
-- toJson\(\) fails on ApiContext of an user person due to session context [\#57](https://github.com/bunq/sdk_php/pull/57) ([DennisSnijder](https://github.com/DennisSnijder))
 - Feature/fix draft payment object \#63 [\#66](https://github.com/bunq/sdk_php/pull/66) ([OGKevin](https://github.com/OGKevin))
 - Feature/add missing cvc fields \#64 [\#65](https://github.com/bunq/sdk_php/pull/65) ([OGKevin](https://github.com/OGKevin))
 
 ## [0.12.1](https://github.com/bunq/sdk_php/tree/0.12.1) (2017-10-11)
+
 [Full Changelog](https://github.com/bunq/sdk_php/compare/0.12.0...0.12.1)
 
 **Fixed bugs:**
 
 - toJson\(\) fails on ApiContext of an user person due to session context [\#56](https://github.com/bunq/sdk_php/issues/56)
 
+**Merged pull requests:**
+
+- toJson\(\) fails on ApiContext of an user person due to session context [\#57](https://github.com/bunq/sdk_php/pull/57) ([DennisSnijder](https://github.com/DennisSnijder))
+
 ## [0.12.0](https://github.com/bunq/sdk_php/tree/0.12.0) (2017-10-11)
+
 [Full Changelog](https://github.com/bunq/sdk_php/compare/0.11.0...0.12.0)
 
 **Implemented enhancements:**
@@ -313,6 +345,7 @@
 - Added PHPStan and script to run "composer phpstan" [\#48](https://github.com/bunq/sdk_php/pull/48) ([holtkamp](https://github.com/holtkamp))
 
 ## [0.11.0](https://github.com/bunq/sdk_php/tree/0.11.0) (2017-09-06)
+
 [Full Changelog](https://github.com/bunq/sdk_php/compare/0.10.0...0.11.0)
 
 **Implemented enhancements:**
@@ -323,6 +356,7 @@
 - Add Pagination and missing fields/endpoints \[\#15\] [\#43](https://github.com/bunq/sdk_php/pull/43) ([dnl-blkv](https://github.com/dnl-blkv))
 
 ## [0.10.0](https://github.com/bunq/sdk_php/tree/0.10.0) (2017-08-22)
+
 [Full Changelog](https://github.com/bunq/sdk_php/compare/0.9.1...0.10.0)
 
 **Implemented enhancements:**
@@ -332,6 +366,7 @@
 - Allow to configure Guzzle options / use a proxy to ensure static IP address [\#5](https://github.com/bunq/sdk_php/issues/5)
 - Cleanup; add toJson and fromJson to ApiContext \[\#39\] [\#40](https://github.com/bunq/sdk_php/pull/40) ([dnl-blkv](https://github.com/dnl-blkv))
 - \#33 bunq response [\#34](https://github.com/bunq/sdk_php/pull/34) ([dnl-blkv](https://github.com/dnl-blkv))
+- \#5 Allow setting a proxy [\#27](https://github.com/bunq/sdk_php/pull/27) ([qurben](https://github.com/qurben))
 - Introduction of Grumphp [\#24](https://github.com/bunq/sdk_php/pull/24) ([cafferata](https://github.com/cafferata))
 
 **Fixed bugs:**
@@ -344,11 +379,13 @@
 - Added an .gitattributes file. [\#20](https://github.com/bunq/sdk_php/pull/20) ([cafferata](https://github.com/cafferata))
 
 ## [0.9.1](https://github.com/bunq/sdk_php/tree/0.9.1) (2017-08-07)
+
+[Full Changelog](https://github.com/bunq/sdk_php/compare/e8ae793435861444486ac48e0fbb385f06afcd1d...0.9.1)
+
 **Implemented enhancements:**
 
 - Remove phpstan [\#28](https://github.com/bunq/sdk_php/issues/28)
 - Suggestion: use Objects instead of arrays [\#22](https://github.com/bunq/sdk_php/issues/22)
-- \#5 Allow setting a proxy [\#27](https://github.com/bunq/sdk_php/pull/27) ([qurben](https://github.com/qurben))
 - Changes the composer PHP requirement [\#19](https://github.com/bunq/sdk_php/pull/19) ([cafferata](https://github.com/cafferata))
 - Removed the default PHPStorm constructor header\(s\) [\#18](https://github.com/bunq/sdk_php/pull/18) ([cafferata](https://github.com/cafferata))
 - Add readme for tests. [\#16](https://github.com/bunq/sdk_php/pull/16) ([OGKevin](https://github.com/OGKevin))
@@ -379,4 +416,4 @@
 
 
 
-\* *This Change Log was automatically generated by [github_changelog_generator](https://github.com/skywinder/Github-Changelog-Generator)*
+\* *This Changelog was automatically generated by [github_changelog_generator](https://github.com/github-changelog-generator/github-changelog-generator)*

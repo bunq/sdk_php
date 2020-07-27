@@ -266,7 +266,6 @@ class DraftShareInviteBank extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setUserAliasCreated($userAliasCreated)
     {
@@ -288,7 +287,6 @@ class DraftShareInviteBank extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setStatus($status)
     {
@@ -310,7 +308,6 @@ class DraftShareInviteBank extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setExpiration($expiration)
     {
@@ -332,7 +329,6 @@ class DraftShareInviteBank extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setShareInviteBankResponseId($shareInviteBankResponseId)
     {
@@ -355,7 +351,6 @@ class DraftShareInviteBank extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setDraftShareUrl($draftShareUrl)
     {
@@ -377,7 +372,6 @@ class DraftShareInviteBank extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setDraftShareSettings($draftShareSettings)
     {
@@ -399,7 +393,6 @@ class DraftShareInviteBank extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setId($id)
     {

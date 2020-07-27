@@ -92,7 +92,6 @@ class Customer extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setId($id)
     {
@@ -114,7 +113,6 @@ class Customer extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setCreated($created)
     {
@@ -136,7 +134,6 @@ class Customer extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setUpdated($updated)
     {
@@ -158,7 +155,6 @@ class Customer extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setBillingAccountId($billingAccountId)
     {
@@ -180,7 +176,6 @@ class Customer extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setInvoiceNotificationPreference($invoiceNotificationPreference)
     {

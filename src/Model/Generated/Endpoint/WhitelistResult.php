@@ -86,7 +86,6 @@ class WhitelistResult extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setId($id)
     {
@@ -109,7 +108,6 @@ class WhitelistResult extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setMonetaryAccountPayingId($monetaryAccountPayingId)
     {
@@ -131,7 +129,6 @@ class WhitelistResult extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setStatus($status)
     {
@@ -153,7 +150,6 @@ class WhitelistResult extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setSubStatus($subStatus)
     {
@@ -175,7 +171,6 @@ class WhitelistResult extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setErrorMessage($errorMessage)
     {
@@ -197,7 +192,6 @@ class WhitelistResult extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setWhitelist($whitelist)
     {
@@ -219,7 +213,6 @@ class WhitelistResult extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setObject($object)
     {
@@ -242,7 +235,6 @@ class WhitelistResult extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setRequestReferenceSplitTheBill($requestReferenceSplitTheBill)
     {

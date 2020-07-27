@@ -267,7 +267,6 @@ class Invoice extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setId($id)
     {
@@ -289,7 +288,6 @@ class Invoice extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setCreated($created)
     {
@@ -311,7 +309,6 @@ class Invoice extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setUpdated($updated)
     {
@@ -333,7 +330,6 @@ class Invoice extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setInvoiceDate($invoiceDate)
     {
@@ -355,7 +351,6 @@ class Invoice extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setInvoiceNumber($invoiceNumber)
     {
@@ -377,7 +372,6 @@ class Invoice extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setStatus($status)
     {
@@ -399,7 +393,6 @@ class Invoice extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setCategory($category)
     {
@@ -421,7 +414,6 @@ class Invoice extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setGroup($group)
     {
@@ -443,7 +435,6 @@ class Invoice extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setTotalVatInclusive($totalVatInclusive)
     {
@@ -465,7 +456,6 @@ class Invoice extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setTotalVatExclusive($totalVatExclusive)
     {
@@ -487,7 +477,6 @@ class Invoice extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setTotalVat($totalVat)
     {
@@ -510,7 +499,6 @@ class Invoice extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setAlias($alias)
     {
@@ -532,7 +520,6 @@ class Invoice extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setAddress($address)
     {
@@ -554,7 +541,6 @@ class Invoice extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setCounterpartyAlias($counterpartyAlias)
     {
@@ -576,7 +562,6 @@ class Invoice extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setCounterpartyAddress($counterpartyAddress)
     {
@@ -598,7 +583,6 @@ class Invoice extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setChamberOfCommerceNumber($chamberOfCommerceNumber)
     {
@@ -620,7 +604,6 @@ class Invoice extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setVatNumber($vatNumber)
     {
@@ -643,7 +626,6 @@ class Invoice extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setRequestReferenceSplitTheBill($requestReferenceSplitTheBill)
     {

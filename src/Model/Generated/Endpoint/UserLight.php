@@ -138,28 +138,6 @@ class UserLight extends BunqModel
     protected $taxResident;
 
     /**
-     * The type of identification document the user registered with.
-     *
-     * @var string
-     */
-    protected $documentType;
-
-    /**
-     * The identification document number the user registered with.
-     *
-     * @var string
-     */
-    protected $documentNumber;
-
-    /**
-     * The country which issued the identification document the user registered
-     * with.
-     *
-     * @var string
-     */
-    protected $documentCountryOfIssuance;
-
-    /**
      * The user's main address.
      *
      * @var Address
@@ -286,9 +264,16 @@ class UserLight extends BunqModel
     protected $denyReason;
 
     /**
+     * The relations for this user.
+     *
+     * @var RelationUser[]
+     */
+    protected $relations;
+
+    /**
      * The user's first name.
      *
-     * @var string
+     * @var string|null
      */
     protected $firstNameFieldForRequest;
 
@@ -302,21 +287,21 @@ class UserLight extends BunqModel
     /**
      * The user's last name.
      *
-     * @var string
+     * @var string|null
      */
     protected $lastNameFieldForRequest;
 
     /**
      * The user's public nick name.
      *
-     * @var string
+     * @var string|null
      */
     protected $publicNickNameFieldForRequest;
 
     /**
      * The user's main address.
      *
-     * @var Address
+     * @var Address|null
      */
     protected $addressMainFieldForRequest;
 
@@ -330,7 +315,7 @@ class UserLight extends BunqModel
     /**
      * The public UUID of the user's avatar.
      *
-     * @var string
+     * @var string|null
      */
     protected $avatarUuidFieldForRequest;
 
@@ -389,7 +374,7 @@ class UserLight extends BunqModel
     /**
      * The user's date of birth. Accepts ISO8601 date formats.
      *
-     * @var string
+     * @var string|null
      */
     protected $dateOfBirthFieldForRequest;
 
@@ -419,7 +404,7 @@ class UserLight extends BunqModel
      * The user's preferred language. Formatted as a ISO 639-1 language code
      * plus a ISO 3166-1 alpha-2 country code, seperated by an underscore.
      *
-     * @var string
+     * @var string|null
      */
     protected $languageFieldForRequest;
 
@@ -427,7 +412,7 @@ class UserLight extends BunqModel
      * The user's preferred region. Formatted as a ISO 639-1 language code plus
      * a ISO 3166-1 alpha-2 country code, seperated by an underscore.
      *
-     * @var string
+     * @var string|null
      */
     protected $regionFieldForRequest;
 
@@ -441,7 +426,7 @@ class UserLight extends BunqModel
     /**
      * The user status. You are not allowed to update the status via PUT.
      *
-     * @var string
+     * @var string|null
      */
     protected $statusFieldForRequest;
 
@@ -449,7 +434,7 @@ class UserLight extends BunqModel
      * The user sub-status. Can be updated to SUBMIT to apply for a full bunq
      * account.
      *
-     * @var string
+     * @var string|null
      */
     protected $subStatusFieldForRequest;
 
@@ -463,7 +448,7 @@ class UserLight extends BunqModel
     /**
      * The setting for the session timeout of the user in seconds.
      *
-     * @var int
+     * @var int|null
      */
     protected $sessionTimeoutFieldForRequest;
 
@@ -471,34 +456,18 @@ class UserLight extends BunqModel
      * The amount the user can pay in the session without asking for
      * credentials.
      *
-     * @var Amount
+     * @var Amount|null
      */
     protected $dailyLimitWithoutConfirmationLoginFieldForRequest;
 
     /**
-     * @param string $firstName The user's first name.
-     * @param string $lastName The user's last name.
-     * @param string $publicNickName The user's public nick name.
-     * @param Address $addressMain The user's main address.
-     * @param string $avatarUuid The public UUID of the user's avatar.
-     * @param string $dateOfBirth The user's date of birth. Accepts ISO8601 date
-     * formats.
-     * @param string $language The user's preferred language. Formatted as a ISO
-     * 639-1 language code plus a ISO 3166-1 alpha-2 country code, seperated by
-     * an underscore.
-     * @param string $region The user's preferred region. Formatted as a ISO
-     * 639-1 language code plus a ISO 3166-1 alpha-2 country code, seperated by
-     * an underscore.
-     * @param string $status The user status. You are not allowed to update the
-     * status via PUT.
-     * @param string $subStatus The user sub-status. Can be updated to SUBMIT to
-     * apply for a full bunq account.
-     * @param int $sessionTimeout The setting for the session timeout of the
-     * user in seconds.
-     * @param Amount $dailyLimitWithoutConfirmationLogin The amount the user can
-     * pay in the session without asking for credentials.
+     * @param string|null $firstName The user's first name.
      * @param string|null $middleName The user's middle name.
+     * @param string|null $lastName The user's last name.
+     * @param string|null $publicNickName The user's public nick name.
+     * @param Address|null $addressMain The user's main address.
      * @param Address|null $addressPostal The user's postal address.
+     * @param string|null $avatarUuid The public UUID of the user's avatar.
      * @param string|null $socialSecurityNumber The user's social security
      * number.
      * @param TaxResident[]|null $taxResident The user's tax residence numbers
@@ -513,31 +482,40 @@ class UserLight extends BunqModel
      * picture/scan of the front side of the identification document.
      * @param int|null $documentBackAttachmentId The reference to the uploaded
      * picture/scan of the back side of the identification document.
+     * @param string|null $dateOfBirth The user's date of birth. Accepts ISO8601
+     * date formats.
      * @param string|null $placeOfBirth The user's place of birth.
      * @param string|null $countryOfBirth The user's country of birth. Formatted
      * as a SO 3166-1 alpha-2 country code.
      * @param string|null $nationality The user's nationality. Formatted as a SO
      * 3166-1 alpha-2 country code.
+     * @param string|null $language The user's preferred language. Formatted as
+     * a ISO 639-1 language code plus a ISO 3166-1 alpha-2 country code,
+     * seperated by an underscore.
+     * @param string|null $region The user's preferred region. Formatted as a
+     * ISO 639-1 language code plus a ISO 3166-1 alpha-2 country code, seperated
+     * by an underscore.
      * @param string|null $gender The user's gender. Can be: MALE, FEMALE and
      * UNKNOWN.
+     * @param string|null $status The user status. You are not allowed to update
+     * the status via PUT.
+     * @param string|null $subStatus The user sub-status. Can be updated to
+     * SUBMIT to apply for a full bunq account.
      * @param Pointer|null $legalGuardianAlias The legal guardian of the user.
      * Required for minors.
+     * @param int|null $sessionTimeout The setting for the session timeout of
+     * the user in seconds.
+     * @param Amount|null $dailyLimitWithoutConfirmationLogin The amount the
+     * user can pay in the session without asking for credentials.
      */
     public function __construct(
-        string $firstName,
-        string $lastName,
-        string $publicNickName,
-        Address $addressMain,
-        string $avatarUuid,
-        string $dateOfBirth,
-        string $language,
-        string $region,
-        string $status,
-        string $subStatus,
-        int $sessionTimeout,
-        Amount $dailyLimitWithoutConfirmationLogin,
+        string $firstName = null,
         string $middleName = null,
+        string $lastName = null,
+        string $publicNickName = null,
+        Address $addressMain = null,
         Address $addressPostal = null,
+        string $avatarUuid = null,
         string $socialSecurityNumber = null,
         array $taxResident = null,
         string $documentType = null,
@@ -545,11 +523,18 @@ class UserLight extends BunqModel
         string $documentCountryOfIssuance = null,
         int $documentFrontAttachmentId = null,
         int $documentBackAttachmentId = null,
+        string $dateOfBirth = null,
         string $placeOfBirth = null,
         string $countryOfBirth = null,
         string $nationality = null,
+        string $language = null,
+        string $region = null,
         string $gender = null,
-        Pointer $legalGuardianAlias = null
+        string $status = null,
+        string $subStatus = null,
+        Pointer $legalGuardianAlias = null,
+        int $sessionTimeout = null,
+        Amount $dailyLimitWithoutConfirmationLogin = null
     ) {
         $this->firstNameFieldForRequest = $firstName;
         $this->middleNameFieldForRequest = $middleName;
@@ -594,7 +579,6 @@ class UserLight extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setId($id)
     {
@@ -616,7 +600,6 @@ class UserLight extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setCreated($created)
     {
@@ -638,7 +621,6 @@ class UserLight extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setUpdated($updated)
     {
@@ -660,7 +642,6 @@ class UserLight extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setPublicUuid($publicUuid)
     {
@@ -682,7 +663,6 @@ class UserLight extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setFirstName($firstName)
     {
@@ -704,7 +684,6 @@ class UserLight extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setMiddleName($middleName)
     {
@@ -726,7 +705,6 @@ class UserLight extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setLastName($lastName)
     {
@@ -748,7 +726,6 @@ class UserLight extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setLegalName($legalName)
     {
@@ -770,7 +747,6 @@ class UserLight extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setDisplayName($displayName)
     {
@@ -792,7 +768,6 @@ class UserLight extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setPublicNickName($publicNickName)
     {
@@ -814,7 +789,6 @@ class UserLight extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setAlias($alias)
     {
@@ -836,7 +810,6 @@ class UserLight extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setSocialSecurityNumber($socialSecurityNumber)
     {
@@ -858,78 +831,10 @@ class UserLight extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setTaxResident($taxResident)
     {
         $this->taxResident = $taxResident;
-    }
-
-    /**
-     * The type of identification document the user registered with.
-     *
-     * @return string
-     */
-    public function getDocumentType()
-    {
-        return $this->documentType;
-    }
-
-    /**
-     * @param string $documentType
-     *
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
-     */
-    public function setDocumentType($documentType)
-    {
-        $this->documentType = $documentType;
-    }
-
-    /**
-     * The identification document number the user registered with.
-     *
-     * @return string
-     */
-    public function getDocumentNumber()
-    {
-        return $this->documentNumber;
-    }
-
-    /**
-     * @param string $documentNumber
-     *
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
-     */
-    public function setDocumentNumber($documentNumber)
-    {
-        $this->documentNumber = $documentNumber;
-    }
-
-    /**
-     * The country which issued the identification document the user registered
-     * with.
-     *
-     * @return string
-     */
-    public function getDocumentCountryOfIssuance()
-    {
-        return $this->documentCountryOfIssuance;
-    }
-
-    /**
-     * @param string $documentCountryOfIssuance
-     *
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
-     */
-    public function setDocumentCountryOfIssuance($documentCountryOfIssuance)
-    {
-        $this->documentCountryOfIssuance = $documentCountryOfIssuance;
     }
 
     /**
@@ -947,7 +852,6 @@ class UserLight extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setAddressMain($addressMain)
     {
@@ -969,7 +873,6 @@ class UserLight extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setAddressPostal($addressPostal)
     {
@@ -991,7 +894,6 @@ class UserLight extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setDateOfBirth($dateOfBirth)
     {
@@ -1013,7 +915,6 @@ class UserLight extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setPlaceOfBirth($placeOfBirth)
     {
@@ -1036,7 +937,6 @@ class UserLight extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setCountryOfBirth($countryOfBirth)
     {
@@ -1058,7 +958,6 @@ class UserLight extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setNationality($nationality)
     {
@@ -1081,7 +980,6 @@ class UserLight extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setLanguage($language)
     {
@@ -1104,7 +1002,6 @@ class UserLight extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setRegion($region)
     {
@@ -1126,7 +1023,6 @@ class UserLight extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setGender($gender)
     {
@@ -1148,7 +1044,6 @@ class UserLight extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setAvatar($avatar)
     {
@@ -1170,7 +1065,6 @@ class UserLight extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setVersionTermsOfService($versionTermsOfService)
     {
@@ -1193,7 +1087,6 @@ class UserLight extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setStatus($status)
     {
@@ -1216,7 +1109,6 @@ class UserLight extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setSubStatus($subStatus)
     {
@@ -1238,7 +1130,6 @@ class UserLight extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setSessionTimeout($sessionTimeout)
     {
@@ -1261,7 +1152,6 @@ class UserLight extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setDailyLimitWithoutConfirmationLogin($dailyLimitWithoutConfirmationLogin)
     {
@@ -1284,7 +1174,6 @@ class UserLight extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setNotificationFilters($notificationFilters)
     {
@@ -1306,11 +1195,31 @@ class UserLight extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setDenyReason($denyReason)
     {
         $this->denyReason = $denyReason;
+    }
+
+    /**
+     * The relations for this user.
+     *
+     * @return RelationUser[]
+     */
+    public function getRelations()
+    {
+        return $this->relations;
+    }
+
+    /**
+     * @param RelationUser[] $relations
+     *
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     */
+    public function setRelations($relations)
+    {
+        $this->relations = $relations;
     }
 
     /**
@@ -1367,18 +1276,6 @@ class UserLight extends BunqModel
         }
 
         if (!is_null($this->taxResident)) {
-            return false;
-        }
-
-        if (!is_null($this->documentType)) {
-            return false;
-        }
-
-        if (!is_null($this->documentNumber)) {
-            return false;
-        }
-
-        if (!is_null($this->documentCountryOfIssuance)) {
             return false;
         }
 
@@ -1447,6 +1344,10 @@ class UserLight extends BunqModel
         }
 
         if (!is_null($this->denyReason)) {
+            return false;
+        }
+
+        if (!is_null($this->relations)) {
             return false;
         }
 

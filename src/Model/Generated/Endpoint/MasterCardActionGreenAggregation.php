@@ -79,7 +79,6 @@ class MasterCardActionGreenAggregation extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setDate($date)
     {
@@ -101,7 +100,6 @@ class MasterCardActionGreenAggregation extends BunqModel
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
-     *
      */
     public function setPercentage($percentage)
     {
