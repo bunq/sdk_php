@@ -6,7 +6,7 @@
 .idea/**/tasks.xml
 .idea/dictionaries
 .idea/php.xml
-./idea/shelf
+.idea/shelf
 
 # Sensitive or high-churn files:
 .idea/**/dataSources/

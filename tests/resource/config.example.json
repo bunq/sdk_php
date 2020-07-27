@@ -6,7 +6,7 @@
     "AttachmentPublicTest": {
         "CONTENT_TYPE": "image/png",
         "DESCRIPTION": "TEST PNG PHP",
-        "PATH_IN": "/bunq_App_Icon_Square@4x.png"
+        "PATH_IN": "/vader.png"
     },
     "TabUsageSingleTest": {
         "CASH_REGISTER_ID": "xxx"
