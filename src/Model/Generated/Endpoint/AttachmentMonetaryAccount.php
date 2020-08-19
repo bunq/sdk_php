@@ -48,12 +48,16 @@ class AttachmentMonetaryAccount extends BunqModel
      * attachment using the X-Bunq-Attachment-Description header.
      *
      * @param string $requestBytes
+     * @param int|null $monetaryAccountId
      * @param string[] $customHeaders
      *
      * @return BunqResponseInt
      */
-    public static function create(string $requestBytes, array $customHeaders = []): BunqResponseInt
-    {
+    public static function create(
+        string $requestBytes,
+        int $monetaryAccountId = null,
+        array $customHeaders = []
+    ): BunqResponseInt {
         $apiClient = new ApiClient(static::getApiContext());
         $apiClient->enableBinary();
         $responseRaw = $apiClient->post(

@@ -225,13 +225,6 @@ class Payment extends BunqModel
     protected $balanceAfterMutation;
 
     /**
-     * A reference to the PaymentAutoAllocateInstance if it exists.
-     *
-     * @var PaymentAutoAllocateInstance
-     */
-    protected $paymentAutoAllocateInstance;
-
-    /**
      * The Amount to transfer with the Payment. Must be bigger than 0 and
      * smaller than the MonetaryAccount's balance.
      *
@@ -945,27 +938,6 @@ class Payment extends BunqModel
     }
 
     /**
-     * A reference to the PaymentAutoAllocateInstance if it exists.
-     *
-     * @return PaymentAutoAllocateInstance
-     */
-    public function getPaymentAutoAllocateInstance()
-    {
-        return $this->paymentAutoAllocateInstance;
-    }
-
-    /**
-     * @param PaymentAutoAllocateInstance $paymentAutoAllocateInstance
-     *
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     */
-    public function setPaymentAutoAllocateInstance($paymentAutoAllocateInstance)
-    {
-        $this->paymentAutoAllocateInstance = $paymentAutoAllocateInstance;
-    }
-
-    /**
      * @return bool
      */
     public function isAllFieldNull()
@@ -1063,10 +1035,6 @@ class Payment extends BunqModel
         }
 
         if (!is_null($this->balanceAfterMutation)) {
-            return false;
-        }
-
-        if (!is_null($this->paymentAutoAllocateInstance)) {
             return false;
         }
 

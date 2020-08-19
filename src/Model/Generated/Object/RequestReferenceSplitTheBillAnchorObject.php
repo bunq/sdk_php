@@ -1,7 +1,7 @@
 <?php
 namespace bunq\Model\Generated\Object;
 
-use bunq\exception\BunqException;
+use bunq\Exception\BunqException;
 use bunq\Model\Core\AnchorObjectInterface;
 use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Endpoint\DraftPayment;
