@@ -1,8 +1,8 @@
 # Changelog
 
-## [Unreleased](https://github.com/bunq/sdk_php/tree/HEAD)
+## [1.14.0](https://github.com/bunq/sdk_php/tree/1.14.0) (2020-07-27)
 
-[Full Changelog](https://github.com/bunq/sdk_php/compare/1.13.1...HEAD)
+[Full Changelog](https://github.com/bunq/sdk_php/compare/1.13.1...1.14.0)
 
 **Closed issues:**
 
@@ -363,6 +363,7 @@
 
 - Allow saving context to JSON and restoring from it [\#39](https://github.com/bunq/sdk_php/issues/39)
 - Response is missing response headers and pagination [\#33](https://github.com/bunq/sdk_php/issues/33)
+- Suggestion: use Objects instead of arrays [\#22](https://github.com/bunq/sdk_php/issues/22)
 - Allow to configure Guzzle options / use a proxy to ensure static IP address [\#5](https://github.com/bunq/sdk_php/issues/5)
 - Cleanup; add toJson and fromJson to ApiContext \[\#39\] [\#40](https://github.com/bunq/sdk_php/pull/40) ([dnl-blkv](https://github.com/dnl-blkv))
 - \#33 bunq response [\#34](https://github.com/bunq/sdk_php/pull/34) ([dnl-blkv](https://github.com/dnl-blkv))
@@ -385,7 +386,6 @@
 **Implemented enhancements:**
 
 - Remove phpstan [\#28](https://github.com/bunq/sdk_php/issues/28)
-- Suggestion: use Objects instead of arrays [\#22](https://github.com/bunq/sdk_php/issues/22)
 - Changes the composer PHP requirement [\#19](https://github.com/bunq/sdk_php/pull/19) ([cafferata](https://github.com/cafferata))
 - Removed the default PHPStorm constructor header\(s\) [\#18](https://github.com/bunq/sdk_php/pull/18) ([cafferata](https://github.com/cafferata))
 - Add readme for tests. [\#16](https://github.com/bunq/sdk_php/pull/16) ([OGKevin](https://github.com/OGKevin))
