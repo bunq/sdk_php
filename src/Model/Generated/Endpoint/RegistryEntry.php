@@ -145,13 +145,6 @@ class RegistryEntry extends BunqModel
     protected $allocations;
 
     /**
-     * The object that is connected to this RegistryEntry.
-     *
-     * @var BunqModel
-     */
-    protected $object;
-
-    /**
      * The attachments attached to the payment.
      *
      * @var RegistryEntryAttachment[]
@@ -700,27 +693,6 @@ class RegistryEntry extends BunqModel
     }
 
     /**
-     * The object that is connected to this RegistryEntry.
-     *
-     * @return BunqModel
-     */
-    public function getObject()
-    {
-        return $this->object;
-    }
-
-    /**
-     * @param BunqModel $object
-     *
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     */
-    public function setObject($object)
-    {
-        $this->object = $object;
-    }
-
-    /**
      * The attachments attached to the payment.
      *
      * @return RegistryEntryAttachment[]
@@ -799,10 +771,6 @@ class RegistryEntry extends BunqModel
         }
 
         if (!is_null($this->allocations)) {
-            return false;
-        }
-
-        if (!is_null($this->object)) {
             return false;
         }
 

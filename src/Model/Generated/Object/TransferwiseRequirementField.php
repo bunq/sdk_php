@@ -18,7 +18,7 @@ class TransferwiseRequirementField extends BunqModel
     /**
      * The field group.
      *
-     * @var BunqModel
+     * @var TransferwiseRequirementFieldGroup
      */
     protected $group;
 
@@ -70,7 +70,7 @@ class TransferwiseRequirementField extends BunqModel
     /**
      * The field group.
      *
-     * @return BunqModel
+     * @return TransferwiseRequirementFieldGroup
      */
     public function getGroup()
     {
@@ -78,7 +78,7 @@ class TransferwiseRequirementField extends BunqModel
     }
 
     /**
-     * @param BunqModel $group
+     * @param TransferwiseRequirementFieldGroup $group
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
