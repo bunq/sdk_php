@@ -1,5 +1,4 @@
 <?php
-
 namespace bunq\Model\Generated\Object;
 
 use bunq\Model\Core\BunqModel;
@@ -41,8 +40,7 @@ class NotificationUrl extends BunqModel
      * @param string $targetUrl
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setTargetUrl($targetUrl)
     {
@@ -61,8 +59,7 @@ class NotificationUrl extends BunqModel
      * @param string $category
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setCategory($category)
     {
@@ -81,8 +78,7 @@ class NotificationUrl extends BunqModel
      * @param string $eventType
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setEventType($eventType)
     {
@@ -101,8 +97,7 @@ class NotificationUrl extends BunqModel
      * @param NotificationAnchorObject $object
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setObject($object)
     {

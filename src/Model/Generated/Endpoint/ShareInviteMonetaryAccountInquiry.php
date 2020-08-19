@@ -1,5 +1,4 @@
 <?php
-
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Http\ApiClient;
@@ -35,6 +34,7 @@ class ShareInviteMonetaryAccountInquiry extends BunqModel
     const FIELD_DRAFT_SHARE_INVITE_BANK_ID = 'draft_share_invite_bank_id';
     const FIELD_SHARE_DETAIL = 'share_detail';
     const FIELD_STATUS = 'status';
+    const FIELD_RELATIONSHIP = 'relationship';
     const FIELD_SHARE_TYPE = 'share_type';
     const FIELD_START_DATE = 'start_date';
     const FIELD_END_DATE = 'end_date';
@@ -104,6 +104,13 @@ class ShareInviteMonetaryAccountInquiry extends BunqModel
     protected $status;
 
     /**
+     * The relationship: COMPANY_DIRECTOR, COMPANY_EMPLOYEE, etc
+     *
+     * @var string
+     */
+    protected $relationship;
+
+    /**
      * The share type, either STANDARD or MUTUAL.
      *
      * @var string
@@ -163,6 +170,13 @@ class ShareInviteMonetaryAccountInquiry extends BunqModel
     protected $statusFieldForRequest;
 
     /**
+     * The relationship: COMPANY_DIRECTOR, COMPANY_EMPLOYEE, etc
+     *
+     * @var string|null
+     */
+    protected $relationshipFieldForRequest;
+
+    /**
      * The share type, either STANDARD or MUTUAL.
      *
      * @var string|null
@@ -184,25 +198,28 @@ class ShareInviteMonetaryAccountInquiry extends BunqModel
     protected $endDateFieldForRequest;
 
     /**
-     * @param Pointer $counterUserAlias        The pointer of the user to share with.
-     * @param ShareDetail $shareDetail         The share details. Only one of these
-     *                                         objects may be passed.
-     * @param string $status                   The status of the share. Can be PENDING, REVOKED
-     *                                         (the user deletes the share inquiry before it's accepted), ACCEPTED,
-     *                                         CANCELLED (the user deletes an active share) or CANCELLATION_PENDING,
-     *                                         CANCELLATION_ACCEPTED, CANCELLATION_REJECTED (for canceling mutual
-     *                                         connects).
+     * @param Pointer $counterUserAlias The pointer of the user to share with.
+     * @param ShareDetail $shareDetail The share details. Only one of these
+     * objects may be passed.
+     * @param string $status The status of the share. Can be PENDING, REVOKED
+     * (the user deletes the share inquiry before it's accepted), ACCEPTED,
+     * CANCELLED (the user deletes an active share) or CANCELLATION_PENDING,
+     * CANCELLATION_ACCEPTED, CANCELLATION_REJECTED (for canceling mutual
+     * connects).
      * @param int|null $draftShareInviteBankId The id of the draft share invite
-     *                                         bank.
-     * @param string|null $shareType           The share type, either STANDARD or MUTUAL.
-     * @param string|null $startDate           The start date of this share.
-     * @param string|null $endDate             The expiration date of this share.
+     * bank.
+     * @param string|null $relationship The relationship: COMPANY_DIRECTOR,
+     * COMPANY_EMPLOYEE, etc
+     * @param string|null $shareType The share type, either STANDARD or MUTUAL.
+     * @param string|null $startDate The start date of this share.
+     * @param string|null $endDate The expiration date of this share.
      */
     public function __construct(
         Pointer $counterUserAlias,
         ShareDetail $shareDetail,
         string $status,
         int $draftShareInviteBankId = null,
+        string $relationship = null,
         string $shareType = null,
         string $startDate = null,
         string $endDate = null
@@ -211,6 +228,7 @@ class ShareInviteMonetaryAccountInquiry extends BunqModel
         $this->draftShareInviteBankIdFieldForRequest = $draftShareInviteBankId;
         $this->shareDetailFieldForRequest = $shareDetail;
         $this->statusFieldForRequest = $status;
+        $this->relationshipFieldForRequest = $relationship;
         $this->shareTypeFieldForRequest = $shareType;
         $this->startDateFieldForRequest = $startDate;
         $this->endDateFieldForRequest = $endDate;
@@ -221,20 +239,22 @@ class ShareInviteMonetaryAccountInquiry extends BunqModel
      * share inquiry for a monetary account, specifying the permission the other
      * bunq user will have on it.
      *
-     * @param Pointer $counterUserAlias        The pointer of the user to share with.
-     * @param ShareDetail $shareDetail         The share details. Only one of these
-     *                                         objects may be passed.
-     * @param string $status                   The status of the share. Can be PENDING, REVOKED
-     *                                         (the user deletes the share inquiry before it's accepted), ACCEPTED,
-     *                                         CANCELLED (the user deletes an active share) or CANCELLATION_PENDING,
-     *                                         CANCELLATION_ACCEPTED, CANCELLATION_REJECTED (for canceling mutual
-     *                                         connects).
+     * @param Pointer $counterUserAlias The pointer of the user to share with.
+     * @param ShareDetail $shareDetail The share details. Only one of these
+     * objects may be passed.
+     * @param string $status The status of the share. Can be PENDING, REVOKED
+     * (the user deletes the share inquiry before it's accepted), ACCEPTED,
+     * CANCELLED (the user deletes an active share) or CANCELLATION_PENDING,
+     * CANCELLATION_ACCEPTED, CANCELLATION_REJECTED (for canceling mutual
+     * connects).
      * @param int|null $monetaryAccountId
      * @param int|null $draftShareInviteBankId The id of the draft share invite
-     *                                         bank.
-     * @param string|null $shareType           The share type, either STANDARD or MUTUAL.
-     * @param string|null $startDate           The start date of this share.
-     * @param string|null $endDate             The expiration date of this share.
+     * bank.
+     * @param string|null $relationship The relationship: COMPANY_DIRECTOR,
+     * COMPANY_EMPLOYEE, etc
+     * @param string|null $shareType The share type, either STANDARD or MUTUAL.
+     * @param string|null $startDate The start date of this share.
+     * @param string|null $endDate The expiration date of this share.
      * @param string[] $customHeaders
      *
      * @return BunqResponseInt
@@ -245,6 +265,7 @@ class ShareInviteMonetaryAccountInquiry extends BunqModel
         string $status,
         int $monetaryAccountId = null,
         int $draftShareInviteBankId = null,
+        string $relationship = null,
         string $shareType = null,
         string $startDate = null,
         string $endDate = null,
@@ -261,6 +282,7 @@ class ShareInviteMonetaryAccountInquiry extends BunqModel
                 self::FIELD_DRAFT_SHARE_INVITE_BANK_ID => $draftShareInviteBankId,
                 self::FIELD_SHARE_DETAIL => $shareDetail,
                 self::FIELD_STATUS => $status,
+                self::FIELD_RELATIONSHIP => $relationship,
                 self::FIELD_SHARE_TYPE => $shareType,
                 self::FIELD_START_DATE => $startDate,
                 self::FIELD_END_DATE => $endDate,
@@ -315,14 +337,14 @@ class ShareInviteMonetaryAccountInquiry extends BunqModel
      * @param int $shareInviteMonetaryAccountInquiryId
      * @param int|null $monetaryAccountId
      * @param ShareDetail|null $shareDetail The share details. Only one of these
-     *                                      objects may be passed.
-     * @param string|null $status           The status of the share. Can be PENDING,
-     *                                      REVOKED (the user deletes the share inquiry before it's accepted),
-     *                                      ACCEPTED, CANCELLED (the user deletes an active share) or
-     *                                      CANCELLATION_PENDING, CANCELLATION_ACCEPTED, CANCELLATION_REJECTED (for
-     *                                      canceling mutual connects).
-     * @param string|null $startDate        The start date of this share.
-     * @param string|null $endDate          The expiration date of this share.
+     * objects may be passed.
+     * @param string|null $status The status of the share. Can be PENDING,
+     * REVOKED (the user deletes the share inquiry before it's accepted),
+     * ACCEPTED, CANCELLED (the user deletes an active share) or
+     * CANCELLATION_PENDING, CANCELLATION_ACCEPTED, CANCELLATION_REJECTED (for
+     * canceling mutual connects).
+     * @param string|null $startDate The start date of this share.
+     * @param string|null $endDate The expiration date of this share.
      * @param string[] $customHeaders
      *
      * @return BunqResponseInt
@@ -364,7 +386,6 @@ class ShareInviteMonetaryAccountInquiry extends BunqModel
      * [DEPRECATED - use /share-invite-monetary-account-response] Get a list
      * with all the share inquiries for a monetary account, only if the
      * requesting user has permission to change the details of the various ones.
-     *
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
@@ -408,8 +429,7 @@ class ShareInviteMonetaryAccountInquiry extends BunqModel
      * @param LabelMonetaryAccount $alias
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setAlias($alias)
     {
@@ -430,8 +450,7 @@ class ShareInviteMonetaryAccountInquiry extends BunqModel
      * @param LabelUser $userAliasCreated
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setUserAliasCreated($userAliasCreated)
     {
@@ -452,8 +471,7 @@ class ShareInviteMonetaryAccountInquiry extends BunqModel
      * @param LabelUser $userAliasRevoked
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setUserAliasRevoked($userAliasRevoked)
     {
@@ -474,8 +492,7 @@ class ShareInviteMonetaryAccountInquiry extends BunqModel
      * @param LabelUser $counterUserAlias
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setCounterUserAlias($counterUserAlias)
     {
@@ -496,8 +513,7 @@ class ShareInviteMonetaryAccountInquiry extends BunqModel
      * @param int $monetaryAccountId
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setMonetaryAccountId($monetaryAccountId)
     {
@@ -518,8 +534,7 @@ class ShareInviteMonetaryAccountInquiry extends BunqModel
      * @param int $draftShareInviteBankId
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setDraftShareInviteBankId($draftShareInviteBankId)
     {
@@ -540,8 +555,7 @@ class ShareInviteMonetaryAccountInquiry extends BunqModel
      * @param ShareDetail $shareDetail
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setShareDetail($shareDetail)
     {
@@ -565,12 +579,32 @@ class ShareInviteMonetaryAccountInquiry extends BunqModel
      * @param string $status
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setStatus($status)
     {
         $this->status = $status;
+    }
+
+    /**
+     * The relationship: COMPANY_DIRECTOR, COMPANY_EMPLOYEE, etc
+     *
+     * @return string
+     */
+    public function getRelationship()
+    {
+        return $this->relationship;
+    }
+
+    /**
+     * @param string $relationship
+     *
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     */
+    public function setRelationship($relationship)
+    {
+        $this->relationship = $relationship;
     }
 
     /**
@@ -587,8 +621,7 @@ class ShareInviteMonetaryAccountInquiry extends BunqModel
      * @param string $shareType
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setShareType($shareType)
     {
@@ -609,8 +642,7 @@ class ShareInviteMonetaryAccountInquiry extends BunqModel
      * @param string $startDate
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setStartDate($startDate)
     {
@@ -631,8 +663,7 @@ class ShareInviteMonetaryAccountInquiry extends BunqModel
      * @param string $endDate
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setEndDate($endDate)
     {
@@ -653,8 +684,7 @@ class ShareInviteMonetaryAccountInquiry extends BunqModel
      * @param int $id
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setId($id)
     {
@@ -695,6 +725,10 @@ class ShareInviteMonetaryAccountInquiry extends BunqModel
         }
 
         if (!is_null($this->status)) {
+            return false;
+        }
+
+        if (!is_null($this->relationship)) {
             return false;
         }
 

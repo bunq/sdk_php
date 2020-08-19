@@ -1,5 +1,4 @@
 <?php
-
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Http\ApiClient;
@@ -186,7 +185,6 @@ class NoteTextSchedulePaymentBatch extends BunqModel
 
     /**
      * Manage the notes for a given user.
-     *
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
@@ -270,8 +268,7 @@ class NoteTextSchedulePaymentBatch extends BunqModel
      * @param int $id
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setId($id)
     {
@@ -292,8 +289,7 @@ class NoteTextSchedulePaymentBatch extends BunqModel
      * @param string $created
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setCreated($created)
     {
@@ -314,8 +310,7 @@ class NoteTextSchedulePaymentBatch extends BunqModel
      * @param string $updated
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setUpdated($updated)
     {
@@ -336,8 +331,7 @@ class NoteTextSchedulePaymentBatch extends BunqModel
      * @param LabelUser $labelUserCreator
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setLabelUserCreator($labelUserCreator)
     {
@@ -358,8 +352,7 @@ class NoteTextSchedulePaymentBatch extends BunqModel
      * @param string $content
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setContent($content)
     {

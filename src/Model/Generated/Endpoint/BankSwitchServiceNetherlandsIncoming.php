@@ -1,5 +1,4 @@
 <?php
-
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Model\Core\BunqModel;
@@ -21,8 +20,6 @@ class BankSwitchServiceNetherlandsIncoming extends BunqModel
     const FIELD_ALIAS = 'alias';
     const FIELD_COUNTERPARTY_ALIAS = 'counterparty_alias';
     const FIELD_STATUS = 'status';
-    const FIELD_SUB_STATUS = 'sub_status';
-    const FIELD_TIME_START_ACTUAL = 'time_start_actual';
 
     /**
      * The label of the user creator of this switch service.
@@ -112,46 +109,20 @@ class BankSwitchServiceNetherlandsIncoming extends BunqModel
     protected $statusFieldForRequest;
 
     /**
-     * The substatus of the switch service. Only available in UPDATE. Can be
-     * NONE or CAPTURED
-     *
-     * @var string|null
+     * @param Pointer $alias The alias of the Monetary Account this switch
+     * service is for.
+     * @param Pointer $counterpartyAlias The Alias of the party we are switching
+     * from. Can only be an Alias of type IBAN (external bank account).
+     * @param string|null $status The status of the switch service. Ignored in
+     * POST requests (always set to REQUESTED) can be CANCELLED in PUT requests
+     * to cancel the switch service. Admin can set this to ACCEPTED, or
+     * REJECTED.
      */
-    protected $subStatusFieldForRequest;
-
-    /**
-     * The timestamp when the switch service actually starts.
-     *
-     * @var string|null
-     */
-    protected $timeStartActualFieldForRequest;
-
-    /**
-     * @param Pointer $alias               The alias of the Monetary Account this switch
-     *                                     service is for.
-     * @param Pointer $counterpartyAlias   The Alias of the party we are switching
-     *                                     from. Can only be an Alias of type IBAN (external bank account).
-     * @param string|null $status          The status of the switch service. Ignored in
-     *                                     POST requests (always set to REQUESTED) can be CANCELLED in PUT requests
-     *                                     to cancel the switch service. Admin can set this to ACCEPTED, or
-     *                                     REJECTED.
-     * @param string|null $subStatus       The substatus of the switch service. Only
-     *                                     available in UPDATE. Can be NONE or CAPTURED
-     * @param string|null $timeStartActual The timestamp when the switch service
-     *                                     actually starts.
-     */
-    public function __construct(
-        Pointer $alias,
-        Pointer $counterpartyAlias,
-        string $status = null,
-        string $subStatus = null,
-        string $timeStartActual = null
-    ) {
+    public function __construct(Pointer $alias, Pointer $counterpartyAlias, string $status = null)
+    {
         $this->aliasFieldForRequest = $alias;
         $this->counterpartyAliasFieldForRequest = $counterpartyAlias;
         $this->statusFieldForRequest = $status;
-        $this->subStatusFieldForRequest = $subStatus;
-        $this->timeStartActualFieldForRequest = $timeStartActual;
     }
 
     /**
@@ -168,8 +139,7 @@ class BankSwitchServiceNetherlandsIncoming extends BunqModel
      * @param LabelUser $userAlias
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setUserAlias($userAlias)
     {
@@ -190,8 +160,7 @@ class BankSwitchServiceNetherlandsIncoming extends BunqModel
      * @param LabelMonetaryAccount $alias
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setAlias($alias)
     {
@@ -212,8 +181,7 @@ class BankSwitchServiceNetherlandsIncoming extends BunqModel
      * @param LabelMonetaryAccount $counterpartyAlias
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setCounterpartyAlias($counterpartyAlias)
     {
@@ -234,8 +202,7 @@ class BankSwitchServiceNetherlandsIncoming extends BunqModel
      * @param string $status
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setStatus($status)
     {
@@ -256,8 +223,7 @@ class BankSwitchServiceNetherlandsIncoming extends BunqModel
      * @param string $subStatus
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setSubStatus($subStatus)
     {
@@ -278,8 +244,7 @@ class BankSwitchServiceNetherlandsIncoming extends BunqModel
      * @param string $timeStartDesired
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setTimeStartDesired($timeStartDesired)
     {
@@ -300,8 +265,7 @@ class BankSwitchServiceNetherlandsIncoming extends BunqModel
      * @param string $timeStartActual
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setTimeStartActual($timeStartActual)
     {
@@ -322,8 +286,7 @@ class BankSwitchServiceNetherlandsIncoming extends BunqModel
      * @param string $timeEnd
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setTimeEnd($timeEnd)
     {
@@ -344,8 +307,7 @@ class BankSwitchServiceNetherlandsIncoming extends BunqModel
      * @param Attachment $attachment
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setAttachment($attachment)
     {

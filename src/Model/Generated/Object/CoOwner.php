@@ -1,5 +1,4 @@
 <?php
-
 namespace bunq\Model\Generated\Object;
 
 use bunq\Model\Core\BunqModel;
@@ -52,8 +51,7 @@ class CoOwner extends BunqModel
      * @param LabelUser $alias
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setAlias($alias)
     {
@@ -74,8 +72,7 @@ class CoOwner extends BunqModel
      * @param string $status
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setStatus($status)
     {

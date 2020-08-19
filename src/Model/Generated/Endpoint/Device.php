@@ -1,5 +1,4 @@
 <?php
-
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\exception\BunqException;
@@ -64,7 +63,6 @@ class Device extends BunqModel implements AnchorObjectInterface
     /**
      * Get a collection of Devices. A Device is either a DevicePhone or a
      * DeviceServer.
-     *
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
@@ -102,8 +100,7 @@ class Device extends BunqModel implements AnchorObjectInterface
      * @param DeviceServer $deviceServer
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setDeviceServer($deviceServer)
     {

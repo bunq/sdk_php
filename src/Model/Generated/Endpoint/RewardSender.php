@@ -1,5 +1,4 @@
 <?php
-
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Http\ApiClient;
@@ -144,8 +143,7 @@ class RewardSender extends BunqModel
      * @param int $id
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setId($id)
     {
@@ -166,8 +164,7 @@ class RewardSender extends BunqModel
      * @param string $created
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setCreated($created)
     {
@@ -188,8 +185,7 @@ class RewardSender extends BunqModel
      * @param string $updated
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setUpdated($updated)
     {
@@ -210,8 +206,7 @@ class RewardSender extends BunqModel
      * @param string $status
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setStatus($status)
     {
@@ -232,8 +227,7 @@ class RewardSender extends BunqModel
      * @param string $subStatus
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setSubStatus($subStatus)
     {
@@ -254,8 +248,7 @@ class RewardSender extends BunqModel
      * @param string $type
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setType($type)
     {
@@ -276,8 +269,7 @@ class RewardSender extends BunqModel
      * @param LabelUser $counterpartyAlias
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setCounterpartyAlias($counterpartyAlias)
     {
@@ -298,8 +290,7 @@ class RewardSender extends BunqModel
      * @param Amount $amountReward
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setAmountReward($amountReward)
     {

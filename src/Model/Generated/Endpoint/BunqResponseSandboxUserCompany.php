@@ -1,17 +1,16 @@
 <?php
-
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Http\BunqResponse;
 
 /**
  */
-class BunqResponseShareInviteBankResponseList extends BunqResponse
+class BunqResponseSandboxUserCompany extends BunqResponse
 {
     /**
-     * @return ShareInviteBankResponse[]
+     * @return SandboxUserCompany
      */
-    public function getValue(): array
+    public function getValue(): SandboxUserCompany
     {
         return parent::getValue();
     }

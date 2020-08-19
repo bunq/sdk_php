@@ -1,5 +1,4 @@
 <?php
-
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Http\ApiClient;
@@ -76,6 +75,13 @@ class Invoice extends BunqModel
      * @var string
      */
     protected $status;
+
+    /**
+     * The category to display to the user.
+     *
+     * @var string
+     */
+    protected $category;
 
     /**
      * The invoice item groups.
@@ -260,8 +266,7 @@ class Invoice extends BunqModel
      * @param int $id
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setId($id)
     {
@@ -282,8 +287,7 @@ class Invoice extends BunqModel
      * @param string $created
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setCreated($created)
     {
@@ -304,8 +308,7 @@ class Invoice extends BunqModel
      * @param string $updated
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setUpdated($updated)
     {
@@ -326,8 +329,7 @@ class Invoice extends BunqModel
      * @param string $invoiceDate
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setInvoiceDate($invoiceDate)
     {
@@ -348,8 +350,7 @@ class Invoice extends BunqModel
      * @param string $invoiceNumber
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setInvoiceNumber($invoiceNumber)
     {
@@ -370,12 +371,32 @@ class Invoice extends BunqModel
      * @param string $status
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setStatus($status)
     {
         $this->status = $status;
+    }
+
+    /**
+     * The category to display to the user.
+     *
+     * @return string
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    /**
+     * @param string $category
+     *
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     */
+    public function setCategory($category)
+    {
+        $this->category = $category;
     }
 
     /**
@@ -392,8 +413,7 @@ class Invoice extends BunqModel
      * @param InvoiceItemGroup[] $group
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setGroup($group)
     {
@@ -414,8 +434,7 @@ class Invoice extends BunqModel
      * @param Amount $totalVatInclusive
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setTotalVatInclusive($totalVatInclusive)
     {
@@ -436,8 +455,7 @@ class Invoice extends BunqModel
      * @param Amount $totalVatExclusive
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setTotalVatExclusive($totalVatExclusive)
     {
@@ -458,8 +476,7 @@ class Invoice extends BunqModel
      * @param Amount $totalVat
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setTotalVat($totalVat)
     {
@@ -481,8 +498,7 @@ class Invoice extends BunqModel
      * @param LabelMonetaryAccount $alias
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setAlias($alias)
     {
@@ -503,8 +519,7 @@ class Invoice extends BunqModel
      * @param Address $address
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setAddress($address)
     {
@@ -525,8 +540,7 @@ class Invoice extends BunqModel
      * @param LabelMonetaryAccount $counterpartyAlias
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setCounterpartyAlias($counterpartyAlias)
     {
@@ -547,8 +561,7 @@ class Invoice extends BunqModel
      * @param Address $counterpartyAddress
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setCounterpartyAddress($counterpartyAddress)
     {
@@ -569,8 +582,7 @@ class Invoice extends BunqModel
      * @param string $chamberOfCommerceNumber
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setChamberOfCommerceNumber($chamberOfCommerceNumber)
     {
@@ -591,8 +603,7 @@ class Invoice extends BunqModel
      * @param string $vatNumber
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setVatNumber($vatNumber)
     {
@@ -614,8 +625,7 @@ class Invoice extends BunqModel
      * @param RequestInquiryReference[] $requestReferenceSplitTheBill
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setRequestReferenceSplitTheBill($requestReferenceSplitTheBill)
     {
@@ -648,6 +658,10 @@ class Invoice extends BunqModel
         }
 
         if (!is_null($this->status)) {
+            return false;
+        }
+
+        if (!is_null($this->category)) {
             return false;
         }
 

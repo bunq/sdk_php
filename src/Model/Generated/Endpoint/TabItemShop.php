@@ -1,5 +1,4 @@
 <?php
-
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Http\ApiClient;
@@ -142,17 +141,17 @@ class TabItemShop extends BunqModel
     protected $amountFieldForRequest;
 
     /**
-     * @param string $description               The TabItem's brief description. Can't be
-     *                                          empty and must be no longer than 100 characters
-     * @param string|null $eanCode              The TabItem's EAN code.
+     * @param string $description The TabItem's brief description. Can't be
+     * empty and must be no longer than 100 characters
+     * @param string|null $eanCode The TabItem's EAN code.
      * @param string|null $avatarAttachmentUuid An AttachmentPublic UUID that
-     *                                          used as an avatar for the TabItem.
-     * @param int[]|null $tabAttachment         A list of AttachmentTab attached to the
-     *                                          TabItem.
-     * @param string|null $quantity             The quantity of the TabItem. Formatted as a
-     *                                          number containing up to 15 digits, up to 15 decimals and using a dot.
-     * @param Amount|null $amount               The money amount of the TabItem. Will not
-     *                                          change the value of the corresponding Tab.
+     * used as an avatar for the TabItem.
+     * @param int[]|null $tabAttachment A list of AttachmentTab attached to the
+     * TabItem.
+     * @param string|null $quantity The quantity of the TabItem. Formatted as a
+     * number containing up to 15 digits, up to 15 decimals and using a dot.
+     * @param Amount|null $amount The money amount of the TabItem. Will not
+     * change the value of the corresponding Tab.
      */
     public function __construct(
         string $description,
@@ -175,18 +174,18 @@ class TabItemShop extends BunqModel
      *
      * @param int $cashRegisterId
      * @param string $tabUuid
-     * @param string $description               The TabItem's brief description. Can't be
-     *                                          empty and must be no longer than 100 characters
+     * @param string $description The TabItem's brief description. Can't be
+     * empty and must be no longer than 100 characters
      * @param int|null $monetaryAccountId
-     * @param string|null $eanCode              The TabItem's EAN code.
+     * @param string|null $eanCode The TabItem's EAN code.
      * @param string|null $avatarAttachmentUuid An AttachmentPublic UUID that
-     *                                          used as an avatar for the TabItem.
-     * @param int[]|null $tabAttachment         A list of AttachmentTab attached to the
-     *                                          TabItem.
-     * @param string|null $quantity             The quantity of the TabItem. Formatted as a
-     *                                          number containing up to 15 digits, up to 15 decimals and using a dot.
-     * @param Amount|null $amount               The money amount of the TabItem. Will not
-     *                                          change the value of the corresponding Tab.
+     * used as an avatar for the TabItem.
+     * @param int[]|null $tabAttachment A list of AttachmentTab attached to the
+     * TabItem.
+     * @param string|null $quantity The quantity of the TabItem. Formatted as a
+     * number containing up to 15 digits, up to 15 decimals and using a dot.
+     * @param Amount|null $amount The money amount of the TabItem. Will not
+     * change the value of the corresponding Tab.
      * @param string[] $customHeaders
      *
      * @return BunqResponseInt
@@ -237,17 +236,17 @@ class TabItemShop extends BunqModel
      * @param string $tabUuid
      * @param int $tabItemShopId
      * @param int|null $monetaryAccountId
-     * @param string|null $description          The TabItem's brief description. Can't be
-     *                                          empty and must be no longer than 100 characters
-     * @param string|null $eanCode              The TabItem's EAN code.
+     * @param string|null $description The TabItem's brief description. Can't be
+     * empty and must be no longer than 100 characters
+     * @param string|null $eanCode The TabItem's EAN code.
      * @param string|null $avatarAttachmentUuid An AttachmentPublic UUID that
-     *                                          used as an avatar for the TabItem.
-     * @param int[]|null $tabAttachment         A list of AttachmentTab attached to the
-     *                                          TabItem.
-     * @param string|null $quantity             The quantity of the TabItem. Formatted as a
-     *                                          number containing up to 15 digits, up to 15 decimals and using a dot.
-     * @param Amount|null $amount               The money amount of the TabItem. Will not
-     *                                          change the value of the corresponding Tab.
+     * used as an avatar for the TabItem.
+     * @param int[]|null $tabAttachment A list of AttachmentTab attached to the
+     * TabItem.
+     * @param string|null $quantity The quantity of the TabItem. Formatted as a
+     * number containing up to 15 digits, up to 15 decimals and using a dot.
+     * @param Amount|null $amount The money amount of the TabItem. Will not
+     * change the value of the corresponding Tab.
      * @param string[] $customHeaders
      *
      * @return BunqResponseInt
@@ -332,7 +331,6 @@ class TabItemShop extends BunqModel
 
     /**
      * Get a collection of TabItems from a given Tab.
-     *
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
@@ -424,8 +422,7 @@ class TabItemShop extends BunqModel
      * @param int $id
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setId($id)
     {
@@ -446,8 +443,7 @@ class TabItemShop extends BunqModel
      * @param string $description
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setDescription($description)
     {
@@ -468,8 +464,7 @@ class TabItemShop extends BunqModel
      * @param string $eanCode
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setEanCode($eanCode)
     {
@@ -491,8 +486,7 @@ class TabItemShop extends BunqModel
      * @param AttachmentPublic $avatarAttachment
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setAvatarAttachment($avatarAttachment)
     {
@@ -513,8 +507,7 @@ class TabItemShop extends BunqModel
      * @param AttachmentTab[] $tabAttachment
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setTabAttachment($tabAttachment)
     {
@@ -535,8 +528,7 @@ class TabItemShop extends BunqModel
      * @param float $quantity
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setQuantity($quantity)
     {
@@ -557,8 +549,7 @@ class TabItemShop extends BunqModel
      * @param Amount $amount
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setAmount($amount)
     {

@@ -1,5 +1,4 @@
 <?php
-
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Http\ApiClient;
@@ -76,7 +75,7 @@ class OauthClient extends BunqModel
 
     /**
      * @param string|null $status The status of the Oauth Client, can be ACTIVE
-     *                            or CANCELLED.
+     * or CANCELLED.
      */
     public function __construct(string $status = null)
     {
@@ -108,7 +107,7 @@ class OauthClient extends BunqModel
 
     /**
      * @param string|null $status The status of the Oauth Client, can be ACTIVE
-     *                            or CANCELLED.
+     * or CANCELLED.
      * @param string[] $customHeaders
      *
      * @return BunqResponseInt
@@ -133,7 +132,7 @@ class OauthClient extends BunqModel
     /**
      * @param int $oauthClientId
      * @param string|null $status The status of the Oauth Client, can be ACTIVE
-     *                            or CANCELLED.
+     * or CANCELLED.
      * @param string[] $customHeaders
      *
      * @return BunqResponseInt
@@ -195,8 +194,7 @@ class OauthClient extends BunqModel
      * @param int $id
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setId($id)
     {
@@ -218,8 +216,7 @@ class OauthClient extends BunqModel
      * @param string $status
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setStatus($status)
     {
@@ -240,8 +237,7 @@ class OauthClient extends BunqModel
      * @param string $clientId
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setClientId($clientId)
     {
@@ -262,8 +258,7 @@ class OauthClient extends BunqModel
      * @param string $secret
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setSecret($secret)
     {
@@ -284,8 +279,7 @@ class OauthClient extends BunqModel
      * @param OauthCallbackUrl[] $callbackUrl
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setCallbackUrl($callbackUrl)
     {

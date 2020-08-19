@@ -1,5 +1,4 @@
 <?php
-
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Http\ApiClient;
@@ -211,13 +210,6 @@ class Payment extends BunqModel
     protected $geolocation;
 
     /**
-     * Whether or not chat messages are allowed.
-     *
-     * @var bool
-     */
-    protected $allowChat;
-
-    /**
      * The reference to the object used for split the bill. Can be
      * RequestInquiry or RequestInquiryBatch
      *
@@ -231,6 +223,13 @@ class Payment extends BunqModel
      * @var Amount
      */
     protected $balanceAfterMutation;
+
+    /**
+     * A reference to the PaymentAutoAllocateInstance if it exists.
+     *
+     * @var PaymentAutoAllocateInstance
+     */
+    protected $paymentAutoAllocateInstance;
 
     /**
      * The Amount to transfer with the Payment. Must be bigger than 0 and
@@ -280,25 +279,22 @@ class Payment extends BunqModel
     protected $allowBunqtoFieldForRequest;
 
     /**
-     * @param Amount $amount                                      The Amount to transfer with the Payment. Must be
-     *                                                            bigger than 0 and smaller than the MonetaryAccount's
-     *                                                            balance.
-     * @param Pointer $counterpartyAlias                          The Alias of the party we are
-     *                                                            transferring the money to. Can be an Alias of type
-     *                                                            EMAIL or PHONE_NUMBER
-     *                                                            (for bunq MonetaryAccounts or bunq.to payments) or
-     *                                                            IBAN (for external bank account).
-     * @param string $description                                 The description for the Payment. Maximum 140
-     *                                                            characters for Payments to external IBANs, 9000
-     *                                                            characters for Payments to only other bunq
-     *                                                            MonetaryAccounts. Field is required but can be an
-     *                                                            empty string.
+     * @param Amount $amount The Amount to transfer with the Payment. Must be
+     * bigger than 0 and smaller than the MonetaryAccount's balance.
+     * @param Pointer $counterpartyAlias The Alias of the party we are
+     * transferring the money to. Can be an Alias of type EMAIL or PHONE_NUMBER
+     * (for bunq MonetaryAccounts or bunq.to payments) or IBAN (for external
+     * bank account).
+     * @param string $description The description for the Payment. Maximum 140
+     * characters for Payments to external IBANs, 9000 characters for Payments
+     * to only other bunq MonetaryAccounts. Field is required but can be an
+     * empty string.
      * @param AttachmentMonetaryAccountPayment[]|null $attachment The
-     *                                                            Attachments to attach to the Payment.
-     * @param string|null $merchantReference                      Optional data to be included with
-     *                                                            the Payment specific to the merchant.
-     * @param bool|null $allowBunqto                              Whether or not sending a bunq.to payment is
-     *                                                            allowed.
+     * Attachments to attach to the Payment.
+     * @param string|null $merchantReference Optional data to be included with
+     * the Payment specific to the merchant.
+     * @param bool|null $allowBunqto Whether or not sending a bunq.to payment is
+     * allowed.
      */
     public function __construct(
         Amount $amount,
@@ -319,26 +315,23 @@ class Payment extends BunqModel
     /**
      * Create a new Payment.
      *
-     * @param Amount $amount                                      The Amount to transfer with the Payment. Must be
-     *                                                            bigger than 0 and smaller than the MonetaryAccount's
-     *                                                            balance.
-     * @param Pointer $counterpartyAlias                          The Alias of the party we are
-     *                                                            transferring the money to. Can be an Alias of type
-     *                                                            EMAIL or PHONE_NUMBER
-     *                                                            (for bunq MonetaryAccounts or bunq.to payments) or
-     *                                                            IBAN (for external bank account).
-     * @param string $description                                 The description for the Payment. Maximum 140
-     *                                                            characters for Payments to external IBANs, 9000
-     *                                                            characters for Payments to only other bunq
-     *                                                            MonetaryAccounts. Field is required but can be an
-     *                                                            empty string.
+     * @param Amount $amount The Amount to transfer with the Payment. Must be
+     * bigger than 0 and smaller than the MonetaryAccount's balance.
+     * @param Pointer $counterpartyAlias The Alias of the party we are
+     * transferring the money to. Can be an Alias of type EMAIL or PHONE_NUMBER
+     * (for bunq MonetaryAccounts or bunq.to payments) or IBAN (for external
+     * bank account).
+     * @param string $description The description for the Payment. Maximum 140
+     * characters for Payments to external IBANs, 9000 characters for Payments
+     * to only other bunq MonetaryAccounts. Field is required but can be an
+     * empty string.
      * @param int|null $monetaryAccountId
      * @param AttachmentMonetaryAccountPayment[]|null $attachment The
-     *                                                            Attachments to attach to the Payment.
-     * @param string|null $merchantReference                      Optional data to be included with
-     *                                                            the Payment specific to the merchant.
-     * @param bool|null $allowBunqto                              Whether or not sending a bunq.to payment is
-     *                                                            allowed.
+     * Attachments to attach to the Payment.
+     * @param string|null $merchantReference Optional data to be included with
+     * the Payment specific to the merchant.
+     * @param bool|null $allowBunqto Whether or not sending a bunq.to payment is
+     * allowed.
      * @param string[] $customHeaders
      *
      * @return BunqResponseInt
@@ -407,7 +400,6 @@ class Payment extends BunqModel
     /**
      * Get a listing of all Payments performed on a given MonetaryAccount
      * (incoming and outgoing).
-     *
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
@@ -451,8 +443,7 @@ class Payment extends BunqModel
      * @param int $id
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setId($id)
     {
@@ -473,8 +464,7 @@ class Payment extends BunqModel
      * @param string $created
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setCreated($created)
     {
@@ -496,8 +486,7 @@ class Payment extends BunqModel
      * @param string $updated
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setUpdated($updated)
     {
@@ -519,8 +508,7 @@ class Payment extends BunqModel
      * @param int $monetaryAccountId
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setMonetaryAccountId($monetaryAccountId)
     {
@@ -543,8 +531,7 @@ class Payment extends BunqModel
      * @param Amount $amount
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setAmount($amount)
     {
@@ -566,8 +553,7 @@ class Payment extends BunqModel
      * @param LabelMonetaryAccount $alias
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setAlias($alias)
     {
@@ -589,8 +575,7 @@ class Payment extends BunqModel
      * @param LabelMonetaryAccount $counterpartyAlias
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setCounterpartyAlias($counterpartyAlias)
     {
@@ -613,8 +598,7 @@ class Payment extends BunqModel
      * @param string $description
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setDescription($description)
     {
@@ -636,8 +620,7 @@ class Payment extends BunqModel
      * @param string $type
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setType($type)
     {
@@ -659,8 +642,7 @@ class Payment extends BunqModel
      * @param string $subType
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setSubType($subType)
     {
@@ -681,8 +663,7 @@ class Payment extends BunqModel
      * @param string $bunqtoStatus
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setBunqtoStatus($bunqtoStatus)
     {
@@ -703,8 +684,7 @@ class Payment extends BunqModel
      * @param string $bunqtoSubStatus
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setBunqtoSubStatus($bunqtoSubStatus)
     {
@@ -725,8 +705,7 @@ class Payment extends BunqModel
      * @param string $bunqtoShareUrl
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setBunqtoShareUrl($bunqtoShareUrl)
     {
@@ -747,8 +726,7 @@ class Payment extends BunqModel
      * @param string $bunqtoExpiry
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setBunqtoExpiry($bunqtoExpiry)
     {
@@ -769,8 +747,7 @@ class Payment extends BunqModel
      * @param string $bunqtoTimeResponded
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setBunqtoTimeResponded($bunqtoTimeResponded)
     {
@@ -791,8 +768,7 @@ class Payment extends BunqModel
      * @param AttachmentMonetaryAccountPayment[] $attachment
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setAttachment($attachment)
     {
@@ -813,8 +789,7 @@ class Payment extends BunqModel
      * @param string $merchantReference
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setMerchantReference($merchantReference)
     {
@@ -835,8 +810,7 @@ class Payment extends BunqModel
      * @param int $batchId
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setBatchId($batchId)
     {
@@ -857,8 +831,7 @@ class Payment extends BunqModel
      * @param int $scheduledId
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setScheduledId($scheduledId)
     {
@@ -879,8 +852,7 @@ class Payment extends BunqModel
      * @param Address $addressShipping
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setAddressShipping($addressShipping)
     {
@@ -901,8 +873,7 @@ class Payment extends BunqModel
      * @param Address $addressBilling
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setAddressBilling($addressBilling)
     {
@@ -923,34 +894,11 @@ class Payment extends BunqModel
      * @param Geolocation $geolocation
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setGeolocation($geolocation)
     {
         $this->geolocation = $geolocation;
-    }
-
-    /**
-     * Whether or not chat messages are allowed.
-     *
-     * @return bool
-     */
-    public function getAllowChat()
-    {
-        return $this->allowChat;
-    }
-
-    /**
-     * @param bool $allowChat
-     *
-     * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
-     */
-    public function setAllowChat($allowChat)
-    {
-        $this->allowChat = $allowChat;
     }
 
     /**
@@ -968,8 +916,7 @@ class Payment extends BunqModel
      * @param RequestInquiryReference[] $requestReferenceSplitTheBill
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setRequestReferenceSplitTheBill($requestReferenceSplitTheBill)
     {
@@ -990,12 +937,32 @@ class Payment extends BunqModel
      * @param Amount $balanceAfterMutation
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setBalanceAfterMutation($balanceAfterMutation)
     {
         $this->balanceAfterMutation = $balanceAfterMutation;
+    }
+
+    /**
+     * A reference to the PaymentAutoAllocateInstance if it exists.
+     *
+     * @return PaymentAutoAllocateInstance
+     */
+    public function getPaymentAutoAllocateInstance()
+    {
+        return $this->paymentAutoAllocateInstance;
+    }
+
+    /**
+     * @param PaymentAutoAllocateInstance $paymentAutoAllocateInstance
+     *
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     */
+    public function setPaymentAutoAllocateInstance($paymentAutoAllocateInstance)
+    {
+        $this->paymentAutoAllocateInstance = $paymentAutoAllocateInstance;
     }
 
     /**
@@ -1091,15 +1058,15 @@ class Payment extends BunqModel
             return false;
         }
 
-        if (!is_null($this->allowChat)) {
-            return false;
-        }
-
         if (!is_null($this->requestReferenceSplitTheBill)) {
             return false;
         }
 
         if (!is_null($this->balanceAfterMutation)) {
+            return false;
+        }
+
+        if (!is_null($this->paymentAutoAllocateInstance)) {
             return false;
         }
 

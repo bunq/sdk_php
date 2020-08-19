@@ -1,5 +1,4 @@
 <?php
-
 namespace bunq\Model\Generated\Object;
 
 use bunq\Model\Core\BunqModel;
@@ -37,8 +36,7 @@ class BunqMeMerchantAvailable extends BunqModel
      * @param string $merchantType
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setMerchantType($merchantType)
     {
@@ -59,8 +57,7 @@ class BunqMeMerchantAvailable extends BunqModel
      * @param bool $available
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setAvailable($available)
     {

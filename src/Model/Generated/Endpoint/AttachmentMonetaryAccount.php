@@ -1,5 +1,4 @@
 <?php
-
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Http\ApiClient;
@@ -86,8 +85,7 @@ class AttachmentMonetaryAccount extends BunqModel
      * @param Attachment $attachment
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setAttachment($attachment)
     {
@@ -108,8 +106,7 @@ class AttachmentMonetaryAccount extends BunqModel
      * @param int $id
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setId($id)
     {

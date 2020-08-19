@@ -1,5 +1,4 @@
 <?php
-
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Http\ApiClient;
@@ -151,19 +150,18 @@ class DraftPayment extends BunqModel
     protected $scheduleFieldForRequest;
 
     /**
-     * @param DraftPaymentEntry[] $entries          The list of entries in the
-     *                                              DraftPayment. Each entry will result in a payment when the
-     *                                              DraftPayment is accepted.
-     * @param int $numberOfRequiredAccepts          The number of accepts that are
-     *                                              required for the draft payment to receive status ACCEPTED.
-     *                                              Currently only
-     *                                              1 is valid.
-     * @param string|null $status                   The status of the DraftPayment.
+     * @param DraftPaymentEntry[] $entries The list of entries in the
+     * DraftPayment. Each entry will result in a payment when the DraftPayment
+     * is accepted.
+     * @param int $numberOfRequiredAccepts The number of accepts that are
+     * required for the draft payment to receive status ACCEPTED. Currently only
+     * 1 is valid.
+     * @param string|null $status The status of the DraftPayment.
      * @param string|null $previousUpdatedTimestamp The last updated_timestamp
-     *                                              that you received for this DraftPayment. This needs to be provided
-     *                                              to prevent race conditions.
-     * @param Schedule|null $schedule               The schedule details when creating or
-     *                                              updating a scheduled payment.
+     * that you received for this DraftPayment. This needs to be provided to
+     * prevent race conditions.
+     * @param Schedule|null $schedule The schedule details when creating or
+     * updating a scheduled payment.
      */
     public function __construct(
         array $entries,
@@ -182,20 +180,19 @@ class DraftPayment extends BunqModel
     /**
      * Create a new DraftPayment.
      *
-     * @param DraftPaymentEntry[] $entries          The list of entries in the
-     *                                              DraftPayment. Each entry will result in a payment when the
-     *                                              DraftPayment is accepted.
-     * @param int $numberOfRequiredAccepts          The number of accepts that are
-     *                                              required for the draft payment to receive status ACCEPTED.
-     *                                              Currently only
-     *                                              1 is valid.
+     * @param DraftPaymentEntry[] $entries The list of entries in the
+     * DraftPayment. Each entry will result in a payment when the DraftPayment
+     * is accepted.
+     * @param int $numberOfRequiredAccepts The number of accepts that are
+     * required for the draft payment to receive status ACCEPTED. Currently only
+     * 1 is valid.
      * @param int|null $monetaryAccountId
-     * @param string|null $status                   The status of the DraftPayment.
+     * @param string|null $status The status of the DraftPayment.
      * @param string|null $previousUpdatedTimestamp The last updated_timestamp
-     *                                              that you received for this DraftPayment. This needs to be provided
-     *                                              to prevent race conditions.
-     * @param Schedule|null $schedule               The schedule details when creating or
-     *                                              updating a scheduled payment.
+     * that you received for this DraftPayment. This needs to be provided to
+     * prevent race conditions.
+     * @param Schedule|null $schedule The schedule details when creating or
+     * updating a scheduled payment.
      * @param string[] $customHeaders
      *
      * @return BunqResponseInt
@@ -235,15 +232,15 @@ class DraftPayment extends BunqModel
      *
      * @param int $draftPaymentId
      * @param int|null $monetaryAccountId
-     * @param string|null $status                   The status of the DraftPayment.
-     * @param DraftPaymentEntry[]|null $entries     The list of entries in the
-     *                                              DraftPayment. Each entry will result in a payment when the
-     *                                              DraftPayment is accepted.
+     * @param string|null $status The status of the DraftPayment.
+     * @param DraftPaymentEntry[]|null $entries The list of entries in the
+     * DraftPayment. Each entry will result in a payment when the DraftPayment
+     * is accepted.
      * @param string|null $previousUpdatedTimestamp The last updated_timestamp
-     *                                              that you received for this DraftPayment. This needs to be provided
-     *                                              to prevent race conditions.
-     * @param Schedule|null $schedule               The schedule details when creating or
-     *                                              updating a scheduled payment.
+     * that you received for this DraftPayment. This needs to be provided to
+     * prevent race conditions.
+     * @param Schedule|null $schedule The schedule details when creating or
+     * updating a scheduled payment.
      * @param string[] $customHeaders
      *
      * @return BunqResponseInt
@@ -279,7 +276,6 @@ class DraftPayment extends BunqModel
 
     /**
      * Get a listing of all DraftPayments from a given MonetaryAccount.
-     *
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
@@ -352,8 +348,7 @@ class DraftPayment extends BunqModel
      * @param int $id
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setId($id)
     {
@@ -374,8 +369,7 @@ class DraftPayment extends BunqModel
      * @param int $monetaryAccountId
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setMonetaryAccountId($monetaryAccountId)
     {
@@ -396,8 +390,7 @@ class DraftPayment extends BunqModel
      * @param LabelUser $userAliasCreated
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setUserAliasCreated($userAliasCreated)
     {
@@ -418,8 +411,7 @@ class DraftPayment extends BunqModel
      * @param DraftPaymentResponse[] $responses
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setResponses($responses)
     {
@@ -440,8 +432,7 @@ class DraftPayment extends BunqModel
      * @param string $status
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setStatus($status)
     {
@@ -462,8 +453,7 @@ class DraftPayment extends BunqModel
      * @param string $type
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setType($type)
     {
@@ -484,8 +474,7 @@ class DraftPayment extends BunqModel
      * @param DraftPaymentEntry[] $entries
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setEntries($entries)
     {
@@ -507,8 +496,7 @@ class DraftPayment extends BunqModel
      * @param DraftPaymentAnchorObject $object
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setObject($object)
     {
@@ -530,8 +518,7 @@ class DraftPayment extends BunqModel
      * @param RequestInquiryReference[] $requestReferenceSplitTheBill
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setRequestReferenceSplitTheBill($requestReferenceSplitTheBill)
     {
@@ -552,8 +539,7 @@ class DraftPayment extends BunqModel
      * @param Schedule $schedule
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setSchedule($schedule)
     {

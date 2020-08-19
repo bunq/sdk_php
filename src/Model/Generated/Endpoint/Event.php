@@ -1,5 +1,4 @@
 <?php
-
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Http\ApiClient;
@@ -123,7 +122,6 @@ class Event extends BunqModel
      * from the response, when not provided user events are displayed. User
      * events are events that are not related to a monetary account (for
      * example: connect invites).
-     *
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
@@ -163,8 +161,7 @@ class Event extends BunqModel
      * @param int $id
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setId($id)
     {
@@ -185,8 +182,7 @@ class Event extends BunqModel
      * @param string $created
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setCreated($created)
     {
@@ -207,8 +203,7 @@ class Event extends BunqModel
      * @param string $updated
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setUpdated($updated)
     {
@@ -229,8 +224,7 @@ class Event extends BunqModel
      * @param string $action
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setAction($action)
     {
@@ -251,8 +245,7 @@ class Event extends BunqModel
      * @param string $userId
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setUserId($userId)
     {
@@ -274,8 +267,7 @@ class Event extends BunqModel
      * @param string $monetaryAccountId
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setMonetaryAccountId($monetaryAccountId)
     {
@@ -296,8 +288,7 @@ class Event extends BunqModel
      * @param EventObject $object
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setObject($object)
     {
@@ -320,8 +311,7 @@ class Event extends BunqModel
      * @param string $status
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setStatus($status)
     {

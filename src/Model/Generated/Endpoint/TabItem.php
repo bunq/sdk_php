@@ -1,5 +1,4 @@
 <?php
-
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Model\Core\BunqModel;
@@ -79,8 +78,7 @@ class TabItem extends BunqModel
      * @param int $id
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setId($id)
     {
@@ -101,8 +99,7 @@ class TabItem extends BunqModel
      * @param string $description
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setDescription($description)
     {
@@ -123,8 +120,7 @@ class TabItem extends BunqModel
      * @param string $eanCode
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setEanCode($eanCode)
     {
@@ -146,8 +142,7 @@ class TabItem extends BunqModel
      * @param AttachmentPublic $avatarAttachment
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setAvatarAttachment($avatarAttachment)
     {
@@ -168,8 +163,7 @@ class TabItem extends BunqModel
      * @param AttachmentTab[] $tabAttachment
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setTabAttachment($tabAttachment)
     {
@@ -191,8 +185,7 @@ class TabItem extends BunqModel
      * @param string $quantity
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setQuantity($quantity)
     {
@@ -213,8 +206,7 @@ class TabItem extends BunqModel
      * @param Amount $amount
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setAmount($amount)
     {

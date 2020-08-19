@@ -1,5 +1,4 @@
 <?php
-
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\exception\BunqException;
@@ -83,7 +82,6 @@ class User extends BunqModel implements AnchorObjectInterface
 
     /**
      * Get a collection of all available users.
-     *
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
@@ -121,8 +119,7 @@ class User extends BunqModel implements AnchorObjectInterface
      * @param UserLight $userLight
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setUserLight($userLight)
     {
@@ -141,8 +138,7 @@ class User extends BunqModel implements AnchorObjectInterface
      * @param UserPerson $userPerson
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setUserPerson($userPerson)
     {
@@ -161,8 +157,7 @@ class User extends BunqModel implements AnchorObjectInterface
      * @param UserCompany $userCompany
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setUserCompany($userCompany)
     {
@@ -181,8 +176,7 @@ class User extends BunqModel implements AnchorObjectInterface
      * @param UserApiKey $userApiKey
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setUserApiKey($userApiKey)
     {
@@ -201,8 +195,7 @@ class User extends BunqModel implements AnchorObjectInterface
      * @param UserPaymentServiceProvider $userPaymentServiceProvider
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setUserPaymentServiceProvider($userPaymentServiceProvider)
     {

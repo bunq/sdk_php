@@ -1,8 +1,6 @@
 <?php
-
 namespace bunq\Model\Generated\Endpoint;
 
-use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
 use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
@@ -160,7 +158,6 @@ class ExportAnnualOverview extends BunqModel
 
     /**
      * List all the annual overviews for a user.
-     *
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
@@ -200,8 +197,7 @@ class ExportAnnualOverview extends BunqModel
      * @param int $id
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setId($id)
     {
@@ -222,8 +218,7 @@ class ExportAnnualOverview extends BunqModel
      * @param string $created
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setCreated($created)
     {
@@ -244,8 +239,7 @@ class ExportAnnualOverview extends BunqModel
      * @param string $updated
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setUpdated($updated)
     {
@@ -266,8 +260,7 @@ class ExportAnnualOverview extends BunqModel
      * @param int $year
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setYear($year)
     {
@@ -288,8 +281,7 @@ class ExportAnnualOverview extends BunqModel
      * @param LabelUser $aliasUser
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setAliasUser($aliasUser)
     {

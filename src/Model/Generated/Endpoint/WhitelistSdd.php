@@ -1,5 +1,4 @@
 <?php
-
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Http\ApiClient;
@@ -132,12 +131,12 @@ class WhitelistSdd extends BunqModel
     protected $maximumAmountPerMonthFieldForRequest;
 
     /**
-     * @param int $monetaryAccountPayingId  ID of the monetary account of which
-     *                                      you want to pay from.
-     * @param int $requestId                ID of the request for which you want to whitelist
-     *                                      the originating SDD.
+     * @param int $monetaryAccountPayingId ID of the monetary account of which
+     * you want to pay from.
+     * @param int $requestId ID of the request for which you want to whitelist
+     * the originating SDD.
      * @param Amount $maximumAmountPerMonth The maximum amount of money that is
-     *                                      allowed to be deducted based on the whitelist.
+     * allowed to be deducted based on the whitelist.
      */
     public function __construct(int $monetaryAccountPayingId, int $requestId, Amount $maximumAmountPerMonth)
     {
@@ -174,12 +173,12 @@ class WhitelistSdd extends BunqModel
     /**
      * Create a new SDD whitelist entry.
      *
-     * @param int $monetaryAccountPayingId  ID of the monetary account of which
-     *                                      you want to pay from.
-     * @param int $requestId                ID of the request for which you want to whitelist
-     *                                      the originating SDD.
+     * @param int $monetaryAccountPayingId ID of the monetary account of which
+     * you want to pay from.
+     * @param int $requestId ID of the request for which you want to whitelist
+     * the originating SDD.
      * @param Amount $maximumAmountPerMonth The maximum amount of money that is
-     *                                      allowed to be deducted based on the whitelist.
+     * allowed to be deducted based on the whitelist.
      * @param string[] $customHeaders
      *
      * @return BunqResponseInt
@@ -211,10 +210,10 @@ class WhitelistSdd extends BunqModel
 
     /**
      * @param int $whitelistSddId
-     * @param int|null $monetaryAccountPayingId  ID of the monetary account of
-     *                                           which you want to pay from.
+     * @param int|null $monetaryAccountPayingId ID of the monetary account of
+     * which you want to pay from.
      * @param Amount|null $maximumAmountPerMonth The maximum amount of money
-     *                                           that is allowed to be deducted based on the whitelist.
+     * that is allowed to be deducted based on the whitelist.
      * @param string[] $customHeaders
      *
      * @return BunqResponseInt
@@ -267,7 +266,6 @@ class WhitelistSdd extends BunqModel
 
     /**
      * Get a listing of all SDD whitelist entries for a target monetary account.
-     *
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
@@ -307,8 +305,7 @@ class WhitelistSdd extends BunqModel
      * @param int $id
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setId($id)
     {
@@ -330,8 +327,7 @@ class WhitelistSdd extends BunqModel
      * @param int $monetaryAccountIncomingId
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setMonetaryAccountIncomingId($monetaryAccountIncomingId)
     {
@@ -353,8 +349,7 @@ class WhitelistSdd extends BunqModel
      * @param int $monetaryAccountPayingId
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setMonetaryAccountPayingId($monetaryAccountPayingId)
     {
@@ -375,8 +370,7 @@ class WhitelistSdd extends BunqModel
      * @param string $type
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setType($type)
     {
@@ -397,8 +391,7 @@ class WhitelistSdd extends BunqModel
      * @param string $status
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setStatus($status)
     {
@@ -419,8 +412,7 @@ class WhitelistSdd extends BunqModel
      * @param string $creditSchemeIdentifier
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setCreditSchemeIdentifier($creditSchemeIdentifier)
     {
@@ -441,8 +433,7 @@ class WhitelistSdd extends BunqModel
      * @param string $mandateIdentifier
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setMandateIdentifier($mandateIdentifier)
     {
@@ -463,8 +454,7 @@ class WhitelistSdd extends BunqModel
      * @param LabelMonetaryAccount $counterpartyAlias
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setCounterpartyAlias($counterpartyAlias)
     {
@@ -485,8 +475,7 @@ class WhitelistSdd extends BunqModel
      * @param Amount $maximumAmountPerMonth
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setMaximumAmountPerMonth($maximumAmountPerMonth)
     {
@@ -507,8 +496,7 @@ class WhitelistSdd extends BunqModel
      * @param LabelUser $userAliasCreated
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setUserAliasCreated($userAliasCreated)
     {

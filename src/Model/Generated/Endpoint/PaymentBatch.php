@@ -1,9 +1,9 @@
 <?php
-
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Http\ApiClient;
 use bunq\Model\Core\BunqModel;
+use bunq\Model\Generated\Object\PaymentBatchAnchoredPayment;
 
 /**
  * Create a payment batch, or show the payment batches of a monetary
@@ -34,7 +34,7 @@ class PaymentBatch extends BunqModel
     /**
      * The list of mutations that were made.
      *
-     * @var Payment[]
+     * @var PaymentBatchAnchoredPayment
      */
     protected $payments;
 
@@ -47,7 +47,7 @@ class PaymentBatch extends BunqModel
 
     /**
      * @param Payment[] $payments The list of payments we want to send in a
-     *                            single batch.
+     * single batch.
      */
     public function __construct(array $payments)
     {
@@ -59,7 +59,7 @@ class PaymentBatch extends BunqModel
      * that will become part of the batch.
      *
      * @param Payment[] $payments The list of payments we want to send in a
-     *                            single batch.
+     * single batch.
      * @param int|null $monetaryAccountId
      * @param string[] $customHeaders
      *
@@ -146,7 +146,6 @@ class PaymentBatch extends BunqModel
 
     /**
      * Return all the payment batches for a monetary account.
-     *
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
@@ -179,7 +178,7 @@ class PaymentBatch extends BunqModel
     /**
      * The list of mutations that were made.
      *
-     * @return Payment[]
+     * @return PaymentBatchAnchoredPayment
      */
     public function getPayments()
     {
@@ -187,11 +186,10 @@ class PaymentBatch extends BunqModel
     }
 
     /**
-     * @param Payment[] $payments
+     * @param PaymentBatchAnchoredPayment $payments
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setPayments($payments)
     {

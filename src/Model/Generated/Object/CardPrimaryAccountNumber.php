@@ -1,5 +1,4 @@
 <?php
-
 namespace bunq\Model\Generated\Object;
 
 use bunq\Model\Core\BunqModel;
@@ -82,12 +81,12 @@ class CardPrimaryAccountNumber extends BunqModel
     protected $monetaryAccountIdFieldForRequest;
 
     /**
-     * @param int $id                     The ID for this PAN.
-     * @param string|null $description    The description for this PAN.
-     * @param string|null $status         The status for this PAN, only for Online
-     *                                    Cards.
+     * @param int $id The ID for this PAN.
+     * @param string|null $description The description for this PAN.
+     * @param string|null $status The status for this PAN, only for Online
+     * Cards.
      * @param int|null $monetaryAccountId The ID of the monetary account to
-     *                                    assign to this PAN, only for Online Cards.
+     * assign to this PAN, only for Online Cards.
      */
     public function __construct(
         int $id,
@@ -115,8 +114,7 @@ class CardPrimaryAccountNumber extends BunqModel
      * @param int $id
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setId($id)
     {
@@ -137,8 +135,7 @@ class CardPrimaryAccountNumber extends BunqModel
      * @param string $uuid
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setUuid($uuid)
     {
@@ -159,8 +156,7 @@ class CardPrimaryAccountNumber extends BunqModel
      * @param string $description
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setDescription($description)
     {
@@ -181,8 +177,7 @@ class CardPrimaryAccountNumber extends BunqModel
      * @param string $status
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setStatus($status)
     {
@@ -204,8 +199,7 @@ class CardPrimaryAccountNumber extends BunqModel
      * @param int $monetaryAccountId
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setMonetaryAccountId($monetaryAccountId)
     {
@@ -226,8 +220,7 @@ class CardPrimaryAccountNumber extends BunqModel
      * @param string $fourDigit
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setFourDigit($fourDigit)
     {

@@ -1,15 +1,14 @@
 <?php
-
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Http\BunqResponse;
 
 /**
  */
-class BunqResponseDraftShareInviteApiKeyList extends BunqResponse
+class BunqResponseInsightList extends BunqResponse
 {
     /**
-     * @return DraftShareInviteApiKey[]
+     * @return Insight[]
      */
     public function getValue(): array
     {

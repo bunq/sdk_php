@@ -1,5 +1,4 @@
 <?php
-
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Http\ApiClient;
@@ -92,8 +91,8 @@ class NoteAttachmentWhitelistResult extends BunqModel
     protected $attachmentIdFieldForRequest;
 
     /**
-     * @param int $attachmentId        The reference to the uploaded file to attach to
-     *                                 this note.
+     * @param int $attachmentId The reference to the uploaded file to attach to
+     * this note.
      * @param string|null $description Optional description of the attachment.
      */
     public function __construct(int $attachmentId, string $description = null)
@@ -105,8 +104,8 @@ class NoteAttachmentWhitelistResult extends BunqModel
     /**
      * @param int $whitelistId
      * @param int $whitelistResultId
-     * @param int $attachmentId        The reference to the uploaded file to attach to
-     *                                 this note.
+     * @param int $attachmentId The reference to the uploaded file to attach to
+     * this note.
      * @param int|null $monetaryAccountId
      * @param string|null $description Optional description of the attachment.
      * @param string[] $customHeaders
@@ -220,7 +219,6 @@ class NoteAttachmentWhitelistResult extends BunqModel
 
     /**
      * Manage the notes for a given user.
-     *
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
@@ -310,8 +308,7 @@ class NoteAttachmentWhitelistResult extends BunqModel
      * @param int $id
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setId($id)
     {
@@ -332,8 +329,7 @@ class NoteAttachmentWhitelistResult extends BunqModel
      * @param string $created
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setCreated($created)
     {
@@ -354,8 +350,7 @@ class NoteAttachmentWhitelistResult extends BunqModel
      * @param string $updated
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setUpdated($updated)
     {
@@ -376,8 +371,7 @@ class NoteAttachmentWhitelistResult extends BunqModel
      * @param LabelUser $labelUserCreator
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setLabelUserCreator($labelUserCreator)
     {
@@ -398,8 +392,7 @@ class NoteAttachmentWhitelistResult extends BunqModel
      * @param string $description
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setDescription($description)
     {
@@ -420,8 +413,7 @@ class NoteAttachmentWhitelistResult extends BunqModel
      * @param AttachmentMonetaryAccountPayment[] $attachment
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setAttachment($attachment)
     {

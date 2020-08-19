@@ -5,7 +5,6 @@ use bunq\Model\Generated\Endpoint\RequestInquiry;
 use bunq\Model\Generated\Endpoint\RequestResponse;
 use bunq\Model\Generated\Object\Amount;
 use bunq\test\BunqSdkTestBase;
-use bunq\test\Config;
 
 /**
  * Tests:

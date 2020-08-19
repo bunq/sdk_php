@@ -1,10 +1,7 @@
 <?php
-
 namespace bunq\Model\Generated\Endpoint;
 
-use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
-use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Object\RequestInquiryReference;
 
@@ -85,7 +82,6 @@ class TabResultResponse extends BunqModel
 
     /**
      * Used to view a list of TabResultResponse objects belonging to a tab.
-     *
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
@@ -129,8 +125,7 @@ class TabResultResponse extends BunqModel
      * @param Tab $tab
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setTab($tab)
     {
@@ -151,8 +146,7 @@ class TabResultResponse extends BunqModel
      * @param Payment $payment
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setPayment($payment)
     {
@@ -174,8 +168,7 @@ class TabResultResponse extends BunqModel
      * @param RequestInquiryReference[] $requestReferenceSplitTheBill
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setRequestReferenceSplitTheBill($requestReferenceSplitTheBill)
     {

@@ -1,5 +1,4 @@
 <?php
-
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Http\ApiClient;
@@ -31,6 +30,7 @@ class CardDebit extends BunqModel
     const FIELD_NAME_ON_CARD = 'name_on_card';
     const FIELD_ALIAS = 'alias';
     const FIELD_TYPE = 'type';
+    const FIELD_PRODUCT_TYPE = 'product_type';
     const FIELD_PIN_CODE_ASSIGNMENT = 'pin_code_assignment';
     const FIELD_MONETARY_ACCOUNT_ID_FALLBACK = 'monetary_account_id_fallback';
 
@@ -96,13 +96,6 @@ class CardDebit extends BunqModel
     protected $nameOnCard;
 
     /**
-     * The last 4 digits of the PAN of the card.
-     *
-     * @var string
-     */
-    protected $primaryAccountNumberFourDigit;
-
-    /**
      * The status to set for the card. After ordering the card it will be
      * DEACTIVATED.
      *
@@ -111,8 +104,12 @@ class CardDebit extends BunqModel
     protected $status;
 
     /**
-     * The order status of the card. After ordering the card it will be
-     * NEW_CARD_REQUEST_RECEIVED.
+     * The order status of the card. Can be NEW_CARD_REQUEST_RECEIVED,
+     * CARD_REQUEST_PENDING, SENT_FOR_PRODUCTION, ACCEPTED_FOR_PRODUCTION,
+     * DELIVERED_TO_CUSTOMER, CARD_UPDATE_REQUESTED, CARD_UPDATE_PENDING,
+     * CARD_UPDATE_SENT, CARD_UPDATE_ACCEPTED, VIRTUAL_DELIVERY,
+     * NEW_CARD_REQUEST_PENDING_USER_APPROVAL, SENT_FOR_DELIVERY or
+     * NEW_CARD_REQUEST_CANCELLED.
      *
      * @var string
      */
@@ -179,6 +176,13 @@ class CardDebit extends BunqModel
     protected $country;
 
     /**
+     * A tracking link provided by our shipment provider.
+     *
+     * @var string
+     */
+    protected $cardShipmentTrackingUrl;
+
+    /**
      * The second line of text on the card, used as name/description for it. It
      * can contain at most 17 characters and it can be empty.
      *
@@ -211,6 +215,13 @@ class CardDebit extends BunqModel
     protected $typeFieldForRequest;
 
     /**
+     * The product type of the card to order.
+     *
+     * @var string|null
+     */
+    protected $productTypeFieldForRequest;
+
+    /**
      * Array of Types, PINs, account IDs assigned to the card.
      *
      * @var CardPinAssignment[]|null
@@ -226,28 +237,29 @@ class CardDebit extends BunqModel
     protected $monetaryAccountIdFallbackFieldForRequest;
 
     /**
-     * @param string $secondLine                          The second line of text on the card, used as
-     *                                                    name/description for it. It can contain at most 17 characters
-     *                                                    and it can be empty.
-     * @param string $nameOnCard                          The user's name as it will be on the card.
-     *                                                    Check 'card-name' for the available card names for a user.
-     * @param string $type                                The type of card to order. Can be MAESTRO or
-     *                                                    MASTERCARD.
-     * @param Pointer|null $alias                         The pointer to the monetary account that will
-     *                                                    be connected at first with the card. Its IBAN code is also
-     *                                                    the one that will be printed on the card itself. The pointer
-     *                                                    must be of type IBAN.
+     * @param string $secondLine The second line of text on the card, used as
+     * name/description for it. It can contain at most 17 characters and it can
+     * be empty.
+     * @param string $nameOnCard The user's name as it will be on the card.
+     * Check 'card-name' for the available card names for a user.
+     * @param string $type The type of card to order. Can be MAESTRO or
+     * MASTERCARD.
+     * @param Pointer|null $alias The pointer to the monetary account that will
+     * be connected at first with the card. Its IBAN code is also the one that
+     * will be printed on the card itself. The pointer must be of type IBAN.
+     * @param string|null $productType The product type of the card to order.
      * @param CardPinAssignment[]|null $pinCodeAssignment Array of Types, PINs,
-     *                                                    account IDs assigned to the card.
-     * @param int|null $monetaryAccountIdFallback         ID of the MA to be used as
-     *                                                    fallback for this card if insufficient balance. Fallback
-     *                                                    account is removed if not supplied.
+     * account IDs assigned to the card.
+     * @param int|null $monetaryAccountIdFallback ID of the MA to be used as
+     * fallback for this card if insufficient balance. Fallback account is
+     * removed if not supplied.
      */
     public function __construct(
         string $secondLine,
         string $nameOnCard,
         string $type,
         Pointer $alias = null,
+        string $productType = null,
         array $pinCodeAssignment = null,
         int $monetaryAccountIdFallback = null
     ) {
@@ -255,6 +267,7 @@ class CardDebit extends BunqModel
         $this->nameOnCardFieldForRequest = $nameOnCard;
         $this->aliasFieldForRequest = $alias;
         $this->typeFieldForRequest = $type;
+        $this->productTypeFieldForRequest = $productType;
         $this->pinCodeAssignmentFieldForRequest = $pinCodeAssignment;
         $this->monetaryAccountIdFallbackFieldForRequest = $monetaryAccountIdFallback;
     }
@@ -262,22 +275,22 @@ class CardDebit extends BunqModel
     /**
      * Create a new debit card request.
      *
-     * @param string $secondLine                          The second line of text on the card, used as
-     *                                                    name/description for it. It can contain at most 17 characters
-     *                                                    and it can be empty.
-     * @param string $nameOnCard                          The user's name as it will be on the card.
-     *                                                    Check 'card-name' for the available card names for a user.
-     * @param string $type                                The type of card to order. Can be MAESTRO or
-     *                                                    MASTERCARD.
-     * @param Pointer|null $alias                         The pointer to the monetary account that will
-     *                                                    be connected at first with the card. Its IBAN code is also
-     *                                                    the one that will be printed on the card itself. The pointer
-     *                                                    must be of type IBAN.
+     * @param string $secondLine The second line of text on the card, used as
+     * name/description for it. It can contain at most 17 characters and it can
+     * be empty.
+     * @param string $nameOnCard The user's name as it will be on the card.
+     * Check 'card-name' for the available card names for a user.
+     * @param string $type The type of card to order. Can be MAESTRO or
+     * MASTERCARD.
+     * @param Pointer|null $alias The pointer to the monetary account that will
+     * be connected at first with the card. Its IBAN code is also the one that
+     * will be printed on the card itself. The pointer must be of type IBAN.
+     * @param string|null $productType The product type of the card to order.
      * @param CardPinAssignment[]|null $pinCodeAssignment Array of Types, PINs,
-     *                                                    account IDs assigned to the card.
-     * @param int|null $monetaryAccountIdFallback         ID of the MA to be used as
-     *                                                    fallback for this card if insufficient balance. Fallback
-     *                                                    account is removed if not supplied.
+     * account IDs assigned to the card.
+     * @param int|null $monetaryAccountIdFallback ID of the MA to be used as
+     * fallback for this card if insufficient balance. Fallback account is
+     * removed if not supplied.
      * @param string[] $customHeaders
      *
      * @return BunqResponseCardDebit
@@ -287,12 +300,12 @@ class CardDebit extends BunqModel
         string $nameOnCard,
         string $type,
         Pointer $alias = null,
+        string $productType = null,
         array $pinCodeAssignment = null,
         int $monetaryAccountIdFallback = null,
         array $customHeaders = []
     ): BunqResponseCardDebit {
         $apiClient = new ApiClient(static::getApiContext());
-        $apiClient->enableEncryption();
         $responseRaw = $apiClient->post(
             vsprintf(
                 self::ENDPOINT_URL_CREATE,
@@ -303,6 +316,7 @@ class CardDebit extends BunqModel
                 self::FIELD_NAME_ON_CARD => $nameOnCard,
                 self::FIELD_ALIAS => $alias,
                 self::FIELD_TYPE => $type,
+                self::FIELD_PRODUCT_TYPE => $productType,
                 self::FIELD_PIN_CODE_ASSIGNMENT => $pinCodeAssignment,
                 self::FIELD_MONETARY_ACCOUNT_ID_FALLBACK => $monetaryAccountIdFallback,
             ],
@@ -328,8 +342,7 @@ class CardDebit extends BunqModel
      * @param int $id
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setId($id)
     {
@@ -350,8 +363,7 @@ class CardDebit extends BunqModel
      * @param string $created
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setCreated($created)
     {
@@ -372,8 +384,7 @@ class CardDebit extends BunqModel
      * @param string $updated
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setUpdated($updated)
     {
@@ -394,8 +405,7 @@ class CardDebit extends BunqModel
      * @param string $publicUuid
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setPublicUuid($publicUuid)
     {
@@ -416,8 +426,7 @@ class CardDebit extends BunqModel
      * @param string $type
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setType($type)
     {
@@ -438,8 +447,7 @@ class CardDebit extends BunqModel
      * @param string $subType
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setSubType($subType)
     {
@@ -460,8 +468,7 @@ class CardDebit extends BunqModel
      * @param string $secondLine
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setSecondLine($secondLine)
     {
@@ -482,34 +489,11 @@ class CardDebit extends BunqModel
      * @param string $nameOnCard
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setNameOnCard($nameOnCard)
     {
         $this->nameOnCard = $nameOnCard;
-    }
-
-    /**
-     * The last 4 digits of the PAN of the card.
-     *
-     * @return string
-     */
-    public function getPrimaryAccountNumberFourDigit()
-    {
-        return $this->primaryAccountNumberFourDigit;
-    }
-
-    /**
-     * @param string $primaryAccountNumberFourDigit
-     *
-     * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
-     */
-    public function setPrimaryAccountNumberFourDigit($primaryAccountNumberFourDigit)
-    {
-        $this->primaryAccountNumberFourDigit = $primaryAccountNumberFourDigit;
     }
 
     /**
@@ -527,8 +511,7 @@ class CardDebit extends BunqModel
      * @param string $status
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setStatus($status)
     {
@@ -536,8 +519,12 @@ class CardDebit extends BunqModel
     }
 
     /**
-     * The order status of the card. After ordering the card it will be
-     * NEW_CARD_REQUEST_RECEIVED.
+     * The order status of the card. Can be NEW_CARD_REQUEST_RECEIVED,
+     * CARD_REQUEST_PENDING, SENT_FOR_PRODUCTION, ACCEPTED_FOR_PRODUCTION,
+     * DELIVERED_TO_CUSTOMER, CARD_UPDATE_REQUESTED, CARD_UPDATE_PENDING,
+     * CARD_UPDATE_SENT, CARD_UPDATE_ACCEPTED, VIRTUAL_DELIVERY,
+     * NEW_CARD_REQUEST_PENDING_USER_APPROVAL, SENT_FOR_DELIVERY or
+     * NEW_CARD_REQUEST_CANCELLED.
      *
      * @return string
      */
@@ -550,8 +537,7 @@ class CardDebit extends BunqModel
      * @param string $orderStatus
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setOrderStatus($orderStatus)
     {
@@ -572,8 +558,7 @@ class CardDebit extends BunqModel
      * @param string $expiryDate
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setExpiryDate($expiryDate)
     {
@@ -594,8 +579,7 @@ class CardDebit extends BunqModel
      * @param CardCountryPermission[] $countryPermission
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setCountryPermission($countryPermission)
     {
@@ -617,8 +601,7 @@ class CardDebit extends BunqModel
      * @param LabelMonetaryAccount $labelMonetaryAccountOrdered
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setLabelMonetaryAccountOrdered($labelMonetaryAccountOrdered)
     {
@@ -640,8 +623,7 @@ class CardDebit extends BunqModel
      * @param LabelMonetaryAccount $labelMonetaryAccountCurrent
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setLabelMonetaryAccountCurrent($labelMonetaryAccountCurrent)
     {
@@ -662,8 +644,7 @@ class CardDebit extends BunqModel
      * @param LabelUser $alias
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setAlias($alias)
     {
@@ -684,8 +665,7 @@ class CardDebit extends BunqModel
      * @param CardPinAssignment[] $pinCodeAssignment
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setPinCodeAssignment($pinCodeAssignment)
     {
@@ -707,8 +687,7 @@ class CardDebit extends BunqModel
      * @param int $monetaryAccountIdFallback
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setMonetaryAccountIdFallback($monetaryAccountIdFallback)
     {
@@ -730,12 +709,32 @@ class CardDebit extends BunqModel
      * @param string $country
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setCountry($country)
     {
         $this->country = $country;
+    }
+
+    /**
+     * A tracking link provided by our shipment provider.
+     *
+     * @return string
+     */
+    public function getCardShipmentTrackingUrl()
+    {
+        return $this->cardShipmentTrackingUrl;
+    }
+
+    /**
+     * @param string $cardShipmentTrackingUrl
+     *
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     */
+    public function setCardShipmentTrackingUrl($cardShipmentTrackingUrl)
+    {
+        $this->cardShipmentTrackingUrl = $cardShipmentTrackingUrl;
     }
 
     /**
@@ -772,10 +771,6 @@ class CardDebit extends BunqModel
         }
 
         if (!is_null($this->nameOnCard)) {
-            return false;
-        }
-
-        if (!is_null($this->primaryAccountNumberFourDigit)) {
             return false;
         }
 
@@ -816,6 +811,10 @@ class CardDebit extends BunqModel
         }
 
         if (!is_null($this->country)) {
+            return false;
+        }
+
+        if (!is_null($this->cardShipmentTrackingUrl)) {
             return false;
         }
 

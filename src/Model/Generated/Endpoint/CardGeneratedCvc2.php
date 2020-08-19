@@ -1,10 +1,7 @@
 <?php
-
 namespace bunq\Model\Generated\Endpoint;
 
-use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
-use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 
 /**
@@ -90,7 +87,7 @@ class CardGeneratedCvc2 extends BunqModel
 
     /**
      * @param string|null $type The type of generated cvc2. Can be STATIC or
-     *                          GENERATED.
+     * GENERATED.
      */
     public function __construct(string $type = null)
     {
@@ -102,7 +99,7 @@ class CardGeneratedCvc2 extends BunqModel
      *
      * @param int $cardId
      * @param string|null $type The type of generated cvc2. Can be STATIC or
-     *                          GENERATED.
+     * GENERATED.
      * @param string[] $customHeaders
      *
      * @return BunqResponseInt
@@ -110,7 +107,6 @@ class CardGeneratedCvc2 extends BunqModel
     public static function create(int $cardId, string $type = null, array $customHeaders = []): BunqResponseInt
     {
         $apiClient = new ApiClient(static::getApiContext());
-        $apiClient->enableEncryption();
         $responseRaw = $apiClient->post(
             vsprintf(
                 self::ENDPOINT_URL_CREATE,
@@ -158,7 +154,7 @@ class CardGeneratedCvc2 extends BunqModel
      * @param int $cardId
      * @param int $cardGeneratedCvc2Id
      * @param string|null $type The type of generated cvc2. Can be STATIC or
-     *                          GENERATED.
+     * GENERATED.
      * @param string[] $customHeaders
      *
      * @return BunqResponseInt
@@ -170,7 +166,6 @@ class CardGeneratedCvc2 extends BunqModel
         array $customHeaders = []
     ): BunqResponseInt {
         $apiClient = new ApiClient(static::getApiContext());
-        $apiClient->enableEncryption();
         $responseRaw = $apiClient->put(
             vsprintf(
                 self::ENDPOINT_URL_UPDATE,
@@ -187,7 +182,6 @@ class CardGeneratedCvc2 extends BunqModel
 
     /**
      * Get all generated CVC2 codes for a card.
-     *
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
@@ -231,8 +225,7 @@ class CardGeneratedCvc2 extends BunqModel
      * @param int $id
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setId($id)
     {
@@ -253,8 +246,7 @@ class CardGeneratedCvc2 extends BunqModel
      * @param string $created
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setCreated($created)
     {
@@ -275,8 +267,7 @@ class CardGeneratedCvc2 extends BunqModel
      * @param string $updated
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setUpdated($updated)
     {
@@ -297,8 +288,7 @@ class CardGeneratedCvc2 extends BunqModel
      * @param string $type
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setType($type)
     {
@@ -319,8 +309,7 @@ class CardGeneratedCvc2 extends BunqModel
      * @param string $cvc2
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setCvc2($cvc2)
     {
@@ -341,8 +330,7 @@ class CardGeneratedCvc2 extends BunqModel
      * @param string $status
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setStatus($status)
     {
@@ -363,8 +351,7 @@ class CardGeneratedCvc2 extends BunqModel
      * @param string $expiryTime
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setExpiryTime($expiryTime)
     {

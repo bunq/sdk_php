@@ -1,5 +1,4 @@
 <?php
-
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Http\ApiClient;
@@ -233,13 +232,6 @@ class RequestInquiry extends BunqModel
     protected $geolocation;
 
     /**
-     * Whether or not chat messages are allowed.
-     *
-     * @var bool
-     */
-    protected $allowChat;
-
-    /**
      * The reference to the object used for split the bill. Can be Payment,
      * PaymentBatch, ScheduleInstance, RequestResponse and MasterCardAction
      *
@@ -363,44 +355,44 @@ class RequestInquiry extends BunqModel
     protected $eventIdFieldForRequest;
 
     /**
-     * @param Amount $amountInquired         The Amount requested to be paid by the
-     *                                       person the RequestInquiry is sent to. Must be bigger than 0.
-     * @param Pointer $counterpartyAlias     The Alias of the party we are
-     *                                       requesting the money from. Can be an Alias of type EMAIL, PHONE_NUMBER or
-     *                                       IBAN. In case the EMAIL or PHONE_NUMBER Alias does not refer to a bunq
-     *                                       monetary account, 'allow_bunqme' needs to be 'true' in order to trigger
-     *                                       the creation of a bunq.me request. Otherwise no request inquiry will be
-     *                                       sent.
-     * @param string $description            The description for the RequestInquiry.
-     *                                       Maximum 9000 characters. Field is required but can be an empty string.
-     * @param bool $allowBunqme              Whether or not sending a bunq.me request is
-     *                                       allowed.
-     * @param BunqId[]|null $attachment      The Attachments to attach to the
-     *                                       RequestInquiry.
+     * @param Amount $amountInquired The Amount requested to be paid by the
+     * person the RequestInquiry is sent to. Must be bigger than 0.
+     * @param Pointer $counterpartyAlias The Alias of the party we are
+     * requesting the money from. Can be an Alias of type EMAIL, PHONE_NUMBER or
+     * IBAN. In case the EMAIL or PHONE_NUMBER Alias does not refer to a bunq
+     * monetary account, 'allow_bunqme' needs to be 'true' in order to trigger
+     * the creation of a bunq.me request. Otherwise no request inquiry will be
+     * sent.
+     * @param string $description The description for the RequestInquiry.
+     * Maximum 9000 characters. Field is required but can be an empty string.
+     * @param bool $allowBunqme Whether or not sending a bunq.me request is
+     * allowed.
+     * @param BunqId[]|null $attachment The Attachments to attach to the
+     * RequestInquiry.
      * @param string|null $merchantReference Optional data to be included with
-     *                                       the RequestInquiry specific to the merchant. Has to be unique for the
-     *                                       same source MonetaryAccount.
-     * @param string|null $status            The status of the RequestInquiry. Ignored in
-     *                                       POST requests but can be used for revoking (cancelling) the
-     *                                       RequestInquiry by setting REVOKED with a PUT request.
-     * @param int|null $minimumAge           The minimum age the user accepting the
-     *                                       RequestInquiry must have. Defaults to not checking. If set, must be
-     *                                       between 12 and 100 inclusive.
-     * @param string|null $requireAddress    Whether a billing and shipping address
-     *                                       must be provided when paying the request. Possible values are: BILLING,
-     *                                       SHIPPING, BILLING_SHIPPING, NONE, OPTIONAL. Default is NONE.
-     * @param bool|null $wantTip             [DEPRECATED] Whether or not the accepting user
-     *                                       can give an extra tip on top of the requested Amount. Defaults to false.
-     * @param bool|null $allowAmountLower    [DEPRECATED] Whether or not the
-     *                                       accepting user can choose to accept with a lower amount than requested.
-     *                                       Defaults to false.
-     * @param bool|null $allowAmountHigher   [DEPRECATED] Whether or not the
-     *                                       accepting user can choose to accept with a higher amount than requested.
-     *                                       Defaults to false.
-     * @param string|null $redirectUrl       The URL which the user is sent to after
-     *                                       accepting or rejecting the Request.
-     * @param int|null $eventId              The ID of the associated event if the request
-     *                                       was made using 'split the bill'.
+     * the RequestInquiry specific to the merchant. Has to be unique for the
+     * same source MonetaryAccount.
+     * @param string|null $status The status of the RequestInquiry. Ignored in
+     * POST requests but can be used for revoking (cancelling) the
+     * RequestInquiry by setting REVOKED with a PUT request.
+     * @param int|null $minimumAge The minimum age the user accepting the
+     * RequestInquiry must have. Defaults to not checking. If set, must be
+     * between 12 and 100 inclusive.
+     * @param string|null $requireAddress Whether a billing and shipping address
+     * must be provided when paying the request. Possible values are: BILLING,
+     * SHIPPING, BILLING_SHIPPING, NONE, OPTIONAL. Default is NONE.
+     * @param bool|null $wantTip [DEPRECATED] Whether or not the accepting user
+     * can give an extra tip on top of the requested Amount. Defaults to false.
+     * @param bool|null $allowAmountLower [DEPRECATED] Whether or not the
+     * accepting user can choose to accept with a lower amount than requested.
+     * Defaults to false.
+     * @param bool|null $allowAmountHigher [DEPRECATED] Whether or not the
+     * accepting user can choose to accept with a higher amount than requested.
+     * Defaults to false.
+     * @param string|null $redirectUrl The URL which the user is sent to after
+     * accepting or rejecting the Request.
+     * @param int|null $eventId The ID of the associated event if the request
+     * was made using 'split the bill'.
      */
     public function __construct(
         Amount $amountInquired,
@@ -437,45 +429,45 @@ class RequestInquiry extends BunqModel
     /**
      * Create a new payment request.
      *
-     * @param Amount $amountInquired         The Amount requested to be paid by the
-     *                                       person the RequestInquiry is sent to. Must be bigger than 0.
-     * @param Pointer $counterpartyAlias     The Alias of the party we are
-     *                                       requesting the money from. Can be an Alias of type EMAIL, PHONE_NUMBER or
-     *                                       IBAN. In case the EMAIL or PHONE_NUMBER Alias does not refer to a bunq
-     *                                       monetary account, 'allow_bunqme' needs to be 'true' in order to trigger
-     *                                       the creation of a bunq.me request. Otherwise no request inquiry will be
-     *                                       sent.
-     * @param string $description            The description for the RequestInquiry.
-     *                                       Maximum 9000 characters. Field is required but can be an empty string.
-     * @param bool $allowBunqme              Whether or not sending a bunq.me request is
-     *                                       allowed.
+     * @param Amount $amountInquired The Amount requested to be paid by the
+     * person the RequestInquiry is sent to. Must be bigger than 0.
+     * @param Pointer $counterpartyAlias The Alias of the party we are
+     * requesting the money from. Can be an Alias of type EMAIL, PHONE_NUMBER or
+     * IBAN. In case the EMAIL or PHONE_NUMBER Alias does not refer to a bunq
+     * monetary account, 'allow_bunqme' needs to be 'true' in order to trigger
+     * the creation of a bunq.me request. Otherwise no request inquiry will be
+     * sent.
+     * @param string $description The description for the RequestInquiry.
+     * Maximum 9000 characters. Field is required but can be an empty string.
+     * @param bool $allowBunqme Whether or not sending a bunq.me request is
+     * allowed.
      * @param int|null $monetaryAccountId
-     * @param BunqId[]|null $attachment      The Attachments to attach to the
-     *                                       RequestInquiry.
+     * @param BunqId[]|null $attachment The Attachments to attach to the
+     * RequestInquiry.
      * @param string|null $merchantReference Optional data to be included with
-     *                                       the RequestInquiry specific to the merchant. Has to be unique for the
-     *                                       same source MonetaryAccount.
-     * @param string|null $status            The status of the RequestInquiry. Ignored in
-     *                                       POST requests but can be used for revoking (cancelling) the
-     *                                       RequestInquiry by setting REVOKED with a PUT request.
-     * @param int|null $minimumAge           The minimum age the user accepting the
-     *                                       RequestInquiry must have. Defaults to not checking. If set, must be
-     *                                       between 12 and 100 inclusive.
-     * @param string|null $requireAddress    Whether a billing and shipping address
-     *                                       must be provided when paying the request. Possible values are: BILLING,
-     *                                       SHIPPING, BILLING_SHIPPING, NONE, OPTIONAL. Default is NONE.
-     * @param bool|null $wantTip             [DEPRECATED] Whether or not the accepting user
-     *                                       can give an extra tip on top of the requested Amount. Defaults to false.
-     * @param bool|null $allowAmountLower    [DEPRECATED] Whether or not the
-     *                                       accepting user can choose to accept with a lower amount than requested.
-     *                                       Defaults to false.
-     * @param bool|null $allowAmountHigher   [DEPRECATED] Whether or not the
-     *                                       accepting user can choose to accept with a higher amount than requested.
-     *                                       Defaults to false.
-     * @param string|null $redirectUrl       The URL which the user is sent to after
-     *                                       accepting or rejecting the Request.
-     * @param int|null $eventId              The ID of the associated event if the request
-     *                                       was made using 'split the bill'.
+     * the RequestInquiry specific to the merchant. Has to be unique for the
+     * same source MonetaryAccount.
+     * @param string|null $status The status of the RequestInquiry. Ignored in
+     * POST requests but can be used for revoking (cancelling) the
+     * RequestInquiry by setting REVOKED with a PUT request.
+     * @param int|null $minimumAge The minimum age the user accepting the
+     * RequestInquiry must have. Defaults to not checking. If set, must be
+     * between 12 and 100 inclusive.
+     * @param string|null $requireAddress Whether a billing and shipping address
+     * must be provided when paying the request. Possible values are: BILLING,
+     * SHIPPING, BILLING_SHIPPING, NONE, OPTIONAL. Default is NONE.
+     * @param bool|null $wantTip [DEPRECATED] Whether or not the accepting user
+     * can give an extra tip on top of the requested Amount. Defaults to false.
+     * @param bool|null $allowAmountLower [DEPRECATED] Whether or not the
+     * accepting user can choose to accept with a lower amount than requested.
+     * Defaults to false.
+     * @param bool|null $allowAmountHigher [DEPRECATED] Whether or not the
+     * accepting user can choose to accept with a higher amount than requested.
+     * Defaults to false.
+     * @param string|null $redirectUrl The URL which the user is sent to after
+     * accepting or rejecting the Request.
+     * @param int|null $eventId The ID of the associated event if the request
+     * was made using 'split the bill'.
      * @param string[] $customHeaders
      *
      * @return BunqResponseInt
@@ -534,8 +526,8 @@ class RequestInquiry extends BunqModel
      * @param int $requestInquiryId
      * @param int|null $monetaryAccountId
      * @param string|null $status The status of the RequestInquiry. Ignored in
-     *                            POST requests but can be used for revoking (cancelling) the
-     *                            RequestInquiry by setting REVOKED with a PUT request.
+     * POST requests but can be used for revoking (cancelling) the
+     * RequestInquiry by setting REVOKED with a PUT request.
      * @param string[] $customHeaders
      *
      * @return BunqResponseRequestInquiry
@@ -562,8 +554,8 @@ class RequestInquiry extends BunqModel
     }
 
     /**
-     * Get all payment requests for a user's monetary account.
-     *
+     * Get all payment requests for a user's monetary account. bunqme_share_url
+     * is always null if the counterparty is a bunq user.
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
@@ -595,6 +587,7 @@ class RequestInquiry extends BunqModel
 
     /**
      * Get the details of a specific payment request, including its status.
+     * bunqme_share_url is always null if the counterparty is a bunq user.
      *
      * @param int $requestInquiryId
      * @param int|null $monetaryAccountId
@@ -636,8 +629,7 @@ class RequestInquiry extends BunqModel
      * @param int $id
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setId($id)
     {
@@ -658,8 +650,7 @@ class RequestInquiry extends BunqModel
      * @param string $created
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setCreated($created)
     {
@@ -680,8 +671,7 @@ class RequestInquiry extends BunqModel
      * @param string $updated
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setUpdated($updated)
     {
@@ -702,8 +692,7 @@ class RequestInquiry extends BunqModel
      * @param string $timeResponded
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setTimeResponded($timeResponded)
     {
@@ -724,8 +713,7 @@ class RequestInquiry extends BunqModel
      * @param string $timeExpiry
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setTimeExpiry($timeExpiry)
     {
@@ -746,8 +734,7 @@ class RequestInquiry extends BunqModel
      * @param int $monetaryAccountId
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setMonetaryAccountId($monetaryAccountId)
     {
@@ -768,8 +755,7 @@ class RequestInquiry extends BunqModel
      * @param Amount $amountInquired
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setAmountInquired($amountInquired)
     {
@@ -790,8 +776,7 @@ class RequestInquiry extends BunqModel
      * @param Amount $amountResponded
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setAmountResponded($amountResponded)
     {
@@ -813,8 +798,7 @@ class RequestInquiry extends BunqModel
      * @param LabelUser $userAliasCreated
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setUserAliasCreated($userAliasCreated)
     {
@@ -836,8 +820,7 @@ class RequestInquiry extends BunqModel
      * @param LabelUser $userAliasRevoked
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setUserAliasRevoked($userAliasRevoked)
     {
@@ -859,8 +842,7 @@ class RequestInquiry extends BunqModel
      * @param LabelMonetaryAccount $counterpartyAlias
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setCounterpartyAlias($counterpartyAlias)
     {
@@ -881,8 +863,7 @@ class RequestInquiry extends BunqModel
      * @param string $description
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setDescription($description)
     {
@@ -904,8 +885,7 @@ class RequestInquiry extends BunqModel
      * @param string $merchantReference
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setMerchantReference($merchantReference)
     {
@@ -926,8 +906,7 @@ class RequestInquiry extends BunqModel
      * @param BunqId[] $attachment
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setAttachment($attachment)
     {
@@ -948,8 +927,7 @@ class RequestInquiry extends BunqModel
      * @param string $status
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setStatus($status)
     {
@@ -970,8 +948,7 @@ class RequestInquiry extends BunqModel
      * @param int $batchId
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setBatchId($batchId)
     {
@@ -992,8 +969,7 @@ class RequestInquiry extends BunqModel
      * @param int $scheduledId
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setScheduledId($scheduledId)
     {
@@ -1014,8 +990,7 @@ class RequestInquiry extends BunqModel
      * @param int $minimumAge
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setMinimumAge($minimumAge)
     {
@@ -1036,8 +1011,7 @@ class RequestInquiry extends BunqModel
      * @param string $requireAddress
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setRequireAddress($requireAddress)
     {
@@ -1058,8 +1032,7 @@ class RequestInquiry extends BunqModel
      * @param string $bunqmeShareUrl
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setBunqmeShareUrl($bunqmeShareUrl)
     {
@@ -1081,8 +1054,7 @@ class RequestInquiry extends BunqModel
      * @param string $redirectUrl
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setRedirectUrl($redirectUrl)
     {
@@ -1104,8 +1076,7 @@ class RequestInquiry extends BunqModel
      * @param Address $addressShipping
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setAddressShipping($addressShipping)
     {
@@ -1127,8 +1098,7 @@ class RequestInquiry extends BunqModel
      * @param Address $addressBilling
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setAddressBilling($addressBilling)
     {
@@ -1149,34 +1119,11 @@ class RequestInquiry extends BunqModel
      * @param Geolocation $geolocation
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setGeolocation($geolocation)
     {
         $this->geolocation = $geolocation;
-    }
-
-    /**
-     * Whether or not chat messages are allowed.
-     *
-     * @return bool
-     */
-    public function getAllowChat()
-    {
-        return $this->allowChat;
-    }
-
-    /**
-     * @param bool $allowChat
-     *
-     * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
-     */
-    public function setAllowChat($allowChat)
-    {
-        $this->allowChat = $allowChat;
     }
 
     /**
@@ -1194,8 +1141,7 @@ class RequestInquiry extends BunqModel
      * @param RequestReferenceSplitTheBillAnchorObject $referenceSplitTheBill
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setReferenceSplitTheBill($referenceSplitTheBill)
     {
@@ -1300,10 +1246,6 @@ class RequestInquiry extends BunqModel
         }
 
         if (!is_null($this->geolocation)) {
-            return false;
-        }
-
-        if (!is_null($this->allowChat)) {
             return false;
         }
 

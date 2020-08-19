@@ -1,5 +1,4 @@
 <?php
-
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Http\ApiClient;
@@ -195,7 +194,6 @@ class NoteTextScheduleInstance extends BunqModel
 
     /**
      * Manage the notes for a given user.
-     *
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
@@ -285,8 +283,7 @@ class NoteTextScheduleInstance extends BunqModel
      * @param int $id
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setId($id)
     {
@@ -307,8 +304,7 @@ class NoteTextScheduleInstance extends BunqModel
      * @param string $created
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setCreated($created)
     {
@@ -329,8 +325,7 @@ class NoteTextScheduleInstance extends BunqModel
      * @param string $updated
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setUpdated($updated)
     {
@@ -351,8 +346,7 @@ class NoteTextScheduleInstance extends BunqModel
      * @param LabelUser $labelUserCreator
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setLabelUserCreator($labelUserCreator)
     {
@@ -373,8 +367,7 @@ class NoteTextScheduleInstance extends BunqModel
      * @param string $content
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setContent($content)
     {

@@ -1,5 +1,4 @@
 <?php
-
 namespace bunq\Model\Generated\Object;
 
 use bunq\Model\Core\BunqModel;
@@ -51,8 +50,7 @@ class Image extends BunqModel
      * @param string $attachmentPublicUuid
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setAttachmentPublicUuid($attachmentPublicUuid)
     {
@@ -73,8 +71,7 @@ class Image extends BunqModel
      * @param string $contentType
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setContentType($contentType)
     {
@@ -95,8 +92,7 @@ class Image extends BunqModel
      * @param int $height
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setHeight($height)
     {
@@ -117,8 +113,7 @@ class Image extends BunqModel
      * @param int $width
      *
      * @deprecated User should not be able to set values via setters, use
-     *             constructor.
-     *
+     * constructor.
      */
     public function setWidth($width)
     {
