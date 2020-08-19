@@ -1,7 +1,7 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
-use bunq\exception\BunqException;
+use bunq\Exception\BunqException;
 use bunq\Http\ApiClient;
 use bunq\Model\Core\AnchorObjectInterface;
 use bunq\Model\Core\BunqModel;

@@ -3,6 +3,7 @@ namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Http\ApiClient;
 use bunq\Model\Core\BunqModel;
+use bunq\Model\Generated\Object\LabelUser;
 
 /**
  * See how many trees this user has planted.
@@ -38,7 +39,7 @@ class TreeProgress extends BunqModel
     /**
      * The label of the user the progress belongs to.
      *
-     * @var BunqModel
+     * @var LabelUser
      */
     protected $labelUser;
 
@@ -113,7 +114,7 @@ class TreeProgress extends BunqModel
     /**
      * The label of the user the progress belongs to.
      *
-     * @return BunqModel
+     * @return LabelUser
      */
     public function getLabelUser()
     {
@@ -121,7 +122,7 @@ class TreeProgress extends BunqModel
     }
 
     /**
-     * @param BunqModel $labelUser
+     * @param LabelUser $labelUser
      *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
