@@ -19,7 +19,6 @@ class UserContext
      */
     const ERROR_NO_ACTIVE_MONETARY_ACCOUNT_FOUND = 'No active monetary account found.';
     const ERROR_COULD_NOT_DETERMINE_USER_ID = 'Both userPerson and userCompany are set, could not determine user id.';
-    const ERROR_USER_HAS_NOT_BEEN_SET = 'User has not been set.';
     const ERROR_PRIMARY_MONETARY_ACCOUNT_HAS_NOT_BEEN_SET = 'Primary monetaryAccount is not set.';
     const ERROR_UNEXPECTED_USER_INSTANCE = '"%s" is unexpected user instance.';
 
@@ -64,10 +63,12 @@ class UserContext
     protected $userId;
 
     /**
+     * @param int $userId
+     * @param $user UserApiKey|UserCompany|UserPaymentServiceProvider|UserPerson
      */
-    public function __construct(int $userId)
+    public function __construct(int $userId, $user)
     {
-        $this->setUser($this->getUserObject());
+        $this->setUser($user);
         $this->userId = $userId;
     }
 
@@ -123,7 +124,6 @@ class UserContext
 
     /**
      * @return int
-     * @throws BunqException
      */
     public function getUserId(): int
     {
