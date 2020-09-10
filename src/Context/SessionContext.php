@@ -4,6 +4,9 @@ namespace bunq\Context;
 use bunq\Model\Core\SessionServer;
 use bunq\Model\Core\Token;
 use bunq\Model\Generated\Endpoint\UserApiKey;
+use bunq\Model\Generated\Endpoint\UserCompany;
+use bunq\Model\Generated\Endpoint\UserPaymentServiceProvider;
+use bunq\Model\Generated\Endpoint\UserPerson;
 use DateTime;
 use JsonSerializable;
 
@@ -21,8 +24,8 @@ class SessionContext implements JsonSerializable
     /**
      * Constants for manipulating expiry timestamp.
      */
-    const FORMAT_MICROTIME_PARTIAL = 'Y-m-d H:i:s.';
-    const FORMAT_MICROTIME = 'Y-m-d H:i:s.u';
+    const FORMAT_MICRO_TIME_PARTIAL = 'Y-m-d H:i:s.';
+    const FORMAT_MICRO_TIME = 'Y-m-d H:i:s.u';
     const MICROSECONDS_IN_SECOND = 1000000;
     const FORMAT_MICROSECONDS = '%06d';
 
@@ -42,6 +45,11 @@ class SessionContext implements JsonSerializable
     protected $userId;
 
     /**
+     * @var UserApiKey|UserCompany|UserPaymentServiceProvider|UserPerson
+     */
+    private $user;
+
+    /**
      */
     private function __construct()
     {
@@ -58,6 +66,7 @@ class SessionContext implements JsonSerializable
         $sessionContext->sessionToken = $sessionServer->getSessionToken();
         $sessionContext->expiryTime = static::calculateExpiryTime($sessionServer);
         $sessionContext->userId = $sessionServer->getReferencedUser()->getId();
+        $sessionContext->user = $sessionServer->getReferencedUser();
 
         return $sessionContext;
     }
@@ -71,7 +80,7 @@ class SessionContext implements JsonSerializable
     {
         $expiryTime = microtime(true) + static::getSessionTimeout($sessionServer);
 
-        return static::microtimeToDateTime($expiryTime);
+        return static::microTimeToDateTime($expiryTime);
     }
 
     /**
@@ -95,11 +104,11 @@ class SessionContext implements JsonSerializable
      *
      * @return DateTime
      */
-    private static function microtimeToDateTime(float $microtime): DateTime
+    private static function microTimeToDateTime(float $microtime): DateTime
     {
         $microseconds = ($microtime - floor($microtime)) * self::MICROSECONDS_IN_SECOND;
         $microsecondsFormatted = sprintf(self::FORMAT_MICROSECONDS, $microseconds);
-        $dateFormatted = date(self::FORMAT_MICROTIME_PARTIAL . $microsecondsFormatted, $microtime);
+        $dateFormatted = date(self::FORMAT_MICRO_TIME_PARTIAL . $microsecondsFormatted, $microtime);
 
         return new DateTime($dateFormatted);
     }
@@ -114,7 +123,7 @@ class SessionContext implements JsonSerializable
         $sessionContext = new static();
         $sessionContext->sessionToken = new Token($sessionContextBody[self::FIELD_TOKEN]);
         $sessionContext->expiryTime = Datetime::createFromFormat(
-            self::FORMAT_MICROTIME,
+            self::FORMAT_MICRO_TIME,
             $sessionContextBody[self::FIELD_EXPIRY_TIME]
         );
         $sessionContext->userId = $sessionContextBody[self::FIELD_USER_ID];
@@ -129,7 +138,7 @@ class SessionContext implements JsonSerializable
     {
         return [
             self::FIELD_TOKEN => $this->getSessionToken()->getToken(),
-            self::FIELD_EXPIRY_TIME => $this->getExpiryTime()->format(self::FORMAT_MICROTIME),
+            self::FIELD_EXPIRY_TIME => $this->getExpiryTime()->format(self::FORMAT_MICRO_TIME),
             self::FIELD_USER_ID => $this->getUserId(),
         ];
     }
@@ -148,6 +157,14 @@ class SessionContext implements JsonSerializable
     public function getUserId(): int
     {
         return $this->userId;
+    }
+
+    /**
+     * @return UserApiKey|UserCompany|UserPaymentServiceProvider|UserPerson
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 
     /**
