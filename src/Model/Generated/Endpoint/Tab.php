@@ -55,22 +55,13 @@ class Tab extends BunqModel implements AnchorObjectInterface
      *
      * @return BunqResponseTab
      */
-    public static function get(
-        int $cashRegisterId,
-        string $tabUuid,
-        int $monetaryAccountId = null,
-        array $customHeaders = []
-    ): BunqResponseTab {
+    public static function get(int $cashRegisterId, string $tabUuid, int $monetaryAccountId = null, array $customHeaders = []): BunqResponseTab
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_READ,
-                [
-                    static::determineUserId(),
-                    static::determineMonetaryAccountId($monetaryAccountId),
-                    $cashRegisterId,
-                    $tabUuid,
-                ]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId), $cashRegisterId, $tabUuid]
             ),
             [],
             $customHeaders
@@ -83,6 +74,7 @@ class Tab extends BunqModel implements AnchorObjectInterface
 
     /**
      * Get a collection of tabs.
+     *
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
@@ -93,12 +85,8 @@ class Tab extends BunqModel implements AnchorObjectInterface
      *
      * @return BunqResponseTabList
      */
-    public static function listing(
-        int $cashRegisterId,
-        int $monetaryAccountId = null,
-        array $params = [],
-        array $customHeaders = []
-    ): BunqResponseTabList {
+    public static function listing(int $cashRegisterId, int $monetaryAccountId = null, array $params = [], array $customHeaders = []): BunqResponseTabList
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
@@ -123,10 +111,10 @@ class Tab extends BunqModel implements AnchorObjectInterface
     }
 
     /**
-     * @param TabUsageSingle $tabUsageSingle
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param TabUsageSingle $tabUsageSingle
      */
     public function setTabUsageSingle($tabUsageSingle)
     {
@@ -142,10 +130,10 @@ class Tab extends BunqModel implements AnchorObjectInterface
     }
 
     /**
-     * @param TabUsageMultiple $tabUsageMultiple
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param TabUsageMultiple $tabUsageMultiple
      */
     public function setTabUsageMultiple($tabUsageMultiple)
     {

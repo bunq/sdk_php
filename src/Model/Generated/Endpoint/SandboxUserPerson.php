@@ -33,7 +33,7 @@ class SandboxUserPerson extends BunqModel
      *
      * @return BunqResponseSandboxUserPerson
      */
-    public static function create(array $customHeaders = []): BunqResponseSandboxUserPerson
+    public static function create( array $customHeaders = []): BunqResponseSandboxUserPerson
     {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->post(
@@ -61,10 +61,10 @@ class SandboxUserPerson extends BunqModel
     }
 
     /**
-     * @param string $apiKey
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $apiKey
      */
     public function setApiKey($apiKey)
     {

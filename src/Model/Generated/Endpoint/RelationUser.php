@@ -64,10 +64,10 @@ class RelationUser extends BunqModel
     }
 
     /**
-     * @param string $userId
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $userId
      */
     public function setUserId($userId)
     {
@@ -85,10 +85,10 @@ class RelationUser extends BunqModel
     }
 
     /**
-     * @param string $counterUserId
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $counterUserId
      */
     public function setCounterUserId($counterUserId)
     {
@@ -106,10 +106,10 @@ class RelationUser extends BunqModel
     }
 
     /**
-     * @param LabelUser $labelUser
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param LabelUser $labelUser
      */
     public function setLabelUser($labelUser)
     {
@@ -127,10 +127,10 @@ class RelationUser extends BunqModel
     }
 
     /**
-     * @param LabelUser $counterLabelUser
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param LabelUser $counterLabelUser
      */
     public function setCounterLabelUser($counterLabelUser)
     {
@@ -148,10 +148,10 @@ class RelationUser extends BunqModel
     }
 
     /**
-     * @param string $relationship
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $relationship
      */
     public function setRelationship($relationship)
     {
@@ -169,10 +169,10 @@ class RelationUser extends BunqModel
     }
 
     /**
-     * @param string $status
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $status
      */
     public function setStatus($status)
     {

@@ -195,16 +195,8 @@ class Registry extends BunqModel
      * @param RegistryMembership[]|null $membershipsPrevious Previous list of
      * memberships.
      */
-    public function __construct(
-        string $currency,
-        string $title = null,
-        string $description = null,
-        string $status = null,
-        int $lastRegistryEntrySeenId = null,
-        string $previousUpdatedTimestamp = null,
-        array $memberships = null,
-        array $membershipsPrevious = null
-    ) {
+    public function __construct(string  $currency, string  $title = null, string  $description = null, string  $status = null, int  $lastRegistryEntrySeenId = null, string  $previousUpdatedTimestamp = null, array  $memberships = null, array  $membershipsPrevious = null)
+    {
         $this->currencyFieldForRequest = $currency;
         $this->titleFieldForRequest = $title;
         $this->descriptionFieldForRequest = $description;
@@ -234,33 +226,22 @@ class Registry extends BunqModel
      *
      * @return BunqResponseInt
      */
-    public static function create(
-        string $currency,
-        string $title = null,
-        string $description = null,
-        string $status = null,
-        int $lastRegistryEntrySeenId = null,
-        string $previousUpdatedTimestamp = null,
-        array $memberships = null,
-        array $membershipsPrevious = null,
-        array $customHeaders = []
-    ): BunqResponseInt {
+    public static function create(string  $currency, string  $title = null, string  $description = null, string  $status = null, int  $lastRegistryEntrySeenId = null, string  $previousUpdatedTimestamp = null, array  $memberships = null, array  $membershipsPrevious = null, array $customHeaders = []): BunqResponseInt
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->post(
             vsprintf(
                 self::ENDPOINT_URL_CREATE,
                 [static::determineUserId()]
             ),
-            [
-                self::FIELD_CURRENCY => $currency,
-                self::FIELD_TITLE => $title,
-                self::FIELD_DESCRIPTION => $description,
-                self::FIELD_STATUS => $status,
-                self::FIELD_LAST_REGISTRY_ENTRY_SEEN_ID => $lastRegistryEntrySeenId,
-                self::FIELD_PREVIOUS_UPDATED_TIMESTAMP => $previousUpdatedTimestamp,
-                self::FIELD_MEMBERSHIPS => $memberships,
-                self::FIELD_MEMBERSHIPS_PREVIOUS => $membershipsPrevious,
-            ],
+            [self::FIELD_CURRENCY => $currency,
+self::FIELD_TITLE => $title,
+self::FIELD_DESCRIPTION => $description,
+self::FIELD_STATUS => $status,
+self::FIELD_LAST_REGISTRY_ENTRY_SEEN_ID => $lastRegistryEntrySeenId,
+self::FIELD_PREVIOUS_UPDATED_TIMESTAMP => $previousUpdatedTimestamp,
+self::FIELD_MEMBERSHIPS => $memberships,
+self::FIELD_MEMBERSHIPS_PREVIOUS => $membershipsPrevious],
             $customHeaders
         );
 
@@ -287,32 +268,21 @@ class Registry extends BunqModel
      *
      * @return BunqResponseInt
      */
-    public static function update(
-        int $registryId,
-        string $title = null,
-        string $description = null,
-        string $status = null,
-        int $lastRegistryEntrySeenId = null,
-        string $previousUpdatedTimestamp = null,
-        array $memberships = null,
-        array $membershipsPrevious = null,
-        array $customHeaders = []
-    ): BunqResponseInt {
+    public static function update(int $registryId, string  $title = null, string  $description = null, string  $status = null, int  $lastRegistryEntrySeenId = null, string  $previousUpdatedTimestamp = null, array  $memberships = null, array  $membershipsPrevious = null, array $customHeaders = []): BunqResponseInt
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->put(
             vsprintf(
                 self::ENDPOINT_URL_UPDATE,
                 [static::determineUserId(), $registryId]
             ),
-            [
-                self::FIELD_TITLE => $title,
-                self::FIELD_DESCRIPTION => $description,
-                self::FIELD_STATUS => $status,
-                self::FIELD_LAST_REGISTRY_ENTRY_SEEN_ID => $lastRegistryEntrySeenId,
-                self::FIELD_PREVIOUS_UPDATED_TIMESTAMP => $previousUpdatedTimestamp,
-                self::FIELD_MEMBERSHIPS => $memberships,
-                self::FIELD_MEMBERSHIPS_PREVIOUS => $membershipsPrevious,
-            ],
+            [self::FIELD_TITLE => $title,
+self::FIELD_DESCRIPTION => $description,
+self::FIELD_STATUS => $status,
+self::FIELD_LAST_REGISTRY_ENTRY_SEEN_ID => $lastRegistryEntrySeenId,
+self::FIELD_PREVIOUS_UPDATED_TIMESTAMP => $previousUpdatedTimestamp,
+self::FIELD_MEMBERSHIPS => $memberships,
+self::FIELD_MEMBERSHIPS_PREVIOUS => $membershipsPrevious],
             $customHeaders
         );
 
@@ -323,6 +293,7 @@ class Registry extends BunqModel
 
     /**
      * Get a listing of all Slice groups.
+     *
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
@@ -331,7 +302,7 @@ class Registry extends BunqModel
      *
      * @return BunqResponseRegistryList
      */
-    public static function listing(array $params = [], array $customHeaders = []): BunqResponseRegistryList
+    public static function listing( array $params = [], array $customHeaders = []): BunqResponseRegistryList
     {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
@@ -408,10 +379,10 @@ class Registry extends BunqModel
     }
 
     /**
-     * @param int $id
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param int $id
      */
     public function setId($id)
     {
@@ -429,10 +400,10 @@ class Registry extends BunqModel
     }
 
     /**
-     * @param string $created
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $created
      */
     public function setCreated($created)
     {
@@ -450,10 +421,10 @@ class Registry extends BunqModel
     }
 
     /**
-     * @param string $updated
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $updated
      */
     public function setUpdated($updated)
     {
@@ -471,10 +442,10 @@ class Registry extends BunqModel
     }
 
     /**
-     * @param string $currency
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $currency
      */
     public function setCurrency($currency)
     {
@@ -492,10 +463,10 @@ class Registry extends BunqModel
     }
 
     /**
-     * @param string $title
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $title
      */
     public function setTitle($title)
     {
@@ -513,10 +484,10 @@ class Registry extends BunqModel
     }
 
     /**
-     * @param string $status
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $status
      */
     public function setStatus($status)
     {
@@ -535,10 +506,10 @@ class Registry extends BunqModel
     }
 
     /**
-     * @param int $unseenEntriesCount
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param int $unseenEntriesCount
      */
     public function setUnseenEntriesCount($unseenEntriesCount)
     {
@@ -556,10 +527,10 @@ class Registry extends BunqModel
     }
 
     /**
-     * @param Amount $totalAmountSpent
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param Amount $totalAmountSpent
      */
     public function setTotalAmountSpent($totalAmountSpent)
     {
@@ -577,10 +548,10 @@ class Registry extends BunqModel
     }
 
     /**
-     * @param bool $isPreviouslySettled
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param bool $isPreviouslySettled
      */
     public function setIsPreviouslySettled($isPreviouslySettled)
     {
@@ -598,10 +569,10 @@ class Registry extends BunqModel
     }
 
     /**
-     * @param RegistryMembership[] $memberships
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param RegistryMembership[] $memberships
      */
     public function setMemberships($memberships)
     {
@@ -619,10 +590,10 @@ class Registry extends BunqModel
     }
 
     /**
-     * @param RegistrySetting $setting
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param RegistrySetting $setting
      */
     public function setSetting($setting)
     {
@@ -641,10 +612,10 @@ class Registry extends BunqModel
     }
 
     /**
-     * @param int $registryAutoAddCardTransactionEnabledId
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param int $registryAutoAddCardTransactionEnabledId
      */
     public function setRegistryAutoAddCardTransactionEnabledId($registryAutoAddCardTransactionEnabledId)
     {

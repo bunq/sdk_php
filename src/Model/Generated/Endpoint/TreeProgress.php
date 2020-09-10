@@ -52,7 +52,7 @@ class TreeProgress extends BunqModel
      *
      * @return BunqResponseTreeProgressList
      */
-    public static function listing(array $params = [], array $customHeaders = []): BunqResponseTreeProgressList
+    public static function listing( array $params = [], array $customHeaders = []): BunqResponseTreeProgressList
     {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
@@ -80,10 +80,10 @@ class TreeProgress extends BunqModel
     }
 
     /**
-     * @param float $numberOfTree
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param float $numberOfTree
      */
     public function setNumberOfTree($numberOfTree)
     {
@@ -101,10 +101,10 @@ class TreeProgress extends BunqModel
     }
 
     /**
-     * @param float $progressTreeNext
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param float $progressTreeNext
      */
     public function setProgressTreeNext($progressTreeNext)
     {
@@ -122,10 +122,10 @@ class TreeProgress extends BunqModel
     }
 
     /**
-     * @param LabelUser $labelUser
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param LabelUser $labelUser
      */
     public function setLabelUser($labelUser)
     {

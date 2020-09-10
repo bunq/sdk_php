@@ -37,7 +37,7 @@ class TokenQrRequestSofort extends BunqModel
     /**
      * @param string $token The token passed from a site or read from a QR code.
      */
-    public function __construct(string $token)
+    public function __construct(string  $token)
     {
         $this->tokenFieldForRequest = $token;
     }
@@ -50,7 +50,7 @@ class TokenQrRequestSofort extends BunqModel
      *
      * @return BunqResponseTokenQrRequestSofort
      */
-    public static function create(string $token, array $customHeaders = []): BunqResponseTokenQrRequestSofort
+    public static function create(string  $token, array $customHeaders = []): BunqResponseTokenQrRequestSofort
     {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->post(

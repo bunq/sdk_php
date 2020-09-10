@@ -67,7 +67,7 @@ class RegistryMembership extends BunqModel
      * Registry.
      * @param string|null $status The status of the RegistryMembership.
      */
-    public function __construct(Pointer $alias, string $status = null)
+    public function __construct(Pointer  $alias, string  $status = null)
     {
         $this->aliasFieldForRequest = $alias;
         $this->statusFieldForRequest = $status;
@@ -85,10 +85,10 @@ class RegistryMembership extends BunqModel
     }
 
     /**
-     * @param LabelMonetaryAccount $alias
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param LabelMonetaryAccount $alias
      */
     public function setAlias($alias)
     {
@@ -106,10 +106,10 @@ class RegistryMembership extends BunqModel
     }
 
     /**
-     * @param Amount $balance
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param Amount $balance
      */
     public function setBalance($balance)
     {
@@ -127,10 +127,10 @@ class RegistryMembership extends BunqModel
     }
 
     /**
-     * @param Amount $totalAmountSpent
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param Amount $totalAmountSpent
      */
     public function setTotalAmountSpent($totalAmountSpent)
     {
@@ -148,10 +148,10 @@ class RegistryMembership extends BunqModel
     }
 
     /**
-     * @param string $status
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $status
      */
     public function setStatus($status)
     {

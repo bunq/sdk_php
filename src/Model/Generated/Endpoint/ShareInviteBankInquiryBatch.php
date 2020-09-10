@@ -40,10 +40,10 @@ class ShareInviteBankInquiryBatch extends BunqModel
     }
 
     /**
-     * @param ShareInviteMonetaryAccountInquiry[] $shareInviteBankInquiries
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param ShareInviteMonetaryAccountInquiry[] $shareInviteBankInquiries
      */
     public function setShareInviteBankInquiries($shareInviteBankInquiries)
     {
@@ -62,10 +62,10 @@ class ShareInviteBankInquiryBatch extends BunqModel
     }
 
     /**
-     * @param LabelMonetaryAccount $alias
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param LabelMonetaryAccount $alias
      */
     public function setAlias($alias)
     {

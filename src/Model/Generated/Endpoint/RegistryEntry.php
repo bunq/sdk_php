@@ -204,14 +204,8 @@ class RegistryEntry extends BunqModel
      * @param RegistryEntryAttachment[]|null $attachment The attachments
      * attached to the payment.
      */
-    public function __construct(
-        Amount $amount,
-        array $allocations,
-        Pointer $aliasOwner = null,
-        RegistryEntryReference $objectReference = null,
-        string $description = null,
-        array $attachment = null
-    ) {
+    public function __construct(Amount  $amount, array  $allocations, Pointer  $aliasOwner = null, RegistryEntryReference  $objectReference = null, string  $description = null, array  $attachment = null)
+    {
         $this->aliasOwnerFieldForRequest = $aliasOwner;
         $this->amountFieldForRequest = $amount;
         $this->objectReferenceFieldForRequest = $objectReference;
@@ -237,30 +231,20 @@ class RegistryEntry extends BunqModel
      *
      * @return BunqResponseInt
      */
-    public static function create(
-        int $registryId,
-        Amount $amount,
-        array $allocations,
-        Pointer $aliasOwner = null,
-        RegistryEntryReference $objectReference = null,
-        string $description = null,
-        array $attachment = null,
-        array $customHeaders = []
-    ): BunqResponseInt {
+    public static function create(int $registryId, Amount  $amount, array  $allocations, Pointer  $aliasOwner = null, RegistryEntryReference  $objectReference = null, string  $description = null, array  $attachment = null, array $customHeaders = []): BunqResponseInt
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->post(
             vsprintf(
                 self::ENDPOINT_URL_CREATE,
                 [static::determineUserId(), $registryId]
             ),
-            [
-                self::FIELD_ALIAS_OWNER => $aliasOwner,
-                self::FIELD_AMOUNT => $amount,
-                self::FIELD_OBJECT_REFERENCE => $objectReference,
-                self::FIELD_DESCRIPTION => $description,
-                self::FIELD_ALLOCATIONS => $allocations,
-                self::FIELD_ATTACHMENT => $attachment,
-            ],
+            [self::FIELD_ALIAS_OWNER => $aliasOwner,
+self::FIELD_AMOUNT => $amount,
+self::FIELD_OBJECT_REFERENCE => $objectReference,
+self::FIELD_DESCRIPTION => $description,
+self::FIELD_ALLOCATIONS => $allocations,
+self::FIELD_ATTACHMENT => $attachment],
             $customHeaders
         );
 
@@ -282,25 +266,17 @@ class RegistryEntry extends BunqModel
      *
      * @return BunqResponseInt
      */
-    public static function update(
-        int $registryId,
-        int $registryEntryId,
-        string $description = null,
-        array $allocations = null,
-        array $attachment = null,
-        array $customHeaders = []
-    ): BunqResponseInt {
+    public static function update(int $registryId, int $registryEntryId, string  $description = null, array  $allocations = null, array  $attachment = null, array $customHeaders = []): BunqResponseInt
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->put(
             vsprintf(
                 self::ENDPOINT_URL_UPDATE,
                 [static::determineUserId(), $registryId, $registryEntryId]
             ),
-            [
-                self::FIELD_DESCRIPTION => $description,
-                self::FIELD_ALLOCATIONS => $allocations,
-                self::FIELD_ATTACHMENT => $attachment,
-            ],
+            [self::FIELD_DESCRIPTION => $description,
+self::FIELD_ALLOCATIONS => $allocations,
+self::FIELD_ATTACHMENT => $attachment],
             $customHeaders
         );
 
@@ -311,6 +287,7 @@ class RegistryEntry extends BunqModel
 
     /**
      * Get a listing of all Slice group payments.
+     *
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
@@ -320,11 +297,8 @@ class RegistryEntry extends BunqModel
      *
      * @return BunqResponseRegistryEntryList
      */
-    public static function listing(
-        int $registryId,
-        array $params = [],
-        array $customHeaders = []
-    ): BunqResponseRegistryEntryList {
+    public static function listing(int $registryId, array $params = [], array $customHeaders = []): BunqResponseRegistryEntryList
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
@@ -349,11 +323,8 @@ class RegistryEntry extends BunqModel
      *
      * @return BunqResponseRegistryEntry
      */
-    public static function get(
-        int $registryId,
-        int $registryEntryId,
-        array $customHeaders = []
-    ): BunqResponseRegistryEntry {
+    public static function get(int $registryId, int $registryEntryId, array $customHeaders = []): BunqResponseRegistryEntry
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
@@ -405,10 +376,10 @@ class RegistryEntry extends BunqModel
     }
 
     /**
-     * @param int $id
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param int $id
      */
     public function setId($id)
     {
@@ -426,10 +397,10 @@ class RegistryEntry extends BunqModel
     }
 
     /**
-     * @param string $created
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $created
      */
     public function setCreated($created)
     {
@@ -447,10 +418,10 @@ class RegistryEntry extends BunqModel
     }
 
     /**
-     * @param string $updated
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $updated
      */
     public function setUpdated($updated)
     {
@@ -468,10 +439,10 @@ class RegistryEntry extends BunqModel
     }
 
     /**
-     * @param int $registryId
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param int $registryId
      */
     public function setRegistryId($registryId)
     {
@@ -489,10 +460,10 @@ class RegistryEntry extends BunqModel
     }
 
     /**
-     * @param string $status
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $status
      */
     public function setStatus($status)
     {
@@ -510,10 +481,10 @@ class RegistryEntry extends BunqModel
     }
 
     /**
-     * @param Amount $amount
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param Amount $amount
      */
     public function setAmount($amount)
     {
@@ -531,10 +502,10 @@ class RegistryEntry extends BunqModel
     }
 
     /**
-     * @param string $description
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $description
      */
     public function setDescription($description)
     {
@@ -553,10 +524,10 @@ class RegistryEntry extends BunqModel
     }
 
     /**
-     * @param string $type
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $type
      */
     public function setType($type)
     {
@@ -575,10 +546,10 @@ class RegistryEntry extends BunqModel
     }
 
     /**
-     * @param LabelUser $alias
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param LabelUser $alias
      */
     public function setAlias($alias)
     {
@@ -597,10 +568,10 @@ class RegistryEntry extends BunqModel
     }
 
     /**
-     * @param LabelUser $counterpartyAlias
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param LabelUser $counterpartyAlias
      */
     public function setCounterpartyAlias($counterpartyAlias)
     {
@@ -619,10 +590,10 @@ class RegistryEntry extends BunqModel
     }
 
     /**
-     * @param LabelUser $userAliasCreated
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param LabelUser $userAliasCreated
      */
     public function setUserAliasCreated($userAliasCreated)
     {
@@ -640,10 +611,10 @@ class RegistryEntry extends BunqModel
     }
 
     /**
-     * @param RegistryMembership $membershipCreated
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param RegistryMembership $membershipCreated
      */
     public function setMembershipCreated($membershipCreated)
     {
@@ -661,10 +632,10 @@ class RegistryEntry extends BunqModel
     }
 
     /**
-     * @param RegistryMembership $membershipOwned
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param RegistryMembership $membershipOwned
      */
     public function setMembershipOwned($membershipOwned)
     {
@@ -682,10 +653,10 @@ class RegistryEntry extends BunqModel
     }
 
     /**
-     * @param AllocationItem[] $allocations
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param AllocationItem[] $allocations
      */
     public function setAllocations($allocations)
     {
@@ -703,10 +674,10 @@ class RegistryEntry extends BunqModel
     }
 
     /**
-     * @param RegistryEntryAttachment[] $attachment
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param RegistryEntryAttachment[] $attachment
      */
     public function setAttachment($attachment)
     {
