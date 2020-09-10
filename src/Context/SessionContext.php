@@ -7,6 +7,7 @@ use bunq\Model\Generated\Endpoint\UserApiKey;
 use bunq\Model\Generated\Endpoint\UserCompany;
 use bunq\Model\Generated\Endpoint\UserPaymentServiceProvider;
 use bunq\Model\Generated\Endpoint\UserPerson;
+use bunq\Util\ModelUtil;
 use DateTime;
 use JsonSerializable;
 
@@ -20,6 +21,10 @@ class SessionContext implements JsonSerializable
     const FIELD_TOKEN = 'token';
     const FIELD_EXPIRY_TIME = 'expiry_time';
     const FIELD_USER_ID = 'user_id';
+    const FIELD_USER_PERSON = 'userPerson';
+    const FIELD_USER_COMPANY = 'userCompany';
+    const FIELD_USER_API_KEY = 'userApiKey';
+    const FIELD_USER_PAYMENT_SERVICE_PROVIDER = 'userPaymentServiceProvider';
 
     /**
      * Constants for manipulating expiry timestamp.
@@ -45,9 +50,24 @@ class SessionContext implements JsonSerializable
     protected $userId;
 
     /**
-     * @var UserApiKey|UserCompany|UserPaymentServiceProvider|UserPerson
+     * @var UserPerson
      */
-    private $user;
+    protected $userPerson;
+
+    /**
+     * @var UserCompany
+     */
+    protected $userCompany;
+
+    /**
+     * @var UserApiKey
+     */
+    protected $userApiKey;
+
+    /**
+     * @var UserPaymentServiceProvider
+     */
+    protected $userPaymentServiceProvider;
 
     /**
      */
@@ -66,7 +86,10 @@ class SessionContext implements JsonSerializable
         $sessionContext->sessionToken = $sessionServer->getSessionToken();
         $sessionContext->expiryTime = static::calculateExpiryTime($sessionServer);
         $sessionContext->userId = $sessionServer->getReferencedUser()->getId();
-        $sessionContext->user = $sessionServer->getReferencedUser();
+        $sessionContext->userCompany = $sessionServer->getUserCompanyOrNull();
+        $sessionContext->userPerson = $sessionServer->getUserPersonOrNull();
+        $sessionContext->userApiKey = $sessionServer->getUserApiKeyOrNull();
+        $sessionContext->userPaymentServiceProvider = $sessionServer->getUserPaymentServiceProviderOrNull();
 
         return $sessionContext;
     }
@@ -127,8 +150,28 @@ class SessionContext implements JsonSerializable
             $sessionContextBody[self::FIELD_EXPIRY_TIME]
         );
         $sessionContext->userId = $sessionContextBody[self::FIELD_USER_ID];
+        $sessionContext->userPerson = static::getUserOrNull($sessionContextBody, self::FIELD_USER_PERSON);
+        $sessionContext->userCompany = static::getUserOrNull($sessionContextBody, self::FIELD_USER_COMPANY);
+        $sessionContext->userApiKey = static::getUserOrNull($sessionContextBody, self::FIELD_USER_API_KEY);
+        $sessionContext->userPaymentServiceProvider =
+            static::getUserOrNull($sessionContextBody, self::FIELD_USER_PAYMENT_SERVICE_PROVIDER);
 
         return $sessionContext;
+    }
+
+    /**
+     * @param array $sessionContextBody
+     * @param string $userType
+     *
+     * @return UserPerson|UserCompany|UserApiKey|UserPaymentServiceProvider|null
+     */
+    private static function getUserOrNull(array $sessionContextBody, string $userType)
+    {
+        if (isset($sessionContextBody[$userType])) {
+            return UserPerson::createFromJsonString(json_encode($sessionContextBody[$userType]));
+        } else {
+            return null;
+        }
     }
 
     /**
@@ -140,6 +183,10 @@ class SessionContext implements JsonSerializable
             self::FIELD_TOKEN => $this->getSessionToken()->getToken(),
             self::FIELD_EXPIRY_TIME => $this->getExpiryTime()->format(self::FORMAT_MICRO_TIME),
             self::FIELD_USER_ID => $this->getUserId(),
+            self::FIELD_USER_COMPANY => $this->getUserCompanyOrNull(),
+            self::FIELD_USER_PERSON => $this->getUserPersonOrNull(),
+            self::FIELD_USER_API_KEY => $this->getUserApiKeyOrNull(),
+            self::FIELD_USER_PAYMENT_SERVICE_PROVIDER => $this->getUserPaymentServiceProviderOrNull(),
         ];
     }
 
@@ -160,11 +207,35 @@ class SessionContext implements JsonSerializable
     }
 
     /**
-     * @return UserApiKey|UserCompany|UserPaymentServiceProvider|UserPerson
+     * @return UserPerson|null
      */
-    public function getUser()
+    public function getUserPersonOrNull()
     {
-        return $this->user;
+        return $this->userPerson;
+    }
+
+    /**
+     * @return UserCompany|null
+     */
+    public function getUserCompanyOrNull()
+    {
+        return $this->userCompany;
+    }
+
+    /**
+     * @return UserApiKey|null
+     */
+    public function getUserApiKeyOrNull()
+    {
+        return $this->userApiKey;
+    }
+
+    /**
+     * @return UserPaymentServiceProvider|null
+     */
+    public function getUserPaymentServiceProviderOrNull()
+    {
+        return $this->userPaymentServiceProvider;
     }
 
     /**
@@ -173,5 +244,18 @@ class SessionContext implements JsonSerializable
     public function getExpiryTime(): DateTime
     {
         return $this->expiryTime;
+    }
+
+    /**
+     * @return UserCompany|UserPerson|UserApiKey|UserPaymentServiceProvider
+     */
+    public function getReferencedUser()
+    {
+        return ModelUtil::getReferencedUser(
+            $this->userPerson,
+            $this->userCompany,
+            $this->userApiKey,
+            $this->userPaymentServiceProvider
+        );
     }
 }

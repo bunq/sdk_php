@@ -37,7 +37,7 @@ class BunqContext
         static::$apiContext = $apiContext;
         static::$userContext = new UserContext(
             $apiContext->getSessionContext()->getUserId(),
-            $apiContext->getSessionContext()->getUser()
+            $apiContext->getSessionContext()->getReferencedUser()
         );
         static::$userContext->initMainMonetaryAccount();
     }
