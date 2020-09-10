@@ -162,7 +162,7 @@ class SessionContext implements JsonSerializable
     /**
      * @return UserApiKey|UserCompany|UserPaymentServiceProvider|UserPerson
      */
-    public function getUserObject()
+    public function getUser()
     {
         return $this->user;
     }
