@@ -80,10 +80,8 @@ class UserCredentialPasswordIp extends BunqModel
      *
      * @return BunqResponseUserCredentialPasswordIp
      */
-    public static function get(
-        int $userCredentialPasswordIpId,
-        array $customHeaders = []
-    ): BunqResponseUserCredentialPasswordIp {
+    public static function get(int $userCredentialPasswordIpId, array $customHeaders = []): BunqResponseUserCredentialPasswordIp
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
@@ -108,10 +106,8 @@ class UserCredentialPasswordIp extends BunqModel
      *
      * @return BunqResponseUserCredentialPasswordIpList
      */
-    public static function listing(
-        array $params = [],
-        array $customHeaders = []
-    ): BunqResponseUserCredentialPasswordIpList {
+    public static function listing( array $params = [], array $customHeaders = []): BunqResponseUserCredentialPasswordIpList
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
@@ -138,10 +134,10 @@ class UserCredentialPasswordIp extends BunqModel
     }
 
     /**
-     * @param int $id
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param int $id
      */
     public function setId($id)
     {
@@ -159,10 +155,10 @@ class UserCredentialPasswordIp extends BunqModel
     }
 
     /**
-     * @param string $created
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $created
      */
     public function setCreated($created)
     {
@@ -180,10 +176,10 @@ class UserCredentialPasswordIp extends BunqModel
     }
 
     /**
-     * @param string $updated
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $updated
      */
     public function setUpdated($updated)
     {
@@ -201,10 +197,10 @@ class UserCredentialPasswordIp extends BunqModel
     }
 
     /**
-     * @param string $status
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $status
      */
     public function setStatus($status)
     {
@@ -222,10 +218,10 @@ class UserCredentialPasswordIp extends BunqModel
     }
 
     /**
-     * @param string $expiryTime
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $expiryTime
      */
     public function setExpiryTime($expiryTime)
     {
@@ -243,10 +239,10 @@ class UserCredentialPasswordIp extends BunqModel
     }
 
     /**
-     * @param string $tokenValue
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $tokenValue
      */
     public function setTokenValue($tokenValue)
     {
@@ -265,10 +261,10 @@ class UserCredentialPasswordIp extends BunqModel
     }
 
     /**
-     * @param PermittedDevice $permittedDevice
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param PermittedDevice $permittedDevice
      */
     public function setPermittedDevice($permittedDevice)
     {

@@ -28,6 +28,7 @@ class ScheduleUser extends BunqModel
      * type={SCHEDULE_DEFINITION_PAYMENT,SCHEDULE_DEFINITION_PAYMENT_BATCH} is
      * provided only schedule definition object that relate to these definitions
      * are returned.
+     *
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
@@ -36,7 +37,7 @@ class ScheduleUser extends BunqModel
      *
      * @return BunqResponseScheduleUserList
      */
-    public static function listing(array $params = [], array $customHeaders = []): BunqResponseScheduleUserList
+    public static function listing( array $params = [], array $customHeaders = []): BunqResponseScheduleUserList
     {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(

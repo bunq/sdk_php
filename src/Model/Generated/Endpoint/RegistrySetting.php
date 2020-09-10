@@ -47,7 +47,7 @@ class RegistrySetting extends BunqModel
      * @param string $autoAddCardTransaction The setting for for adding
      * automatically card transactions to the registry.
      */
-    public function __construct(string $autoAddCardTransaction)
+    public function __construct(string  $autoAddCardTransaction)
     {
         $this->autoAddCardTransactionFieldForRequest = $autoAddCardTransaction;
     }
@@ -63,12 +63,8 @@ class RegistrySetting extends BunqModel
      *
      * @return BunqResponseInt
      */
-    public static function update(
-        int $registryId,
-        int $registrySettingId,
-        string $autoAddCardTransaction = null,
-        array $customHeaders = []
-    ): BunqResponseInt {
+    public static function update(int $registryId, int $registrySettingId, string  $autoAddCardTransaction = null, array $customHeaders = []): BunqResponseInt
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->put(
             vsprintf(
@@ -93,11 +89,8 @@ class RegistrySetting extends BunqModel
      *
      * @return BunqResponseRegistrySetting
      */
-    public static function get(
-        int $registryId,
-        int $registrySettingId,
-        array $customHeaders = []
-    ): BunqResponseRegistrySetting {
+    public static function get(int $registryId, int $registrySettingId, array $customHeaders = []): BunqResponseRegistrySetting
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
@@ -125,10 +118,10 @@ class RegistrySetting extends BunqModel
     }
 
     /**
-     * @param string $autoAddCardTransaction
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $autoAddCardTransaction
      */
     public function setAutoAddCardTransaction($autoAddCardTransaction)
     {

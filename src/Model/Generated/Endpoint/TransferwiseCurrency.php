@@ -51,7 +51,7 @@ class TransferwiseCurrency extends BunqModel
      *
      * @return BunqResponseTransferwiseCurrencyList
      */
-    public static function listing(array $params = [], array $customHeaders = []): BunqResponseTransferwiseCurrencyList
+    public static function listing( array $params = [], array $customHeaders = []): BunqResponseTransferwiseCurrencyList
     {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
@@ -79,10 +79,10 @@ class TransferwiseCurrency extends BunqModel
     }
 
     /**
-     * @param string $currency
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $currency
      */
     public function setCurrency($currency)
     {
@@ -100,10 +100,10 @@ class TransferwiseCurrency extends BunqModel
     }
 
     /**
-     * @param string $name
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $name
      */
     public function setName($name)
     {
@@ -121,10 +121,10 @@ class TransferwiseCurrency extends BunqModel
     }
 
     /**
-     * @param string $country
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $country
      */
     public function setCountry($country)
     {

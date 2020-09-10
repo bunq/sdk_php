@@ -95,7 +95,7 @@ class ScheduleInstance extends BunqModel
      * @param string $state Change the state of the scheduleInstance from
      * FAILED_USER_ERROR to RETRY.
      */
-    public function __construct(string $state)
+    public function __construct(string  $state)
     {
         $this->stateFieldForRequest = $state;
     }
@@ -108,22 +108,13 @@ class ScheduleInstance extends BunqModel
      *
      * @return BunqResponseScheduleInstance
      */
-    public static function get(
-        int $scheduleId,
-        int $scheduleInstanceId,
-        int $monetaryAccountId = null,
-        array $customHeaders = []
-    ): BunqResponseScheduleInstance {
+    public static function get(int $scheduleId, int $scheduleInstanceId, int $monetaryAccountId = null, array $customHeaders = []): BunqResponseScheduleInstance
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_READ,
-                [
-                    static::determineUserId(),
-                    static::determineMonetaryAccountId($monetaryAccountId),
-                    $scheduleId,
-                    $scheduleInstanceId,
-                ]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId), $scheduleId, $scheduleInstanceId]
             ),
             [],
             $customHeaders
@@ -144,23 +135,13 @@ class ScheduleInstance extends BunqModel
      *
      * @return BunqResponseInt
      */
-    public static function update(
-        int $scheduleId,
-        int $scheduleInstanceId,
-        int $monetaryAccountId = null,
-        string $state = null,
-        array $customHeaders = []
-    ): BunqResponseInt {
+    public static function update(int $scheduleId, int $scheduleInstanceId, int $monetaryAccountId = null, string  $state = null, array $customHeaders = []): BunqResponseInt
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->put(
             vsprintf(
                 self::ENDPOINT_URL_UPDATE,
-                [
-                    static::determineUserId(),
-                    static::determineMonetaryAccountId($monetaryAccountId),
-                    $scheduleId,
-                    $scheduleInstanceId,
-                ]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId), $scheduleId, $scheduleInstanceId]
             ),
             [self::FIELD_STATE => $state],
             $customHeaders
@@ -182,12 +163,8 @@ class ScheduleInstance extends BunqModel
      *
      * @return BunqResponseScheduleInstanceList
      */
-    public static function listing(
-        int $scheduleId,
-        int $monetaryAccountId = null,
-        array $params = [],
-        array $customHeaders = []
-    ): BunqResponseScheduleInstanceList {
+    public static function listing(int $scheduleId, int $monetaryAccountId = null, array $params = [], array $customHeaders = []): BunqResponseScheduleInstanceList
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
@@ -215,10 +192,10 @@ class ScheduleInstance extends BunqModel
     }
 
     /**
-     * @param string $state
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $state
      */
     public function setState($state)
     {
@@ -236,10 +213,10 @@ class ScheduleInstance extends BunqModel
     }
 
     /**
-     * @param string $timeStart
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $timeStart
      */
     public function setTimeStart($timeStart)
     {
@@ -257,10 +234,10 @@ class ScheduleInstance extends BunqModel
     }
 
     /**
-     * @param string $timeEnd
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $timeEnd
      */
     public function setTimeEnd($timeEnd)
     {
@@ -279,10 +256,10 @@ class ScheduleInstance extends BunqModel
     }
 
     /**
-     * @param Error[] $errorMessage
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param Error[] $errorMessage
      */
     public function setErrorMessage($errorMessage)
     {
@@ -300,10 +277,10 @@ class ScheduleInstance extends BunqModel
     }
 
     /**
-     * @param ScheduleAnchorObject $scheduledObject
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param ScheduleAnchorObject $scheduledObject
      */
     public function setScheduledObject($scheduledObject)
     {
@@ -321,10 +298,10 @@ class ScheduleInstance extends BunqModel
     }
 
     /**
-     * @param ScheduleInstanceAnchorObject $resultObject
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param ScheduleInstanceAnchorObject $resultObject
      */
     public function setResultObject($resultObject)
     {
@@ -343,10 +320,10 @@ class ScheduleInstance extends BunqModel
     }
 
     /**
-     * @param RequestInquiryReference[] $requestReferenceSplitTheBill
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param RequestInquiryReference[] $requestReferenceSplitTheBill
      */
     public function setRequestReferenceSplitTheBill($requestReferenceSplitTheBill)
     {

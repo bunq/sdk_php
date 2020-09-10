@@ -31,6 +31,7 @@ class RegistrySettlementPending extends BunqModel
 
     /**
      * Get a listing of all pending Slice group settlements.
+     *
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
@@ -40,11 +41,8 @@ class RegistrySettlementPending extends BunqModel
      *
      * @return BunqResponseRegistrySettlementPendingList
      */
-    public static function listing(
-        int $registryId,
-        array $params = [],
-        array $customHeaders = []
-    ): BunqResponseRegistrySettlementPendingList {
+    public static function listing(int $registryId, array $params = [], array $customHeaders = []): BunqResponseRegistrySettlementPendingList
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
@@ -71,10 +69,10 @@ class RegistrySettlementPending extends BunqModel
     }
 
     /**
-     * @param RegistrySettlementItem[] $items
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param RegistrySettlementItem[] $items
      */
     public function setItems($items)
     {

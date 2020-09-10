@@ -82,10 +82,10 @@ class WhitelistResult extends BunqModel
     }
 
     /**
-     * @param int $id
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param int $id
      */
     public function setId($id)
     {
@@ -104,10 +104,10 @@ class WhitelistResult extends BunqModel
     }
 
     /**
-     * @param int $monetaryAccountPayingId
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param int $monetaryAccountPayingId
      */
     public function setMonetaryAccountPayingId($monetaryAccountPayingId)
     {
@@ -125,10 +125,10 @@ class WhitelistResult extends BunqModel
     }
 
     /**
-     * @param string $status
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $status
      */
     public function setStatus($status)
     {
@@ -146,10 +146,10 @@ class WhitelistResult extends BunqModel
     }
 
     /**
-     * @param string $subStatus
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $subStatus
      */
     public function setSubStatus($subStatus)
     {
@@ -167,10 +167,10 @@ class WhitelistResult extends BunqModel
     }
 
     /**
-     * @param Error[] $errorMessage
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param Error[] $errorMessage
      */
     public function setErrorMessage($errorMessage)
     {
@@ -188,10 +188,10 @@ class WhitelistResult extends BunqModel
     }
 
     /**
-     * @param Whitelist $whitelist
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param Whitelist $whitelist
      */
     public function setWhitelist($whitelist)
     {
@@ -209,10 +209,10 @@ class WhitelistResult extends BunqModel
     }
 
     /**
-     * @param WhitelistResultViewAnchoredObject $object
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param WhitelistResultViewAnchoredObject $object
      */
     public function setObject($object)
     {
@@ -231,10 +231,10 @@ class WhitelistResult extends BunqModel
     }
 
     /**
-     * @param RequestInquiryReference[] $requestReferenceSplitTheBill
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param RequestInquiryReference[] $requestReferenceSplitTheBill
      */
     public function setRequestReferenceSplitTheBill($requestReferenceSplitTheBill)
     {

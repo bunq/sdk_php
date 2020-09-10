@@ -30,22 +30,13 @@ class ShareInviteMonetaryAccountAmountUsed extends BunqModel
      *
      * @return BunqResponseNull
      */
-    public static function delete(
-        int $shareInviteMonetaryAccountInquiryId,
-        int $shareInviteMonetaryAccountAmountUsedId,
-        int $monetaryAccountId = null,
-        array $customHeaders = []
-    ): BunqResponseNull {
+    public static function delete(int $shareInviteMonetaryAccountInquiryId, int $shareInviteMonetaryAccountAmountUsedId, int $monetaryAccountId = null, array $customHeaders = []): BunqResponseNull
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->delete(
             vsprintf(
                 self::ENDPOINT_URL_DELETE,
-                [
-                    static::determineUserId(),
-                    static::determineMonetaryAccountId($monetaryAccountId),
-                    $shareInviteMonetaryAccountInquiryId,
-                    $shareInviteMonetaryAccountAmountUsedId,
-                ]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId), $shareInviteMonetaryAccountInquiryId, $shareInviteMonetaryAccountAmountUsedId]
             ),
             $customHeaders
         );

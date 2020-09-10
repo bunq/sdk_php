@@ -28,6 +28,7 @@ class TabQrCodeContent extends BunqModel
      * Returns the raw content of the QR code that links to this Tab. The raw
      * content is the binary representation of a file, without any JSON
      * wrapping.
+     *
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
@@ -38,22 +39,13 @@ class TabQrCodeContent extends BunqModel
      *
      * @return BunqResponseString
      */
-    public static function listing(
-        int $cashRegisterId,
-        string $tabUuid,
-        int $monetaryAccountId = null,
-        array $customHeaders = []
-    ): BunqResponseString {
+    public static function listing(int $cashRegisterId, string $tabUuid, int $monetaryAccountId = null, array $customHeaders = []): BunqResponseString
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_LISTING,
-                [
-                    static::determineUserId(),
-                    static::determineMonetaryAccountId($monetaryAccountId),
-                    $cashRegisterId,
-                    $tabUuid,
-                ]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId), $cashRegisterId, $tabUuid]
             ),
             [],
             $customHeaders

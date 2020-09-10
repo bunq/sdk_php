@@ -65,7 +65,7 @@ class TransferwiseTransferRequirement extends BunqModel
      * specified as "required" and have since been filled by the user. Always
      * provide the full list.
      */
-    public function __construct(string $recipientId, array $detail = null)
+    public function __construct(string  $recipientId, array  $detail = null)
     {
         $this->recipientIdFieldForRequest = $recipientId;
         $this->detailFieldForRequest = $detail;
@@ -81,22 +81,16 @@ class TransferwiseTransferRequirement extends BunqModel
      *
      * @return BunqResponseInt
      */
-    public static function create(
-        int $transferwiseQuoteId,
-        string $recipientId,
-        array $detail = null,
-        array $customHeaders = []
-    ): BunqResponseInt {
+    public static function create(int $transferwiseQuoteId, string  $recipientId, array  $detail = null, array $customHeaders = []): BunqResponseInt
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->post(
             vsprintf(
                 self::ENDPOINT_URL_CREATE,
                 [static::determineUserId(), $transferwiseQuoteId]
             ),
-            [
-                self::FIELD_RECIPIENT_ID => $recipientId,
-                self::FIELD_DETAIL => $detail,
-            ],
+            [self::FIELD_RECIPIENT_ID => $recipientId,
+self::FIELD_DETAIL => $detail],
             $customHeaders
         );
 
@@ -116,10 +110,10 @@ class TransferwiseTransferRequirement extends BunqModel
     }
 
     /**
-     * @param string $type
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $type
      */
     public function setType($type)
     {
@@ -137,10 +131,10 @@ class TransferwiseTransferRequirement extends BunqModel
     }
 
     /**
-     * @param string $label
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $label
      */
     public function setLabel($label)
     {
@@ -158,10 +152,10 @@ class TransferwiseTransferRequirement extends BunqModel
     }
 
     /**
-     * @param TransferwiseRequirementField[] $fields
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param TransferwiseRequirementField[] $fields
      */
     public function setFields($fields)
     {

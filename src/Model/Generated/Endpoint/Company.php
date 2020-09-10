@@ -31,6 +31,7 @@ class Company extends BunqModel
     const FIELD_UBO = 'ubo';
     const FIELD_CHAMBER_OF_COMMERCE_NUMBER = 'chamber_of_commerce_number';
     const FIELD_LEGAL_FORM = 'legal_form';
+    const FIELD_SUBSCRIPTION_TYPE = 'subscription_type';
     const FIELD_AVATAR_UUID = 'avatar_uuid';
 
     /**
@@ -94,6 +95,13 @@ class Company extends BunqModel
     protected $legalFormFieldForRequest;
 
     /**
+     * The subscription type for the company.
+     *
+     * @var string|null
+     */
+    protected $subscriptionTypeFieldForRequest;
+
+    /**
      * The public UUID of the company's avatar.
      *
      * @var string|null
@@ -110,6 +118,8 @@ class Company extends BunqModel
      * ultimate beneficiary owners. Minimum zero, maximum four.
      * @param string|null $chamberOfCommerceNumber The company's chamber of
      * commerce number.
+     * @param string|null $subscriptionType The subscription type for the
+     * company.
      * @param string|null $avatarUuid The public UUID of the company's avatar.
      */
     public function __construct(
@@ -120,6 +130,7 @@ class Company extends BunqModel
         string $legalForm,
         array $ubo = null,
         string $chamberOfCommerceNumber = null,
+        string $subscriptionType = null,
         string $avatarUuid = null
     ) {
         $this->nameFieldForRequest = $name;
@@ -129,6 +140,7 @@ class Company extends BunqModel
         $this->uboFieldForRequest = $ubo;
         $this->chamberOfCommerceNumberFieldForRequest = $chamberOfCommerceNumber;
         $this->legalFormFieldForRequest = $legalForm;
+        $this->subscriptionTypeFieldForRequest = $subscriptionType;
         $this->avatarUuidFieldForRequest = $avatarUuid;
     }
 
@@ -142,6 +154,8 @@ class Company extends BunqModel
      * ultimate beneficiary owners. Minimum zero, maximum four.
      * @param string|null $chamberOfCommerceNumber The company's chamber of
      * commerce number.
+     * @param string|null $subscriptionType The subscription type for the
+     * company.
      * @param string|null $avatarUuid The public UUID of the company's avatar.
      * @param string[] $customHeaders
      *
@@ -155,6 +169,7 @@ class Company extends BunqModel
         string $legalForm,
         array $ubo = null,
         string $chamberOfCommerceNumber = null,
+        string $subscriptionType = null,
         string $avatarUuid = null,
         array $customHeaders = []
     ): BunqResponseInt {
@@ -172,6 +187,7 @@ class Company extends BunqModel
                 self::FIELD_UBO => $ubo,
                 self::FIELD_CHAMBER_OF_COMMERCE_NUMBER => $chamberOfCommerceNumber,
                 self::FIELD_LEGAL_FORM => $legalForm,
+                self::FIELD_SUBSCRIPTION_TYPE => $subscriptionType,
                 self::FIELD_AVATAR_UUID => $avatarUuid,
             ],
             $customHeaders

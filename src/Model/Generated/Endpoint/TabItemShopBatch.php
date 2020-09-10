@@ -40,7 +40,7 @@ class TabItemShopBatch extends BunqModel
      * @param TabItemShop[] $tabItems The list of tab items we want to create in
      * a single batch. Limited to 50 items per batch.
      */
-    public function __construct(array $tabItems)
+    public function __construct(array  $tabItems)
     {
         $this->tabItemsFieldForRequest = $tabItems;
     }
@@ -57,23 +57,13 @@ class TabItemShopBatch extends BunqModel
      *
      * @return BunqResponseInt
      */
-    public static function create(
-        int $cashRegisterId,
-        string $tabUuid,
-        array $tabItems,
-        int $monetaryAccountId = null,
-        array $customHeaders = []
-    ): BunqResponseInt {
+    public static function create(int $cashRegisterId, string $tabUuid, array  $tabItems, int $monetaryAccountId = null, array $customHeaders = []): BunqResponseInt
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->post(
             vsprintf(
                 self::ENDPOINT_URL_CREATE,
-                [
-                    static::determineUserId(),
-                    static::determineMonetaryAccountId($monetaryAccountId),
-                    $cashRegisterId,
-                    $tabUuid,
-                ]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId), $cashRegisterId, $tabUuid]
             ),
             [self::FIELD_TAB_ITEMS => $tabItems],
             $customHeaders
@@ -95,10 +85,10 @@ class TabItemShopBatch extends BunqModel
     }
 
     /**
-     * @param TabItemShop[] $tabItems
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param TabItemShop[] $tabItems
      */
     public function setTabItems($tabItems)
     {
