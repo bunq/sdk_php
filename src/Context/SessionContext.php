@@ -85,7 +85,7 @@ class SessionContext implements JsonSerializable
         $sessionContext = new static();
         $sessionContext->sessionToken = $sessionServer->getSessionToken();
         $sessionContext->expiryTime = static::calculateExpiryTime($sessionServer);
-        $sessionContext->userId = $sessionServer->getReferencedUser()->getId();
+        $sessionContext->userId = $sessionServer->getUserReference()->getId();
         $sessionContext->userCompany = $sessionServer->getUserCompanyOrNull();
         $sessionContext->userPerson = $sessionServer->getUserPersonOrNull();
         $sessionContext->userApiKey = $sessionServer->getUserApiKeyOrNull();
@@ -113,7 +113,7 @@ class SessionContext implements JsonSerializable
      */
     private static function getSessionTimeout(SessionServer $sessionServer): int
     {
-        $user = $sessionServer->getReferencedUser();
+        $user = $sessionServer->getUserReference();
 
         if ($user instanceof UserApiKey) {
             return $user->getRequestedByUser()->getReferencedObject()->getSessionTimeout();
@@ -150,25 +150,68 @@ class SessionContext implements JsonSerializable
             $sessionContextBody[self::FIELD_EXPIRY_TIME]
         );
         $sessionContext->userId = $sessionContextBody[self::FIELD_USER_ID];
-        $sessionContext->userPerson = static::getUserOrNull($sessionContextBody, self::FIELD_USER_PERSON);
-        $sessionContext->userCompany = static::getUserOrNull($sessionContextBody, self::FIELD_USER_COMPANY);
-        $sessionContext->userApiKey = static::getUserOrNull($sessionContextBody, self::FIELD_USER_API_KEY);
+        $sessionContext->userPerson = static::getUserPersonFromSessionOrNull($sessionContextBody);
+        $sessionContext->userCompany = static::getUserCompanyFromSessionOrNull($sessionContextBody);
+        $sessionContext->userApiKey = static::getUserApiKeyFromSessionOrNull($sessionContextBody);
         $sessionContext->userPaymentServiceProvider =
-            static::getUserOrNull($sessionContextBody, self::FIELD_USER_PAYMENT_SERVICE_PROVIDER);
+            static::getUserPaymentServiceProviderFromSessionOrNull($sessionContextBody);
 
         return $sessionContext;
     }
 
     /**
      * @param array $sessionContextBody
-     * @param string $userType
      *
-     * @return UserPerson|UserCompany|UserApiKey|UserPaymentServiceProvider|null
+     * @return UserPerson|null
      */
-    private static function getUserOrNull(array $sessionContextBody, string $userType)
+    private static function getUserPersonFromSessionOrNull(array $sessionContextBody)
     {
-        if (isset($sessionContextBody[$userType])) {
-            return UserPerson::createFromJsonString(json_encode($sessionContextBody[$userType]));
+        if (isset($sessionContextBody[self::FIELD_USER_PERSON])) {
+            return UserPerson::createFromJsonString(json_encode($sessionContextBody[self::FIELD_USER_PERSON]));
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * @param array $sessionContextBody
+     *
+     * @return UserCompany|null
+     */
+    private static function getUserCompanyFromSessionOrNull(array $sessionContextBody)
+    {
+        if (isset($sessionContextBody[self::FIELD_USER_COMPANY])) {
+            return UserCompany::createFromJsonString(json_encode($sessionContextBody[self::FIELD_USER_COMPANY]));
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * @param array $sessionContextBody
+     *
+     * @return UserApiKey|null
+     */
+    private static function getUserApiKeyFromSessionOrNull(array $sessionContextBody)
+    {
+        if (isset($sessionContextBody[self::FIELD_USER_API_KEY])) {
+            return UserApiKey::createFromJsonString(json_encode($sessionContextBody[self::FIELD_USER_API_KEY]));
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * @param array $sessionContextBody
+     *
+     * @return UserPaymentServiceProvider|null
+     */
+    private static function getUserPaymentServiceProviderFromSessionOrNull(array $sessionContextBody)
+    {
+        if (isset($sessionContextBody[self::FIELD_USER_PAYMENT_SERVICE_PROVIDER])) {
+            return UserPaymentServiceProvider::createFromJsonString(
+                json_encode($sessionContextBody[self::FIELD_USER_PAYMENT_SERVICE_PROVIDER])
+            );
         } else {
             return null;
         }
@@ -249,9 +292,9 @@ class SessionContext implements JsonSerializable
     /**
      * @return UserCompany|UserPerson|UserApiKey|UserPaymentServiceProvider
      */
-    public function getReferencedUser()
+    public function getUserReference()
     {
-        return ModelUtil::getReferencedUser(
+        return ModelUtil::getUserReference(
             $this->userPerson,
             $this->userCompany,
             $this->userApiKey,

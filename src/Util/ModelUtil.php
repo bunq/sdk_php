@@ -144,7 +144,7 @@ class ModelUtil
      * @return UserCompany|UserPerson|UserApiKey|UserPaymentServiceProvider
      * @throws BunqException
      */
-    public static function getReferencedUser(
+    public static function getUserReference(
         UserPerson $userPerson = null,
         UserCompany $userCompany = null,
         UserApiKey $userApiKey = null,

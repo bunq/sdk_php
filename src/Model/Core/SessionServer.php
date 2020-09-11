@@ -119,9 +119,9 @@ class SessionServer extends BunqModel
     /**
      * @return UserCompany|UserPerson|UserApiKey|UserPaymentServiceProvider
      */
-    public function getReferencedUser()
+    public function getUserReference()
     {
-        return ModelUtil::getReferencedUser(
+        return ModelUtil::getUserReference(
             $this->userPerson,
             $this->userCompany,
             $this->userApiKey,
