@@ -3,6 +3,10 @@ namespace bunq\Util;
 
 use bunq\Exception\BunqException;
 use bunq\Model\Core\BunqModel;
+use bunq\Model\Generated\Endpoint\UserApiKey;
+use bunq\Model\Generated\Endpoint\UserCompany;
+use bunq\Model\Generated\Endpoint\UserPaymentServiceProvider;
+use bunq\Model\Generated\Endpoint\UserPerson;
 
 /**
  */
@@ -27,6 +31,7 @@ class ModelUtil
      * Error constants.
      */
     const ERROR_MODEL_NOT_DEFINED = 'Found model "%s" which is not defined.';
+    const ERROR_NULL_FIELDS = 'All fields of an extended model or object are null.';
 
     /**
      * @param string $json
@@ -111,11 +116,13 @@ class ModelUtil
      */
     public static function snakeCaseToCamelCase(string $field): string
     {
-        return lcfirst(str_replace(
-            self::DELIMITER_UNDERSCORE,
-            self::STRING_EMPTY,
-            ucwords($field, self::DELIMITER_UNDERSCORE)
-        ));
+        return lcfirst(
+            str_replace(
+                self::DELIMITER_UNDERSCORE,
+                self::STRING_EMPTY,
+                ucwords($field, self::DELIMITER_UNDERSCORE)
+            )
+        );
     }
 
     /**
@@ -126,5 +133,44 @@ class ModelUtil
     public static function camelCaseToSnakeCase(string $field): string
     {
         return strtolower(preg_replace(self::REGEX_CAPITAL, self::REPLACEMENT_UNDERSCORE, $field));
+    }
+
+    /**
+     * @param UserPerson $userPerson
+     * @param UserCompany $userCompany
+     * @param UserApiKey $userApiKey
+     * @param UserPaymentServiceProvider $userPaymentServiceProvider
+     *
+     * @return UserCompany|UserPerson|UserApiKey|UserPaymentServiceProvider
+     * @throws BunqException
+     */
+    public static function getUserReference(
+        UserPerson $userPerson = null,
+        UserCompany $userCompany = null,
+        UserApiKey $userApiKey = null,
+        UserPaymentServiceProvider $userPaymentServiceProvider = null
+    ) {
+        if ((is_null($userPerson) && is_null($userApiKey))
+            && !is_null($userCompany)
+            && is_null($userPaymentServiceProvider)) {
+            return $userCompany;
+        } elseif (is_null($userCompany)
+            && is_null($userApiKey)
+            && !is_null($userPerson)
+            && is_null($userPaymentServiceProvider)) {
+            return $userPerson;
+        } elseif (is_null($userCompany)
+            && is_null($userCompany)
+            && !is_null($userApiKey)
+            && is_null($userPaymentServiceProvider)) {
+            return $userApiKey;
+        } elseif (is_null($userCompany)
+            && is_null($userCompany)
+            && is_null($userApiKey)
+            && !is_null($userPaymentServiceProvider)) {
+            return $userPaymentServiceProvider;
+        } else {
+            throw new BunqException(self::ERROR_NULL_FIELDS);
+        }
     }
 }

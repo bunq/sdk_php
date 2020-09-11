@@ -64,12 +64,12 @@ class UserContext
 
     /**
      * @param int $userId
-     * @param $user UserApiKey|UserCompany|UserPaymentServiceProvider|UserPerson
+     * @param $user UserPerson|UserCompany|UserApiKey|UserPaymentServiceProvider
      */
     public function __construct(int $userId, $user)
     {
-        $this->setUser($user);
         $this->userId = $userId;
+        $this->setUser($user);
     }
 
     /**
