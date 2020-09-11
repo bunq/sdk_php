@@ -40,7 +40,7 @@ class ApiClient
         self::SESSION_SERVER_URL => true,
         self::PAYMENT_SERVICE_PROVIDER_CREDENTIAL_URL => true,
     ];
-    const SANDBOX_USER_URL = 'sandbox-user';
+    const SANDBOX_USER_URL = 'sandbox-user-person';
     const DEVICE_SERVER_URL = 'device-server';
     const INSTALLATION_URL = 'installation';
     const SESSION_SERVER_URL = 'session-server';

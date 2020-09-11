@@ -4,12 +4,12 @@ namespace bunq\Model\Core;
 use bunq\Context\ApiContext;
 use bunq\Exception\BunqException;
 use bunq\Http\ApiClient;
-use bunq\Model\Generated\Endpoint\BunqResponseSandboxUser;
-use bunq\Model\Generated\Endpoint\SandboxUser;
+use bunq\Model\Generated\Endpoint\BunqResponseSandboxUserPerson;
+use bunq\Model\Generated\Endpoint\SandboxUserPerson;
 
 /**
  */
-class SandboxUserInternal extends SandboxUser
+class SandboxUserInternal extends SandboxUserPerson
 {
     /**
      * Error constants.
@@ -20,13 +20,13 @@ class SandboxUserInternal extends SandboxUser
      * @param string[] $customHeaders
      * @param ApiContext|null $apiContext
      *
-     * @return BunqResponseSandboxUser
+     * @return BunqResponseSandboxUserPerson
      * @throws BunqException
      */
     public static function create(
         array $customHeaders = [],
         ApiContext $apiContext = null
-    ): BunqResponseSandboxUser {
+    ): BunqResponseSandboxUserPerson {
         if (is_null($apiContext)) {
             throw new BunqException(self::ERROR_API_CONTEXT_IS_NULL);
         }
@@ -41,7 +41,7 @@ class SandboxUserInternal extends SandboxUser
             $customHeaders
         );
 
-        return BunqResponseSandboxUser::castFromBunqResponse(
+        return BunqResponseSandboxUserPerson::castFromBunqResponse(
             static::fromJson($responseRaw, self::OBJECT_TYPE_POST)
         );
     }
