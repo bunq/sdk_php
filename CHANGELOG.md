@@ -2,7 +2,25 @@
 
 ## [Unreleased](https://github.com/bunq/sdk_php/tree/HEAD)
 
-[Full Changelog](https://github.com/bunq/sdk_php/compare/1.14.0...HEAD)
+[Full Changelog](https://github.com/bunq/sdk_php/compare/1.14.1...HEAD)
+
+**Fixed bugs:**
+
+- Remove getUserObject call immediately after UserContext creation \(reduce rate-limit hits\) [\#199](https://github.com/bunq/sdk_php/issues/199)
+- feature/sdk\_php\#199 Do not call getUser\(\) during UserContext creation [\#200](https://github.com/bunq/sdk_php/pull/200) ([angelomelonas](https://github.com/angelomelonas))
+
+**Closed issues:**
+
+- Replace /sandbox-user with /sandbox-user-person and /sandbox-user-company [\#202](https://github.com/bunq/sdk_php/issues/202)
+
+**Merged pull requests:**
+
+- feature/sdk\_php\#202 Deprecated /sandbox-user [\#203](https://github.com/bunq/sdk_php/pull/203) ([angelomelonas](https://github.com/angelomelonas))
+- feature/sdk\_php\#199 Saving/Restoring ApiContext should also store/read the context user [\#201](https://github.com/bunq/sdk_php/pull/201) ([angelomelonas](https://github.com/angelomelonas))
+
+## [1.14.1](https://github.com/bunq/sdk_php/tree/1.14.1) (2020-08-19)
+
+[Full Changelog](https://github.com/bunq/sdk_php/compare/1.14.0...1.14.1)
 
 **Fixed bugs:**
 
@@ -385,6 +403,7 @@
 **Merged pull requests:**
 
 - Fixes \#36 on php5.6 [\#37](https://github.com/bunq/sdk_php/pull/37) ([OGKevin](https://github.com/OGKevin))
+- Added an .gitattributes file. [\#20](https://github.com/bunq/sdk_php/pull/20) ([cafferata](https://github.com/cafferata))
 
 ## [0.9.1](https://github.com/bunq/sdk_php/tree/0.9.1) (2017-08-07)
 
@@ -420,7 +439,6 @@
 - \#28 remove phpstan as it does not support php 5.6 [\#29](https://github.com/bunq/sdk_php/pull/29) ([qurben](https://github.com/qurben))
 - \#25 Update directory for composer scripts, also omit version. [\#26](https://github.com/bunq/sdk_php/pull/26) ([qurben](https://github.com/qurben))
 - Updated composer.lock [\#23](https://github.com/bunq/sdk_php/pull/23) ([cafferata](https://github.com/cafferata))
-- Added an .gitattributes file. [\#20](https://github.com/bunq/sdk_php/pull/20) ([cafferata](https://github.com/cafferata))
 - Fixed signature newline handling \(Windows\) [\#9](https://github.com/bunq/sdk_php/pull/9) ([BabyDino](https://github.com/BabyDino))
 
 
