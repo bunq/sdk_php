@@ -2,22 +2,17 @@
 namespace bunq\Model\Core;
 
 use bunq\Context\ApiContext;
-use bunq\Exception\BunqException;
 use bunq\Http\ApiClient;
 use bunq\Model\Generated\Endpoint\UserApiKey;
 use bunq\Model\Generated\Endpoint\UserCompany;
 use bunq\Model\Generated\Endpoint\UserPaymentServiceProvider;
 use bunq\Model\Generated\Endpoint\UserPerson;
+use bunq\Util\ModelUtil;
 
 /**
  */
 class SessionServer extends BunqModel
 {
-    /**
-     * Error constants.
-     */
-    const ERROR_NULL_FIELDS = 'All fields of an extended model or object are null.';
-
     /**
      * Field constants.
      */
@@ -90,46 +85,48 @@ class SessionServer extends BunqModel
     }
 
     /**
-     * @return UserCompany
+     * @return UserCompany|null
      */
-    public function getUserCompany()
+    public function getUserCompanyOrNull()
     {
         return $this->userCompany;
     }
 
     /**
-     * @return UserPerson
+     * @return UserPerson|null
      */
-    public function getUserPerson()
+    public function getUserPersonOrNull()
     {
         return $this->userPerson;
     }
 
     /**
-     * @return UserApiKey
+     * @return UserApiKey|null
      */
-    public function getUserApiKey(): UserApiKey
+    public function getUserApiKeyOrNull()
     {
         return $this->userApiKey;
     }
 
     /**
-     * @return UserCompany|UserPerson|UserApiKey|UserPaymentServiceProvider
-     * @throws BunqException
+     * @return UserPaymentServiceProvider|null
      */
-    public function getReferencedUser()
+    public function getUserPaymentServiceProviderOrNull()
     {
-        if ((is_null($this->userPerson) && is_null($this->userApiKey)) && !is_null($this->userCompany) && is_null($this->userPaymentServiceProvider)) {
-            return $this->userCompany;
-        } elseif (is_null($this->userCompany) && is_null($this->userApiKey) && !is_null($this->userPerson) && is_null($this->userPaymentServiceProvider)) {
-            return $this->userPerson;
-        } elseif (is_null($this->userCompany) && is_null($this->userCompany) && !is_null($this->userApiKey) && is_null($this->userPaymentServiceProvider)) {
-            return $this->userApiKey;
-        } elseif (is_null($this->userCompany) && is_null($this->userCompany) && is_null($this->userApiKey) && !is_null($this->userPaymentServiceProvider)) {
-            return $this->userPaymentServiceProvider;
-        } else {
-            throw new BunqException(self::ERROR_NULL_FIELDS);
-        }
+        return $this->userPaymentServiceProvider;
+    }
+
+    /**
+     * @return UserCompany|UserPerson|UserApiKey|UserPaymentServiceProvider
+     */
+    public function getUserReference()
+    {
+        return ModelUtil::getUserReference(
+            $this->userPerson,
+            $this->userCompany,
+            $this->userApiKey,
+            $this->userPaymentServiceProvider
+        );
     }
 
     /**

@@ -35,7 +35,10 @@ class BunqContext
     public static function loadApiContext(ApiContext $apiContext)
     {
         static::$apiContext = $apiContext;
-        static::$userContext = new UserContext($apiContext->getSessionContext()->getUserId());
+        static::$userContext = new UserContext(
+            $apiContext->getSessionContext()->getUserId(),
+            $apiContext->getSessionContext()->getUserReference()
+        );
         static::$userContext->initMainMonetaryAccount();
     }
 

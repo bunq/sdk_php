@@ -65,12 +65,12 @@ class ApiContextTest extends BunqSdkTestBase
         $contextJson = json_decode($apiContext->toJson(), true);
         $expireTime =
             DateTime::createFromFormat(
-                SessionContext::FORMAT_MICROTIME,
+                SessionContext::FORMAT_MICRO_TIME,
                 $contextJson[ApiContext::FIELD_SESSION_CONTEXT][SessionContext::FIELD_EXPIRY_TIME]
             );
         $expireTime->sub(new \DateInterval(self::DATE_TIME_INTERVAL_ONE_YEAR));
         $contextJson[ApiContext::FIELD_SESSION_CONTEXT][SessionContext::FIELD_EXPIRY_TIME] =
-            $expireTime->format(SessionContext::FORMAT_MICROTIME);
+            $expireTime->format(SessionContext::FORMAT_MICRO_TIME);
 
         $expiredApiContext = ApiContext::fromJson(json_encode($contextJson));
 
