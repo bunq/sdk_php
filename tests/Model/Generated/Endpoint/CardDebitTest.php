@@ -55,7 +55,7 @@ class CardDebitTest extends BunqSdkTestBase
 
     /**
      */
-    public static function setUpBeforeClass()
+    public static function setUpBeforeClass(): void
     {
         parent::setUpBeforeClass();
         $cardNamesAllowed = CardName::listing()->getValue();

@@ -29,7 +29,7 @@ class SessionTest extends BunqSdkTestBase
     /**
      * Resets the session context after this test has ran.
      */
-    public static function tearDownAfterClass()
+    public static function tearDownAfterClass(): void
     {
         sleep(self::SECONDS_TO_SLEEP);
         BunqContext::getApiContext()->resetSession();

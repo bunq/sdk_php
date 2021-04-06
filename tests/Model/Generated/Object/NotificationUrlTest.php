@@ -262,7 +262,7 @@ class NotificationUrlTest extends BunqSdkTestBase
     /**
      * @param string[] $json
      *
-     * @return string
+     * @return string|false
      */
     private function getNotificationObjectJsonString(array $json)
     {

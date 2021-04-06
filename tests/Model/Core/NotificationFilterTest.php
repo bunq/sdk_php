@@ -82,9 +82,9 @@ class NotificationFilterTest extends BunqSdkTestBase
         static::assertEmpty($allCreatedNotificationFilterUrlUser);
         static::assertEmpty($allCreatedNotificationFilterUrlMonetaryAccount);
 
-        static::assertEquals(0, count(NotificationFilterPushUserInternal::listing()->getValue()));
-        static::assertEquals(0, count(NotificationFilterUrlUserInternal::listing()->getValue()));
-        static::assertEquals(0, count(NotificationFilterUrlMonetaryAccountInternal::listing()->getValue()));
+        static::assertCount(0, NotificationFilterPushUserInternal::listing()->getValue());
+        static::assertCount(0, NotificationFilterUrlUserInternal::listing()->getValue());
+        static::assertCount(0, NotificationFilterUrlMonetaryAccountInternal::listing()->getValue());
     }
 
     /**

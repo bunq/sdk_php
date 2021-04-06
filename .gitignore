@@ -82,3 +82,6 @@ tmp/
 
 # PhpCs
 .php_cs*
+
+# PHPUnit
+.phpunit.result.cache
