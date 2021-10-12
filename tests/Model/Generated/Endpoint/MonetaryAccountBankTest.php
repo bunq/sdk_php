@@ -33,7 +33,7 @@ class MonetaryAccountBankTest extends BunqSdkTestBase
     /**
      *  Deletes the new created monetary account.
      */
-    public static function tearDownAfterClass()
+    public static function tearDownAfterClass(): void
     {
         if (!is_null(static::$monetaryAccountBankToCloseId)) {
             MonetaryAccountBank::update(
