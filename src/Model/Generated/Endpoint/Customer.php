@@ -71,7 +71,7 @@ class Customer extends BunqModel
      * @param string|null $invoiceNotificationPreference The preferred
      * notification type for invoices
      */
-    public function __construct(string $billingAccountId = null, string $invoiceNotificationPreference = null)
+    public function __construct(string  $billingAccountId = null, string  $invoiceNotificationPreference = null)
     {
         $this->billingAccountIdFieldForRequest = $billingAccountId;
         $this->invoiceNotificationPreferenceFieldForRequest = $invoiceNotificationPreference;
@@ -88,10 +88,10 @@ class Customer extends BunqModel
     }
 
     /**
-     * @param int $id
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param int $id
      */
     public function setId($id)
     {
@@ -109,10 +109,10 @@ class Customer extends BunqModel
     }
 
     /**
-     * @param string $created
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $created
      */
     public function setCreated($created)
     {
@@ -130,10 +130,10 @@ class Customer extends BunqModel
     }
 
     /**
-     * @param string $updated
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $updated
      */
     public function setUpdated($updated)
     {
@@ -151,10 +151,10 @@ class Customer extends BunqModel
     }
 
     /**
-     * @param string $billingAccountId
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $billingAccountId
      */
     public function setBillingAccountId($billingAccountId)
     {
@@ -172,10 +172,10 @@ class Customer extends BunqModel
     }
 
     /**
-     * @param string $invoiceNotificationPreference
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $invoiceNotificationPreference
      */
     public function setInvoiceNotificationPreference($invoiceNotificationPreference)
     {

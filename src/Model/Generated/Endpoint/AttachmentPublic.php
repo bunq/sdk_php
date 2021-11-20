@@ -1,7 +1,9 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
+use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
+use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Object\Attachment;
 
@@ -129,10 +131,10 @@ class AttachmentPublic extends BunqModel
     }
 
     /**
-     * @param string $uuid
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $uuid
      */
     public function setUuid($uuid)
     {
@@ -150,10 +152,10 @@ class AttachmentPublic extends BunqModel
     }
 
     /**
-     * @param string $created
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $created
      */
     public function setCreated($created)
     {
@@ -171,10 +173,10 @@ class AttachmentPublic extends BunqModel
     }
 
     /**
-     * @param string $updated
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $updated
      */
     public function setUpdated($updated)
     {
@@ -192,10 +194,10 @@ class AttachmentPublic extends BunqModel
     }
 
     /**
-     * @param Attachment $attachment
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param Attachment $attachment
      */
     public function setAttachment($attachment)
     {

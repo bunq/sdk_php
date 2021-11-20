@@ -25,7 +25,7 @@ class BunqId extends BunqModel
     /**
      * @param int $id An integer ID of an object. Unique per object type.
      */
-    public function __construct(int $id)
+    public function __construct(int  $id)
     {
         $this->idFieldForRequest = $id;
     }
@@ -41,10 +41,10 @@ class BunqId extends BunqModel
     }
 
     /**
-     * @param int $id
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param int $id
      */
     public function setId($id)
     {

@@ -1,6 +1,7 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
+use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
 use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
@@ -95,7 +96,7 @@ class NoteAttachmentIdealMerchantTransaction extends BunqModel
      * this note.
      * @param string|null $description Optional description of the attachment.
      */
-    public function __construct(int $attachmentId, string $description = null)
+    public function __construct(int  $attachmentId, string  $description = null)
     {
         $this->descriptionFieldForRequest = $description;
         $this->attachmentIdFieldForRequest = $attachmentId;
@@ -111,27 +112,16 @@ class NoteAttachmentIdealMerchantTransaction extends BunqModel
      *
      * @return BunqResponseInt
      */
-    public static function create(
-        int $idealMerchantTransactionId,
-        int $attachmentId,
-        int $monetaryAccountId = null,
-        string $description = null,
-        array $customHeaders = []
-    ): BunqResponseInt {
+    public static function create(int $idealMerchantTransactionId, int  $attachmentId, int $monetaryAccountId = null, string  $description = null, array $customHeaders = []): BunqResponseInt
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->post(
             vsprintf(
                 self::ENDPOINT_URL_CREATE,
-                [
-                    static::determineUserId(),
-                    static::determineMonetaryAccountId($monetaryAccountId),
-                    $idealMerchantTransactionId,
-                ]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId), $idealMerchantTransactionId]
             ),
-            [
-                self::FIELD_DESCRIPTION => $description,
-                self::FIELD_ATTACHMENT_ID => $attachmentId,
-            ],
+            [self::FIELD_DESCRIPTION => $description,
+self::FIELD_ATTACHMENT_ID => $attachmentId],
             $customHeaders
         );
 
@@ -149,23 +139,13 @@ class NoteAttachmentIdealMerchantTransaction extends BunqModel
      *
      * @return BunqResponseInt
      */
-    public static function update(
-        int $idealMerchantTransactionId,
-        int $noteAttachmentIdealMerchantTransactionId,
-        int $monetaryAccountId = null,
-        string $description = null,
-        array $customHeaders = []
-    ): BunqResponseInt {
+    public static function update(int $idealMerchantTransactionId, int $noteAttachmentIdealMerchantTransactionId, int $monetaryAccountId = null, string  $description = null, array $customHeaders = []): BunqResponseInt
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->put(
             vsprintf(
                 self::ENDPOINT_URL_UPDATE,
-                [
-                    static::determineUserId(),
-                    static::determineMonetaryAccountId($monetaryAccountId),
-                    $idealMerchantTransactionId,
-                    $noteAttachmentIdealMerchantTransactionId,
-                ]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId), $idealMerchantTransactionId, $noteAttachmentIdealMerchantTransactionId]
             ),
             [self::FIELD_DESCRIPTION => $description],
             $customHeaders
@@ -183,22 +163,13 @@ class NoteAttachmentIdealMerchantTransaction extends BunqModel
      *
      * @return BunqResponseNull
      */
-    public static function delete(
-        int $idealMerchantTransactionId,
-        int $noteAttachmentIdealMerchantTransactionId,
-        int $monetaryAccountId = null,
-        array $customHeaders = []
-    ): BunqResponseNull {
+    public static function delete(int $idealMerchantTransactionId, int $noteAttachmentIdealMerchantTransactionId, int $monetaryAccountId = null, array $customHeaders = []): BunqResponseNull
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->delete(
             vsprintf(
                 self::ENDPOINT_URL_DELETE,
-                [
-                    static::determineUserId(),
-                    static::determineMonetaryAccountId($monetaryAccountId),
-                    $idealMerchantTransactionId,
-                    $noteAttachmentIdealMerchantTransactionId,
-                ]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId), $idealMerchantTransactionId, $noteAttachmentIdealMerchantTransactionId]
             ),
             $customHeaders
         );
@@ -210,6 +181,7 @@ class NoteAttachmentIdealMerchantTransaction extends BunqModel
 
     /**
      * Manage the notes for a given user.
+     *
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
@@ -220,21 +192,13 @@ class NoteAttachmentIdealMerchantTransaction extends BunqModel
      *
      * @return BunqResponseNoteAttachmentIdealMerchantTransactionList
      */
-    public static function listing(
-        int $idealMerchantTransactionId,
-        int $monetaryAccountId = null,
-        array $params = [],
-        array $customHeaders = []
-    ): BunqResponseNoteAttachmentIdealMerchantTransactionList {
+    public static function listing(int $idealMerchantTransactionId, int $monetaryAccountId = null, array $params = [], array $customHeaders = []): BunqResponseNoteAttachmentIdealMerchantTransactionList
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_LISTING,
-                [
-                    static::determineUserId(),
-                    static::determineMonetaryAccountId($monetaryAccountId),
-                    $idealMerchantTransactionId,
-                ]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId), $idealMerchantTransactionId]
             ),
             $params,
             $customHeaders
@@ -253,22 +217,13 @@ class NoteAttachmentIdealMerchantTransaction extends BunqModel
      *
      * @return BunqResponseNoteAttachmentIdealMerchantTransaction
      */
-    public static function get(
-        int $idealMerchantTransactionId,
-        int $noteAttachmentIdealMerchantTransactionId,
-        int $monetaryAccountId = null,
-        array $customHeaders = []
-    ): BunqResponseNoteAttachmentIdealMerchantTransaction {
+    public static function get(int $idealMerchantTransactionId, int $noteAttachmentIdealMerchantTransactionId, int $monetaryAccountId = null, array $customHeaders = []): BunqResponseNoteAttachmentIdealMerchantTransaction
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_READ,
-                [
-                    static::determineUserId(),
-                    static::determineMonetaryAccountId($monetaryAccountId),
-                    $idealMerchantTransactionId,
-                    $noteAttachmentIdealMerchantTransactionId,
-                ]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId), $idealMerchantTransactionId, $noteAttachmentIdealMerchantTransactionId]
             ),
             [],
             $customHeaders
@@ -290,10 +245,10 @@ class NoteAttachmentIdealMerchantTransaction extends BunqModel
     }
 
     /**
-     * @param int $id
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param int $id
      */
     public function setId($id)
     {
@@ -311,10 +266,10 @@ class NoteAttachmentIdealMerchantTransaction extends BunqModel
     }
 
     /**
-     * @param string $created
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $created
      */
     public function setCreated($created)
     {
@@ -332,10 +287,10 @@ class NoteAttachmentIdealMerchantTransaction extends BunqModel
     }
 
     /**
-     * @param string $updated
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $updated
      */
     public function setUpdated($updated)
     {
@@ -353,10 +308,10 @@ class NoteAttachmentIdealMerchantTransaction extends BunqModel
     }
 
     /**
-     * @param LabelUser $labelUserCreator
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param LabelUser $labelUserCreator
      */
     public function setLabelUserCreator($labelUserCreator)
     {
@@ -374,10 +329,10 @@ class NoteAttachmentIdealMerchantTransaction extends BunqModel
     }
 
     /**
-     * @param string $description
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $description
      */
     public function setDescription($description)
     {
@@ -395,10 +350,10 @@ class NoteAttachmentIdealMerchantTransaction extends BunqModel
     }
 
     /**
-     * @param AttachmentMonetaryAccountPayment[] $attachment
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param AttachmentMonetaryAccountPayment[] $attachment
      */
     public function setAttachment($attachment)
     {

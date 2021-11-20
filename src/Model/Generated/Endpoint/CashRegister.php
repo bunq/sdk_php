@@ -1,7 +1,9 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
+use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
+use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Object\Avatar;
 use bunq\Model\Generated\Object\Geolocation;
@@ -149,13 +151,8 @@ class CashRegister extends BunqModel
      * @param TabTextWaitingScreen[]|null $tabTextWaitingScreen The tab text for
      * waiting screen of CashRegister.
      */
-    public function __construct(
-        string $name,
-        string $status,
-        string $avatarUuid,
-        Geolocation $location = null,
-        array $tabTextWaitingScreen = null
-    ) {
+    public function __construct(string  $name, string  $status, string  $avatarUuid, Geolocation  $location = null, array  $tabTextWaitingScreen = null)
+    {
         $this->nameFieldForRequest = $name;
         $this->statusFieldForRequest = $status;
         $this->avatarUuidFieldForRequest = $avatarUuid;
@@ -185,28 +182,19 @@ class CashRegister extends BunqModel
      *
      * @return BunqResponseInt
      */
-    public static function create(
-        string $name,
-        string $status,
-        string $avatarUuid,
-        int $monetaryAccountId = null,
-        Geolocation $location = null,
-        array $tabTextWaitingScreen = null,
-        array $customHeaders = []
-    ): BunqResponseInt {
+    public static function create(string  $name, string  $status, string  $avatarUuid, int $monetaryAccountId = null, Geolocation  $location = null, array  $tabTextWaitingScreen = null, array $customHeaders = []): BunqResponseInt
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->post(
             vsprintf(
                 self::ENDPOINT_URL_CREATE,
                 [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId)]
             ),
-            [
-                self::FIELD_NAME => $name,
-                self::FIELD_STATUS => $status,
-                self::FIELD_AVATAR_UUID => $avatarUuid,
-                self::FIELD_LOCATION => $location,
-                self::FIELD_TAB_TEXT_WAITING_SCREEN => $tabTextWaitingScreen,
-            ],
+            [self::FIELD_NAME => $name,
+self::FIELD_STATUS => $status,
+self::FIELD_AVATAR_UUID => $avatarUuid,
+self::FIELD_LOCATION => $location,
+self::FIELD_TAB_TEXT_WAITING_SCREEN => $tabTextWaitingScreen],
             $customHeaders
         );
 
@@ -224,11 +212,8 @@ class CashRegister extends BunqModel
      *
      * @return BunqResponseCashRegister
      */
-    public static function get(
-        int $cashRegisterId,
-        int $monetaryAccountId = null,
-        array $customHeaders = []
-    ): BunqResponseCashRegister {
+    public static function get(int $cashRegisterId, int $monetaryAccountId = null, array $customHeaders = []): BunqResponseCashRegister
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
@@ -265,29 +250,19 @@ class CashRegister extends BunqModel
      *
      * @return BunqResponseInt
      */
-    public static function update(
-        int $cashRegisterId,
-        int $monetaryAccountId = null,
-        string $name = null,
-        string $status = null,
-        string $avatarUuid = null,
-        Geolocation $location = null,
-        array $tabTextWaitingScreen = null,
-        array $customHeaders = []
-    ): BunqResponseInt {
+    public static function update(int $cashRegisterId, int $monetaryAccountId = null, string  $name = null, string  $status = null, string  $avatarUuid = null, Geolocation  $location = null, array  $tabTextWaitingScreen = null, array $customHeaders = []): BunqResponseInt
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->put(
             vsprintf(
                 self::ENDPOINT_URL_UPDATE,
                 [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId), $cashRegisterId]
             ),
-            [
-                self::FIELD_NAME => $name,
-                self::FIELD_STATUS => $status,
-                self::FIELD_AVATAR_UUID => $avatarUuid,
-                self::FIELD_LOCATION => $location,
-                self::FIELD_TAB_TEXT_WAITING_SCREEN => $tabTextWaitingScreen,
-            ],
+            [self::FIELD_NAME => $name,
+self::FIELD_STATUS => $status,
+self::FIELD_AVATAR_UUID => $avatarUuid,
+self::FIELD_LOCATION => $location,
+self::FIELD_TAB_TEXT_WAITING_SCREEN => $tabTextWaitingScreen],
             $customHeaders
         );
 
@@ -298,6 +273,7 @@ class CashRegister extends BunqModel
 
     /**
      * Get a collection of CashRegister for a given user and monetary account.
+     *
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
@@ -307,11 +283,8 @@ class CashRegister extends BunqModel
      *
      * @return BunqResponseCashRegisterList
      */
-    public static function listing(
-        int $monetaryAccountId = null,
-        array $params = [],
-        array $customHeaders = []
-    ): BunqResponseCashRegisterList {
+    public static function listing(int $monetaryAccountId = null, array $params = [], array $customHeaders = []): BunqResponseCashRegisterList
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
@@ -338,10 +311,10 @@ class CashRegister extends BunqModel
     }
 
     /**
-     * @param int $id
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param int $id
      */
     public function setId($id)
     {
@@ -359,10 +332,10 @@ class CashRegister extends BunqModel
     }
 
     /**
-     * @param string $created
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $created
      */
     public function setCreated($created)
     {
@@ -380,10 +353,10 @@ class CashRegister extends BunqModel
     }
 
     /**
-     * @param string $updated
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $updated
      */
     public function setUpdated($updated)
     {
@@ -401,10 +374,10 @@ class CashRegister extends BunqModel
     }
 
     /**
-     * @param string $name
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $name
      */
     public function setName($name)
     {
@@ -423,10 +396,10 @@ class CashRegister extends BunqModel
     }
 
     /**
-     * @param string $status
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $status
      */
     public function setStatus($status)
     {
@@ -444,10 +417,10 @@ class CashRegister extends BunqModel
     }
 
     /**
-     * @param Avatar $avatar
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param Avatar $avatar
      */
     public function setAvatar($avatar)
     {
@@ -465,10 +438,10 @@ class CashRegister extends BunqModel
     }
 
     /**
-     * @param Geolocation $location
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param Geolocation $location
      */
     public function setLocation($location)
     {
@@ -486,10 +459,10 @@ class CashRegister extends BunqModel
     }
 
     /**
-     * @param TabTextWaitingScreen[] $tabTextWaitingScreen
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param TabTextWaitingScreen[] $tabTextWaitingScreen
      */
     public function setTabTextWaitingScreen($tabTextWaitingScreen)
     {

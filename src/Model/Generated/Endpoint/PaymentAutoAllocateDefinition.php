@@ -1,7 +1,9 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
+use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
+use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Object\Amount;
 use bunq\Model\Generated\Object\Pointer;
@@ -125,13 +127,8 @@ class PaymentAutoAllocateDefinition extends BunqModel
      * @param float|null $fraction The percentage of the triggering payment's
      * amount to allocate.
      */
-    public function __construct(
-        string $type,
-        Pointer $counterpartyAlias,
-        string $description,
-        Amount $amount = null,
-        float $fraction = null
-    ) {
+    public function __construct(string  $type, Pointer  $counterpartyAlias, string  $description, Amount  $amount = null, float  $fraction = null)
+    {
         $this->typeFieldForRequest = $type;
         $this->counterpartyAliasFieldForRequest = $counterpartyAlias;
         $this->descriptionFieldForRequest = $description;
@@ -150,21 +147,13 @@ class PaymentAutoAllocateDefinition extends BunqModel
      *
      * @return BunqResponsePaymentAutoAllocateDefinitionList
      */
-    public static function listing(
-        int $paymentAutoAllocateId,
-        int $monetaryAccountId = null,
-        array $params = [],
-        array $customHeaders = []
-    ): BunqResponsePaymentAutoAllocateDefinitionList {
+    public static function listing(int $paymentAutoAllocateId, int $monetaryAccountId = null, array $params = [], array $customHeaders = []): BunqResponsePaymentAutoAllocateDefinitionList
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_LISTING,
-                [
-                    static::determineUserId(),
-                    static::determineMonetaryAccountId($monetaryAccountId),
-                    $paymentAutoAllocateId,
-                ]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId), $paymentAutoAllocateId]
             ),
             $params,
             $customHeaders
@@ -186,10 +175,10 @@ class PaymentAutoAllocateDefinition extends BunqModel
     }
 
     /**
-     * @param int $id
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param int $id
      */
     public function setId($id)
     {
@@ -207,10 +196,10 @@ class PaymentAutoAllocateDefinition extends BunqModel
     }
 
     /**
-     * @param string $created
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $created
      */
     public function setCreated($created)
     {
@@ -228,10 +217,10 @@ class PaymentAutoAllocateDefinition extends BunqModel
     }
 
     /**
-     * @param string $updated
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $updated
      */
     public function setUpdated($updated)
     {
@@ -249,10 +238,10 @@ class PaymentAutoAllocateDefinition extends BunqModel
     }
 
     /**
-     * @param Pointer $counterpartyAlias
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param Pointer $counterpartyAlias
      */
     public function setCounterpartyAlias($counterpartyAlias)
     {
@@ -270,10 +259,10 @@ class PaymentAutoAllocateDefinition extends BunqModel
     }
 
     /**
-     * @param string $description
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $description
      */
     public function setDescription($description)
     {
@@ -291,10 +280,10 @@ class PaymentAutoAllocateDefinition extends BunqModel
     }
 
     /**
-     * @param Amount $amount
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param Amount $amount
      */
     public function setAmount($amount)
     {
@@ -312,10 +301,10 @@ class PaymentAutoAllocateDefinition extends BunqModel
     }
 
     /**
-     * @param float $fraction
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param float $fraction
      */
     public function setFraction($fraction)
     {

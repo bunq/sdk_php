@@ -1,7 +1,9 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
+use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
+use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Object\Amount;
 use bunq\Model\Generated\Object\Pointer;
@@ -55,7 +57,7 @@ class ConfirmationOfFunds extends BunqModel
      * querying.
      * @param Amount $amount The amount we want to check for.
      */
-    public function __construct(Pointer $pointerIban, Amount $amount)
+    public function __construct(Pointer  $pointerIban, Amount  $amount)
     {
         $this->pointerIbanFieldForRequest = $pointerIban;
         $this->amountFieldForRequest = $amount;
@@ -69,21 +71,16 @@ class ConfirmationOfFunds extends BunqModel
      *
      * @return BunqResponseConfirmationOfFunds
      */
-    public static function create(
-        Pointer $pointerIban,
-        Amount $amount,
-        array $customHeaders = []
-    ): BunqResponseConfirmationOfFunds {
+    public static function create(Pointer  $pointerIban, Amount  $amount, array $customHeaders = []): BunqResponseConfirmationOfFunds
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->post(
             vsprintf(
                 self::ENDPOINT_URL_CREATE,
                 [static::determineUserId()]
             ),
-            [
-                self::FIELD_POINTER_IBAN => $pointerIban,
-                self::FIELD_AMOUNT => $amount,
-            ],
+            [self::FIELD_POINTER_IBAN => $pointerIban,
+self::FIELD_AMOUNT => $amount],
             $customHeaders
         );
 
@@ -103,10 +100,10 @@ class ConfirmationOfFunds extends BunqModel
     }
 
     /**
-     * @param bool $hasSufficientFunds
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param bool $hasSufficientFunds
      */
     public function setHasSufficientFunds($hasSufficientFunds)
     {

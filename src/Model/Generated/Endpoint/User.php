@@ -1,8 +1,10 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
+use bunq\Context\ApiContext;
 use bunq\Exception\BunqException;
 use bunq\Http\ApiClient;
+use bunq\Http\BunqResponse;
 use bunq\Model\Core\AnchorObjectInterface;
 use bunq\Model\Core\BunqModel;
 
@@ -29,11 +31,6 @@ class User extends BunqModel implements AnchorObjectInterface
      * Object type.
      */
     const OBJECT_TYPE_GET = 'User';
-
-    /**
-     * @var UserLight
-     */
-    protected $userLight;
 
     /**
      * @var UserPerson
@@ -63,7 +60,7 @@ class User extends BunqModel implements AnchorObjectInterface
      *
      * @return BunqResponseUser
      */
-    public static function get(array $customHeaders = []): BunqResponseUser
+    public static function get( array $customHeaders = []): BunqResponseUser
     {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
@@ -82,6 +79,7 @@ class User extends BunqModel implements AnchorObjectInterface
 
     /**
      * Get a collection of all available users.
+     *
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
@@ -90,7 +88,7 @@ class User extends BunqModel implements AnchorObjectInterface
      *
      * @return BunqResponseUserList
      */
-    public static function listing(array $params = [], array $customHeaders = []): BunqResponseUserList
+    public static function listing( array $params = [], array $customHeaders = []): BunqResponseUserList
     {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
@@ -108,25 +106,6 @@ class User extends BunqModel implements AnchorObjectInterface
     }
 
     /**
-     * @return UserLight
-     */
-    public function getUserLight()
-    {
-        return $this->userLight;
-    }
-
-    /**
-     * @param UserLight $userLight
-     *
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     */
-    public function setUserLight($userLight)
-    {
-        $this->userLight = $userLight;
-    }
-
-    /**
      * @return UserPerson
      */
     public function getUserPerson()
@@ -135,10 +114,10 @@ class User extends BunqModel implements AnchorObjectInterface
     }
 
     /**
-     * @param UserPerson $userPerson
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param UserPerson $userPerson
      */
     public function setUserPerson($userPerson)
     {
@@ -154,10 +133,10 @@ class User extends BunqModel implements AnchorObjectInterface
     }
 
     /**
-     * @param UserCompany $userCompany
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param UserCompany $userCompany
      */
     public function setUserCompany($userCompany)
     {
@@ -173,10 +152,10 @@ class User extends BunqModel implements AnchorObjectInterface
     }
 
     /**
-     * @param UserApiKey $userApiKey
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param UserApiKey $userApiKey
      */
     public function setUserApiKey($userApiKey)
     {
@@ -192,10 +171,10 @@ class User extends BunqModel implements AnchorObjectInterface
     }
 
     /**
-     * @param UserPaymentServiceProvider $userPaymentServiceProvider
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param UserPaymentServiceProvider $userPaymentServiceProvider
      */
     public function setUserPaymentServiceProvider($userPaymentServiceProvider)
     {
@@ -208,10 +187,6 @@ class User extends BunqModel implements AnchorObjectInterface
      */
     public function getReferencedObject()
     {
-        if (!is_null($this->userLight)) {
-            return $this->userLight;
-        }
-
         if (!is_null($this->userPerson)) {
             return $this->userPerson;
         }
@@ -236,10 +211,6 @@ class User extends BunqModel implements AnchorObjectInterface
      */
     public function isAllFieldNull()
     {
-        if (!is_null($this->userLight)) {
-            return false;
-        }
-
         if (!is_null($this->userPerson)) {
             return false;
         }

@@ -1,12 +1,14 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
+use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
 use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Object\Amount;
 use bunq\Model\Generated\Object\AttachmentPublic;
 use bunq\Model\Generated\Object\AttachmentTab;
+use bunq\Model\Generated\Object\TabAttachment;
 
 /**
  * After you’ve created a Tab using /tab-usage-single or
@@ -120,7 +122,7 @@ class TabItemShop extends BunqModel
     /**
      * A list of AttachmentTab attached to the TabItem.
      *
-     * @var int[]|null
+     * @var TabAttachment[]|null
      */
     protected $tabAttachmentFieldForRequest;
 
@@ -146,21 +148,15 @@ class TabItemShop extends BunqModel
      * @param string|null $eanCode The TabItem's EAN code.
      * @param string|null $avatarAttachmentUuid An AttachmentPublic UUID that
      * used as an avatar for the TabItem.
-     * @param int[]|null $tabAttachment A list of AttachmentTab attached to the
-     * TabItem.
+     * @param TabAttachment[]|null $tabAttachment A list of AttachmentTab
+     * attached to the TabItem.
      * @param string|null $quantity The quantity of the TabItem. Formatted as a
      * number containing up to 15 digits, up to 15 decimals and using a dot.
      * @param Amount|null $amount The money amount of the TabItem. Will not
      * change the value of the corresponding Tab.
      */
-    public function __construct(
-        string $description,
-        string $eanCode = null,
-        string $avatarAttachmentUuid = null,
-        array $tabAttachment = null,
-        string $quantity = null,
-        Amount $amount = null
-    ) {
+    public function __construct(string  $description, string  $eanCode = null, string  $avatarAttachmentUuid = null, array  $tabAttachment = null, string  $quantity = null, Amount  $amount = null)
+    {
         $this->descriptionFieldForRequest = $description;
         $this->eanCodeFieldForRequest = $eanCode;
         $this->avatarAttachmentUuidFieldForRequest = $avatarAttachmentUuid;
@@ -180,8 +176,8 @@ class TabItemShop extends BunqModel
      * @param string|null $eanCode The TabItem's EAN code.
      * @param string|null $avatarAttachmentUuid An AttachmentPublic UUID that
      * used as an avatar for the TabItem.
-     * @param int[]|null $tabAttachment A list of AttachmentTab attached to the
-     * TabItem.
+     * @param TabAttachment[]|null $tabAttachment A list of AttachmentTab
+     * attached to the TabItem.
      * @param string|null $quantity The quantity of the TabItem. Formatted as a
      * number containing up to 15 digits, up to 15 decimals and using a dot.
      * @param Amount|null $amount The money amount of the TabItem. Will not
@@ -190,37 +186,20 @@ class TabItemShop extends BunqModel
      *
      * @return BunqResponseInt
      */
-    public static function create(
-        int $cashRegisterId,
-        string $tabUuid,
-        string $description,
-        int $monetaryAccountId = null,
-        string $eanCode = null,
-        string $avatarAttachmentUuid = null,
-        array $tabAttachment = null,
-        string $quantity = null,
-        Amount $amount = null,
-        array $customHeaders = []
-    ): BunqResponseInt {
+    public static function create(int $cashRegisterId, string $tabUuid, string  $description, int $monetaryAccountId = null, string  $eanCode = null, string  $avatarAttachmentUuid = null, array  $tabAttachment = null, string  $quantity = null, Amount  $amount = null, array $customHeaders = []): BunqResponseInt
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->post(
             vsprintf(
                 self::ENDPOINT_URL_CREATE,
-                [
-                    static::determineUserId(),
-                    static::determineMonetaryAccountId($monetaryAccountId),
-                    $cashRegisterId,
-                    $tabUuid,
-                ]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId), $cashRegisterId, $tabUuid]
             ),
-            [
-                self::FIELD_DESCRIPTION => $description,
-                self::FIELD_EAN_CODE => $eanCode,
-                self::FIELD_AVATAR_ATTACHMENT_UUID => $avatarAttachmentUuid,
-                self::FIELD_TAB_ATTACHMENT => $tabAttachment,
-                self::FIELD_QUANTITY => $quantity,
-                self::FIELD_AMOUNT => $amount,
-            ],
+            [self::FIELD_DESCRIPTION => $description,
+self::FIELD_EAN_CODE => $eanCode,
+self::FIELD_AVATAR_ATTACHMENT_UUID => $avatarAttachmentUuid,
+self::FIELD_TAB_ATTACHMENT => $tabAttachment,
+self::FIELD_QUANTITY => $quantity,
+self::FIELD_AMOUNT => $amount],
             $customHeaders
         );
 
@@ -241,8 +220,8 @@ class TabItemShop extends BunqModel
      * @param string|null $eanCode The TabItem's EAN code.
      * @param string|null $avatarAttachmentUuid An AttachmentPublic UUID that
      * used as an avatar for the TabItem.
-     * @param int[]|null $tabAttachment A list of AttachmentTab attached to the
-     * TabItem.
+     * @param TabAttachment[]|null $tabAttachment A list of AttachmentTab
+     * attached to the TabItem.
      * @param string|null $quantity The quantity of the TabItem. Formatted as a
      * number containing up to 15 digits, up to 15 decimals and using a dot.
      * @param Amount|null $amount The money amount of the TabItem. Will not
@@ -251,39 +230,20 @@ class TabItemShop extends BunqModel
      *
      * @return BunqResponseInt
      */
-    public static function update(
-        int $cashRegisterId,
-        string $tabUuid,
-        int $tabItemShopId,
-        int $monetaryAccountId = null,
-        string $description = null,
-        string $eanCode = null,
-        string $avatarAttachmentUuid = null,
-        array $tabAttachment = null,
-        string $quantity = null,
-        Amount $amount = null,
-        array $customHeaders = []
-    ): BunqResponseInt {
+    public static function update(int $cashRegisterId, string $tabUuid, int $tabItemShopId, int $monetaryAccountId = null, string  $description = null, string  $eanCode = null, string  $avatarAttachmentUuid = null, array  $tabAttachment = null, string  $quantity = null, Amount  $amount = null, array $customHeaders = []): BunqResponseInt
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->put(
             vsprintf(
                 self::ENDPOINT_URL_UPDATE,
-                [
-                    static::determineUserId(),
-                    static::determineMonetaryAccountId($monetaryAccountId),
-                    $cashRegisterId,
-                    $tabUuid,
-                    $tabItemShopId,
-                ]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId), $cashRegisterId, $tabUuid, $tabItemShopId]
             ),
-            [
-                self::FIELD_DESCRIPTION => $description,
-                self::FIELD_EAN_CODE => $eanCode,
-                self::FIELD_AVATAR_ATTACHMENT_UUID => $avatarAttachmentUuid,
-                self::FIELD_TAB_ATTACHMENT => $tabAttachment,
-                self::FIELD_QUANTITY => $quantity,
-                self::FIELD_AMOUNT => $amount,
-            ],
+            [self::FIELD_DESCRIPTION => $description,
+self::FIELD_EAN_CODE => $eanCode,
+self::FIELD_AVATAR_ATTACHMENT_UUID => $avatarAttachmentUuid,
+self::FIELD_TAB_ATTACHMENT => $tabAttachment,
+self::FIELD_QUANTITY => $quantity,
+self::FIELD_AMOUNT => $amount],
             $customHeaders
         );
 
@@ -302,24 +262,13 @@ class TabItemShop extends BunqModel
      *
      * @return BunqResponseNull
      */
-    public static function delete(
-        int $cashRegisterId,
-        string $tabUuid,
-        int $tabItemShopId,
-        int $monetaryAccountId = null,
-        array $customHeaders = []
-    ): BunqResponseNull {
+    public static function delete(int $cashRegisterId, string $tabUuid, int $tabItemShopId, int $monetaryAccountId = null, array $customHeaders = []): BunqResponseNull
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->delete(
             vsprintf(
                 self::ENDPOINT_URL_DELETE,
-                [
-                    static::determineUserId(),
-                    static::determineMonetaryAccountId($monetaryAccountId),
-                    $cashRegisterId,
-                    $tabUuid,
-                    $tabItemShopId,
-                ]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId), $cashRegisterId, $tabUuid, $tabItemShopId]
             ),
             $customHeaders
         );
@@ -331,6 +280,7 @@ class TabItemShop extends BunqModel
 
     /**
      * Get a collection of TabItems from a given Tab.
+     *
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
@@ -342,23 +292,13 @@ class TabItemShop extends BunqModel
      *
      * @return BunqResponseTabItemShopList
      */
-    public static function listing(
-        int $cashRegisterId,
-        string $tabUuid,
-        int $monetaryAccountId = null,
-        array $params = [],
-        array $customHeaders = []
-    ): BunqResponseTabItemShopList {
+    public static function listing(int $cashRegisterId, string $tabUuid, int $monetaryAccountId = null, array $params = [], array $customHeaders = []): BunqResponseTabItemShopList
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_LISTING,
-                [
-                    static::determineUserId(),
-                    static::determineMonetaryAccountId($monetaryAccountId),
-                    $cashRegisterId,
-                    $tabUuid,
-                ]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId), $cashRegisterId, $tabUuid]
             ),
             $params,
             $customHeaders
@@ -380,24 +320,13 @@ class TabItemShop extends BunqModel
      *
      * @return BunqResponseTabItemShop
      */
-    public static function get(
-        int $cashRegisterId,
-        string $tabUuid,
-        int $tabItemShopId,
-        int $monetaryAccountId = null,
-        array $customHeaders = []
-    ): BunqResponseTabItemShop {
+    public static function get(int $cashRegisterId, string $tabUuid, int $tabItemShopId, int $monetaryAccountId = null, array $customHeaders = []): BunqResponseTabItemShop
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_READ,
-                [
-                    static::determineUserId(),
-                    static::determineMonetaryAccountId($monetaryAccountId),
-                    $cashRegisterId,
-                    $tabUuid,
-                    $tabItemShopId,
-                ]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId), $cashRegisterId, $tabUuid, $tabItemShopId]
             ),
             [],
             $customHeaders
@@ -419,10 +348,10 @@ class TabItemShop extends BunqModel
     }
 
     /**
-     * @param int $id
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param int $id
      */
     public function setId($id)
     {
@@ -440,10 +369,10 @@ class TabItemShop extends BunqModel
     }
 
     /**
-     * @param string $description
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $description
      */
     public function setDescription($description)
     {
@@ -461,10 +390,10 @@ class TabItemShop extends BunqModel
     }
 
     /**
-     * @param string $eanCode
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $eanCode
      */
     public function setEanCode($eanCode)
     {
@@ -483,10 +412,10 @@ class TabItemShop extends BunqModel
     }
 
     /**
-     * @param AttachmentPublic $avatarAttachment
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param AttachmentPublic $avatarAttachment
      */
     public function setAvatarAttachment($avatarAttachment)
     {
@@ -504,10 +433,10 @@ class TabItemShop extends BunqModel
     }
 
     /**
-     * @param AttachmentTab[] $tabAttachment
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param AttachmentTab[] $tabAttachment
      */
     public function setTabAttachment($tabAttachment)
     {
@@ -525,10 +454,10 @@ class TabItemShop extends BunqModel
     }
 
     /**
-     * @param float $quantity
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param float $quantity
      */
     public function setQuantity($quantity)
     {
@@ -546,10 +475,10 @@ class TabItemShop extends BunqModel
     }
 
     /**
-     * @param Amount $amount
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param Amount $amount
      */
     public function setAmount($amount)
     {

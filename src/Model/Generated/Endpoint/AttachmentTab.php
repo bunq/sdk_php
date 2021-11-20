@@ -1,7 +1,9 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
+use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
+use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Object\Attachment;
 
@@ -74,11 +76,8 @@ class AttachmentTab extends BunqModel
      *
      * @return BunqResponseInt
      */
-    public static function create(
-        string $requestBytes,
-        int $monetaryAccountId = null,
-        array $customHeaders = []
-    ): BunqResponseInt {
+    public static function create(string $requestBytes, int $monetaryAccountId = null, array $customHeaders = []): BunqResponseInt
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $apiClient->enableBinary();
         $responseRaw = $apiClient->post(
@@ -105,11 +104,8 @@ class AttachmentTab extends BunqModel
      *
      * @return BunqResponseAttachmentTab
      */
-    public static function get(
-        int $attachmentTabId,
-        int $monetaryAccountId = null,
-        array $customHeaders = []
-    ): BunqResponseAttachmentTab {
+    public static function get(int $attachmentTabId, int $monetaryAccountId = null, array $customHeaders = []): BunqResponseAttachmentTab
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
@@ -136,10 +132,10 @@ class AttachmentTab extends BunqModel
     }
 
     /**
-     * @param int $id
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param int $id
      */
     public function setId($id)
     {
@@ -157,10 +153,10 @@ class AttachmentTab extends BunqModel
     }
 
     /**
-     * @param string $created
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $created
      */
     public function setCreated($created)
     {
@@ -178,10 +174,10 @@ class AttachmentTab extends BunqModel
     }
 
     /**
-     * @param string $updated
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $updated
      */
     public function setUpdated($updated)
     {
@@ -199,10 +195,10 @@ class AttachmentTab extends BunqModel
     }
 
     /**
-     * @param Attachment $attachment
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param Attachment $attachment
      */
     public function setAttachment($attachment)
     {

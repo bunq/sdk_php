@@ -35,6 +35,14 @@ class BunqMeFundraiserProfile extends BunqModel
     protected $alias;
 
     /**
+     * The currency of the MonetaryAccount that created the bunq.me fundraiser
+     * profile.
+     *
+     * @var string
+     */
+    protected $currency;
+
+    /**
      * The description of the bunq.me fundraiser profile.
      *
      * @var string
@@ -90,7 +98,7 @@ class BunqMeFundraiserProfile extends BunqModel
      * @param Pointer $pointer The pointer (url) which will be used to access
      * the bunq.me fundraiser profile.
      */
-    public function __construct(Pointer $pointer)
+    public function __construct(Pointer  $pointer)
     {
         $this->pointerFieldForRequest = $pointer;
     }
@@ -107,10 +115,10 @@ class BunqMeFundraiserProfile extends BunqModel
     }
 
     /**
-     * @param string $color
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $color
      */
     public function setColor($color)
     {
@@ -129,14 +137,36 @@ class BunqMeFundraiserProfile extends BunqModel
     }
 
     /**
-     * @param LabelMonetaryAccount $alias
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param LabelMonetaryAccount $alias
      */
     public function setAlias($alias)
     {
         $this->alias = $alias;
+    }
+
+    /**
+     * The currency of the MonetaryAccount that created the bunq.me fundraiser
+     * profile.
+     *
+     * @return string
+     */
+    public function getCurrency()
+    {
+        return $this->currency;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param string $currency
+     */
+    public function setCurrency($currency)
+    {
+        $this->currency = $currency;
     }
 
     /**
@@ -150,10 +180,10 @@ class BunqMeFundraiserProfile extends BunqModel
     }
 
     /**
-     * @param string $description
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $description
      */
     public function setDescription($description)
     {
@@ -171,10 +201,10 @@ class BunqMeFundraiserProfile extends BunqModel
     }
 
     /**
-     * @param AttachmentPublic $attachment
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param AttachmentPublic $attachment
      */
     public function setAttachment($attachment)
     {
@@ -193,10 +223,10 @@ class BunqMeFundraiserProfile extends BunqModel
     }
 
     /**
-     * @param Pointer $pointer
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param Pointer $pointer
      */
     public function setPointer($pointer)
     {
@@ -215,10 +245,10 @@ class BunqMeFundraiserProfile extends BunqModel
     }
 
     /**
-     * @param string $status
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $status
      */
     public function setStatus($status)
     {
@@ -236,10 +266,10 @@ class BunqMeFundraiserProfile extends BunqModel
     }
 
     /**
-     * @param string $redirectUrl
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $redirectUrl
      */
     public function setRedirectUrl($redirectUrl)
     {
@@ -257,10 +287,10 @@ class BunqMeFundraiserProfile extends BunqModel
     }
 
     /**
-     * @param string $inviteProfileName
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $inviteProfileName
      */
     public function setInviteProfileName($inviteProfileName)
     {
@@ -277,6 +307,10 @@ class BunqMeFundraiserProfile extends BunqModel
         }
 
         if (!is_null($this->alias)) {
+            return false;
+        }
+
+        if (!is_null($this->currency)) {
             return false;
         }
 

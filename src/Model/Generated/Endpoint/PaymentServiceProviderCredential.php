@@ -1,7 +1,9 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
+use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
+use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Object\PermittedDevice;
 
@@ -113,14 +115,10 @@ class PaymentServiceProviderCredential extends BunqModel
      * token appended as a nonce. Signed with the private key belonging to the
      * QSEAL certificate.
      */
-    public function __construct(
-        string $clientPaymentServiceProviderCertificate,
-        string $clientPaymentServiceProviderCertificateChain,
-        string $clientPublicKeySignature
-    ) {
+    public function __construct(string  $clientPaymentServiceProviderCertificate, string  $clientPaymentServiceProviderCertificateChain, string  $clientPublicKeySignature)
+    {
         $this->clientPaymentServiceProviderCertificateFieldForRequest = $clientPaymentServiceProviderCertificate;
-        $this->clientPaymentServiceProviderCertificateChainFieldForRequest =
-            $clientPaymentServiceProviderCertificateChain;
+        $this->clientPaymentServiceProviderCertificateChainFieldForRequest = $clientPaymentServiceProviderCertificateChain;
         $this->clientPublicKeySignatureFieldForRequest = $clientPublicKeySignature;
     }
 
@@ -130,10 +128,8 @@ class PaymentServiceProviderCredential extends BunqModel
      *
      * @return BunqResponsePaymentServiceProviderCredential
      */
-    public static function get(
-        int $paymentServiceProviderCredentialId,
-        array $customHeaders = []
-    ): BunqResponsePaymentServiceProviderCredential {
+    public static function get(int $paymentServiceProviderCredentialId, array $customHeaders = []): BunqResponsePaymentServiceProviderCredential
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
@@ -162,23 +158,17 @@ class PaymentServiceProviderCredential extends BunqModel
      *
      * @return BunqResponseInt
      */
-    public static function create(
-        string $clientPaymentServiceProviderCertificate,
-        string $clientPaymentServiceProviderCertificateChain,
-        string $clientPublicKeySignature,
-        array $customHeaders = []
-    ): BunqResponseInt {
+    public static function create(string  $clientPaymentServiceProviderCertificate, string  $clientPaymentServiceProviderCertificateChain, string  $clientPublicKeySignature, array $customHeaders = []): BunqResponseInt
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->post(
             vsprintf(
                 self::ENDPOINT_URL_CREATE,
                 []
             ),
-            [
-                self::FIELD_CLIENT_PAYMENT_SERVICE_PROVIDER_CERTIFICATE => $clientPaymentServiceProviderCertificate,
-                self::FIELD_CLIENT_PAYMENT_SERVICE_PROVIDER_CERTIFICATE_CHAIN => $clientPaymentServiceProviderCertificateChain,
-                self::FIELD_CLIENT_PUBLIC_KEY_SIGNATURE => $clientPublicKeySignature,
-            ],
+            [self::FIELD_CLIENT_PAYMENT_SERVICE_PROVIDER_CERTIFICATE => $clientPaymentServiceProviderCertificate,
+self::FIELD_CLIENT_PAYMENT_SERVICE_PROVIDER_CERTIFICATE_CHAIN => $clientPaymentServiceProviderCertificateChain,
+self::FIELD_CLIENT_PUBLIC_KEY_SIGNATURE => $clientPublicKeySignature],
             $customHeaders
         );
 
@@ -198,10 +188,10 @@ class PaymentServiceProviderCredential extends BunqModel
     }
 
     /**
-     * @param int $id
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param int $id
      */
     public function setId($id)
     {
@@ -219,10 +209,10 @@ class PaymentServiceProviderCredential extends BunqModel
     }
 
     /**
-     * @param string $created
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $created
      */
     public function setCreated($created)
     {
@@ -240,10 +230,10 @@ class PaymentServiceProviderCredential extends BunqModel
     }
 
     /**
-     * @param string $updated
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $updated
      */
     public function setUpdated($updated)
     {
@@ -261,10 +251,10 @@ class PaymentServiceProviderCredential extends BunqModel
     }
 
     /**
-     * @param string $status
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $status
      */
     public function setStatus($status)
     {
@@ -282,10 +272,10 @@ class PaymentServiceProviderCredential extends BunqModel
     }
 
     /**
-     * @param string $expiryTime
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $expiryTime
      */
     public function setExpiryTime($expiryTime)
     {
@@ -303,10 +293,10 @@ class PaymentServiceProviderCredential extends BunqModel
     }
 
     /**
-     * @param string $tokenValue
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $tokenValue
      */
     public function setTokenValue($tokenValue)
     {
@@ -325,10 +315,10 @@ class PaymentServiceProviderCredential extends BunqModel
     }
 
     /**
-     * @param PermittedDevice $permittedDevice
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param PermittedDevice $permittedDevice
      */
     public function setPermittedDevice($permittedDevice)
     {

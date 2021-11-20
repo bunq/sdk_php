@@ -1,7 +1,9 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
+use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
+use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Object\DraftShareInviteEntry;
 use bunq\Model\Generated\Object\LabelUser;
@@ -116,7 +118,7 @@ class DraftShareInviteBank extends BunqModel
      * @param string|null $status The status of the draft share invite. Can be
      * CANCELLED (the user cancels the draft share before it's used).
      */
-    public function __construct(string $expiration, DraftShareInviteEntry $draftShareSettings, string $status = null)
+    public function __construct(string  $expiration, DraftShareInviteEntry  $draftShareSettings, string  $status = null)
     {
         $this->statusFieldForRequest = $status;
         $this->expirationFieldForRequest = $expiration;
@@ -134,23 +136,17 @@ class DraftShareInviteBank extends BunqModel
      *
      * @return BunqResponseInt
      */
-    public static function create(
-        string $expiration,
-        DraftShareInviteEntry $draftShareSettings,
-        string $status = null,
-        array $customHeaders = []
-    ): BunqResponseInt {
+    public static function create(string  $expiration, DraftShareInviteEntry  $draftShareSettings, string  $status = null, array $customHeaders = []): BunqResponseInt
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->post(
             vsprintf(
                 self::ENDPOINT_URL_CREATE,
                 [static::determineUserId()]
             ),
-            [
-                self::FIELD_STATUS => $status,
-                self::FIELD_EXPIRATION => $expiration,
-                self::FIELD_DRAFT_SHARE_SETTINGS => $draftShareSettings,
-            ],
+            [self::FIELD_STATUS => $status,
+self::FIELD_EXPIRATION => $expiration,
+self::FIELD_DRAFT_SHARE_SETTINGS => $draftShareSettings],
             $customHeaders
         );
 
@@ -199,24 +195,17 @@ class DraftShareInviteBank extends BunqModel
      *
      * @return BunqResponseInt
      */
-    public static function update(
-        int $draftShareInviteBankId,
-        string $status = null,
-        string $expiration = null,
-        DraftShareInviteEntry $draftShareSettings = null,
-        array $customHeaders = []
-    ): BunqResponseInt {
+    public static function update(int $draftShareInviteBankId, string  $status = null, string  $expiration = null, DraftShareInviteEntry  $draftShareSettings = null, array $customHeaders = []): BunqResponseInt
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->put(
             vsprintf(
                 self::ENDPOINT_URL_UPDATE,
                 [static::determineUserId(), $draftShareInviteBankId]
             ),
-            [
-                self::FIELD_STATUS => $status,
-                self::FIELD_EXPIRATION => $expiration,
-                self::FIELD_DRAFT_SHARE_SETTINGS => $draftShareSettings,
-            ],
+            [self::FIELD_STATUS => $status,
+self::FIELD_EXPIRATION => $expiration,
+self::FIELD_DRAFT_SHARE_SETTINGS => $draftShareSettings],
             $customHeaders
         );
 
@@ -234,7 +223,7 @@ class DraftShareInviteBank extends BunqModel
      *
      * @return BunqResponseDraftShareInviteBankList
      */
-    public static function listing(array $params = [], array $customHeaders = []): BunqResponseDraftShareInviteBankList
+    public static function listing( array $params = [], array $customHeaders = []): BunqResponseDraftShareInviteBankList
     {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
@@ -262,10 +251,10 @@ class DraftShareInviteBank extends BunqModel
     }
 
     /**
-     * @param LabelUser $userAliasCreated
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param LabelUser $userAliasCreated
      */
     public function setUserAliasCreated($userAliasCreated)
     {
@@ -283,10 +272,10 @@ class DraftShareInviteBank extends BunqModel
     }
 
     /**
-     * @param string $status
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $status
      */
     public function setStatus($status)
     {
@@ -304,10 +293,10 @@ class DraftShareInviteBank extends BunqModel
     }
 
     /**
-     * @param string $expiration
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $expiration
      */
     public function setExpiration($expiration)
     {
@@ -325,10 +314,10 @@ class DraftShareInviteBank extends BunqModel
     }
 
     /**
-     * @param int $shareInviteBankResponseId
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param int $shareInviteBankResponseId
      */
     public function setShareInviteBankResponseId($shareInviteBankResponseId)
     {
@@ -347,10 +336,10 @@ class DraftShareInviteBank extends BunqModel
     }
 
     /**
-     * @param string $draftShareUrl
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $draftShareUrl
      */
     public function setDraftShareUrl($draftShareUrl)
     {
@@ -368,10 +357,10 @@ class DraftShareInviteBank extends BunqModel
     }
 
     /**
-     * @param DraftShareInviteEntry $draftShareSettings
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param DraftShareInviteEntry $draftShareSettings
      */
     public function setDraftShareSettings($draftShareSettings)
     {
@@ -389,10 +378,10 @@ class DraftShareInviteBank extends BunqModel
     }
 
     /**
-     * @param int $id
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param int $id
      */
     public function setId($id)
     {

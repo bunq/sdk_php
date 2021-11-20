@@ -1,7 +1,9 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
+use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
+use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Object\DraftPaymentAnchorObject;
 use bunq\Model\Generated\Object\DraftPaymentEntry;
@@ -163,13 +165,8 @@ class DraftPayment extends BunqModel
      * @param Schedule|null $schedule The schedule details when creating or
      * updating a scheduled payment.
      */
-    public function __construct(
-        array $entries,
-        int $numberOfRequiredAccepts,
-        string $status = null,
-        string $previousUpdatedTimestamp = null,
-        Schedule $schedule = null
-    ) {
+    public function __construct(array  $entries, int  $numberOfRequiredAccepts, string  $status = null, string  $previousUpdatedTimestamp = null, Schedule  $schedule = null)
+    {
         $this->statusFieldForRequest = $status;
         $this->entriesFieldForRequest = $entries;
         $this->previousUpdatedTimestampFieldForRequest = $previousUpdatedTimestamp;
@@ -197,28 +194,19 @@ class DraftPayment extends BunqModel
      *
      * @return BunqResponseInt
      */
-    public static function create(
-        array $entries,
-        int $numberOfRequiredAccepts,
-        int $monetaryAccountId = null,
-        string $status = null,
-        string $previousUpdatedTimestamp = null,
-        Schedule $schedule = null,
-        array $customHeaders = []
-    ): BunqResponseInt {
+    public static function create(array  $entries, int  $numberOfRequiredAccepts, int $monetaryAccountId = null, string  $status = null, string  $previousUpdatedTimestamp = null, Schedule  $schedule = null, array $customHeaders = []): BunqResponseInt
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->post(
             vsprintf(
                 self::ENDPOINT_URL_CREATE,
                 [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId)]
             ),
-            [
-                self::FIELD_STATUS => $status,
-                self::FIELD_ENTRIES => $entries,
-                self::FIELD_PREVIOUS_UPDATED_TIMESTAMP => $previousUpdatedTimestamp,
-                self::FIELD_NUMBER_OF_REQUIRED_ACCEPTS => $numberOfRequiredAccepts,
-                self::FIELD_SCHEDULE => $schedule,
-            ],
+            [self::FIELD_STATUS => $status,
+self::FIELD_ENTRIES => $entries,
+self::FIELD_PREVIOUS_UPDATED_TIMESTAMP => $previousUpdatedTimestamp,
+self::FIELD_NUMBER_OF_REQUIRED_ACCEPTS => $numberOfRequiredAccepts,
+self::FIELD_SCHEDULE => $schedule],
             $customHeaders
         );
 
@@ -233,9 +221,6 @@ class DraftPayment extends BunqModel
      * @param int $draftPaymentId
      * @param int|null $monetaryAccountId
      * @param string|null $status The status of the DraftPayment.
-     * @param DraftPaymentEntry[]|null $entries The list of entries in the
-     * DraftPayment. Each entry will result in a payment when the DraftPayment
-     * is accepted.
      * @param string|null $previousUpdatedTimestamp The last updated_timestamp
      * that you received for this DraftPayment. This needs to be provided to
      * prevent race conditions.
@@ -245,27 +230,17 @@ class DraftPayment extends BunqModel
      *
      * @return BunqResponseInt
      */
-    public static function update(
-        int $draftPaymentId,
-        int $monetaryAccountId = null,
-        string $status = null,
-        array $entries = null,
-        string $previousUpdatedTimestamp = null,
-        Schedule $schedule = null,
-        array $customHeaders = []
-    ): BunqResponseInt {
+    public static function update(int $draftPaymentId, int $monetaryAccountId = null, string  $status = null, string  $previousUpdatedTimestamp = null, Schedule  $schedule = null, array $customHeaders = []): BunqResponseInt
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->put(
             vsprintf(
                 self::ENDPOINT_URL_UPDATE,
                 [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId), $draftPaymentId]
             ),
-            [
-                self::FIELD_STATUS => $status,
-                self::FIELD_ENTRIES => $entries,
-                self::FIELD_PREVIOUS_UPDATED_TIMESTAMP => $previousUpdatedTimestamp,
-                self::FIELD_SCHEDULE => $schedule,
-            ],
+            [self::FIELD_STATUS => $status,
+self::FIELD_PREVIOUS_UPDATED_TIMESTAMP => $previousUpdatedTimestamp,
+self::FIELD_SCHEDULE => $schedule],
             $customHeaders
         );
 
@@ -276,6 +251,7 @@ class DraftPayment extends BunqModel
 
     /**
      * Get a listing of all DraftPayments from a given MonetaryAccount.
+     *
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
@@ -285,11 +261,8 @@ class DraftPayment extends BunqModel
      *
      * @return BunqResponseDraftPaymentList
      */
-    public static function listing(
-        int $monetaryAccountId = null,
-        array $params = [],
-        array $customHeaders = []
-    ): BunqResponseDraftPaymentList {
+    public static function listing(int $monetaryAccountId = null, array $params = [], array $customHeaders = []): BunqResponseDraftPaymentList
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
@@ -314,11 +287,8 @@ class DraftPayment extends BunqModel
      *
      * @return BunqResponseDraftPayment
      */
-    public static function get(
-        int $draftPaymentId,
-        int $monetaryAccountId = null,
-        array $customHeaders = []
-    ): BunqResponseDraftPayment {
+    public static function get(int $draftPaymentId, int $monetaryAccountId = null, array $customHeaders = []): BunqResponseDraftPayment
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
@@ -345,10 +315,10 @@ class DraftPayment extends BunqModel
     }
 
     /**
-     * @param int $id
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param int $id
      */
     public function setId($id)
     {
@@ -366,10 +336,10 @@ class DraftPayment extends BunqModel
     }
 
     /**
-     * @param int $monetaryAccountId
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param int $monetaryAccountId
      */
     public function setMonetaryAccountId($monetaryAccountId)
     {
@@ -387,10 +357,10 @@ class DraftPayment extends BunqModel
     }
 
     /**
-     * @param LabelUser $userAliasCreated
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param LabelUser $userAliasCreated
      */
     public function setUserAliasCreated($userAliasCreated)
     {
@@ -408,10 +378,10 @@ class DraftPayment extends BunqModel
     }
 
     /**
-     * @param DraftPaymentResponse[] $responses
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param DraftPaymentResponse[] $responses
      */
     public function setResponses($responses)
     {
@@ -429,10 +399,10 @@ class DraftPayment extends BunqModel
     }
 
     /**
-     * @param string $status
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $status
      */
     public function setStatus($status)
     {
@@ -450,10 +420,10 @@ class DraftPayment extends BunqModel
     }
 
     /**
-     * @param string $type
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $type
      */
     public function setType($type)
     {
@@ -471,10 +441,10 @@ class DraftPayment extends BunqModel
     }
 
     /**
-     * @param DraftPaymentEntry[] $entries
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param DraftPaymentEntry[] $entries
      */
     public function setEntries($entries)
     {
@@ -493,10 +463,10 @@ class DraftPayment extends BunqModel
     }
 
     /**
-     * @param DraftPaymentAnchorObject $object
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param DraftPaymentAnchorObject $object
      */
     public function setObject($object)
     {
@@ -515,10 +485,10 @@ class DraftPayment extends BunqModel
     }
 
     /**
-     * @param RequestInquiryReference[] $requestReferenceSplitTheBill
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param RequestInquiryReference[] $requestReferenceSplitTheBill
      */
     public function setRequestReferenceSplitTheBill($requestReferenceSplitTheBill)
     {
@@ -536,10 +506,10 @@ class DraftPayment extends BunqModel
     }
 
     /**
-     * @param Schedule $schedule
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param Schedule $schedule
      */
     public function setSchedule($schedule)
     {

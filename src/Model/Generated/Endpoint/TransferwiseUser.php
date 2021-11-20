@@ -1,7 +1,9 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
+use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
+use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 
 /**
@@ -63,6 +65,13 @@ class TransferwiseUser extends BunqModel
     protected $email;
 
     /**
+     * The source of the user at TransferWise.
+     *
+     * @var string
+     */
+    protected $source;
+
+    /**
      * The OAuth code returned by Transferwise we should be using to gain access
      * to the user's Transferwise account.
      *
@@ -74,7 +83,7 @@ class TransferwiseUser extends BunqModel
      * @param string|null $oauthCode The OAuth code returned by Transferwise we
      * should be using to gain access to the user's Transferwise account.
      */
-    public function __construct(string $oauthCode = null)
+    public function __construct(string  $oauthCode = null)
     {
         $this->oauthCodeFieldForRequest = $oauthCode;
     }
@@ -86,7 +95,7 @@ class TransferwiseUser extends BunqModel
      *
      * @return BunqResponseInt
      */
-    public static function create(string $oauthCode = null, array $customHeaders = []): BunqResponseInt
+    public static function create(string  $oauthCode = null, array $customHeaders = []): BunqResponseInt
     {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->post(
@@ -112,7 +121,7 @@ class TransferwiseUser extends BunqModel
      *
      * @return BunqResponseTransferwiseUserList
      */
-    public static function listing(array $params = [], array $customHeaders = []): BunqResponseTransferwiseUserList
+    public static function listing( array $params = [], array $customHeaders = []): BunqResponseTransferwiseUserList
     {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
@@ -140,10 +149,10 @@ class TransferwiseUser extends BunqModel
     }
 
     /**
-     * @param int $id
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param int $id
      */
     public function setId($id)
     {
@@ -161,10 +170,10 @@ class TransferwiseUser extends BunqModel
     }
 
     /**
-     * @param string $created
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $created
      */
     public function setCreated($created)
     {
@@ -182,10 +191,10 @@ class TransferwiseUser extends BunqModel
     }
 
     /**
-     * @param string $updated
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $updated
      */
     public function setUpdated($updated)
     {
@@ -203,10 +212,10 @@ class TransferwiseUser extends BunqModel
     }
 
     /**
-     * @param string $name
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $name
      */
     public function setName($name)
     {
@@ -224,14 +233,35 @@ class TransferwiseUser extends BunqModel
     }
 
     /**
-     * @param string $email
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $email
      */
     public function setEmail($email)
     {
         $this->email = $email;
+    }
+
+    /**
+     * The source of the user at TransferWise.
+     *
+     * @return string
+     */
+    public function getSource()
+    {
+        return $this->source;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param string $source
+     */
+    public function setSource($source)
+    {
+        $this->source = $source;
     }
 
     /**
@@ -256,6 +286,10 @@ class TransferwiseUser extends BunqModel
         }
 
         if (!is_null($this->email)) {
+            return false;
+        }
+
+        if (!is_null($this->source)) {
             return false;
         }
 

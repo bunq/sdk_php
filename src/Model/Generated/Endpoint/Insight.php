@@ -1,7 +1,9 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
+use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
+use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Object\Amount;
 
@@ -59,7 +61,7 @@ class Insight extends BunqModel
      *
      * @return BunqResponseInsightList
      */
-    public static function listing(array $params = [], array $customHeaders = []): BunqResponseInsightList
+    public static function listing( array $params = [], array $customHeaders = []): BunqResponseInsightList
     {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
@@ -87,10 +89,10 @@ class Insight extends BunqModel
     }
 
     /**
-     * @param string $category
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $category
      */
     public function setCategory($category)
     {
@@ -108,10 +110,10 @@ class Insight extends BunqModel
     }
 
     /**
-     * @param string $categoryTranslated
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $categoryTranslated
      */
     public function setCategoryTranslated($categoryTranslated)
     {
@@ -129,10 +131,10 @@ class Insight extends BunqModel
     }
 
     /**
-     * @param Amount $amountTotal
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param Amount $amountTotal
      */
     public function setAmountTotal($amountTotal)
     {
@@ -150,10 +152,10 @@ class Insight extends BunqModel
     }
 
     /**
-     * @param float $numberOfTransactions
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param float $numberOfTransactions
      */
     public function setNumberOfTransactions($numberOfTransactions)
     {

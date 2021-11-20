@@ -1,7 +1,9 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
+use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
+use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Object\Amount;
 use bunq\Model\Generated\Object\Avatar;
@@ -341,19 +343,8 @@ class MonetaryAccountSavings extends BunqModel
      * @param Amount|null $savingsGoal The Savings Goal set for this
      * MonetaryAccountSavings.
      */
-    public function __construct(
-        string $currency,
-        string $description = null,
-        Amount $dailyLimit = null,
-        string $avatarUuid = null,
-        string $status = null,
-        string $subStatus = null,
-        string $reason = null,
-        string $reasonDescription = null,
-        array $allCoOwner = null,
-        MonetaryAccountSetting $setting = null,
-        Amount $savingsGoal = null
-    ) {
+    public function __construct(string  $currency, string  $description = null, Amount  $dailyLimit = null, string  $avatarUuid = null, string  $status = null, string  $subStatus = null, string  $reason = null, string  $reasonDescription = null, array  $allCoOwner = null, MonetaryAccountSetting  $setting = null, Amount  $savingsGoal = null)
+    {
         $this->currencyFieldForRequest = $currency;
         $this->descriptionFieldForRequest = $description;
         $this->dailyLimitFieldForRequest = $dailyLimit;
@@ -408,39 +399,25 @@ class MonetaryAccountSavings extends BunqModel
      *
      * @return BunqResponseInt
      */
-    public static function create(
-        string $currency,
-        string $description = null,
-        Amount $dailyLimit = null,
-        string $avatarUuid = null,
-        string $status = null,
-        string $subStatus = null,
-        string $reason = null,
-        string $reasonDescription = null,
-        array $allCoOwner = null,
-        MonetaryAccountSetting $setting = null,
-        Amount $savingsGoal = null,
-        array $customHeaders = []
-    ): BunqResponseInt {
+    public static function create(string  $currency, string  $description = null, Amount  $dailyLimit = null, string  $avatarUuid = null, string  $status = null, string  $subStatus = null, string  $reason = null, string  $reasonDescription = null, array  $allCoOwner = null, MonetaryAccountSetting  $setting = null, Amount  $savingsGoal = null, array $customHeaders = []): BunqResponseInt
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->post(
             vsprintf(
                 self::ENDPOINT_URL_CREATE,
                 [static::determineUserId()]
             ),
-            [
-                self::FIELD_CURRENCY => $currency,
-                self::FIELD_DESCRIPTION => $description,
-                self::FIELD_DAILY_LIMIT => $dailyLimit,
-                self::FIELD_AVATAR_UUID => $avatarUuid,
-                self::FIELD_STATUS => $status,
-                self::FIELD_SUB_STATUS => $subStatus,
-                self::FIELD_REASON => $reason,
-                self::FIELD_REASON_DESCRIPTION => $reasonDescription,
-                self::FIELD_ALL_CO_OWNER => $allCoOwner,
-                self::FIELD_SETTING => $setting,
-                self::FIELD_SAVINGS_GOAL => $savingsGoal,
-            ],
+            [self::FIELD_CURRENCY => $currency,
+self::FIELD_DESCRIPTION => $description,
+self::FIELD_DAILY_LIMIT => $dailyLimit,
+self::FIELD_AVATAR_UUID => $avatarUuid,
+self::FIELD_STATUS => $status,
+self::FIELD_SUB_STATUS => $subStatus,
+self::FIELD_REASON => $reason,
+self::FIELD_REASON_DESCRIPTION => $reasonDescription,
+self::FIELD_ALL_CO_OWNER => $allCoOwner,
+self::FIELD_SETTING => $setting,
+self::FIELD_SAVINGS_GOAL => $savingsGoal],
             $customHeaders
         );
 
@@ -457,10 +434,8 @@ class MonetaryAccountSavings extends BunqModel
      *
      * @return BunqResponseMonetaryAccountSavings
      */
-    public static function get(
-        int $monetaryAccountSavingsId,
-        array $customHeaders = []
-    ): BunqResponseMonetaryAccountSavings {
+    public static function get(int $monetaryAccountSavingsId, array $customHeaders = []): BunqResponseMonetaryAccountSavings
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
@@ -514,36 +489,23 @@ class MonetaryAccountSavings extends BunqModel
      *
      * @return BunqResponseInt
      */
-    public static function update(
-        int $monetaryAccountSavingsId,
-        string $description = null,
-        Amount $dailyLimit = null,
-        string $avatarUuid = null,
-        string $status = null,
-        string $subStatus = null,
-        string $reason = null,
-        string $reasonDescription = null,
-        MonetaryAccountSetting $setting = null,
-        Amount $savingsGoal = null,
-        array $customHeaders = []
-    ): BunqResponseInt {
+    public static function update(int $monetaryAccountSavingsId, string  $description = null, Amount  $dailyLimit = null, string  $avatarUuid = null, string  $status = null, string  $subStatus = null, string  $reason = null, string  $reasonDescription = null, MonetaryAccountSetting  $setting = null, Amount  $savingsGoal = null, array $customHeaders = []): BunqResponseInt
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->put(
             vsprintf(
                 self::ENDPOINT_URL_UPDATE,
                 [static::determineUserId(), $monetaryAccountSavingsId]
             ),
-            [
-                self::FIELD_DESCRIPTION => $description,
-                self::FIELD_DAILY_LIMIT => $dailyLimit,
-                self::FIELD_AVATAR_UUID => $avatarUuid,
-                self::FIELD_STATUS => $status,
-                self::FIELD_SUB_STATUS => $subStatus,
-                self::FIELD_REASON => $reason,
-                self::FIELD_REASON_DESCRIPTION => $reasonDescription,
-                self::FIELD_SETTING => $setting,
-                self::FIELD_SAVINGS_GOAL => $savingsGoal,
-            ],
+            [self::FIELD_DESCRIPTION => $description,
+self::FIELD_DAILY_LIMIT => $dailyLimit,
+self::FIELD_AVATAR_UUID => $avatarUuid,
+self::FIELD_STATUS => $status,
+self::FIELD_SUB_STATUS => $subStatus,
+self::FIELD_REASON => $reason,
+self::FIELD_REASON_DESCRIPTION => $reasonDescription,
+self::FIELD_SETTING => $setting,
+self::FIELD_SAVINGS_GOAL => $savingsGoal],
             $customHeaders
         );
 
@@ -554,6 +516,7 @@ class MonetaryAccountSavings extends BunqModel
 
     /**
      * Gets a listing of all MonetaryAccountSavingss of a given user.
+     *
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
@@ -562,10 +525,8 @@ class MonetaryAccountSavings extends BunqModel
      *
      * @return BunqResponseMonetaryAccountSavingsList
      */
-    public static function listing(
-        array $params = [],
-        array $customHeaders = []
-    ): BunqResponseMonetaryAccountSavingsList {
+    public static function listing( array $params = [], array $customHeaders = []): BunqResponseMonetaryAccountSavingsList
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
@@ -592,10 +553,10 @@ class MonetaryAccountSavings extends BunqModel
     }
 
     /**
-     * @param int $id
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param int $id
      */
     public function setId($id)
     {
@@ -613,10 +574,10 @@ class MonetaryAccountSavings extends BunqModel
     }
 
     /**
-     * @param string $created
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $created
      */
     public function setCreated($created)
     {
@@ -634,10 +595,10 @@ class MonetaryAccountSavings extends BunqModel
     }
 
     /**
-     * @param string $updated
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $updated
      */
     public function setUpdated($updated)
     {
@@ -655,10 +616,10 @@ class MonetaryAccountSavings extends BunqModel
     }
 
     /**
-     * @param Avatar $avatar
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param Avatar $avatar
      */
     public function setAvatar($avatar)
     {
@@ -677,10 +638,10 @@ class MonetaryAccountSavings extends BunqModel
     }
 
     /**
-     * @param string $currency
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $currency
      */
     public function setCurrency($currency)
     {
@@ -699,10 +660,10 @@ class MonetaryAccountSavings extends BunqModel
     }
 
     /**
-     * @param string $description
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $description
      */
     public function setDescription($description)
     {
@@ -722,10 +683,10 @@ class MonetaryAccountSavings extends BunqModel
     }
 
     /**
-     * @param Amount $dailyLimit
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param Amount $dailyLimit
      */
     public function setDailyLimit($dailyLimit)
     {
@@ -744,10 +705,10 @@ class MonetaryAccountSavings extends BunqModel
     }
 
     /**
-     * @param Amount $overdraftLimit
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param Amount $overdraftLimit
      */
     public function setOverdraftLimit($overdraftLimit)
     {
@@ -765,10 +726,10 @@ class MonetaryAccountSavings extends BunqModel
     }
 
     /**
-     * @param Amount $balance
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param Amount $balance
      */
     public function setBalance($balance)
     {
@@ -786,10 +747,10 @@ class MonetaryAccountSavings extends BunqModel
     }
 
     /**
-     * @param Pointer[] $alias
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param Pointer[] $alias
      */
     public function setAlias($alias)
     {
@@ -807,10 +768,10 @@ class MonetaryAccountSavings extends BunqModel
     }
 
     /**
-     * @param string $publicUuid
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $publicUuid
      */
     public function setPublicUuid($publicUuid)
     {
@@ -829,10 +790,10 @@ class MonetaryAccountSavings extends BunqModel
     }
 
     /**
-     * @param string $status
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $status
      */
     public function setStatus($status)
     {
@@ -853,10 +814,10 @@ class MonetaryAccountSavings extends BunqModel
     }
 
     /**
-     * @param string $subStatus
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $subStatus
      */
     public function setSubStatus($subStatus)
     {
@@ -875,10 +836,10 @@ class MonetaryAccountSavings extends BunqModel
     }
 
     /**
-     * @param string $reason
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $reason
      */
     public function setReason($reason)
     {
@@ -897,10 +858,10 @@ class MonetaryAccountSavings extends BunqModel
     }
 
     /**
-     * @param string $reasonDescription
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $reasonDescription
      */
     public function setReasonDescription($reasonDescription)
     {
@@ -918,10 +879,10 @@ class MonetaryAccountSavings extends BunqModel
     }
 
     /**
-     * @param CoOwner[] $allCoOwner
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param CoOwner[] $allCoOwner
      */
     public function setAllCoOwner($allCoOwner)
     {
@@ -939,10 +900,10 @@ class MonetaryAccountSavings extends BunqModel
     }
 
     /**
-     * @param int $userId
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param int $userId
      */
     public function setUserId($userId)
     {
@@ -960,10 +921,10 @@ class MonetaryAccountSavings extends BunqModel
     }
 
     /**
-     * @param MonetaryAccountProfile $monetaryAccountProfile
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param MonetaryAccountProfile $monetaryAccountProfile
      */
     public function setMonetaryAccountProfile($monetaryAccountProfile)
     {
@@ -981,10 +942,10 @@ class MonetaryAccountSavings extends BunqModel
     }
 
     /**
-     * @param MonetaryAccountSetting $setting
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param MonetaryAccountSetting $setting
      */
     public function setSetting($setting)
     {
@@ -1002,10 +963,10 @@ class MonetaryAccountSavings extends BunqModel
     }
 
     /**
-     * @param Amount $savingsGoal
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param Amount $savingsGoal
      */
     public function setSavingsGoal($savingsGoal)
     {
@@ -1024,10 +985,10 @@ class MonetaryAccountSavings extends BunqModel
     }
 
     /**
-     * @param float $savingsGoalProgress
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param float $savingsGoalProgress
      */
     public function setSavingsGoalProgress($savingsGoalProgress)
     {
@@ -1045,10 +1006,10 @@ class MonetaryAccountSavings extends BunqModel
     }
 
     /**
-     * @param BunqId[] $allAutoSaveId
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param BunqId[] $allAutoSaveId
      */
     public function setAllAutoSaveId($allAutoSaveId)
     {

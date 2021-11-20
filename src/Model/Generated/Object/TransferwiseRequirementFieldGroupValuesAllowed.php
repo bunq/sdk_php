@@ -33,10 +33,10 @@ class TransferwiseRequirementFieldGroupValuesAllowed extends BunqModel
     }
 
     /**
-     * @param string $key
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $key
      */
     public function setKey($key)
     {
@@ -54,10 +54,10 @@ class TransferwiseRequirementFieldGroupValuesAllowed extends BunqModel
     }
 
     /**
-     * @param string $name
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $name
      */
     public function setName($name)
     {

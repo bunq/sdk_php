@@ -1,7 +1,9 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
+use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
+use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Object\AttachmentPublic;
 use bunq\Model\Generated\Object\LabelMonetaryAccount;
@@ -65,6 +67,14 @@ class BunqMeFundraiserProfileUser extends BunqModel
      * @var LabelMonetaryAccount
      */
     protected $alias;
+
+    /**
+     * The currency of the MonetaryAccount that created the bunq.me fundraiser
+     * profile.
+     *
+     * @var string
+     */
+    protected $currency;
 
     /**
      * The description of the bunq.me fundraiser profile.
@@ -173,15 +183,8 @@ class BunqMeFundraiserProfileUser extends BunqModel
      * payment is completed.
      * @param string|null $status The status of the bunq.me fundraiser profile.
      */
-    public function __construct(
-        int $monetaryAccountId,
-        string $description,
-        Pointer $pointer,
-        string $color = null,
-        string $attachmentPublicUuid = null,
-        string $redirectUrl = null,
-        string $status = null
-    ) {
+    public function __construct(int  $monetaryAccountId, string  $description, Pointer  $pointer, string  $color = null, string  $attachmentPublicUuid = null, string  $redirectUrl = null, string  $status = null)
+    {
         $this->monetaryAccountIdFieldForRequest = $monetaryAccountId;
         $this->colorFieldForRequest = $color;
         $this->descriptionFieldForRequest = $description;
@@ -197,10 +200,8 @@ class BunqMeFundraiserProfileUser extends BunqModel
      *
      * @return BunqResponseBunqMeFundraiserProfileUser
      */
-    public static function get(
-        int $bunqMeFundraiserProfileUserId,
-        array $customHeaders = []
-    ): BunqResponseBunqMeFundraiserProfileUser {
+    public static function get(int $bunqMeFundraiserProfileUserId, array $customHeaders = []): BunqResponseBunqMeFundraiserProfileUser
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
@@ -225,10 +226,8 @@ class BunqMeFundraiserProfileUser extends BunqModel
      *
      * @return BunqResponseBunqMeFundraiserProfileUserList
      */
-    public static function listing(
-        array $params = [],
-        array $customHeaders = []
-    ): BunqResponseBunqMeFundraiserProfileUserList {
+    public static function listing( array $params = [], array $customHeaders = []): BunqResponseBunqMeFundraiserProfileUserList
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
@@ -255,10 +254,10 @@ class BunqMeFundraiserProfileUser extends BunqModel
     }
 
     /**
-     * @param int $monetaryAccountId
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param int $monetaryAccountId
      */
     public function setMonetaryAccountId($monetaryAccountId)
     {
@@ -276,10 +275,10 @@ class BunqMeFundraiserProfileUser extends BunqModel
     }
 
     /**
-     * @param int $ownerUserId
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param int $ownerUserId
      */
     public function setOwnerUserId($ownerUserId)
     {
@@ -298,10 +297,10 @@ class BunqMeFundraiserProfileUser extends BunqModel
     }
 
     /**
-     * @param string $color
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $color
      */
     public function setColor($color)
     {
@@ -320,14 +319,36 @@ class BunqMeFundraiserProfileUser extends BunqModel
     }
 
     /**
-     * @param LabelMonetaryAccount $alias
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param LabelMonetaryAccount $alias
      */
     public function setAlias($alias)
     {
         $this->alias = $alias;
+    }
+
+    /**
+     * The currency of the MonetaryAccount that created the bunq.me fundraiser
+     * profile.
+     *
+     * @return string
+     */
+    public function getCurrency()
+    {
+        return $this->currency;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param string $currency
+     */
+    public function setCurrency($currency)
+    {
+        $this->currency = $currency;
     }
 
     /**
@@ -341,10 +362,10 @@ class BunqMeFundraiserProfileUser extends BunqModel
     }
 
     /**
-     * @param string $description
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $description
      */
     public function setDescription($description)
     {
@@ -362,10 +383,10 @@ class BunqMeFundraiserProfileUser extends BunqModel
     }
 
     /**
-     * @param AttachmentPublic $attachment
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param AttachmentPublic $attachment
      */
     public function setAttachment($attachment)
     {
@@ -384,10 +405,10 @@ class BunqMeFundraiserProfileUser extends BunqModel
     }
 
     /**
-     * @param Pointer $pointer
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param Pointer $pointer
      */
     public function setPointer($pointer)
     {
@@ -405,10 +426,10 @@ class BunqMeFundraiserProfileUser extends BunqModel
     }
 
     /**
-     * @param string $redirectUrl
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $redirectUrl
      */
     public function setRedirectUrl($redirectUrl)
     {
@@ -427,10 +448,10 @@ class BunqMeFundraiserProfileUser extends BunqModel
     }
 
     /**
-     * @param string $status
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $status
      */
     public function setStatus($status)
     {
@@ -455,6 +476,10 @@ class BunqMeFundraiserProfileUser extends BunqModel
         }
 
         if (!is_null($this->alias)) {
+            return false;
+        }
+
+        if (!is_null($this->currency)) {
             return false;
         }
 

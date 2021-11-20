@@ -1,6 +1,7 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
+use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
 use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
@@ -80,11 +81,8 @@ class ExportRib extends BunqModel
      *
      * @return BunqResponseExportRib
      */
-    public static function get(
-        int $exportRibId,
-        int $monetaryAccountId = null,
-        array $customHeaders = []
-    ): BunqResponseExportRib {
+    public static function get(int $exportRibId, int $monetaryAccountId = null, array $customHeaders = []): BunqResponseExportRib
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
@@ -106,11 +104,8 @@ class ExportRib extends BunqModel
      *
      * @return BunqResponseNull
      */
-    public static function delete(
-        int $exportRibId,
-        int $monetaryAccountId = null,
-        array $customHeaders = []
-    ): BunqResponseNull {
+    public static function delete(int $exportRibId, int $monetaryAccountId = null, array $customHeaders = []): BunqResponseNull
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->delete(
             vsprintf(
@@ -127,6 +122,7 @@ class ExportRib extends BunqModel
 
     /**
      * List all the RIBs for a monetary account.
+     *
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
@@ -136,11 +132,8 @@ class ExportRib extends BunqModel
      *
      * @return BunqResponseExportRibList
      */
-    public static function listing(
-        int $monetaryAccountId = null,
-        array $params = [],
-        array $customHeaders = []
-    ): BunqResponseExportRibList {
+    public static function listing(int $monetaryAccountId = null, array $params = [], array $customHeaders = []): BunqResponseExportRibList
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
@@ -167,10 +160,10 @@ class ExportRib extends BunqModel
     }
 
     /**
-     * @param int $id
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param int $id
      */
     public function setId($id)
     {
@@ -188,10 +181,10 @@ class ExportRib extends BunqModel
     }
 
     /**
-     * @param string $created
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $created
      */
     public function setCreated($created)
     {
@@ -209,10 +202,10 @@ class ExportRib extends BunqModel
     }
 
     /**
-     * @param string $updated
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $updated
      */
     public function setUpdated($updated)
     {

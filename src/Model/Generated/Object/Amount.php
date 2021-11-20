@@ -41,7 +41,7 @@ class Amount extends BunqModel
      * @param string $currency The currency of the amount. It is an ISO 4217
      * formatted currency code.
      */
-    public function __construct(string $value, string $currency)
+    public function __construct(string  $value, string  $currency)
     {
         $this->valueFieldForRequest = $value;
         $this->currencyFieldForRequest = $currency;
@@ -58,10 +58,10 @@ class Amount extends BunqModel
     }
 
     /**
-     * @param string $value
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $value
      */
     public function setValue($value)
     {
@@ -79,10 +79,10 @@ class Amount extends BunqModel
     }
 
     /**
-     * @param string $currency
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $currency
      */
     public function setCurrency($currency)
     {

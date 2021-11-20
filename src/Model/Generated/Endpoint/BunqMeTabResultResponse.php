@@ -1,7 +1,9 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
+use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
+use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 
 /**
@@ -37,20 +39,13 @@ class BunqMeTabResultResponse extends BunqModel
      *
      * @return BunqResponseBunqMeTabResultResponse
      */
-    public static function get(
-        int $bunqMeTabResultResponseId,
-        int $monetaryAccountId = null,
-        array $customHeaders = []
-    ): BunqResponseBunqMeTabResultResponse {
+    public static function get(int $bunqMeTabResultResponseId, int $monetaryAccountId = null, array $customHeaders = []): BunqResponseBunqMeTabResultResponse
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_READ,
-                [
-                    static::determineUserId(),
-                    static::determineMonetaryAccountId($monetaryAccountId),
-                    $bunqMeTabResultResponseId,
-                ]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId), $bunqMeTabResultResponseId]
             ),
             [],
             $customHeaders
@@ -72,10 +67,10 @@ class BunqMeTabResultResponse extends BunqModel
     }
 
     /**
-     * @param Payment $payment
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param Payment $payment
      */
     public function setPayment($payment)
     {

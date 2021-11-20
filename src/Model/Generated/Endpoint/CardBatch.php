@@ -1,7 +1,9 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
+use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
+use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Object\BunqId;
 use bunq\Model\Generated\Object\CardBatchEntry;
@@ -45,7 +47,7 @@ class CardBatch extends BunqModel
     /**
      * @param CardBatchEntry[] $cards The cards that need to be updated.
      */
-    public function __construct(array $cards)
+    public function __construct(array  $cards)
     {
         $this->cardsFieldForRequest = $cards;
     }
@@ -56,7 +58,7 @@ class CardBatch extends BunqModel
      *
      * @return BunqResponseCardBatch
      */
-    public static function create(array $cards, array $customHeaders = []): BunqResponseCardBatch
+    public static function create(array  $cards, array $customHeaders = []): BunqResponseCardBatch
     {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->post(
@@ -84,10 +86,10 @@ class CardBatch extends BunqModel
     }
 
     /**
-     * @param BunqId[] $updatedCardIds
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param BunqId[] $updatedCardIds
      */
     public function setUpdatedCardIds($updatedCardIds)
     {

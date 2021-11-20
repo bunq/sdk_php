@@ -1,7 +1,9 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
+use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
+use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Object\TransferwiseRequirementField;
 
@@ -92,7 +94,7 @@ class TransferwiseAccountRequirement extends BunqModel
      * specified as "required" and have since been filled by the user. Always
      * provide the full list.
      */
-    public function __construct(string $nameAccountHolder, string $type, string $country = null, array $detail = null)
+    public function __construct(string  $nameAccountHolder, string  $type, string  $country = null, array  $detail = null)
     {
         $this->countryFieldForRequest = $country;
         $this->nameAccountHolderFieldForRequest = $nameAccountHolder;
@@ -113,26 +115,18 @@ class TransferwiseAccountRequirement extends BunqModel
      *
      * @return BunqResponseInt
      */
-    public static function create(
-        int $transferwiseQuoteId,
-        string $nameAccountHolder,
-        string $type,
-        string $country = null,
-        array $detail = null,
-        array $customHeaders = []
-    ): BunqResponseInt {
+    public static function create(int $transferwiseQuoteId, string  $nameAccountHolder, string  $type, string  $country = null, array  $detail = null, array $customHeaders = []): BunqResponseInt
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->post(
             vsprintf(
                 self::ENDPOINT_URL_CREATE,
                 [static::determineUserId(), $transferwiseQuoteId]
             ),
-            [
-                self::FIELD_COUNTRY => $country,
-                self::FIELD_NAME_ACCOUNT_HOLDER => $nameAccountHolder,
-                self::FIELD_TYPE => $type,
-                self::FIELD_DETAIL => $detail,
-            ],
+            [self::FIELD_COUNTRY => $country,
+self::FIELD_NAME_ACCOUNT_HOLDER => $nameAccountHolder,
+self::FIELD_TYPE => $type,
+self::FIELD_DETAIL => $detail],
             $customHeaders
         );
 
@@ -151,11 +145,8 @@ class TransferwiseAccountRequirement extends BunqModel
      *
      * @return BunqResponseTransferwiseAccountRequirementList
      */
-    public static function listing(
-        int $transferwiseQuoteId,
-        array $params = [],
-        array $customHeaders = []
-    ): BunqResponseTransferwiseAccountRequirementList {
+    public static function listing(int $transferwiseQuoteId, array $params = [], array $customHeaders = []): BunqResponseTransferwiseAccountRequirementList
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
@@ -182,10 +173,10 @@ class TransferwiseAccountRequirement extends BunqModel
     }
 
     /**
-     * @param string $type
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $type
      */
     public function setType($type)
     {
@@ -203,10 +194,10 @@ class TransferwiseAccountRequirement extends BunqModel
     }
 
     /**
-     * @param string $label
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $label
      */
     public function setLabel($label)
     {
@@ -224,10 +215,10 @@ class TransferwiseAccountRequirement extends BunqModel
     }
 
     /**
-     * @param TransferwiseRequirementField[] $fields
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param TransferwiseRequirementField[] $fields
      */
     public function setFields($fields)
     {

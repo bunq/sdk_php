@@ -105,10 +105,10 @@ class TransferwiseRequirementFieldGroup extends BunqModel
     }
 
     /**
-     * @param string $key
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $key
      */
     public function setKey($key)
     {
@@ -126,10 +126,10 @@ class TransferwiseRequirementFieldGroup extends BunqModel
     }
 
     /**
-     * @param string $type
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $type
      */
     public function setType($type)
     {
@@ -147,10 +147,10 @@ class TransferwiseRequirementFieldGroup extends BunqModel
     }
 
     /**
-     * @param string $name
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $name
      */
     public function setName($name)
     {
@@ -170,10 +170,10 @@ class TransferwiseRequirementFieldGroup extends BunqModel
     }
 
     /**
-     * @param bool $refreshRequirementsOnChange
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param bool $refreshRequirementsOnChange
      */
     public function setRefreshRequirementsOnChange($refreshRequirementsOnChange)
     {
@@ -191,10 +191,10 @@ class TransferwiseRequirementFieldGroup extends BunqModel
     }
 
     /**
-     * @param bool $required
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param bool $required
      */
     public function setRequired($required)
     {
@@ -212,10 +212,10 @@ class TransferwiseRequirementFieldGroup extends BunqModel
     }
 
     /**
-     * @param string $displayFormat
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $displayFormat
      */
     public function setDisplayFormat($displayFormat)
     {
@@ -233,10 +233,10 @@ class TransferwiseRequirementFieldGroup extends BunqModel
     }
 
     /**
-     * @param string $example
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $example
      */
     public function setExample($example)
     {
@@ -254,10 +254,10 @@ class TransferwiseRequirementFieldGroup extends BunqModel
     }
 
     /**
-     * @param string $minLength
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $minLength
      */
     public function setMinLength($minLength)
     {
@@ -275,10 +275,10 @@ class TransferwiseRequirementFieldGroup extends BunqModel
     }
 
     /**
-     * @param string $maxLength
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $maxLength
      */
     public function setMaxLength($maxLength)
     {
@@ -296,10 +296,10 @@ class TransferwiseRequirementFieldGroup extends BunqModel
     }
 
     /**
-     * @param string $validationRegexp
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $validationRegexp
      */
     public function setValidationRegexp($validationRegexp)
     {
@@ -317,10 +317,10 @@ class TransferwiseRequirementFieldGroup extends BunqModel
     }
 
     /**
-     * @param TransferwiseRequirementFieldGroupValidationAsync $validationAsync
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param TransferwiseRequirementFieldGroupValidationAsync $validationAsync
      */
     public function setValidationAsync($validationAsync)
     {
@@ -338,10 +338,10 @@ class TransferwiseRequirementFieldGroup extends BunqModel
     }
 
     /**
-     * @param TransferwiseRequirementFieldGroupValuesAllowed $valuesAllowed
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param TransferwiseRequirementFieldGroupValuesAllowed $valuesAllowed
      */
     public function setValuesAllowed($valuesAllowed)
     {

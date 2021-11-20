@@ -70,12 +70,8 @@ class MonetaryAccountProfileDrain extends BunqModel
      * @param Amount $balanceThresholdHigh The high threshold balance.
      * @param Pointer $savingsAccountAlias The savings monetary account.
      */
-    public function __construct(
-        string $status,
-        Amount $balancePreferred,
-        Amount $balanceThresholdHigh,
-        Pointer $savingsAccountAlias
-    ) {
+    public function __construct(string  $status, Amount  $balancePreferred, Amount  $balanceThresholdHigh, Pointer  $savingsAccountAlias)
+    {
         $this->statusFieldForRequest = $status;
         $this->balancePreferredFieldForRequest = $balancePreferred;
         $this->balanceThresholdHighFieldForRequest = $balanceThresholdHigh;
@@ -93,10 +89,10 @@ class MonetaryAccountProfileDrain extends BunqModel
     }
 
     /**
-     * @param string $status
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $status
      */
     public function setStatus($status)
     {
@@ -114,10 +110,10 @@ class MonetaryAccountProfileDrain extends BunqModel
     }
 
     /**
-     * @param Amount $balancePreferred
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param Amount $balancePreferred
      */
     public function setBalancePreferred($balancePreferred)
     {
@@ -135,10 +131,10 @@ class MonetaryAccountProfileDrain extends BunqModel
     }
 
     /**
-     * @param Amount $balanceThresholdHigh
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param Amount $balanceThresholdHigh
      */
     public function setBalanceThresholdHigh($balanceThresholdHigh)
     {
@@ -156,10 +152,10 @@ class MonetaryAccountProfileDrain extends BunqModel
     }
 
     /**
-     * @param LabelMonetaryAccount $savingsAccountAlias
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param LabelMonetaryAccount $savingsAccountAlias
      */
     public function setSavingsAccountAlias($savingsAccountAlias)
     {

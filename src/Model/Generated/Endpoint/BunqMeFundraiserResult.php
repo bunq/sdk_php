@@ -1,7 +1,9 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
+use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
+use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 
 /**
@@ -63,20 +65,13 @@ class BunqMeFundraiserResult extends BunqModel
      *
      * @return BunqResponseBunqMeFundraiserResult
      */
-    public static function get(
-        int $bunqMeFundraiserResultId,
-        int $monetaryAccountId = null,
-        array $customHeaders = []
-    ): BunqResponseBunqMeFundraiserResult {
+    public static function get(int $bunqMeFundraiserResultId, int $monetaryAccountId = null, array $customHeaders = []): BunqResponseBunqMeFundraiserResult
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_READ,
-                [
-                    static::determineUserId(),
-                    static::determineMonetaryAccountId($monetaryAccountId),
-                    $bunqMeFundraiserResultId,
-                ]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId), $bunqMeFundraiserResultId]
             ),
             [],
             $customHeaders
@@ -98,10 +93,10 @@ class BunqMeFundraiserResult extends BunqModel
     }
 
     /**
-     * @param int $id
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param int $id
      */
     public function setId($id)
     {
@@ -119,10 +114,10 @@ class BunqMeFundraiserResult extends BunqModel
     }
 
     /**
-     * @param string $created
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $created
      */
     public function setCreated($created)
     {
@@ -140,10 +135,10 @@ class BunqMeFundraiserResult extends BunqModel
     }
 
     /**
-     * @param string $updated
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $updated
      */
     public function setUpdated($updated)
     {
@@ -161,10 +156,10 @@ class BunqMeFundraiserResult extends BunqModel
     }
 
     /**
-     * @param BunqMeFundraiserProfile $bunqmeFundraiserProfile
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param BunqMeFundraiserProfile $bunqmeFundraiserProfile
      */
     public function setBunqmeFundraiserProfile($bunqmeFundraiserProfile)
     {
@@ -182,10 +177,10 @@ class BunqMeFundraiserResult extends BunqModel
     }
 
     /**
-     * @param Payment[] $payments
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param Payment[] $payments
      */
     public function setPayments($payments)
     {

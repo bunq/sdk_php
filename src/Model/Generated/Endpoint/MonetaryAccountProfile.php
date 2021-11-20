@@ -53,10 +53,8 @@ class MonetaryAccountProfile extends BunqModel
      * @param MonetaryAccountProfileDrain|null $profileDrain The profile
      * settings for moving excesses to a savings account
      */
-    public function __construct(
-        MonetaryAccountProfileFill $profileFill = null,
-        MonetaryAccountProfileDrain $profileDrain = null
-    ) {
+    public function __construct(MonetaryAccountProfileFill  $profileFill = null, MonetaryAccountProfileDrain  $profileDrain = null)
+    {
         $this->profileFillFieldForRequest = $profileFill;
         $this->profileDrainFieldForRequest = $profileDrain;
     }
@@ -72,10 +70,10 @@ class MonetaryAccountProfile extends BunqModel
     }
 
     /**
-     * @param MonetaryAccountProfileFill $profileFill
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param MonetaryAccountProfileFill $profileFill
      */
     public function setProfileFill($profileFill)
     {
@@ -93,10 +91,10 @@ class MonetaryAccountProfile extends BunqModel
     }
 
     /**
-     * @param MonetaryAccountProfileDrain $profileDrain
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param MonetaryAccountProfileDrain $profileDrain
      */
     public function setProfileDrain($profileDrain)
     {

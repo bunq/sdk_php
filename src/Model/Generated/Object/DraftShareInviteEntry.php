@@ -56,7 +56,7 @@ class DraftShareInviteEntry extends BunqModel
      * @param string|null $startDate The start date of this share.
      * @param string|null $endDate The expiration date of this share.
      */
-    public function __construct(ShareDetail $shareDetail, string $startDate = null, string $endDate = null)
+    public function __construct(ShareDetail  $shareDetail, string  $startDate = null, string  $endDate = null)
     {
         $this->shareDetailFieldForRequest = $shareDetail;
         $this->startDateFieldForRequest = $startDate;
@@ -74,10 +74,10 @@ class DraftShareInviteEntry extends BunqModel
     }
 
     /**
-     * @param ShareDetail $shareDetail
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param ShareDetail $shareDetail
      */
     public function setShareDetail($shareDetail)
     {
@@ -95,10 +95,10 @@ class DraftShareInviteEntry extends BunqModel
     }
 
     /**
-     * @param string $startDate
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $startDate
      */
     public function setStartDate($startDate)
     {
@@ -116,10 +116,10 @@ class DraftShareInviteEntry extends BunqModel
     }
 
     /**
-     * @param string $endDate
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $endDate
      */
     public function setEndDate($endDate)
     {

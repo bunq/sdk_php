@@ -5,12 +5,12 @@ use bunq\Http\BunqResponse;
 
 /**
  */
-class BunqResponseRegistry extends BunqResponse
+class BunqResponseExportStatementCardList extends BunqResponse
 {
     /**
-     * @return Registry
+     * @return ExportStatementCard[]
      */
-    public function getValue(): Registry
+    public function getValue(): array
     {
         return parent::getValue();
     }

@@ -1,7 +1,9 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
+use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
+use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Object\NotificationFilterPush;
 
@@ -49,7 +51,7 @@ class NotificationFilterPushUser extends BunqModel
      * @param NotificationFilterPush[]|null $notificationFilters The types of
      * notifications that will result in a push notification for this user.
      */
-    public function __construct(array $notificationFilters = null)
+    public function __construct(array  $notificationFilters = null)
     {
         $this->notificationFiltersFieldForRequest = $notificationFilters;
     }
@@ -61,10 +63,8 @@ class NotificationFilterPushUser extends BunqModel
      *
      * @return BunqResponseNotificationFilterPushUser
      */
-    public static function create(
-        array $notificationFilters = null,
-        array $customHeaders = []
-    ): BunqResponseNotificationFilterPushUser {
+    public static function create(array  $notificationFilters = null, array $customHeaders = []): BunqResponseNotificationFilterPushUser
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->post(
             vsprintf(
@@ -89,10 +89,8 @@ class NotificationFilterPushUser extends BunqModel
      *
      * @return BunqResponseNotificationFilterPushUserList
      */
-    public static function listing(
-        array $params = [],
-        array $customHeaders = []
-    ): BunqResponseNotificationFilterPushUserList {
+    public static function listing( array $params = [], array $customHeaders = []): BunqResponseNotificationFilterPushUserList
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
@@ -120,10 +118,10 @@ class NotificationFilterPushUser extends BunqModel
     }
 
     /**
-     * @param NotificationFilterPush[] $notificationFilters
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param NotificationFilterPush[] $notificationFilters
      */
     public function setNotificationFilters($notificationFilters)
     {

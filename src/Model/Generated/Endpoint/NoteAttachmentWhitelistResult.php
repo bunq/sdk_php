@@ -1,6 +1,7 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
+use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
 use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
@@ -95,7 +96,7 @@ class NoteAttachmentWhitelistResult extends BunqModel
      * this note.
      * @param string|null $description Optional description of the attachment.
      */
-    public function __construct(int $attachmentId, string $description = null)
+    public function __construct(int  $attachmentId, string  $description = null)
     {
         $this->descriptionFieldForRequest = $description;
         $this->attachmentIdFieldForRequest = $attachmentId;
@@ -112,29 +113,16 @@ class NoteAttachmentWhitelistResult extends BunqModel
      *
      * @return BunqResponseInt
      */
-    public static function create(
-        int $whitelistId,
-        int $whitelistResultId,
-        int $attachmentId,
-        int $monetaryAccountId = null,
-        string $description = null,
-        array $customHeaders = []
-    ): BunqResponseInt {
+    public static function create(int $whitelistId, int $whitelistResultId, int  $attachmentId, int $monetaryAccountId = null, string  $description = null, array $customHeaders = []): BunqResponseInt
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->post(
             vsprintf(
                 self::ENDPOINT_URL_CREATE,
-                [
-                    static::determineUserId(),
-                    static::determineMonetaryAccountId($monetaryAccountId),
-                    $whitelistId,
-                    $whitelistResultId,
-                ]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId), $whitelistId, $whitelistResultId]
             ),
-            [
-                self::FIELD_DESCRIPTION => $description,
-                self::FIELD_ATTACHMENT_ID => $attachmentId,
-            ],
+            [self::FIELD_DESCRIPTION => $description,
+self::FIELD_ATTACHMENT_ID => $attachmentId],
             $customHeaders
         );
 
@@ -153,25 +141,13 @@ class NoteAttachmentWhitelistResult extends BunqModel
      *
      * @return BunqResponseInt
      */
-    public static function update(
-        int $whitelistId,
-        int $whitelistResultId,
-        int $noteAttachmentWhitelistResultId,
-        int $monetaryAccountId = null,
-        string $description = null,
-        array $customHeaders = []
-    ): BunqResponseInt {
+    public static function update(int $whitelistId, int $whitelistResultId, int $noteAttachmentWhitelistResultId, int $monetaryAccountId = null, string  $description = null, array $customHeaders = []): BunqResponseInt
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->put(
             vsprintf(
                 self::ENDPOINT_URL_UPDATE,
-                [
-                    static::determineUserId(),
-                    static::determineMonetaryAccountId($monetaryAccountId),
-                    $whitelistId,
-                    $whitelistResultId,
-                    $noteAttachmentWhitelistResultId,
-                ]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId), $whitelistId, $whitelistResultId, $noteAttachmentWhitelistResultId]
             ),
             [self::FIELD_DESCRIPTION => $description],
             $customHeaders
@@ -190,24 +166,13 @@ class NoteAttachmentWhitelistResult extends BunqModel
      *
      * @return BunqResponseNull
      */
-    public static function delete(
-        int $whitelistId,
-        int $whitelistResultId,
-        int $noteAttachmentWhitelistResultId,
-        int $monetaryAccountId = null,
-        array $customHeaders = []
-    ): BunqResponseNull {
+    public static function delete(int $whitelistId, int $whitelistResultId, int $noteAttachmentWhitelistResultId, int $monetaryAccountId = null, array $customHeaders = []): BunqResponseNull
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->delete(
             vsprintf(
                 self::ENDPOINT_URL_DELETE,
-                [
-                    static::determineUserId(),
-                    static::determineMonetaryAccountId($monetaryAccountId),
-                    $whitelistId,
-                    $whitelistResultId,
-                    $noteAttachmentWhitelistResultId,
-                ]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId), $whitelistId, $whitelistResultId, $noteAttachmentWhitelistResultId]
             ),
             $customHeaders
         );
@@ -219,6 +184,7 @@ class NoteAttachmentWhitelistResult extends BunqModel
 
     /**
      * Manage the notes for a given user.
+     *
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
@@ -230,23 +196,13 @@ class NoteAttachmentWhitelistResult extends BunqModel
      *
      * @return BunqResponseNoteAttachmentWhitelistResultList
      */
-    public static function listing(
-        int $whitelistId,
-        int $whitelistResultId,
-        int $monetaryAccountId = null,
-        array $params = [],
-        array $customHeaders = []
-    ): BunqResponseNoteAttachmentWhitelistResultList {
+    public static function listing(int $whitelistId, int $whitelistResultId, int $monetaryAccountId = null, array $params = [], array $customHeaders = []): BunqResponseNoteAttachmentWhitelistResultList
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_LISTING,
-                [
-                    static::determineUserId(),
-                    static::determineMonetaryAccountId($monetaryAccountId),
-                    $whitelistId,
-                    $whitelistResultId,
-                ]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId), $whitelistId, $whitelistResultId]
             ),
             $params,
             $customHeaders
@@ -266,24 +222,13 @@ class NoteAttachmentWhitelistResult extends BunqModel
      *
      * @return BunqResponseNoteAttachmentWhitelistResult
      */
-    public static function get(
-        int $whitelistId,
-        int $whitelistResultId,
-        int $noteAttachmentWhitelistResultId,
-        int $monetaryAccountId = null,
-        array $customHeaders = []
-    ): BunqResponseNoteAttachmentWhitelistResult {
+    public static function get(int $whitelistId, int $whitelistResultId, int $noteAttachmentWhitelistResultId, int $monetaryAccountId = null, array $customHeaders = []): BunqResponseNoteAttachmentWhitelistResult
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_READ,
-                [
-                    static::determineUserId(),
-                    static::determineMonetaryAccountId($monetaryAccountId),
-                    $whitelistId,
-                    $whitelistResultId,
-                    $noteAttachmentWhitelistResultId,
-                ]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId), $whitelistId, $whitelistResultId, $noteAttachmentWhitelistResultId]
             ),
             [],
             $customHeaders
@@ -305,10 +250,10 @@ class NoteAttachmentWhitelistResult extends BunqModel
     }
 
     /**
-     * @param int $id
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param int $id
      */
     public function setId($id)
     {
@@ -326,10 +271,10 @@ class NoteAttachmentWhitelistResult extends BunqModel
     }
 
     /**
-     * @param string $created
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $created
      */
     public function setCreated($created)
     {
@@ -347,10 +292,10 @@ class NoteAttachmentWhitelistResult extends BunqModel
     }
 
     /**
-     * @param string $updated
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $updated
      */
     public function setUpdated($updated)
     {
@@ -368,10 +313,10 @@ class NoteAttachmentWhitelistResult extends BunqModel
     }
 
     /**
-     * @param LabelUser $labelUserCreator
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param LabelUser $labelUserCreator
      */
     public function setLabelUserCreator($labelUserCreator)
     {
@@ -389,10 +334,10 @@ class NoteAttachmentWhitelistResult extends BunqModel
     }
 
     /**
-     * @param string $description
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $description
      */
     public function setDescription($description)
     {
@@ -410,10 +355,10 @@ class NoteAttachmentWhitelistResult extends BunqModel
     }
 
     /**
-     * @param AttachmentMonetaryAccountPayment[] $attachment
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param AttachmentMonetaryAccountPayment[] $attachment
      */
     public function setAttachment($attachment)
     {

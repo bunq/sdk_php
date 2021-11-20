@@ -120,14 +120,8 @@ class SchedulePaymentEntry extends BunqModel
      * @param bool|null $allowBunqto Whether or not sending a bunq.to payment is
      * allowed.
      */
-    public function __construct(
-        Amount $amount,
-        Pointer $counterpartyAlias,
-        string $description,
-        array $attachment = null,
-        string $merchantReference = null,
-        bool $allowBunqto = null
-    ) {
+    public function __construct(Amount  $amount, Pointer  $counterpartyAlias, string  $description, array  $attachment = null, string  $merchantReference = null, bool  $allowBunqto = null)
+    {
         $this->amountFieldForRequest = $amount;
         $this->counterpartyAliasFieldForRequest = $counterpartyAlias;
         $this->descriptionFieldForRequest = $description;
@@ -149,10 +143,10 @@ class SchedulePaymentEntry extends BunqModel
     }
 
     /**
-     * @param Amount $amount
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param Amount $amount
      */
     public function setAmount($amount)
     {
@@ -171,10 +165,10 @@ class SchedulePaymentEntry extends BunqModel
     }
 
     /**
-     * @param LabelMonetaryAccount $alias
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param LabelMonetaryAccount $alias
      */
     public function setAlias($alias)
     {
@@ -193,10 +187,10 @@ class SchedulePaymentEntry extends BunqModel
     }
 
     /**
-     * @param LabelMonetaryAccount $counterpartyAlias
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param LabelMonetaryAccount $counterpartyAlias
      */
     public function setCounterpartyAlias($counterpartyAlias)
     {
@@ -216,10 +210,10 @@ class SchedulePaymentEntry extends BunqModel
     }
 
     /**
-     * @param string $description
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $description
      */
     public function setDescription($description)
     {
@@ -237,10 +231,10 @@ class SchedulePaymentEntry extends BunqModel
     }
 
     /**
-     * @param AttachmentMonetaryAccountPayment[] $attachment
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param AttachmentMonetaryAccountPayment[] $attachment
      */
     public function setAttachment($attachment)
     {
@@ -258,10 +252,10 @@ class SchedulePaymentEntry extends BunqModel
     }
 
     /**
-     * @param string $merchantReference
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $merchantReference
      */
     public function setMerchantReference($merchantReference)
     {

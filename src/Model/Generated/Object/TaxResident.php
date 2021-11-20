@@ -56,7 +56,7 @@ class TaxResident extends BunqModel
      * @param string|null $status The status of the tax number. Either CONFIRMED
      * or UNCONFIRMED.
      */
-    public function __construct(string $country, string $taxNumber, string $status = null)
+    public function __construct(string  $country, string  $taxNumber, string  $status = null)
     {
         $this->countryFieldForRequest = $country;
         $this->taxNumberFieldForRequest = $taxNumber;
@@ -74,10 +74,10 @@ class TaxResident extends BunqModel
     }
 
     /**
-     * @param string $country
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $country
      */
     public function setCountry($country)
     {
@@ -95,10 +95,10 @@ class TaxResident extends BunqModel
     }
 
     /**
-     * @param string $taxNumber
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $taxNumber
      */
     public function setTaxNumber($taxNumber)
     {
@@ -116,10 +116,10 @@ class TaxResident extends BunqModel
     }
 
     /**
-     * @param string $status
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $status
      */
     public function setStatus($status)
     {

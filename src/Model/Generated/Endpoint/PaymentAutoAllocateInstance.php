@@ -1,7 +1,9 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
+use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
+use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Object\Error;
 
@@ -90,21 +92,13 @@ class PaymentAutoAllocateInstance extends BunqModel
      *
      * @return BunqResponsePaymentAutoAllocateInstanceList
      */
-    public static function listing(
-        int $paymentAutoAllocateId,
-        int $monetaryAccountId = null,
-        array $params = [],
-        array $customHeaders = []
-    ): BunqResponsePaymentAutoAllocateInstanceList {
+    public static function listing(int $paymentAutoAllocateId, int $monetaryAccountId = null, array $params = [], array $customHeaders = []): BunqResponsePaymentAutoAllocateInstanceList
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_LISTING,
-                [
-                    static::determineUserId(),
-                    static::determineMonetaryAccountId($monetaryAccountId),
-                    $paymentAutoAllocateId,
-                ]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId), $paymentAutoAllocateId]
             ),
             $params,
             $customHeaders
@@ -123,22 +117,13 @@ class PaymentAutoAllocateInstance extends BunqModel
      *
      * @return BunqResponsePaymentAutoAllocateInstance
      */
-    public static function get(
-        int $paymentAutoAllocateId,
-        int $paymentAutoAllocateInstanceId,
-        int $monetaryAccountId = null,
-        array $customHeaders = []
-    ): BunqResponsePaymentAutoAllocateInstance {
+    public static function get(int $paymentAutoAllocateId, int $paymentAutoAllocateInstanceId, int $monetaryAccountId = null, array $customHeaders = []): BunqResponsePaymentAutoAllocateInstance
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_READ,
-                [
-                    static::determineUserId(),
-                    static::determineMonetaryAccountId($monetaryAccountId),
-                    $paymentAutoAllocateId,
-                    $paymentAutoAllocateInstanceId,
-                ]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId), $paymentAutoAllocateId, $paymentAutoAllocateInstanceId]
             ),
             [],
             $customHeaders
@@ -160,10 +145,10 @@ class PaymentAutoAllocateInstance extends BunqModel
     }
 
     /**
-     * @param int $id
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param int $id
      */
     public function setId($id)
     {
@@ -181,10 +166,10 @@ class PaymentAutoAllocateInstance extends BunqModel
     }
 
     /**
-     * @param string $created
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $created
      */
     public function setCreated($created)
     {
@@ -202,10 +187,10 @@ class PaymentAutoAllocateInstance extends BunqModel
     }
 
     /**
-     * @param string $updated
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $updated
      */
     public function setUpdated($updated)
     {
@@ -223,10 +208,10 @@ class PaymentAutoAllocateInstance extends BunqModel
     }
 
     /**
-     * @param int $paymentAutoAllocateId
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param int $paymentAutoAllocateId
      */
     public function setPaymentAutoAllocateId($paymentAutoAllocateId)
     {
@@ -244,10 +229,10 @@ class PaymentAutoAllocateInstance extends BunqModel
     }
 
     /**
-     * @param string $status
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $status
      */
     public function setStatus($status)
     {
@@ -265,10 +250,10 @@ class PaymentAutoAllocateInstance extends BunqModel
     }
 
     /**
-     * @param Error[] $errorMessage
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param Error[] $errorMessage
      */
     public function setErrorMessage($errorMessage)
     {
@@ -286,10 +271,10 @@ class PaymentAutoAllocateInstance extends BunqModel
     }
 
     /**
-     * @param PaymentBatch $paymentBatch
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param PaymentBatch $paymentBatch
      */
     public function setPaymentBatch($paymentBatch)
     {
@@ -307,10 +292,10 @@ class PaymentAutoAllocateInstance extends BunqModel
     }
 
     /**
-     * @param int $paymentId
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param int $paymentId
      */
     public function setPaymentId($paymentId)
     {
