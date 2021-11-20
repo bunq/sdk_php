@@ -104,10 +104,10 @@ class LabelMonetaryAccount extends BunqModel
     }
 
     /**
-     * @param string $iban
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $iban
      */
     public function setIban($iban)
     {
@@ -125,10 +125,10 @@ class LabelMonetaryAccount extends BunqModel
     }
 
     /**
-     * @param string $displayName
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $displayName
      */
     public function setDisplayName($displayName)
     {
@@ -146,10 +146,10 @@ class LabelMonetaryAccount extends BunqModel
     }
 
     /**
-     * @param Avatar $avatar
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param Avatar $avatar
      */
     public function setAvatar($avatar)
     {
@@ -167,10 +167,10 @@ class LabelMonetaryAccount extends BunqModel
     }
 
     /**
-     * @param LabelUser $labelUser
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param LabelUser $labelUser
      */
     public function setLabelUser($labelUser)
     {
@@ -188,10 +188,10 @@ class LabelMonetaryAccount extends BunqModel
     }
 
     /**
-     * @param string $country
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $country
      */
     public function setCountry($country)
     {
@@ -209,10 +209,10 @@ class LabelMonetaryAccount extends BunqModel
     }
 
     /**
-     * @param Pointer $bunqMe
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param Pointer $bunqMe
      */
     public function setBunqMe($bunqMe)
     {
@@ -230,10 +230,10 @@ class LabelMonetaryAccount extends BunqModel
     }
 
     /**
-     * @param bool $isLight
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param bool $isLight
      */
     public function setIsLight($isLight)
     {
@@ -251,10 +251,10 @@ class LabelMonetaryAccount extends BunqModel
     }
 
     /**
-     * @param string $swiftBic
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $swiftBic
      */
     public function setSwiftBic($swiftBic)
     {
@@ -272,10 +272,10 @@ class LabelMonetaryAccount extends BunqModel
     }
 
     /**
-     * @param string $swiftAccountNumber
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $swiftAccountNumber
      */
     public function setSwiftAccountNumber($swiftAccountNumber)
     {
@@ -294,10 +294,10 @@ class LabelMonetaryAccount extends BunqModel
     }
 
     /**
-     * @param string $transferwiseAccountNumber
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $transferwiseAccountNumber
      */
     public function setTransferwiseAccountNumber($transferwiseAccountNumber)
     {
@@ -315,10 +315,10 @@ class LabelMonetaryAccount extends BunqModel
     }
 
     /**
-     * @param string $transferwiseBankCode
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $transferwiseBankCode
      */
     public function setTransferwiseBankCode($transferwiseBankCode)
     {
@@ -336,10 +336,10 @@ class LabelMonetaryAccount extends BunqModel
     }
 
     /**
-     * @param string $merchantCategoryCode
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $merchantCategoryCode
      */
     public function setMerchantCategoryCode($merchantCategoryCode)
     {

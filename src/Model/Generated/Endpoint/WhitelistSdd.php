@@ -1,6 +1,7 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
+use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
 use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
@@ -9,7 +10,7 @@ use bunq\Model\Generated\Object\LabelMonetaryAccount;
 use bunq\Model\Generated\Object\LabelUser;
 
 /**
- * Whitelist an SDD so that when one comes in, it is automatically accepted.
+ * Depreciated route, replaced with whitelist-sdd-recurring
  *
  * @generated
  */
@@ -19,9 +20,6 @@ class WhitelistSdd extends BunqModel
      * Endpoint constants.
      */
     const ENDPOINT_URL_READ = 'user/%s/whitelist-sdd/%s';
-    const ENDPOINT_URL_CREATE = 'user/%s/whitelist-sdd';
-    const ENDPOINT_URL_UPDATE = 'user/%s/whitelist-sdd/%s';
-    const ENDPOINT_URL_DELETE = 'user/%s/whitelist-sdd/%s';
     const ENDPOINT_URL_LISTING = 'user/%s/whitelist-sdd';
 
     /**
@@ -34,7 +32,7 @@ class WhitelistSdd extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE_GET = 'WhitelistSdd';
+    const OBJECT_TYPE_GET = 'Whitelist';
 
     /**
      * The ID of the whitelist entry.
@@ -138,7 +136,7 @@ class WhitelistSdd extends BunqModel
      * @param Amount $maximumAmountPerMonth The maximum amount of money that is
      * allowed to be deducted based on the whitelist.
      */
-    public function __construct(int $monetaryAccountPayingId, int $requestId, Amount $maximumAmountPerMonth)
+    public function __construct(int  $monetaryAccountPayingId, int  $requestId, Amount  $maximumAmountPerMonth)
     {
         $this->monetaryAccountPayingIdFieldForRequest = $monetaryAccountPayingId;
         $this->requestIdFieldForRequest = $requestId;
@@ -146,7 +144,7 @@ class WhitelistSdd extends BunqModel
     }
 
     /**
-     * Get a specific SDD whitelist entry.
+     * Get a specific recurring SDD whitelist entry.
      *
      * @param int $whitelistSddId
      * @param string[] $customHeaders
@@ -166,106 +164,14 @@ class WhitelistSdd extends BunqModel
         );
 
         return BunqResponseWhitelistSdd::castFromBunqResponse(
-            static::fromJson($responseRaw, self::OBJECT_TYPE_GET)
+            static::fromJson($responseRaw)
         );
     }
 
     /**
-     * Create a new SDD whitelist entry.
+     * Get a listing of all recurring SDD whitelist entries for a target
+     * monetary account.
      *
-     * @param int $monetaryAccountPayingId ID of the monetary account of which
-     * you want to pay from.
-     * @param int $requestId ID of the request for which you want to whitelist
-     * the originating SDD.
-     * @param Amount $maximumAmountPerMonth The maximum amount of money that is
-     * allowed to be deducted based on the whitelist.
-     * @param string[] $customHeaders
-     *
-     * @return BunqResponseInt
-     */
-    public static function create(
-        int $monetaryAccountPayingId,
-        int $requestId,
-        Amount $maximumAmountPerMonth,
-        array $customHeaders = []
-    ): BunqResponseInt {
-        $apiClient = new ApiClient(static::getApiContext());
-        $responseRaw = $apiClient->post(
-            vsprintf(
-                self::ENDPOINT_URL_CREATE,
-                [static::determineUserId()]
-            ),
-            [
-                self::FIELD_MONETARY_ACCOUNT_PAYING_ID => $monetaryAccountPayingId,
-                self::FIELD_REQUEST_ID => $requestId,
-                self::FIELD_MAXIMUM_AMOUNT_PER_MONTH => $maximumAmountPerMonth,
-            ],
-            $customHeaders
-        );
-
-        return BunqResponseInt::castFromBunqResponse(
-            static::processForId($responseRaw)
-        );
-    }
-
-    /**
-     * @param int $whitelistSddId
-     * @param int|null $monetaryAccountPayingId ID of the monetary account of
-     * which you want to pay from.
-     * @param Amount|null $maximumAmountPerMonth The maximum amount of money
-     * that is allowed to be deducted based on the whitelist.
-     * @param string[] $customHeaders
-     *
-     * @return BunqResponseInt
-     */
-    public static function update(
-        int $whitelistSddId,
-        int $monetaryAccountPayingId = null,
-        Amount $maximumAmountPerMonth = null,
-        array $customHeaders = []
-    ): BunqResponseInt {
-        $apiClient = new ApiClient(static::getApiContext());
-        $responseRaw = $apiClient->put(
-            vsprintf(
-                self::ENDPOINT_URL_UPDATE,
-                [static::determineUserId(), $whitelistSddId]
-            ),
-            [
-                self::FIELD_MONETARY_ACCOUNT_PAYING_ID => $monetaryAccountPayingId,
-                self::FIELD_MAXIMUM_AMOUNT_PER_MONTH => $maximumAmountPerMonth,
-            ],
-            $customHeaders
-        );
-
-        return BunqResponseInt::castFromBunqResponse(
-            static::processForId($responseRaw)
-        );
-    }
-
-    /**
-     * @param string[] $customHeaders
-     * @param int $whitelistSddId
-     *
-     * @return BunqResponseNull
-     */
-    public static function delete(int $whitelistSddId, array $customHeaders = []): BunqResponseNull
-    {
-        $apiClient = new ApiClient(static::getApiContext());
-        $responseRaw = $apiClient->delete(
-            vsprintf(
-                self::ENDPOINT_URL_DELETE,
-                [static::determineUserId(), $whitelistSddId]
-            ),
-            $customHeaders
-        );
-
-        return BunqResponseNull::castFromBunqResponse(
-            new BunqResponse(null, $responseRaw->getHeaders())
-        );
-    }
-
-    /**
-     * Get a listing of all SDD whitelist entries for a target monetary account.
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
@@ -274,7 +180,7 @@ class WhitelistSdd extends BunqModel
      *
      * @return BunqResponseWhitelistSddList
      */
-    public static function listing(array $params = [], array $customHeaders = []): BunqResponseWhitelistSddList
+    public static function listing( array $params = [], array $customHeaders = []): BunqResponseWhitelistSddList
     {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
@@ -287,7 +193,7 @@ class WhitelistSdd extends BunqModel
         );
 
         return BunqResponseWhitelistSddList::castFromBunqResponse(
-            static::fromJsonList($responseRaw, self::OBJECT_TYPE_GET)
+            static::fromJsonList($responseRaw)
         );
     }
 
@@ -302,10 +208,10 @@ class WhitelistSdd extends BunqModel
     }
 
     /**
-     * @param int $id
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param int $id
      */
     public function setId($id)
     {
@@ -324,10 +230,10 @@ class WhitelistSdd extends BunqModel
     }
 
     /**
-     * @param int $monetaryAccountIncomingId
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param int $monetaryAccountIncomingId
      */
     public function setMonetaryAccountIncomingId($monetaryAccountIncomingId)
     {
@@ -346,10 +252,10 @@ class WhitelistSdd extends BunqModel
     }
 
     /**
-     * @param int $monetaryAccountPayingId
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param int $monetaryAccountPayingId
      */
     public function setMonetaryAccountPayingId($monetaryAccountPayingId)
     {
@@ -367,10 +273,10 @@ class WhitelistSdd extends BunqModel
     }
 
     /**
-     * @param string $type
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $type
      */
     public function setType($type)
     {
@@ -388,10 +294,10 @@ class WhitelistSdd extends BunqModel
     }
 
     /**
-     * @param string $status
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $status
      */
     public function setStatus($status)
     {
@@ -409,10 +315,10 @@ class WhitelistSdd extends BunqModel
     }
 
     /**
-     * @param string $creditSchemeIdentifier
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $creditSchemeIdentifier
      */
     public function setCreditSchemeIdentifier($creditSchemeIdentifier)
     {
@@ -430,10 +336,10 @@ class WhitelistSdd extends BunqModel
     }
 
     /**
-     * @param string $mandateIdentifier
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $mandateIdentifier
      */
     public function setMandateIdentifier($mandateIdentifier)
     {
@@ -451,10 +357,10 @@ class WhitelistSdd extends BunqModel
     }
 
     /**
-     * @param LabelMonetaryAccount $counterpartyAlias
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param LabelMonetaryAccount $counterpartyAlias
      */
     public function setCounterpartyAlias($counterpartyAlias)
     {
@@ -472,10 +378,10 @@ class WhitelistSdd extends BunqModel
     }
 
     /**
-     * @param Amount $maximumAmountPerMonth
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param Amount $maximumAmountPerMonth
      */
     public function setMaximumAmountPerMonth($maximumAmountPerMonth)
     {
@@ -493,10 +399,10 @@ class WhitelistSdd extends BunqModel
     }
 
     /**
-     * @param LabelUser $userAliasCreated
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param LabelUser $userAliasCreated
      */
     public function setUserAliasCreated($userAliasCreated)
     {

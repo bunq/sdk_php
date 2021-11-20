@@ -47,10 +47,10 @@ class OauthCallbackUrl extends BunqModel
     }
 
     /**
-     * @param int $id
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param int $id
      */
     public function setId($id)
     {
@@ -68,10 +68,10 @@ class OauthCallbackUrl extends BunqModel
     }
 
     /**
-     * @param string $created
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $created
      */
     public function setCreated($created)
     {
@@ -89,10 +89,10 @@ class OauthCallbackUrl extends BunqModel
     }
 
     /**
-     * @param string $updated
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $updated
      */
     public function setUpdated($updated)
     {
@@ -110,10 +110,10 @@ class OauthCallbackUrl extends BunqModel
     }
 
     /**
-     * @param string $url
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $url
      */
     public function setUrl($url)
     {

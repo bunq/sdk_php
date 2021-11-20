@@ -44,7 +44,7 @@ class BudgetRestriction extends BunqModel
      * @param string|null $frequency The duration for a budget restriction.
      * Valid values are DAILY, WEEKLY, MONTHLY, YEARLY.
      */
-    public function __construct(Amount $amount = null, string $frequency = null)
+    public function __construct(Amount  $amount = null, string  $frequency = null)
     {
         $this->amountFieldForRequest = $amount;
         $this->frequencyFieldForRequest = $frequency;
@@ -61,10 +61,10 @@ class BudgetRestriction extends BunqModel
     }
 
     /**
-     * @param Amount $amount
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param Amount $amount
      */
     public function setAmount($amount)
     {
@@ -83,10 +83,10 @@ class BudgetRestriction extends BunqModel
     }
 
     /**
-     * @param string $frequency
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $frequency
      */
     public function setFrequency($frequency)
     {

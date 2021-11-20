@@ -1,7 +1,9 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
+use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
+use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Object\EventObject;
 
@@ -90,7 +92,7 @@ class InsightEvent extends BunqModel
      *
      * @return BunqResponseInsightEventList
      */
-    public static function listing(array $params = [], array $customHeaders = []): BunqResponseInsightEventList
+    public static function listing( array $params = [], array $customHeaders = []): BunqResponseInsightEventList
     {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
@@ -118,10 +120,10 @@ class InsightEvent extends BunqModel
     }
 
     /**
-     * @param int $id
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param int $id
      */
     public function setId($id)
     {
@@ -139,10 +141,10 @@ class InsightEvent extends BunqModel
     }
 
     /**
-     * @param string $created
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $created
      */
     public function setCreated($created)
     {
@@ -160,10 +162,10 @@ class InsightEvent extends BunqModel
     }
 
     /**
-     * @param string $updated
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $updated
      */
     public function setUpdated($updated)
     {
@@ -181,10 +183,10 @@ class InsightEvent extends BunqModel
     }
 
     /**
-     * @param string $action
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $action
      */
     public function setAction($action)
     {
@@ -202,10 +204,10 @@ class InsightEvent extends BunqModel
     }
 
     /**
-     * @param string $userId
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $userId
      */
     public function setUserId($userId)
     {
@@ -224,10 +226,10 @@ class InsightEvent extends BunqModel
     }
 
     /**
-     * @param string $monetaryAccountId
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $monetaryAccountId
      */
     public function setMonetaryAccountId($monetaryAccountId)
     {
@@ -245,10 +247,10 @@ class InsightEvent extends BunqModel
     }
 
     /**
-     * @param EventObject $object
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param EventObject $object
      */
     public function setObject($object)
     {
@@ -268,10 +270,10 @@ class InsightEvent extends BunqModel
     }
 
     /**
-     * @param string $status
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $status
      */
     public function setStatus($status)
     {

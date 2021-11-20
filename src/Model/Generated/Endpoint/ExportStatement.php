@@ -1,6 +1,7 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
+use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
 use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
@@ -154,13 +155,8 @@ class ExportStatement extends BunqModel
      * @param bool|null $includeAttachment Only for PDF exports. Includes
      * attachments to mutations in the export, such as scanned receipts.
      */
-    public function __construct(
-        string $statementFormat,
-        string $dateStart,
-        string $dateEnd,
-        string $regionalFormat = null,
-        bool $includeAttachment = null
-    ) {
+    public function __construct(string  $statementFormat, string  $dateStart, string  $dateEnd, string  $regionalFormat = null, bool  $includeAttachment = null)
+    {
         $this->statementFormatFieldForRequest = $statementFormat;
         $this->dateStartFieldForRequest = $dateStart;
         $this->dateEndFieldForRequest = $dateEnd;
@@ -183,28 +179,19 @@ class ExportStatement extends BunqModel
      *
      * @return BunqResponseInt
      */
-    public static function create(
-        string $statementFormat,
-        string $dateStart,
-        string $dateEnd,
-        int $monetaryAccountId = null,
-        string $regionalFormat = null,
-        bool $includeAttachment = null,
-        array $customHeaders = []
-    ): BunqResponseInt {
+    public static function create(string  $statementFormat, string  $dateStart, string  $dateEnd, int $monetaryAccountId = null, string  $regionalFormat = null, bool  $includeAttachment = null, array $customHeaders = []): BunqResponseInt
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->post(
             vsprintf(
                 self::ENDPOINT_URL_CREATE,
                 [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId)]
             ),
-            [
-                self::FIELD_STATEMENT_FORMAT => $statementFormat,
-                self::FIELD_DATE_START => $dateStart,
-                self::FIELD_DATE_END => $dateEnd,
-                self::FIELD_REGIONAL_FORMAT => $regionalFormat,
-                self::FIELD_INCLUDE_ATTACHMENT => $includeAttachment,
-            ],
+            [self::FIELD_STATEMENT_FORMAT => $statementFormat,
+self::FIELD_DATE_START => $dateStart,
+self::FIELD_DATE_END => $dateEnd,
+self::FIELD_REGIONAL_FORMAT => $regionalFormat,
+self::FIELD_INCLUDE_ATTACHMENT => $includeAttachment],
             $customHeaders
         );
 
@@ -220,11 +207,8 @@ class ExportStatement extends BunqModel
      *
      * @return BunqResponseExportStatement
      */
-    public static function get(
-        int $exportStatementId,
-        int $monetaryAccountId = null,
-        array $customHeaders = []
-    ): BunqResponseExportStatement {
+    public static function get(int $exportStatementId, int $monetaryAccountId = null, array $customHeaders = []): BunqResponseExportStatement
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
@@ -250,11 +234,8 @@ class ExportStatement extends BunqModel
      *
      * @return BunqResponseExportStatementList
      */
-    public static function listing(
-        int $monetaryAccountId = null,
-        array $params = [],
-        array $customHeaders = []
-    ): BunqResponseExportStatementList {
+    public static function listing(int $monetaryAccountId = null, array $params = [], array $customHeaders = []): BunqResponseExportStatementList
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
@@ -276,11 +257,8 @@ class ExportStatement extends BunqModel
      *
      * @return BunqResponseNull
      */
-    public static function delete(
-        int $exportStatementId,
-        int $monetaryAccountId = null,
-        array $customHeaders = []
-    ): BunqResponseNull {
+    public static function delete(int $exportStatementId, int $monetaryAccountId = null, array $customHeaders = []): BunqResponseNull
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->delete(
             vsprintf(
@@ -306,10 +284,10 @@ class ExportStatement extends BunqModel
     }
 
     /**
-     * @param int $id
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param int $id
      */
     public function setId($id)
     {
@@ -327,10 +305,10 @@ class ExportStatement extends BunqModel
     }
 
     /**
-     * @param string $created
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $created
      */
     public function setCreated($created)
     {
@@ -348,10 +326,10 @@ class ExportStatement extends BunqModel
     }
 
     /**
-     * @param string $updated
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $updated
      */
     public function setUpdated($updated)
     {
@@ -369,10 +347,10 @@ class ExportStatement extends BunqModel
     }
 
     /**
-     * @param string $dateStart
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $dateStart
      */
     public function setDateStart($dateStart)
     {
@@ -390,10 +368,10 @@ class ExportStatement extends BunqModel
     }
 
     /**
-     * @param string $dateEnd
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $dateEnd
      */
     public function setDateEnd($dateEnd)
     {
@@ -411,10 +389,10 @@ class ExportStatement extends BunqModel
     }
 
     /**
-     * @param string $status
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $status
      */
     public function setStatus($status)
     {
@@ -432,10 +410,10 @@ class ExportStatement extends BunqModel
     }
 
     /**
-     * @param int $statementNumber
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param int $statementNumber
      */
     public function setStatementNumber($statementNumber)
     {
@@ -453,10 +431,10 @@ class ExportStatement extends BunqModel
     }
 
     /**
-     * @param string $statementFormat
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $statementFormat
      */
     public function setStatementFormat($statementFormat)
     {
@@ -474,10 +452,10 @@ class ExportStatement extends BunqModel
     }
 
     /**
-     * @param string $regionalFormat
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $regionalFormat
      */
     public function setRegionalFormat($regionalFormat)
     {
@@ -495,10 +473,10 @@ class ExportStatement extends BunqModel
     }
 
     /**
-     * @param LabelMonetaryAccount $aliasMonetaryAccount
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param LabelMonetaryAccount $aliasMonetaryAccount
      */
     public function setAliasMonetaryAccount($aliasMonetaryAccount)
     {

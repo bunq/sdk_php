@@ -1,6 +1,7 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
+use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
 use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
@@ -95,7 +96,7 @@ class NoteAttachmentRequestInquiryBatch extends BunqModel
      * this note.
      * @param string|null $description Optional description of the attachment.
      */
-    public function __construct(int $attachmentId, string $description = null)
+    public function __construct(int  $attachmentId, string  $description = null)
     {
         $this->descriptionFieldForRequest = $description;
         $this->attachmentIdFieldForRequest = $attachmentId;
@@ -111,27 +112,16 @@ class NoteAttachmentRequestInquiryBatch extends BunqModel
      *
      * @return BunqResponseInt
      */
-    public static function create(
-        int $requestInquiryBatchId,
-        int $attachmentId,
-        int $monetaryAccountId = null,
-        string $description = null,
-        array $customHeaders = []
-    ): BunqResponseInt {
+    public static function create(int $requestInquiryBatchId, int  $attachmentId, int $monetaryAccountId = null, string  $description = null, array $customHeaders = []): BunqResponseInt
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->post(
             vsprintf(
                 self::ENDPOINT_URL_CREATE,
-                [
-                    static::determineUserId(),
-                    static::determineMonetaryAccountId($monetaryAccountId),
-                    $requestInquiryBatchId,
-                ]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId), $requestInquiryBatchId]
             ),
-            [
-                self::FIELD_DESCRIPTION => $description,
-                self::FIELD_ATTACHMENT_ID => $attachmentId,
-            ],
+            [self::FIELD_DESCRIPTION => $description,
+self::FIELD_ATTACHMENT_ID => $attachmentId],
             $customHeaders
         );
 
@@ -149,23 +139,13 @@ class NoteAttachmentRequestInquiryBatch extends BunqModel
      *
      * @return BunqResponseInt
      */
-    public static function update(
-        int $requestInquiryBatchId,
-        int $noteAttachmentRequestInquiryBatchId,
-        int $monetaryAccountId = null,
-        string $description = null,
-        array $customHeaders = []
-    ): BunqResponseInt {
+    public static function update(int $requestInquiryBatchId, int $noteAttachmentRequestInquiryBatchId, int $monetaryAccountId = null, string  $description = null, array $customHeaders = []): BunqResponseInt
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->put(
             vsprintf(
                 self::ENDPOINT_URL_UPDATE,
-                [
-                    static::determineUserId(),
-                    static::determineMonetaryAccountId($monetaryAccountId),
-                    $requestInquiryBatchId,
-                    $noteAttachmentRequestInquiryBatchId,
-                ]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId), $requestInquiryBatchId, $noteAttachmentRequestInquiryBatchId]
             ),
             [self::FIELD_DESCRIPTION => $description],
             $customHeaders
@@ -183,22 +163,13 @@ class NoteAttachmentRequestInquiryBatch extends BunqModel
      *
      * @return BunqResponseNull
      */
-    public static function delete(
-        int $requestInquiryBatchId,
-        int $noteAttachmentRequestInquiryBatchId,
-        int $monetaryAccountId = null,
-        array $customHeaders = []
-    ): BunqResponseNull {
+    public static function delete(int $requestInquiryBatchId, int $noteAttachmentRequestInquiryBatchId, int $monetaryAccountId = null, array $customHeaders = []): BunqResponseNull
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->delete(
             vsprintf(
                 self::ENDPOINT_URL_DELETE,
-                [
-                    static::determineUserId(),
-                    static::determineMonetaryAccountId($monetaryAccountId),
-                    $requestInquiryBatchId,
-                    $noteAttachmentRequestInquiryBatchId,
-                ]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId), $requestInquiryBatchId, $noteAttachmentRequestInquiryBatchId]
             ),
             $customHeaders
         );
@@ -210,6 +181,7 @@ class NoteAttachmentRequestInquiryBatch extends BunqModel
 
     /**
      * Manage the notes for a given user.
+     *
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
@@ -220,21 +192,13 @@ class NoteAttachmentRequestInquiryBatch extends BunqModel
      *
      * @return BunqResponseNoteAttachmentRequestInquiryBatchList
      */
-    public static function listing(
-        int $requestInquiryBatchId,
-        int $monetaryAccountId = null,
-        array $params = [],
-        array $customHeaders = []
-    ): BunqResponseNoteAttachmentRequestInquiryBatchList {
+    public static function listing(int $requestInquiryBatchId, int $monetaryAccountId = null, array $params = [], array $customHeaders = []): BunqResponseNoteAttachmentRequestInquiryBatchList
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_LISTING,
-                [
-                    static::determineUserId(),
-                    static::determineMonetaryAccountId($monetaryAccountId),
-                    $requestInquiryBatchId,
-                ]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId), $requestInquiryBatchId]
             ),
             $params,
             $customHeaders
@@ -253,22 +217,13 @@ class NoteAttachmentRequestInquiryBatch extends BunqModel
      *
      * @return BunqResponseNoteAttachmentRequestInquiryBatch
      */
-    public static function get(
-        int $requestInquiryBatchId,
-        int $noteAttachmentRequestInquiryBatchId,
-        int $monetaryAccountId = null,
-        array $customHeaders = []
-    ): BunqResponseNoteAttachmentRequestInquiryBatch {
+    public static function get(int $requestInquiryBatchId, int $noteAttachmentRequestInquiryBatchId, int $monetaryAccountId = null, array $customHeaders = []): BunqResponseNoteAttachmentRequestInquiryBatch
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_READ,
-                [
-                    static::determineUserId(),
-                    static::determineMonetaryAccountId($monetaryAccountId),
-                    $requestInquiryBatchId,
-                    $noteAttachmentRequestInquiryBatchId,
-                ]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId), $requestInquiryBatchId, $noteAttachmentRequestInquiryBatchId]
             ),
             [],
             $customHeaders
@@ -290,10 +245,10 @@ class NoteAttachmentRequestInquiryBatch extends BunqModel
     }
 
     /**
-     * @param int $id
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param int $id
      */
     public function setId($id)
     {
@@ -311,10 +266,10 @@ class NoteAttachmentRequestInquiryBatch extends BunqModel
     }
 
     /**
-     * @param string $created
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $created
      */
     public function setCreated($created)
     {
@@ -332,10 +287,10 @@ class NoteAttachmentRequestInquiryBatch extends BunqModel
     }
 
     /**
-     * @param string $updated
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $updated
      */
     public function setUpdated($updated)
     {
@@ -353,10 +308,10 @@ class NoteAttachmentRequestInquiryBatch extends BunqModel
     }
 
     /**
-     * @param LabelUser $labelUserCreator
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param LabelUser $labelUserCreator
      */
     public function setLabelUserCreator($labelUserCreator)
     {
@@ -374,10 +329,10 @@ class NoteAttachmentRequestInquiryBatch extends BunqModel
     }
 
     /**
-     * @param string $description
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $description
      */
     public function setDescription($description)
     {
@@ -395,10 +350,10 @@ class NoteAttachmentRequestInquiryBatch extends BunqModel
     }
 
     /**
-     * @param AttachmentMonetaryAccountPayment[] $attachment
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param AttachmentMonetaryAccountPayment[] $attachment
      */
     public function setAttachment($attachment)
     {

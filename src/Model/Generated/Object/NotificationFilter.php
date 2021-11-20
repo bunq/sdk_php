@@ -84,7 +84,7 @@ class NotificationFilter extends BunqModel
      * PAYMENT, PROMOTION, REQUEST, SCHEDULE_RESULT, SCHEDULE_STATUS, SHARE,
      * SUPPORT, TAB_RESULT, USER_APPROVAL.
      */
-    public function __construct(string $notificationDeliveryMethod, string $notificationTarget, string $category)
+    public function __construct(string  $notificationDeliveryMethod, string  $notificationTarget, string  $category)
     {
         $this->notificationDeliveryMethodFieldForRequest = $notificationDeliveryMethod;
         $this->notificationTargetFieldForRequest = $notificationTarget;
@@ -104,10 +104,10 @@ class NotificationFilter extends BunqModel
     }
 
     /**
-     * @param string $notificationDeliveryMethod
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $notificationDeliveryMethod
      */
     public function setNotificationDeliveryMethod($notificationDeliveryMethod)
     {
@@ -127,10 +127,10 @@ class NotificationFilter extends BunqModel
     }
 
     /**
-     * @param string $notificationTarget
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $notificationTarget
      */
     public function setNotificationTarget($notificationTarget)
     {
@@ -153,10 +153,10 @@ class NotificationFilter extends BunqModel
     }
 
     /**
-     * @param string $category
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $category
      */
     public function setCategory($category)
     {

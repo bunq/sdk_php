@@ -77,11 +77,8 @@ class ShareDetail extends BunqModel
      * draft payment share. Remember to replace 'draft_payment' with
      * 'ShareDetailDraftPayment' before sending a request.
      */
-    public function __construct(
-        ShareDetailPayment $payment = null,
-        ShareDetailReadOnly $readOnly = null,
-        ShareDetailDraftPayment $draftPayment = null
-    ) {
+    public function __construct(ShareDetailPayment  $payment = null, ShareDetailReadOnly  $readOnly = null, ShareDetailDraftPayment  $draftPayment = null)
+    {
         $this->paymentFieldForRequest = $payment;
         $this->readOnlyFieldForRequest = $readOnly;
         $this->draftPaymentFieldForRequest = $draftPayment;
@@ -99,10 +96,10 @@ class ShareDetail extends BunqModel
     }
 
     /**
-     * @param ShareDetailPayment $payment
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param ShareDetailPayment $payment
      */
     public function setPayment($payment)
     {
@@ -121,10 +118,10 @@ class ShareDetail extends BunqModel
     }
 
     /**
-     * @param ShareDetailReadOnly $readOnly
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param ShareDetailReadOnly $readOnly
      */
     public function setReadOnly($readOnly)
     {
@@ -143,10 +140,10 @@ class ShareDetail extends BunqModel
     }
 
     /**
-     * @param ShareDetailDraftPayment $draftPayment
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param ShareDetailDraftPayment $draftPayment
      */
     public function setDraftPayment($draftPayment)
     {

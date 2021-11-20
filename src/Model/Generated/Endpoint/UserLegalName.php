@@ -1,7 +1,9 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
+use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
+use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 
 /**
@@ -37,7 +39,7 @@ class UserLegalName extends BunqModel
      *
      * @return BunqResponseUserLegalNameList
      */
-    public static function listing(array $params = [], array $customHeaders = []): BunqResponseUserLegalNameList
+    public static function listing( array $params = [], array $customHeaders = []): BunqResponseUserLegalNameList
     {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
@@ -65,10 +67,10 @@ class UserLegalName extends BunqModel
     }
 
     /**
-     * @param string[] $legalNames
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string[] $legalNames
      */
     public function setLegalNames($legalNames)
     {

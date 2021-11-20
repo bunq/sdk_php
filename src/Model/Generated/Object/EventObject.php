@@ -192,10 +192,10 @@ class EventObject extends BunqModel implements AnchorObjectInterface
     }
 
     /**
-     * @param BunqMeTab $bunqMeTab
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param BunqMeTab $bunqMeTab
      */
     public function setBunqMeTab($bunqMeTab)
     {
@@ -211,10 +211,10 @@ class EventObject extends BunqModel implements AnchorObjectInterface
     }
 
     /**
-     * @param BunqMeTabResultResponse $bunqMeTabResultResponse
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param BunqMeTabResultResponse $bunqMeTabResultResponse
      */
     public function setBunqMeTabResultResponse($bunqMeTabResultResponse)
     {
@@ -230,10 +230,10 @@ class EventObject extends BunqModel implements AnchorObjectInterface
     }
 
     /**
-     * @param BunqMeFundraiserResult $bunqMeFundraiserResult
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param BunqMeFundraiserResult $bunqMeFundraiserResult
      */
     public function setBunqMeFundraiserResult($bunqMeFundraiserResult)
     {
@@ -249,10 +249,10 @@ class EventObject extends BunqModel implements AnchorObjectInterface
     }
 
     /**
-     * @param Card $card
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param Card $card
      */
     public function setCard($card)
     {
@@ -268,10 +268,10 @@ class EventObject extends BunqModel implements AnchorObjectInterface
     }
 
     /**
-     * @param CardDebit $cardDebit
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param CardDebit $cardDebit
      */
     public function setCardDebit($cardDebit)
     {
@@ -287,10 +287,10 @@ class EventObject extends BunqModel implements AnchorObjectInterface
     }
 
     /**
-     * @param DraftPayment $draftPayment
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param DraftPayment $draftPayment
      */
     public function setDraftPayment($draftPayment)
     {
@@ -306,10 +306,10 @@ class EventObject extends BunqModel implements AnchorObjectInterface
     }
 
     /**
-     * @param FeatureAnnouncement $featureAnnouncement
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param FeatureAnnouncement $featureAnnouncement
      */
     public function setFeatureAnnouncement($featureAnnouncement)
     {
@@ -325,10 +325,10 @@ class EventObject extends BunqModel implements AnchorObjectInterface
     }
 
     /**
-     * @param IdealMerchantTransaction $idealMerchantTransaction
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param IdealMerchantTransaction $idealMerchantTransaction
      */
     public function setIdealMerchantTransaction($idealMerchantTransaction)
     {
@@ -344,10 +344,10 @@ class EventObject extends BunqModel implements AnchorObjectInterface
     }
 
     /**
-     * @param Invoice $invoice
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param Invoice $invoice
      */
     public function setInvoice($invoice)
     {
@@ -363,10 +363,10 @@ class EventObject extends BunqModel implements AnchorObjectInterface
     }
 
     /**
-     * @param SchedulePayment $scheduledPayment
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param SchedulePayment $scheduledPayment
      */
     public function setScheduledPayment($scheduledPayment)
     {
@@ -382,10 +382,10 @@ class EventObject extends BunqModel implements AnchorObjectInterface
     }
 
     /**
-     * @param SchedulePaymentBatch $scheduledPaymentBatch
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param SchedulePaymentBatch $scheduledPaymentBatch
      */
     public function setScheduledPaymentBatch($scheduledPaymentBatch)
     {
@@ -401,10 +401,10 @@ class EventObject extends BunqModel implements AnchorObjectInterface
     }
 
     /**
-     * @param ScheduleInstance $scheduledInstance
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param ScheduleInstance $scheduledInstance
      */
     public function setScheduledInstance($scheduledInstance)
     {
@@ -420,10 +420,10 @@ class EventObject extends BunqModel implements AnchorObjectInterface
     }
 
     /**
-     * @param MasterCardAction $masterCardAction
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param MasterCardAction $masterCardAction
      */
     public function setMasterCardAction($masterCardAction)
     {
@@ -439,11 +439,11 @@ class EventObject extends BunqModel implements AnchorObjectInterface
     }
 
     /**
-     * @param BankSwitchServiceNetherlandsIncomingPayment
-     * $bankSwitchServiceNetherlandsIncomingPayment
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param BankSwitchServiceNetherlandsIncomingPayment
+     * $bankSwitchServiceNetherlandsIncomingPayment
      */
     public function setBankSwitchServiceNetherlandsIncomingPayment($bankSwitchServiceNetherlandsIncomingPayment)
     {
@@ -459,10 +459,10 @@ class EventObject extends BunqModel implements AnchorObjectInterface
     }
 
     /**
-     * @param Payment $payment
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param Payment $payment
      */
     public function setPayment($payment)
     {
@@ -478,10 +478,10 @@ class EventObject extends BunqModel implements AnchorObjectInterface
     }
 
     /**
-     * @param PaymentBatch $paymentBatch
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param PaymentBatch $paymentBatch
      */
     public function setPaymentBatch($paymentBatch)
     {
@@ -497,10 +497,10 @@ class EventObject extends BunqModel implements AnchorObjectInterface
     }
 
     /**
-     * @param RequestInquiryBatch $requestInquiryBatch
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param RequestInquiryBatch $requestInquiryBatch
      */
     public function setRequestInquiryBatch($requestInquiryBatch)
     {
@@ -516,10 +516,10 @@ class EventObject extends BunqModel implements AnchorObjectInterface
     }
 
     /**
-     * @param RequestInquiry $requestInquiry
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param RequestInquiry $requestInquiry
      */
     public function setRequestInquiry($requestInquiry)
     {
@@ -535,10 +535,10 @@ class EventObject extends BunqModel implements AnchorObjectInterface
     }
 
     /**
-     * @param RequestResponse $requestResponse
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param RequestResponse $requestResponse
      */
     public function setRequestResponse($requestResponse)
     {
@@ -554,10 +554,10 @@ class EventObject extends BunqModel implements AnchorObjectInterface
     }
 
     /**
-     * @param RewardRecipient $rewardRecipient
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param RewardRecipient $rewardRecipient
      */
     public function setRewardRecipient($rewardRecipient)
     {
@@ -573,10 +573,10 @@ class EventObject extends BunqModel implements AnchorObjectInterface
     }
 
     /**
-     * @param RewardSender $rewardSender
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param RewardSender $rewardSender
      */
     public function setRewardSender($rewardSender)
     {
@@ -592,10 +592,10 @@ class EventObject extends BunqModel implements AnchorObjectInterface
     }
 
     /**
-     * @param ShareInviteBankInquiryBatch $shareInviteBankInquiryBatch
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param ShareInviteBankInquiryBatch $shareInviteBankInquiryBatch
      */
     public function setShareInviteBankInquiryBatch($shareInviteBankInquiryBatch)
     {
@@ -611,10 +611,10 @@ class EventObject extends BunqModel implements AnchorObjectInterface
     }
 
     /**
-     * @param ShareInviteMonetaryAccountInquiry $shareInviteBankInquiry
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param ShareInviteMonetaryAccountInquiry $shareInviteBankInquiry
      */
     public function setShareInviteBankInquiry($shareInviteBankInquiry)
     {
@@ -630,10 +630,10 @@ class EventObject extends BunqModel implements AnchorObjectInterface
     }
 
     /**
-     * @param ShareInviteMonetaryAccountResponse $shareInviteBankResponse
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param ShareInviteMonetaryAccountResponse $shareInviteBankResponse
      */
     public function setShareInviteBankResponse($shareInviteBankResponse)
     {
@@ -649,10 +649,10 @@ class EventObject extends BunqModel implements AnchorObjectInterface
     }
 
     /**
-     * @param SofortMerchantTransaction $sofortMerchantTransaction
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param SofortMerchantTransaction $sofortMerchantTransaction
      */
     public function setSofortMerchantTransaction($sofortMerchantTransaction)
     {
@@ -668,10 +668,10 @@ class EventObject extends BunqModel implements AnchorObjectInterface
     }
 
     /**
-     * @param TabResultInquiry $tabResultInquiry
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param TabResultInquiry $tabResultInquiry
      */
     public function setTabResultInquiry($tabResultInquiry)
     {
@@ -687,10 +687,10 @@ class EventObject extends BunqModel implements AnchorObjectInterface
     }
 
     /**
-     * @param TabResultResponse $tabResultResponse
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param TabResultResponse $tabResultResponse
      */
     public function setTabResultResponse($tabResultResponse)
     {
@@ -706,10 +706,10 @@ class EventObject extends BunqModel implements AnchorObjectInterface
     }
 
     /**
-     * @param TransferwiseTransfer $transferwisePayment
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param TransferwiseTransfer $transferwisePayment
      */
     public function setTransferwisePayment($transferwisePayment)
     {

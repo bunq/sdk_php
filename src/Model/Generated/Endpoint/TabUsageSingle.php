@@ -1,6 +1,7 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
+use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
 use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
@@ -342,21 +343,8 @@ class TabUsageSingle extends BunqModel
      * the tab. Uploaded through the POST /user/{userid}/attachment-tab
      * endpoint.
      */
-    public function __construct(
-        string $description,
-        string $status,
-        Amount $amountTotal,
-        string $merchantReference = null,
-        bool $allowAmountHigher = null,
-        bool $allowAmountLower = null,
-        bool $wantTip = null,
-        int $minimumAge = null,
-        string $requireAddress = null,
-        string $redirectUrl = null,
-        TabVisibility $visibility = null,
-        string $expiration = null,
-        array $tabAttachment = null
-    ) {
+    public function __construct(string  $description, string  $status, Amount  $amountTotal, string  $merchantReference = null, bool  $allowAmountHigher = null, bool  $allowAmountLower = null, bool  $wantTip = null, int  $minimumAge = null, string  $requireAddress = null, string  $redirectUrl = null, TabVisibility  $visibility = null, string  $expiration = null, array  $tabAttachment = null)
+    {
         $this->merchantReferenceFieldForRequest = $merchantReference;
         $this->descriptionFieldForRequest = $description;
         $this->statusFieldForRequest = $status;
@@ -418,45 +406,27 @@ class TabUsageSingle extends BunqModel
      *
      * @return BunqResponseString
      */
-    public static function create(
-        int $cashRegisterId,
-        string $description,
-        string $status,
-        Amount $amountTotal,
-        int $monetaryAccountId = null,
-        string $merchantReference = null,
-        bool $allowAmountHigher = null,
-        bool $allowAmountLower = null,
-        bool $wantTip = null,
-        int $minimumAge = null,
-        string $requireAddress = null,
-        string $redirectUrl = null,
-        TabVisibility $visibility = null,
-        string $expiration = null,
-        array $tabAttachment = null,
-        array $customHeaders = []
-    ): BunqResponseString {
+    public static function create(int $cashRegisterId, string  $description, string  $status, Amount  $amountTotal, int $monetaryAccountId = null, string  $merchantReference = null, bool  $allowAmountHigher = null, bool  $allowAmountLower = null, bool  $wantTip = null, int  $minimumAge = null, string  $requireAddress = null, string  $redirectUrl = null, TabVisibility  $visibility = null, string  $expiration = null, array  $tabAttachment = null, array $customHeaders = []): BunqResponseString
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->post(
             vsprintf(
                 self::ENDPOINT_URL_CREATE,
                 [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId), $cashRegisterId]
             ),
-            [
-                self::FIELD_MERCHANT_REFERENCE => $merchantReference,
-                self::FIELD_DESCRIPTION => $description,
-                self::FIELD_STATUS => $status,
-                self::FIELD_AMOUNT_TOTAL => $amountTotal,
-                self::FIELD_ALLOW_AMOUNT_HIGHER => $allowAmountHigher,
-                self::FIELD_ALLOW_AMOUNT_LOWER => $allowAmountLower,
-                self::FIELD_WANT_TIP => $wantTip,
-                self::FIELD_MINIMUM_AGE => $minimumAge,
-                self::FIELD_REQUIRE_ADDRESS => $requireAddress,
-                self::FIELD_REDIRECT_URL => $redirectUrl,
-                self::FIELD_VISIBILITY => $visibility,
-                self::FIELD_EXPIRATION => $expiration,
-                self::FIELD_TAB_ATTACHMENT => $tabAttachment,
-            ],
+            [self::FIELD_MERCHANT_REFERENCE => $merchantReference,
+self::FIELD_DESCRIPTION => $description,
+self::FIELD_STATUS => $status,
+self::FIELD_AMOUNT_TOTAL => $amountTotal,
+self::FIELD_ALLOW_AMOUNT_HIGHER => $allowAmountHigher,
+self::FIELD_ALLOW_AMOUNT_LOWER => $allowAmountLower,
+self::FIELD_WANT_TIP => $wantTip,
+self::FIELD_MINIMUM_AGE => $minimumAge,
+self::FIELD_REQUIRE_ADDRESS => $requireAddress,
+self::FIELD_REDIRECT_URL => $redirectUrl,
+self::FIELD_VISIBILITY => $visibility,
+self::FIELD_EXPIRATION => $expiration,
+self::FIELD_TAB_ATTACHMENT => $tabAttachment],
             $customHeaders
         );
 
@@ -495,35 +465,19 @@ class TabUsageSingle extends BunqModel
      *
      * @return BunqResponseString
      */
-    public static function update(
-        int $cashRegisterId,
-        string $tabUsageSingleUuid,
-        int $monetaryAccountId = null,
-        string $status = null,
-        Amount $amountTotal = null,
-        TabVisibility $visibility = null,
-        string $expiration = null,
-        array $tabAttachment = null,
-        array $customHeaders = []
-    ): BunqResponseString {
+    public static function update(int $cashRegisterId, string $tabUsageSingleUuid, int $monetaryAccountId = null, string  $status = null, Amount  $amountTotal = null, TabVisibility  $visibility = null, string  $expiration = null, array  $tabAttachment = null, array $customHeaders = []): BunqResponseString
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->put(
             vsprintf(
                 self::ENDPOINT_URL_UPDATE,
-                [
-                    static::determineUserId(),
-                    static::determineMonetaryAccountId($monetaryAccountId),
-                    $cashRegisterId,
-                    $tabUsageSingleUuid,
-                ]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId), $cashRegisterId, $tabUsageSingleUuid]
             ),
-            [
-                self::FIELD_STATUS => $status,
-                self::FIELD_AMOUNT_TOTAL => $amountTotal,
-                self::FIELD_VISIBILITY => $visibility,
-                self::FIELD_EXPIRATION => $expiration,
-                self::FIELD_TAB_ATTACHMENT => $tabAttachment,
-            ],
+            [self::FIELD_STATUS => $status,
+self::FIELD_AMOUNT_TOTAL => $amountTotal,
+self::FIELD_VISIBILITY => $visibility,
+self::FIELD_EXPIRATION => $expiration,
+self::FIELD_TAB_ATTACHMENT => $tabAttachment],
             $customHeaders
         );
 
@@ -541,22 +495,13 @@ class TabUsageSingle extends BunqModel
      *
      * @return BunqResponseNull
      */
-    public static function delete(
-        int $cashRegisterId,
-        string $tabUsageSingleUuid,
-        int $monetaryAccountId = null,
-        array $customHeaders = []
-    ): BunqResponseNull {
+    public static function delete(int $cashRegisterId, string $tabUsageSingleUuid, int $monetaryAccountId = null, array $customHeaders = []): BunqResponseNull
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->delete(
             vsprintf(
                 self::ENDPOINT_URL_DELETE,
-                [
-                    static::determineUserId(),
-                    static::determineMonetaryAccountId($monetaryAccountId),
-                    $cashRegisterId,
-                    $tabUsageSingleUuid,
-                ]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId), $cashRegisterId, $tabUsageSingleUuid]
             ),
             $customHeaders
         );
@@ -576,22 +521,13 @@ class TabUsageSingle extends BunqModel
      *
      * @return BunqResponseTabUsageSingle
      */
-    public static function get(
-        int $cashRegisterId,
-        string $tabUsageSingleUuid,
-        int $monetaryAccountId = null,
-        array $customHeaders = []
-    ): BunqResponseTabUsageSingle {
+    public static function get(int $cashRegisterId, string $tabUsageSingleUuid, int $monetaryAccountId = null, array $customHeaders = []): BunqResponseTabUsageSingle
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_READ,
-                [
-                    static::determineUserId(),
-                    static::determineMonetaryAccountId($monetaryAccountId),
-                    $cashRegisterId,
-                    $tabUsageSingleUuid,
-                ]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId), $cashRegisterId, $tabUsageSingleUuid]
             ),
             [],
             $customHeaders
@@ -604,6 +540,7 @@ class TabUsageSingle extends BunqModel
 
     /**
      * Get a collection of TabUsageSingle.
+     *
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
@@ -614,12 +551,8 @@ class TabUsageSingle extends BunqModel
      *
      * @return BunqResponseTabUsageSingleList
      */
-    public static function listing(
-        int $cashRegisterId,
-        int $monetaryAccountId = null,
-        array $params = [],
-        array $customHeaders = []
-    ): BunqResponseTabUsageSingleList {
+    public static function listing(int $cashRegisterId, int $monetaryAccountId = null, array $params = [], array $customHeaders = []): BunqResponseTabUsageSingleList
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
@@ -646,10 +579,10 @@ class TabUsageSingle extends BunqModel
     }
 
     /**
-     * @param string $uuid
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $uuid
      */
     public function setUuid($uuid)
     {
@@ -667,10 +600,10 @@ class TabUsageSingle extends BunqModel
     }
 
     /**
-     * @param string $created
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $created
      */
     public function setCreated($created)
     {
@@ -688,10 +621,10 @@ class TabUsageSingle extends BunqModel
     }
 
     /**
-     * @param string $updated
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $updated
      */
     public function setUpdated($updated)
     {
@@ -709,10 +642,10 @@ class TabUsageSingle extends BunqModel
     }
 
     /**
-     * @param string $merchantReference
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $merchantReference
      */
     public function setMerchantReference($merchantReference)
     {
@@ -730,10 +663,10 @@ class TabUsageSingle extends BunqModel
     }
 
     /**
-     * @param string $description
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $description
      */
     public function setDescription($description)
     {
@@ -752,10 +685,10 @@ class TabUsageSingle extends BunqModel
     }
 
     /**
-     * @param string $status
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $status
      */
     public function setStatus($status)
     {
@@ -773,10 +706,10 @@ class TabUsageSingle extends BunqModel
     }
 
     /**
-     * @param Amount $amountTotal
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param Amount $amountTotal
      */
     public function setAmountTotal($amountTotal)
     {
@@ -794,10 +727,10 @@ class TabUsageSingle extends BunqModel
     }
 
     /**
-     * @param Amount $amountPaid
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param Amount $amountPaid
      */
     public function setAmountPaid($amountPaid)
     {
@@ -816,10 +749,10 @@ class TabUsageSingle extends BunqModel
     }
 
     /**
-     * @param string $qrCodeToken
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $qrCodeToken
      */
     public function setQrCodeToken($qrCodeToken)
     {
@@ -838,10 +771,10 @@ class TabUsageSingle extends BunqModel
     }
 
     /**
-     * @param string $tabUrl
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $tabUrl
      */
     public function setTabUrl($tabUrl)
     {
@@ -860,10 +793,10 @@ class TabUsageSingle extends BunqModel
     }
 
     /**
-     * @param TabVisibility $visibility
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param TabVisibility $visibility
      */
     public function setVisibility($visibility)
     {
@@ -881,10 +814,10 @@ class TabUsageSingle extends BunqModel
     }
 
     /**
-     * @param bool $minimumAge
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param bool $minimumAge
      */
     public function setMinimumAge($minimumAge)
     {
@@ -903,10 +836,10 @@ class TabUsageSingle extends BunqModel
     }
 
     /**
-     * @param string $requireAddress
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $requireAddress
      */
     public function setRequireAddress($requireAddress)
     {
@@ -924,10 +857,10 @@ class TabUsageSingle extends BunqModel
     }
 
     /**
-     * @param string $redirectUrl
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $redirectUrl
      */
     public function setRedirectUrl($redirectUrl)
     {
@@ -945,10 +878,10 @@ class TabUsageSingle extends BunqModel
     }
 
     /**
-     * @param string $expiration
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $expiration
      */
     public function setExpiration($expiration)
     {
@@ -966,10 +899,10 @@ class TabUsageSingle extends BunqModel
     }
 
     /**
-     * @param LabelMonetaryAccount $alias
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param LabelMonetaryAccount $alias
      */
     public function setAlias($alias)
     {
@@ -987,10 +920,10 @@ class TabUsageSingle extends BunqModel
     }
 
     /**
-     * @param Geolocation $cashRegisterLocation
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param Geolocation $cashRegisterLocation
      */
     public function setCashRegisterLocation($cashRegisterLocation)
     {
@@ -1008,10 +941,10 @@ class TabUsageSingle extends BunqModel
     }
 
     /**
-     * @param TabItem[] $tabItem
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param TabItem[] $tabItem
      */
     public function setTabItem($tabItem)
     {
@@ -1030,10 +963,10 @@ class TabUsageSingle extends BunqModel
     }
 
     /**
-     * @param BunqId[] $tabAttachment
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param BunqId[] $tabAttachment
      */
     public function setTabAttachment($tabAttachment)
     {

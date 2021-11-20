@@ -1,8 +1,10 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
+use bunq\Context\ApiContext;
 use bunq\Exception\BunqException;
 use bunq\Http\ApiClient;
+use bunq\Http\BunqResponse;
 use bunq\Model\Core\AnchorObjectInterface;
 use bunq\Model\Core\BunqModel;
 
@@ -42,10 +44,8 @@ class PaymentAutoAllocateUser extends BunqModel implements AnchorObjectInterface
      *
      * @return BunqResponsePaymentAutoAllocateUserList
      */
-    public static function listing(
-        array $params = [],
-        array $customHeaders = []
-    ): BunqResponsePaymentAutoAllocateUserList {
+    public static function listing( array $params = [], array $customHeaders = []): BunqResponsePaymentAutoAllocateUserList
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
@@ -70,10 +70,10 @@ class PaymentAutoAllocateUser extends BunqModel implements AnchorObjectInterface
     }
 
     /**
-     * @param PaymentAutoAllocate $paymentAutoAllocate
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param PaymentAutoAllocate $paymentAutoAllocate
      */
     public function setPaymentAutoAllocate($paymentAutoAllocate)
     {

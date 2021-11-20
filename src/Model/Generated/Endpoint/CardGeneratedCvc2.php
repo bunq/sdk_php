@@ -1,7 +1,9 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
+use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
+use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 
 /**
@@ -89,7 +91,7 @@ class CardGeneratedCvc2 extends BunqModel
      * @param string|null $type The type of generated cvc2. Can be STATIC or
      * GENERATED.
      */
-    public function __construct(string $type = null)
+    public function __construct(string  $type = null)
     {
         $this->typeFieldForRequest = $type;
     }
@@ -104,7 +106,7 @@ class CardGeneratedCvc2 extends BunqModel
      *
      * @return BunqResponseInt
      */
-    public static function create(int $cardId, string $type = null, array $customHeaders = []): BunqResponseInt
+    public static function create(int $cardId, string  $type = null, array $customHeaders = []): BunqResponseInt
     {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->post(
@@ -130,11 +132,8 @@ class CardGeneratedCvc2 extends BunqModel
      *
      * @return BunqResponseCardGeneratedCvc2
      */
-    public static function get(
-        int $cardId,
-        int $cardGeneratedCvc2Id,
-        array $customHeaders = []
-    ): BunqResponseCardGeneratedCvc2 {
+    public static function get(int $cardId, int $cardGeneratedCvc2Id, array $customHeaders = []): BunqResponseCardGeneratedCvc2
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
@@ -159,12 +158,8 @@ class CardGeneratedCvc2 extends BunqModel
      *
      * @return BunqResponseInt
      */
-    public static function update(
-        int $cardId,
-        int $cardGeneratedCvc2Id,
-        string $type = null,
-        array $customHeaders = []
-    ): BunqResponseInt {
+    public static function update(int $cardId, int $cardGeneratedCvc2Id, string  $type = null, array $customHeaders = []): BunqResponseInt
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->put(
             vsprintf(
@@ -182,6 +177,7 @@ class CardGeneratedCvc2 extends BunqModel
 
     /**
      * Get all generated CVC2 codes for a card.
+     *
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
@@ -191,11 +187,8 @@ class CardGeneratedCvc2 extends BunqModel
      *
      * @return BunqResponseCardGeneratedCvc2List
      */
-    public static function listing(
-        int $cardId,
-        array $params = [],
-        array $customHeaders = []
-    ): BunqResponseCardGeneratedCvc2List {
+    public static function listing(int $cardId, array $params = [], array $customHeaders = []): BunqResponseCardGeneratedCvc2List
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
@@ -222,10 +215,10 @@ class CardGeneratedCvc2 extends BunqModel
     }
 
     /**
-     * @param int $id
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param int $id
      */
     public function setId($id)
     {
@@ -243,10 +236,10 @@ class CardGeneratedCvc2 extends BunqModel
     }
 
     /**
-     * @param string $created
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $created
      */
     public function setCreated($created)
     {
@@ -264,10 +257,10 @@ class CardGeneratedCvc2 extends BunqModel
     }
 
     /**
-     * @param string $updated
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $updated
      */
     public function setUpdated($updated)
     {
@@ -285,10 +278,10 @@ class CardGeneratedCvc2 extends BunqModel
     }
 
     /**
-     * @param string $type
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $type
      */
     public function setType($type)
     {
@@ -306,10 +299,10 @@ class CardGeneratedCvc2 extends BunqModel
     }
 
     /**
-     * @param string $cvc2
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $cvc2
      */
     public function setCvc2($cvc2)
     {
@@ -327,10 +320,10 @@ class CardGeneratedCvc2 extends BunqModel
     }
 
     /**
-     * @param string $status
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $status
      */
     public function setStatus($status)
     {
@@ -348,10 +341,10 @@ class CardGeneratedCvc2 extends BunqModel
     }
 
     /**
-     * @param string $expiryTime
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $expiryTime
      */
     public function setExpiryTime($expiryTime)
     {

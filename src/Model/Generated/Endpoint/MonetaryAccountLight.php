@@ -309,17 +309,8 @@ class MonetaryAccountLight extends BunqModel
      * @param MonetaryAccountSetting|null $setting The settings of the
      * MonetaryAccountLight.
      */
-    public function __construct(
-        string $currency,
-        string $description = null,
-        Amount $dailyLimit = null,
-        string $avatarUuid = null,
-        string $status = null,
-        string $subStatus = null,
-        string $reason = null,
-        string $reasonDescription = null,
-        MonetaryAccountSetting $setting = null
-    ) {
+    public function __construct(string  $currency, string  $description = null, Amount  $dailyLimit = null, string  $avatarUuid = null, string  $status = null, string  $subStatus = null, string  $reason = null, string  $reasonDescription = null, MonetaryAccountSetting  $setting = null)
+    {
         $this->currencyFieldForRequest = $currency;
         $this->descriptionFieldForRequest = $description;
         $this->dailyLimitFieldForRequest = $dailyLimit;
@@ -342,10 +333,10 @@ class MonetaryAccountLight extends BunqModel
     }
 
     /**
-     * @param int $id
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param int $id
      */
     public function setId($id)
     {
@@ -363,10 +354,10 @@ class MonetaryAccountLight extends BunqModel
     }
 
     /**
-     * @param string $created
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $created
      */
     public function setCreated($created)
     {
@@ -384,10 +375,10 @@ class MonetaryAccountLight extends BunqModel
     }
 
     /**
-     * @param string $updated
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $updated
      */
     public function setUpdated($updated)
     {
@@ -405,10 +396,10 @@ class MonetaryAccountLight extends BunqModel
     }
 
     /**
-     * @param Avatar $avatar
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param Avatar $avatar
      */
     public function setAvatar($avatar)
     {
@@ -427,10 +418,10 @@ class MonetaryAccountLight extends BunqModel
     }
 
     /**
-     * @param string $currency
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $currency
      */
     public function setCurrency($currency)
     {
@@ -448,10 +439,10 @@ class MonetaryAccountLight extends BunqModel
     }
 
     /**
-     * @param string $description
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $description
      */
     public function setDescription($description)
     {
@@ -471,10 +462,10 @@ class MonetaryAccountLight extends BunqModel
     }
 
     /**
-     * @param Amount $dailyLimit
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param Amount $dailyLimit
      */
     public function setDailyLimit($dailyLimit)
     {
@@ -492,10 +483,10 @@ class MonetaryAccountLight extends BunqModel
     }
 
     /**
-     * @param Amount $balance
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param Amount $balance
      */
     public function setBalance($balance)
     {
@@ -513,10 +504,10 @@ class MonetaryAccountLight extends BunqModel
     }
 
     /**
-     * @param Pointer[] $alias
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param Pointer[] $alias
      */
     public function setAlias($alias)
     {
@@ -534,10 +525,10 @@ class MonetaryAccountLight extends BunqModel
     }
 
     /**
-     * @param string $publicUuid
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $publicUuid
      */
     public function setPublicUuid($publicUuid)
     {
@@ -556,10 +547,10 @@ class MonetaryAccountLight extends BunqModel
     }
 
     /**
-     * @param string $status
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $status
      */
     public function setStatus($status)
     {
@@ -580,10 +571,10 @@ class MonetaryAccountLight extends BunqModel
     }
 
     /**
-     * @param string $subStatus
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $subStatus
      */
     public function setSubStatus($subStatus)
     {
@@ -602,10 +593,10 @@ class MonetaryAccountLight extends BunqModel
     }
 
     /**
-     * @param string $reason
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $reason
      */
     public function setReason($reason)
     {
@@ -624,10 +615,10 @@ class MonetaryAccountLight extends BunqModel
     }
 
     /**
-     * @param string $reasonDescription
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $reasonDescription
      */
     public function setReasonDescription($reasonDescription)
     {
@@ -645,10 +636,10 @@ class MonetaryAccountLight extends BunqModel
     }
 
     /**
-     * @param int $userId
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param int $userId
      */
     public function setUserId($userId)
     {
@@ -666,10 +657,10 @@ class MonetaryAccountLight extends BunqModel
     }
 
     /**
-     * @param Amount $balanceMaximum
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param Amount $balanceMaximum
      */
     public function setBalanceMaximum($balanceMaximum)
     {
@@ -687,10 +678,10 @@ class MonetaryAccountLight extends BunqModel
     }
 
     /**
-     * @param Amount $budgetMonthUsed
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param Amount $budgetMonthUsed
      */
     public function setBudgetMonthUsed($budgetMonthUsed)
     {
@@ -708,10 +699,10 @@ class MonetaryAccountLight extends BunqModel
     }
 
     /**
-     * @param Amount $budgetMonthMaximum
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param Amount $budgetMonthMaximum
      */
     public function setBudgetMonthMaximum($budgetMonthMaximum)
     {
@@ -729,10 +720,10 @@ class MonetaryAccountLight extends BunqModel
     }
 
     /**
-     * @param Amount $budgetYearUsed
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param Amount $budgetYearUsed
      */
     public function setBudgetYearUsed($budgetYearUsed)
     {
@@ -750,10 +741,10 @@ class MonetaryAccountLight extends BunqModel
     }
 
     /**
-     * @param Amount $budgetYearMaximum
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param Amount $budgetYearMaximum
      */
     public function setBudgetYearMaximum($budgetYearMaximum)
     {
@@ -771,10 +762,10 @@ class MonetaryAccountLight extends BunqModel
     }
 
     /**
-     * @param Amount $budgetWithdrawalYearUsed
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param Amount $budgetWithdrawalYearUsed
      */
     public function setBudgetWithdrawalYearUsed($budgetWithdrawalYearUsed)
     {
@@ -792,10 +783,10 @@ class MonetaryAccountLight extends BunqModel
     }
 
     /**
-     * @param Amount $budgetWithdrawalYearMaximum
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param Amount $budgetWithdrawalYearMaximum
      */
     public function setBudgetWithdrawalYearMaximum($budgetWithdrawalYearMaximum)
     {
@@ -813,10 +804,10 @@ class MonetaryAccountLight extends BunqModel
     }
 
     /**
-     * @param MonetaryAccountSetting $setting
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param MonetaryAccountSetting $setting
      */
     public function setSetting($setting)
     {

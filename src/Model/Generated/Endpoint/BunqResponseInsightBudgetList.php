@@ -5,12 +5,12 @@ use bunq\Http\BunqResponse;
 
 /**
  */
-class BunqResponseRegistrySetting extends BunqResponse
+class BunqResponseInsightBudgetList extends BunqResponse
 {
     /**
-     * @return RegistrySetting
+     * @return InsightBudget[]
      */
-    public function getValue(): RegistrySetting
+    public function getValue(): array
     {
         return parent::getValue();
     }

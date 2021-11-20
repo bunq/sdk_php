@@ -1,7 +1,9 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
+use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
+use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 
 /**
@@ -43,20 +45,13 @@ class BankSwitchServiceNetherlandsIncomingPayment extends BunqModel
      *
      * @return BunqResponseBankSwitchServiceNetherlandsIncomingPayment
      */
-    public static function get(
-        int $bankSwitchServiceNetherlandsIncomingPaymentId,
-        int $monetaryAccountId = null,
-        array $customHeaders = []
-    ): BunqResponseBankSwitchServiceNetherlandsIncomingPayment {
+    public static function get(int $bankSwitchServiceNetherlandsIncomingPaymentId, int $monetaryAccountId = null, array $customHeaders = []): BunqResponseBankSwitchServiceNetherlandsIncomingPayment
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_READ,
-                [
-                    static::determineUserId(),
-                    static::determineMonetaryAccountId($monetaryAccountId),
-                    $bankSwitchServiceNetherlandsIncomingPaymentId,
-                ]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId), $bankSwitchServiceNetherlandsIncomingPaymentId]
             ),
             [],
             $customHeaders
@@ -78,10 +73,10 @@ class BankSwitchServiceNetherlandsIncomingPayment extends BunqModel
     }
 
     /**
-     * @param BankSwitchServiceNetherlandsIncoming $bankSwitchService
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param BankSwitchServiceNetherlandsIncoming $bankSwitchService
      */
     public function setBankSwitchService($bankSwitchService)
     {
@@ -99,10 +94,10 @@ class BankSwitchServiceNetherlandsIncomingPayment extends BunqModel
     }
 
     /**
-     * @param Payment $payment
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param Payment $payment
      */
     public function setPayment($payment)
     {

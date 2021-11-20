@@ -4,6 +4,7 @@ namespace bunq\Model\Generated\Endpoint;
 use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Object\Amount;
 use bunq\Model\Generated\Object\LabelMonetaryAccount;
+use bunq\Model\Generated\Object\LabelUser;
 use bunq\Model\Generated\Object\Pointer;
 
 /**
@@ -18,6 +19,7 @@ class RegistryMembership extends BunqModel
      */
     const FIELD_ALIAS = 'alias';
     const FIELD_STATUS = 'status';
+    const FIELD_AUTO_ADD_CARD_TRANSACTION = 'auto_add_card_transaction';
 
     /**
      * The LabelMonetaryAccount of the user who belongs to this
@@ -49,6 +51,42 @@ class RegistryMembership extends BunqModel
     protected $status;
 
     /**
+     * The status of the settlement of the Registry. Can be PENDING or SETTLED.
+     *
+     * @var string
+     */
+    protected $statusSettlement;
+
+    /**
+     * The setting for for adding automatically card transactions to the
+     * registry.
+     *
+     * @var string
+     */
+    protected $autoAddCardTransaction;
+
+    /**
+     * The registry id.
+     *
+     * @var int
+     */
+    protected $registryId;
+
+    /**
+     * The registry title.
+     *
+     * @var string
+     */
+    protected $registryTitle;
+
+    /**
+     * The label of the user that sent the invite.
+     *
+     * @var LabelUser
+     */
+    protected $invitor;
+
+    /**
      * The Alias of the party we are inviting to the Registry.
      *
      * @var Pointer
@@ -63,14 +101,25 @@ class RegistryMembership extends BunqModel
     protected $statusFieldForRequest;
 
     /**
+     * The setting for for adding automatically card transactions to the
+     * registry.
+     *
+     * @var string|null
+     */
+    protected $autoAddCardTransactionFieldForRequest;
+
+    /**
      * @param Pointer $alias The Alias of the party we are inviting to the
      * Registry.
      * @param string|null $status The status of the RegistryMembership.
+     * @param string|null $autoAddCardTransaction The setting for for adding
+     * automatically card transactions to the registry.
      */
-    public function __construct(Pointer $alias, string $status = null)
+    public function __construct(Pointer  $alias, string  $status = null, string  $autoAddCardTransaction = null)
     {
         $this->aliasFieldForRequest = $alias;
         $this->statusFieldForRequest = $status;
+        $this->autoAddCardTransactionFieldForRequest = $autoAddCardTransaction;
     }
 
     /**
@@ -85,10 +134,10 @@ class RegistryMembership extends BunqModel
     }
 
     /**
-     * @param LabelMonetaryAccount $alias
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param LabelMonetaryAccount $alias
      */
     public function setAlias($alias)
     {
@@ -106,10 +155,10 @@ class RegistryMembership extends BunqModel
     }
 
     /**
-     * @param Amount $balance
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param Amount $balance
      */
     public function setBalance($balance)
     {
@@ -127,10 +176,10 @@ class RegistryMembership extends BunqModel
     }
 
     /**
-     * @param Amount $totalAmountSpent
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param Amount $totalAmountSpent
      */
     public function setTotalAmountSpent($totalAmountSpent)
     {
@@ -148,14 +197,120 @@ class RegistryMembership extends BunqModel
     }
 
     /**
-     * @param string $status
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $status
      */
     public function setStatus($status)
     {
         $this->status = $status;
+    }
+
+    /**
+     * The status of the settlement of the Registry. Can be PENDING or SETTLED.
+     *
+     * @return string
+     */
+    public function getStatusSettlement()
+    {
+        return $this->statusSettlement;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param string $statusSettlement
+     */
+    public function setStatusSettlement($statusSettlement)
+    {
+        $this->statusSettlement = $statusSettlement;
+    }
+
+    /**
+     * The setting for for adding automatically card transactions to the
+     * registry.
+     *
+     * @return string
+     */
+    public function getAutoAddCardTransaction()
+    {
+        return $this->autoAddCardTransaction;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param string $autoAddCardTransaction
+     */
+    public function setAutoAddCardTransaction($autoAddCardTransaction)
+    {
+        $this->autoAddCardTransaction = $autoAddCardTransaction;
+    }
+
+    /**
+     * The registry id.
+     *
+     * @return int
+     */
+    public function getRegistryId()
+    {
+        return $this->registryId;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param int $registryId
+     */
+    public function setRegistryId($registryId)
+    {
+        $this->registryId = $registryId;
+    }
+
+    /**
+     * The registry title.
+     *
+     * @return string
+     */
+    public function getRegistryTitle()
+    {
+        return $this->registryTitle;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param string $registryTitle
+     */
+    public function setRegistryTitle($registryTitle)
+    {
+        $this->registryTitle = $registryTitle;
+    }
+
+    /**
+     * The label of the user that sent the invite.
+     *
+     * @return LabelUser
+     */
+    public function getInvitor()
+    {
+        return $this->invitor;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param LabelUser $invitor
+     */
+    public function setInvitor($invitor)
+    {
+        $this->invitor = $invitor;
     }
 
     /**
@@ -176,6 +331,26 @@ class RegistryMembership extends BunqModel
         }
 
         if (!is_null($this->status)) {
+            return false;
+        }
+
+        if (!is_null($this->statusSettlement)) {
+            return false;
+        }
+
+        if (!is_null($this->autoAddCardTransaction)) {
+            return false;
+        }
+
+        if (!is_null($this->registryId)) {
+            return false;
+        }
+
+        if (!is_null($this->registryTitle)) {
+            return false;
+        }
+
+        if (!is_null($this->invitor)) {
             return false;
         }
 

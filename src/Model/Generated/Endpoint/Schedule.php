@@ -1,7 +1,9 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
+use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
+use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Object\ScheduleAnchorObject;
 
@@ -113,7 +115,7 @@ class Schedule extends BunqModel
      * 4 and unit WEEKLY means the recurrence is every 4 weeks.
      * @param string|null $timeEnd The schedule end time (UTC).
      */
-    public function __construct(string $timeStart, string $recurrenceUnit, int $recurrenceSize, string $timeEnd = null)
+    public function __construct(string  $timeStart, string  $recurrenceUnit, int  $recurrenceSize, string  $timeEnd = null)
     {
         $this->timeStartFieldForRequest = $timeStart;
         $this->timeEndFieldForRequest = $timeEnd;
@@ -130,11 +132,8 @@ class Schedule extends BunqModel
      *
      * @return BunqResponseSchedule
      */
-    public static function get(
-        int $scheduleId,
-        int $monetaryAccountId = null,
-        array $customHeaders = []
-    ): BunqResponseSchedule {
+    public static function get(int $scheduleId, int $monetaryAccountId = null, array $customHeaders = []): BunqResponseSchedule
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
@@ -156,6 +155,7 @@ class Schedule extends BunqModel
      * type={SCHEDULE_DEFINITION_PAYMENT,SCHEDULE_DEFINITION_PAYMENT_BATCH} is
      * provided only schedule definition object that relate to these definitions
      * are returned.
+     *
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
@@ -165,11 +165,8 @@ class Schedule extends BunqModel
      *
      * @return BunqResponseScheduleList
      */
-    public static function listing(
-        int $monetaryAccountId = null,
-        array $params = [],
-        array $customHeaders = []
-    ): BunqResponseScheduleList {
+    public static function listing(int $monetaryAccountId = null, array $params = [], array $customHeaders = []): BunqResponseScheduleList
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
@@ -196,10 +193,10 @@ class Schedule extends BunqModel
     }
 
     /**
-     * @param string $timeStart
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $timeStart
      */
     public function setTimeStart($timeStart)
     {
@@ -217,10 +214,10 @@ class Schedule extends BunqModel
     }
 
     /**
-     * @param string $timeEnd
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $timeEnd
      */
     public function setTimeEnd($timeEnd)
     {
@@ -239,10 +236,10 @@ class Schedule extends BunqModel
     }
 
     /**
-     * @param string $recurrenceUnit
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $recurrenceUnit
      */
     public function setRecurrenceUnit($recurrenceUnit)
     {
@@ -261,10 +258,10 @@ class Schedule extends BunqModel
     }
 
     /**
-     * @param int $recurrenceSize
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param int $recurrenceSize
      */
     public function setRecurrenceSize($recurrenceSize)
     {
@@ -282,10 +279,10 @@ class Schedule extends BunqModel
     }
 
     /**
-     * @param string $status
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $status
      */
     public function setStatus($status)
     {
@@ -303,10 +300,10 @@ class Schedule extends BunqModel
     }
 
     /**
-     * @param ScheduleAnchorObject $object
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param ScheduleAnchorObject $object
      */
     public function setObject($object)
     {

@@ -1,6 +1,7 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
+use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
 use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
@@ -95,7 +96,7 @@ class NoteAttachmentBankSwitchServiceNetherlandsIncomingPayment extends BunqMode
      * this note.
      * @param string|null $description Optional description of the attachment.
      */
-    public function __construct(int $attachmentId, string $description = null)
+    public function __construct(int  $attachmentId, string  $description = null)
     {
         $this->descriptionFieldForRequest = $description;
         $this->attachmentIdFieldForRequest = $attachmentId;
@@ -111,27 +112,16 @@ class NoteAttachmentBankSwitchServiceNetherlandsIncomingPayment extends BunqMode
      *
      * @return BunqResponseInt
      */
-    public static function create(
-        int $switchServicePaymentId,
-        int $attachmentId,
-        int $monetaryAccountId = null,
-        string $description = null,
-        array $customHeaders = []
-    ): BunqResponseInt {
+    public static function create(int $switchServicePaymentId, int  $attachmentId, int $monetaryAccountId = null, string  $description = null, array $customHeaders = []): BunqResponseInt
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->post(
             vsprintf(
                 self::ENDPOINT_URL_CREATE,
-                [
-                    static::determineUserId(),
-                    static::determineMonetaryAccountId($monetaryAccountId),
-                    $switchServicePaymentId,
-                ]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId), $switchServicePaymentId]
             ),
-            [
-                self::FIELD_DESCRIPTION => $description,
-                self::FIELD_ATTACHMENT_ID => $attachmentId,
-            ],
+            [self::FIELD_DESCRIPTION => $description,
+self::FIELD_ATTACHMENT_ID => $attachmentId],
             $customHeaders
         );
 
@@ -149,23 +139,13 @@ class NoteAttachmentBankSwitchServiceNetherlandsIncomingPayment extends BunqMode
      *
      * @return BunqResponseInt
      */
-    public static function update(
-        int $switchServicePaymentId,
-        int $noteAttachmentBankSwitchServiceNetherlandsIncomingPaymentId,
-        int $monetaryAccountId = null,
-        string $description = null,
-        array $customHeaders = []
-    ): BunqResponseInt {
+    public static function update(int $switchServicePaymentId, int $noteAttachmentBankSwitchServiceNetherlandsIncomingPaymentId, int $monetaryAccountId = null, string  $description = null, array $customHeaders = []): BunqResponseInt
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->put(
             vsprintf(
                 self::ENDPOINT_URL_UPDATE,
-                [
-                    static::determineUserId(),
-                    static::determineMonetaryAccountId($monetaryAccountId),
-                    $switchServicePaymentId,
-                    $noteAttachmentBankSwitchServiceNetherlandsIncomingPaymentId,
-                ]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId), $switchServicePaymentId, $noteAttachmentBankSwitchServiceNetherlandsIncomingPaymentId]
             ),
             [self::FIELD_DESCRIPTION => $description],
             $customHeaders
@@ -183,22 +163,13 @@ class NoteAttachmentBankSwitchServiceNetherlandsIncomingPayment extends BunqMode
      *
      * @return BunqResponseNull
      */
-    public static function delete(
-        int $switchServicePaymentId,
-        int $noteAttachmentBankSwitchServiceNetherlandsIncomingPaymentId,
-        int $monetaryAccountId = null,
-        array $customHeaders = []
-    ): BunqResponseNull {
+    public static function delete(int $switchServicePaymentId, int $noteAttachmentBankSwitchServiceNetherlandsIncomingPaymentId, int $monetaryAccountId = null, array $customHeaders = []): BunqResponseNull
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->delete(
             vsprintf(
                 self::ENDPOINT_URL_DELETE,
-                [
-                    static::determineUserId(),
-                    static::determineMonetaryAccountId($monetaryAccountId),
-                    $switchServicePaymentId,
-                    $noteAttachmentBankSwitchServiceNetherlandsIncomingPaymentId,
-                ]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId), $switchServicePaymentId, $noteAttachmentBankSwitchServiceNetherlandsIncomingPaymentId]
             ),
             $customHeaders
         );
@@ -210,6 +181,7 @@ class NoteAttachmentBankSwitchServiceNetherlandsIncomingPayment extends BunqMode
 
     /**
      * Manage the notes for a given user.
+     *
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
@@ -221,21 +193,13 @@ class NoteAttachmentBankSwitchServiceNetherlandsIncomingPayment extends BunqMode
      * @return
      * BunqResponseNoteAttachmentBankSwitchServiceNetherlandsIncomingPaymentList
      */
-    public static function listing(
-        int $switchServicePaymentId,
-        int $monetaryAccountId = null,
-        array $params = [],
-        array $customHeaders = []
-    ): BunqResponseNoteAttachmentBankSwitchServiceNetherlandsIncomingPaymentList {
+    public static function listing(int $switchServicePaymentId, int $monetaryAccountId = null, array $params = [], array $customHeaders = []): BunqResponseNoteAttachmentBankSwitchServiceNetherlandsIncomingPaymentList
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_LISTING,
-                [
-                    static::determineUserId(),
-                    static::determineMonetaryAccountId($monetaryAccountId),
-                    $switchServicePaymentId,
-                ]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId), $switchServicePaymentId]
             ),
             $params,
             $customHeaders
@@ -255,22 +219,13 @@ class NoteAttachmentBankSwitchServiceNetherlandsIncomingPayment extends BunqMode
      * @return
      * BunqResponseNoteAttachmentBankSwitchServiceNetherlandsIncomingPayment
      */
-    public static function get(
-        int $switchServicePaymentId,
-        int $noteAttachmentBankSwitchServiceNetherlandsIncomingPaymentId,
-        int $monetaryAccountId = null,
-        array $customHeaders = []
-    ): BunqResponseNoteAttachmentBankSwitchServiceNetherlandsIncomingPayment {
+    public static function get(int $switchServicePaymentId, int $noteAttachmentBankSwitchServiceNetherlandsIncomingPaymentId, int $monetaryAccountId = null, array $customHeaders = []): BunqResponseNoteAttachmentBankSwitchServiceNetherlandsIncomingPayment
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_READ,
-                [
-                    static::determineUserId(),
-                    static::determineMonetaryAccountId($monetaryAccountId),
-                    $switchServicePaymentId,
-                    $noteAttachmentBankSwitchServiceNetherlandsIncomingPaymentId,
-                ]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId), $switchServicePaymentId, $noteAttachmentBankSwitchServiceNetherlandsIncomingPaymentId]
             ),
             [],
             $customHeaders
@@ -292,10 +247,10 @@ class NoteAttachmentBankSwitchServiceNetherlandsIncomingPayment extends BunqMode
     }
 
     /**
-     * @param int $id
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param int $id
      */
     public function setId($id)
     {
@@ -313,10 +268,10 @@ class NoteAttachmentBankSwitchServiceNetherlandsIncomingPayment extends BunqMode
     }
 
     /**
-     * @param string $created
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $created
      */
     public function setCreated($created)
     {
@@ -334,10 +289,10 @@ class NoteAttachmentBankSwitchServiceNetherlandsIncomingPayment extends BunqMode
     }
 
     /**
-     * @param string $updated
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $updated
      */
     public function setUpdated($updated)
     {
@@ -355,10 +310,10 @@ class NoteAttachmentBankSwitchServiceNetherlandsIncomingPayment extends BunqMode
     }
 
     /**
-     * @param LabelUser $labelUserCreator
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param LabelUser $labelUserCreator
      */
     public function setLabelUserCreator($labelUserCreator)
     {
@@ -376,10 +331,10 @@ class NoteAttachmentBankSwitchServiceNetherlandsIncomingPayment extends BunqMode
     }
 
     /**
-     * @param string $description
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $description
      */
     public function setDescription($description)
     {
@@ -397,10 +352,10 @@ class NoteAttachmentBankSwitchServiceNetherlandsIncomingPayment extends BunqMode
     }
 
     /**
-     * @param AttachmentMonetaryAccountPayment[] $attachment
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param AttachmentMonetaryAccountPayment[] $attachment
      */
     public function setAttachment($attachment)
     {

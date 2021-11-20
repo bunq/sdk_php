@@ -1,7 +1,9 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
+use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
+use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 
 /**
@@ -91,7 +93,7 @@ class CashRegisterQrCode extends BunqModel
      * one QR code can be ACTIVE for a CashRegister at any time. Setting a QR
      * code to ACTIVE will deactivate any other CashRegister QR codes.
      */
-    public function __construct(string $status)
+    public function __construct(string  $status)
     {
         $this->statusFieldForRequest = $status;
     }
@@ -109,12 +111,8 @@ class CashRegisterQrCode extends BunqModel
      *
      * @return BunqResponseInt
      */
-    public static function create(
-        int $cashRegisterId,
-        string $status,
-        int $monetaryAccountId = null,
-        array $customHeaders = []
-    ): BunqResponseInt {
+    public static function create(int $cashRegisterId, string  $status, int $monetaryAccountId = null, array $customHeaders = []): BunqResponseInt
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->post(
             vsprintf(
@@ -144,23 +142,13 @@ class CashRegisterQrCode extends BunqModel
      *
      * @return BunqResponseInt
      */
-    public static function update(
-        int $cashRegisterId,
-        int $cashRegisterQrCodeId,
-        int $monetaryAccountId = null,
-        string $status = null,
-        array $customHeaders = []
-    ): BunqResponseInt {
+    public static function update(int $cashRegisterId, int $cashRegisterQrCodeId, int $monetaryAccountId = null, string  $status = null, array $customHeaders = []): BunqResponseInt
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->put(
             vsprintf(
                 self::ENDPOINT_URL_UPDATE,
-                [
-                    static::determineUserId(),
-                    static::determineMonetaryAccountId($monetaryAccountId),
-                    $cashRegisterId,
-                    $cashRegisterQrCodeId,
-                ]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId), $cashRegisterId, $cashRegisterQrCodeId]
             ),
             [self::FIELD_STATUS => $status],
             $customHeaders
@@ -182,22 +170,13 @@ class CashRegisterQrCode extends BunqModel
      *
      * @return BunqResponseCashRegisterQrCode
      */
-    public static function get(
-        int $cashRegisterId,
-        int $cashRegisterQrCodeId,
-        int $monetaryAccountId = null,
-        array $customHeaders = []
-    ): BunqResponseCashRegisterQrCode {
+    public static function get(int $cashRegisterId, int $cashRegisterQrCodeId, int $monetaryAccountId = null, array $customHeaders = []): BunqResponseCashRegisterQrCode
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_READ,
-                [
-                    static::determineUserId(),
-                    static::determineMonetaryAccountId($monetaryAccountId),
-                    $cashRegisterId,
-                    $cashRegisterQrCodeId,
-                ]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId), $cashRegisterId, $cashRegisterQrCodeId]
             ),
             [],
             $customHeaders
@@ -210,6 +189,7 @@ class CashRegisterQrCode extends BunqModel
 
     /**
      * Get a collection of QR code information from a given CashRegister
+     *
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
@@ -220,12 +200,8 @@ class CashRegisterQrCode extends BunqModel
      *
      * @return BunqResponseCashRegisterQrCodeList
      */
-    public static function listing(
-        int $cashRegisterId,
-        int $monetaryAccountId = null,
-        array $params = [],
-        array $customHeaders = []
-    ): BunqResponseCashRegisterQrCodeList {
+    public static function listing(int $cashRegisterId, int $monetaryAccountId = null, array $params = [], array $customHeaders = []): BunqResponseCashRegisterQrCodeList
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
@@ -253,10 +229,10 @@ class CashRegisterQrCode extends BunqModel
     }
 
     /**
-     * @param int $id
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param int $id
      */
     public function setId($id)
     {
@@ -274,10 +250,10 @@ class CashRegisterQrCode extends BunqModel
     }
 
     /**
-     * @param string $created
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $created
      */
     public function setCreated($created)
     {
@@ -295,10 +271,10 @@ class CashRegisterQrCode extends BunqModel
     }
 
     /**
-     * @param string $updated
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $updated
      */
     public function setUpdated($updated)
     {
@@ -318,10 +294,10 @@ class CashRegisterQrCode extends BunqModel
     }
 
     /**
-     * @param string $status
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $status
      */
     public function setStatus($status)
     {
@@ -339,10 +315,10 @@ class CashRegisterQrCode extends BunqModel
     }
 
     /**
-     * @param CashRegister $cashRegister
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param CashRegister $cashRegister
      */
     public function setCashRegister($cashRegister)
     {
@@ -360,10 +336,10 @@ class CashRegisterQrCode extends BunqModel
     }
 
     /**
-     * @param Tab $tabObject
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param Tab $tabObject
      */
     public function setTabObject($tabObject)
     {

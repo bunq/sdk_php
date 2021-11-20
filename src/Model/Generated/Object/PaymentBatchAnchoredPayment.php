@@ -23,10 +23,10 @@ class PaymentBatchAnchoredPayment extends BunqModel
     }
 
     /**
-     * @param Payment[] $payment
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param Payment[] $payment
      */
     public function setPayment($payment)
     {

@@ -30,6 +30,13 @@ class Avatar extends BunqModel
     protected $image;
 
     /**
+     * The style (if applicable) for this Avatar.
+     *
+     * @var string
+     */
+    protected $style;
+
+    /**
      * The public UUID of the avatar.
      *
      * @var string
@@ -39,7 +46,7 @@ class Avatar extends BunqModel
     /**
      * @param string $uuid The public UUID of the avatar.
      */
-    public function __construct(string $uuid)
+    public function __construct(string  $uuid)
     {
         $this->uuidFieldForRequest = $uuid;
     }
@@ -55,10 +62,10 @@ class Avatar extends BunqModel
     }
 
     /**
-     * @param string $uuid
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $uuid
      */
     public function setUuid($uuid)
     {
@@ -76,10 +83,10 @@ class Avatar extends BunqModel
     }
 
     /**
-     * @param string $anchorUuid
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $anchorUuid
      */
     public function setAnchorUuid($anchorUuid)
     {
@@ -97,14 +104,35 @@ class Avatar extends BunqModel
     }
 
     /**
-     * @param Image[] $image
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param Image[] $image
      */
     public function setImage($image)
     {
         $this->image = $image;
+    }
+
+    /**
+     * The style (if applicable) for this Avatar.
+     *
+     * @return string
+     */
+    public function getStyle()
+    {
+        return $this->style;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param string $style
+     */
+    public function setStyle($style)
+    {
+        $this->style = $style;
     }
 
     /**
@@ -121,6 +149,10 @@ class Avatar extends BunqModel
         }
 
         if (!is_null($this->image)) {
+            return false;
+        }
+
+        if (!is_null($this->style)) {
             return false;
         }
 

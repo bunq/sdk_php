@@ -63,7 +63,7 @@ class NotificationFilterUrl extends BunqModel
      * @param string $notificationTarget The URL to which the callback should be
      * made.
      */
-    public function __construct(string $category, string $notificationTarget)
+    public function __construct(string  $category, string  $notificationTarget)
     {
         $this->categoryFieldForRequest = $category;
         $this->notificationTargetFieldForRequest = $notificationTarget;
@@ -80,10 +80,10 @@ class NotificationFilterUrl extends BunqModel
     }
 
     /**
-     * @param int $id
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param int $id
      */
     public function setId($id)
     {
@@ -101,10 +101,10 @@ class NotificationFilterUrl extends BunqModel
     }
 
     /**
-     * @param string $created
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $created
      */
     public function setCreated($created)
     {
@@ -122,10 +122,10 @@ class NotificationFilterUrl extends BunqModel
     }
 
     /**
-     * @param string $updated
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $updated
      */
     public function setUpdated($updated)
     {
@@ -143,10 +143,10 @@ class NotificationFilterUrl extends BunqModel
     }
 
     /**
-     * @param string $category
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $category
      */
     public function setCategory($category)
     {
@@ -164,10 +164,10 @@ class NotificationFilterUrl extends BunqModel
     }
 
     /**
-     * @param string $notificationTarget
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $notificationTarget
      */
     public function setNotificationTarget($notificationTarget)
     {
