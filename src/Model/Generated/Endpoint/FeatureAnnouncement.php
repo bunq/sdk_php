@@ -1,7 +1,9 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
+use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
+use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Object\Avatar;
 
@@ -44,6 +46,14 @@ class FeatureAnnouncement extends BunqModel
     protected $subTitle;
 
     /**
+     * The type of the feature announcement so apps can override with their own
+     * stuff if desired
+     *
+     * @var string
+     */
+    protected $type;
+
+    /**
      * @param int $featureAnnouncementId
      * @param string[] $customHeaders
      *
@@ -77,10 +87,10 @@ class FeatureAnnouncement extends BunqModel
     }
 
     /**
-     * @param Avatar $avatar
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param Avatar $avatar
      */
     public function setAvatar($avatar)
     {
@@ -98,10 +108,10 @@ class FeatureAnnouncement extends BunqModel
     }
 
     /**
-     * @param string $title
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $title
      */
     public function setTitle($title)
     {
@@ -119,14 +129,36 @@ class FeatureAnnouncement extends BunqModel
     }
 
     /**
-     * @param string $subTitle
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $subTitle
      */
     public function setSubTitle($subTitle)
     {
         $this->subTitle = $subTitle;
+    }
+
+    /**
+     * The type of the feature announcement so apps can override with their own
+     * stuff if desired
+     *
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param string $type
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
     }
 
     /**
@@ -143,6 +175,10 @@ class FeatureAnnouncement extends BunqModel
         }
 
         if (!is_null($this->subTitle)) {
+            return false;
+        }
+
+        if (!is_null($this->type)) {
             return false;
         }
 

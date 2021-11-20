@@ -91,7 +91,7 @@ class BunqSdkTestBase extends TestCase
 
     /**
      */
-    public static function setUpBeforeClass()
+    public static function setUpBeforeClass(): void
     {
         static::createApiContext();
         BunqContext::loadApiContext(
@@ -111,7 +111,7 @@ class BunqSdkTestBase extends TestCase
 
     /**
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->setSecondMonetaryAccountBank();
         $this->requestSpendingMoney();

@@ -1,6 +1,7 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
+use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
 use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
@@ -77,7 +78,7 @@ class NoteTextRequestInquiryBatch extends BunqModel
     /**
      * @param string|null $content The content of the note.
      */
-    public function __construct(string $content = null)
+    public function __construct(string  $content = null)
     {
         $this->contentFieldForRequest = $content;
     }
@@ -90,21 +91,13 @@ class NoteTextRequestInquiryBatch extends BunqModel
      *
      * @return BunqResponseInt
      */
-    public static function create(
-        int $requestInquiryBatchId,
-        int $monetaryAccountId = null,
-        string $content = null,
-        array $customHeaders = []
-    ): BunqResponseInt {
+    public static function create(int $requestInquiryBatchId, int $monetaryAccountId = null, string  $content = null, array $customHeaders = []): BunqResponseInt
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->post(
             vsprintf(
                 self::ENDPOINT_URL_CREATE,
-                [
-                    static::determineUserId(),
-                    static::determineMonetaryAccountId($monetaryAccountId),
-                    $requestInquiryBatchId,
-                ]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId), $requestInquiryBatchId]
             ),
             [self::FIELD_CONTENT => $content],
             $customHeaders
@@ -124,23 +117,13 @@ class NoteTextRequestInquiryBatch extends BunqModel
      *
      * @return BunqResponseInt
      */
-    public static function update(
-        int $requestInquiryBatchId,
-        int $noteTextRequestInquiryBatchId,
-        int $monetaryAccountId = null,
-        string $content = null,
-        array $customHeaders = []
-    ): BunqResponseInt {
+    public static function update(int $requestInquiryBatchId, int $noteTextRequestInquiryBatchId, int $monetaryAccountId = null, string  $content = null, array $customHeaders = []): BunqResponseInt
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->put(
             vsprintf(
                 self::ENDPOINT_URL_UPDATE,
-                [
-                    static::determineUserId(),
-                    static::determineMonetaryAccountId($monetaryAccountId),
-                    $requestInquiryBatchId,
-                    $noteTextRequestInquiryBatchId,
-                ]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId), $requestInquiryBatchId, $noteTextRequestInquiryBatchId]
             ),
             [self::FIELD_CONTENT => $content],
             $customHeaders
@@ -158,22 +141,13 @@ class NoteTextRequestInquiryBatch extends BunqModel
      *
      * @return BunqResponseNull
      */
-    public static function delete(
-        int $requestInquiryBatchId,
-        int $noteTextRequestInquiryBatchId,
-        int $monetaryAccountId = null,
-        array $customHeaders = []
-    ): BunqResponseNull {
+    public static function delete(int $requestInquiryBatchId, int $noteTextRequestInquiryBatchId, int $monetaryAccountId = null, array $customHeaders = []): BunqResponseNull
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->delete(
             vsprintf(
                 self::ENDPOINT_URL_DELETE,
-                [
-                    static::determineUserId(),
-                    static::determineMonetaryAccountId($monetaryAccountId),
-                    $requestInquiryBatchId,
-                    $noteTextRequestInquiryBatchId,
-                ]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId), $requestInquiryBatchId, $noteTextRequestInquiryBatchId]
             ),
             $customHeaders
         );
@@ -185,6 +159,7 @@ class NoteTextRequestInquiryBatch extends BunqModel
 
     /**
      * Manage the notes for a given user.
+     *
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
@@ -195,21 +170,13 @@ class NoteTextRequestInquiryBatch extends BunqModel
      *
      * @return BunqResponseNoteTextRequestInquiryBatchList
      */
-    public static function listing(
-        int $requestInquiryBatchId,
-        int $monetaryAccountId = null,
-        array $params = [],
-        array $customHeaders = []
-    ): BunqResponseNoteTextRequestInquiryBatchList {
+    public static function listing(int $requestInquiryBatchId, int $monetaryAccountId = null, array $params = [], array $customHeaders = []): BunqResponseNoteTextRequestInquiryBatchList
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_LISTING,
-                [
-                    static::determineUserId(),
-                    static::determineMonetaryAccountId($monetaryAccountId),
-                    $requestInquiryBatchId,
-                ]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId), $requestInquiryBatchId]
             ),
             $params,
             $customHeaders
@@ -228,22 +195,13 @@ class NoteTextRequestInquiryBatch extends BunqModel
      *
      * @return BunqResponseNoteTextRequestInquiryBatch
      */
-    public static function get(
-        int $requestInquiryBatchId,
-        int $noteTextRequestInquiryBatchId,
-        int $monetaryAccountId = null,
-        array $customHeaders = []
-    ): BunqResponseNoteTextRequestInquiryBatch {
+    public static function get(int $requestInquiryBatchId, int $noteTextRequestInquiryBatchId, int $monetaryAccountId = null, array $customHeaders = []): BunqResponseNoteTextRequestInquiryBatch
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_READ,
-                [
-                    static::determineUserId(),
-                    static::determineMonetaryAccountId($monetaryAccountId),
-                    $requestInquiryBatchId,
-                    $noteTextRequestInquiryBatchId,
-                ]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId), $requestInquiryBatchId, $noteTextRequestInquiryBatchId]
             ),
             [],
             $customHeaders
@@ -265,10 +223,10 @@ class NoteTextRequestInquiryBatch extends BunqModel
     }
 
     /**
-     * @param int $id
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param int $id
      */
     public function setId($id)
     {
@@ -286,10 +244,10 @@ class NoteTextRequestInquiryBatch extends BunqModel
     }
 
     /**
-     * @param string $created
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $created
      */
     public function setCreated($created)
     {
@@ -307,10 +265,10 @@ class NoteTextRequestInquiryBatch extends BunqModel
     }
 
     /**
-     * @param string $updated
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $updated
      */
     public function setUpdated($updated)
     {
@@ -328,10 +286,10 @@ class NoteTextRequestInquiryBatch extends BunqModel
     }
 
     /**
-     * @param LabelUser $labelUserCreator
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param LabelUser $labelUserCreator
      */
     public function setLabelUserCreator($labelUserCreator)
     {
@@ -349,10 +307,10 @@ class NoteTextRequestInquiryBatch extends BunqModel
     }
 
     /**
-     * @param string $content
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $content
      */
     public function setContent($content)
     {

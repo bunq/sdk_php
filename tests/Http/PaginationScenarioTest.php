@@ -55,7 +55,7 @@ class PaginationScenarioTest extends BunqSdkTestBase
 
         $paymentsActual = array_merge($responsePreviousNext->getValue(), $responsePrevious->getValue());
 
-        $this->assertEquals($paymentsExpected, $paymentsActual);
+        static::assertEquals($paymentsExpected, $paymentsActual);
     }
 
     /**

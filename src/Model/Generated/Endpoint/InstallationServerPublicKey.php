@@ -1,7 +1,9 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
+use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
+use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 
 /**
@@ -32,6 +34,7 @@ class InstallationServerPublicKey extends BunqModel
 
     /**
      * Show the ServerPublicKey for this Installation.
+     *
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
@@ -41,11 +44,8 @@ class InstallationServerPublicKey extends BunqModel
      *
      * @return BunqResponseInstallationServerPublicKeyList
      */
-    public static function listing(
-        int $installationId,
-        array $params = [],
-        array $customHeaders = []
-    ): BunqResponseInstallationServerPublicKeyList {
+    public static function listing(int $installationId, array $params = [], array $customHeaders = []): BunqResponseInstallationServerPublicKeyList
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
@@ -72,10 +72,10 @@ class InstallationServerPublicKey extends BunqModel
     }
 
     /**
-     * @param string $serverPublicKey
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $serverPublicKey
      */
     public function setServerPublicKey($serverPublicKey)
     {

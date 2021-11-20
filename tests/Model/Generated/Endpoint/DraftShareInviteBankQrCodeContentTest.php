@@ -37,7 +37,7 @@ class DraftShareInviteBankQrCodeContentTest extends BunqSdkTestBase
 
     /**
      */
-    public static function setUpBeforeClass()
+    public static function setUpBeforeClass(): void
     {
         parent::setUpBeforeClass();
         static::$expirationDate = date(self::FORMAT_MICROTIME, strtotime(self::EXPIRATION_ADDED_TIME));

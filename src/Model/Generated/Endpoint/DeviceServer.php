@@ -1,7 +1,9 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
+use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
+use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 
 /**
@@ -106,7 +108,7 @@ class DeviceServer extends BunqModel
      * DeviceServer will be able to do calls from. These will be linked to the
      * API key.
      */
-    public function __construct(string $description, string $secret, array $permittedIps = null)
+    public function __construct(string  $description, string  $secret, array  $permittedIps = null)
     {
         $this->descriptionFieldForRequest = $description;
         $this->secretFieldForRequest = $secret;
@@ -134,23 +136,17 @@ class DeviceServer extends BunqModel
      *
      * @return BunqResponseInt
      */
-    public static function create(
-        string $description,
-        string $secret,
-        array $permittedIps = null,
-        array $customHeaders = []
-    ): BunqResponseInt {
+    public static function create(string  $description, string  $secret, array  $permittedIps = null, array $customHeaders = []): BunqResponseInt
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->post(
             vsprintf(
                 self::ENDPOINT_URL_CREATE,
                 []
             ),
-            [
-                self::FIELD_DESCRIPTION => $description,
-                self::FIELD_SECRET => $secret,
-                self::FIELD_PERMITTED_IPS => $permittedIps,
-            ],
+            [self::FIELD_DESCRIPTION => $description,
+self::FIELD_SECRET => $secret,
+self::FIELD_PERMITTED_IPS => $permittedIps],
             $customHeaders
         );
 
@@ -186,6 +182,7 @@ class DeviceServer extends BunqModel
 
     /**
      * Get a collection of all the DeviceServers you have created.
+     *
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
@@ -194,7 +191,7 @@ class DeviceServer extends BunqModel
      *
      * @return BunqResponseDeviceServerList
      */
-    public static function listing(array $params = [], array $customHeaders = []): BunqResponseDeviceServerList
+    public static function listing( array $params = [], array $customHeaders = []): BunqResponseDeviceServerList
     {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
@@ -222,10 +219,10 @@ class DeviceServer extends BunqModel
     }
 
     /**
-     * @param int $id
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param int $id
      */
     public function setId($id)
     {
@@ -243,10 +240,10 @@ class DeviceServer extends BunqModel
     }
 
     /**
-     * @param string $created
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $created
      */
     public function setCreated($created)
     {
@@ -264,10 +261,10 @@ class DeviceServer extends BunqModel
     }
 
     /**
-     * @param string $updated
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $updated
      */
     public function setUpdated($updated)
     {
@@ -285,10 +282,10 @@ class DeviceServer extends BunqModel
     }
 
     /**
-     * @param string $description
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $description
      */
     public function setDescription($description)
     {
@@ -306,10 +303,10 @@ class DeviceServer extends BunqModel
     }
 
     /**
-     * @param string $ip
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $ip
      */
     public function setIp($ip)
     {
@@ -328,10 +325,10 @@ class DeviceServer extends BunqModel
     }
 
     /**
-     * @param string $status
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $status
      */
     public function setStatus($status)
     {

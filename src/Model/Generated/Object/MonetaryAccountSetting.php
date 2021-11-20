@@ -39,6 +39,14 @@ class MonetaryAccountSetting extends BunqModel
     protected $restrictionChat;
 
     /**
+     * The preference for this monetary account on whether to automatically
+     * accept or reject expiring SDDs.
+     *
+     * @var string
+     */
+    protected $sddExpirationAction;
+
+    /**
      * The color chosen for the MonetaryAccount in hexadecimal format.
      *
      * @var string|null
@@ -68,6 +76,14 @@ class MonetaryAccountSetting extends BunqModel
     protected $restrictionChatFieldForRequest;
 
     /**
+     * The preference for this monetary account on whether to automatically
+     * accept or reject expiring SDDs.
+     *
+     * @var string|null
+     */
+    protected $sddExpirationActionFieldForRequest;
+
+    /**
      * @param string|null $color The color chosen for the MonetaryAccount in
      * hexadecimal format.
      * @param string|null $icon The icon chosen for the MonetaryAccount.
@@ -75,17 +91,16 @@ class MonetaryAccountSetting extends BunqModel
      * be updated directly.
      * @param string|null $restrictionChat The chat restriction. Possible values
      * are ALLOW_INCOMING or BLOCK_INCOMING
+     * @param string|null $sddExpirationAction The preference for this monetary
+     * account on whether to automatically accept or reject expiring SDDs.
      */
-    public function __construct(
-        string $color = null,
-        string $icon = null,
-        string $defaultAvatarStatus = null,
-        string $restrictionChat = null
-    ) {
+    public function __construct(string  $color = null, string  $icon = null, string  $defaultAvatarStatus = null, string  $restrictionChat = null, string  $sddExpirationAction = null)
+    {
         $this->colorFieldForRequest = $color;
         $this->iconFieldForRequest = $icon;
         $this->defaultAvatarStatusFieldForRequest = $defaultAvatarStatus;
         $this->restrictionChatFieldForRequest = $restrictionChat;
+        $this->sddExpirationActionFieldForRequest = $sddExpirationAction;
     }
 
     /**
@@ -99,10 +114,10 @@ class MonetaryAccountSetting extends BunqModel
     }
 
     /**
-     * @param string $color
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $color
      */
     public function setColor($color)
     {
@@ -120,10 +135,10 @@ class MonetaryAccountSetting extends BunqModel
     }
 
     /**
-     * @param string $icon
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $icon
      */
     public function setIcon($icon)
     {
@@ -142,10 +157,10 @@ class MonetaryAccountSetting extends BunqModel
     }
 
     /**
-     * @param string $defaultAvatarStatus
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $defaultAvatarStatus
      */
     public function setDefaultAvatarStatus($defaultAvatarStatus)
     {
@@ -164,14 +179,36 @@ class MonetaryAccountSetting extends BunqModel
     }
 
     /**
-     * @param string $restrictionChat
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $restrictionChat
      */
     public function setRestrictionChat($restrictionChat)
     {
         $this->restrictionChat = $restrictionChat;
+    }
+
+    /**
+     * The preference for this monetary account on whether to automatically
+     * accept or reject expiring SDDs.
+     *
+     * @return string
+     */
+    public function getSddExpirationAction()
+    {
+        return $this->sddExpirationAction;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param string $sddExpirationAction
+     */
+    public function setSddExpirationAction($sddExpirationAction)
+    {
+        $this->sddExpirationAction = $sddExpirationAction;
     }
 
     /**
@@ -192,6 +229,10 @@ class MonetaryAccountSetting extends BunqModel
         }
 
         if (!is_null($this->restrictionChat)) {
+            return false;
+        }
+
+        if (!is_null($this->sddExpirationAction)) {
             return false;
         }
 

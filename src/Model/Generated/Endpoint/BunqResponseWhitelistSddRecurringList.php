@@ -5,12 +5,12 @@ use bunq\Http\BunqResponse;
 
 /**
  */
-class BunqResponseRegistryEntry extends BunqResponse
+class BunqResponseWhitelistSddRecurringList extends BunqResponse
 {
     /**
-     * @return RegistryEntry
+     * @return WhitelistSddRecurring[]
      */
-    public function getValue(): RegistryEntry
+    public function getValue(): array
     {
         return parent::getValue();
     }

@@ -42,10 +42,10 @@ class WhitelistResultViewAnchoredObject extends BunqModel
     }
 
     /**
-     * @param int $id
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param int $id
      */
     public function setId($id)
     {
@@ -63,10 +63,10 @@ class WhitelistResultViewAnchoredObject extends BunqModel
     }
 
     /**
-     * @param RequestResponse $requestResponse
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param RequestResponse $requestResponse
      */
     public function setRequestResponse($requestResponse)
     {
@@ -84,10 +84,10 @@ class WhitelistResultViewAnchoredObject extends BunqModel
     }
 
     /**
-     * @param DraftPayment $draftPayment
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param DraftPayment $draftPayment
      */
     public function setDraftPayment($draftPayment)
     {

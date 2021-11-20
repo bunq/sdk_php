@@ -1,7 +1,9 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
+use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
+use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Object\Address;
 use bunq\Model\Generated\Object\Amount;
@@ -9,6 +11,7 @@ use bunq\Model\Generated\Object\Avatar;
 use bunq\Model\Generated\Object\LabelUser;
 use bunq\Model\Generated\Object\NotificationFilter;
 use bunq\Model\Generated\Object\Pointer;
+use bunq\Model\Generated\Object\TaxResident;
 use bunq\Model\Generated\Object\Ubo;
 
 /**
@@ -171,13 +174,6 @@ class UserCompany extends BunqModel
     protected $versionTermsOfService;
 
     /**
-     * The existing bunq alias for the company's primary director.
-     *
-     * @var LabelUser
-     */
-    protected $directorAlias;
-
-    /**
      * The existing bunq aliases for the company's directors.
      *
      * @var LabelUser[]
@@ -288,6 +284,13 @@ class UserCompany extends BunqModel
      * @var RelationUser[]
      */
     protected $relations;
+
+    /**
+     * The user's tax residence numbers for different countries.
+     *
+     * @var TaxResident[]
+     */
+    protected $taxResident;
 
     /**
      * The company name.
@@ -428,23 +431,8 @@ class UserCompany extends BunqModel
      * @param Amount|null $dailyLimitWithoutConfirmationLogin The amount the
      * company can pay in the session without asking for credentials.
      */
-    public function __construct(
-        Address $addressMain,
-        string $language,
-        string $region,
-        string $name = null,
-        string $publicNickName = null,
-        string $avatarUuid = null,
-        Address $addressPostal = null,
-        string $country = null,
-        array $ubo = null,
-        string $chamberOfCommerceNumber = null,
-        string $legalForm = null,
-        string $status = null,
-        string $subStatus = null,
-        int $sessionTimeout = null,
-        Amount $dailyLimitWithoutConfirmationLogin = null
-    ) {
+    public function __construct(Address  $addressMain, string  $language, string  $region, string  $name = null, string  $publicNickName = null, string  $avatarUuid = null, Address  $addressPostal = null, string  $country = null, array  $ubo = null, string  $chamberOfCommerceNumber = null, string  $legalForm = null, string  $status = null, string  $subStatus = null, int  $sessionTimeout = null, Amount  $dailyLimitWithoutConfirmationLogin = null)
+    {
         $this->nameFieldForRequest = $name;
         $this->publicNickNameFieldForRequest = $publicNickName;
         $this->avatarUuidFieldForRequest = $avatarUuid;
@@ -470,7 +458,7 @@ class UserCompany extends BunqModel
      *
      * @return BunqResponseUserCompany
      */
-    public static function get(array $customHeaders = []): BunqResponseUserCompany
+    public static function get( array $customHeaders = []): BunqResponseUserCompany
     {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
@@ -521,47 +509,29 @@ class UserCompany extends BunqModel
      *
      * @return BunqResponseInt
      */
-    public static function update(
-        string $name = null,
-        string $publicNickName = null,
-        string $avatarUuid = null,
-        Address $addressMain = null,
-        Address $addressPostal = null,
-        string $language = null,
-        string $region = null,
-        string $country = null,
-        array $ubo = null,
-        string $chamberOfCommerceNumber = null,
-        string $legalForm = null,
-        string $status = null,
-        string $subStatus = null,
-        int $sessionTimeout = null,
-        Amount $dailyLimitWithoutConfirmationLogin = null,
-        array $customHeaders = []
-    ): BunqResponseInt {
+    public static function update(string  $name = null, string  $publicNickName = null, string  $avatarUuid = null, Address  $addressMain = null, Address  $addressPostal = null, string  $language = null, string  $region = null, string  $country = null, array  $ubo = null, string  $chamberOfCommerceNumber = null, string  $legalForm = null, string  $status = null, string  $subStatus = null, int  $sessionTimeout = null, Amount  $dailyLimitWithoutConfirmationLogin = null, array $customHeaders = []): BunqResponseInt
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->put(
             vsprintf(
                 self::ENDPOINT_URL_UPDATE,
                 [static::determineUserId()]
             ),
-            [
-                self::FIELD_NAME => $name,
-                self::FIELD_PUBLIC_NICK_NAME => $publicNickName,
-                self::FIELD_AVATAR_UUID => $avatarUuid,
-                self::FIELD_ADDRESS_MAIN => $addressMain,
-                self::FIELD_ADDRESS_POSTAL => $addressPostal,
-                self::FIELD_LANGUAGE => $language,
-                self::FIELD_REGION => $region,
-                self::FIELD_COUNTRY => $country,
-                self::FIELD_UBO => $ubo,
-                self::FIELD_CHAMBER_OF_COMMERCE_NUMBER => $chamberOfCommerceNumber,
-                self::FIELD_LEGAL_FORM => $legalForm,
-                self::FIELD_STATUS => $status,
-                self::FIELD_SUB_STATUS => $subStatus,
-                self::FIELD_SESSION_TIMEOUT => $sessionTimeout,
-                self::FIELD_DAILY_LIMIT_WITHOUT_CONFIRMATION_LOGIN => $dailyLimitWithoutConfirmationLogin,
-            ],
+            [self::FIELD_NAME => $name,
+self::FIELD_PUBLIC_NICK_NAME => $publicNickName,
+self::FIELD_AVATAR_UUID => $avatarUuid,
+self::FIELD_ADDRESS_MAIN => $addressMain,
+self::FIELD_ADDRESS_POSTAL => $addressPostal,
+self::FIELD_LANGUAGE => $language,
+self::FIELD_REGION => $region,
+self::FIELD_COUNTRY => $country,
+self::FIELD_UBO => $ubo,
+self::FIELD_CHAMBER_OF_COMMERCE_NUMBER => $chamberOfCommerceNumber,
+self::FIELD_LEGAL_FORM => $legalForm,
+self::FIELD_STATUS => $status,
+self::FIELD_SUB_STATUS => $subStatus,
+self::FIELD_SESSION_TIMEOUT => $sessionTimeout,
+self::FIELD_DAILY_LIMIT_WITHOUT_CONFIRMATION_LOGIN => $dailyLimitWithoutConfirmationLogin],
             $customHeaders
         );
 
@@ -581,10 +551,10 @@ class UserCompany extends BunqModel
     }
 
     /**
-     * @param int $id
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param int $id
      */
     public function setId($id)
     {
@@ -602,10 +572,10 @@ class UserCompany extends BunqModel
     }
 
     /**
-     * @param string $created
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $created
      */
     public function setCreated($created)
     {
@@ -623,10 +593,10 @@ class UserCompany extends BunqModel
     }
 
     /**
-     * @param string $updated
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $updated
      */
     public function setUpdated($updated)
     {
@@ -644,10 +614,10 @@ class UserCompany extends BunqModel
     }
 
     /**
-     * @param string $publicUuid
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $publicUuid
      */
     public function setPublicUuid($publicUuid)
     {
@@ -665,10 +635,10 @@ class UserCompany extends BunqModel
     }
 
     /**
-     * @param string $name
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $name
      */
     public function setName($name)
     {
@@ -686,10 +656,10 @@ class UserCompany extends BunqModel
     }
 
     /**
-     * @param string $displayName
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $displayName
      */
     public function setDisplayName($displayName)
     {
@@ -707,10 +677,10 @@ class UserCompany extends BunqModel
     }
 
     /**
-     * @param string $publicNickName
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $publicNickName
      */
     public function setPublicNickName($publicNickName)
     {
@@ -728,10 +698,10 @@ class UserCompany extends BunqModel
     }
 
     /**
-     * @param Pointer[] $alias
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param Pointer[] $alias
      */
     public function setAlias($alias)
     {
@@ -749,10 +719,10 @@ class UserCompany extends BunqModel
     }
 
     /**
-     * @param string $chamberOfCommerceNumber
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $chamberOfCommerceNumber
      */
     public function setChamberOfCommerceNumber($chamberOfCommerceNumber)
     {
@@ -770,10 +740,10 @@ class UserCompany extends BunqModel
     }
 
     /**
-     * @param string $legalForm
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $legalForm
      */
     public function setLegalForm($legalForm)
     {
@@ -791,10 +761,10 @@ class UserCompany extends BunqModel
     }
 
     /**
-     * @param string $typeOfBusinessEntity
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $typeOfBusinessEntity
      */
     public function setTypeOfBusinessEntity($typeOfBusinessEntity)
     {
@@ -812,10 +782,10 @@ class UserCompany extends BunqModel
     }
 
     /**
-     * @param string $sectorOfIndustry
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $sectorOfIndustry
      */
     public function setSectorOfIndustry($sectorOfIndustry)
     {
@@ -833,10 +803,10 @@ class UserCompany extends BunqModel
     }
 
     /**
-     * @param string $counterBankIban
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $counterBankIban
      */
     public function setCounterBankIban($counterBankIban)
     {
@@ -854,10 +824,10 @@ class UserCompany extends BunqModel
     }
 
     /**
-     * @param Avatar $avatar
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param Avatar $avatar
      */
     public function setAvatar($avatar)
     {
@@ -875,10 +845,10 @@ class UserCompany extends BunqModel
     }
 
     /**
-     * @param Address $addressMain
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param Address $addressMain
      */
     public function setAddressMain($addressMain)
     {
@@ -896,10 +866,10 @@ class UserCompany extends BunqModel
     }
 
     /**
-     * @param Address $addressPostal
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param Address $addressPostal
      */
     public function setAddressPostal($addressPostal)
     {
@@ -917,35 +887,14 @@ class UserCompany extends BunqModel
     }
 
     /**
-     * @param string $versionTermsOfService
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $versionTermsOfService
      */
     public function setVersionTermsOfService($versionTermsOfService)
     {
         $this->versionTermsOfService = $versionTermsOfService;
-    }
-
-    /**
-     * The existing bunq alias for the company's primary director.
-     *
-     * @return LabelUser
-     */
-    public function getDirectorAlias()
-    {
-        return $this->directorAlias;
-    }
-
-    /**
-     * @param LabelUser $directorAlias
-     *
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     */
-    public function setDirectorAlias($directorAlias)
-    {
-        $this->directorAlias = $directorAlias;
     }
 
     /**
@@ -959,10 +908,10 @@ class UserCompany extends BunqModel
     }
 
     /**
-     * @param LabelUser[] $directors
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param LabelUser[] $directors
      */
     public function setDirectors($directors)
     {
@@ -981,10 +930,10 @@ class UserCompany extends BunqModel
     }
 
     /**
-     * @param string $language
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $language
      */
     public function setLanguage($language)
     {
@@ -1002,10 +951,10 @@ class UserCompany extends BunqModel
     }
 
     /**
-     * @param string $country
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $country
      */
     public function setCountry($country)
     {
@@ -1024,10 +973,10 @@ class UserCompany extends BunqModel
     }
 
     /**
-     * @param string $region
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $region
      */
     public function setRegion($region)
     {
@@ -1046,10 +995,10 @@ class UserCompany extends BunqModel
     }
 
     /**
-     * @param Ubo[] $ubo
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param Ubo[] $ubo
      */
     public function setUbo($ubo)
     {
@@ -1067,10 +1016,10 @@ class UserCompany extends BunqModel
     }
 
     /**
-     * @param string $status
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $status
      */
     public function setStatus($status)
     {
@@ -1090,10 +1039,10 @@ class UserCompany extends BunqModel
     }
 
     /**
-     * @param string $subStatus
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $subStatus
      */
     public function setSubStatus($subStatus)
     {
@@ -1111,10 +1060,10 @@ class UserCompany extends BunqModel
     }
 
     /**
-     * @param int $sessionTimeout
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param int $sessionTimeout
      */
     public function setSessionTimeout($sessionTimeout)
     {
@@ -1133,10 +1082,10 @@ class UserCompany extends BunqModel
     }
 
     /**
-     * @param Amount $dailyLimitWithoutConfirmationLogin
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param Amount $dailyLimitWithoutConfirmationLogin
      */
     public function setDailyLimitWithoutConfirmationLogin($dailyLimitWithoutConfirmationLogin)
     {
@@ -1155,10 +1104,10 @@ class UserCompany extends BunqModel
     }
 
     /**
-     * @param NotificationFilter[] $notificationFilters
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param NotificationFilter[] $notificationFilters
      */
     public function setNotificationFilters($notificationFilters)
     {
@@ -1176,10 +1125,10 @@ class UserCompany extends BunqModel
     }
 
     /**
-     * @param Customer $customer
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param Customer $customer
      */
     public function setCustomer($customer)
     {
@@ -1197,10 +1146,10 @@ class UserCompany extends BunqModel
     }
 
     /**
-     * @param CustomerLimit $customerLimit
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param CustomerLimit $customerLimit
      */
     public function setCustomerLimit($customerLimit)
     {
@@ -1218,10 +1167,10 @@ class UserCompany extends BunqModel
     }
 
     /**
-     * @param BillingContractSubscription[] $billingContract
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param BillingContractSubscription[] $billingContract
      */
     public function setBillingContract($billingContract)
     {
@@ -1239,10 +1188,10 @@ class UserCompany extends BunqModel
     }
 
     /**
-     * @param string $denyReason
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $denyReason
      */
     public function setDenyReason($denyReason)
     {
@@ -1260,14 +1209,35 @@ class UserCompany extends BunqModel
     }
 
     /**
-     * @param RelationUser[] $relations
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param RelationUser[] $relations
      */
     public function setRelations($relations)
     {
         $this->relations = $relations;
+    }
+
+    /**
+     * The user's tax residence numbers for different countries.
+     *
+     * @return TaxResident[]
+     */
+    public function getTaxResident()
+    {
+        return $this->taxResident;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param TaxResident[] $taxResident
+     */
+    public function setTaxResident($taxResident)
+    {
+        $this->taxResident = $taxResident;
     }
 
     /**
@@ -1343,10 +1313,6 @@ class UserCompany extends BunqModel
             return false;
         }
 
-        if (!is_null($this->directorAlias)) {
-            return false;
-        }
-
         if (!is_null($this->directors)) {
             return false;
         }
@@ -1404,6 +1370,10 @@ class UserCompany extends BunqModel
         }
 
         if (!is_null($this->relations)) {
+            return false;
+        }
+
+        if (!is_null($this->taxResident)) {
             return false;
         }
 

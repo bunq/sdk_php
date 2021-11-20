@@ -78,14 +78,8 @@ class CardBatchEntry extends BunqModel
      * fallback for this card if insufficient balance. Fallback account is
      * removed if not supplied.
      */
-    public function __construct(
-        int $id,
-        string $status = null,
-        Amount $cardLimit = null,
-        Amount $cardLimitAtm = null,
-        array $countryPermission = null,
-        int $monetaryAccountIdFallback = null
-    ) {
+    public function __construct(int  $id, string  $status = null, Amount  $cardLimit = null, Amount  $cardLimitAtm = null, array  $countryPermission = null, int  $monetaryAccountIdFallback = null)
+    {
         $this->idFieldForRequest = $id;
         $this->statusFieldForRequest = $status;
         $this->cardLimitFieldForRequest = $cardLimit;

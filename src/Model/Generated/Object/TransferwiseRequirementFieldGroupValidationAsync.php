@@ -33,10 +33,10 @@ class TransferwiseRequirementFieldGroupValidationAsync extends BunqModel
     }
 
     /**
-     * @param string $url
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $url
      */
     public function setUrl($url)
     {
@@ -54,10 +54,10 @@ class TransferwiseRequirementFieldGroupValidationAsync extends BunqModel
     }
 
     /**
-     * @param TransferwiseRequirementFieldGroupValidationAsyncParams $params
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param TransferwiseRequirementFieldGroupValidationAsyncParams $params
      */
     public function setParams($params)
     {

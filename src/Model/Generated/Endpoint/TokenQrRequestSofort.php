@@ -1,7 +1,9 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
+use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
+use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 
 /**
@@ -37,7 +39,7 @@ class TokenQrRequestSofort extends BunqModel
     /**
      * @param string $token The token passed from a site or read from a QR code.
      */
-    public function __construct(string $token)
+    public function __construct(string  $token)
     {
         $this->tokenFieldForRequest = $token;
     }
@@ -50,7 +52,7 @@ class TokenQrRequestSofort extends BunqModel
      *
      * @return BunqResponseTokenQrRequestSofort
      */
-    public static function create(string $token, array $customHeaders = []): BunqResponseTokenQrRequestSofort
+    public static function create(string  $token, array $customHeaders = []): BunqResponseTokenQrRequestSofort
     {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->post(

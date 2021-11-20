@@ -52,16 +52,26 @@ class Pointer extends BunqModel
     protected $nameFieldForRequest;
 
     /**
+     * The pointer service. Only required for external counterparties.
+     *
+     * @var string|null
+     */
+    protected $serviceFieldForRequest;
+
+    /**
      * @param string $type The alias type, can be: EMAIL|PHONE_NUMBER|IBAN.
      * @param string $value The alias value. Phone number are formatted conform
      * E.123 without spaces (e.g., +314211234567).
      * @param string|null $name The alias name. Only required for IBANs.
+     * @param string|null $service The pointer service. Only required for
+     * external counterparties.
      */
-    public function __construct(string $type, string $value, string $name = null)
+    public function __construct(string  $type, string  $value, string  $name = null, string  $service = null)
     {
         $this->typeFieldForRequest = $type;
         $this->valueFieldForRequest = $value;
         $this->nameFieldForRequest = $name;
+        $this->serviceFieldForRequest = $service;
     }
 
     /**
@@ -75,10 +85,10 @@ class Pointer extends BunqModel
     }
 
     /**
-     * @param string $type
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $type
      */
     public function setType($type)
     {
@@ -96,10 +106,10 @@ class Pointer extends BunqModel
     }
 
     /**
-     * @param string $value
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $value
      */
     public function setValue($value)
     {
@@ -117,10 +127,10 @@ class Pointer extends BunqModel
     }
 
     /**
-     * @param string $name
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $name
      */
     public function setName($name)
     {

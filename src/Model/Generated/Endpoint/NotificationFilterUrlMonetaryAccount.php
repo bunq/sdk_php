@@ -1,7 +1,9 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
+use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
+use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Object\NotificationFilterUrl;
 
@@ -49,7 +51,7 @@ class NotificationFilterUrlMonetaryAccount extends BunqModel
      * notifications that will result in a url notification for this monetary
      * account.
      */
-    public function __construct(array $notificationFilters = null)
+    public function __construct(array  $notificationFilters = null)
     {
         $this->notificationFiltersFieldForRequest = $notificationFilters;
     }
@@ -63,11 +65,8 @@ class NotificationFilterUrlMonetaryAccount extends BunqModel
      *
      * @return BunqResponseInt
      */
-    public static function create(
-        int $monetaryAccountId = null,
-        array $notificationFilters = null,
-        array $customHeaders = []
-    ): BunqResponseInt {
+    public static function create(int $monetaryAccountId = null, array  $notificationFilters = null, array $customHeaders = []): BunqResponseInt
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->post(
             vsprintf(
@@ -93,11 +92,8 @@ class NotificationFilterUrlMonetaryAccount extends BunqModel
      *
      * @return BunqResponseNotificationFilterUrlMonetaryAccountList
      */
-    public static function listing(
-        int $monetaryAccountId = null,
-        array $params = [],
-        array $customHeaders = []
-    ): BunqResponseNotificationFilterUrlMonetaryAccountList {
+    public static function listing(int $monetaryAccountId = null, array $params = [], array $customHeaders = []): BunqResponseNotificationFilterUrlMonetaryAccountList
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
@@ -125,10 +121,10 @@ class NotificationFilterUrlMonetaryAccount extends BunqModel
     }
 
     /**
-     * @param NotificationFilterUrl[] $notificationFilters
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param NotificationFilterUrl[] $notificationFilters
      */
     public function setNotificationFilters($notificationFilters)
     {

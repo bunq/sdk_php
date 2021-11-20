@@ -1,7 +1,9 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
+use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
+use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Object\OauthCallbackUrl;
 
@@ -46,6 +48,13 @@ class OauthClient extends BunqModel
     protected $status;
 
     /**
+     * The display name of this Oauth Client
+     *
+     * @var string
+     */
+    protected $displayName;
+
+    /**
      * The Client ID associated with this Oauth Client
      *
      * @var string
@@ -77,7 +86,7 @@ class OauthClient extends BunqModel
      * @param string|null $status The status of the Oauth Client, can be ACTIVE
      * or CANCELLED.
      */
-    public function __construct(string $status = null)
+    public function __construct(string  $status = null)
     {
         $this->statusFieldForRequest = $status;
     }
@@ -112,7 +121,7 @@ class OauthClient extends BunqModel
      *
      * @return BunqResponseInt
      */
-    public static function create(string $status = null, array $customHeaders = []): BunqResponseInt
+    public static function create(string  $status = null, array $customHeaders = []): BunqResponseInt
     {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->post(
@@ -137,7 +146,7 @@ class OauthClient extends BunqModel
      *
      * @return BunqResponseInt
      */
-    public static function update(int $oauthClientId, string $status = null, array $customHeaders = []): BunqResponseInt
+    public static function update(int $oauthClientId, string  $status = null, array $customHeaders = []): BunqResponseInt
     {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->put(
@@ -163,7 +172,7 @@ class OauthClient extends BunqModel
      *
      * @return BunqResponseOauthClientList
      */
-    public static function listing(array $params = [], array $customHeaders = []): BunqResponseOauthClientList
+    public static function listing( array $params = [], array $customHeaders = []): BunqResponseOauthClientList
     {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
@@ -191,10 +200,10 @@ class OauthClient extends BunqModel
     }
 
     /**
-     * @param int $id
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param int $id
      */
     public function setId($id)
     {
@@ -213,14 +222,35 @@ class OauthClient extends BunqModel
     }
 
     /**
-     * @param string $status
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $status
      */
     public function setStatus($status)
     {
         $this->status = $status;
+    }
+
+    /**
+     * The display name of this Oauth Client
+     *
+     * @return string
+     */
+    public function getDisplayName()
+    {
+        return $this->displayName;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param string $displayName
+     */
+    public function setDisplayName($displayName)
+    {
+        $this->displayName = $displayName;
     }
 
     /**
@@ -234,10 +264,10 @@ class OauthClient extends BunqModel
     }
 
     /**
-     * @param string $clientId
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $clientId
      */
     public function setClientId($clientId)
     {
@@ -255,10 +285,10 @@ class OauthClient extends BunqModel
     }
 
     /**
-     * @param string $secret
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $secret
      */
     public function setSecret($secret)
     {
@@ -276,10 +306,10 @@ class OauthClient extends BunqModel
     }
 
     /**
-     * @param OauthCallbackUrl[] $callbackUrl
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param OauthCallbackUrl[] $callbackUrl
      */
     public function setCallbackUrl($callbackUrl)
     {
@@ -296,6 +326,10 @@ class OauthClient extends BunqModel
         }
 
         if (!is_null($this->status)) {
+            return false;
+        }
+
+        if (!is_null($this->displayName)) {
             return false;
         }
 

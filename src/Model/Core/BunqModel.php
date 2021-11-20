@@ -113,10 +113,6 @@ abstract class BunqModel implements JsonSerializable
             $responseArray = $responseArray[$wrapper];
         }
 
-        if (empty($responseArray)) {
-            return null;
-        }
-
         return self::createInstanceFromResponseArray($responseArray);
     }
 

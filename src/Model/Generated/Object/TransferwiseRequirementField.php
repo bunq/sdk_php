@@ -40,7 +40,7 @@ class TransferwiseRequirementField extends BunqModel
      * @param string $key The name of the required field.
      * @param string $value The value of the required field.
      */
-    public function __construct(string $key, string $value)
+    public function __construct(string  $key, string  $value)
     {
         $this->keyFieldForRequest = $key;
         $this->valueFieldForRequest = $value;
@@ -57,10 +57,10 @@ class TransferwiseRequirementField extends BunqModel
     }
 
     /**
-     * @param string $name
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $name
      */
     public function setName($name)
     {
@@ -78,10 +78,10 @@ class TransferwiseRequirementField extends BunqModel
     }
 
     /**
-     * @param TransferwiseRequirementFieldGroup $group
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param TransferwiseRequirementFieldGroup $group
      */
     public function setGroup($group)
     {

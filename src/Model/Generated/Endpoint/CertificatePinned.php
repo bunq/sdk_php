@@ -1,6 +1,7 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
+use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
 use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
@@ -59,7 +60,7 @@ class CertificatePinned extends BunqModel
      * @param Certificate[] $certificateChain The certificate chain in .PEM
      * format.
      */
-    public function __construct(array $certificateChain)
+    public function __construct(array  $certificateChain)
     {
         $this->certificateChainFieldForRequest = $certificateChain;
     }
@@ -73,7 +74,7 @@ class CertificatePinned extends BunqModel
      *
      * @return BunqResponseInt
      */
-    public static function create(array $certificateChain, array $customHeaders = []): BunqResponseInt
+    public static function create(array  $certificateChain, array $customHeaders = []): BunqResponseInt
     {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->post(
@@ -116,6 +117,7 @@ class CertificatePinned extends BunqModel
 
     /**
      * List all the pinned certificate chain for the given user.
+     *
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
@@ -124,7 +126,7 @@ class CertificatePinned extends BunqModel
      *
      * @return BunqResponseCertificatePinnedList
      */
-    public static function listing(array $params = [], array $customHeaders = []): BunqResponseCertificatePinnedList
+    public static function listing( array $params = [], array $customHeaders = []): BunqResponseCertificatePinnedList
     {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
@@ -178,10 +180,10 @@ class CertificatePinned extends BunqModel
     }
 
     /**
-     * @param string $certificateChain
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $certificateChain
      */
     public function setCertificateChain($certificateChain)
     {
@@ -199,10 +201,10 @@ class CertificatePinned extends BunqModel
     }
 
     /**
-     * @param int $id
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param int $id
      */
     public function setId($id)
     {

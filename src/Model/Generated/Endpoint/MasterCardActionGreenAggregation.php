@@ -1,7 +1,9 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
+use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
+use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 
 /**
@@ -45,10 +47,8 @@ class MasterCardActionGreenAggregation extends BunqModel
      *
      * @return BunqResponseMasterCardActionGreenAggregationList
      */
-    public static function listing(
-        array $params = [],
-        array $customHeaders = []
-    ): BunqResponseMasterCardActionGreenAggregationList {
+    public static function listing( array $params = [], array $customHeaders = []): BunqResponseMasterCardActionGreenAggregationList
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
@@ -75,10 +75,10 @@ class MasterCardActionGreenAggregation extends BunqModel
     }
 
     /**
-     * @param string $date
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $date
      */
     public function setDate($date)
     {
@@ -96,10 +96,10 @@ class MasterCardActionGreenAggregation extends BunqModel
     }
 
     /**
-     * @param string $percentage
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $percentage
      */
     public function setPercentage($percentage)
     {

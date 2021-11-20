@@ -1,6 +1,7 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
+use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
 use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
@@ -77,7 +78,7 @@ class NoteTextPaymentBatch extends BunqModel
     /**
      * @param string|null $content The content of the note.
      */
-    public function __construct(string $content = null)
+    public function __construct(string  $content = null)
     {
         $this->contentFieldForRequest = $content;
     }
@@ -90,12 +91,8 @@ class NoteTextPaymentBatch extends BunqModel
      *
      * @return BunqResponseInt
      */
-    public static function create(
-        int $paymentBatchId,
-        int $monetaryAccountId = null,
-        string $content = null,
-        array $customHeaders = []
-    ): BunqResponseInt {
+    public static function create(int $paymentBatchId, int $monetaryAccountId = null, string  $content = null, array $customHeaders = []): BunqResponseInt
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->post(
             vsprintf(
@@ -120,23 +117,13 @@ class NoteTextPaymentBatch extends BunqModel
      *
      * @return BunqResponseInt
      */
-    public static function update(
-        int $paymentBatchId,
-        int $noteTextPaymentBatchId,
-        int $monetaryAccountId = null,
-        string $content = null,
-        array $customHeaders = []
-    ): BunqResponseInt {
+    public static function update(int $paymentBatchId, int $noteTextPaymentBatchId, int $monetaryAccountId = null, string  $content = null, array $customHeaders = []): BunqResponseInt
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->put(
             vsprintf(
                 self::ENDPOINT_URL_UPDATE,
-                [
-                    static::determineUserId(),
-                    static::determineMonetaryAccountId($monetaryAccountId),
-                    $paymentBatchId,
-                    $noteTextPaymentBatchId,
-                ]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId), $paymentBatchId, $noteTextPaymentBatchId]
             ),
             [self::FIELD_CONTENT => $content],
             $customHeaders
@@ -154,22 +141,13 @@ class NoteTextPaymentBatch extends BunqModel
      *
      * @return BunqResponseNull
      */
-    public static function delete(
-        int $paymentBatchId,
-        int $noteTextPaymentBatchId,
-        int $monetaryAccountId = null,
-        array $customHeaders = []
-    ): BunqResponseNull {
+    public static function delete(int $paymentBatchId, int $noteTextPaymentBatchId, int $monetaryAccountId = null, array $customHeaders = []): BunqResponseNull
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->delete(
             vsprintf(
                 self::ENDPOINT_URL_DELETE,
-                [
-                    static::determineUserId(),
-                    static::determineMonetaryAccountId($monetaryAccountId),
-                    $paymentBatchId,
-                    $noteTextPaymentBatchId,
-                ]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId), $paymentBatchId, $noteTextPaymentBatchId]
             ),
             $customHeaders
         );
@@ -181,6 +159,7 @@ class NoteTextPaymentBatch extends BunqModel
 
     /**
      * Manage the notes for a given user.
+     *
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
@@ -191,12 +170,8 @@ class NoteTextPaymentBatch extends BunqModel
      *
      * @return BunqResponseNoteTextPaymentBatchList
      */
-    public static function listing(
-        int $paymentBatchId,
-        int $monetaryAccountId = null,
-        array $params = [],
-        array $customHeaders = []
-    ): BunqResponseNoteTextPaymentBatchList {
+    public static function listing(int $paymentBatchId, int $monetaryAccountId = null, array $params = [], array $customHeaders = []): BunqResponseNoteTextPaymentBatchList
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
@@ -220,22 +195,13 @@ class NoteTextPaymentBatch extends BunqModel
      *
      * @return BunqResponseNoteTextPaymentBatch
      */
-    public static function get(
-        int $paymentBatchId,
-        int $noteTextPaymentBatchId,
-        int $monetaryAccountId = null,
-        array $customHeaders = []
-    ): BunqResponseNoteTextPaymentBatch {
+    public static function get(int $paymentBatchId, int $noteTextPaymentBatchId, int $monetaryAccountId = null, array $customHeaders = []): BunqResponseNoteTextPaymentBatch
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_READ,
-                [
-                    static::determineUserId(),
-                    static::determineMonetaryAccountId($monetaryAccountId),
-                    $paymentBatchId,
-                    $noteTextPaymentBatchId,
-                ]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId), $paymentBatchId, $noteTextPaymentBatchId]
             ),
             [],
             $customHeaders
@@ -257,10 +223,10 @@ class NoteTextPaymentBatch extends BunqModel
     }
 
     /**
-     * @param int $id
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param int $id
      */
     public function setId($id)
     {
@@ -278,10 +244,10 @@ class NoteTextPaymentBatch extends BunqModel
     }
 
     /**
-     * @param string $created
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $created
      */
     public function setCreated($created)
     {
@@ -299,10 +265,10 @@ class NoteTextPaymentBatch extends BunqModel
     }
 
     /**
-     * @param string $updated
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $updated
      */
     public function setUpdated($updated)
     {
@@ -320,10 +286,10 @@ class NoteTextPaymentBatch extends BunqModel
     }
 
     /**
-     * @param LabelUser $labelUserCreator
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param LabelUser $labelUserCreator
      */
     public function setLabelUserCreator($labelUserCreator)
     {
@@ -341,10 +307,10 @@ class NoteTextPaymentBatch extends BunqModel
     }
 
     /**
-     * @param string $content
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $content
      */
     public function setContent($content)
     {

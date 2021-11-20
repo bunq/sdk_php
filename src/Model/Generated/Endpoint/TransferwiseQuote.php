@@ -1,7 +1,9 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
+use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
+use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Object\Amount;
 
@@ -138,12 +140,8 @@ class TransferwiseQuote extends BunqModel
      * @param Amount|null $amountTarget The target amount. Required if source
      * amount is left empty.
      */
-    public function __construct(
-        string $currencySource,
-        string $currencyTarget,
-        Amount $amountSource = null,
-        Amount $amountTarget = null
-    ) {
+    public function __construct(string  $currencySource, string  $currencyTarget, Amount  $amountSource = null, Amount  $amountTarget = null)
+    {
         $this->currencySourceFieldForRequest = $currencySource;
         $this->currencyTargetFieldForRequest = $currencyTarget;
         $this->amountSourceFieldForRequest = $amountSource;
@@ -161,25 +159,18 @@ class TransferwiseQuote extends BunqModel
      *
      * @return BunqResponseInt
      */
-    public static function create(
-        string $currencySource,
-        string $currencyTarget,
-        Amount $amountSource = null,
-        Amount $amountTarget = null,
-        array $customHeaders = []
-    ): BunqResponseInt {
+    public static function create(string  $currencySource, string  $currencyTarget, Amount  $amountSource = null, Amount  $amountTarget = null, array $customHeaders = []): BunqResponseInt
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->post(
             vsprintf(
                 self::ENDPOINT_URL_CREATE,
                 [static::determineUserId()]
             ),
-            [
-                self::FIELD_CURRENCY_SOURCE => $currencySource,
-                self::FIELD_CURRENCY_TARGET => $currencyTarget,
-                self::FIELD_AMOUNT_SOURCE => $amountSource,
-                self::FIELD_AMOUNT_TARGET => $amountTarget,
-            ],
+            [self::FIELD_CURRENCY_SOURCE => $currencySource,
+self::FIELD_CURRENCY_TARGET => $currencyTarget,
+self::FIELD_AMOUNT_SOURCE => $amountSource,
+self::FIELD_AMOUNT_TARGET => $amountTarget],
             $customHeaders
         );
 
@@ -222,10 +213,10 @@ class TransferwiseQuote extends BunqModel
     }
 
     /**
-     * @param int $id
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param int $id
      */
     public function setId($id)
     {
@@ -243,10 +234,10 @@ class TransferwiseQuote extends BunqModel
     }
 
     /**
-     * @param string $created
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $created
      */
     public function setCreated($created)
     {
@@ -264,10 +255,10 @@ class TransferwiseQuote extends BunqModel
     }
 
     /**
-     * @param string $updated
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $updated
      */
     public function setUpdated($updated)
     {
@@ -285,10 +276,10 @@ class TransferwiseQuote extends BunqModel
     }
 
     /**
-     * @param string $timeExpiry
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $timeExpiry
      */
     public function setTimeExpiry($timeExpiry)
     {
@@ -306,10 +297,10 @@ class TransferwiseQuote extends BunqModel
     }
 
     /**
-     * @param string $quoteId
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $quoteId
      */
     public function setQuoteId($quoteId)
     {
@@ -327,10 +318,10 @@ class TransferwiseQuote extends BunqModel
     }
 
     /**
-     * @param Amount $amountSource
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param Amount $amountSource
      */
     public function setAmountSource($amountSource)
     {
@@ -348,10 +339,10 @@ class TransferwiseQuote extends BunqModel
     }
 
     /**
-     * @param Amount $amountTarget
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param Amount $amountTarget
      */
     public function setAmountTarget($amountTarget)
     {
@@ -369,10 +360,10 @@ class TransferwiseQuote extends BunqModel
     }
 
     /**
-     * @param Amount $amountFee
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param Amount $amountFee
      */
     public function setAmountFee($amountFee)
     {
@@ -390,10 +381,10 @@ class TransferwiseQuote extends BunqModel
     }
 
     /**
-     * @param string $rate
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $rate
      */
     public function setRate($rate)
     {
@@ -411,10 +402,10 @@ class TransferwiseQuote extends BunqModel
     }
 
     /**
-     * @param string $timeDeliveryEstimate
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $timeDeliveryEstimate
      */
     public function setTimeDeliveryEstimate($timeDeliveryEstimate)
     {

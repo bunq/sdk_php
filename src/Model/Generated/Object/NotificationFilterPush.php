@@ -26,7 +26,7 @@ class NotificationFilterPush extends BunqModel
      * @param string $category The notification category that will match this
      * notification filter.
      */
-    public function __construct(string $category)
+    public function __construct(string  $category)
     {
         $this->categoryFieldForRequest = $category;
     }
@@ -42,10 +42,10 @@ class NotificationFilterPush extends BunqModel
     }
 
     /**
-     * @param string $category
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $category
      */
     public function setCategory($category)
     {

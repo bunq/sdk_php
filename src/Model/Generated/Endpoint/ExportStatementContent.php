@@ -1,6 +1,7 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
+use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
 use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
@@ -35,20 +36,13 @@ class ExportStatementContent extends BunqModel
      *
      * @return BunqResponseString
      */
-    public static function listing(
-        int $customerStatementId,
-        int $monetaryAccountId = null,
-        array $customHeaders = []
-    ): BunqResponseString {
+    public static function listing(int $customerStatementId, int $monetaryAccountId = null, array $customHeaders = []): BunqResponseString
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_LISTING,
-                [
-                    static::determineUserId(),
-                    static::determineMonetaryAccountId($monetaryAccountId),
-                    $customerStatementId,
-                ]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId), $customerStatementId]
             ),
             [],
             $customHeaders

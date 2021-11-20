@@ -67,7 +67,7 @@ class TabVisibility extends BunqModel
      * the CashRegister. If no location is provided the location of the
      * CashRegister will be used.
      */
-    public function __construct(bool $cashRegisterQrCode, bool $tabQrCode, Geolocation $location = null)
+    public function __construct(bool  $cashRegisterQrCode, bool  $tabQrCode, Geolocation  $location = null)
     {
         $this->cashRegisterQrCodeFieldForRequest = $cashRegisterQrCode;
         $this->tabQrCodeFieldForRequest = $tabQrCode;
@@ -85,10 +85,10 @@ class TabVisibility extends BunqModel
     }
 
     /**
-     * @param bool $cashRegisterQrCode
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param bool $cashRegisterQrCode
      */
     public function setCashRegisterQrCode($cashRegisterQrCode)
     {
@@ -107,10 +107,10 @@ class TabVisibility extends BunqModel
     }
 
     /**
-     * @param bool $tabQrCode
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param bool $tabQrCode
      */
     public function setTabQrCode($tabQrCode)
     {
@@ -128,10 +128,10 @@ class TabVisibility extends BunqModel
     }
 
     /**
-     * @param Geolocation $location
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param Geolocation $location
      */
     public function setLocation($location)
     {

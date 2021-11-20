@@ -32,7 +32,7 @@ class CoOwner extends BunqModel
     /**
      * @param Pointer $alias The users the account will be joint with.
      */
-    public function __construct(Pointer $alias)
+    public function __construct(Pointer  $alias)
     {
         $this->aliasFieldForRequest = $alias;
     }
@@ -48,10 +48,10 @@ class CoOwner extends BunqModel
     }
 
     /**
-     * @param LabelUser $alias
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param LabelUser $alias
      */
     public function setAlias($alias)
     {
@@ -69,10 +69,10 @@ class CoOwner extends BunqModel
     }
 
     /**
-     * @param string $status
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $status
      */
     public function setStatus($status)
     {

@@ -1,7 +1,9 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
+use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
+use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Object\PaymentBatchAnchoredPayment;
 
@@ -49,7 +51,7 @@ class PaymentBatch extends BunqModel
      * @param Payment[] $payments The list of payments we want to send in a
      * single batch.
      */
-    public function __construct(array $payments)
+    public function __construct(array  $payments)
     {
         $this->paymentsFieldForRequest = $payments;
     }
@@ -65,11 +67,8 @@ class PaymentBatch extends BunqModel
      *
      * @return BunqResponseInt
      */
-    public static function create(
-        array $payments,
-        int $monetaryAccountId = null,
-        array $customHeaders = []
-    ): BunqResponseInt {
+    public static function create(array  $payments, int $monetaryAccountId = null, array $customHeaders = []): BunqResponseInt
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->post(
             vsprintf(
@@ -95,11 +94,8 @@ class PaymentBatch extends BunqModel
      *
      * @return BunqResponseInt
      */
-    public static function update(
-        int $paymentBatchId,
-        int $monetaryAccountId = null,
-        array $customHeaders = []
-    ): BunqResponseInt {
+    public static function update(int $paymentBatchId, int $monetaryAccountId = null, array $customHeaders = []): BunqResponseInt
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->put(
             vsprintf(
@@ -124,11 +120,8 @@ class PaymentBatch extends BunqModel
      *
      * @return BunqResponsePaymentBatch
      */
-    public static function get(
-        int $paymentBatchId,
-        int $monetaryAccountId = null,
-        array $customHeaders = []
-    ): BunqResponsePaymentBatch {
+    public static function get(int $paymentBatchId, int $monetaryAccountId = null, array $customHeaders = []): BunqResponsePaymentBatch
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
@@ -146,6 +139,7 @@ class PaymentBatch extends BunqModel
 
     /**
      * Return all the payment batches for a monetary account.
+     *
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
@@ -155,11 +149,8 @@ class PaymentBatch extends BunqModel
      *
      * @return BunqResponsePaymentBatchList
      */
-    public static function listing(
-        int $monetaryAccountId = null,
-        array $params = [],
-        array $customHeaders = []
-    ): BunqResponsePaymentBatchList {
+    public static function listing(int $monetaryAccountId = null, array $params = [], array $customHeaders = []): BunqResponsePaymentBatchList
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
@@ -186,10 +177,10 @@ class PaymentBatch extends BunqModel
     }
 
     /**
-     * @param PaymentBatchAnchoredPayment $payments
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param PaymentBatchAnchoredPayment $payments
      */
     public function setPayments($payments)
     {

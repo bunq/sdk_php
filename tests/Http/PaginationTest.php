@@ -131,10 +131,11 @@ class PaginationTest extends TestCase
     }
 
     /**
-     * @expectedException \bunq\Exception\BunqException
      */
     public function testGetUrlParamsPreviousPageFromPaginationWithNoPreviousPage()
     {
+        $this->expectException('\bunq\Exception\BunqException');
+
         $pagination = $this->createPaginationWithAllPropertiesSet();
         $pagination->setOlderId(null);
 
@@ -143,10 +144,11 @@ class PaginationTest extends TestCase
     }
 
     /**
-     * @expectedException \bunq\Exception\BunqException
      */
     public function testGetUrlParamsNextPageFromPaginationWithNoNextPage()
     {
+        $this->expectException('\bunq\Exception\BunqException');
+
         $pagination = $this->createPaginationWithAllPropertiesSet();
         $pagination->setNewerId(null);
         $pagination->setFutureId(null);

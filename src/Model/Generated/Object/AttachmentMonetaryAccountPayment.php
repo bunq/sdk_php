@@ -32,7 +32,7 @@ class AttachmentMonetaryAccountPayment extends BunqModel
     /**
      * @param int $id The id of the Attachment to attach to the MonetaryAccount.
      */
-    public function __construct(int $id)
+    public function __construct(int  $id)
     {
         $this->idFieldForRequest = $id;
     }
@@ -48,10 +48,10 @@ class AttachmentMonetaryAccountPayment extends BunqModel
     }
 
     /**
-     * @param int $id
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param int $id
      */
     public function setId($id)
     {
@@ -69,10 +69,10 @@ class AttachmentMonetaryAccountPayment extends BunqModel
     }
 
     /**
-     * @param int $monetaryAccountId
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param int $monetaryAccountId
      */
     public function setMonetaryAccountId($monetaryAccountId)
     {

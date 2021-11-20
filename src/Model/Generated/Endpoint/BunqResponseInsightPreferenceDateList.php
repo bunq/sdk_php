@@ -5,10 +5,10 @@ use bunq\Http\BunqResponse;
 
 /**
  */
-class BunqResponseRegistryEntryList extends BunqResponse
+class BunqResponseInsightPreferenceDateList extends BunqResponse
 {
     /**
-     * @return RegistryEntry[]
+     * @return InsightPreferenceDate[]
      */
     public function getValue(): array
     {

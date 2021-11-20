@@ -1,7 +1,9 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
+use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
+use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Object\Attachment;
 
@@ -53,11 +55,8 @@ class AttachmentMonetaryAccount extends BunqModel
      *
      * @return BunqResponseInt
      */
-    public static function create(
-        string $requestBytes,
-        int $monetaryAccountId = null,
-        array $customHeaders = []
-    ): BunqResponseInt {
+    public static function create(string $requestBytes, int $monetaryAccountId = null, array $customHeaders = []): BunqResponseInt
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $apiClient->enableBinary();
         $responseRaw = $apiClient->post(
@@ -85,10 +84,10 @@ class AttachmentMonetaryAccount extends BunqModel
     }
 
     /**
-     * @param Attachment $attachment
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param Attachment $attachment
      */
     public function setAttachment($attachment)
     {
@@ -106,10 +105,10 @@ class AttachmentMonetaryAccount extends BunqModel
     }
 
     /**
-     * @param int $id
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param int $id
      */
     public function setId($id)
     {

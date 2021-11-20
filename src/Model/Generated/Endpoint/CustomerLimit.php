@@ -1,7 +1,9 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
+use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
+use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Object\Amount;
 
@@ -87,6 +89,7 @@ class CustomerLimit extends BunqModel
 
     /**
      * Get all limits for the authenticated user.
+     *
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
@@ -95,7 +98,7 @@ class CustomerLimit extends BunqModel
      *
      * @return BunqResponseCustomerLimitList
      */
-    public static function listing(array $params = [], array $customHeaders = []): BunqResponseCustomerLimitList
+    public static function listing( array $params = [], array $customHeaders = []): BunqResponseCustomerLimitList
     {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
@@ -123,10 +126,10 @@ class CustomerLimit extends BunqModel
     }
 
     /**
-     * @param int $limitMonetaryAccount
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param int $limitMonetaryAccount
      */
     public function setLimitMonetaryAccount($limitMonetaryAccount)
     {
@@ -144,10 +147,10 @@ class CustomerLimit extends BunqModel
     }
 
     /**
-     * @param int $limitMonetaryAccountRemaining
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param int $limitMonetaryAccountRemaining
      */
     public function setLimitMonetaryAccountRemaining($limitMonetaryAccountRemaining)
     {
@@ -165,10 +168,10 @@ class CustomerLimit extends BunqModel
     }
 
     /**
-     * @param int $limitCardDebitMaestro
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param int $limitCardDebitMaestro
      */
     public function setLimitCardDebitMaestro($limitCardDebitMaestro)
     {
@@ -186,10 +189,10 @@ class CustomerLimit extends BunqModel
     }
 
     /**
-     * @param int $limitCardDebitMastercard
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param int $limitCardDebitMastercard
      */
     public function setLimitCardDebitMastercard($limitCardDebitMastercard)
     {
@@ -207,10 +210,10 @@ class CustomerLimit extends BunqModel
     }
 
     /**
-     * @param int $limitCardDebitWildcard
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param int $limitCardDebitWildcard
      */
     public function setLimitCardDebitWildcard($limitCardDebitWildcard)
     {
@@ -228,10 +231,10 @@ class CustomerLimit extends BunqModel
     }
 
     /**
-     * @param int $limitCardWildcard
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param int $limitCardWildcard
      */
     public function setLimitCardWildcard($limitCardWildcard)
     {
@@ -249,10 +252,10 @@ class CustomerLimit extends BunqModel
     }
 
     /**
-     * @param int $limitCardReplacement
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param int $limitCardReplacement
      */
     public function setLimitCardReplacement($limitCardReplacement)
     {
@@ -270,10 +273,10 @@ class CustomerLimit extends BunqModel
     }
 
     /**
-     * @param Amount $limitAmountMonthly
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param Amount $limitAmountMonthly
      */
     public function setLimitAmountMonthly($limitAmountMonthly)
     {
@@ -291,10 +294,10 @@ class CustomerLimit extends BunqModel
     }
 
     /**
-     * @param Amount $spentAmountMonthly
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param Amount $spentAmountMonthly
      */
     public function setSpentAmountMonthly($spentAmountMonthly)
     {

@@ -48,7 +48,7 @@ class CardCountryPermission extends BunqModel
      * DE).
      * @param string|null $expiryTime Expiry time of this rule.
      */
-    public function __construct(string $country, string $expiryTime = null)
+    public function __construct(string  $country, string  $expiryTime = null)
     {
         $this->countryFieldForRequest = $country;
         $this->expiryTimeFieldForRequest = $expiryTime;
@@ -65,10 +65,10 @@ class CardCountryPermission extends BunqModel
     }
 
     /**
-     * @param int $id
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param int $id
      */
     public function setId($id)
     {
@@ -86,10 +86,10 @@ class CardCountryPermission extends BunqModel
     }
 
     /**
-     * @param string $country
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $country
      */
     public function setCountry($country)
     {
@@ -107,10 +107,10 @@ class CardCountryPermission extends BunqModel
     }
 
     /**
-     * @param string $expiryTime
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $expiryTime
      */
     public function setExpiryTime($expiryTime)
     {

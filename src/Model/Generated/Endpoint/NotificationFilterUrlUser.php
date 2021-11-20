@@ -1,7 +1,9 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
+use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
+use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Object\NotificationFilterUrl;
 
@@ -48,7 +50,7 @@ class NotificationFilterUrlUser extends BunqModel
      * @param NotificationFilterUrl[]|null $notificationFilters The types of
      * notifications that will result in a url notification for this user.
      */
-    public function __construct(array $notificationFilters = null)
+    public function __construct(array  $notificationFilters = null)
     {
         $this->notificationFiltersFieldForRequest = $notificationFilters;
     }
@@ -60,7 +62,7 @@ class NotificationFilterUrlUser extends BunqModel
      *
      * @return BunqResponseInt
      */
-    public static function create(array $notificationFilters = null, array $customHeaders = []): BunqResponseInt
+    public static function create(array  $notificationFilters = null, array $customHeaders = []): BunqResponseInt
     {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->post(
@@ -86,10 +88,8 @@ class NotificationFilterUrlUser extends BunqModel
      *
      * @return BunqResponseNotificationFilterUrlUserList
      */
-    public static function listing(
-        array $params = [],
-        array $customHeaders = []
-    ): BunqResponseNotificationFilterUrlUserList {
+    public static function listing( array $params = [], array $customHeaders = []): BunqResponseNotificationFilterUrlUserList
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
@@ -117,10 +117,10 @@ class NotificationFilterUrlUser extends BunqModel
     }
 
     /**
-     * @param NotificationFilterUrl[] $notificationFilters
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param NotificationFilterUrl[] $notificationFilters
      */
     public function setNotificationFilters($notificationFilters)
     {

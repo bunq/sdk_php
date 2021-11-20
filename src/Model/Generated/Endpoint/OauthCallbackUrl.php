@@ -1,6 +1,7 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
+use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
 use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
@@ -48,7 +49,7 @@ class OauthCallbackUrl extends BunqModel
     /**
      * @param string $url The URL for this callback.
      */
-    public function __construct(string $url)
+    public function __construct(string  $url)
     {
         $this->urlFieldForRequest = $url;
     }
@@ -60,11 +61,8 @@ class OauthCallbackUrl extends BunqModel
      *
      * @return BunqResponseOauthCallbackUrl
      */
-    public static function get(
-        int $oauthClientId,
-        int $oauthCallbackUrlId,
-        array $customHeaders = []
-    ): BunqResponseOauthCallbackUrl {
+    public static function get(int $oauthClientId, int $oauthCallbackUrlId, array $customHeaders = []): BunqResponseOauthCallbackUrl
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
@@ -87,7 +85,7 @@ class OauthCallbackUrl extends BunqModel
      *
      * @return BunqResponseInt
      */
-    public static function create(int $oauthClientId, string $url, array $customHeaders = []): BunqResponseInt
+    public static function create(int $oauthClientId, string  $url, array $customHeaders = []): BunqResponseInt
     {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->post(
@@ -112,12 +110,8 @@ class OauthCallbackUrl extends BunqModel
      *
      * @return BunqResponseInt
      */
-    public static function update(
-        int $oauthClientId,
-        int $oauthCallbackUrlId,
-        string $url = null,
-        array $customHeaders = []
-    ): BunqResponseInt {
+    public static function update(int $oauthClientId, int $oauthCallbackUrlId, string  $url = null, array $customHeaders = []): BunqResponseInt
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->put(
             vsprintf(
@@ -143,11 +137,8 @@ class OauthCallbackUrl extends BunqModel
      *
      * @return BunqResponseOauthCallbackUrlList
      */
-    public static function listing(
-        int $oauthClientId,
-        array $params = [],
-        array $customHeaders = []
-    ): BunqResponseOauthCallbackUrlList {
+    public static function listing(int $oauthClientId, array $params = [], array $customHeaders = []): BunqResponseOauthCallbackUrlList
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
@@ -170,11 +161,8 @@ class OauthCallbackUrl extends BunqModel
      *
      * @return BunqResponseNull
      */
-    public static function delete(
-        int $oauthClientId,
-        int $oauthCallbackUrlId,
-        array $customHeaders = []
-    ): BunqResponseNull {
+    public static function delete(int $oauthClientId, int $oauthCallbackUrlId, array $customHeaders = []): BunqResponseNull
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->delete(
             vsprintf(
@@ -200,10 +188,10 @@ class OauthCallbackUrl extends BunqModel
     }
 
     /**
-     * @param string $url
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $url
      */
     public function setUrl($url)
     {

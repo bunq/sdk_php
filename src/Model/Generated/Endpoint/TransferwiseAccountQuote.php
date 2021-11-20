@@ -1,6 +1,7 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
+use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
 use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
@@ -115,7 +116,7 @@ class TransferwiseAccountQuote extends BunqModel
      * specified as "required" and have since been filled by the user. Always
      * provide the full list.
      */
-    public function __construct(string $nameAccountHolder, string $type, string $country = null, array $detail = null)
+    public function __construct(string  $nameAccountHolder, string  $type, string  $country = null, array  $detail = null)
     {
         $this->countryFieldForRequest = $country;
         $this->nameAccountHolderFieldForRequest = $nameAccountHolder;
@@ -136,26 +137,18 @@ class TransferwiseAccountQuote extends BunqModel
      *
      * @return BunqResponseInt
      */
-    public static function create(
-        int $transferwiseQuoteId,
-        string $nameAccountHolder,
-        string $type,
-        string $country = null,
-        array $detail = null,
-        array $customHeaders = []
-    ): BunqResponseInt {
+    public static function create(int $transferwiseQuoteId, string  $nameAccountHolder, string  $type, string  $country = null, array  $detail = null, array $customHeaders = []): BunqResponseInt
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->post(
             vsprintf(
                 self::ENDPOINT_URL_CREATE,
                 [static::determineUserId(), $transferwiseQuoteId]
             ),
-            [
-                self::FIELD_COUNTRY => $country,
-                self::FIELD_NAME_ACCOUNT_HOLDER => $nameAccountHolder,
-                self::FIELD_TYPE => $type,
-                self::FIELD_DETAIL => $detail,
-            ],
+            [self::FIELD_COUNTRY => $country,
+self::FIELD_NAME_ACCOUNT_HOLDER => $nameAccountHolder,
+self::FIELD_TYPE => $type,
+self::FIELD_DETAIL => $detail],
             $customHeaders
         );
 
@@ -171,11 +164,8 @@ class TransferwiseAccountQuote extends BunqModel
      *
      * @return BunqResponseTransferwiseAccountQuote
      */
-    public static function get(
-        int $transferwiseQuoteId,
-        int $transferwiseAccountQuoteId,
-        array $customHeaders = []
-    ): BunqResponseTransferwiseAccountQuote {
+    public static function get(int $transferwiseQuoteId, int $transferwiseAccountQuoteId, array $customHeaders = []): BunqResponseTransferwiseAccountQuote
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
@@ -201,11 +191,8 @@ class TransferwiseAccountQuote extends BunqModel
      *
      * @return BunqResponseTransferwiseAccountQuoteList
      */
-    public static function listing(
-        int $transferwiseQuoteId,
-        array $params = [],
-        array $customHeaders = []
-    ): BunqResponseTransferwiseAccountQuoteList {
+    public static function listing(int $transferwiseQuoteId, array $params = [], array $customHeaders = []): BunqResponseTransferwiseAccountQuoteList
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
@@ -228,11 +215,8 @@ class TransferwiseAccountQuote extends BunqModel
      *
      * @return BunqResponseNull
      */
-    public static function delete(
-        int $transferwiseQuoteId,
-        int $transferwiseAccountQuoteId,
-        array $customHeaders = []
-    ): BunqResponseNull {
+    public static function delete(int $transferwiseQuoteId, int $transferwiseAccountQuoteId, array $customHeaders = []): BunqResponseNull
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->delete(
             vsprintf(
@@ -258,10 +242,10 @@ class TransferwiseAccountQuote extends BunqModel
     }
 
     /**
-     * @param string $accountId
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $accountId
      */
     public function setAccountId($accountId)
     {
@@ -279,10 +263,10 @@ class TransferwiseAccountQuote extends BunqModel
     }
 
     /**
-     * @param string $currency
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $currency
      */
     public function setCurrency($currency)
     {
@@ -300,10 +284,10 @@ class TransferwiseAccountQuote extends BunqModel
     }
 
     /**
-     * @param string $country
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $country
      */
     public function setCountry($country)
     {
@@ -321,10 +305,10 @@ class TransferwiseAccountQuote extends BunqModel
     }
 
     /**
-     * @param string $nameAccountHolder
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $nameAccountHolder
      */
     public function setNameAccountHolder($nameAccountHolder)
     {
@@ -342,10 +326,10 @@ class TransferwiseAccountQuote extends BunqModel
     }
 
     /**
-     * @param string $accountNumber
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $accountNumber
      */
     public function setAccountNumber($accountNumber)
     {
@@ -363,10 +347,10 @@ class TransferwiseAccountQuote extends BunqModel
     }
 
     /**
-     * @param string $bankCode
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $bankCode
      */
     public function setBankCode($bankCode)
     {

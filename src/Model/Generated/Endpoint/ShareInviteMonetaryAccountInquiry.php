@@ -1,7 +1,9 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
+use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
+use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Object\LabelMonetaryAccount;
 use bunq\Model\Generated\Object\LabelUser;
@@ -214,16 +216,8 @@ class ShareInviteMonetaryAccountInquiry extends BunqModel
      * @param string|null $startDate The start date of this share.
      * @param string|null $endDate The expiration date of this share.
      */
-    public function __construct(
-        Pointer $counterUserAlias,
-        ShareDetail $shareDetail,
-        string $status,
-        int $draftShareInviteBankId = null,
-        string $relationship = null,
-        string $shareType = null,
-        string $startDate = null,
-        string $endDate = null
-    ) {
+    public function __construct(Pointer  $counterUserAlias, ShareDetail  $shareDetail, string  $status, int  $draftShareInviteBankId = null, string  $relationship = null, string  $shareType = null, string  $startDate = null, string  $endDate = null)
+    {
         $this->counterUserAliasFieldForRequest = $counterUserAlias;
         $this->draftShareInviteBankIdFieldForRequest = $draftShareInviteBankId;
         $this->shareDetailFieldForRequest = $shareDetail;
@@ -259,34 +253,22 @@ class ShareInviteMonetaryAccountInquiry extends BunqModel
      *
      * @return BunqResponseInt
      */
-    public static function create(
-        Pointer $counterUserAlias,
-        ShareDetail $shareDetail,
-        string $status,
-        int $monetaryAccountId = null,
-        int $draftShareInviteBankId = null,
-        string $relationship = null,
-        string $shareType = null,
-        string $startDate = null,
-        string $endDate = null,
-        array $customHeaders = []
-    ): BunqResponseInt {
+    public static function create(Pointer  $counterUserAlias, ShareDetail  $shareDetail, string  $status, int $monetaryAccountId = null, int  $draftShareInviteBankId = null, string  $relationship = null, string  $shareType = null, string  $startDate = null, string  $endDate = null, array $customHeaders = []): BunqResponseInt
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->post(
             vsprintf(
                 self::ENDPOINT_URL_CREATE,
                 [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId)]
             ),
-            [
-                self::FIELD_COUNTER_USER_ALIAS => $counterUserAlias,
-                self::FIELD_DRAFT_SHARE_INVITE_BANK_ID => $draftShareInviteBankId,
-                self::FIELD_SHARE_DETAIL => $shareDetail,
-                self::FIELD_STATUS => $status,
-                self::FIELD_RELATIONSHIP => $relationship,
-                self::FIELD_SHARE_TYPE => $shareType,
-                self::FIELD_START_DATE => $startDate,
-                self::FIELD_END_DATE => $endDate,
-            ],
+            [self::FIELD_COUNTER_USER_ALIAS => $counterUserAlias,
+self::FIELD_DRAFT_SHARE_INVITE_BANK_ID => $draftShareInviteBankId,
+self::FIELD_SHARE_DETAIL => $shareDetail,
+self::FIELD_STATUS => $status,
+self::FIELD_RELATIONSHIP => $relationship,
+self::FIELD_SHARE_TYPE => $shareType,
+self::FIELD_START_DATE => $startDate,
+self::FIELD_END_DATE => $endDate],
             $customHeaders
         );
 
@@ -305,20 +287,13 @@ class ShareInviteMonetaryAccountInquiry extends BunqModel
      *
      * @return BunqResponseShareInviteMonetaryAccountInquiry
      */
-    public static function get(
-        int $shareInviteMonetaryAccountInquiryId,
-        int $monetaryAccountId = null,
-        array $customHeaders = []
-    ): BunqResponseShareInviteMonetaryAccountInquiry {
+    public static function get(int $shareInviteMonetaryAccountInquiryId, int $monetaryAccountId = null, array $customHeaders = []): BunqResponseShareInviteMonetaryAccountInquiry
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_READ,
-                [
-                    static::determineUserId(),
-                    static::determineMonetaryAccountId($monetaryAccountId),
-                    $shareInviteMonetaryAccountInquiryId,
-                ]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId), $shareInviteMonetaryAccountInquiryId]
             ),
             [],
             $customHeaders
@@ -349,31 +324,18 @@ class ShareInviteMonetaryAccountInquiry extends BunqModel
      *
      * @return BunqResponseInt
      */
-    public static function update(
-        int $shareInviteMonetaryAccountInquiryId,
-        int $monetaryAccountId = null,
-        ShareDetail $shareDetail = null,
-        string $status = null,
-        string $startDate = null,
-        string $endDate = null,
-        array $customHeaders = []
-    ): BunqResponseInt {
+    public static function update(int $shareInviteMonetaryAccountInquiryId, int $monetaryAccountId = null, ShareDetail  $shareDetail = null, string  $status = null, string  $startDate = null, string  $endDate = null, array $customHeaders = []): BunqResponseInt
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->put(
             vsprintf(
                 self::ENDPOINT_URL_UPDATE,
-                [
-                    static::determineUserId(),
-                    static::determineMonetaryAccountId($monetaryAccountId),
-                    $shareInviteMonetaryAccountInquiryId,
-                ]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId), $shareInviteMonetaryAccountInquiryId]
             ),
-            [
-                self::FIELD_SHARE_DETAIL => $shareDetail,
-                self::FIELD_STATUS => $status,
-                self::FIELD_START_DATE => $startDate,
-                self::FIELD_END_DATE => $endDate,
-            ],
+            [self::FIELD_SHARE_DETAIL => $shareDetail,
+self::FIELD_STATUS => $status,
+self::FIELD_START_DATE => $startDate,
+self::FIELD_END_DATE => $endDate],
             $customHeaders
         );
 
@@ -386,6 +348,7 @@ class ShareInviteMonetaryAccountInquiry extends BunqModel
      * [DEPRECATED - use /share-invite-monetary-account-response] Get a list
      * with all the share inquiries for a monetary account, only if the
      * requesting user has permission to change the details of the various ones.
+     *
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
@@ -395,11 +358,8 @@ class ShareInviteMonetaryAccountInquiry extends BunqModel
      *
      * @return BunqResponseShareInviteMonetaryAccountInquiryList
      */
-    public static function listing(
-        int $monetaryAccountId = null,
-        array $params = [],
-        array $customHeaders = []
-    ): BunqResponseShareInviteMonetaryAccountInquiryList {
+    public static function listing(int $monetaryAccountId = null, array $params = [], array $customHeaders = []): BunqResponseShareInviteMonetaryAccountInquiryList
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
@@ -426,10 +386,10 @@ class ShareInviteMonetaryAccountInquiry extends BunqModel
     }
 
     /**
-     * @param LabelMonetaryAccount $alias
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param LabelMonetaryAccount $alias
      */
     public function setAlias($alias)
     {
@@ -447,10 +407,10 @@ class ShareInviteMonetaryAccountInquiry extends BunqModel
     }
 
     /**
-     * @param LabelUser $userAliasCreated
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param LabelUser $userAliasCreated
      */
     public function setUserAliasCreated($userAliasCreated)
     {
@@ -468,10 +428,10 @@ class ShareInviteMonetaryAccountInquiry extends BunqModel
     }
 
     /**
-     * @param LabelUser $userAliasRevoked
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param LabelUser $userAliasRevoked
      */
     public function setUserAliasRevoked($userAliasRevoked)
     {
@@ -489,10 +449,10 @@ class ShareInviteMonetaryAccountInquiry extends BunqModel
     }
 
     /**
-     * @param LabelUser $counterUserAlias
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param LabelUser $counterUserAlias
      */
     public function setCounterUserAlias($counterUserAlias)
     {
@@ -510,10 +470,10 @@ class ShareInviteMonetaryAccountInquiry extends BunqModel
     }
 
     /**
-     * @param int $monetaryAccountId
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param int $monetaryAccountId
      */
     public function setMonetaryAccountId($monetaryAccountId)
     {
@@ -531,10 +491,10 @@ class ShareInviteMonetaryAccountInquiry extends BunqModel
     }
 
     /**
-     * @param int $draftShareInviteBankId
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param int $draftShareInviteBankId
      */
     public function setDraftShareInviteBankId($draftShareInviteBankId)
     {
@@ -552,10 +512,10 @@ class ShareInviteMonetaryAccountInquiry extends BunqModel
     }
 
     /**
-     * @param ShareDetail $shareDetail
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param ShareDetail $shareDetail
      */
     public function setShareDetail($shareDetail)
     {
@@ -576,10 +536,10 @@ class ShareInviteMonetaryAccountInquiry extends BunqModel
     }
 
     /**
-     * @param string $status
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $status
      */
     public function setStatus($status)
     {
@@ -597,10 +557,10 @@ class ShareInviteMonetaryAccountInquiry extends BunqModel
     }
 
     /**
-     * @param string $relationship
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $relationship
      */
     public function setRelationship($relationship)
     {
@@ -618,10 +578,10 @@ class ShareInviteMonetaryAccountInquiry extends BunqModel
     }
 
     /**
-     * @param string $shareType
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $shareType
      */
     public function setShareType($shareType)
     {
@@ -639,10 +599,10 @@ class ShareInviteMonetaryAccountInquiry extends BunqModel
     }
 
     /**
-     * @param string $startDate
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $startDate
      */
     public function setStartDate($startDate)
     {
@@ -660,10 +620,10 @@ class ShareInviteMonetaryAccountInquiry extends BunqModel
     }
 
     /**
-     * @param string $endDate
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $endDate
      */
     public function setEndDate($endDate)
     {
@@ -681,10 +641,10 @@ class ShareInviteMonetaryAccountInquiry extends BunqModel
     }
 
     /**
-     * @param int $id
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param int $id
      */
     public function setId($id)
     {

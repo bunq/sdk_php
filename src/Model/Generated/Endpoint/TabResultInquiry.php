@@ -1,7 +1,9 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
+use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
+use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 
 /**
@@ -49,24 +51,13 @@ class TabResultInquiry extends BunqModel
      *
      * @return BunqResponseTabResultInquiry
      */
-    public static function get(
-        int $cashRegisterId,
-        string $tabUuid,
-        int $tabResultInquiryId,
-        int $monetaryAccountId = null,
-        array $customHeaders = []
-    ): BunqResponseTabResultInquiry {
+    public static function get(int $cashRegisterId, string $tabUuid, int $tabResultInquiryId, int $monetaryAccountId = null, array $customHeaders = []): BunqResponseTabResultInquiry
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_READ,
-                [
-                    static::determineUserId(),
-                    static::determineMonetaryAccountId($monetaryAccountId),
-                    $cashRegisterId,
-                    $tabUuid,
-                    $tabResultInquiryId,
-                ]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId), $cashRegisterId, $tabUuid, $tabResultInquiryId]
             ),
             [],
             $customHeaders
@@ -79,6 +70,7 @@ class TabResultInquiry extends BunqModel
 
     /**
      * Used to view a list of TabResultInquiry objects belonging to a tab.
+     *
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
@@ -90,23 +82,13 @@ class TabResultInquiry extends BunqModel
      *
      * @return BunqResponseTabResultInquiryList
      */
-    public static function listing(
-        int $cashRegisterId,
-        string $tabUuid,
-        int $monetaryAccountId = null,
-        array $params = [],
-        array $customHeaders = []
-    ): BunqResponseTabResultInquiryList {
+    public static function listing(int $cashRegisterId, string $tabUuid, int $monetaryAccountId = null, array $params = [], array $customHeaders = []): BunqResponseTabResultInquiryList
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_LISTING,
-                [
-                    static::determineUserId(),
-                    static::determineMonetaryAccountId($monetaryAccountId),
-                    $cashRegisterId,
-                    $tabUuid,
-                ]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId), $cashRegisterId, $tabUuid]
             ),
             $params,
             $customHeaders
@@ -128,10 +110,10 @@ class TabResultInquiry extends BunqModel
     }
 
     /**
-     * @param Tab $tab
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param Tab $tab
      */
     public function setTab($tab)
     {
@@ -149,10 +131,10 @@ class TabResultInquiry extends BunqModel
     }
 
     /**
-     * @param Payment $payment
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param Payment $payment
      */
     public function setPayment($payment)
     {

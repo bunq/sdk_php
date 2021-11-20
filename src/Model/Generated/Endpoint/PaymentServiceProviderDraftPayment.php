@@ -1,7 +1,9 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
+use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
+use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Object\Amount;
 
@@ -125,15 +127,8 @@ class PaymentServiceProviderDraftPayment extends BunqModel
      * @param string|null $status The new status of the Draft Payment. Can only
      * be set to REJECTED or CANCELLED by update.
      */
-    public function __construct(
-        string $senderIban,
-        string $counterpartyIban,
-        string $counterpartyName,
-        string $description,
-        Amount $amount,
-        string $senderName = null,
-        string $status = null
-    ) {
+    public function __construct(string  $senderIban, string  $counterpartyIban, string  $counterpartyName, string  $description, Amount  $amount, string  $senderName = null, string  $status = null)
+    {
         $this->senderIbanFieldForRequest = $senderIban;
         $this->senderNameFieldForRequest = $senderName;
         $this->counterpartyIbanFieldForRequest = $counterpartyIban;
@@ -157,31 +152,21 @@ class PaymentServiceProviderDraftPayment extends BunqModel
      *
      * @return BunqResponseInt
      */
-    public static function create(
-        string $senderIban,
-        string $counterpartyIban,
-        string $counterpartyName,
-        string $description,
-        Amount $amount,
-        string $senderName = null,
-        string $status = null,
-        array $customHeaders = []
-    ): BunqResponseInt {
+    public static function create(string  $senderIban, string  $counterpartyIban, string  $counterpartyName, string  $description, Amount  $amount, string  $senderName = null, string  $status = null, array $customHeaders = []): BunqResponseInt
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->post(
             vsprintf(
                 self::ENDPOINT_URL_CREATE,
                 [static::determineUserId()]
             ),
-            [
-                self::FIELD_SENDER_IBAN => $senderIban,
-                self::FIELD_SENDER_NAME => $senderName,
-                self::FIELD_COUNTERPARTY_IBAN => $counterpartyIban,
-                self::FIELD_COUNTERPARTY_NAME => $counterpartyName,
-                self::FIELD_DESCRIPTION => $description,
-                self::FIELD_AMOUNT => $amount,
-                self::FIELD_STATUS => $status,
-            ],
+            [self::FIELD_SENDER_IBAN => $senderIban,
+self::FIELD_SENDER_NAME => $senderName,
+self::FIELD_COUNTERPARTY_IBAN => $counterpartyIban,
+self::FIELD_COUNTERPARTY_NAME => $counterpartyName,
+self::FIELD_DESCRIPTION => $description,
+self::FIELD_AMOUNT => $amount,
+self::FIELD_STATUS => $status],
             $customHeaders
         );
 
@@ -198,11 +183,8 @@ class PaymentServiceProviderDraftPayment extends BunqModel
      *
      * @return BunqResponseInt
      */
-    public static function update(
-        int $paymentServiceProviderDraftPaymentId,
-        string $status = null,
-        array $customHeaders = []
-    ): BunqResponseInt {
+    public static function update(int $paymentServiceProviderDraftPaymentId, string  $status = null, array $customHeaders = []): BunqResponseInt
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->put(
             vsprintf(
@@ -227,10 +209,8 @@ class PaymentServiceProviderDraftPayment extends BunqModel
      *
      * @return BunqResponsePaymentServiceProviderDraftPaymentList
      */
-    public static function listing(
-        array $params = [],
-        array $customHeaders = []
-    ): BunqResponsePaymentServiceProviderDraftPaymentList {
+    public static function listing( array $params = [], array $customHeaders = []): BunqResponsePaymentServiceProviderDraftPaymentList
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
@@ -252,10 +232,8 @@ class PaymentServiceProviderDraftPayment extends BunqModel
      *
      * @return BunqResponsePaymentServiceProviderDraftPayment
      */
-    public static function get(
-        int $paymentServiceProviderDraftPaymentId,
-        array $customHeaders = []
-    ): BunqResponsePaymentServiceProviderDraftPayment {
+    public static function get(int $paymentServiceProviderDraftPaymentId, array $customHeaders = []): BunqResponsePaymentServiceProviderDraftPayment
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
@@ -282,10 +260,10 @@ class PaymentServiceProviderDraftPayment extends BunqModel
     }
 
     /**
-     * @param string $senderIban
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $senderIban
      */
     public function setSenderIban($senderIban)
     {
@@ -303,10 +281,10 @@ class PaymentServiceProviderDraftPayment extends BunqModel
     }
 
     /**
-     * @param string $receiverIban
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $receiverIban
      */
     public function setReceiverIban($receiverIban)
     {
@@ -324,10 +302,10 @@ class PaymentServiceProviderDraftPayment extends BunqModel
     }
 
     /**
-     * @param Amount $amount
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param Amount $amount
      */
     public function setAmount($amount)
     {
@@ -345,10 +323,10 @@ class PaymentServiceProviderDraftPayment extends BunqModel
     }
 
     /**
-     * @param string $status
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $status
      */
     public function setStatus($status)
     {

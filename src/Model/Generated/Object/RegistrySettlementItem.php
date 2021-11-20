@@ -55,10 +55,10 @@ class RegistrySettlementItem extends BunqModel
     }
 
     /**
-     * @param Amount $amount
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param Amount $amount
      */
     public function setAmount($amount)
     {
@@ -76,10 +76,10 @@ class RegistrySettlementItem extends BunqModel
     }
 
     /**
-     * @param RegistryMembership $membershipPaying
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param RegistryMembership $membershipPaying
      */
     public function setMembershipPaying($membershipPaying)
     {
@@ -97,10 +97,10 @@ class RegistrySettlementItem extends BunqModel
     }
 
     /**
-     * @param RegistryMembership $membershipReceiving
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param RegistryMembership $membershipReceiving
      */
     public function setMembershipReceiving($membershipReceiving)
     {
@@ -118,10 +118,10 @@ class RegistrySettlementItem extends BunqModel
     }
 
     /**
-     * @param LabelMonetaryAccount $payingUserAlias
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param LabelMonetaryAccount $payingUserAlias
      */
     public function setPayingUserAlias($payingUserAlias)
     {
@@ -139,10 +139,10 @@ class RegistrySettlementItem extends BunqModel
     }
 
     /**
-     * @param LabelMonetaryAccount $receivingUserAlias
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param LabelMonetaryAccount $receivingUserAlias
      */
     public function setReceivingUserAlias($receivingUserAlias)
     {

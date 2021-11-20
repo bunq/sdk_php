@@ -1,7 +1,9 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
+use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
+use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Object\Amount;
 use bunq\Model\Generated\Object\RegistrySettlementItem;
@@ -122,11 +124,8 @@ class RegistrySettlement extends BunqModel
      *
      * @return BunqResponseRegistrySettlement
      */
-    public static function get(
-        int $registryId,
-        int $registrySettlementId,
-        array $customHeaders = []
-    ): BunqResponseRegistrySettlement {
+    public static function get(int $registryId, int $registrySettlementId, array $customHeaders = []): BunqResponseRegistrySettlement
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
@@ -144,6 +143,7 @@ class RegistrySettlement extends BunqModel
 
     /**
      * Get a listing of all Slice group settlements.
+     *
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
@@ -153,11 +153,8 @@ class RegistrySettlement extends BunqModel
      *
      * @return BunqResponseRegistrySettlementList
      */
-    public static function listing(
-        int $registryId,
-        array $params = [],
-        array $customHeaders = []
-    ): BunqResponseRegistrySettlementList {
+    public static function listing(int $registryId, array $params = [], array $customHeaders = []): BunqResponseRegistrySettlementList
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
@@ -184,10 +181,10 @@ class RegistrySettlement extends BunqModel
     }
 
     /**
-     * @param int $id
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param int $id
      */
     public function setId($id)
     {
@@ -205,10 +202,10 @@ class RegistrySettlement extends BunqModel
     }
 
     /**
-     * @param string $created
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $created
      */
     public function setCreated($created)
     {
@@ -226,10 +223,10 @@ class RegistrySettlement extends BunqModel
     }
 
     /**
-     * @param string $updated
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $updated
      */
     public function setUpdated($updated)
     {
@@ -247,10 +244,10 @@ class RegistrySettlement extends BunqModel
     }
 
     /**
-     * @param string $settlementTime
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param string $settlementTime
      */
     public function setSettlementTime($settlementTime)
     {
@@ -268,10 +265,10 @@ class RegistrySettlement extends BunqModel
     }
 
     /**
-     * @param Amount $totalAmountSpent
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param Amount $totalAmountSpent
      */
     public function setTotalAmountSpent($totalAmountSpent)
     {
@@ -289,10 +286,10 @@ class RegistrySettlement extends BunqModel
     }
 
     /**
-     * @param int $numberOfEntries
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param int $numberOfEntries
      */
     public function setNumberOfEntries($numberOfEntries)
     {
@@ -310,10 +307,10 @@ class RegistrySettlement extends BunqModel
     }
 
     /**
-     * @param RegistryMembership $settledByAlias
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param RegistryMembership $settledByAlias
      */
     public function setSettledByAlias($settledByAlias)
     {
@@ -331,10 +328,10 @@ class RegistrySettlement extends BunqModel
     }
 
     /**
-     * @param RegistryMembership $membershipSettled
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param RegistryMembership $membershipSettled
      */
     public function setMembershipSettled($membershipSettled)
     {
@@ -352,10 +349,10 @@ class RegistrySettlement extends BunqModel
     }
 
     /**
-     * @param RegistrySettlementItem[] $items
-     *
      * @deprecated User should not be able to set values via setters, use
      * constructor.
+     *
+     * @param RegistrySettlementItem[] $items
      */
     public function setItems($items)
     {

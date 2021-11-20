@@ -1,6 +1,7 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
+use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
 use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
@@ -25,6 +26,7 @@ class CashRegisterQrCodeContent extends BunqModel
 
     /**
      * Show the raw contents of a QR code
+     *
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
@@ -35,22 +37,13 @@ class CashRegisterQrCodeContent extends BunqModel
      *
      * @return BunqResponseString
      */
-    public static function listing(
-        int $cashRegisterId,
-        int $qrCodeId,
-        int $monetaryAccountId = null,
-        array $customHeaders = []
-    ): BunqResponseString {
+    public static function listing(int $cashRegisterId, int $qrCodeId, int $monetaryAccountId = null, array $customHeaders = []): BunqResponseString
+    {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_LISTING,
-                [
-                    static::determineUserId(),
-                    static::determineMonetaryAccountId($monetaryAccountId),
-                    $cashRegisterId,
-                    $qrCodeId,
-                ]
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId), $cashRegisterId, $qrCodeId]
             ),
             [],
             $customHeaders
