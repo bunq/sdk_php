@@ -23,6 +23,13 @@ class Attachment extends BunqModel
     protected $contentType;
 
     /**
+     * The URLs where the file can be downloaded.
+     *
+     * @var AttachmentUrl[]
+     */
+    protected $urls;
+
+    /**
      * The description of the attachment.
      *
      * @return string
@@ -65,6 +72,27 @@ class Attachment extends BunqModel
     }
 
     /**
+     * The URLs where the file can be downloaded.
+     *
+     * @return AttachmentUrl[]
+     */
+    public function getUrls()
+    {
+        return $this->urls;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param AttachmentUrl[] $urls
+     */
+    public function setUrls($urls)
+    {
+        $this->urls = $urls;
+    }
+
+    /**
      * @return bool
      */
     public function isAllFieldNull()
@@ -74,6 +102,10 @@ class Attachment extends BunqModel
         }
 
         if (!is_null($this->contentType)) {
+            return false;
+        }
+
+        if (!is_null($this->urls)) {
             return false;
         }
 
