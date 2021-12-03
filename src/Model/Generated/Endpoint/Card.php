@@ -150,6 +150,13 @@ class Card extends BunqModel
     protected $primaryAccountNumbers;
 
     /**
+     * The payment account reference number associated with the card.
+     *
+     * @var string
+     */
+    protected $paymentAccountReference;
+
+    /**
      * The spending limit for the card.
      *
      * @var Amount
@@ -763,6 +770,27 @@ self::FIELD_MONETARY_ACCOUNT_ID_FALLBACK => $monetaryAccountIdFallback],
     }
 
     /**
+     * The payment account reference number associated with the card.
+     *
+     * @return string
+     */
+    public function getPaymentAccountReference()
+    {
+        return $this->paymentAccountReference;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param string $paymentAccountReference
+     */
+    public function setPaymentAccountReference($paymentAccountReference)
+    {
+        $this->paymentAccountReference = $paymentAccountReference;
+    }
+
+    /**
      * The spending limit for the card.
      *
      * @return Amount
@@ -1034,6 +1062,10 @@ self::FIELD_MONETARY_ACCOUNT_ID_FALLBACK => $monetaryAccountIdFallback],
         }
 
         if (!is_null($this->primaryAccountNumbers)) {
+            return false;
+        }
+
+        if (!is_null($this->paymentAccountReference)) {
             return false;
         }
 
