@@ -9,6 +9,13 @@ use bunq\Model\Core\BunqModel;
 class InvoiceItem extends BunqModel
 {
     /**
+     * The id of the invoice item.
+     *
+     * @var int
+     */
+    protected $id;
+
+    /**
      * The billing date of the item.
      *
      * @var string
@@ -70,6 +77,27 @@ class InvoiceItem extends BunqModel
      * @var Amount
      */
     protected $totalVatInclusive;
+
+    /**
+     * The id of the invoice item.
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param int $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
 
     /**
      * The billing date of the item.
@@ -265,6 +293,10 @@ class InvoiceItem extends BunqModel
      */
     public function isAllFieldNull()
     {
+        if (!is_null($this->id)) {
+            return false;
+        }
+
         if (!is_null($this->billingDate)) {
             return false;
         }
