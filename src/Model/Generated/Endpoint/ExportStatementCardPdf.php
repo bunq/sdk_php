@@ -7,23 +7,30 @@ use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 
 /**
- * Used to create new and read existing card statement exports. Statement
- * exports can be created in either CSV or PDF file format.
+ * Used to serialize ExportStatementCardPdf
  *
  * @generated
  */
-class ExportStatementCard extends BunqModel
+class ExportStatementCardPdf extends BunqModel
 {
     /**
      * Endpoint constants.
      */
-    const ENDPOINT_URL_READ = 'user/%s/card/%s/export-statement-card/%s';
-    const ENDPOINT_URL_LISTING = 'user/%s/card/%s/export-statement-card';
+    const ENDPOINT_URL_CREATE = 'user/%s/card/%s/export-statement-card-pdf';
+    const ENDPOINT_URL_READ = 'user/%s/card/%s/export-statement-card-pdf/%s';
+    const ENDPOINT_URL_LISTING = 'user/%s/card/%s/export-statement-card-pdf';
+    const ENDPOINT_URL_DELETE = 'user/%s/card/%s/export-statement-card-pdf/%s';
+
+    /**
+     * Field constants.
+     */
+    const FIELD_DATE_START = 'date_start';
+    const FIELD_DATE_END = 'date_end';
 
     /**
      * Object type.
      */
-    const OBJECT_TYPE_GET = 'ExportStatementCard';
+    const OBJECT_TYPE_GET = 'ExportStatementCardPdf';
 
     /**
      * The id of the customer statement model.
@@ -68,13 +75,6 @@ class ExportStatementCard extends BunqModel
     protected $status;
 
     /**
-     * The regional format of a CSV statement.
-     *
-     * @var string
-     */
-    protected $regionalFormat;
-
-    /**
      * The card for which this statement was created.
      *
      * @var int
@@ -82,25 +82,75 @@ class ExportStatementCard extends BunqModel
     protected $cardId;
 
     /**
+     * The start date for making statements.
+     *
+     * @var string
+     */
+    protected $dateStartFieldForRequest;
+
+    /**
+     * The end date for making statements.
+     *
+     * @var string
+     */
+    protected $dateEndFieldForRequest;
+
+    /**
+     * @param string $dateStart The start date for making statements.
+     * @param string $dateEnd The end date for making statements.
+     */
+    public function __construct(string  $dateStart, string  $dateEnd)
+    {
+        $this->dateStartFieldForRequest = $dateStart;
+        $this->dateEndFieldForRequest = $dateEnd;
+    }
+
+    /**
      * @param int $cardId
-     * @param int $exportStatementCardId
+     * @param string $dateStart The start date for making statements.
+     * @param string $dateEnd The end date for making statements.
      * @param string[] $customHeaders
      *
-     * @return BunqResponseExportStatementCard
+     * @return BunqResponseInt
      */
-    public static function get(int $cardId, int $exportStatementCardId, array $customHeaders = []): BunqResponseExportStatementCard
+    public static function create(int $cardId, string  $dateStart, string  $dateEnd, array $customHeaders = []): BunqResponseInt
+    {
+        $apiClient = new ApiClient(static::getApiContext());
+        $responseRaw = $apiClient->post(
+            vsprintf(
+                self::ENDPOINT_URL_CREATE,
+                [static::determineUserId(), $cardId]
+            ),
+            [self::FIELD_DATE_START => $dateStart,
+self::FIELD_DATE_END => $dateEnd],
+            $customHeaders
+        );
+
+        return BunqResponseInt::castFromBunqResponse(
+            static::processForId($responseRaw)
+        );
+    }
+
+    /**
+     * @param int $cardId
+     * @param int $exportStatementCardPdfId
+     * @param string[] $customHeaders
+     *
+     * @return BunqResponseExportStatementCardPdf
+     */
+    public static function get(int $cardId, int $exportStatementCardPdfId, array $customHeaders = []): BunqResponseExportStatementCardPdf
     {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_READ,
-                [static::determineUserId(), $cardId, $exportStatementCardId]
+                [static::determineUserId(), $cardId, $exportStatementCardPdfId]
             ),
             [],
             $customHeaders
         );
 
-        return BunqResponseExportStatementCard::castFromBunqResponse(
+        return BunqResponseExportStatementCardPdf::castFromBunqResponse(
             static::fromJson($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
@@ -113,9 +163,9 @@ class ExportStatementCard extends BunqModel
      * @param string[] $params
      * @param string[] $customHeaders
      *
-     * @return BunqResponseExportStatementCardList
+     * @return BunqResponseExportStatementCardPdfList
      */
-    public static function listing(int $cardId, array $params = [], array $customHeaders = []): BunqResponseExportStatementCardList
+    public static function listing(int $cardId, array $params = [], array $customHeaders = []): BunqResponseExportStatementCardPdfList
     {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
@@ -127,8 +177,31 @@ class ExportStatementCard extends BunqModel
             $customHeaders
         );
 
-        return BunqResponseExportStatementCardList::castFromBunqResponse(
+        return BunqResponseExportStatementCardPdfList::castFromBunqResponse(
             static::fromJsonList($responseRaw, self::OBJECT_TYPE_GET)
+        );
+    }
+
+    /**
+     * @param string[] $customHeaders
+     * @param int $cardId
+     * @param int $exportStatementCardPdfId
+     *
+     * @return BunqResponseNull
+     */
+    public static function delete(int $cardId, int $exportStatementCardPdfId, array $customHeaders = []): BunqResponseNull
+    {
+        $apiClient = new ApiClient(static::getApiContext());
+        $responseRaw = $apiClient->delete(
+            vsprintf(
+                self::ENDPOINT_URL_DELETE,
+                [static::determineUserId(), $cardId, $exportStatementCardPdfId]
+            ),
+            $customHeaders
+        );
+
+        return BunqResponseNull::castFromBunqResponse(
+            new BunqResponse(null, $responseRaw->getHeaders())
         );
     }
 
@@ -259,27 +332,6 @@ class ExportStatementCard extends BunqModel
     }
 
     /**
-     * The regional format of a CSV statement.
-     *
-     * @return string
-     */
-    public function getRegionalFormat()
-    {
-        return $this->regionalFormat;
-    }
-
-    /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
-     * @param string $regionalFormat
-     */
-    public function setRegionalFormat($regionalFormat)
-    {
-        $this->regionalFormat = $regionalFormat;
-    }
-
-    /**
      * The card for which this statement was created.
      *
      * @return int
@@ -326,10 +378,6 @@ class ExportStatementCard extends BunqModel
         }
 
         if (!is_null($this->status)) {
-            return false;
-        }
-
-        if (!is_null($this->regionalFormat)) {
             return false;
         }
 
