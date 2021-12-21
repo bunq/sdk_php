@@ -19,7 +19,7 @@ class ExportStatementCardContent extends BunqModel
     /**
      * Endpoint constants.
      */
-    const ENDPOINT_URL_LISTING = 'user/%s/card/%s/card-statement/%s/content';
+    const ENDPOINT_URL_LISTING = 'user/%s/card/%s/export-statement-card/%s/content';
 
     /**
      * Object type.
@@ -31,18 +31,18 @@ class ExportStatementCardContent extends BunqModel
      * and cannot be used as constants, class names, function or method names.
      *
      * @param int $cardId
-     * @param int $cardStatementId
+     * @param int $exportStatementCardId
      * @param string[] $customHeaders
      *
      * @return BunqResponseString
      */
-    public static function listing(int $cardId, int $cardStatementId, array $customHeaders = []): BunqResponseString
+    public static function listing(int $cardId, int $exportStatementCardId, array $customHeaders = []): BunqResponseString
     {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
             vsprintf(
                 self::ENDPOINT_URL_LISTING,
-                [static::determineUserId(), $cardId, $cardStatementId]
+                [static::determineUserId(), $cardId, $exportStatementCardId]
             ),
             [],
             $customHeaders
