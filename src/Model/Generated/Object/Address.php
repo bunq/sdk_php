@@ -72,6 +72,14 @@ class Address extends BunqModel
     protected $mailboxName;
 
     /**
+     * To show whether user created or updated her address for app event
+     * listing.
+     *
+     * @var bool
+     */
+    protected $isUserAddressUpdated;
+
+    /**
      * The street.
      *
      * @var string
@@ -341,6 +349,28 @@ class Address extends BunqModel
     }
 
     /**
+     * To show whether user created or updated her address for app event
+     * listing.
+     *
+     * @return bool
+     */
+    public function getIsUserAddressUpdated()
+    {
+        return $this->isUserAddressUpdated;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param bool $isUserAddressUpdated
+     */
+    public function setIsUserAddressUpdated($isUserAddressUpdated)
+    {
+        $this->isUserAddressUpdated = $isUserAddressUpdated;
+    }
+
+    /**
      * @return bool
      */
     public function isAllFieldNull()
@@ -378,6 +408,10 @@ class Address extends BunqModel
         }
 
         if (!is_null($this->mailboxName)) {
+            return false;
+        }
+
+        if (!is_null($this->isUserAddressUpdated)) {
             return false;
         }
 
