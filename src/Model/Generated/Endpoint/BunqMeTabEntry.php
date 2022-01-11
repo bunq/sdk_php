@@ -74,6 +74,13 @@ class BunqMeTabEntry extends BunqModel
     protected $merchantAvailable;
 
     /**
+     * Provided if the user has enabled their invite link.
+     *
+     * @var string
+     */
+    protected $inviteProfileName;
+
+    /**
      * The Amount requested to be paid. Can be optional.
      *
      * @var Amount
@@ -260,6 +267,27 @@ class BunqMeTabEntry extends BunqModel
     }
 
     /**
+     * Provided if the user has enabled their invite link.
+     *
+     * @return string
+     */
+    public function getInviteProfileName()
+    {
+        return $this->inviteProfileName;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param string $inviteProfileName
+     */
+    public function setInviteProfileName($inviteProfileName)
+    {
+        $this->inviteProfileName = $inviteProfileName;
+    }
+
+    /**
      * @return bool
      */
     public function isAllFieldNull()
@@ -289,6 +317,10 @@ class BunqMeTabEntry extends BunqModel
         }
 
         if (!is_null($this->merchantAvailable)) {
+            return false;
+        }
+
+        if (!is_null($this->inviteProfileName)) {
             return false;
         }
 
