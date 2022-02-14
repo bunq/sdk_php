@@ -29,6 +29,7 @@ class MonetaryAccountInvestment extends BunqModel
     const FIELD_REASON_DESCRIPTION = 'reason_description';
     const FIELD_DISPLAY_NAME = 'display_name';
     const FIELD_SETTING = 'setting';
+    const FIELD_BIRDEE_INVESTMENT_PORTFOLIO = 'birdee_investment_portfolio';
 
     /**
      * The id of the MonetaryAccountInvestment.
@@ -268,6 +269,13 @@ class MonetaryAccountInvestment extends BunqModel
     protected $settingFieldForRequest;
 
     /**
+     * The Birdee investment portfolio.
+     *
+     * @var BirdeeInvestmentPortfolio|null
+     */
+    protected $birdeeInvestmentPortfolioFieldForRequest;
+
+    /**
      * @param string $currency The currency of the MonetaryAccountInvestment as
      * an ISO 4217 formatted currency code.
      * @param string $provider The provider of the investment service.
@@ -301,8 +309,10 @@ class MonetaryAccountInvestment extends BunqModel
      * using this monetary account.
      * @param MonetaryAccountSetting|null $setting The settings of the
      * MonetaryAccountInvestment.
+     * @param BirdeeInvestmentPortfolio|null $birdeeInvestmentPortfolio The
+     * Birdee investment portfolio.
      */
-    public function __construct(string  $currency, string  $provider, string  $description = null, Amount  $dailyLimit = null, string  $avatarUuid = null, string  $status = null, string  $subStatus = null, string  $reason = null, string  $reasonDescription = null, string  $displayName = null, MonetaryAccountSetting  $setting = null)
+    public function __construct(string  $currency, string  $provider, string  $description = null, Amount  $dailyLimit = null, string  $avatarUuid = null, string  $status = null, string  $subStatus = null, string  $reason = null, string  $reasonDescription = null, string  $displayName = null, MonetaryAccountSetting  $setting = null, BirdeeInvestmentPortfolio  $birdeeInvestmentPortfolio = null)
     {
         $this->currencyFieldForRequest = $currency;
         $this->providerFieldForRequest = $provider;
@@ -315,6 +325,7 @@ class MonetaryAccountInvestment extends BunqModel
         $this->reasonDescriptionFieldForRequest = $reasonDescription;
         $this->displayNameFieldForRequest = $displayName;
         $this->settingFieldForRequest = $setting;
+        $this->birdeeInvestmentPortfolioFieldForRequest = $birdeeInvestmentPortfolio;
     }
 
     /**
