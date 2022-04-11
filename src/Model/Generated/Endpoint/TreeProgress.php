@@ -39,6 +39,13 @@ class TreeProgress extends BunqModel
     protected $progressTreeNext;
 
     /**
+     * URL of the invite profile.
+     *
+     * @var string
+     */
+    protected $urlInviteProfile;
+
+    /**
      * The label of the user the progress belongs to.
      *
      * @var LabelUser
@@ -114,6 +121,27 @@ class TreeProgress extends BunqModel
     }
 
     /**
+     * URL of the invite profile.
+     *
+     * @return string
+     */
+    public function getUrlInviteProfile()
+    {
+        return $this->urlInviteProfile;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param string $urlInviteProfile
+     */
+    public function setUrlInviteProfile($urlInviteProfile)
+    {
+        $this->urlInviteProfile = $urlInviteProfile;
+    }
+
+    /**
      * The label of the user the progress belongs to.
      *
      * @return LabelUser
@@ -144,6 +172,10 @@ class TreeProgress extends BunqModel
         }
 
         if (!is_null($this->progressTreeNext)) {
+            return false;
+        }
+
+        if (!is_null($this->urlInviteProfile)) {
             return false;
         }
 
