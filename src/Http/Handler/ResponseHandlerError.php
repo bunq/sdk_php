@@ -110,11 +110,7 @@ class ResponseHandlerError extends ResponseHandlerBase
      */
     private function getResponseId(ResponseInterface $response): string
     {
-        $header = $response->getHeader(self::HEADER_BUNQ_CLIENT_RESPONSE_ID_UPPER_CASED);
-
-        if (empty($header)) {
-            $header = $response->getHeader(self::HEADER_BUNQ_CLIENT_RESPONSE_ID_UPPER_CASED);
-        }
+        $header = $response->getHeader(self::HEADER_BUNQ_CLIENT_RESPONSE_ID_LOWER_CASED);
 
         if (empty($header)) {
             return self::ERROR_COULD_NOT_DETERMINE_RESPONSE_ID_HEADER;
