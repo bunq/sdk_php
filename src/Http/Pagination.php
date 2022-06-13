@@ -2,7 +2,7 @@
 namespace bunq\Http;
 
 use bunq\Exception\BunqException;
-use function GuzzleHttp\Psr7\parse_query;
+use GuzzleHttp\Psr7\Query;
 
 /**
  */
@@ -123,7 +123,7 @@ class Pagination
 
         if (!is_null($url)) {
             $urlQuery = parse_url($url, PHP_URL_QUERY);
-            $parameters = parse_query($urlQuery);
+            $parameters = Query::parse($urlQuery);
             $paginationBody[$idField] = $parameters[$responseParam];
 
             if (isset($parameters[self::PARAM_COUNT]) && !isset($paginationBody[self::PARAM_COUNT])) {
