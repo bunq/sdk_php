@@ -45,8 +45,6 @@ class UserPerson extends BunqModel
     const FIELD_DOCUMENT_FRONT_ATTACHMENT_ID = 'document_front_attachment_id';
     const FIELD_DOCUMENT_BACK_ATTACHMENT_ID = 'document_back_attachment_id';
     const FIELD_DATE_OF_BIRTH = 'date_of_birth';
-    const FIELD_PLACE_OF_BIRTH = 'place_of_birth';
-    const FIELD_COUNTRY_OF_BIRTH = 'country_of_birth';
     const FIELD_NATIONALITY = 'nationality';
     const FIELD_LANGUAGE = 'language';
     const FIELD_REGION = 'region';
@@ -376,21 +374,6 @@ class UserPerson extends BunqModel
     protected $dateOfBirthFieldForRequest;
 
     /**
-     * The person's place of birth.
-     *
-     * @var string
-     */
-    protected $placeOfBirthFieldForRequest;
-
-    /**
-     * The person's country of birth. Formatted as a SO 3166-1 alpha-2 country
-     * code.
-     *
-     * @var string
-     */
-    protected $countryOfBirthFieldForRequest;
-
-    /**
      * The person's nationality. Formatted as a SO 3166-1 alpha-2 country code.
      *
      * @var string
@@ -477,9 +460,6 @@ class UserPerson extends BunqModel
      * picture/scan of the front side of the identification document.
      * @param string $dateOfBirth The person's date of birth. Accepts ISO8601
      * date formats.
-     * @param string $placeOfBirth The person's place of birth.
-     * @param string $countryOfBirth The person's country of birth. Formatted as
-     * a SO 3166-1 alpha-2 country code.
      * @param string $nationality The person's nationality. Formatted as a SO
      * 3166-1 alpha-2 country code.
      * @param string $language The person's preferred language. Formatted as a
@@ -512,7 +492,7 @@ class UserPerson extends BunqModel
      * @param string|null $displayName The person's legal name. Available legal
      * names can be listed via the 'user/{user_id}/legal-name' endpoint.
      */
-    public function __construct(Address  $addressMain, string  $avatarUuid, string  $documentType, string  $documentNumber, string  $documentCountryOfIssuance, int  $documentFrontAttachmentId, string  $dateOfBirth, string  $placeOfBirth, string  $countryOfBirth, string  $nationality, string  $language, string  $region, string  $gender, string  $status, string  $subStatus, Pointer  $legalGuardianAlias, int  $sessionTimeout, Amount  $dailyLimitWithoutConfirmationLogin, string  $firstName = null, string  $middleName = null, string  $lastName = null, string  $publicNickName = null, Address  $addressPostal = null, array  $taxResident = null, int  $documentBackAttachmentId = null, string  $displayName = null)
+    public function __construct(Address  $addressMain, string  $avatarUuid, string  $documentType, string  $documentNumber, string  $documentCountryOfIssuance, int  $documentFrontAttachmentId, string  $dateOfBirth, string  $nationality, string  $language, string  $region, string  $gender, string  $status, string  $subStatus, Pointer  $legalGuardianAlias, int  $sessionTimeout, Amount  $dailyLimitWithoutConfirmationLogin, string  $firstName = null, string  $middleName = null, string  $lastName = null, string  $publicNickName = null, Address  $addressPostal = null, array  $taxResident = null, int  $documentBackAttachmentId = null, string  $displayName = null)
     {
         $this->firstNameFieldForRequest = $firstName;
         $this->middleNameFieldForRequest = $middleName;
@@ -528,8 +508,6 @@ class UserPerson extends BunqModel
         $this->documentFrontAttachmentIdFieldForRequest = $documentFrontAttachmentId;
         $this->documentBackAttachmentIdFieldForRequest = $documentBackAttachmentId;
         $this->dateOfBirthFieldForRequest = $dateOfBirth;
-        $this->placeOfBirthFieldForRequest = $placeOfBirth;
-        $this->countryOfBirthFieldForRequest = $countryOfBirth;
         $this->nationalityFieldForRequest = $nationality;
         $this->languageFieldForRequest = $language;
         $this->regionFieldForRequest = $region;
@@ -592,9 +570,6 @@ class UserPerson extends BunqModel
      * picture/scan of the back side of the identification document.
      * @param string|null $dateOfBirth The person's date of birth. Accepts
      * ISO8601 date formats.
-     * @param string|null $placeOfBirth The person's place of birth.
-     * @param string|null $countryOfBirth The person's country of birth.
-     * Formatted as a SO 3166-1 alpha-2 country code.
      * @param string|null $nationality The person's nationality. Formatted as a
      * SO 3166-1 alpha-2 country code.
      * @param string|null $language The person's preferred language. Formatted
@@ -621,7 +596,7 @@ class UserPerson extends BunqModel
      *
      * @return BunqResponseInt
      */
-    public static function update(string  $firstName = null, string  $middleName = null, string  $lastName = null, string  $publicNickName = null, Address  $addressMain = null, Address  $addressPostal = null, string  $avatarUuid = null, array  $taxResident = null, string  $documentType = null, string  $documentNumber = null, string  $documentCountryOfIssuance = null, int  $documentFrontAttachmentId = null, int  $documentBackAttachmentId = null, string  $dateOfBirth = null, string  $placeOfBirth = null, string  $countryOfBirth = null, string  $nationality = null, string  $language = null, string  $region = null, string  $gender = null, string  $status = null, string  $subStatus = null, Pointer  $legalGuardianAlias = null, int  $sessionTimeout = null, Amount  $dailyLimitWithoutConfirmationLogin = null, string  $displayName = null, array $customHeaders = []): BunqResponseInt
+    public static function update(string  $firstName = null, string  $middleName = null, string  $lastName = null, string  $publicNickName = null, Address  $addressMain = null, Address  $addressPostal = null, string  $avatarUuid = null, array  $taxResident = null, string  $documentType = null, string  $documentNumber = null, string  $documentCountryOfIssuance = null, int  $documentFrontAttachmentId = null, int  $documentBackAttachmentId = null, string  $dateOfBirth = null, string  $nationality = null, string  $language = null, string  $region = null, string  $gender = null, string  $status = null, string  $subStatus = null, Pointer  $legalGuardianAlias = null, int  $sessionTimeout = null, Amount  $dailyLimitWithoutConfirmationLogin = null, string  $displayName = null, array $customHeaders = []): BunqResponseInt
     {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->put(
@@ -643,8 +618,6 @@ self::FIELD_DOCUMENT_COUNTRY_OF_ISSUANCE => $documentCountryOfIssuance,
 self::FIELD_DOCUMENT_FRONT_ATTACHMENT_ID => $documentFrontAttachmentId,
 self::FIELD_DOCUMENT_BACK_ATTACHMENT_ID => $documentBackAttachmentId,
 self::FIELD_DATE_OF_BIRTH => $dateOfBirth,
-self::FIELD_PLACE_OF_BIRTH => $placeOfBirth,
-self::FIELD_COUNTRY_OF_BIRTH => $countryOfBirth,
 self::FIELD_NATIONALITY => $nationality,
 self::FIELD_LANGUAGE => $language,
 self::FIELD_REGION => $region,
