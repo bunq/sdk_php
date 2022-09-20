@@ -17,6 +17,7 @@ class SchedulePaymentBatch extends BunqModel
     /**
      * Endpoint constants.
      */
+    const ENDPOINT_URL_READ = 'user/%s/monetary-account/%s/schedule-payment-batch/%s';
     const ENDPOINT_URL_CREATE = 'user/%s/monetary-account/%s/schedule-payment-batch';
     const ENDPOINT_URL_UPDATE = 'user/%s/monetary-account/%s/schedule-payment-batch/%s';
     const ENDPOINT_URL_DELETE = 'user/%s/monetary-account/%s/schedule-payment-batch/%s';
@@ -26,6 +27,11 @@ class SchedulePaymentBatch extends BunqModel
      */
     const FIELD_PAYMENTS = 'payments';
     const FIELD_SCHEDULE = 'schedule';
+
+    /**
+     * Object type.
+     */
+    const OBJECT_TYPE_GET = 'ScheduledPaymentBatch';
 
     /**
      * The payment details.
@@ -64,6 +70,30 @@ class SchedulePaymentBatch extends BunqModel
     {
         $this->paymentsFieldForRequest = $payments;
         $this->scheduleFieldForRequest = $schedule;
+    }
+
+    /**
+     * @param int $schedulePaymentBatchId
+     * @param int|null $monetaryAccountId
+     * @param string[] $customHeaders
+     *
+     * @return BunqResponseSchedulePaymentBatch
+     */
+    public static function get(int $schedulePaymentBatchId, int $monetaryAccountId = null, array $customHeaders = []): BunqResponseSchedulePaymentBatch
+    {
+        $apiClient = new ApiClient(static::getApiContext());
+        $responseRaw = $apiClient->get(
+            vsprintf(
+                self::ENDPOINT_URL_READ,
+                [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId), $schedulePaymentBatchId]
+            ),
+            [],
+            $customHeaders
+        );
+
+        return BunqResponseSchedulePaymentBatch::castFromBunqResponse(
+            static::fromJson($responseRaw, self::OBJECT_TYPE_GET)
+        );
     }
 
     /**
