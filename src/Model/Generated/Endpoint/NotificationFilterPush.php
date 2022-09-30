@@ -5,20 +5,20 @@ use bunq\Context\ApiContext;
 use bunq\Http\ApiClient;
 use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
-use bunq\Model\Generated\Object\NotificationFilterEmail;
+use bunq\Model\Generated\Object\NotificationFilterPush;
 
 /**
- * Manage the email notification filters for a user.
+ * Manage the push notification filters for a user.
  *
  * @generated
  */
-class NotificationFilterEmailUser extends BunqModel
+class NotificationFilterPush extends BunqModel
 {
     /**
      * Endpoint constants.
      */
-    const ENDPOINT_URL_CREATE = 'user/%s/notification-filter-email';
-    const ENDPOINT_URL_LISTING = 'user/%s/notification-filter-email';
+    const ENDPOINT_URL_CREATE = 'user/%s/notification-filter-push';
+    const ENDPOINT_URL_LISTING = 'user/%s/notification-filter-push';
 
     /**
      * Field constants.
@@ -28,28 +28,28 @@ class NotificationFilterEmailUser extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE_POST = 'NotificationFilterEmail';
-    const OBJECT_TYPE_GET = 'NotificationFilterEmail';
+    const OBJECT_TYPE_POST = 'NotificationFilterPush';
+    const OBJECT_TYPE_GET = 'NotificationFilterPush';
 
     /**
-     * The types of notifications that will result in a email notification for
+     * The types of notifications that will result in a push notification for
      * this user.
      *
-     * @var NotificationFilterEmail[]
+     * @var NotificationFilterPush[]
      */
     protected $notificationFilters;
 
     /**
-     * The types of notifications that will result in a email notification for
+     * The types of notifications that will result in a push notification for
      * this user.
      *
-     * @var NotificationFilterEmail[]|null
+     * @var NotificationFilterPush[]|null
      */
     protected $notificationFiltersFieldForRequest;
 
     /**
-     * @param NotificationFilterEmail[]|null $notificationFilters The types of
-     * notifications that will result in a email notification for this user.
+     * @param NotificationFilterPush[]|null $notificationFilters The types of
+     * notifications that will result in a push notification for this user.
      */
     public function __construct(array  $notificationFilters = null)
     {
@@ -57,13 +57,13 @@ class NotificationFilterEmailUser extends BunqModel
     }
 
     /**
-     * @param NotificationFilterEmail[]|null $notificationFilters The types of
-     * notifications that will result in a email notification for this user.
+     * @param NotificationFilterPush[]|null $notificationFilters The types of
+     * notifications that will result in a push notification for this user.
      * @param string[] $customHeaders
      *
-     * @return BunqResponseNotificationFilterEmailUser
+     * @return BunqResponseNotificationFilterPush
      */
-    public static function create(array  $notificationFilters = null, array $customHeaders = []): BunqResponseNotificationFilterEmailUser
+    public static function create(array  $notificationFilters = null, array $customHeaders = []): BunqResponseNotificationFilterPush
     {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->post(
@@ -75,7 +75,7 @@ class NotificationFilterEmailUser extends BunqModel
             $customHeaders
         );
 
-        return BunqResponseNotificationFilterEmailUser::castFromBunqResponse(
+        return BunqResponseNotificationFilterPush::castFromBunqResponse(
             static::fromJson($responseRaw, self::OBJECT_TYPE_POST)
         );
     }
@@ -87,9 +87,9 @@ class NotificationFilterEmailUser extends BunqModel
      * @param string[] $params
      * @param string[] $customHeaders
      *
-     * @return BunqResponseNotificationFilterEmailUserList
+     * @return BunqResponseNotificationFilterPushList
      */
-    public static function listing( array $params = [], array $customHeaders = []): BunqResponseNotificationFilterEmailUserList
+    public static function listing( array $params = [], array $customHeaders = []): BunqResponseNotificationFilterPushList
     {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
@@ -101,16 +101,16 @@ class NotificationFilterEmailUser extends BunqModel
             $customHeaders
         );
 
-        return BunqResponseNotificationFilterEmailUserList::castFromBunqResponse(
+        return BunqResponseNotificationFilterPushList::castFromBunqResponse(
             static::fromJsonList($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 
     /**
-     * The types of notifications that will result in a email notification for
+     * The types of notifications that will result in a push notification for
      * this user.
      *
-     * @return NotificationFilterEmail[]
+     * @return NotificationFilterPush[]
      */
     public function getNotificationFilters()
     {
@@ -121,7 +121,7 @@ class NotificationFilterEmailUser extends BunqModel
      * @deprecated User should not be able to set values via setters, use
      * constructor.
      *
-     * @param NotificationFilterEmail[] $notificationFilters
+     * @param NotificationFilterPush[] $notificationFilters
      */
     public function setNotificationFilters($notificationFilters)
     {
