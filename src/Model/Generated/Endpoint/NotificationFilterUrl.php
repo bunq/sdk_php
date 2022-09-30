@@ -12,7 +12,7 @@ use bunq\Model\Generated\Object\NotificationFilterUrl;
  *
  * @generated
  */
-class NotificationFilterUrlUser extends BunqModel
+class NotificationFilterUrl extends BunqModel
 {
     /**
      * Endpoint constants.
@@ -86,9 +86,9 @@ class NotificationFilterUrlUser extends BunqModel
      * @param string[] $params
      * @param string[] $customHeaders
      *
-     * @return BunqResponseNotificationFilterUrlUserList
+     * @return BunqResponseNotificationFilterUrlList
      */
-    public static function listing( array $params = [], array $customHeaders = []): BunqResponseNotificationFilterUrlUserList
+    public static function listing( array $params = [], array $customHeaders = []): BunqResponseNotificationFilterUrlList
     {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->get(
@@ -100,7 +100,7 @@ class NotificationFilterUrlUser extends BunqModel
             $customHeaders
         );
 
-        return BunqResponseNotificationFilterUrlUserList::castFromBunqResponse(
+        return BunqResponseNotificationFilterUrlList::castFromBunqResponse(
             static::fromJsonList($responseRaw, self::OBJECT_TYPE_GET)
         );
     }

@@ -5,10 +5,10 @@ use bunq\Http\BunqResponse;
 
 /**
  */
-class BunqResponseNotificationFilterUrlUserList extends BunqResponse
+class BunqResponseNotificationFilterPushList extends BunqResponse
 {
     /**
-     * @return NotificationFilterUrlUser[]
+     * @return NotificationFilterPush[]
      */
     public function getValue(): array
     {
