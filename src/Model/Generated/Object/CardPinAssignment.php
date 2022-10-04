@@ -30,6 +30,13 @@ class CardPinAssignment extends BunqModel
     protected $typeFieldForRequest;
 
     /**
+     * Routing type. Can be MANUAL or AUTOMATIC
+     *
+     * @var string|null
+     */
+    protected $routingTypeFieldForRequest;
+
+    /**
      * The 4 digit PIN to be assigned to this account.
      *
      * @var string|null
@@ -45,14 +52,16 @@ class CardPinAssignment extends BunqModel
 
     /**
      * @param string $type PIN type. Can be PRIMARY, SECONDARY or TERTIARY
+     * @param string|null $routingType Routing type. Can be MANUAL or AUTOMATIC
      * @param string|null $pinCode The 4 digit PIN to be assigned to this
      * account.
      * @param int|null $monetaryAccountId The ID of the monetary account to
      * assign to this pin for the card.
      */
-    public function __construct(string  $type, string  $pinCode = null, int  $monetaryAccountId = null)
+    public function __construct(string  $type, string  $routingType = null, string  $pinCode = null, int  $monetaryAccountId = null)
     {
         $this->typeFieldForRequest = $type;
+        $this->routingTypeFieldForRequest = $routingType;
         $this->pinCodeFieldForRequest = $pinCode;
         $this->monetaryAccountIdFieldForRequest = $monetaryAccountId;
     }
