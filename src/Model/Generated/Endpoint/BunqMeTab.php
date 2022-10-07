@@ -79,7 +79,7 @@ class BunqMeTab extends BunqModel
     protected $status;
 
     /**
-     * The type of the bunq.me Tab. Can be BUNQ_ME or SPLIT_RECEIPT.
+     * The type of the bunq.me Tab. Should be BUNQ_ME
      *
      * @var string
      */
@@ -384,7 +384,7 @@ self::FIELD_STATUS => $status],
     }
 
     /**
-     * The type of the bunq.me Tab. Can be BUNQ_ME or SPLIT_RECEIPT.
+     * The type of the bunq.me Tab. Should be BUNQ_ME
      *
      * @return string
      */
