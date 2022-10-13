@@ -54,6 +54,20 @@ class RelationUser extends BunqModel
     protected $status;
 
     /**
+     * The account status of a user
+     *
+     * @var string
+     */
+    protected $userStatus;
+
+    /**
+     * The account status of a user
+     *
+     * @var string
+     */
+    protected $counterUserStatus;
+
+    /**
      * The user's ID.
      *
      * @return string
@@ -180,6 +194,48 @@ class RelationUser extends BunqModel
     }
 
     /**
+     * The account status of a user
+     *
+     * @return string
+     */
+    public function getUserStatus()
+    {
+        return $this->userStatus;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param string $userStatus
+     */
+    public function setUserStatus($userStatus)
+    {
+        $this->userStatus = $userStatus;
+    }
+
+    /**
+     * The account status of a user
+     *
+     * @return string
+     */
+    public function getCounterUserStatus()
+    {
+        return $this->counterUserStatus;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param string $counterUserStatus
+     */
+    public function setCounterUserStatus($counterUserStatus)
+    {
+        $this->counterUserStatus = $counterUserStatus;
+    }
+
+    /**
      * @return bool
      */
     public function isAllFieldNull()
@@ -205,6 +261,14 @@ class RelationUser extends BunqModel
         }
 
         if (!is_null($this->status)) {
+            return false;
+        }
+
+        if (!is_null($this->userStatus)) {
+            return false;
+        }
+
+        if (!is_null($this->counterUserStatus)) {
             return false;
         }
 
