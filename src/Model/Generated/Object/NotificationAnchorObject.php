@@ -23,8 +23,6 @@ use bunq\Model\Generated\Endpoint\ScheduleInstance;
 use bunq\Model\Generated\Endpoint\SchedulePayment;
 use bunq\Model\Generated\Endpoint\ShareInviteMonetaryAccountInquiry;
 use bunq\Model\Generated\Endpoint\ShareInviteMonetaryAccountResponse;
-use bunq\Model\Generated\Endpoint\TabResultInquiry;
-use bunq\Model\Generated\Endpoint\TabResultResponse;
 use bunq\Model\Generated\Endpoint\User;
 
 /**
@@ -131,16 +129,6 @@ class NotificationAnchorObject extends BunqModel implements AnchorObjectInterfac
      * @var ScheduleInstance
      */
     protected $scheduledInstance;
-
-    /**
-     * @var TabResultInquiry
-     */
-    protected $tabResultInquiry;
-
-    /**
-     * @var TabResultResponse
-     */
-    protected $tabResultResponse;
 
     /**
      * @var User
@@ -509,44 +497,6 @@ class NotificationAnchorObject extends BunqModel implements AnchorObjectInterfac
     }
 
     /**
-     * @return TabResultInquiry
-     */
-    public function getTabResultInquiry()
-    {
-        return $this->tabResultInquiry;
-    }
-
-    /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
-     * @param TabResultInquiry $tabResultInquiry
-     */
-    public function setTabResultInquiry($tabResultInquiry)
-    {
-        $this->tabResultInquiry = $tabResultInquiry;
-    }
-
-    /**
-     * @return TabResultResponse
-     */
-    public function getTabResultResponse()
-    {
-        return $this->tabResultResponse;
-    }
-
-    /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
-     * @param TabResultResponse $tabResultResponse
-     */
-    public function setTabResultResponse($tabResultResponse)
-    {
-        $this->tabResultResponse = $tabResultResponse;
-    }
-
-    /**
      * @return User
      */
     public function getUser()
@@ -647,14 +597,6 @@ class NotificationAnchorObject extends BunqModel implements AnchorObjectInterfac
             return $this->scheduledInstance;
         }
 
-        if (!is_null($this->tabResultInquiry)) {
-            return $this->tabResultInquiry;
-        }
-
-        if (!is_null($this->tabResultResponse)) {
-            return $this->tabResultResponse;
-        }
-
         if (!is_null($this->user)) {
             return $this->user;
         }
@@ -740,14 +682,6 @@ class NotificationAnchorObject extends BunqModel implements AnchorObjectInterfac
         }
 
         if (!is_null($this->scheduledInstance)) {
-            return false;
-        }
-
-        if (!is_null($this->tabResultInquiry)) {
-            return false;
-        }
-
-        if (!is_null($this->tabResultResponse)) {
             return false;
         }
 
