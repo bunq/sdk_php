@@ -11,7 +11,6 @@ use bunq\Model\Generated\Endpoint\Payment;
 use bunq\Model\Generated\Endpoint\PaymentBatch;
 use bunq\Model\Generated\Endpoint\RequestResponse;
 use bunq\Model\Generated\Endpoint\ScheduleInstance;
-use bunq\Model\Generated\Endpoint\TabResultResponse;
 use bunq\Model\Generated\Endpoint\TransferwiseTransfer;
 use bunq\Model\Generated\Endpoint\WhitelistResult;
 
@@ -59,11 +58,6 @@ class RequestReferenceSplitTheBillAnchorObject extends BunqModel implements Anch
      * @var ScheduleInstance|null
      */
     protected $scheduleInstance;
-
-    /**
-     * @var TabResultResponse|null
-     */
-    protected $tabResultResponse;
 
     /**
      * @var WhitelistResult|null
@@ -209,25 +203,6 @@ class RequestReferenceSplitTheBillAnchorObject extends BunqModel implements Anch
     }
 
     /**
-     * @return TabResultResponse
-     */
-    public function getTabResultResponse()
-    {
-        return $this->tabResultResponse;
-    }
-
-    /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
-     * @param TabResultResponse $tabResultResponse
-     */
-    public function setTabResultResponse($tabResultResponse)
-    {
-        $this->tabResultResponse = $tabResultResponse;
-    }
-
-    /**
      * @return WhitelistResult
      */
     public function getWhitelistResult()
@@ -299,10 +274,6 @@ class RequestReferenceSplitTheBillAnchorObject extends BunqModel implements Anch
             return $this->scheduleInstance;
         }
 
-        if (!is_null($this->tabResultResponse)) {
-            return $this->tabResultResponse;
-        }
-
         if (!is_null($this->whitelistResult)) {
             return $this->whitelistResult;
         }
@@ -344,10 +315,6 @@ class RequestReferenceSplitTheBillAnchorObject extends BunqModel implements Anch
         }
 
         if (!is_null($this->scheduleInstance)) {
-            return false;
-        }
-
-        if (!is_null($this->tabResultResponse)) {
             return false;
         }
 

@@ -29,8 +29,6 @@ use bunq\Model\Generated\Endpoint\ShareInviteBankInquiryBatch;
 use bunq\Model\Generated\Endpoint\ShareInviteMonetaryAccountInquiry;
 use bunq\Model\Generated\Endpoint\ShareInviteMonetaryAccountResponse;
 use bunq\Model\Generated\Endpoint\SofortMerchantTransaction;
-use bunq\Model\Generated\Endpoint\TabResultInquiry;
-use bunq\Model\Generated\Endpoint\TabResultResponse;
 use bunq\Model\Generated\Endpoint\TransferwiseTransfer;
 
 /**
@@ -167,16 +165,6 @@ class EventObject extends BunqModel implements AnchorObjectInterface
      * @var SofortMerchantTransaction
      */
     protected $sofortMerchantTransaction;
-
-    /**
-     * @var TabResultInquiry
-     */
-    protected $tabResultInquiry;
-
-    /**
-     * @var TabResultResponse
-     */
-    protected $tabResultResponse;
 
     /**
      * @var TransferwiseTransfer
@@ -660,44 +648,6 @@ class EventObject extends BunqModel implements AnchorObjectInterface
     }
 
     /**
-     * @return TabResultInquiry
-     */
-    public function getTabResultInquiry()
-    {
-        return $this->tabResultInquiry;
-    }
-
-    /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
-     * @param TabResultInquiry $tabResultInquiry
-     */
-    public function setTabResultInquiry($tabResultInquiry)
-    {
-        $this->tabResultInquiry = $tabResultInquiry;
-    }
-
-    /**
-     * @return TabResultResponse
-     */
-    public function getTabResultResponse()
-    {
-        return $this->tabResultResponse;
-    }
-
-    /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
-     * @param TabResultResponse $tabResultResponse
-     */
-    public function setTabResultResponse($tabResultResponse)
-    {
-        $this->tabResultResponse = $tabResultResponse;
-    }
-
-    /**
      * @return TransferwiseTransfer
      */
     public function getTransferwisePayment()
@@ -822,14 +772,6 @@ class EventObject extends BunqModel implements AnchorObjectInterface
             return $this->sofortMerchantTransaction;
         }
 
-        if (!is_null($this->tabResultInquiry)) {
-            return $this->tabResultInquiry;
-        }
-
-        if (!is_null($this->tabResultResponse)) {
-            return $this->tabResultResponse;
-        }
-
         if (!is_null($this->transferwisePayment)) {
             return $this->transferwisePayment;
         }
@@ -939,14 +881,6 @@ class EventObject extends BunqModel implements AnchorObjectInterface
         }
 
         if (!is_null($this->sofortMerchantTransaction)) {
-            return false;
-        }
-
-        if (!is_null($this->tabResultInquiry)) {
-            return false;
-        }
-
-        if (!is_null($this->tabResultResponse)) {
             return false;
         }
 
