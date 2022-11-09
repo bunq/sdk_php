@@ -23,13 +23,6 @@ class CardCountryPermission extends BunqModel
     protected $country;
 
     /**
-     * Expiry time of this rule.
-     *
-     * @var string
-     */
-    protected $expiryTime;
-
-    /**
      * The country to allow transactions in (e.g. NL, DE).
      *
      * @var string
@@ -97,27 +90,6 @@ class CardCountryPermission extends BunqModel
     }
 
     /**
-     * Expiry time of this rule.
-     *
-     * @return string
-     */
-    public function getExpiryTime()
-    {
-        return $this->expiryTime;
-    }
-
-    /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
-     * @param string $expiryTime
-     */
-    public function setExpiryTime($expiryTime)
-    {
-        $this->expiryTime = $expiryTime;
-    }
-
-    /**
      * @return bool
      */
     public function isAllFieldNull()
@@ -127,10 +99,6 @@ class CardCountryPermission extends BunqModel
         }
 
         if (!is_null($this->country)) {
-            return false;
-        }
-
-        if (!is_null($this->expiryTime)) {
             return false;
         }
 
