@@ -17,9 +17,17 @@ class RegistryMembership extends BunqModel
     /**
      * Field constants.
      */
+    const FIELD_UUID = 'uuid';
     const FIELD_ALIAS = 'alias';
     const FIELD_STATUS = 'status';
     const FIELD_AUTO_ADD_CARD_TRANSACTION = 'auto_add_card_transaction';
+
+    /**
+     * The UUID of the membership.
+     *
+     * @var string
+     */
+    protected $uuid;
 
     /**
      * The LabelMonetaryAccount of the user who belongs to this
@@ -87,6 +95,15 @@ class RegistryMembership extends BunqModel
     protected $invitor;
 
     /**
+     * The UUID of the membership. May be used as an alternative to the alias
+     * field to identify specific memberships, as the alias may be updated
+     * server-side, whereas the UUID will remain consistent.
+     *
+     * @var string|null
+     */
+    protected $uuidFieldForRequest;
+
+    /**
      * The Alias of the party we are inviting to the Registry.
      *
      * @var Pointer
@@ -111,15 +128,41 @@ class RegistryMembership extends BunqModel
     /**
      * @param Pointer $alias The Alias of the party we are inviting to the
      * Registry.
+     * @param string|null $uuid The UUID of the membership. May be used as an
+     * alternative to the alias field to identify specific memberships, as the
+     * alias may be updated server-side, whereas the UUID will remain
+     * consistent.
      * @param string|null $status The status of the RegistryMembership.
      * @param string|null $autoAddCardTransaction The setting for for adding
      * automatically card transactions to the registry.
      */
-    public function __construct(Pointer  $alias, string  $status = null, string  $autoAddCardTransaction = null)
+    public function __construct(Pointer  $alias, string  $uuid = null, string  $status = null, string  $autoAddCardTransaction = null)
     {
+        $this->uuidFieldForRequest = $uuid;
         $this->aliasFieldForRequest = $alias;
         $this->statusFieldForRequest = $status;
         $this->autoAddCardTransactionFieldForRequest = $autoAddCardTransaction;
+    }
+
+    /**
+     * The UUID of the membership.
+     *
+     * @return string
+     */
+    public function getUuid()
+    {
+        return $this->uuid;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param string $uuid
+     */
+    public function setUuid($uuid)
+    {
+        $this->uuid = $uuid;
     }
 
     /**
@@ -318,6 +361,10 @@ class RegistryMembership extends BunqModel
      */
     public function isAllFieldNull()
     {
+        if (!is_null($this->uuid)) {
+            return false;
+        }
+
         if (!is_null($this->alias)) {
             return false;
         }
