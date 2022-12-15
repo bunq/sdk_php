@@ -38,7 +38,7 @@ class MasterCardIdentityCheckChallengeRequestUser extends BunqModel
     protected $amount;
 
     /**
-     * When the secure code expires.
+     * When the identity check expires.
      *
      * @var string
      */
@@ -153,7 +153,7 @@ class MasterCardIdentityCheckChallengeRequestUser extends BunqModel
     }
 
     /**
-     * When the secure code expires.
+     * When the identity check expires.
      *
      * @return string
      */
