@@ -25,7 +25,6 @@ use bunq\Model\Generated\Endpoint\RewardSender;
 use bunq\Model\Generated\Endpoint\ScheduleInstance;
 use bunq\Model\Generated\Endpoint\SchedulePayment;
 use bunq\Model\Generated\Endpoint\SchedulePaymentBatch;
-use bunq\Model\Generated\Endpoint\ShareInviteBankInquiryBatch;
 use bunq\Model\Generated\Endpoint\ShareInviteMonetaryAccountInquiry;
 use bunq\Model\Generated\Endpoint\ShareInviteMonetaryAccountResponse;
 use bunq\Model\Generated\Endpoint\SofortMerchantTransaction;
@@ -145,11 +144,6 @@ class EventObject extends BunqModel implements AnchorObjectInterface
      * @var RewardSender
      */
     protected $rewardSender;
-
-    /**
-     * @var ShareInviteBankInquiryBatch
-     */
-    protected $shareInviteBankInquiryBatch;
 
     /**
      * @var ShareInviteMonetaryAccountInquiry
@@ -572,25 +566,6 @@ class EventObject extends BunqModel implements AnchorObjectInterface
     }
 
     /**
-     * @return ShareInviteBankInquiryBatch
-     */
-    public function getShareInviteBankInquiryBatch()
-    {
-        return $this->shareInviteBankInquiryBatch;
-    }
-
-    /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
-     * @param ShareInviteBankInquiryBatch $shareInviteBankInquiryBatch
-     */
-    public function setShareInviteBankInquiryBatch($shareInviteBankInquiryBatch)
-    {
-        $this->shareInviteBankInquiryBatch = $shareInviteBankInquiryBatch;
-    }
-
-    /**
      * @return ShareInviteMonetaryAccountInquiry
      */
     public function getShareInviteBankInquiry()
@@ -756,10 +731,6 @@ class EventObject extends BunqModel implements AnchorObjectInterface
             return $this->rewardSender;
         }
 
-        if (!is_null($this->shareInviteBankInquiryBatch)) {
-            return $this->shareInviteBankInquiryBatch;
-        }
-
         if (!is_null($this->shareInviteBankInquiry)) {
             return $this->shareInviteBankInquiry;
         }
@@ -865,10 +836,6 @@ class EventObject extends BunqModel implements AnchorObjectInterface
         }
 
         if (!is_null($this->rewardSender)) {
-            return false;
-        }
-
-        if (!is_null($this->shareInviteBankInquiryBatch)) {
             return false;
         }
 

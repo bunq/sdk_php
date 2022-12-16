@@ -49,13 +49,6 @@ class ShareDetailPayment extends BunqModel
     protected $viewNewEvents;
 
     /**
-     * The budget restriction.
-     *
-     * @var BudgetRestriction
-     */
-    protected $budget;
-
-    /**
      * If set to true, the invited user will be able to make payments from the
      * shared account.
      *
@@ -96,13 +89,6 @@ class ShareDetailPayment extends BunqModel
     protected $viewNewEventsFieldForRequest;
 
     /**
-     * The budget restriction.
-     *
-     * @var BudgetRestriction|null
-     */
-    protected $budgetFieldForRequest;
-
-    /**
      * @param bool $makePayments If set to true, the invited user will be able
      * to make payments from the shared account.
      * @param bool $viewBalance If set to true, the invited user will be able to
@@ -113,16 +99,14 @@ class ShareDetailPayment extends BunqModel
      * to view events starting from the time the share became active.
      * @param bool|null $makeDraftPayments If set to true, the invited user will
      * be able to make draft payments from the shared account.
-     * @param BudgetRestriction|null $budget The budget restriction.
      */
-    public function __construct(bool  $makePayments, bool  $viewBalance, bool  $viewOldEvents, bool  $viewNewEvents, bool  $makeDraftPayments = null, BudgetRestriction  $budget = null)
+    public function __construct(bool  $makePayments, bool  $viewBalance, bool  $viewOldEvents, bool  $viewNewEvents, bool  $makeDraftPayments = null)
     {
         $this->makePaymentsFieldForRequest = $makePayments;
         $this->makeDraftPaymentsFieldForRequest = $makeDraftPayments;
         $this->viewBalanceFieldForRequest = $viewBalance;
         $this->viewOldEventsFieldForRequest = $viewOldEvents;
         $this->viewNewEventsFieldForRequest = $viewNewEvents;
-        $this->budgetFieldForRequest = $budget;
     }
 
     /**
@@ -236,27 +220,6 @@ class ShareDetailPayment extends BunqModel
     }
 
     /**
-     * The budget restriction.
-     *
-     * @return BudgetRestriction
-     */
-    public function getBudget()
-    {
-        return $this->budget;
-    }
-
-    /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
-     * @param BudgetRestriction $budget
-     */
-    public function setBudget($budget)
-    {
-        $this->budget = $budget;
-    }
-
-    /**
      * @return bool
      */
     public function isAllFieldNull()
@@ -278,10 +241,6 @@ class ShareDetailPayment extends BunqModel
         }
 
         if (!is_null($this->viewNewEvents)) {
-            return false;
-        }
-
-        if (!is_null($this->budget)) {
             return false;
         }
 
