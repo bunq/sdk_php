@@ -33,6 +33,7 @@ class ShareInviteMonetaryAccountInquiry extends BunqModel
      * Field constants.
      */
     const FIELD_COUNTER_USER_ALIAS = 'counter_user_alias';
+    const FIELD_ACCESS_TYPE = 'access_type';
     const FIELD_DRAFT_SHARE_INVITE_BANK_ID = 'draft_share_invite_bank_id';
     const FIELD_SHARE_DETAIL = 'share_detail';
     const FIELD_STATUS = 'status';
@@ -82,28 +83,18 @@ class ShareInviteMonetaryAccountInquiry extends BunqModel
     protected $monetaryAccountId;
 
     /**
-     * The id of the draft share invite bank.
-     *
-     * @var int
-     */
-    protected $draftShareInviteBankId;
-
-    /**
-     * The share details. Only one of these objects is returned.
-     *
-     * @var ShareDetail
-     */
-    protected $shareDetail;
-
-    /**
-     * The status of the share. Can be PENDING, REVOKED (the user deletes the
-     * share inquiry before it's accepted), ACCEPTED, CANCELLED (the user
-     * deletes an active share) or CANCELLATION_PENDING, CANCELLATION_ACCEPTED,
-     * CANCELLATION_REJECTED (for canceling mutual connects)
+     * The status of the share. Can be ACTIVE, REVOKED, REJECTED.
      *
      * @var string
      */
     protected $status;
+
+    /**
+     * Type of access that is in place.
+     *
+     * @var string
+     */
+    protected $accessType;
 
     /**
      * The relationship: COMPANY_DIRECTOR, COMPANY_EMPLOYEE, etc
@@ -111,27 +102,6 @@ class ShareInviteMonetaryAccountInquiry extends BunqModel
      * @var string
      */
     protected $relationship;
-
-    /**
-     * The share type, either STANDARD or MUTUAL.
-     *
-     * @var string
-     */
-    protected $shareType;
-
-    /**
-     * The start date of this share.
-     *
-     * @var string
-     */
-    protected $startDate;
-
-    /**
-     * The expiration date of this share.
-     *
-     * @var string
-     */
-    protected $endDate;
 
     /**
      * The id of the newly created share invite.
@@ -148,26 +118,33 @@ class ShareInviteMonetaryAccountInquiry extends BunqModel
     protected $counterUserAliasFieldForRequest;
 
     /**
-     * The id of the draft share invite bank.
+     * Type of access that is wanted, one of VIEW_BALANCE, VIEW_TRANSACTION,
+     * DRAFT_PAYMENT or FULL_TRANSIENT
+     *
+     * @var string|null
+     */
+    protected $accessTypeFieldForRequest;
+
+    /**
+     * DEPRECATED: USE `access_type` INSTEAD | The id of the draft share invite
+     * bank.
      *
      * @var int|null
      */
     protected $draftShareInviteBankIdFieldForRequest;
 
     /**
-     * The share details. Only one of these objects may be passed.
+     * DEPRECATED: USE `access_type` INSTEAD | The share details. Only one of
+     * these objects may be passed.
      *
-     * @var ShareDetail
+     * @var ShareDetail|null
      */
     protected $shareDetailFieldForRequest;
 
     /**
-     * The status of the share. Can be PENDING, REVOKED (the user deletes the
-     * share inquiry before it's accepted), ACCEPTED, CANCELLED (the user
-     * deletes an active share) or CANCELLATION_PENDING, CANCELLATION_ACCEPTED,
-     * CANCELLATION_REJECTED (for canceling mutual connects).
+     * The status of the share. Can be ACTIVE, REVOKED, REJECTED.
      *
-     * @var string
+     * @var string|null
      */
     protected $statusFieldForRequest;
 
@@ -179,21 +156,23 @@ class ShareInviteMonetaryAccountInquiry extends BunqModel
     protected $relationshipFieldForRequest;
 
     /**
-     * The share type, either STANDARD or MUTUAL.
+     * DEPRECATED: USE `access_type` INSTEAD | The share type, either STANDARD
+     * or MUTUAL.
      *
      * @var string|null
      */
     protected $shareTypeFieldForRequest;
 
     /**
-     * The start date of this share.
+     * DEPRECATED: USE `access_type` INSTEAD | The start date of this share.
      *
      * @var string|null
      */
     protected $startDateFieldForRequest;
 
     /**
-     * The expiration date of this share.
+     * DEPRECATED: USE `access_type` INSTEAD | The expiration date of this
+     * share.
      *
      * @var string|null
      */
@@ -201,24 +180,27 @@ class ShareInviteMonetaryAccountInquiry extends BunqModel
 
     /**
      * @param Pointer $counterUserAlias The pointer of the user to share with.
-     * @param ShareDetail $shareDetail The share details. Only one of these
-     * objects may be passed.
-     * @param string $status The status of the share. Can be PENDING, REVOKED
-     * (the user deletes the share inquiry before it's accepted), ACCEPTED,
-     * CANCELLED (the user deletes an active share) or CANCELLATION_PENDING,
-     * CANCELLATION_ACCEPTED, CANCELLATION_REJECTED (for canceling mutual
-     * connects).
-     * @param int|null $draftShareInviteBankId The id of the draft share invite
-     * bank.
+     * @param string|null $accessType Type of access that is wanted, one of
+     * VIEW_BALANCE, VIEW_TRANSACTION, DRAFT_PAYMENT or FULL_TRANSIENT
+     * @param int|null $draftShareInviteBankId DEPRECATED: USE `access_type`
+     * INSTEAD | The id of the draft share invite bank.
+     * @param ShareDetail|null $shareDetail DEPRECATED: USE `access_type`
+     * INSTEAD | The share details. Only one of these objects may be passed.
+     * @param string|null $status The status of the share. Can be ACTIVE,
+     * REVOKED, REJECTED.
      * @param string|null $relationship The relationship: COMPANY_DIRECTOR,
      * COMPANY_EMPLOYEE, etc
-     * @param string|null $shareType The share type, either STANDARD or MUTUAL.
-     * @param string|null $startDate The start date of this share.
-     * @param string|null $endDate The expiration date of this share.
+     * @param string|null $shareType DEPRECATED: USE `access_type` INSTEAD | The
+     * share type, either STANDARD or MUTUAL.
+     * @param string|null $startDate DEPRECATED: USE `access_type` INSTEAD | The
+     * start date of this share.
+     * @param string|null $endDate DEPRECATED: USE `access_type` INSTEAD | The
+     * expiration date of this share.
      */
-    public function __construct(Pointer  $counterUserAlias, ShareDetail  $shareDetail, string  $status, int  $draftShareInviteBankId = null, string  $relationship = null, string  $shareType = null, string  $startDate = null, string  $endDate = null)
+    public function __construct(Pointer  $counterUserAlias, string  $accessType = null, int  $draftShareInviteBankId = null, ShareDetail  $shareDetail = null, string  $status = null, string  $relationship = null, string  $shareType = null, string  $startDate = null, string  $endDate = null)
     {
         $this->counterUserAliasFieldForRequest = $counterUserAlias;
+        $this->accessTypeFieldForRequest = $accessType;
         $this->draftShareInviteBankIdFieldForRequest = $draftShareInviteBankId;
         $this->shareDetailFieldForRequest = $shareDetail;
         $this->statusFieldForRequest = $status;
@@ -234,26 +216,28 @@ class ShareInviteMonetaryAccountInquiry extends BunqModel
      * bunq user will have on it.
      *
      * @param Pointer $counterUserAlias The pointer of the user to share with.
-     * @param ShareDetail $shareDetail The share details. Only one of these
-     * objects may be passed.
-     * @param string $status The status of the share. Can be PENDING, REVOKED
-     * (the user deletes the share inquiry before it's accepted), ACCEPTED,
-     * CANCELLED (the user deletes an active share) or CANCELLATION_PENDING,
-     * CANCELLATION_ACCEPTED, CANCELLATION_REJECTED (for canceling mutual
-     * connects).
      * @param int|null $monetaryAccountId
-     * @param int|null $draftShareInviteBankId The id of the draft share invite
-     * bank.
+     * @param string|null $accessType Type of access that is wanted, one of
+     * VIEW_BALANCE, VIEW_TRANSACTION, DRAFT_PAYMENT or FULL_TRANSIENT
+     * @param int|null $draftShareInviteBankId DEPRECATED: USE `access_type`
+     * INSTEAD | The id of the draft share invite bank.
+     * @param ShareDetail|null $shareDetail DEPRECATED: USE `access_type`
+     * INSTEAD | The share details. Only one of these objects may be passed.
+     * @param string|null $status The status of the share. Can be ACTIVE,
+     * REVOKED, REJECTED.
      * @param string|null $relationship The relationship: COMPANY_DIRECTOR,
      * COMPANY_EMPLOYEE, etc
-     * @param string|null $shareType The share type, either STANDARD or MUTUAL.
-     * @param string|null $startDate The start date of this share.
-     * @param string|null $endDate The expiration date of this share.
+     * @param string|null $shareType DEPRECATED: USE `access_type` INSTEAD | The
+     * share type, either STANDARD or MUTUAL.
+     * @param string|null $startDate DEPRECATED: USE `access_type` INSTEAD | The
+     * start date of this share.
+     * @param string|null $endDate DEPRECATED: USE `access_type` INSTEAD | The
+     * expiration date of this share.
      * @param string[] $customHeaders
      *
      * @return BunqResponseInt
      */
-    public static function create(Pointer  $counterUserAlias, ShareDetail  $shareDetail, string  $status, int $monetaryAccountId = null, int  $draftShareInviteBankId = null, string  $relationship = null, string  $shareType = null, string  $startDate = null, string  $endDate = null, array $customHeaders = []): BunqResponseInt
+    public static function create(Pointer  $counterUserAlias, int $monetaryAccountId = null, string  $accessType = null, int  $draftShareInviteBankId = null, ShareDetail  $shareDetail = null, string  $status = null, string  $relationship = null, string  $shareType = null, string  $startDate = null, string  $endDate = null, array $customHeaders = []): BunqResponseInt
     {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->post(
@@ -262,6 +246,7 @@ class ShareInviteMonetaryAccountInquiry extends BunqModel
                 [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId)]
             ),
             [self::FIELD_COUNTER_USER_ALIAS => $counterUserAlias,
+self::FIELD_ACCESS_TYPE => $accessType,
 self::FIELD_DRAFT_SHARE_INVITE_BANK_ID => $draftShareInviteBankId,
 self::FIELD_SHARE_DETAIL => $shareDetail,
 self::FIELD_STATUS => $status,
@@ -311,20 +296,21 @@ self::FIELD_END_DATE => $endDate],
      *
      * @param int $shareInviteMonetaryAccountInquiryId
      * @param int|null $monetaryAccountId
-     * @param ShareDetail|null $shareDetail The share details. Only one of these
-     * objects may be passed.
-     * @param string|null $status The status of the share. Can be PENDING,
-     * REVOKED (the user deletes the share inquiry before it's accepted),
-     * ACCEPTED, CANCELLED (the user deletes an active share) or
-     * CANCELLATION_PENDING, CANCELLATION_ACCEPTED, CANCELLATION_REJECTED (for
-     * canceling mutual connects).
-     * @param string|null $startDate The start date of this share.
-     * @param string|null $endDate The expiration date of this share.
+     * @param string|null $accessType Type of access that is wanted, one of
+     * VIEW_BALANCE, VIEW_TRANSACTION, DRAFT_PAYMENT or FULL_TRANSIENT
+     * @param ShareDetail|null $shareDetail DEPRECATED: USE `access_type`
+     * INSTEAD | The share details. Only one of these objects may be passed.
+     * @param string|null $status The status of the share. Can be ACTIVE,
+     * REVOKED, REJECTED.
+     * @param string|null $startDate DEPRECATED: USE `access_type` INSTEAD | The
+     * start date of this share.
+     * @param string|null $endDate DEPRECATED: USE `access_type` INSTEAD | The
+     * expiration date of this share.
      * @param string[] $customHeaders
      *
      * @return BunqResponseInt
      */
-    public static function update(int $shareInviteMonetaryAccountInquiryId, int $monetaryAccountId = null, ShareDetail  $shareDetail = null, string  $status = null, string  $startDate = null, string  $endDate = null, array $customHeaders = []): BunqResponseInt
+    public static function update(int $shareInviteMonetaryAccountInquiryId, int $monetaryAccountId = null, string  $accessType = null, ShareDetail  $shareDetail = null, string  $status = null, string  $startDate = null, string  $endDate = null, array $customHeaders = []): BunqResponseInt
     {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->put(
@@ -332,7 +318,8 @@ self::FIELD_END_DATE => $endDate],
                 self::ENDPOINT_URL_UPDATE,
                 [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId), $shareInviteMonetaryAccountInquiryId]
             ),
-            [self::FIELD_SHARE_DETAIL => $shareDetail,
+            [self::FIELD_ACCESS_TYPE => $accessType,
+self::FIELD_SHARE_DETAIL => $shareDetail,
 self::FIELD_STATUS => $status,
 self::FIELD_START_DATE => $startDate,
 self::FIELD_END_DATE => $endDate],
@@ -481,52 +468,7 @@ self::FIELD_END_DATE => $endDate],
     }
 
     /**
-     * The id of the draft share invite bank.
-     *
-     * @return int
-     */
-    public function getDraftShareInviteBankId()
-    {
-        return $this->draftShareInviteBankId;
-    }
-
-    /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
-     * @param int $draftShareInviteBankId
-     */
-    public function setDraftShareInviteBankId($draftShareInviteBankId)
-    {
-        $this->draftShareInviteBankId = $draftShareInviteBankId;
-    }
-
-    /**
-     * The share details. Only one of these objects is returned.
-     *
-     * @return ShareDetail
-     */
-    public function getShareDetail()
-    {
-        return $this->shareDetail;
-    }
-
-    /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
-     * @param ShareDetail $shareDetail
-     */
-    public function setShareDetail($shareDetail)
-    {
-        $this->shareDetail = $shareDetail;
-    }
-
-    /**
-     * The status of the share. Can be PENDING, REVOKED (the user deletes the
-     * share inquiry before it's accepted), ACCEPTED, CANCELLED (the user
-     * deletes an active share) or CANCELLATION_PENDING, CANCELLATION_ACCEPTED,
-     * CANCELLATION_REJECTED (for canceling mutual connects)
+     * The status of the share. Can be ACTIVE, REVOKED, REJECTED.
      *
      * @return string
      */
@@ -544,6 +486,27 @@ self::FIELD_END_DATE => $endDate],
     public function setStatus($status)
     {
         $this->status = $status;
+    }
+
+    /**
+     * Type of access that is in place.
+     *
+     * @return string
+     */
+    public function getAccessType()
+    {
+        return $this->accessType;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param string $accessType
+     */
+    public function setAccessType($accessType)
+    {
+        $this->accessType = $accessType;
     }
 
     /**
@@ -565,69 +528,6 @@ self::FIELD_END_DATE => $endDate],
     public function setRelationship($relationship)
     {
         $this->relationship = $relationship;
-    }
-
-    /**
-     * The share type, either STANDARD or MUTUAL.
-     *
-     * @return string
-     */
-    public function getShareType()
-    {
-        return $this->shareType;
-    }
-
-    /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
-     * @param string $shareType
-     */
-    public function setShareType($shareType)
-    {
-        $this->shareType = $shareType;
-    }
-
-    /**
-     * The start date of this share.
-     *
-     * @return string
-     */
-    public function getStartDate()
-    {
-        return $this->startDate;
-    }
-
-    /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
-     * @param string $startDate
-     */
-    public function setStartDate($startDate)
-    {
-        $this->startDate = $startDate;
-    }
-
-    /**
-     * The expiration date of this share.
-     *
-     * @return string
-     */
-    public function getEndDate()
-    {
-        return $this->endDate;
-    }
-
-    /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
-     * @param string $endDate
-     */
-    public function setEndDate($endDate)
-    {
-        $this->endDate = $endDate;
     }
 
     /**
@@ -676,31 +576,15 @@ self::FIELD_END_DATE => $endDate],
             return false;
         }
 
-        if (!is_null($this->draftShareInviteBankId)) {
-            return false;
-        }
-
-        if (!is_null($this->shareDetail)) {
-            return false;
-        }
-
         if (!is_null($this->status)) {
             return false;
         }
 
+        if (!is_null($this->accessType)) {
+            return false;
+        }
+
         if (!is_null($this->relationship)) {
-            return false;
-        }
-
-        if (!is_null($this->shareType)) {
-            return false;
-        }
-
-        if (!is_null($this->startDate)) {
-            return false;
-        }
-
-        if (!is_null($this->endDate)) {
             return false;
         }
 
