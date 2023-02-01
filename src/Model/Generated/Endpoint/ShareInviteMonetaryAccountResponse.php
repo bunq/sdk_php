@@ -94,12 +94,17 @@ class ShareInviteMonetaryAccountResponse extends BunqModel
     protected $shareDetail;
 
     /**
-     * The status of the share. Can be PENDING, REVOKED (the user deletes the
-     * share inquiry before it's accepted), ACCEPTED, CANCELLED (the user
-     * deletes an active share) or CANCELLATION_PENDING, CANCELLATION_ACCEPTED,
-     * CANCELLATION_REJECTED (for canceling mutual connects)
+     * Type of access that is wanted, one of VIEW_BALANCE, VIEW_TRANSACTION,
+     * DRAFT_PAYMENT or FULL_TRANSIENT
      *
-     * @var string
+     * @var string|null
+     */
+    protected $accessType;
+
+    /**
+     * The status of the share. Can be ACTIVE, REVOKED, REJECTED.
+     *
+     * @var string|null
      */
     protected $status;
 
@@ -428,10 +433,29 @@ self::FIELD_CARD_ID => $cardId],
     }
 
     /**
-     * The status of the share. Can be PENDING, REVOKED (the user deletes the
-     * share inquiry before it's accepted), ACCEPTED, CANCELLED (the user
-     * deletes an active share) or CANCELLATION_PENDING, CANCELLATION_ACCEPTED,
-     * CANCELLATION_REJECTED (for canceling mutual connects)
+     * Type of access that is wanted, one of VIEW_BALANCE, VIEW_TRANSACTION,
+     * DRAFT_PAYMENT or FULL_TRANSIENT
+     *
+     * @return string
+     */
+    public function getAccessType()
+    {
+        return $this->accessType;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param string $accessType
+     */
+    public function setAccessType($accessType)
+    {
+        $this->accessType = $accessType;
+    }
+
+    /**
+     * The status of the share. Can be ACTIVE, REVOKED, REJECTED.
      *
      * @return string
      */
@@ -591,6 +615,10 @@ self::FIELD_CARD_ID => $cardId],
         }
 
         if (!is_null($this->shareDetail)) {
+            return false;
+        }
+
+        if (!is_null($this->accessType)) {
             return false;
         }
 
