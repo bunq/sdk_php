@@ -1,6 +1,9 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
+use bunq\Context\ApiContext;
+use bunq\Http\ApiClient;
+use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Object\Amount;
 use bunq\Model\Generated\Object\Avatar;
@@ -17,6 +20,12 @@ use bunq\Model\Generated\Object\Pointer;
 class MonetaryAccountExternal extends BunqModel
 {
     /**
+     * Endpoint constants.
+     */
+    const ENDPOINT_URL_READ = 'user/%s/monetary-account-external/%s';
+    const ENDPOINT_URL_LISTING = 'user/%s/monetary-account-external';
+
+    /**
      * Field constants.
      */
     const FIELD_CURRENCY = 'currency';
@@ -29,6 +38,11 @@ class MonetaryAccountExternal extends BunqModel
     const FIELD_REASON_DESCRIPTION = 'reason_description';
     const FIELD_DISPLAY_NAME = 'display_name';
     const FIELD_SETTING = 'setting';
+
+    /**
+     * Object type.
+     */
+    const OBJECT_TYPE_GET = 'MonetaryAccountExternal';
 
     /**
      * The id of the MonetaryAccountExternal.
@@ -313,6 +327,55 @@ class MonetaryAccountExternal extends BunqModel
         $this->reasonDescriptionFieldForRequest = $reasonDescription;
         $this->displayNameFieldForRequest = $displayName;
         $this->settingFieldForRequest = $setting;
+    }
+
+    /**
+     * @param int $monetaryAccountExternalId
+     * @param string[] $customHeaders
+     *
+     * @return BunqResponseMonetaryAccountExternal
+     */
+    public static function get(int $monetaryAccountExternalId, array $customHeaders = []): BunqResponseMonetaryAccountExternal
+    {
+        $apiClient = new ApiClient(static::getApiContext());
+        $responseRaw = $apiClient->get(
+            vsprintf(
+                self::ENDPOINT_URL_READ,
+                [static::determineUserId(), $monetaryAccountExternalId]
+            ),
+            [],
+            $customHeaders
+        );
+
+        return BunqResponseMonetaryAccountExternal::castFromBunqResponse(
+            static::fromJson($responseRaw, self::OBJECT_TYPE_GET)
+        );
+    }
+
+    /**
+     * This method is called "listing" because "list" is a restricted PHP word
+     * and cannot be used as constants, class names, function or method names.
+     *
+     * @param string[] $params
+     * @param string[] $customHeaders
+     *
+     * @return BunqResponseMonetaryAccountExternalList
+     */
+    public static function listing( array $params = [], array $customHeaders = []): BunqResponseMonetaryAccountExternalList
+    {
+        $apiClient = new ApiClient(static::getApiContext());
+        $responseRaw = $apiClient->get(
+            vsprintf(
+                self::ENDPOINT_URL_LISTING,
+                [static::determineUserId()]
+            ),
+            $params,
+            $customHeaders
+        );
+
+        return BunqResponseMonetaryAccountExternalList::castFromBunqResponse(
+            static::fromJsonList($responseRaw, self::OBJECT_TYPE_GET)
+        );
     }
 
     /**
