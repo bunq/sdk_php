@@ -56,6 +56,7 @@ class UserPerson extends BunqModel
     const FIELD_SESSION_TIMEOUT = 'session_timeout';
     const FIELD_DAILY_LIMIT_WITHOUT_CONFIRMATION_LOGIN = 'daily_limit_without_confirmation_login';
     const FIELD_DISPLAY_NAME = 'display_name';
+    const FIELD_SIGNUP_TRACK_TYPE = 'signup_track_type';
 
     /**
      * Object type.
@@ -456,6 +457,13 @@ class UserPerson extends BunqModel
     protected $displayNameFieldForRequest;
 
     /**
+     * The type of signup track the user is following.
+     *
+     * @var string|null
+     */
+    protected $signupTrackTypeFieldForRequest;
+
+    /**
      * @param string|null $subscriptionType The subscription type the user
      * should start on.
      * @param string|null $firstName The person's first name.
@@ -501,8 +509,10 @@ class UserPerson extends BunqModel
      * user can pay in the session without asking for credentials.
      * @param string|null $displayName The person's legal name. Available legal
      * names can be listed via the 'user/{user_id}/legal-name' endpoint.
+     * @param string|null $signupTrackType The type of signup track the user is
+     * following.
      */
-    public function __construct(string  $subscriptionType = null, string  $firstName = null, string  $middleName = null, string  $lastName = null, string  $publicNickName = null, Address  $addressMain = null, Address  $addressPostal = null, string  $avatarUuid = null, array  $taxResident = null, string  $documentType = null, string  $documentNumber = null, string  $documentCountryOfIssuance = null, int  $documentFrontAttachmentId = null, int  $documentBackAttachmentId = null, string  $dateOfBirth = null, string  $nationality = null, string  $language = null, string  $region = null, string  $gender = null, string  $status = null, string  $subStatus = null, Pointer  $legalGuardianAlias = null, int  $sessionTimeout = null, Amount  $dailyLimitWithoutConfirmationLogin = null, string  $displayName = null)
+    public function __construct(string  $subscriptionType = null, string  $firstName = null, string  $middleName = null, string  $lastName = null, string  $publicNickName = null, Address  $addressMain = null, Address  $addressPostal = null, string  $avatarUuid = null, array  $taxResident = null, string  $documentType = null, string  $documentNumber = null, string  $documentCountryOfIssuance = null, int  $documentFrontAttachmentId = null, int  $documentBackAttachmentId = null, string  $dateOfBirth = null, string  $nationality = null, string  $language = null, string  $region = null, string  $gender = null, string  $status = null, string  $subStatus = null, Pointer  $legalGuardianAlias = null, int  $sessionTimeout = null, Amount  $dailyLimitWithoutConfirmationLogin = null, string  $displayName = null, string  $signupTrackType = null)
     {
         $this->subscriptionTypeFieldForRequest = $subscriptionType;
         $this->firstNameFieldForRequest = $firstName;
@@ -529,6 +539,7 @@ class UserPerson extends BunqModel
         $this->sessionTimeoutFieldForRequest = $sessionTimeout;
         $this->dailyLimitWithoutConfirmationLoginFieldForRequest = $dailyLimitWithoutConfirmationLogin;
         $this->displayNameFieldForRequest = $displayName;
+        $this->signupTrackTypeFieldForRequest = $signupTrackType;
     }
 
     /**
