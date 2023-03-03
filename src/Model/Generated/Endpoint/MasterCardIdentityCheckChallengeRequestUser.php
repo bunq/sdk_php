@@ -67,6 +67,13 @@ class MasterCardIdentityCheckChallengeRequestUser extends BunqModel
     protected $counterpartyAlias;
 
     /**
+     * The ID of the latest event for the identity check.
+     *
+     * @var int
+     */
+    protected $eventId;
+
+    /**
      * The status of the identity check. Can be ACCEPTED_PENDING_RESPONSE or
      * REJECTED_PENDING_RESPONSE.
      *
@@ -238,6 +245,27 @@ class MasterCardIdentityCheckChallengeRequestUser extends BunqModel
     }
 
     /**
+     * The ID of the latest event for the identity check.
+     *
+     * @return int
+     */
+    public function getEventId()
+    {
+        return $this->eventId;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param int $eventId
+     */
+    public function setEventId($eventId)
+    {
+        $this->eventId = $eventId;
+    }
+
+    /**
      * @return bool
      */
     public function isAllFieldNull()
@@ -259,6 +287,10 @@ class MasterCardIdentityCheckChallengeRequestUser extends BunqModel
         }
 
         if (!is_null($this->counterpartyAlias)) {
+            return false;
+        }
+
+        if (!is_null($this->eventId)) {
             return false;
         }
 
