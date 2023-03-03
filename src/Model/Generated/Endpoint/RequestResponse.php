@@ -255,6 +255,13 @@ class RequestResponse extends BunqModel
     protected $requestReferenceSplitTheBill;
 
     /**
+     * The ID of the latest event for the request.
+     *
+     * @var int
+     */
+    protected $eventId;
+
+    /**
      * The Amount the user decides to pay.
      *
      * @var Amount|null
@@ -1001,6 +1008,27 @@ self::FIELD_ADDRESS_BILLING => $addressBilling],
     }
 
     /**
+     * The ID of the latest event for the request.
+     *
+     * @return int
+     */
+    public function getEventId()
+    {
+        return $this->eventId;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param int $eventId
+     */
+    public function setEventId($eventId)
+    {
+        $this->eventId = $eventId;
+    }
+
+    /**
      * @return bool
      */
     public function isAllFieldNull()
@@ -1114,6 +1142,10 @@ self::FIELD_ADDRESS_BILLING => $addressBilling],
         }
 
         if (!is_null($this->requestReferenceSplitTheBill)) {
+            return false;
+        }
+
+        if (!is_null($this->eventId)) {
             return false;
         }
 
