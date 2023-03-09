@@ -39,6 +39,20 @@ class Insight extends BunqModel
     protected $categoryTranslated;
 
     /**
+     * The color of the category.
+     *
+     * @var string
+     */
+    protected $categoryColor;
+
+    /**
+     * The icon of the category.
+     *
+     * @var string
+     */
+    protected $categoryIcon;
+
+    /**
      * The total amount of the transactions in the category.
      *
      * @var Amount
@@ -48,7 +62,7 @@ class Insight extends BunqModel
     /**
      * The number of the transactions in the category.
      *
-     * @var float
+     * @var int
      */
     protected $numberOfTransactions;
 
@@ -121,6 +135,48 @@ class Insight extends BunqModel
     }
 
     /**
+     * The color of the category.
+     *
+     * @return string
+     */
+    public function getCategoryColor()
+    {
+        return $this->categoryColor;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param string $categoryColor
+     */
+    public function setCategoryColor($categoryColor)
+    {
+        $this->categoryColor = $categoryColor;
+    }
+
+    /**
+     * The icon of the category.
+     *
+     * @return string
+     */
+    public function getCategoryIcon()
+    {
+        return $this->categoryIcon;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param string $categoryIcon
+     */
+    public function setCategoryIcon($categoryIcon)
+    {
+        $this->categoryIcon = $categoryIcon;
+    }
+
+    /**
      * The total amount of the transactions in the category.
      *
      * @return Amount
@@ -144,7 +200,7 @@ class Insight extends BunqModel
     /**
      * The number of the transactions in the category.
      *
-     * @return float
+     * @return int
      */
     public function getNumberOfTransactions()
     {
@@ -155,7 +211,7 @@ class Insight extends BunqModel
      * @deprecated User should not be able to set values via setters, use
      * constructor.
      *
-     * @param float $numberOfTransactions
+     * @param int $numberOfTransactions
      */
     public function setNumberOfTransactions($numberOfTransactions)
     {
@@ -172,6 +228,14 @@ class Insight extends BunqModel
         }
 
         if (!is_null($this->categoryTranslated)) {
+            return false;
+        }
+
+        if (!is_null($this->categoryColor)) {
+            return false;
+        }
+
+        if (!is_null($this->categoryIcon)) {
             return false;
         }
 
