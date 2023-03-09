@@ -263,6 +263,13 @@ class RequestResponse extends BunqModel
     protected $eventId;
 
     /**
+     * The ID of the monetary account this user prefers to pay the request from.
+     *
+     * @var int
+     */
+    protected $monetaryAccountPreferredId;
+
+    /**
      * The Amount the user decides to pay.
      *
      * @var Amount|null
@@ -1046,6 +1053,27 @@ self::FIELD_CURRENCY_CONVERSION_QUOTE_ID => $currencyConversionQuoteId],
     }
 
     /**
+     * The ID of the monetary account this user prefers to pay the request from.
+     *
+     * @return int
+     */
+    public function getMonetaryAccountPreferredId()
+    {
+        return $this->monetaryAccountPreferredId;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param int $monetaryAccountPreferredId
+     */
+    public function setMonetaryAccountPreferredId($monetaryAccountPreferredId)
+    {
+        $this->monetaryAccountPreferredId = $monetaryAccountPreferredId;
+    }
+
+    /**
      * @return bool
      */
     public function isAllFieldNull()
@@ -1163,6 +1191,10 @@ self::FIELD_CURRENCY_CONVERSION_QUOTE_ID => $currencyConversionQuoteId],
         }
 
         if (!is_null($this->eventId)) {
+            return false;
+        }
+
+        if (!is_null($this->monetaryAccountPreferredId)) {
             return false;
         }
 
