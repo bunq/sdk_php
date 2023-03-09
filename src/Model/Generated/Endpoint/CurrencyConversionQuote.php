@@ -28,6 +28,7 @@ class CurrencyConversionQuote extends BunqModel
     const FIELD_AMOUNT = 'amount';
     const FIELD_CURRENCY_SOURCE = 'currency_source';
     const FIELD_CURRENCY_TARGET = 'currency_target';
+    const FIELD_ORDER_TYPE = 'order_type';
     const FIELD_COUNTERPARTY_ALIAS = 'counterparty_alias';
     const FIELD_STATUS = 'status';
 
@@ -116,6 +117,13 @@ class CurrencyConversionQuote extends BunqModel
     protected $currencyTargetFieldForRequest;
 
     /**
+     * The type of the quote, SELL or BUY.
+     *
+     * @var string|null
+     */
+    protected $orderTypeFieldForRequest;
+
+    /**
      * The Alias of the party we are transferring the money to.
      *
      * @var Pointer
@@ -135,13 +143,15 @@ class CurrencyConversionQuote extends BunqModel
      * @param string $currencyTarget The currency we are converting towards.
      * @param Pointer $counterpartyAlias The Alias of the party we are
      * transferring the money to.
+     * @param string|null $orderType The type of the quote, SELL or BUY.
      * @param string|null $status The status of the quote.
      */
-    public function __construct(Amount  $amount, string  $currencySource, string  $currencyTarget, Pointer  $counterpartyAlias, string  $status = null)
+    public function __construct(Amount  $amount, string  $currencySource, string  $currencyTarget, Pointer  $counterpartyAlias, string  $orderType = null, string  $status = null)
     {
         $this->amountFieldForRequest = $amount;
         $this->currencySourceFieldForRequest = $currencySource;
         $this->currencyTargetFieldForRequest = $currencyTarget;
+        $this->orderTypeFieldForRequest = $orderType;
         $this->counterpartyAliasFieldForRequest = $counterpartyAlias;
         $this->statusFieldForRequest = $status;
     }
@@ -153,12 +163,13 @@ class CurrencyConversionQuote extends BunqModel
      * @param Pointer $counterpartyAlias The Alias of the party we are
      * transferring the money to.
      * @param int|null $monetaryAccountId
+     * @param string|null $orderType The type of the quote, SELL or BUY.
      * @param string|null $status The status of the quote.
      * @param string[] $customHeaders
      *
      * @return BunqResponseInt
      */
-    public static function create(Amount  $amount, string  $currencySource, string  $currencyTarget, Pointer  $counterpartyAlias, int $monetaryAccountId = null, string  $status = null, array $customHeaders = []): BunqResponseInt
+    public static function create(Amount  $amount, string  $currencySource, string  $currencyTarget, Pointer  $counterpartyAlias, int $monetaryAccountId = null, string  $orderType = null, string  $status = null, array $customHeaders = []): BunqResponseInt
     {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->post(
@@ -169,6 +180,7 @@ class CurrencyConversionQuote extends BunqModel
             [self::FIELD_AMOUNT => $amount,
 self::FIELD_CURRENCY_SOURCE => $currencySource,
 self::FIELD_CURRENCY_TARGET => $currencyTarget,
+self::FIELD_ORDER_TYPE => $orderType,
 self::FIELD_COUNTERPARTY_ALIAS => $counterpartyAlias,
 self::FIELD_STATUS => $status],
             $customHeaders

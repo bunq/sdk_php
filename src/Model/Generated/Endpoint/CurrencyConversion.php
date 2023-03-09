@@ -90,11 +90,18 @@ class CurrencyConversion extends BunqModel
     protected $groupUuid;
 
     /**
-     * The type of this conversion in the pair.
+     * The type of this conversion.
      *
      * @var string
      */
     protected $type;
+
+    /**
+     * The order type, buying or selling.
+     *
+     * @var string
+     */
+    protected $orderType;
 
     /**
      * The label of the monetary account.
@@ -358,7 +365,7 @@ class CurrencyConversion extends BunqModel
     }
 
     /**
-     * The type of this conversion in the pair.
+     * The type of this conversion.
      *
      * @return string
      */
@@ -376,6 +383,27 @@ class CurrencyConversion extends BunqModel
     public function setType($type)
     {
         $this->type = $type;
+    }
+
+    /**
+     * The order type, buying or selling.
+     *
+     * @return string
+     */
+    public function getOrderType()
+    {
+        return $this->orderType;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param string $orderType
+     */
+    public function setOrderType($orderType)
+    {
+        $this->orderType = $orderType;
     }
 
     /**
@@ -483,6 +511,10 @@ class CurrencyConversion extends BunqModel
         }
 
         if (!is_null($this->type)) {
+            return false;
+        }
+
+        if (!is_null($this->orderType)) {
             return false;
         }
 
