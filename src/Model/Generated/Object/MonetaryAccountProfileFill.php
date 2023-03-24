@@ -30,14 +30,6 @@ class MonetaryAccountProfileFill extends BunqModel
     protected $balanceThresholdLow;
 
     /**
-     * The method used to fill the monetary account. Currently only iDEAL is
-     * supported, and it is the default one.
-     *
-     * @var string
-     */
-    protected $methodFill;
-
-    /**
      * The bank the fill is supposed to happen from, with BIC and bank name.
      *
      * @var Issuer
@@ -66,14 +58,6 @@ class MonetaryAccountProfileFill extends BunqModel
     protected $balanceThresholdLowFieldForRequest;
 
     /**
-     * The method used to fill the monetary account. Currently IDEAL and SOFORT
-     * is supported.
-     *
-     * @var string|null
-     */
-    protected $methodFillFieldForRequest;
-
-    /**
      * The bank the fill is supposed to happen from, with BIC and bank name.
      *
      * @var Issuer|null
@@ -84,17 +68,14 @@ class MonetaryAccountProfileFill extends BunqModel
      * @param string $status The status of the profile.
      * @param Amount $balancePreferred The goal balance.
      * @param Amount $balanceThresholdLow The low threshold balance.
-     * @param string|null $methodFill The method used to fill the monetary
-     * account. Currently IDEAL and SOFORT is supported.
      * @param Issuer|null $issuer The bank the fill is supposed to happen from,
      * with BIC and bank name.
      */
-    public function __construct(string  $status, Amount  $balancePreferred, Amount  $balanceThresholdLow, string  $methodFill = null, Issuer  $issuer = null)
+    public function __construct(string  $status, Amount  $balancePreferred, Amount  $balanceThresholdLow, Issuer  $issuer = null)
     {
         $this->statusFieldForRequest = $status;
         $this->balancePreferredFieldForRequest = $balancePreferred;
         $this->balanceThresholdLowFieldForRequest = $balanceThresholdLow;
-        $this->methodFillFieldForRequest = $methodFill;
         $this->issuerFieldForRequest = $issuer;
     }
 
@@ -162,28 +143,6 @@ class MonetaryAccountProfileFill extends BunqModel
     }
 
     /**
-     * The method used to fill the monetary account. Currently only iDEAL is
-     * supported, and it is the default one.
-     *
-     * @return string
-     */
-    public function getMethodFill()
-    {
-        return $this->methodFill;
-    }
-
-    /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
-     * @param string $methodFill
-     */
-    public function setMethodFill($methodFill)
-    {
-        $this->methodFill = $methodFill;
-    }
-
-    /**
      * The bank the fill is supposed to happen from, with BIC and bank name.
      *
      * @return Issuer
@@ -218,10 +177,6 @@ class MonetaryAccountProfileFill extends BunqModel
         }
 
         if (!is_null($this->balanceThresholdLow)) {
-            return false;
-        }
-
-        if (!is_null($this->methodFill)) {
             return false;
         }
 
