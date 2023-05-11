@@ -36,7 +36,7 @@ class BunqMeFundraiserProfileUser extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE_GET = 'BunqMeFundraiserProfileModel';
+    const OBJECT_TYPE_GET = 'BunqMeFundraiserProfile';
 
     /**
      * Id of the monetary account on which you want to receive bunq.me payments.
