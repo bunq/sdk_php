@@ -6,6 +6,7 @@ use bunq\Http\ApiClient;
 use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Object\Amount;
+use bunq\Model\Generated\Object\LabelMonetaryAccount;
 use bunq\Model\Generated\Object\Pointer;
 
 /**
@@ -69,7 +70,7 @@ class PaymentServiceProviderIssuerTransaction extends BunqModel
     /**
      * The counter party this transaction should be sent to.
      *
-     * @var Pointer
+     * @var LabelMonetaryAccount
      */
     protected $counterpartyAlias;
 
@@ -380,7 +381,7 @@ self::FIELD_STATUS => $status],
     /**
      * The counter party this transaction should be sent to.
      *
-     * @return Pointer
+     * @return LabelMonetaryAccount
      */
     public function getCounterpartyAlias()
     {
@@ -391,7 +392,7 @@ self::FIELD_STATUS => $status],
      * @deprecated User should not be able to set values via setters, use
      * constructor.
      *
-     * @param Pointer $counterpartyAlias
+     * @param LabelMonetaryAccount $counterpartyAlias
      */
     public function setCounterpartyAlias($counterpartyAlias)
     {
