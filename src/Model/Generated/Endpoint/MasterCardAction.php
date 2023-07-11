@@ -301,6 +301,13 @@ class MasterCardAction extends BunqModel
     protected $eligibleWhitelistId;
 
     /**
+     * The cashback payout item for this action or null
+     *
+     * @var CashbackPayoutItem
+     */
+    protected $cashbackPayoutItem;
+
+    /**
      * @param int $masterCardActionId
      * @param int|null $monetaryAccountId
      * @param string[] $customHeaders
@@ -1142,6 +1149,27 @@ class MasterCardAction extends BunqModel
     }
 
     /**
+     * The cashback payout item for this action or null
+     *
+     * @return CashbackPayoutItem
+     */
+    public function getCashbackPayoutItem()
+    {
+        return $this->cashbackPayoutItem;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param CashbackPayoutItem $cashbackPayoutItem
+     */
+    public function setCashbackPayoutItem($cashbackPayoutItem)
+    {
+        $this->cashbackPayoutItem = $cashbackPayoutItem;
+    }
+
+    /**
      * @return bool
      */
     public function isAllFieldNull()
@@ -1291,6 +1319,10 @@ class MasterCardAction extends BunqModel
         }
 
         if (!is_null($this->eligibleWhitelistId)) {
+            return false;
+        }
+
+        if (!is_null($this->cashbackPayoutItem)) {
             return false;
         }
 
