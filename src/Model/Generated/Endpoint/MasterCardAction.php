@@ -308,6 +308,13 @@ class MasterCardAction extends BunqModel
     protected $cashbackPayoutItem;
 
     /**
+     * The report for this transaction
+     *
+     * @var MasterCardActionReport
+     */
+    protected $mastercardActionReport;
+
+    /**
      * @param int $masterCardActionId
      * @param int|null $monetaryAccountId
      * @param string[] $customHeaders
@@ -1170,6 +1177,27 @@ class MasterCardAction extends BunqModel
     }
 
     /**
+     * The report for this transaction
+     *
+     * @return MasterCardActionReport
+     */
+    public function getMastercardActionReport()
+    {
+        return $this->mastercardActionReport;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param MasterCardActionReport $mastercardActionReport
+     */
+    public function setMastercardActionReport($mastercardActionReport)
+    {
+        $this->mastercardActionReport = $mastercardActionReport;
+    }
+
+    /**
      * @return bool
      */
     public function isAllFieldNull()
@@ -1323,6 +1351,10 @@ class MasterCardAction extends BunqModel
         }
 
         if (!is_null($this->cashbackPayoutItem)) {
+            return false;
+        }
+
+        if (!is_null($this->mastercardActionReport)) {
             return false;
         }
 
