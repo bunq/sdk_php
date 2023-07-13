@@ -315,6 +315,13 @@ class MasterCardAction extends BunqModel
     protected $mastercardActionReport;
 
     /**
+     * The blacklist enabled for the merchant of this transaction
+     *
+     * @var UserBlacklistMasterCardMerchant
+     */
+    protected $blacklist;
+
+    /**
      * @param int $masterCardActionId
      * @param int|null $monetaryAccountId
      * @param string[] $customHeaders
@@ -1198,6 +1205,27 @@ class MasterCardAction extends BunqModel
     }
 
     /**
+     * The blacklist enabled for the merchant of this transaction
+     *
+     * @return UserBlacklistMasterCardMerchant
+     */
+    public function getBlacklist()
+    {
+        return $this->blacklist;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param UserBlacklistMasterCardMerchant $blacklist
+     */
+    public function setBlacklist($blacklist)
+    {
+        $this->blacklist = $blacklist;
+    }
+
+    /**
      * @return bool
      */
     public function isAllFieldNull()
@@ -1355,6 +1383,10 @@ class MasterCardAction extends BunqModel
         }
 
         if (!is_null($this->mastercardActionReport)) {
+            return false;
+        }
+
+        if (!is_null($this->blacklist)) {
             return false;
         }
 

@@ -168,7 +168,7 @@ class ResponseHandlerSignature extends ResponseHandlerBase
         if ($regexResult != self::REGEX_CHECK_FAILED) {
             foreach ($matches[self::INDEX_FIRST] as $match) {
                 $matchUpper = strtoupper($match);
-                $headerName = preg_replace(vsprintf(self::REGEX_REPLACE, $match), $matchUpper, $headerName);
+                $headerName = preg_replace(vsprintf(self::REGEX_REPLACE, [$match]), $matchUpper, $headerName);
             }
         }
 
