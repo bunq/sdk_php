@@ -101,14 +101,6 @@ class MonetaryAccountSavings extends BunqModel
     protected $dailyLimit;
 
     /**
-     * The maximum Amount the MonetaryAccountSavings can be 'in the red'. Must
-     * be 0 EUR or omitted.
-     *
-     * @var Amount|null
-     */
-    protected $overdraftLimit;
-
-    /**
      * The current available balance Amount of the MonetaryAccountSavings.
      *
      * @var Amount
@@ -205,6 +197,13 @@ class MonetaryAccountSavings extends BunqModel
      * @var float
      */
     protected $savingsGoalProgress;
+
+    /**
+     * The number of payments that can be made from this savings account
+     *
+     * @var string
+     */
+    protected $numberOfPaymentRemaining;
 
     /**
      * The ids of the AutoSave.
@@ -694,28 +693,6 @@ self::FIELD_SAVINGS_GOAL => $savingsGoal],
     }
 
     /**
-     * The maximum Amount the MonetaryAccountSavings can be 'in the red'. Must
-     * be 0 EUR or omitted.
-     *
-     * @return Amount
-     */
-    public function getOverdraftLimit()
-    {
-        return $this->overdraftLimit;
-    }
-
-    /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
-     * @param Amount $overdraftLimit
-     */
-    public function setOverdraftLimit($overdraftLimit)
-    {
-        $this->overdraftLimit = $overdraftLimit;
-    }
-
-    /**
      * The current available balance Amount of the MonetaryAccountSavings.
      *
      * @return Amount
@@ -996,6 +973,27 @@ self::FIELD_SAVINGS_GOAL => $savingsGoal],
     }
 
     /**
+     * The number of payments that can be made from this savings account
+     *
+     * @return string
+     */
+    public function getNumberOfPaymentRemaining()
+    {
+        return $this->numberOfPaymentRemaining;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param string $numberOfPaymentRemaining
+     */
+    public function setNumberOfPaymentRemaining($numberOfPaymentRemaining)
+    {
+        $this->numberOfPaymentRemaining = $numberOfPaymentRemaining;
+    }
+
+    /**
      * The ids of the AutoSave.
      *
      * @return BunqId[]
@@ -1049,10 +1047,6 @@ self::FIELD_SAVINGS_GOAL => $savingsGoal],
             return false;
         }
 
-        if (!is_null($this->overdraftLimit)) {
-            return false;
-        }
-
         if (!is_null($this->balance)) {
             return false;
         }
@@ -1102,6 +1096,10 @@ self::FIELD_SAVINGS_GOAL => $savingsGoal],
         }
 
         if (!is_null($this->savingsGoalProgress)) {
+            return false;
+        }
+
+        if (!is_null($this->numberOfPaymentRemaining)) {
             return false;
         }
 
