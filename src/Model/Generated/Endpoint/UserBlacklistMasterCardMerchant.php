@@ -39,6 +39,13 @@ class UserBlacklistMasterCardMerchant extends BunqModel
     protected $updated;
 
     /**
+     * The status of the the blacklist.
+     *
+     * @var string
+     */
+    protected $status;
+
+    /**
      * The blacklisted merchant.
      *
      * @var string
@@ -169,6 +176,27 @@ class UserBlacklistMasterCardMerchant extends BunqModel
     }
 
     /**
+     * The status of the the blacklist.
+     *
+     * @return string
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param string $status
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+    }
+
+    /**
      * The blacklisted merchant.
      *
      * @return string
@@ -285,6 +313,10 @@ class UserBlacklistMasterCardMerchant extends BunqModel
         }
 
         if (!is_null($this->updated)) {
+            return false;
+        }
+
+        if (!is_null($this->status)) {
             return false;
         }
 
