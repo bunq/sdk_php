@@ -219,6 +219,13 @@ class MasterCardAction extends BunqModel
     protected $labelCard;
 
     /**
+     * The identification string of the merchant.
+     *
+     * @var string
+     */
+    protected $merchantId;
+
+    /**
      * If this is a tokenisation action, this shows the status of the token.
      *
      * @var string
@@ -927,6 +934,27 @@ class MasterCardAction extends BunqModel
     }
 
     /**
+     * The identification string of the merchant.
+     *
+     * @return string
+     */
+    public function getMerchantId()
+    {
+        return $this->merchantId;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param string $merchantId
+     */
+    public function setMerchantId($merchantId)
+    {
+        $this->merchantId = $merchantId;
+    }
+
+    /**
      * If this is a tokenisation action, this shows the status of the token.
      *
      * @return string
@@ -1331,6 +1359,10 @@ class MasterCardAction extends BunqModel
         }
 
         if (!is_null($this->labelCard)) {
+            return false;
+        }
+
+        if (!is_null($this->merchantId)) {
             return false;
         }
 
