@@ -62,6 +62,13 @@ class BirdeeInvestmentPortfolio extends BunqModel
     protected $name;
 
     /**
+     * The external identifier of the portfolio.
+     *
+     * @var string
+     */
+    protected $externalIdentifier;
+
+    /**
      * The investment goal.
      *
      * @var BirdeeInvestmentPortfolioGoal|null
@@ -253,6 +260,27 @@ class BirdeeInvestmentPortfolio extends BunqModel
     }
 
     /**
+     * The external identifier of the portfolio.
+     *
+     * @return string
+     */
+    public function getExternalIdentifier()
+    {
+        return $this->externalIdentifier;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param string $externalIdentifier
+     */
+    public function setExternalIdentifier($externalIdentifier)
+    {
+        $this->externalIdentifier = $externalIdentifier;
+    }
+
+    /**
      * The investment goal.
      *
      * @return BirdeeInvestmentPortfolioGoal
@@ -341,6 +369,10 @@ class BirdeeInvestmentPortfolio extends BunqModel
         }
 
         if (!is_null($this->name)) {
+            return false;
+        }
+
+        if (!is_null($this->externalIdentifier)) {
             return false;
         }
 
