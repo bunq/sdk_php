@@ -224,13 +224,6 @@ class Card extends BunqModel
     protected $cardShipmentTrackingUrl;
 
     /**
-     * The amount saved through ZeroFX on this card.
-     *
-     * @var Amount
-     */
-    protected $amountSavedZeroFx;
-
-    /**
      * The plaintext pin code. Requests require encryption to be enabled.
      *
      * @var string|null
@@ -984,27 +977,6 @@ self::FIELD_MONETARY_ACCOUNT_ID_FALLBACK => $monetaryAccountIdFallback],
     }
 
     /**
-     * The amount saved through ZeroFX on this card.
-     *
-     * @return Amount
-     */
-    public function getAmountSavedZeroFx()
-    {
-        return $this->amountSavedZeroFx;
-    }
-
-    /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
-     * @param Amount $amountSavedZeroFx
-     */
-    public function setAmountSavedZeroFx($amountSavedZeroFx)
-    {
-        $this->amountSavedZeroFx = $amountSavedZeroFx;
-    }
-
-    /**
      * @return bool
      */
     public function isAllFieldNull()
@@ -1102,10 +1074,6 @@ self::FIELD_MONETARY_ACCOUNT_ID_FALLBACK => $monetaryAccountIdFallback],
         }
 
         if (!is_null($this->cardShipmentTrackingUrl)) {
-            return false;
-        }
-
-        if (!is_null($this->amountSavedZeroFx)) {
             return false;
         }
 

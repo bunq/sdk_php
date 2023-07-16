@@ -219,6 +219,13 @@ class MasterCardAction extends BunqModel
     protected $labelCard;
 
     /**
+     * The identification string of the merchant.
+     *
+     * @var string
+     */
+    protected $merchantId;
+
+    /**
      * If this is a tokenisation action, this shows the status of the token.
      *
      * @var string
@@ -299,6 +306,27 @@ class MasterCardAction extends BunqModel
      * @var int
      */
     protected $eligibleWhitelistId;
+
+    /**
+     * The cashback payout item for this action or null
+     *
+     * @var CashbackPayoutItem
+     */
+    protected $cashbackPayoutItem;
+
+    /**
+     * The report for this transaction
+     *
+     * @var MasterCardActionReport
+     */
+    protected $mastercardActionReport;
+
+    /**
+     * The blacklist enabled for the merchant of this transaction
+     *
+     * @var UserBlacklistMasterCardMerchant
+     */
+    protected $blacklist;
 
     /**
      * @param int $masterCardActionId
@@ -906,6 +934,27 @@ class MasterCardAction extends BunqModel
     }
 
     /**
+     * The identification string of the merchant.
+     *
+     * @return string
+     */
+    public function getMerchantId()
+    {
+        return $this->merchantId;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param string $merchantId
+     */
+    public function setMerchantId($merchantId)
+    {
+        $this->merchantId = $merchantId;
+    }
+
+    /**
      * If this is a tokenisation action, this shows the status of the token.
      *
      * @return string
@@ -1142,6 +1191,69 @@ class MasterCardAction extends BunqModel
     }
 
     /**
+     * The cashback payout item for this action or null
+     *
+     * @return CashbackPayoutItem
+     */
+    public function getCashbackPayoutItem()
+    {
+        return $this->cashbackPayoutItem;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param CashbackPayoutItem $cashbackPayoutItem
+     */
+    public function setCashbackPayoutItem($cashbackPayoutItem)
+    {
+        $this->cashbackPayoutItem = $cashbackPayoutItem;
+    }
+
+    /**
+     * The report for this transaction
+     *
+     * @return MasterCardActionReport
+     */
+    public function getMastercardActionReport()
+    {
+        return $this->mastercardActionReport;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param MasterCardActionReport $mastercardActionReport
+     */
+    public function setMastercardActionReport($mastercardActionReport)
+    {
+        $this->mastercardActionReport = $mastercardActionReport;
+    }
+
+    /**
+     * The blacklist enabled for the merchant of this transaction
+     *
+     * @return UserBlacklistMasterCardMerchant
+     */
+    public function getBlacklist()
+    {
+        return $this->blacklist;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param UserBlacklistMasterCardMerchant $blacklist
+     */
+    public function setBlacklist($blacklist)
+    {
+        $this->blacklist = $blacklist;
+    }
+
+    /**
      * @return bool
      */
     public function isAllFieldNull()
@@ -1250,6 +1362,10 @@ class MasterCardAction extends BunqModel
             return false;
         }
 
+        if (!is_null($this->merchantId)) {
+            return false;
+        }
+
         if (!is_null($this->tokenStatus)) {
             return false;
         }
@@ -1291,6 +1407,18 @@ class MasterCardAction extends BunqModel
         }
 
         if (!is_null($this->eligibleWhitelistId)) {
+            return false;
+        }
+
+        if (!is_null($this->cashbackPayoutItem)) {
+            return false;
+        }
+
+        if (!is_null($this->mastercardActionReport)) {
+            return false;
+        }
+
+        if (!is_null($this->blacklist)) {
             return false;
         }
 

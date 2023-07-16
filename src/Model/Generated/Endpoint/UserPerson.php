@@ -31,6 +31,7 @@ class UserPerson extends BunqModel
     /**
      * Field constants.
      */
+    const FIELD_SUBSCRIPTION_TYPE = 'subscription_type';
     const FIELD_FIRST_NAME = 'first_name';
     const FIELD_MIDDLE_NAME = 'middle_name';
     const FIELD_LAST_NAME = 'last_name';
@@ -55,6 +56,7 @@ class UserPerson extends BunqModel
     const FIELD_SESSION_TIMEOUT = 'session_timeout';
     const FIELD_DAILY_LIMIT_WITHOUT_CONFIRMATION_LOGIN = 'daily_limit_without_confirmation_login';
     const FIELD_DISPLAY_NAME = 'display_name';
+    const FIELD_SIGNUP_TRACK_TYPE = 'signup_track_type';
 
     /**
      * Object type.
@@ -273,6 +275,13 @@ class UserPerson extends BunqModel
     protected $relations;
 
     /**
+     * The subscription type the user should start on.
+     *
+     * @var string|null
+     */
+    protected $subscriptionTypeFieldForRequest;
+
+    /**
      * The person's first name.
      *
      * @var string|null
@@ -303,7 +312,7 @@ class UserPerson extends BunqModel
     /**
      * The user's main address.
      *
-     * @var Address
+     * @var Address|null
      */
     protected $addressMainFieldForRequest;
 
@@ -317,7 +326,7 @@ class UserPerson extends BunqModel
     /**
      * The public UUID of the user's avatar.
      *
-     * @var string
+     * @var string|null
      */
     protected $avatarUuidFieldForRequest;
 
@@ -331,14 +340,14 @@ class UserPerson extends BunqModel
     /**
      * The type of identification document the person registered with.
      *
-     * @var string
+     * @var string|null
      */
     protected $documentTypeFieldForRequest;
 
     /**
      * The identification document number the person registered with.
      *
-     * @var string
+     * @var string|null
      */
     protected $documentNumberFieldForRequest;
 
@@ -346,7 +355,7 @@ class UserPerson extends BunqModel
      * The country which issued the identification document the person
      * registered with.
      *
-     * @var string
+     * @var string|null
      */
     protected $documentCountryOfIssuanceFieldForRequest;
 
@@ -354,7 +363,7 @@ class UserPerson extends BunqModel
      * The reference to the uploaded picture/scan of the front side of the
      * identification document.
      *
-     * @var int
+     * @var int|null
      */
     protected $documentFrontAttachmentIdFieldForRequest;
 
@@ -369,14 +378,14 @@ class UserPerson extends BunqModel
     /**
      * The person's date of birth. Accepts ISO8601 date formats.
      *
-     * @var string
+     * @var string|null
      */
     protected $dateOfBirthFieldForRequest;
 
     /**
      * The person's nationality. Formatted as a SO 3166-1 alpha-2 country code.
      *
-     * @var string
+     * @var string|null
      */
     protected $nationalityFieldForRequest;
 
@@ -384,7 +393,7 @@ class UserPerson extends BunqModel
      * The person's preferred language. Formatted as a ISO 639-1 language code
      * plus a ISO 3166-1 alpha-2 country code, seperated by an underscore.
      *
-     * @var string
+     * @var string|null
      */
     protected $languageFieldForRequest;
 
@@ -392,42 +401,42 @@ class UserPerson extends BunqModel
      * The person's preferred region. Formatted as a ISO 639-1 language code
      * plus a ISO 3166-1 alpha-2 country code, seperated by an underscore.
      *
-     * @var string
+     * @var string|null
      */
     protected $regionFieldForRequest;
 
     /**
      * The person's gender. Can be: MALE, FEMALE and UNKNOWN.
      *
-     * @var string
+     * @var string|null
      */
     protected $genderFieldForRequest;
 
     /**
      * The user status. You are not allowed to update the status via PUT.
      *
-     * @var string
+     * @var string|null
      */
     protected $statusFieldForRequest;
 
     /**
      * The user sub-status. Can be updated to SUBMIT if status is RECOVERY.
      *
-     * @var string
+     * @var string|null
      */
     protected $subStatusFieldForRequest;
 
     /**
      * The legal guardian of the user. Required for minors.
      *
-     * @var Pointer
+     * @var Pointer|null
      */
     protected $legalGuardianAliasFieldForRequest;
 
     /**
      * The setting for the session timeout of the user in seconds.
      *
-     * @var int
+     * @var int|null
      */
     protected $sessionTimeoutFieldForRequest;
 
@@ -435,7 +444,7 @@ class UserPerson extends BunqModel
      * The amount the user can pay in the session without asking for
      * credentials.
      *
-     * @var Amount
+     * @var Amount|null
      */
     protected $dailyLimitWithoutConfirmationLoginFieldForRequest;
 
@@ -448,52 +457,64 @@ class UserPerson extends BunqModel
     protected $displayNameFieldForRequest;
 
     /**
-     * @param Address $addressMain The user's main address.
-     * @param string $avatarUuid The public UUID of the user's avatar.
-     * @param string $documentType The type of identification document the
-     * person registered with.
-     * @param string $documentNumber The identification document number the
-     * person registered with.
-     * @param string $documentCountryOfIssuance The country which issued the
-     * identification document the person registered with.
-     * @param int $documentFrontAttachmentId The reference to the uploaded
-     * picture/scan of the front side of the identification document.
-     * @param string $dateOfBirth The person's date of birth. Accepts ISO8601
-     * date formats.
-     * @param string $nationality The person's nationality. Formatted as a SO
-     * 3166-1 alpha-2 country code.
-     * @param string $language The person's preferred language. Formatted as a
-     * ISO 639-1 language code plus a ISO 3166-1 alpha-2 country code, seperated
-     * by an underscore.
-     * @param string $region The person's preferred region. Formatted as a ISO
-     * 639-1 language code plus a ISO 3166-1 alpha-2 country code, seperated by
-     * an underscore.
-     * @param string $gender The person's gender. Can be: MALE, FEMALE and
-     * UNKNOWN.
-     * @param string $status The user status. You are not allowed to update the
-     * status via PUT.
-     * @param string $subStatus The user sub-status. Can be updated to SUBMIT if
-     * status is RECOVERY.
-     * @param Pointer $legalGuardianAlias The legal guardian of the user.
-     * Required for minors.
-     * @param int $sessionTimeout The setting for the session timeout of the
-     * user in seconds.
-     * @param Amount $dailyLimitWithoutConfirmationLogin The amount the user can
-     * pay in the session without asking for credentials.
+     * The type of signup track the user is following.
+     *
+     * @var string|null
+     */
+    protected $signupTrackTypeFieldForRequest;
+
+    /**
+     * @param string|null $subscriptionType The subscription type the user
+     * should start on.
      * @param string|null $firstName The person's first name.
      * @param string|null $middleName The person's middle name.
      * @param string|null $lastName The person's last name.
      * @param string|null $publicNickName The person's public nick name.
+     * @param Address|null $addressMain The user's main address.
      * @param Address|null $addressPostal The person's postal address.
+     * @param string|null $avatarUuid The public UUID of the user's avatar.
      * @param TaxResident[]|null $taxResident The user's tax residence numbers
      * for different countries.
+     * @param string|null $documentType The type of identification document the
+     * person registered with.
+     * @param string|null $documentNumber The identification document number the
+     * person registered with.
+     * @param string|null $documentCountryOfIssuance The country which issued
+     * the identification document the person registered with.
+     * @param int|null $documentFrontAttachmentId The reference to the uploaded
+     * picture/scan of the front side of the identification document.
      * @param int|null $documentBackAttachmentId The reference to the uploaded
      * picture/scan of the back side of the identification document.
+     * @param string|null $dateOfBirth The person's date of birth. Accepts
+     * ISO8601 date formats.
+     * @param string|null $nationality The person's nationality. Formatted as a
+     * SO 3166-1 alpha-2 country code.
+     * @param string|null $language The person's preferred language. Formatted
+     * as a ISO 639-1 language code plus a ISO 3166-1 alpha-2 country code,
+     * seperated by an underscore.
+     * @param string|null $region The person's preferred region. Formatted as a
+     * ISO 639-1 language code plus a ISO 3166-1 alpha-2 country code, seperated
+     * by an underscore.
+     * @param string|null $gender The person's gender. Can be: MALE, FEMALE and
+     * UNKNOWN.
+     * @param string|null $status The user status. You are not allowed to update
+     * the status via PUT.
+     * @param string|null $subStatus The user sub-status. Can be updated to
+     * SUBMIT if status is RECOVERY.
+     * @param Pointer|null $legalGuardianAlias The legal guardian of the user.
+     * Required for minors.
+     * @param int|null $sessionTimeout The setting for the session timeout of
+     * the user in seconds.
+     * @param Amount|null $dailyLimitWithoutConfirmationLogin The amount the
+     * user can pay in the session without asking for credentials.
      * @param string|null $displayName The person's legal name. Available legal
      * names can be listed via the 'user/{user_id}/legal-name' endpoint.
+     * @param string|null $signupTrackType The type of signup track the user is
+     * following.
      */
-    public function __construct(Address  $addressMain, string  $avatarUuid, string  $documentType, string  $documentNumber, string  $documentCountryOfIssuance, int  $documentFrontAttachmentId, string  $dateOfBirth, string  $nationality, string  $language, string  $region, string  $gender, string  $status, string  $subStatus, Pointer  $legalGuardianAlias, int  $sessionTimeout, Amount  $dailyLimitWithoutConfirmationLogin, string  $firstName = null, string  $middleName = null, string  $lastName = null, string  $publicNickName = null, Address  $addressPostal = null, array  $taxResident = null, int  $documentBackAttachmentId = null, string  $displayName = null)
+    public function __construct(string  $subscriptionType = null, string  $firstName = null, string  $middleName = null, string  $lastName = null, string  $publicNickName = null, Address  $addressMain = null, Address  $addressPostal = null, string  $avatarUuid = null, array  $taxResident = null, string  $documentType = null, string  $documentNumber = null, string  $documentCountryOfIssuance = null, int  $documentFrontAttachmentId = null, int  $documentBackAttachmentId = null, string  $dateOfBirth = null, string  $nationality = null, string  $language = null, string  $region = null, string  $gender = null, string  $status = null, string  $subStatus = null, Pointer  $legalGuardianAlias = null, int  $sessionTimeout = null, Amount  $dailyLimitWithoutConfirmationLogin = null, string  $displayName = null, string  $signupTrackType = null)
     {
+        $this->subscriptionTypeFieldForRequest = $subscriptionType;
         $this->firstNameFieldForRequest = $firstName;
         $this->middleNameFieldForRequest = $middleName;
         $this->lastNameFieldForRequest = $lastName;
@@ -518,6 +539,7 @@ class UserPerson extends BunqModel
         $this->sessionTimeoutFieldForRequest = $sessionTimeout;
         $this->dailyLimitWithoutConfirmationLoginFieldForRequest = $dailyLimitWithoutConfirmationLogin;
         $this->displayNameFieldForRequest = $displayName;
+        $this->signupTrackTypeFieldForRequest = $signupTrackType;
     }
 
     /**

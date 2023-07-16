@@ -38,6 +38,7 @@ class RequestResponse extends BunqModel
     const FIELD_STATUS = 'status';
     const FIELD_ADDRESS_SHIPPING = 'address_shipping';
     const FIELD_ADDRESS_BILLING = 'address_billing';
+    const FIELD_CURRENCY_CONVERSION_QUOTE_ID = 'currency_conversion_quote_id';
 
     /**
      * Object type.
@@ -255,6 +256,20 @@ class RequestResponse extends BunqModel
     protected $requestReferenceSplitTheBill;
 
     /**
+     * The ID of the latest event for the request.
+     *
+     * @var int
+     */
+    protected $eventId;
+
+    /**
+     * The ID of the monetary account this user prefers to pay the request from.
+     *
+     * @var int
+     */
+    protected $monetaryAccountPreferredId;
+
+    /**
      * The Amount the user decides to pay.
      *
      * @var Amount|null
@@ -288,6 +303,14 @@ class RequestResponse extends BunqModel
     protected $addressBillingFieldForRequest;
 
     /**
+     * When the request is accepted on a monetary account with a different
+     * currency, a quote is expected to convert.
+     *
+     * @var int|null
+     */
+    protected $currencyConversionQuoteIdFieldForRequest;
+
+    /**
      * @param string $status The responding status of the RequestResponse. Can
      * be ACCEPTED or REJECTED.
      * @param Amount|null $amountResponded The Amount the user decides to pay.
@@ -297,13 +320,17 @@ class RequestResponse extends BunqModel
      * @param Address|null $addressBilling The billing Address to return to the
      * user who created the RequestInquiry. Should only be provided if
      * 'require_address' is set to BILLING, BILLING_SHIPPING or OPTIONAL.
+     * @param int|null $currencyConversionQuoteId When the request is accepted
+     * on a monetary account with a different currency, a quote is expected to
+     * convert.
      */
-    public function __construct(string  $status, Amount  $amountResponded = null, Address  $addressShipping = null, Address  $addressBilling = null)
+    public function __construct(string  $status, Amount  $amountResponded = null, Address  $addressShipping = null, Address  $addressBilling = null, int  $currencyConversionQuoteId = null)
     {
         $this->amountRespondedFieldForRequest = $amountResponded;
         $this->statusFieldForRequest = $status;
         $this->addressShippingFieldForRequest = $addressShipping;
         $this->addressBillingFieldForRequest = $addressBilling;
+        $this->currencyConversionQuoteIdFieldForRequest = $currencyConversionQuoteId;
     }
 
     /**
@@ -320,11 +347,14 @@ class RequestResponse extends BunqModel
      * @param Address|null $addressBilling The billing Address to return to the
      * user who created the RequestInquiry. Should only be provided if
      * 'require_address' is set to BILLING, BILLING_SHIPPING or OPTIONAL.
+     * @param int|null $currencyConversionQuoteId When the request is accepted
+     * on a monetary account with a different currency, a quote is expected to
+     * convert.
      * @param string[] $customHeaders
      *
      * @return BunqResponseRequestResponse
      */
-    public static function update(int $requestResponseId, int $monetaryAccountId = null, Amount  $amountResponded = null, string  $status = null, Address  $addressShipping = null, Address  $addressBilling = null, array $customHeaders = []): BunqResponseRequestResponse
+    public static function update(int $requestResponseId, int $monetaryAccountId = null, Amount  $amountResponded = null, string  $status = null, Address  $addressShipping = null, Address  $addressBilling = null, int  $currencyConversionQuoteId = null, array $customHeaders = []): BunqResponseRequestResponse
     {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->put(
@@ -335,7 +365,8 @@ class RequestResponse extends BunqModel
             [self::FIELD_AMOUNT_RESPONDED => $amountResponded,
 self::FIELD_STATUS => $status,
 self::FIELD_ADDRESS_SHIPPING => $addressShipping,
-self::FIELD_ADDRESS_BILLING => $addressBilling],
+self::FIELD_ADDRESS_BILLING => $addressBilling,
+self::FIELD_CURRENCY_CONVERSION_QUOTE_ID => $currencyConversionQuoteId],
             $customHeaders
         );
 
@@ -1001,6 +1032,48 @@ self::FIELD_ADDRESS_BILLING => $addressBilling],
     }
 
     /**
+     * The ID of the latest event for the request.
+     *
+     * @return int
+     */
+    public function getEventId()
+    {
+        return $this->eventId;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param int $eventId
+     */
+    public function setEventId($eventId)
+    {
+        $this->eventId = $eventId;
+    }
+
+    /**
+     * The ID of the monetary account this user prefers to pay the request from.
+     *
+     * @return int
+     */
+    public function getMonetaryAccountPreferredId()
+    {
+        return $this->monetaryAccountPreferredId;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param int $monetaryAccountPreferredId
+     */
+    public function setMonetaryAccountPreferredId($monetaryAccountPreferredId)
+    {
+        $this->monetaryAccountPreferredId = $monetaryAccountPreferredId;
+    }
+
+    /**
      * @return bool
      */
     public function isAllFieldNull()
@@ -1114,6 +1187,14 @@ self::FIELD_ADDRESS_BILLING => $addressBilling],
         }
 
         if (!is_null($this->requestReferenceSplitTheBill)) {
+            return false;
+        }
+
+        if (!is_null($this->eventId)) {
+            return false;
+        }
+
+        if (!is_null($this->monetaryAccountPreferredId)) {
             return false;
         }
 

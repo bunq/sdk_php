@@ -3,6 +3,7 @@ namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Object\AttachmentPublic;
+use bunq\Model\Generated\Object\BunqMeMerchantAvailable;
 use bunq\Model\Generated\Object\LabelMonetaryAccount;
 use bunq\Model\Generated\Object\Pointer;
 
@@ -85,6 +86,13 @@ class BunqMeFundraiserProfile extends BunqModel
      * @var string
      */
     protected $inviteProfileName;
+
+    /**
+     * List of available merchants.
+     *
+     * @var BunqMeMerchantAvailable[]
+     */
+    protected $merchantAvailable;
 
     /**
      * The pointer (url) which will be used to access the bunq.me fundraiser
@@ -298,6 +306,27 @@ class BunqMeFundraiserProfile extends BunqModel
     }
 
     /**
+     * List of available merchants.
+     *
+     * @return BunqMeMerchantAvailable[]
+     */
+    public function getMerchantAvailable()
+    {
+        return $this->merchantAvailable;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param BunqMeMerchantAvailable[] $merchantAvailable
+     */
+    public function setMerchantAvailable($merchantAvailable)
+    {
+        $this->merchantAvailable = $merchantAvailable;
+    }
+
+    /**
      * @return bool
      */
     public function isAllFieldNull()
@@ -335,6 +364,10 @@ class BunqMeFundraiserProfile extends BunqModel
         }
 
         if (!is_null($this->inviteProfileName)) {
+            return false;
+        }
+
+        if (!is_null($this->merchantAvailable)) {
             return false;
         }
 

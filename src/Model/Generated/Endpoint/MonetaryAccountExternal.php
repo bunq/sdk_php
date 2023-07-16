@@ -1,6 +1,9 @@
 <?php
 namespace bunq\Model\Generated\Endpoint;
 
+use bunq\Context\ApiContext;
+use bunq\Http\ApiClient;
+use bunq\Http\BunqResponse;
 use bunq\Model\Core\BunqModel;
 use bunq\Model\Generated\Object\Amount;
 use bunq\Model\Generated\Object\Avatar;
@@ -17,9 +20,18 @@ use bunq\Model\Generated\Object\Pointer;
 class MonetaryAccountExternal extends BunqModel
 {
     /**
+     * Endpoint constants.
+     */
+    const ENDPOINT_URL_CREATE = 'user/%s/monetary-account-external';
+    const ENDPOINT_URL_READ = 'user/%s/monetary-account-external/%s';
+    const ENDPOINT_URL_UPDATE = 'user/%s/monetary-account-external/%s';
+    const ENDPOINT_URL_LISTING = 'user/%s/monetary-account-external';
+
+    /**
      * Field constants.
      */
     const FIELD_CURRENCY = 'currency';
+    const FIELD_SERVICE = 'service';
     const FIELD_DESCRIPTION = 'description';
     const FIELD_DAILY_LIMIT = 'daily_limit';
     const FIELD_AVATAR_UUID = 'avatar_uuid';
@@ -29,6 +41,11 @@ class MonetaryAccountExternal extends BunqModel
     const FIELD_REASON_DESCRIPTION = 'reason_description';
     const FIELD_DISPLAY_NAME = 'display_name';
     const FIELD_SETTING = 'setting';
+
+    /**
+     * Object type.
+     */
+    const OBJECT_TYPE_GET = 'MonetaryAccountExternal';
 
     /**
      * The id of the MonetaryAccountExternal.
@@ -189,6 +206,13 @@ class MonetaryAccountExternal extends BunqModel
     protected $currencyFieldForRequest;
 
     /**
+     * The service the MonetaryAccountExternal is connected with.
+     *
+     * @var string
+     */
+    protected $serviceFieldForRequest;
+
+    /**
      * The description of the MonetaryAccountExternal. Defaults to 'bunq
      * account'.
      *
@@ -270,6 +294,8 @@ class MonetaryAccountExternal extends BunqModel
     /**
      * @param string $currency The currency of the MonetaryAccountExternal as an
      * ISO 4217 formatted currency code.
+     * @param string $service The service the MonetaryAccountExternal is
+     * connected with.
      * @param string|null $description The description of the
      * MonetaryAccountExternal. Defaults to 'bunq account'.
      * @param Amount|null $dailyLimit The daily spending limit Amount of the
@@ -301,9 +327,10 @@ class MonetaryAccountExternal extends BunqModel
      * @param MonetaryAccountSetting|null $setting The settings of the
      * MonetaryAccountExternal.
      */
-    public function __construct(string  $currency, string  $description = null, Amount  $dailyLimit = null, string  $avatarUuid = null, string  $status = null, string  $subStatus = null, string  $reason = null, string  $reasonDescription = null, string  $displayName = null, MonetaryAccountSetting  $setting = null)
+    public function __construct(string  $currency, string  $service, string  $description = null, Amount  $dailyLimit = null, string  $avatarUuid = null, string  $status = null, string  $subStatus = null, string  $reason = null, string  $reasonDescription = null, string  $displayName = null, MonetaryAccountSetting  $setting = null)
     {
         $this->currencyFieldForRequest = $currency;
+        $this->serviceFieldForRequest = $service;
         $this->descriptionFieldForRequest = $description;
         $this->dailyLimitFieldForRequest = $dailyLimit;
         $this->avatarUuidFieldForRequest = $avatarUuid;
@@ -313,6 +340,182 @@ class MonetaryAccountExternal extends BunqModel
         $this->reasonDescriptionFieldForRequest = $reasonDescription;
         $this->displayNameFieldForRequest = $displayName;
         $this->settingFieldForRequest = $setting;
+    }
+
+    /**
+     * @param string $currency The currency of the MonetaryAccountExternal as an
+     * ISO 4217 formatted currency code.
+     * @param string $service The service the MonetaryAccountExternal is
+     * connected with.
+     * @param string|null $description The description of the
+     * MonetaryAccountExternal. Defaults to 'bunq account'.
+     * @param Amount|null $dailyLimit The daily spending limit Amount of the
+     * MonetaryAccountExternal. Defaults to 1000 EUR. Currency must match the
+     * MonetaryAccountExternal's currency. Limited to 10000 EUR.
+     * @param string|null $avatarUuid The UUID of the Avatar of the
+     * MonetaryAccountExternal.
+     * @param string|null $status The status of the MonetaryAccountExternal.
+     * Ignored in POST requests (always set to ACTIVE) can be CANCELLED or
+     * PENDING_REOPEN in PUT requests to cancel (close) or reopen the
+     * MonetaryAccountExternal. When updating the status and/or sub_status no
+     * other fields can be updated in the same request (and vice versa).
+     * @param string|null $subStatus The sub-status of the
+     * MonetaryAccountExternal providing extra information regarding the status.
+     * Should be ignored for POST requests. In case of PUT requests with status
+     * CANCELLED it can only be REDEMPTION_VOLUNTARY, while with status
+     * PENDING_REOPEN it can only be NONE. When updating the status and/or
+     * sub_status no other fields can be updated in the same request (and vice
+     * versa).
+     * @param string|null $reason The reason for voluntarily cancelling
+     * (closing) the MonetaryAccountExternal, can only be OTHER. Should only be
+     * specified if updating the status to CANCELLED.
+     * @param string|null $reasonDescription The optional free-form reason for
+     * voluntarily cancelling (closing) the MonetaryAccountExternal. Can be any
+     * user provided message. Should only be specified if updating the status to
+     * CANCELLED.
+     * @param string|null $displayName The legal name of the user / company
+     * using this monetary account.
+     * @param MonetaryAccountSetting|null $setting The settings of the
+     * MonetaryAccountExternal.
+     * @param string[] $customHeaders
+     *
+     * @return BunqResponseInt
+     */
+    public static function create(string  $currency, string  $service, string  $description = null, Amount  $dailyLimit = null, string  $avatarUuid = null, string  $status = null, string  $subStatus = null, string  $reason = null, string  $reasonDescription = null, string  $displayName = null, MonetaryAccountSetting  $setting = null, array $customHeaders = []): BunqResponseInt
+    {
+        $apiClient = new ApiClient(static::getApiContext());
+        $responseRaw = $apiClient->post(
+            vsprintf(
+                self::ENDPOINT_URL_CREATE,
+                [static::determineUserId()]
+            ),
+            [self::FIELD_CURRENCY => $currency,
+self::FIELD_SERVICE => $service,
+self::FIELD_DESCRIPTION => $description,
+self::FIELD_DAILY_LIMIT => $dailyLimit,
+self::FIELD_AVATAR_UUID => $avatarUuid,
+self::FIELD_STATUS => $status,
+self::FIELD_SUB_STATUS => $subStatus,
+self::FIELD_REASON => $reason,
+self::FIELD_REASON_DESCRIPTION => $reasonDescription,
+self::FIELD_DISPLAY_NAME => $displayName,
+self::FIELD_SETTING => $setting],
+            $customHeaders
+        );
+
+        return BunqResponseInt::castFromBunqResponse(
+            static::processForId($responseRaw)
+        );
+    }
+
+    /**
+     * @param int $monetaryAccountExternalId
+     * @param string[] $customHeaders
+     *
+     * @return BunqResponseMonetaryAccountExternal
+     */
+    public static function get(int $monetaryAccountExternalId, array $customHeaders = []): BunqResponseMonetaryAccountExternal
+    {
+        $apiClient = new ApiClient(static::getApiContext());
+        $responseRaw = $apiClient->get(
+            vsprintf(
+                self::ENDPOINT_URL_READ,
+                [static::determineUserId(), $monetaryAccountExternalId]
+            ),
+            [],
+            $customHeaders
+        );
+
+        return BunqResponseMonetaryAccountExternal::castFromBunqResponse(
+            static::fromJson($responseRaw, self::OBJECT_TYPE_GET)
+        );
+    }
+
+    /**
+     * @param int $monetaryAccountExternalId
+     * @param string|null $description The description of the
+     * MonetaryAccountExternal. Defaults to 'bunq account'.
+     * @param Amount|null $dailyLimit The daily spending limit Amount of the
+     * MonetaryAccountExternal. Defaults to 1000 EUR. Currency must match the
+     * MonetaryAccountExternal's currency. Limited to 10000 EUR.
+     * @param string|null $avatarUuid The UUID of the Avatar of the
+     * MonetaryAccountExternal.
+     * @param string|null $status The status of the MonetaryAccountExternal.
+     * Ignored in POST requests (always set to ACTIVE) can be CANCELLED or
+     * PENDING_REOPEN in PUT requests to cancel (close) or reopen the
+     * MonetaryAccountExternal. When updating the status and/or sub_status no
+     * other fields can be updated in the same request (and vice versa).
+     * @param string|null $subStatus The sub-status of the
+     * MonetaryAccountExternal providing extra information regarding the status.
+     * Should be ignored for POST requests. In case of PUT requests with status
+     * CANCELLED it can only be REDEMPTION_VOLUNTARY, while with status
+     * PENDING_REOPEN it can only be NONE. When updating the status and/or
+     * sub_status no other fields can be updated in the same request (and vice
+     * versa).
+     * @param string|null $reason The reason for voluntarily cancelling
+     * (closing) the MonetaryAccountExternal, can only be OTHER. Should only be
+     * specified if updating the status to CANCELLED.
+     * @param string|null $reasonDescription The optional free-form reason for
+     * voluntarily cancelling (closing) the MonetaryAccountExternal. Can be any
+     * user provided message. Should only be specified if updating the status to
+     * CANCELLED.
+     * @param string|null $displayName The legal name of the user / company
+     * using this monetary account.
+     * @param MonetaryAccountSetting|null $setting The settings of the
+     * MonetaryAccountExternal.
+     * @param string[] $customHeaders
+     *
+     * @return BunqResponseInt
+     */
+    public static function update(int $monetaryAccountExternalId, string  $description = null, Amount  $dailyLimit = null, string  $avatarUuid = null, string  $status = null, string  $subStatus = null, string  $reason = null, string  $reasonDescription = null, string  $displayName = null, MonetaryAccountSetting  $setting = null, array $customHeaders = []): BunqResponseInt
+    {
+        $apiClient = new ApiClient(static::getApiContext());
+        $responseRaw = $apiClient->put(
+            vsprintf(
+                self::ENDPOINT_URL_UPDATE,
+                [static::determineUserId(), $monetaryAccountExternalId]
+            ),
+            [self::FIELD_DESCRIPTION => $description,
+self::FIELD_DAILY_LIMIT => $dailyLimit,
+self::FIELD_AVATAR_UUID => $avatarUuid,
+self::FIELD_STATUS => $status,
+self::FIELD_SUB_STATUS => $subStatus,
+self::FIELD_REASON => $reason,
+self::FIELD_REASON_DESCRIPTION => $reasonDescription,
+self::FIELD_DISPLAY_NAME => $displayName,
+self::FIELD_SETTING => $setting],
+            $customHeaders
+        );
+
+        return BunqResponseInt::castFromBunqResponse(
+            static::processForId($responseRaw)
+        );
+    }
+
+    /**
+     * This method is called "listing" because "list" is a restricted PHP word
+     * and cannot be used as constants, class names, function or method names.
+     *
+     * @param string[] $params
+     * @param string[] $customHeaders
+     *
+     * @return BunqResponseMonetaryAccountExternalList
+     */
+    public static function listing( array $params = [], array $customHeaders = []): BunqResponseMonetaryAccountExternalList
+    {
+        $apiClient = new ApiClient(static::getApiContext());
+        $responseRaw = $apiClient->get(
+            vsprintf(
+                self::ENDPOINT_URL_LISTING,
+                [static::determineUserId()]
+            ),
+            $params,
+            $customHeaders
+        );
+
+        return BunqResponseMonetaryAccountExternalList::castFromBunqResponse(
+            static::fromJsonList($responseRaw, self::OBJECT_TYPE_GET)
+        );
     }
 
     /**

@@ -37,6 +37,8 @@ class Company extends BunqModel
     const FIELD_SUBSCRIPTION_TYPE = 'subscription_type';
     const FIELD_AVATAR_UUID = 'avatar_uuid';
     const FIELD_VAT_NUMBER = 'vat_number';
+    const FIELD_VAT_NUMBERS = 'vat_numbers';
+    const FIELD_SIGNUP_TRACK_TYPE = 'signup_track_type';
 
     /**
      * Object type.
@@ -120,6 +122,20 @@ class Company extends BunqModel
     protected $vatNumberFieldForRequest;
 
     /**
+     * All the vat numbers of the company
+     *
+     * @var CompanyVatNumber[]|null
+     */
+    protected $vatNumbersFieldForRequest;
+
+    /**
+     * The type of signup track the user is following.
+     *
+     * @var string|null
+     */
+    protected $signupTrackTypeFieldForRequest;
+
+    /**
      * @param string $name The company name.
      * @param Address $addressMain The company's main address.
      * @param Address $addressPostal The company's postal address.
@@ -133,8 +149,12 @@ class Company extends BunqModel
      * @param string|null $avatarUuid The public UUID of the company's avatar.
      * @param CompanyVatNumber|null $vatNumber All the vat numbers of the
      * company
+     * @param CompanyVatNumber[]|null $vatNumbers All the vat numbers of the
+     * company
+     * @param string|null $signupTrackType The type of signup track the user is
+     * following.
      */
-    public function __construct(string  $name, Address  $addressMain, Address  $addressPostal, string  $country, string  $legalForm, string  $subscriptionType, array  $ubo = null, string  $chamberOfCommerceNumber = null, string  $avatarUuid = null, CompanyVatNumber  $vatNumber = null)
+    public function __construct(string  $name, Address  $addressMain, Address  $addressPostal, string  $country, string  $legalForm, string  $subscriptionType, array  $ubo = null, string  $chamberOfCommerceNumber = null, string  $avatarUuid = null, CompanyVatNumber  $vatNumber = null, array  $vatNumbers = null, string  $signupTrackType = null)
     {
         $this->nameFieldForRequest = $name;
         $this->addressMainFieldForRequest = $addressMain;
@@ -146,6 +166,8 @@ class Company extends BunqModel
         $this->subscriptionTypeFieldForRequest = $subscriptionType;
         $this->avatarUuidFieldForRequest = $avatarUuid;
         $this->vatNumberFieldForRequest = $vatNumber;
+        $this->vatNumbersFieldForRequest = $vatNumbers;
+        $this->signupTrackTypeFieldForRequest = $signupTrackType;
     }
 
     /**
@@ -162,11 +184,15 @@ class Company extends BunqModel
      * @param string|null $avatarUuid The public UUID of the company's avatar.
      * @param CompanyVatNumber|null $vatNumber All the vat numbers of the
      * company
+     * @param CompanyVatNumber[]|null $vatNumbers All the vat numbers of the
+     * company
+     * @param string|null $signupTrackType The type of signup track the user is
+     * following.
      * @param string[] $customHeaders
      *
      * @return BunqResponseInt
      */
-    public static function create(string  $name, Address  $addressMain, Address  $addressPostal, string  $country, string  $legalForm, string  $subscriptionType, array  $ubo = null, string  $chamberOfCommerceNumber = null, string  $avatarUuid = null, CompanyVatNumber  $vatNumber = null, array $customHeaders = []): BunqResponseInt
+    public static function create(string  $name, Address  $addressMain, Address  $addressPostal, string  $country, string  $legalForm, string  $subscriptionType, array  $ubo = null, string  $chamberOfCommerceNumber = null, string  $avatarUuid = null, CompanyVatNumber  $vatNumber = null, array  $vatNumbers = null, string  $signupTrackType = null, array $customHeaders = []): BunqResponseInt
     {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->post(
@@ -183,7 +209,9 @@ self::FIELD_CHAMBER_OF_COMMERCE_NUMBER => $chamberOfCommerceNumber,
 self::FIELD_LEGAL_FORM => $legalForm,
 self::FIELD_SUBSCRIPTION_TYPE => $subscriptionType,
 self::FIELD_AVATAR_UUID => $avatarUuid,
-self::FIELD_VAT_NUMBER => $vatNumber],
+self::FIELD_VAT_NUMBER => $vatNumber,
+self::FIELD_VAT_NUMBERS => $vatNumbers,
+self::FIELD_SIGNUP_TRACK_TYPE => $signupTrackType],
             $customHeaders
         );
 

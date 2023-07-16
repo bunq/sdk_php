@@ -25,12 +25,9 @@ use bunq\Model\Generated\Endpoint\RewardSender;
 use bunq\Model\Generated\Endpoint\ScheduleInstance;
 use bunq\Model\Generated\Endpoint\SchedulePayment;
 use bunq\Model\Generated\Endpoint\SchedulePaymentBatch;
-use bunq\Model\Generated\Endpoint\ShareInviteBankInquiryBatch;
 use bunq\Model\Generated\Endpoint\ShareInviteMonetaryAccountInquiry;
 use bunq\Model\Generated\Endpoint\ShareInviteMonetaryAccountResponse;
 use bunq\Model\Generated\Endpoint\SofortMerchantTransaction;
-use bunq\Model\Generated\Endpoint\TabResultInquiry;
-use bunq\Model\Generated\Endpoint\TabResultResponse;
 use bunq\Model\Generated\Endpoint\TransferwiseTransfer;
 
 /**
@@ -149,11 +146,6 @@ class EventObject extends BunqModel implements AnchorObjectInterface
     protected $rewardSender;
 
     /**
-     * @var ShareInviteBankInquiryBatch
-     */
-    protected $shareInviteBankInquiryBatch;
-
-    /**
      * @var ShareInviteMonetaryAccountInquiry
      */
     protected $shareInviteBankInquiry;
@@ -167,16 +159,6 @@ class EventObject extends BunqModel implements AnchorObjectInterface
      * @var SofortMerchantTransaction
      */
     protected $sofortMerchantTransaction;
-
-    /**
-     * @var TabResultInquiry
-     */
-    protected $tabResultInquiry;
-
-    /**
-     * @var TabResultResponse
-     */
-    protected $tabResultResponse;
 
     /**
      * @var TransferwiseTransfer
@@ -584,25 +566,6 @@ class EventObject extends BunqModel implements AnchorObjectInterface
     }
 
     /**
-     * @return ShareInviteBankInquiryBatch
-     */
-    public function getShareInviteBankInquiryBatch()
-    {
-        return $this->shareInviteBankInquiryBatch;
-    }
-
-    /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
-     * @param ShareInviteBankInquiryBatch $shareInviteBankInquiryBatch
-     */
-    public function setShareInviteBankInquiryBatch($shareInviteBankInquiryBatch)
-    {
-        $this->shareInviteBankInquiryBatch = $shareInviteBankInquiryBatch;
-    }
-
-    /**
      * @return ShareInviteMonetaryAccountInquiry
      */
     public function getShareInviteBankInquiry()
@@ -657,44 +620,6 @@ class EventObject extends BunqModel implements AnchorObjectInterface
     public function setSofortMerchantTransaction($sofortMerchantTransaction)
     {
         $this->sofortMerchantTransaction = $sofortMerchantTransaction;
-    }
-
-    /**
-     * @return TabResultInquiry
-     */
-    public function getTabResultInquiry()
-    {
-        return $this->tabResultInquiry;
-    }
-
-    /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
-     * @param TabResultInquiry $tabResultInquiry
-     */
-    public function setTabResultInquiry($tabResultInquiry)
-    {
-        $this->tabResultInquiry = $tabResultInquiry;
-    }
-
-    /**
-     * @return TabResultResponse
-     */
-    public function getTabResultResponse()
-    {
-        return $this->tabResultResponse;
-    }
-
-    /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
-     * @param TabResultResponse $tabResultResponse
-     */
-    public function setTabResultResponse($tabResultResponse)
-    {
-        $this->tabResultResponse = $tabResultResponse;
     }
 
     /**
@@ -806,10 +731,6 @@ class EventObject extends BunqModel implements AnchorObjectInterface
             return $this->rewardSender;
         }
 
-        if (!is_null($this->shareInviteBankInquiryBatch)) {
-            return $this->shareInviteBankInquiryBatch;
-        }
-
         if (!is_null($this->shareInviteBankInquiry)) {
             return $this->shareInviteBankInquiry;
         }
@@ -820,14 +741,6 @@ class EventObject extends BunqModel implements AnchorObjectInterface
 
         if (!is_null($this->sofortMerchantTransaction)) {
             return $this->sofortMerchantTransaction;
-        }
-
-        if (!is_null($this->tabResultInquiry)) {
-            return $this->tabResultInquiry;
-        }
-
-        if (!is_null($this->tabResultResponse)) {
-            return $this->tabResultResponse;
         }
 
         if (!is_null($this->transferwisePayment)) {
@@ -926,10 +839,6 @@ class EventObject extends BunqModel implements AnchorObjectInterface
             return false;
         }
 
-        if (!is_null($this->shareInviteBankInquiryBatch)) {
-            return false;
-        }
-
         if (!is_null($this->shareInviteBankInquiry)) {
             return false;
         }
@@ -939,14 +848,6 @@ class EventObject extends BunqModel implements AnchorObjectInterface
         }
 
         if (!is_null($this->sofortMerchantTransaction)) {
-            return false;
-        }
-
-        if (!is_null($this->tabResultInquiry)) {
-            return false;
-        }
-
-        if (!is_null($this->tabResultResponse)) {
             return false;
         }
 

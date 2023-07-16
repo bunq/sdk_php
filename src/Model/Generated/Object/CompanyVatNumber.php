@@ -23,6 +23,13 @@ class CompanyVatNumber extends BunqModel
     protected $value;
 
     /**
+     * The VAT identification number type.
+     *
+     * @var string|null
+     */
+    protected $typeFieldForRequest;
+
+    /**
      * The country of the VAT identification number.
      *
      * @var string
@@ -39,9 +46,11 @@ class CompanyVatNumber extends BunqModel
     /**
      * @param string $country The country of the VAT identification number.
      * @param string $value The VAT identification number number.
+     * @param string|null $type The VAT identification number type.
      */
-    public function __construct(string  $country, string  $value)
+    public function __construct(string  $country, string  $value, string  $type = null)
     {
+        $this->typeFieldForRequest = $type;
         $this->countryFieldForRequest = $country;
         $this->valueFieldForRequest = $value;
     }
