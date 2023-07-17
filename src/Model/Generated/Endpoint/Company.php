@@ -115,7 +115,7 @@ class Company extends BunqModel
     protected $avatarUuidFieldForRequest;
 
     /**
-     * All the vat numbers of the company
+     * DEPRECATED All the vat numbers of the company
      *
      * @var CompanyVatNumber|null
      */
@@ -147,8 +147,8 @@ class Company extends BunqModel
      * @param string|null $chamberOfCommerceNumber The company's chamber of
      * commerce number.
      * @param string|null $avatarUuid The public UUID of the company's avatar.
-     * @param CompanyVatNumber|null $vatNumber All the vat numbers of the
-     * company
+     * @param CompanyVatNumber|null $vatNumber DEPRECATED All the vat numbers of
+     * the company
      * @param CompanyVatNumber[]|null $vatNumbers All the vat numbers of the
      * company
      * @param string|null $signupTrackType The type of signup track the user is
@@ -182,8 +182,8 @@ class Company extends BunqModel
      * @param string|null $chamberOfCommerceNumber The company's chamber of
      * commerce number.
      * @param string|null $avatarUuid The public UUID of the company's avatar.
-     * @param CompanyVatNumber|null $vatNumber All the vat numbers of the
-     * company
+     * @param CompanyVatNumber|null $vatNumber DEPRECATED All the vat numbers of
+     * the company
      * @param CompanyVatNumber[]|null $vatNumbers All the vat numbers of the
      * company
      * @param string|null $signupTrackType The type of signup track the user is
