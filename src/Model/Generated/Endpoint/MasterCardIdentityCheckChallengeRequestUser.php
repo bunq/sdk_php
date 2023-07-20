@@ -60,6 +60,14 @@ class MasterCardIdentityCheckChallengeRequestUser extends BunqModel
     protected $status;
 
     /**
+     * The return url for the merchant app after the challenge is accepted or
+     * rejected.
+     *
+     * @var string
+     */
+    protected $urlMerchantApp;
+
+    /**
      * The monetary account label of the counterparty.
      *
      * @var LabelMonetaryAccount
@@ -224,6 +232,28 @@ class MasterCardIdentityCheckChallengeRequestUser extends BunqModel
     }
 
     /**
+     * The return url for the merchant app after the challenge is accepted or
+     * rejected.
+     *
+     * @return string
+     */
+    public function getUrlMerchantApp()
+    {
+        return $this->urlMerchantApp;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param string $urlMerchantApp
+     */
+    public function setUrlMerchantApp($urlMerchantApp)
+    {
+        $this->urlMerchantApp = $urlMerchantApp;
+    }
+
+    /**
      * The monetary account label of the counterparty.
      *
      * @return LabelMonetaryAccount
@@ -283,6 +313,10 @@ class MasterCardIdentityCheckChallengeRequestUser extends BunqModel
         }
 
         if (!is_null($this->status)) {
+            return false;
+        }
+
+        if (!is_null($this->urlMerchantApp)) {
             return false;
         }
 
