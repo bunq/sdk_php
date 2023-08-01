@@ -66,6 +66,11 @@ class MonetaryAccount extends BunqModel implements AnchorObjectInterface
     protected $monetaryAccountInvestment;
 
     /**
+     * @var MonetaryAccountExternalSavings
+     */
+    protected $monetaryAccountExternalSavings;
+
+    /**
      * Get a specific MonetaryAccount.
      *
      * @param int $monetaryAccountId
@@ -233,6 +238,25 @@ class MonetaryAccount extends BunqModel implements AnchorObjectInterface
     }
 
     /**
+     * @return MonetaryAccountExternalSavings
+     */
+    public function getMonetaryAccountExternalSavings()
+    {
+        return $this->monetaryAccountExternalSavings;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param MonetaryAccountExternalSavings $monetaryAccountExternalSavings
+     */
+    public function setMonetaryAccountExternalSavings($monetaryAccountExternalSavings)
+    {
+        $this->monetaryAccountExternalSavings = $monetaryAccountExternalSavings;
+    }
+
+    /**
      * @return BunqModel
      * @throws BunqException
      */
@@ -260,6 +284,10 @@ class MonetaryAccount extends BunqModel implements AnchorObjectInterface
 
         if (!is_null($this->monetaryAccountInvestment)) {
             return $this->monetaryAccountInvestment;
+        }
+
+        if (!is_null($this->monetaryAccountExternalSavings)) {
+            return $this->monetaryAccountExternalSavings;
         }
 
         throw new BunqException(self::ERROR_NULL_FIELDS);
@@ -291,6 +319,10 @@ class MonetaryAccount extends BunqModel implements AnchorObjectInterface
         }
 
         if (!is_null($this->monetaryAccountInvestment)) {
+            return false;
+        }
+
+        if (!is_null($this->monetaryAccountExternalSavings)) {
             return false;
         }
 
