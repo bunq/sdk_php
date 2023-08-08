@@ -40,14 +40,6 @@ class CashbackPayoutItem extends BunqModel
     protected $transactionCategory;
 
     /**
-     * The ID of the event of the mastercard action that triggered this
-     * cashback.
-     *
-     * @var int
-     */
-    protected $mastercardActionEventId;
-
-    /**
      * The status of the cashback payout item.
      *
      * @return string
@@ -132,28 +124,6 @@ class CashbackPayoutItem extends BunqModel
     }
 
     /**
-     * The ID of the event of the mastercard action that triggered this
-     * cashback.
-     *
-     * @return int
-     */
-    public function getMastercardActionEventId()
-    {
-        return $this->mastercardActionEventId;
-    }
-
-    /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
-     * @param int $mastercardActionEventId
-     */
-    public function setMastercardActionEventId($mastercardActionEventId)
-    {
-        $this->mastercardActionEventId = $mastercardActionEventId;
-    }
-
-    /**
      * @return bool
      */
     public function isAllFieldNull()
@@ -171,10 +141,6 @@ class CashbackPayoutItem extends BunqModel
         }
 
         if (!is_null($this->transactionCategory)) {
-            return false;
-        }
-
-        if (!is_null($this->mastercardActionEventId)) {
             return false;
         }
 
