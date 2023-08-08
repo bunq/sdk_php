@@ -32,6 +32,7 @@ class WhitelistSddRecurring extends BunqModel
     const FIELD_MONETARY_ACCOUNT_PAYING_ID = 'monetary_account_paying_id';
     const FIELD_REQUEST_ID = 'request_id';
     const FIELD_MAXIMUM_AMOUNT_PER_MONTH = 'maximum_amount_per_month';
+    const FIELD_MAXIMUM_AMOUNT_PER_PAYMENT = 'maximum_amount_per_payment';
 
     /**
      * Object type.
@@ -104,6 +105,14 @@ class WhitelistSddRecurring extends BunqModel
     protected $maximumAmountPerMonth;
 
     /**
+     * The maximum amount per payment that can be deducted from the target
+     * account.
+     *
+     * @var Amount
+     */
+    protected $maximumAmountPerPayment;
+
+    /**
      * The user who created the whitelist entry.
      *
      * @var LabelUser
@@ -125,12 +134,20 @@ class WhitelistSddRecurring extends BunqModel
     protected $requestIdFieldForRequest;
 
     /**
-     * The maximum amount of money that is allowed to be deducted based on the
-     * whitelist.
+     * The maximum amount of money that is allowed to be deducted per month
+     * based on the whitelist.
      *
      * @var Amount|null
      */
     protected $maximumAmountPerMonthFieldForRequest;
+
+    /**
+     * The maximum amount of money that is allowed to be deducted per payment
+     * based on the whitelist.
+     *
+     * @var Amount|null
+     */
+    protected $maximumAmountPerPaymentFieldForRequest;
 
     /**
      * @param int $monetaryAccountPayingId ID of the monetary account of which
@@ -138,13 +155,16 @@ class WhitelistSddRecurring extends BunqModel
      * @param int $requestId ID of the request for which you want to whitelist
      * the originating SDD.
      * @param Amount|null $maximumAmountPerMonth The maximum amount of money
-     * that is allowed to be deducted based on the whitelist.
+     * that is allowed to be deducted per month based on the whitelist.
+     * @param Amount|null $maximumAmountPerPayment The maximum amount of money
+     * that is allowed to be deducted per payment based on the whitelist.
      */
-    public function __construct(int  $monetaryAccountPayingId, int  $requestId, Amount  $maximumAmountPerMonth = null)
+    public function __construct(int  $monetaryAccountPayingId, int  $requestId, Amount  $maximumAmountPerMonth = null, Amount  $maximumAmountPerPayment = null)
     {
         $this->monetaryAccountPayingIdFieldForRequest = $monetaryAccountPayingId;
         $this->requestIdFieldForRequest = $requestId;
         $this->maximumAmountPerMonthFieldForRequest = $maximumAmountPerMonth;
+        $this->maximumAmountPerPaymentFieldForRequest = $maximumAmountPerPayment;
     }
 
     /**
@@ -180,12 +200,14 @@ class WhitelistSddRecurring extends BunqModel
      * @param int $requestId ID of the request for which you want to whitelist
      * the originating SDD.
      * @param Amount|null $maximumAmountPerMonth The maximum amount of money
-     * that is allowed to be deducted based on the whitelist.
+     * that is allowed to be deducted per month based on the whitelist.
+     * @param Amount|null $maximumAmountPerPayment The maximum amount of money
+     * that is allowed to be deducted per payment based on the whitelist.
      * @param string[] $customHeaders
      *
      * @return BunqResponseInt
      */
-    public static function create(int  $monetaryAccountPayingId, int  $requestId, Amount  $maximumAmountPerMonth = null, array $customHeaders = []): BunqResponseInt
+    public static function create(int  $monetaryAccountPayingId, int  $requestId, Amount  $maximumAmountPerMonth = null, Amount  $maximumAmountPerPayment = null, array $customHeaders = []): BunqResponseInt
     {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->post(
@@ -195,7 +217,8 @@ class WhitelistSddRecurring extends BunqModel
             ),
             [self::FIELD_MONETARY_ACCOUNT_PAYING_ID => $monetaryAccountPayingId,
 self::FIELD_REQUEST_ID => $requestId,
-self::FIELD_MAXIMUM_AMOUNT_PER_MONTH => $maximumAmountPerMonth],
+self::FIELD_MAXIMUM_AMOUNT_PER_MONTH => $maximumAmountPerMonth,
+self::FIELD_MAXIMUM_AMOUNT_PER_PAYMENT => $maximumAmountPerPayment],
             $customHeaders
         );
 
@@ -209,12 +232,14 @@ self::FIELD_MAXIMUM_AMOUNT_PER_MONTH => $maximumAmountPerMonth],
      * @param int|null $monetaryAccountPayingId ID of the monetary account of
      * which you want to pay from.
      * @param Amount|null $maximumAmountPerMonth The maximum amount of money
-     * that is allowed to be deducted based on the whitelist.
+     * that is allowed to be deducted per month based on the whitelist.
+     * @param Amount|null $maximumAmountPerPayment The maximum amount of money
+     * that is allowed to be deducted per payment based on the whitelist.
      * @param string[] $customHeaders
      *
      * @return BunqResponseInt
      */
-    public static function update(int $whitelistSddRecurringId, int  $monetaryAccountPayingId = null, Amount  $maximumAmountPerMonth = null, array $customHeaders = []): BunqResponseInt
+    public static function update(int $whitelistSddRecurringId, int  $monetaryAccountPayingId = null, Amount  $maximumAmountPerMonth = null, Amount  $maximumAmountPerPayment = null, array $customHeaders = []): BunqResponseInt
     {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->put(
@@ -223,7 +248,8 @@ self::FIELD_MAXIMUM_AMOUNT_PER_MONTH => $maximumAmountPerMonth],
                 [static::determineUserId(), $whitelistSddRecurringId]
             ),
             [self::FIELD_MONETARY_ACCOUNT_PAYING_ID => $monetaryAccountPayingId,
-self::FIELD_MAXIMUM_AMOUNT_PER_MONTH => $maximumAmountPerMonth],
+self::FIELD_MAXIMUM_AMOUNT_PER_MONTH => $maximumAmountPerMonth,
+self::FIELD_MAXIMUM_AMOUNT_PER_PAYMENT => $maximumAmountPerPayment],
             $customHeaders
         );
 
@@ -475,6 +501,28 @@ self::FIELD_MAXIMUM_AMOUNT_PER_MONTH => $maximumAmountPerMonth],
     }
 
     /**
+     * The maximum amount per payment that can be deducted from the target
+     * account.
+     *
+     * @return Amount
+     */
+    public function getMaximumAmountPerPayment()
+    {
+        return $this->maximumAmountPerPayment;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param Amount $maximumAmountPerPayment
+     */
+    public function setMaximumAmountPerPayment($maximumAmountPerPayment)
+    {
+        $this->maximumAmountPerPayment = $maximumAmountPerPayment;
+    }
+
+    /**
      * The user who created the whitelist entry.
      *
      * @return LabelUser
@@ -533,6 +581,10 @@ self::FIELD_MAXIMUM_AMOUNT_PER_MONTH => $maximumAmountPerMonth],
         }
 
         if (!is_null($this->maximumAmountPerMonth)) {
+            return false;
+        }
+
+        if (!is_null($this->maximumAmountPerPayment)) {
             return false;
         }
 
