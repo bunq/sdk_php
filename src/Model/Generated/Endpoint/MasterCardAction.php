@@ -329,6 +329,21 @@ class MasterCardAction extends BunqModel
     protected $blacklist;
 
     /**
+     * The status of the additional authentication performed (3ds) by the user
+     * for this transaction.
+     *
+     * @var string
+     */
+    protected $additionalAuthenticationStatus;
+
+    /**
+     * Status checking the provided PIN.
+     *
+     * @var string
+     */
+    protected $pinStatus;
+
+    /**
      * @param int $masterCardActionId
      * @param int|null $monetaryAccountId
      * @param string[] $customHeaders
@@ -1254,6 +1269,49 @@ class MasterCardAction extends BunqModel
     }
 
     /**
+     * The status of the additional authentication performed (3ds) by the user
+     * for this transaction.
+     *
+     * @return string
+     */
+    public function getAdditionalAuthenticationStatus()
+    {
+        return $this->additionalAuthenticationStatus;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param string $additionalAuthenticationStatus
+     */
+    public function setAdditionalAuthenticationStatus($additionalAuthenticationStatus)
+    {
+        $this->additionalAuthenticationStatus = $additionalAuthenticationStatus;
+    }
+
+    /**
+     * Status checking the provided PIN.
+     *
+     * @return string
+     */
+    public function getPinStatus()
+    {
+        return $this->pinStatus;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param string $pinStatus
+     */
+    public function setPinStatus($pinStatus)
+    {
+        $this->pinStatus = $pinStatus;
+    }
+
+    /**
      * @return bool
      */
     public function isAllFieldNull()
@@ -1419,6 +1477,14 @@ class MasterCardAction extends BunqModel
         }
 
         if (!is_null($this->blacklist)) {
+            return false;
+        }
+
+        if (!is_null($this->additionalAuthenticationStatus)) {
+            return false;
+        }
+
+        if (!is_null($this->pinStatus)) {
             return false;
         }
 
