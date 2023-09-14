@@ -176,9 +176,10 @@ class MasterCardActionRefund extends BunqModel
     protected $statusTogetherUrl;
 
     /**
-     * Type of this refund. Can de REFUND or CHARGEBACK
+     * Type of this refund. Can de REFUND or CHARGEBACK. DEPRECATED: This is now
+     * determined by backend.
      *
-     * @var string
+     * @var string|null
      */
     protected $typeFieldForRequest;
 
@@ -234,10 +235,11 @@ class MasterCardActionRefund extends BunqModel
     protected $termsAndConditionsFieldForRequest;
 
     /**
-     * @param string $type Type of this refund. Can de REFUND or CHARGEBACK
      * @param string $subType The sub type of this refund indicating whether the
      * chargeback will be FULL or PARTIAL.
      * @param Amount $amount The amount to refund.
+     * @param string|null $type Type of this refund. Can de REFUND or
+     * CHARGEBACK. DEPRECATED: This is now determined by backend.
      * @param string|null $category The category of the refund, required for
      * chargeback.
      * @param string|null $reason The reason to refund, required for chargeback.
@@ -247,7 +249,7 @@ class MasterCardActionRefund extends BunqModel
      * @param string|null $termsAndConditions Proof that the user acknowledged
      * the terms and conditions for chargebacks.
      */
-    public function __construct(string  $type, string  $subType, Amount  $amount, string  $category = null, string  $reason = null, string  $comment = null, array  $attachment = null, string  $termsAndConditions = null)
+    public function __construct(string  $subType, Amount  $amount, string  $type = null, string  $category = null, string  $reason = null, string  $comment = null, array  $attachment = null, string  $termsAndConditions = null)
     {
         $this->typeFieldForRequest = $type;
         $this->subTypeFieldForRequest = $subType;
