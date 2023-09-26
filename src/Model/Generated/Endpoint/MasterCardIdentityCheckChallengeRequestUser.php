@@ -60,6 +60,20 @@ class MasterCardIdentityCheckChallengeRequestUser extends BunqModel
     protected $status;
 
     /**
+     * Textual explanation of the decision.
+     *
+     * @var string
+     */
+    protected $decisionDescription;
+
+    /**
+     * Textual explanation of the decision in user's language.
+     *
+     * @var string
+     */
+    protected $decisionDescriptionTranslated;
+
+    /**
      * The return url for the merchant app after the challenge is accepted or
      * rejected.
      *
@@ -232,6 +246,48 @@ class MasterCardIdentityCheckChallengeRequestUser extends BunqModel
     }
 
     /**
+     * Textual explanation of the decision.
+     *
+     * @return string
+     */
+    public function getDecisionDescription()
+    {
+        return $this->decisionDescription;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param string $decisionDescription
+     */
+    public function setDecisionDescription($decisionDescription)
+    {
+        $this->decisionDescription = $decisionDescription;
+    }
+
+    /**
+     * Textual explanation of the decision in user's language.
+     *
+     * @return string
+     */
+    public function getDecisionDescriptionTranslated()
+    {
+        return $this->decisionDescriptionTranslated;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param string $decisionDescriptionTranslated
+     */
+    public function setDecisionDescriptionTranslated($decisionDescriptionTranslated)
+    {
+        $this->decisionDescriptionTranslated = $decisionDescriptionTranslated;
+    }
+
+    /**
      * The return url for the merchant app after the challenge is accepted or
      * rejected.
      *
@@ -313,6 +369,14 @@ class MasterCardIdentityCheckChallengeRequestUser extends BunqModel
         }
 
         if (!is_null($this->status)) {
+            return false;
+        }
+
+        if (!is_null($this->decisionDescription)) {
+            return false;
+        }
+
+        if (!is_null($this->decisionDescriptionTranslated)) {
             return false;
         }
 
