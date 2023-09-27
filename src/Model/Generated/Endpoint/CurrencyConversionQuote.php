@@ -119,7 +119,7 @@ class CurrencyConversionQuote extends BunqModel
     /**
      * The type of the quote, SELL or BUY.
      *
-     * @var string|null
+     * @var string
      */
     protected $orderTypeFieldForRequest;
 
@@ -141,12 +141,12 @@ class CurrencyConversionQuote extends BunqModel
      * @param Amount $amount The amount to convert.
      * @param string $currencySource The currency we are converting.
      * @param string $currencyTarget The currency we are converting towards.
+     * @param string $orderType The type of the quote, SELL or BUY.
      * @param Pointer $counterpartyAlias The Alias of the party we are
      * transferring the money to.
-     * @param string|null $orderType The type of the quote, SELL or BUY.
      * @param string|null $status The status of the quote.
      */
-    public function __construct(Amount  $amount, string  $currencySource, string  $currencyTarget, Pointer  $counterpartyAlias, string  $orderType = null, string  $status = null)
+    public function __construct(Amount  $amount, string  $currencySource, string  $currencyTarget, string  $orderType, Pointer  $counterpartyAlias, string  $status = null)
     {
         $this->amountFieldForRequest = $amount;
         $this->currencySourceFieldForRequest = $currencySource;
@@ -160,16 +160,16 @@ class CurrencyConversionQuote extends BunqModel
      * @param Amount $amount The amount to convert.
      * @param string $currencySource The currency we are converting.
      * @param string $currencyTarget The currency we are converting towards.
+     * @param string $orderType The type of the quote, SELL or BUY.
      * @param Pointer $counterpartyAlias The Alias of the party we are
      * transferring the money to.
      * @param int|null $monetaryAccountId
-     * @param string|null $orderType The type of the quote, SELL or BUY.
      * @param string|null $status The status of the quote.
      * @param string[] $customHeaders
      *
      * @return BunqResponseInt
      */
-    public static function create(Amount  $amount, string  $currencySource, string  $currencyTarget, Pointer  $counterpartyAlias, int $monetaryAccountId = null, string  $orderType = null, string  $status = null, array $customHeaders = []): BunqResponseInt
+    public static function create(Amount  $amount, string  $currencySource, string  $currencyTarget, string  $orderType, Pointer  $counterpartyAlias, int $monetaryAccountId = null, string  $status = null, array $customHeaders = []): BunqResponseInt
     {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->post(
