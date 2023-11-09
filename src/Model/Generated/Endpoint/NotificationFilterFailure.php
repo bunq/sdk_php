@@ -60,6 +60,20 @@ class NotificationFilterFailure extends BunqModel
     protected $objectId;
 
     /**
+     * The exception bunq encountered when processing the callback.
+     *
+     * @var string
+     */
+    protected $exceptionMessage;
+
+    /**
+     * The response code (or null) received from the endpoint.
+     *
+     * @var int
+     */
+    protected $responseCode;
+
+    /**
      * The IDs to retry.
      *
      * @var string
@@ -209,6 +223,48 @@ class NotificationFilterFailure extends BunqModel
     }
 
     /**
+     * The exception bunq encountered when processing the callback.
+     *
+     * @return string
+     */
+    public function getExceptionMessage()
+    {
+        return $this->exceptionMessage;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param string $exceptionMessage
+     */
+    public function setExceptionMessage($exceptionMessage)
+    {
+        $this->exceptionMessage = $exceptionMessage;
+    }
+
+    /**
+     * The response code (or null) received from the endpoint.
+     *
+     * @return int
+     */
+    public function getResponseCode()
+    {
+        return $this->responseCode;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param int $responseCode
+     */
+    public function setResponseCode($responseCode)
+    {
+        $this->responseCode = $responseCode;
+    }
+
+    /**
      * @return bool
      */
     public function isAllFieldNull()
@@ -226,6 +282,14 @@ class NotificationFilterFailure extends BunqModel
         }
 
         if (!is_null($this->objectId)) {
+            return false;
+        }
+
+        if (!is_null($this->exceptionMessage)) {
+            return false;
+        }
+
+        if (!is_null($this->responseCode)) {
             return false;
         }
 
