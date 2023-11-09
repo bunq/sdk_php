@@ -4,6 +4,7 @@ namespace bunq\Model\Generated\Object;
 use bunq\Exception\BunqException;
 use bunq\Model\Core\AnchorObjectInterface;
 use bunq\Model\Core\BunqModel;
+use bunq\Model\Generated\Endpoint\CurrencyConversion;
 use bunq\Model\Generated\Endpoint\DraftPayment;
 use bunq\Model\Generated\Endpoint\Invoice;
 use bunq\Model\Generated\Endpoint\MasterCardAction;
@@ -68,6 +69,11 @@ class RequestReferenceSplitTheBillAnchorObject extends BunqModel implements Anch
      * @var TransferwiseTransfer|null
      */
     protected $transferwisePayment;
+
+    /**
+     * @var CurrencyConversion|null
+     */
+    protected $currencyConversion;
 
     /**
      * @return Invoice
@@ -241,6 +247,25 @@ class RequestReferenceSplitTheBillAnchorObject extends BunqModel implements Anch
     }
 
     /**
+     * @return CurrencyConversion
+     */
+    public function getCurrencyConversion()
+    {
+        return $this->currencyConversion;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param CurrencyConversion $currencyConversion
+     */
+    public function setCurrencyConversion($currencyConversion)
+    {
+        $this->currencyConversion = $currencyConversion;
+    }
+
+    /**
      * @return BunqModel
      * @throws BunqException
      */
@@ -280,6 +305,10 @@ class RequestReferenceSplitTheBillAnchorObject extends BunqModel implements Anch
 
         if (!is_null($this->transferwisePayment)) {
             return $this->transferwisePayment;
+        }
+
+        if (!is_null($this->currencyConversion)) {
+            return $this->currencyConversion;
         }
 
         throw new BunqException(self::ERROR_NULL_FIELDS);
@@ -323,6 +352,10 @@ class RequestReferenceSplitTheBillAnchorObject extends BunqModel implements Anch
         }
 
         if (!is_null($this->transferwisePayment)) {
+            return false;
+        }
+
+        if (!is_null($this->currencyConversion)) {
             return false;
         }
 
