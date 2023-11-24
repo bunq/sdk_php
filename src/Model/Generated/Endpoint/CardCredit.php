@@ -28,6 +28,7 @@ class CardCredit extends BunqModel
     /**
      * Field constants.
      */
+    const FIELD_FIRST_LINE = 'first_line';
     const FIELD_SECOND_LINE = 'second_line';
     const FIELD_NAME_ON_CARD = 'name_on_card';
     const FIELD_PREFERRED_NAME_ON_CARD = 'preferred_name_on_card';
@@ -215,6 +216,14 @@ class CardCredit extends BunqModel
     protected $cardShipmentTrackingUrl;
 
     /**
+     * The first line of text on the card, used as name/description for it. It
+     * can contain at most 17 characters and it can be empty.
+     *
+     * @var string|null
+     */
+    protected $firstLineFieldForRequest;
+
+    /**
      * The second line of text on the card, used as name/description for it. It
      * can contain at most 17 characters and it can be empty.
      *
@@ -291,6 +300,9 @@ class CardCredit extends BunqModel
      * Check 'card-name' for the available card names for a user.
      * @param string $type The type of card to order. Can be MASTERCARD.
      * @param string $productType The product type of the card to order.
+     * @param string|null $firstLine The first line of text on the card, used as
+     * name/description for it. It can contain at most 17 characters and it can
+     * be empty.
      * @param string|null $preferredNameOnCard The user's preferred name that
      * can be put on the card.
      * @param Pointer|null $alias The pointer to the monetary account that will
@@ -304,8 +316,9 @@ class CardCredit extends BunqModel
      * @param string|null $orderStatus The order status of this card. Can be
      * CARD_REQUEST_PENDING or VIRTUAL_DELIVERY.
      */
-    public function __construct(string  $secondLine, string  $nameOnCard, string  $type, string  $productType, string  $preferredNameOnCard = null, Pointer  $alias = null, array  $pinCodeAssignment = null, int  $monetaryAccountIdFallback = null, string  $orderStatus = null)
+    public function __construct(string  $secondLine, string  $nameOnCard, string  $type, string  $productType, string  $firstLine = null, string  $preferredNameOnCard = null, Pointer  $alias = null, array  $pinCodeAssignment = null, int  $monetaryAccountIdFallback = null, string  $orderStatus = null)
     {
+        $this->firstLineFieldForRequest = $firstLine;
         $this->secondLineFieldForRequest = $secondLine;
         $this->nameOnCardFieldForRequest = $nameOnCard;
         $this->preferredNameOnCardFieldForRequest = $preferredNameOnCard;
@@ -327,6 +340,9 @@ class CardCredit extends BunqModel
      * Check 'card-name' for the available card names for a user.
      * @param string $type The type of card to order. Can be MASTERCARD.
      * @param string $productType The product type of the card to order.
+     * @param string|null $firstLine The first line of text on the card, used as
+     * name/description for it. It can contain at most 17 characters and it can
+     * be empty.
      * @param string|null $preferredNameOnCard The user's preferred name that
      * can be put on the card.
      * @param Pointer|null $alias The pointer to the monetary account that will
@@ -343,7 +359,7 @@ class CardCredit extends BunqModel
      *
      * @return BunqResponseCardCredit
      */
-    public static function create(string  $secondLine, string  $nameOnCard, string  $type, string  $productType, string  $preferredNameOnCard = null, Pointer  $alias = null, array  $pinCodeAssignment = null, int  $monetaryAccountIdFallback = null, string  $orderStatus = null, array $customHeaders = []): BunqResponseCardCredit
+    public static function create(string  $secondLine, string  $nameOnCard, string  $type, string  $productType, string  $firstLine = null, string  $preferredNameOnCard = null, Pointer  $alias = null, array  $pinCodeAssignment = null, int  $monetaryAccountIdFallback = null, string  $orderStatus = null, array $customHeaders = []): BunqResponseCardCredit
     {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->post(
@@ -351,7 +367,8 @@ class CardCredit extends BunqModel
                 self::ENDPOINT_URL_CREATE,
                 [static::determineUserId()]
             ),
-            [self::FIELD_SECOND_LINE => $secondLine,
+            [self::FIELD_FIRST_LINE => $firstLine,
+self::FIELD_SECOND_LINE => $secondLine,
 self::FIELD_NAME_ON_CARD => $nameOnCard,
 self::FIELD_PREFERRED_NAME_ON_CARD => $preferredNameOnCard,
 self::FIELD_ALIAS => $alias,
