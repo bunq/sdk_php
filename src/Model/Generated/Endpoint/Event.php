@@ -104,6 +104,14 @@ class Event extends BunqModel
     protected $isEventLatestForObject;
 
     /**
+     * Indicator whether this is event can be reassigned to another Monetary
+     * Account.
+     *
+     * @var bool
+     */
+    protected $isEventReassignable;
+
+    /**
      * Get a specific event for a given user.
      *
      * @param int $eventId
@@ -380,6 +388,28 @@ class Event extends BunqModel
     }
 
     /**
+     * Indicator whether this is event can be reassigned to another Monetary
+     * Account.
+     *
+     * @return bool
+     */
+    public function getIsEventReassignable()
+    {
+        return $this->isEventReassignable;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param bool $isEventReassignable
+     */
+    public function setIsEventReassignable($isEventReassignable)
+    {
+        $this->isEventReassignable = $isEventReassignable;
+    }
+
+    /**
      * @return bool
      */
     public function isAllFieldNull()
@@ -421,6 +451,10 @@ class Event extends BunqModel
         }
 
         if (!is_null($this->isEventLatestForObject)) {
+            return false;
+        }
+
+        if (!is_null($this->isEventReassignable)) {
             return false;
         }
 
