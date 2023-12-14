@@ -38,6 +38,8 @@ class Card extends BunqModel
     const FIELD_PIN_CODE_ASSIGNMENT = 'pin_code_assignment';
     const FIELD_PRIMARY_ACCOUNT_NUMBERS = 'primary_account_numbers';
     const FIELD_MONETARY_ACCOUNT_ID_FALLBACK = 'monetary_account_id_fallback';
+    const FIELD_PREFERRED_NAME_ON_CARD = 'preferred_name_on_card';
+    const FIELD_SECOND_LINE = 'second_line';
     const FIELD_CANCELLATION_REASON = 'cancellation_reason';
 
     /**
@@ -142,6 +144,13 @@ class Card extends BunqModel
      * @var string
      */
     protected $nameOnCard;
+
+    /**
+     * The user's preferred name on the card.
+     *
+     * @var string
+     */
+    protected $preferredNameOnCard;
 
     /**
      * Array of PANs and their attributes.
@@ -313,6 +322,20 @@ class Card extends BunqModel
     protected $monetaryAccountIdFallbackFieldForRequest;
 
     /**
+     * The user's preferred name as it will be on the card.
+     *
+     * @var string|null
+     */
+    protected $preferredNameOnCardFieldForRequest;
+
+    /**
+     * The second line of text on the card
+     *
+     * @var string|null
+     */
+    protected $secondLineFieldForRequest;
+
+    /**
      * The reason for card cancellation.
      *
      * @var string|null
@@ -346,9 +369,12 @@ class Card extends BunqModel
      * @param int|null $monetaryAccountIdFallback ID of the MA to be used as
      * fallback for this card if insufficient balance. Fallback account is
      * removed if not supplied.
+     * @param string|null $preferredNameOnCard The user's preferred name as it
+     * will be on the card.
+     * @param string|null $secondLine The second line of text on the card
      * @param string|null $cancellationReason The reason for card cancellation.
      */
-    public function __construct(string  $pinCode = null, string  $activationCode = null, string  $status = null, string  $orderStatus = null, Amount  $cardLimit = null, Amount  $cardLimitAtm = null, array  $countryPermission = null, array  $pinCodeAssignment = null, array  $primaryAccountNumbers = null, int  $monetaryAccountIdFallback = null, string  $cancellationReason = null)
+    public function __construct(string  $pinCode = null, string  $activationCode = null, string  $status = null, string  $orderStatus = null, Amount  $cardLimit = null, Amount  $cardLimitAtm = null, array  $countryPermission = null, array  $pinCodeAssignment = null, array  $primaryAccountNumbers = null, int  $monetaryAccountIdFallback = null, string  $preferredNameOnCard = null, string  $secondLine = null, string  $cancellationReason = null)
     {
         $this->pinCodeFieldForRequest = $pinCode;
         $this->activationCodeFieldForRequest = $activationCode;
@@ -360,6 +386,8 @@ class Card extends BunqModel
         $this->pinCodeAssignmentFieldForRequest = $pinCodeAssignment;
         $this->primaryAccountNumbersFieldForRequest = $primaryAccountNumbers;
         $this->monetaryAccountIdFallbackFieldForRequest = $monetaryAccountIdFallback;
+        $this->preferredNameOnCardFieldForRequest = $preferredNameOnCard;
+        $this->secondLineFieldForRequest = $secondLine;
         $this->cancellationReasonFieldForRequest = $cancellationReason;
     }
 
@@ -396,12 +424,15 @@ class Card extends BunqModel
      * @param int|null $monetaryAccountIdFallback ID of the MA to be used as
      * fallback for this card if insufficient balance. Fallback account is
      * removed if not supplied.
+     * @param string|null $preferredNameOnCard The user's preferred name as it
+     * will be on the card.
+     * @param string|null $secondLine The second line of text on the card
      * @param string|null $cancellationReason The reason for card cancellation.
      * @param string[] $customHeaders
      *
      * @return BunqResponseCard
      */
-    public static function update(int $cardId, string  $pinCode = null, string  $activationCode = null, string  $status = null, string  $orderStatus = null, Amount  $cardLimit = null, Amount  $cardLimitAtm = null, array  $countryPermission = null, array  $pinCodeAssignment = null, array  $primaryAccountNumbers = null, int  $monetaryAccountIdFallback = null, string  $cancellationReason = null, array $customHeaders = []): BunqResponseCard
+    public static function update(int $cardId, string  $pinCode = null, string  $activationCode = null, string  $status = null, string  $orderStatus = null, Amount  $cardLimit = null, Amount  $cardLimitAtm = null, array  $countryPermission = null, array  $pinCodeAssignment = null, array  $primaryAccountNumbers = null, int  $monetaryAccountIdFallback = null, string  $preferredNameOnCard = null, string  $secondLine = null, string  $cancellationReason = null, array $customHeaders = []): BunqResponseCard
     {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->put(
@@ -419,6 +450,8 @@ self::FIELD_COUNTRY_PERMISSION => $countryPermission,
 self::FIELD_PIN_CODE_ASSIGNMENT => $pinCodeAssignment,
 self::FIELD_PRIMARY_ACCOUNT_NUMBERS => $primaryAccountNumbers,
 self::FIELD_MONETARY_ACCOUNT_ID_FALLBACK => $monetaryAccountIdFallback,
+self::FIELD_PREFERRED_NAME_ON_CARD => $preferredNameOnCard,
+self::FIELD_SECOND_LINE => $secondLine,
 self::FIELD_CANCELLATION_REASON => $cancellationReason],
             $customHeaders
         );
@@ -761,6 +794,27 @@ self::FIELD_CANCELLATION_REASON => $cancellationReason],
     }
 
     /**
+     * The user's preferred name on the card.
+     *
+     * @return string
+     */
+    public function getPreferredNameOnCard()
+    {
+        return $this->preferredNameOnCard;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param string $preferredNameOnCard
+     */
+    public function setPreferredNameOnCard($preferredNameOnCard)
+    {
+        $this->preferredNameOnCard = $preferredNameOnCard;
+    }
+
+    /**
      * Array of PANs and their attributes.
      *
      * @return CardPrimaryAccountNumber[]
@@ -1070,6 +1124,10 @@ self::FIELD_CANCELLATION_REASON => $cancellationReason],
         }
 
         if (!is_null($this->nameOnCard)) {
+            return false;
+        }
+
+        if (!is_null($this->preferredNameOnCard)) {
             return false;
         }
 
