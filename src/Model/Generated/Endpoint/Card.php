@@ -204,6 +204,13 @@ class Card extends BunqModel
     protected $labelMonetaryAccountCurrent;
 
     /**
+     * Current monetary account (only for prepaid credit cards).
+     *
+     * @var MonetaryAccount
+     */
+    protected $monetaryAccount;
+
+    /**
      * Array of Types, PINs, account IDs assigned to the card.
      *
      * @var CardPinAssignment[]
@@ -964,6 +971,27 @@ self::FIELD_CANCELLATION_REASON => $cancellationReason],
     }
 
     /**
+     * Current monetary account (only for prepaid credit cards).
+     *
+     * @return MonetaryAccount
+     */
+    public function getMonetaryAccount()
+    {
+        return $this->monetaryAccount;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param MonetaryAccount $monetaryAccount
+     */
+    public function setMonetaryAccount($monetaryAccount)
+    {
+        $this->monetaryAccount = $monetaryAccount;
+    }
+
+    /**
      * Array of Types, PINs, account IDs assigned to the card.
      *
      * @return CardPinAssignment[]
@@ -1156,6 +1184,10 @@ self::FIELD_CANCELLATION_REASON => $cancellationReason],
         }
 
         if (!is_null($this->labelMonetaryAccountCurrent)) {
+            return false;
+        }
+
+        if (!is_null($this->monetaryAccount)) {
             return false;
         }
 
