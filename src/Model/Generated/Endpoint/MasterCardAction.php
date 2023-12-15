@@ -344,6 +344,13 @@ class MasterCardAction extends BunqModel
     protected $pinStatus;
 
     /**
+     * The MCC provided.
+     *
+     * @var string
+     */
+    protected $merchantCategoryCode;
+
+    /**
      * @param int $masterCardActionId
      * @param int|null $monetaryAccountId
      * @param string[] $customHeaders
@@ -1312,6 +1319,27 @@ class MasterCardAction extends BunqModel
     }
 
     /**
+     * The MCC provided.
+     *
+     * @return string
+     */
+    public function getMerchantCategoryCode()
+    {
+        return $this->merchantCategoryCode;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param string $merchantCategoryCode
+     */
+    public function setMerchantCategoryCode($merchantCategoryCode)
+    {
+        $this->merchantCategoryCode = $merchantCategoryCode;
+    }
+
+    /**
      * @return bool
      */
     public function isAllFieldNull()
@@ -1485,6 +1513,10 @@ class MasterCardAction extends BunqModel
         }
 
         if (!is_null($this->pinStatus)) {
+            return false;
+        }
+
+        if (!is_null($this->merchantCategoryCode)) {
             return false;
         }
 
