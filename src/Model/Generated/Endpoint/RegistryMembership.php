@@ -6,6 +6,7 @@ use bunq\Model\Generated\Object\Amount;
 use bunq\Model\Generated\Object\LabelMonetaryAccount;
 use bunq\Model\Generated\Object\LabelUser;
 use bunq\Model\Generated\Object\Pointer;
+use bunq\Model\Generated\Object\RegistryMembershipSetting;
 
 /**
  * View for RegistryMembership.
@@ -21,6 +22,7 @@ class RegistryMembership extends BunqModel
     const FIELD_ALIAS = 'alias';
     const FIELD_STATUS = 'status';
     const FIELD_AUTO_ADD_CARD_TRANSACTION = 'auto_add_card_transaction';
+    const FIELD_SETTING = 'setting';
     const FIELD_MEMBERSHIP_TICOUNT_ID = 'membership_ticount_id';
 
     /**
@@ -68,11 +70,18 @@ class RegistryMembership extends BunqModel
 
     /**
      * The setting for for adding automatically card transactions to the
-     * registry.
+     * registry. (deprecated)
      *
      * @var string
      */
     protected $autoAddCardTransaction;
+
+    /**
+     * Registry membership setting.
+     *
+     * @var RegistryMembershipSetting
+     */
+    protected $setting;
 
     /**
      * The registry id.
@@ -119,12 +128,19 @@ class RegistryMembership extends BunqModel
     protected $statusFieldForRequest;
 
     /**
-     * The setting for for adding automatically card transactions to the
-     * registry.
+     * The setting for adding automatically card transactions to the registry.
+     * (deprecated)
      *
      * @var string|null
      */
     protected $autoAddCardTransactionFieldForRequest;
+
+    /**
+     * Registry membership setting.
+     *
+     * @var RegistryMembershipSetting|null
+     */
+    protected $settingFieldForRequest;
 
     /**
      * The original TricountId of the membership for backwards compatibility.
@@ -144,19 +160,22 @@ class RegistryMembership extends BunqModel
      * alias may be updated server-side, whereas the UUID will remain
      * consistent.
      * @param string|null $status The status of the RegistryMembership.
-     * @param string|null $autoAddCardTransaction The setting for for adding
-     * automatically card transactions to the registry.
+     * @param string|null $autoAddCardTransaction The setting for adding
+     * automatically card transactions to the registry. (deprecated)
+     * @param RegistryMembershipSetting|null $setting Registry membership
+     * setting.
      * @param int|null $membershipTicountId The original TricountId of the
      * membership for backwards compatibility. May be used as an alternative to
      * the UUID to identify specific memberships to allow clients to sync
      * changes made offline before the Tricount migration.
      */
-    public function __construct(Pointer  $alias, string  $uuid = null, string  $status = null, string  $autoAddCardTransaction = null, int  $membershipTicountId = null)
+    public function __construct(Pointer  $alias, string  $uuid = null, string  $status = null, string  $autoAddCardTransaction = null, RegistryMembershipSetting  $setting = null, int  $membershipTicountId = null)
     {
         $this->uuidFieldForRequest = $uuid;
         $this->aliasFieldForRequest = $alias;
         $this->statusFieldForRequest = $status;
         $this->autoAddCardTransactionFieldForRequest = $autoAddCardTransaction;
+        $this->settingFieldForRequest = $setting;
         $this->membershipTicountIdFieldForRequest = $membershipTicountId;
     }
 
@@ -289,7 +308,7 @@ class RegistryMembership extends BunqModel
 
     /**
      * The setting for for adding automatically card transactions to the
-     * registry.
+     * registry. (deprecated)
      *
      * @return string
      */
@@ -307,6 +326,27 @@ class RegistryMembership extends BunqModel
     public function setAutoAddCardTransaction($autoAddCardTransaction)
     {
         $this->autoAddCardTransaction = $autoAddCardTransaction;
+    }
+
+    /**
+     * Registry membership setting.
+     *
+     * @return RegistryMembershipSetting
+     */
+    public function getSetting()
+    {
+        return $this->setting;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param RegistryMembershipSetting $setting
+     */
+    public function setSetting($setting)
+    {
+        $this->setting = $setting;
     }
 
     /**
@@ -402,6 +442,10 @@ class RegistryMembership extends BunqModel
         }
 
         if (!is_null($this->autoAddCardTransaction)) {
+            return false;
+        }
+
+        if (!is_null($this->setting)) {
             return false;
         }
 
