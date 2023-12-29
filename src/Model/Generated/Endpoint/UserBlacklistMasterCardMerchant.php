@@ -13,9 +13,11 @@ class UserBlacklistMasterCardMerchant extends BunqModel
     /**
      * Field constants.
      */
-    const FIELD_MERCHANT_ID = 'merchant_id';
     const FIELD_MERCHANT_NAME = 'merchant_name';
+    const FIELD_MERCHANT_ID = 'merchant_id';
     const FIELD_MERCHANT_IDENTIFIER = 'merchant_identifier';
+    const FIELD_MASTERCARD_MERCHANT_ID = 'mastercard_merchant_id';
+    const FIELD_EXTERNAL_MERCHANT_ID = 'external_merchant_id';
 
     /**
      * The id of the blacklist.
@@ -46,13 +48,6 @@ class UserBlacklistMasterCardMerchant extends BunqModel
     protected $status;
 
     /**
-     * The blacklisted merchant.
-     *
-     * @var string
-     */
-    protected $merchantId;
-
-    /**
      * The name of the merchant.
      *
      * @var string
@@ -60,11 +55,32 @@ class UserBlacklistMasterCardMerchant extends BunqModel
     protected $merchantName;
 
     /**
+     * The blacklisted merchant.
+     *
+     * @var string
+     */
+    protected $merchantId;
+
+    /**
      * Identifier of the merchant we are blacklisting.
      *
      * @var string
      */
     protected $merchantIdentifier;
+
+    /**
+     * The blacklisted merchant.
+     *
+     * @var string
+     */
+    protected $mastercardMerchantId;
+
+    /**
+     * Externally provided merchant identification.
+     *
+     * @var string
+     */
+    protected $externalMerchantId;
 
     /**
      * Hash of the merchant we are blacklisting.
@@ -79,18 +95,18 @@ class UserBlacklistMasterCardMerchant extends BunqModel
     protected $merchantAvatar;
 
     /**
-     * The merchant id.
-     *
-     * @var string
-     */
-    protected $merchantIdFieldForRequest;
-
-    /**
      * The name of the merchant.
      *
      * @var string
      */
     protected $merchantNameFieldForRequest;
+
+    /**
+     * The merchant id.
+     *
+     * @var string
+     */
+    protected $merchantIdFieldForRequest;
 
     /**
      * Optional identifier of the merchant to blacklist.
@@ -100,16 +116,34 @@ class UserBlacklistMasterCardMerchant extends BunqModel
     protected $merchantIdentifierFieldForRequest;
 
     /**
-     * @param string $merchantId The merchant id.
+     * Master card merchant id.
+     *
+     * @var string|null
+     */
+    protected $mastercardMerchantIdFieldForRequest;
+
+    /**
+     * Externally provided merchant id.
+     *
+     * @var string|null
+     */
+    protected $externalMerchantIdFieldForRequest;
+
+    /**
      * @param string $merchantName The name of the merchant.
+     * @param string $merchantId The merchant id.
      * @param string|null $merchantIdentifier Optional identifier of the
      * merchant to blacklist.
+     * @param string|null $mastercardMerchantId Master card merchant id.
+     * @param string|null $externalMerchantId Externally provided merchant id.
      */
-    public function __construct(string  $merchantId, string  $merchantName, string  $merchantIdentifier = null)
+    public function __construct(string  $merchantName, string  $merchantId, string  $merchantIdentifier = null, string  $mastercardMerchantId = null, string  $externalMerchantId = null)
     {
-        $this->merchantIdFieldForRequest = $merchantId;
         $this->merchantNameFieldForRequest = $merchantName;
+        $this->merchantIdFieldForRequest = $merchantId;
         $this->merchantIdentifierFieldForRequest = $merchantIdentifier;
+        $this->mastercardMerchantIdFieldForRequest = $mastercardMerchantId;
+        $this->externalMerchantIdFieldForRequest = $externalMerchantId;
     }
 
     /**
@@ -197,27 +231,6 @@ class UserBlacklistMasterCardMerchant extends BunqModel
     }
 
     /**
-     * The blacklisted merchant.
-     *
-     * @return string
-     */
-    public function getMerchantId()
-    {
-        return $this->merchantId;
-    }
-
-    /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
-     * @param string $merchantId
-     */
-    public function setMerchantId($merchantId)
-    {
-        $this->merchantId = $merchantId;
-    }
-
-    /**
      * The name of the merchant.
      *
      * @return string
@@ -239,6 +252,27 @@ class UserBlacklistMasterCardMerchant extends BunqModel
     }
 
     /**
+     * The blacklisted merchant.
+     *
+     * @return string
+     */
+    public function getMerchantId()
+    {
+        return $this->merchantId;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param string $merchantId
+     */
+    public function setMerchantId($merchantId)
+    {
+        $this->merchantId = $merchantId;
+    }
+
+    /**
      * Identifier of the merchant we are blacklisting.
      *
      * @return string
@@ -257,6 +291,48 @@ class UserBlacklistMasterCardMerchant extends BunqModel
     public function setMerchantIdentifier($merchantIdentifier)
     {
         $this->merchantIdentifier = $merchantIdentifier;
+    }
+
+    /**
+     * The blacklisted merchant.
+     *
+     * @return string
+     */
+    public function getMastercardMerchantId()
+    {
+        return $this->mastercardMerchantId;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param string $mastercardMerchantId
+     */
+    public function setMastercardMerchantId($mastercardMerchantId)
+    {
+        $this->mastercardMerchantId = $mastercardMerchantId;
+    }
+
+    /**
+     * Externally provided merchant identification.
+     *
+     * @return string
+     */
+    public function getExternalMerchantId()
+    {
+        return $this->externalMerchantId;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param string $externalMerchantId
+     */
+    public function setExternalMerchantId($externalMerchantId)
+    {
+        $this->externalMerchantId = $externalMerchantId;
     }
 
     /**
@@ -320,15 +396,23 @@ class UserBlacklistMasterCardMerchant extends BunqModel
             return false;
         }
 
-        if (!is_null($this->merchantId)) {
-            return false;
-        }
-
         if (!is_null($this->merchantName)) {
             return false;
         }
 
+        if (!is_null($this->merchantId)) {
+            return false;
+        }
+
         if (!is_null($this->merchantIdentifier)) {
+            return false;
+        }
+
+        if (!is_null($this->mastercardMerchantId)) {
+            return false;
+        }
+
+        if (!is_null($this->externalMerchantId)) {
             return false;
         }
 
