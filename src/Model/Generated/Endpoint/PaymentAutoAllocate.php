@@ -78,26 +78,12 @@ class PaymentAutoAllocate extends BunqModel
     protected $triggerAmount;
 
     /**
-     * DEPRECATED: superseded by `payment_original` and `payment_latest`
-     *
-     * @var Payment
-     */
-    protected $payment;
-
-    /**
      * The payment that was used to define the triggers for this payment auto
      * allocate.
      *
      * @var Payment
      */
-    protected $paymentOriginal;
-
-    /**
-     * The latest payment allocated using this payment auto allocate.
-     *
-     * @var Payment
-     */
-    protected $paymentLatest;
+    protected $payment;
 
     /**
      * The payment that should be used to define the triggers for the payment
@@ -391,7 +377,8 @@ self::FIELD_DEFINITION => $definition],
     }
 
     /**
-     * DEPRECATED: superseded by `payment_original` and `payment_latest`
+     * The payment that was used to define the triggers for this payment auto
+     * allocate.
      *
      * @return Payment
      */
@@ -409,49 +396,6 @@ self::FIELD_DEFINITION => $definition],
     public function setPayment($payment)
     {
         $this->payment = $payment;
-    }
-
-    /**
-     * The payment that was used to define the triggers for this payment auto
-     * allocate.
-     *
-     * @return Payment
-     */
-    public function getPaymentOriginal()
-    {
-        return $this->paymentOriginal;
-    }
-
-    /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
-     * @param Payment $paymentOriginal
-     */
-    public function setPaymentOriginal($paymentOriginal)
-    {
-        $this->paymentOriginal = $paymentOriginal;
-    }
-
-    /**
-     * The latest payment allocated using this payment auto allocate.
-     *
-     * @return Payment
-     */
-    public function getPaymentLatest()
-    {
-        return $this->paymentLatest;
-    }
-
-    /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
-     * @param Payment $paymentLatest
-     */
-    public function setPaymentLatest($paymentLatest)
-    {
-        $this->paymentLatest = $paymentLatest;
     }
 
     /**
@@ -484,14 +428,6 @@ self::FIELD_DEFINITION => $definition],
         }
 
         if (!is_null($this->payment)) {
-            return false;
-        }
-
-        if (!is_null($this->paymentOriginal)) {
-            return false;
-        }
-
-        if (!is_null($this->paymentLatest)) {
             return false;
         }
 
