@@ -45,6 +45,14 @@ class RegistrySettlementItem extends BunqModel
     protected $receivingUserAlias;
 
     /**
+     * The status of the RequestInquiry or DraftPayment for this settlement
+     * item.
+     *
+     * @var string
+     */
+    protected $paymentStatus;
+
+    /**
      * The amount of the RegistrySettlementItem.
      *
      * @return Amount
@@ -150,6 +158,28 @@ class RegistrySettlementItem extends BunqModel
     }
 
     /**
+     * The status of the RequestInquiry or DraftPayment for this settlement
+     * item.
+     *
+     * @return string
+     */
+    public function getPaymentStatus()
+    {
+        return $this->paymentStatus;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param string $paymentStatus
+     */
+    public function setPaymentStatus($paymentStatus)
+    {
+        $this->paymentStatus = $paymentStatus;
+    }
+
+    /**
      * @return bool
      */
     public function isAllFieldNull()
@@ -171,6 +201,10 @@ class RegistrySettlementItem extends BunqModel
         }
 
         if (!is_null($this->receivingUserAlias)) {
+            return false;
+        }
+
+        if (!is_null($this->paymentStatus)) {
             return false;
         }
 

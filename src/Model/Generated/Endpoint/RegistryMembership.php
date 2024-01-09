@@ -69,8 +69,8 @@ class RegistryMembership extends BunqModel
     protected $statusSettlement;
 
     /**
-     * The setting for for adding automatically card transactions to the
-     * registry. (deprecated)
+     * The setting for adding automatically card transactions to the registry.
+     * (deprecated)
      *
      * @var string
      */
@@ -96,6 +96,13 @@ class RegistryMembership extends BunqModel
      * @var string
      */
     protected $registryTitle;
+
+    /**
+     * For dinner and grocery expenses.
+     *
+     * @var string
+     */
+    protected $registryDescription;
 
     /**
      * The label of the user that sent the invite.
@@ -307,8 +314,8 @@ class RegistryMembership extends BunqModel
     }
 
     /**
-     * The setting for for adding automatically card transactions to the
-     * registry. (deprecated)
+     * The setting for adding automatically card transactions to the registry.
+     * (deprecated)
      *
      * @return string
      */
@@ -392,6 +399,27 @@ class RegistryMembership extends BunqModel
     }
 
     /**
+     * For dinner and grocery expenses.
+     *
+     * @return string
+     */
+    public function getRegistryDescription()
+    {
+        return $this->registryDescription;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param string $registryDescription
+     */
+    public function setRegistryDescription($registryDescription)
+    {
+        $this->registryDescription = $registryDescription;
+    }
+
+    /**
      * The label of the user that sent the invite.
      *
      * @return LabelUser
@@ -454,6 +482,10 @@ class RegistryMembership extends BunqModel
         }
 
         if (!is_null($this->registryTitle)) {
+            return false;
+        }
+
+        if (!is_null($this->registryDescription)) {
             return false;
         }
 
