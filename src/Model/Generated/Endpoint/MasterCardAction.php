@@ -315,13 +315,6 @@ class MasterCardAction extends BunqModel
     protected $cashbackPayoutItem;
 
     /**
-     * The report for this transaction
-     *
-     * @var MasterCardActionReport
-     */
-    protected $mastercardActionReport;
-
-    /**
      * The blacklist enabled for the merchant of this transaction
      *
      * @var UserBlacklistMasterCardMerchant
@@ -342,6 +335,13 @@ class MasterCardAction extends BunqModel
      * @var string
      */
     protected $pinStatus;
+
+    /**
+     * The report for this transaction
+     *
+     * @var MasterCardActionReport
+     */
+    protected $mastercardActionReport;
 
     /**
      * The MCC provided.
@@ -1234,27 +1234,6 @@ class MasterCardAction extends BunqModel
     }
 
     /**
-     * The report for this transaction
-     *
-     * @return MasterCardActionReport
-     */
-    public function getMastercardActionReport()
-    {
-        return $this->mastercardActionReport;
-    }
-
-    /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
-     * @param MasterCardActionReport $mastercardActionReport
-     */
-    public function setMastercardActionReport($mastercardActionReport)
-    {
-        $this->mastercardActionReport = $mastercardActionReport;
-    }
-
-    /**
      * The blacklist enabled for the merchant of this transaction
      *
      * @return UserBlacklistMasterCardMerchant
@@ -1316,6 +1295,27 @@ class MasterCardAction extends BunqModel
     public function setPinStatus($pinStatus)
     {
         $this->pinStatus = $pinStatus;
+    }
+
+    /**
+     * The report for this transaction
+     *
+     * @return MasterCardActionReport
+     */
+    public function getMastercardActionReport()
+    {
+        return $this->mastercardActionReport;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param MasterCardActionReport $mastercardActionReport
+     */
+    public function setMastercardActionReport($mastercardActionReport)
+    {
+        $this->mastercardActionReport = $mastercardActionReport;
     }
 
     /**
@@ -1500,10 +1500,6 @@ class MasterCardAction extends BunqModel
             return false;
         }
 
-        if (!is_null($this->mastercardActionReport)) {
-            return false;
-        }
-
         if (!is_null($this->blacklist)) {
             return false;
         }
@@ -1513,6 +1509,10 @@ class MasterCardAction extends BunqModel
         }
 
         if (!is_null($this->pinStatus)) {
+            return false;
+        }
+
+        if (!is_null($this->mastercardActionReport)) {
             return false;
         }
 
