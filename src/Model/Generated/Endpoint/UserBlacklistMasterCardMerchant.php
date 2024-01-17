@@ -104,7 +104,7 @@ class UserBlacklistMasterCardMerchant extends BunqModel
     /**
      * The merchant id.
      *
-     * @var string|null
+     * @var string
      */
     protected $merchantIdFieldForRequest;
 
@@ -131,13 +131,13 @@ class UserBlacklistMasterCardMerchant extends BunqModel
 
     /**
      * @param string $merchantName The name of the merchant.
-     * @param string|null $merchantId The merchant id.
+     * @param string $merchantId The merchant id.
      * @param string|null $merchantIdentifier Optional identifier of the
      * merchant to blacklist.
      * @param string|null $mastercardMerchantId Master card merchant id.
      * @param string|null $externalMerchantId Externally provided merchant id.
      */
-    public function __construct(string  $merchantName, string  $merchantId = null, string  $merchantIdentifier = null, string  $mastercardMerchantId = null, string  $externalMerchantId = null)
+    public function __construct(string  $merchantName, string  $merchantId, string  $merchantIdentifier = null, string  $mastercardMerchantId = null, string  $externalMerchantId = null)
     {
         $this->merchantNameFieldForRequest = $merchantName;
         $this->merchantIdFieldForRequest = $merchantId;
