@@ -114,6 +114,13 @@ class PaymentServiceProviderIssuerTransaction extends BunqModel
     protected $status;
 
     /**
+     * The monetary account this transaction is made from.
+     *
+     * @var LabelMonetaryAccount
+     */
+    protected $alias;
+
+    /**
      * The counter party this transaction should be sent to.
      *
      * @var Pointer
@@ -509,6 +516,27 @@ self::FIELD_STATUS => $status],
     }
 
     /**
+     * The monetary account this transaction is made from.
+     *
+     * @return LabelMonetaryAccount
+     */
+    public function getAlias()
+    {
+        return $this->alias;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param LabelMonetaryAccount $alias
+     */
+    public function setAlias($alias)
+    {
+        $this->alias = $alias;
+    }
+
+    /**
      * @return bool
      */
     public function isAllFieldNull()
@@ -550,6 +578,10 @@ self::FIELD_STATUS => $status],
         }
 
         if (!is_null($this->status)) {
+            return false;
+        }
+
+        if (!is_null($this->alias)) {
             return false;
         }
 
