@@ -248,6 +248,13 @@ class Card extends BunqModel
     protected $isEligibleForFreeReplacement;
 
     /**
+     * The card replacement for this card.
+     *
+     * @var CardReplacement
+     */
+    protected $cardReplacement;
+
+    /**
      * The plaintext pin code. Requests require encryption to be enabled.
      *
      * @var string|null
@@ -1099,6 +1106,27 @@ self::FIELD_CANCELLATION_REASON => $cancellationReason],
     }
 
     /**
+     * The card replacement for this card.
+     *
+     * @return CardReplacement
+     */
+    public function getCardReplacement()
+    {
+        return $this->cardReplacement;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param CardReplacement $cardReplacement
+     */
+    public function setCardReplacement($cardReplacement)
+    {
+        $this->cardReplacement = $cardReplacement;
+    }
+
+    /**
      * @return bool
      */
     public function isAllFieldNull()
@@ -1208,6 +1236,10 @@ self::FIELD_CANCELLATION_REASON => $cancellationReason],
         }
 
         if (!is_null($this->isEligibleForFreeReplacement)) {
+            return false;
+        }
+
+        if (!is_null($this->cardReplacement)) {
             return false;
         }
 
