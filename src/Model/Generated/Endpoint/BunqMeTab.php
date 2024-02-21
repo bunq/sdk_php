@@ -29,6 +29,7 @@ class BunqMeTab extends BunqModel
      */
     const FIELD_BUNQME_TAB_ENTRY = 'bunqme_tab_entry';
     const FIELD_STATUS = 'status';
+    const FIELD_EVENT_ID = 'event_id';
 
     /**
      * Object type.
@@ -137,16 +138,27 @@ class BunqMeTab extends BunqModel
     protected $statusFieldForRequest;
 
     /**
+     * The ID of the related event if the bunqMeTab made by 'split'
+     * functionality.
+     *
+     * @var int|null
+     */
+    protected $eventIdFieldForRequest;
+
+    /**
      * @param BunqMeTabEntry $bunqmeTabEntry The bunq.me entry containing the
      * payment information.
      * @param string|null $status The status of the bunq.me. Ignored in POST
      * requests but can be used for cancelling the bunq.me by setting status as
      * CANCELLED with a PUT request.
+     * @param int|null $eventId The ID of the related event if the bunqMeTab
+     * made by 'split' functionality.
      */
-    public function __construct(BunqMeTabEntry  $bunqmeTabEntry, string  $status = null)
+    public function __construct(BunqMeTabEntry  $bunqmeTabEntry, string  $status = null, int  $eventId = null)
     {
         $this->bunqmeTabEntryFieldForRequest = $bunqmeTabEntry;
         $this->statusFieldForRequest = $status;
+        $this->eventIdFieldForRequest = $eventId;
     }
 
     /**
@@ -156,11 +168,13 @@ class BunqMeTab extends BunqModel
      * @param string|null $status The status of the bunq.me. Ignored in POST
      * requests but can be used for cancelling the bunq.me by setting status as
      * CANCELLED with a PUT request.
+     * @param int|null $eventId The ID of the related event if the bunqMeTab
+     * made by 'split' functionality.
      * @param string[] $customHeaders
      *
      * @return BunqResponseInt
      */
-    public static function create(BunqMeTabEntry  $bunqmeTabEntry, int $monetaryAccountId = null, string  $status = null, array $customHeaders = []): BunqResponseInt
+    public static function create(BunqMeTabEntry  $bunqmeTabEntry, int $monetaryAccountId = null, string  $status = null, int  $eventId = null, array $customHeaders = []): BunqResponseInt
     {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->post(
@@ -169,7 +183,8 @@ class BunqMeTab extends BunqModel
                 [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId)]
             ),
             [self::FIELD_BUNQME_TAB_ENTRY => $bunqmeTabEntry,
-self::FIELD_STATUS => $status],
+self::FIELD_STATUS => $status,
+self::FIELD_EVENT_ID => $eventId],
             $customHeaders
         );
 
