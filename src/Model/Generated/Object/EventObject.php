@@ -20,8 +20,6 @@ use bunq\Model\Generated\Endpoint\PaymentBatch;
 use bunq\Model\Generated\Endpoint\RequestInquiry;
 use bunq\Model\Generated\Endpoint\RequestInquiryBatch;
 use bunq\Model\Generated\Endpoint\RequestResponse;
-use bunq\Model\Generated\Endpoint\RewardRecipient;
-use bunq\Model\Generated\Endpoint\RewardSender;
 use bunq\Model\Generated\Endpoint\ScheduleInstance;
 use bunq\Model\Generated\Endpoint\SchedulePayment;
 use bunq\Model\Generated\Endpoint\SchedulePaymentBatch;
@@ -134,16 +132,6 @@ class EventObject extends BunqModel implements AnchorObjectInterface
      * @var RequestResponse
      */
     protected $requestResponse;
-
-    /**
-     * @var RewardRecipient
-     */
-    protected $rewardRecipient;
-
-    /**
-     * @var RewardSender
-     */
-    protected $rewardSender;
 
     /**
      * @var ShareInviteMonetaryAccountInquiry
@@ -528,44 +516,6 @@ class EventObject extends BunqModel implements AnchorObjectInterface
     }
 
     /**
-     * @return RewardRecipient
-     */
-    public function getRewardRecipient()
-    {
-        return $this->rewardRecipient;
-    }
-
-    /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
-     * @param RewardRecipient $rewardRecipient
-     */
-    public function setRewardRecipient($rewardRecipient)
-    {
-        $this->rewardRecipient = $rewardRecipient;
-    }
-
-    /**
-     * @return RewardSender
-     */
-    public function getRewardSender()
-    {
-        return $this->rewardSender;
-    }
-
-    /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
-     * @param RewardSender $rewardSender
-     */
-    public function setRewardSender($rewardSender)
-    {
-        $this->rewardSender = $rewardSender;
-    }
-
-    /**
      * @return ShareInviteMonetaryAccountInquiry
      */
     public function getShareInviteBankInquiry()
@@ -723,14 +673,6 @@ class EventObject extends BunqModel implements AnchorObjectInterface
             return $this->requestResponse;
         }
 
-        if (!is_null($this->rewardRecipient)) {
-            return $this->rewardRecipient;
-        }
-
-        if (!is_null($this->rewardSender)) {
-            return $this->rewardSender;
-        }
-
         if (!is_null($this->shareInviteBankInquiry)) {
             return $this->shareInviteBankInquiry;
         }
@@ -828,14 +770,6 @@ class EventObject extends BunqModel implements AnchorObjectInterface
         }
 
         if (!is_null($this->requestResponse)) {
-            return false;
-        }
-
-        if (!is_null($this->rewardRecipient)) {
-            return false;
-        }
-
-        if (!is_null($this->rewardSender)) {
             return false;
         }
 
