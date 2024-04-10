@@ -73,7 +73,7 @@ class InsightPreferenceDate extends BunqModel
         );
 
         return BunqResponseInsightPreferenceDateList::castFromBunqResponse(
-            static::fromJsonList($responseRaw)
+            static::fromJsonList($responseRaw, self::OBJECT_TYPE_GET)
         );
     }
 
