@@ -315,11 +315,18 @@ class MasterCardAction extends BunqModel
     protected $cashbackPayoutItem;
 
     /**
-     * The blacklist enabled for the merchant of this transaction
+     * DEPRECATED. The blacklist enabled for the merchant of this transaction
      *
-     * @var UserBlacklistMasterCardMerchant
+     * @var UserBlocklistMasterCardMerchant
      */
     protected $blacklist;
+
+    /**
+     * The blocklist enabled for the merchant of this transaction
+     *
+     * @var UserBlocklistMasterCardMerchant
+     */
+    protected $blocklist;
 
     /**
      * The status of the additional authentication performed (3ds) by the user
@@ -1234,9 +1241,9 @@ class MasterCardAction extends BunqModel
     }
 
     /**
-     * The blacklist enabled for the merchant of this transaction
+     * DEPRECATED. The blacklist enabled for the merchant of this transaction
      *
-     * @return UserBlacklistMasterCardMerchant
+     * @return UserBlocklistMasterCardMerchant
      */
     public function getBlacklist()
     {
@@ -1247,11 +1254,32 @@ class MasterCardAction extends BunqModel
      * @deprecated User should not be able to set values via setters, use
      * constructor.
      *
-     * @param UserBlacklistMasterCardMerchant $blacklist
+     * @param UserBlocklistMasterCardMerchant $blacklist
      */
     public function setBlacklist($blacklist)
     {
         $this->blacklist = $blacklist;
+    }
+
+    /**
+     * The blocklist enabled for the merchant of this transaction
+     *
+     * @return UserBlocklistMasterCardMerchant
+     */
+    public function getBlocklist()
+    {
+        return $this->blocklist;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param UserBlocklistMasterCardMerchant $blocklist
+     */
+    public function setBlocklist($blocklist)
+    {
+        $this->blocklist = $blocklist;
     }
 
     /**
@@ -1501,6 +1529,10 @@ class MasterCardAction extends BunqModel
         }
 
         if (!is_null($this->blacklist)) {
+            return false;
+        }
+
+        if (!is_null($this->blocklist)) {
             return false;
         }
 

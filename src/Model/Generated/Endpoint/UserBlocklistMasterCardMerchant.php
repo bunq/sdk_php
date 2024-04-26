@@ -4,11 +4,11 @@ namespace bunq\Model\Generated\Endpoint;
 use bunq\Model\Core\BunqModel;
 
 /**
- * Fetch blacklists of merchants created by user
+ * Fetch blocklists of merchants created by user
  *
  * @generated
  */
-class UserBlacklistMasterCardMerchant extends BunqModel
+class UserBlocklistMasterCardMerchant extends BunqModel
 {
     /**
      * Field constants.
@@ -20,7 +20,7 @@ class UserBlacklistMasterCardMerchant extends BunqModel
     const FIELD_EXTERNAL_MERCHANT_ID = 'external_merchant_id';
 
     /**
-     * The id of the blacklist.
+     * The id of the blocklist.
      *
      * @var int
      */
@@ -41,7 +41,7 @@ class UserBlacklistMasterCardMerchant extends BunqModel
     protected $updated;
 
     /**
-     * The status of the the blacklist.
+     * The status of the the blocklist.
      *
      * @var string
      */
@@ -55,21 +55,21 @@ class UserBlacklistMasterCardMerchant extends BunqModel
     protected $merchantName;
 
     /**
-     * The blacklisted merchant.
+     * The blocklisted merchant.
      *
      * @var string
      */
     protected $merchantId;
 
     /**
-     * Identifier of the merchant we are blacklisting.
+     * Identifier of the merchant we are blocklisting.
      *
      * @var string
      */
     protected $merchantIdentifier;
 
     /**
-     * The blacklisted merchant.
+     * The blocklisted merchant.
      *
      * @var string
      */
@@ -83,7 +83,7 @@ class UserBlacklistMasterCardMerchant extends BunqModel
     protected $externalMerchantId;
 
     /**
-     * Hash of the merchant we are blacklisting.
+     * Hash of the merchant we are blocklisting.
      *
      * @var string
      */
@@ -109,7 +109,7 @@ class UserBlacklistMasterCardMerchant extends BunqModel
     protected $merchantIdFieldForRequest;
 
     /**
-     * Optional identifier of the merchant to blacklist.
+     * Optional identifier of the merchant to blocklist.
      *
      * @var string|null
      */
@@ -133,7 +133,7 @@ class UserBlacklistMasterCardMerchant extends BunqModel
      * @param string $merchantName The name of the merchant.
      * @param string|null $merchantId The merchant id.
      * @param string|null $merchantIdentifier Optional identifier of the
-     * merchant to blacklist.
+     * merchant to blocklist.
      * @param string|null $mastercardMerchantId Master card merchant id.
      * @param string|null $externalMerchantId Externally provided merchant id.
      */
@@ -147,7 +147,7 @@ class UserBlacklistMasterCardMerchant extends BunqModel
     }
 
     /**
-     * The id of the blacklist.
+     * The id of the blocklist.
      *
      * @return int
      */
@@ -210,7 +210,7 @@ class UserBlacklistMasterCardMerchant extends BunqModel
     }
 
     /**
-     * The status of the the blacklist.
+     * The status of the the blocklist.
      *
      * @return string
      */
@@ -252,7 +252,7 @@ class UserBlacklistMasterCardMerchant extends BunqModel
     }
 
     /**
-     * The blacklisted merchant.
+     * The blocklisted merchant.
      *
      * @return string
      */
@@ -273,7 +273,7 @@ class UserBlacklistMasterCardMerchant extends BunqModel
     }
 
     /**
-     * Identifier of the merchant we are blacklisting.
+     * Identifier of the merchant we are blocklisting.
      *
      * @return string
      */
@@ -294,7 +294,7 @@ class UserBlacklistMasterCardMerchant extends BunqModel
     }
 
     /**
-     * The blacklisted merchant.
+     * The blocklisted merchant.
      *
      * @return string
      */
@@ -336,7 +336,7 @@ class UserBlacklistMasterCardMerchant extends BunqModel
     }
 
     /**
-     * Hash of the merchant we are blacklisting.
+     * Hash of the merchant we are blocklisting.
      *
      * @return string
      */
