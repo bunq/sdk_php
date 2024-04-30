@@ -9,6 +9,13 @@ use bunq\Model\Core\BunqModel;
 class TaxResident extends BunqModel
 {
     /**
+     * The id of the tax resident.
+     *
+     * @var int
+     */
+    protected $id;
+
+    /**
      * The country of the tax number.
      *
      * @var string
@@ -61,6 +68,27 @@ class TaxResident extends BunqModel
         $this->countryFieldForRequest = $country;
         $this->taxNumberFieldForRequest = $taxNumber;
         $this->statusFieldForRequest = $status;
+    }
+
+    /**
+     * The id of the tax resident.
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param int $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
     }
 
     /**
@@ -131,6 +159,10 @@ class TaxResident extends BunqModel
      */
     public function isAllFieldNull()
     {
+        if (!is_null($this->id)) {
+            return false;
+        }
+
         if (!is_null($this->country)) {
             return false;
         }
