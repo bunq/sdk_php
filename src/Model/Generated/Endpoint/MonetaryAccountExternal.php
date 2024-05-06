@@ -198,6 +198,13 @@ class MonetaryAccountExternal extends BunqModel
     protected $allAutoSaveId;
 
     /**
+     * The external service the Monetary Account is connected with.
+     *
+     * @var string
+     */
+    protected $service;
+
+    /**
      * The currency of the MonetaryAccountExternal as an ISO 4217 formatted
      * currency code.
      *
@@ -949,6 +956,27 @@ self::FIELD_SETTING => $setting],
     }
 
     /**
+     * The external service the Monetary Account is connected with.
+     *
+     * @return string
+     */
+    public function getService()
+    {
+        return $this->service;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param string $service
+     */
+    public function setService($service)
+    {
+        $this->service = $service;
+    }
+
+    /**
      * @return bool
      */
     public function isAllFieldNull()
@@ -1030,6 +1058,10 @@ self::FIELD_SETTING => $setting],
         }
 
         if (!is_null($this->allAutoSaveId)) {
+            return false;
+        }
+
+        if (!is_null($this->service)) {
             return false;
         }
 
