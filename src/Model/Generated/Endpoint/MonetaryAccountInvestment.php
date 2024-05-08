@@ -30,6 +30,8 @@ class MonetaryAccountInvestment extends BunqModel
     const FIELD_DISPLAY_NAME = 'display_name';
     const FIELD_SETTING = 'setting';
     const FIELD_BIRDEE_INVESTMENT_PORTFOLIO = 'birdee_investment_portfolio';
+    const FIELD_MONETARY_ACCOUNT_DEPOSIT_INITIAL_ID = 'monetary_account_deposit_initial_id';
+    const FIELD_AMOUNT_DEPOSIT_INITIAL = 'amount_deposit_initial';
 
     /**
      * The id of the MonetaryAccountInvestment.
@@ -276,6 +278,22 @@ class MonetaryAccountInvestment extends BunqModel
     protected $birdeeInvestmentPortfolioFieldForRequest;
 
     /**
+     * ID of the MA to be used for the initial deposit to the investment
+     * account.
+     *
+     * @var int|null
+     */
+    protected $monetaryAccountDepositInitialIdFieldForRequest;
+
+    /**
+     * The amount to be transferred to the investment account as the initial
+     * deposit.
+     *
+     * @var Amount|null
+     */
+    protected $amountDepositInitialFieldForRequest;
+
+    /**
      * @param string $currency The currency of the MonetaryAccountInvestment as
      * an ISO 4217 formatted currency code.
      * @param string $provider The provider of the investment service.
@@ -311,8 +329,12 @@ class MonetaryAccountInvestment extends BunqModel
      * MonetaryAccountInvestment.
      * @param BirdeeInvestmentPortfolio|null $birdeeInvestmentPortfolio The
      * Birdee investment portfolio.
+     * @param int|null $monetaryAccountDepositInitialId ID of the MA to be used
+     * for the initial deposit to the investment account.
+     * @param Amount|null $amountDepositInitial The amount to be transferred to
+     * the investment account as the initial deposit.
      */
-    public function __construct(string  $currency, string  $provider, string  $description = null, Amount  $dailyLimit = null, string  $avatarUuid = null, string  $status = null, string  $subStatus = null, string  $reason = null, string  $reasonDescription = null, string  $displayName = null, MonetaryAccountSetting  $setting = null, BirdeeInvestmentPortfolio  $birdeeInvestmentPortfolio = null)
+    public function __construct(string  $currency, string  $provider, string  $description = null, Amount  $dailyLimit = null, string  $avatarUuid = null, string  $status = null, string  $subStatus = null, string  $reason = null, string  $reasonDescription = null, string  $displayName = null, MonetaryAccountSetting  $setting = null, BirdeeInvestmentPortfolio  $birdeeInvestmentPortfolio = null, int  $monetaryAccountDepositInitialId = null, Amount  $amountDepositInitial = null)
     {
         $this->currencyFieldForRequest = $currency;
         $this->providerFieldForRequest = $provider;
@@ -326,6 +348,8 @@ class MonetaryAccountInvestment extends BunqModel
         $this->displayNameFieldForRequest = $displayName;
         $this->settingFieldForRequest = $setting;
         $this->birdeeInvestmentPortfolioFieldForRequest = $birdeeInvestmentPortfolio;
+        $this->monetaryAccountDepositInitialIdFieldForRequest = $monetaryAccountDepositInitialId;
+        $this->amountDepositInitialFieldForRequest = $amountDepositInitial;
     }
 
     /**
