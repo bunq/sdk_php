@@ -205,6 +205,13 @@ class MonetaryAccountExternal extends BunqModel
     protected $service;
 
     /**
+     * The open banking account for information about the external account.
+     *
+     * @var OpenBankingAccount
+     */
+    protected $openBankingAccount;
+
+    /**
      * The currency of the MonetaryAccountExternal as an ISO 4217 formatted
      * currency code.
      *
@@ -977,6 +984,27 @@ self::FIELD_SETTING => $setting],
     }
 
     /**
+     * The open banking account for information about the external account.
+     *
+     * @return OpenBankingAccount
+     */
+    public function getOpenBankingAccount()
+    {
+        return $this->openBankingAccount;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param OpenBankingAccount $openBankingAccount
+     */
+    public function setOpenBankingAccount($openBankingAccount)
+    {
+        $this->openBankingAccount = $openBankingAccount;
+    }
+
+    /**
      * @return bool
      */
     public function isAllFieldNull()
@@ -1062,6 +1090,10 @@ self::FIELD_SETTING => $setting],
         }
 
         if (!is_null($this->service)) {
+            return false;
+        }
+
+        if (!is_null($this->openBankingAccount)) {
             return false;
         }
 
