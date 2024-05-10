@@ -2,6 +2,7 @@
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Model\Core\BunqModel;
+use bunq\Model\Generated\Object\Amount;
 
 /**
  * Post processor for open banking account to be returned in the monetary
@@ -11,6 +12,13 @@ use bunq\Model\Core\BunqModel;
  */
 class OpenBankingAccount extends BunqModel
 {
+    /**
+     * The status of this account.
+     *
+     * @var string
+     */
+    protected $status;
+
     /**
      * The iban of this account.
      *
@@ -32,6 +40,41 @@ class OpenBankingAccount extends BunqModel
      * @var OpenBankingProviderBank
      */
     protected $providerBank;
+
+    /**
+     * The booked balance of the account.
+     *
+     * @var Amount
+     */
+    protected $balanceBooked;
+
+    /**
+     * The available balance of the account, if provided by the other bank.
+     *
+     * @var Amount
+     */
+    protected $balanceAvailable;
+
+    /**
+     * The status of this account.
+     *
+     * @return string
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param string $status
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+    }
 
     /**
      * The iban of this account.
@@ -98,10 +141,56 @@ class OpenBankingAccount extends BunqModel
     }
 
     /**
+     * The booked balance of the account.
+     *
+     * @return Amount
+     */
+    public function getBalanceBooked()
+    {
+        return $this->balanceBooked;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param Amount $balanceBooked
+     */
+    public function setBalanceBooked($balanceBooked)
+    {
+        $this->balanceBooked = $balanceBooked;
+    }
+
+    /**
+     * The available balance of the account, if provided by the other bank.
+     *
+     * @return Amount
+     */
+    public function getBalanceAvailable()
+    {
+        return $this->balanceAvailable;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param Amount $balanceAvailable
+     */
+    public function setBalanceAvailable($balanceAvailable)
+    {
+        $this->balanceAvailable = $balanceAvailable;
+    }
+
+    /**
      * @return bool
      */
     public function isAllFieldNull()
     {
+        if (!is_null($this->status)) {
+            return false;
+        }
+
         if (!is_null($this->iban)) {
             return false;
         }
@@ -111,6 +200,14 @@ class OpenBankingAccount extends BunqModel
         }
 
         if (!is_null($this->providerBank)) {
+            return false;
+        }
+
+        if (!is_null($this->balanceBooked)) {
+            return false;
+        }
+
+        if (!is_null($this->balanceAvailable)) {
             return false;
         }
 
