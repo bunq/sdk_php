@@ -10,6 +10,7 @@ use bunq\Model\Generated\Object\Amount;
 use bunq\Model\Generated\Object\AttachmentMonetaryAccountPayment;
 use bunq\Model\Generated\Object\Geolocation;
 use bunq\Model\Generated\Object\LabelMonetaryAccount;
+use bunq\Model\Generated\Object\PaymentArrivalExpected;
 use bunq\Model\Generated\Object\Pointer;
 use bunq\Model\Generated\Object\RequestInquiryReference;
 
@@ -126,6 +127,13 @@ class Payment extends BunqModel
      * @var string
      */
     protected $subType;
+
+    /**
+     * Information about the expected arrival of the payment.
+     *
+     * @var PaymentArrivalExpected
+     */
+    protected $paymentArrivalExpected;
 
     /**
      * The status of the bunq.to payment.
@@ -631,6 +639,27 @@ self::FIELD_ALLOW_BUNQTO => $allowBunqto],
     }
 
     /**
+     * Information about the expected arrival of the payment.
+     *
+     * @return PaymentArrivalExpected
+     */
+    public function getPaymentArrivalExpected()
+    {
+        return $this->paymentArrivalExpected;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param PaymentArrivalExpected $paymentArrivalExpected
+     */
+    public function setPaymentArrivalExpected($paymentArrivalExpected)
+    {
+        $this->paymentArrivalExpected = $paymentArrivalExpected;
+    }
+
+    /**
      * The status of the bunq.to payment.
      *
      * @return string
@@ -988,6 +1017,10 @@ self::FIELD_ALLOW_BUNQTO => $allowBunqto],
         }
 
         if (!is_null($this->subType)) {
+            return false;
+        }
+
+        if (!is_null($this->paymentArrivalExpected)) {
             return false;
         }
 
