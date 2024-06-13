@@ -14,7 +14,8 @@ class OpenBankingProviderBank extends BunqModel
     /**
      * Field constants.
      */
-    const FIELD_STATUS = 'status';
+    const FIELD_ACCOUNT_INFORMATION_SERVICE_STATUS = 'account_information_service_status';
+    const FIELD_PAYMENT_INFORMATION_SERVICE_STATUS = 'payment_information_service_status';
 
     /**
      * The name of the bank provider.
@@ -24,11 +25,18 @@ class OpenBankingProviderBank extends BunqModel
     protected $name;
 
     /**
-     * Provider's status.
+     * Whether we support Open Banking budgeting using the bank provider.
      *
      * @var string
      */
-    protected $status;
+    protected $accountInformationServiceStatus;
+
+    /**
+     * Whether we support top ups using the bank provider.
+     *
+     * @var string
+     */
+    protected $paymentInformationServiceStatus;
 
     /**
      * The external identifier for this bank.
@@ -59,18 +67,18 @@ class OpenBankingProviderBank extends BunqModel
     protected $allPaymentMethodAllowedDomestic;
 
     /**
-     * Whether this provider supports business banking.
+     * Whether business banking is supported by the provider.
      *
      * @var bool
      */
-    protected $isAudienceBusinessSupported;
+    protected $audienceBusinessStatus;
 
     /**
-     * Whether this provider supports brivate banking.
+     * Whether personal banking is supported by the provider.
      *
      * @var bool
      */
-    protected $isAudiencePrivateSupported;
+    protected $audiencePrivateStatus;
 
     /**
      * The avatar of the bank.
@@ -80,18 +88,31 @@ class OpenBankingProviderBank extends BunqModel
     protected $avatar;
 
     /**
-     * Provider's status.
+     * Whether we want to activate the account information service for the bank
+     * provider.
      *
-     * @var string
+     * @var string|null
      */
-    protected $statusFieldForRequest;
+    protected $accountInformationServiceStatusFieldForRequest;
 
     /**
-     * @param string $status Provider's status.
+     * Whether we want to activate the payment information service for the bank
+     * provider.
+     *
+     * @var string|null
      */
-    public function __construct(string  $status)
+    protected $paymentInformationServiceStatusFieldForRequest;
+
+    /**
+     * @param string|null $accountInformationServiceStatus Whether we want to
+     * activate the account information service for the bank provider.
+     * @param string|null $paymentInformationServiceStatus Whether we want to
+     * activate the payment information service for the bank provider.
+     */
+    public function __construct(string  $accountInformationServiceStatus = null, string  $paymentInformationServiceStatus = null)
     {
-        $this->statusFieldForRequest = $status;
+        $this->accountInformationServiceStatusFieldForRequest = $accountInformationServiceStatus;
+        $this->paymentInformationServiceStatusFieldForRequest = $paymentInformationServiceStatus;
     }
 
     /**
@@ -116,24 +137,45 @@ class OpenBankingProviderBank extends BunqModel
     }
 
     /**
-     * Provider's status.
+     * Whether we support Open Banking budgeting using the bank provider.
      *
      * @return string
      */
-    public function getStatus()
+    public function getAccountInformationServiceStatus()
     {
-        return $this->status;
+        return $this->accountInformationServiceStatus;
     }
 
     /**
      * @deprecated User should not be able to set values via setters, use
      * constructor.
      *
-     * @param string $status
+     * @param string $accountInformationServiceStatus
      */
-    public function setStatus($status)
+    public function setAccountInformationServiceStatus($accountInformationServiceStatus)
     {
-        $this->status = $status;
+        $this->accountInformationServiceStatus = $accountInformationServiceStatus;
+    }
+
+    /**
+     * Whether we support top ups using the bank provider.
+     *
+     * @return string
+     */
+    public function getPaymentInformationServiceStatus()
+    {
+        return $this->paymentInformationServiceStatus;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param string $paymentInformationServiceStatus
+     */
+    public function setPaymentInformationServiceStatus($paymentInformationServiceStatus)
+    {
+        $this->paymentInformationServiceStatus = $paymentInformationServiceStatus;
     }
 
     /**
@@ -221,45 +263,45 @@ class OpenBankingProviderBank extends BunqModel
     }
 
     /**
-     * Whether this provider supports business banking.
+     * Whether business banking is supported by the provider.
      *
      * @return bool
      */
-    public function getIsAudienceBusinessSupported()
+    public function getAudienceBusinessStatus()
     {
-        return $this->isAudienceBusinessSupported;
+        return $this->audienceBusinessStatus;
     }
 
     /**
      * @deprecated User should not be able to set values via setters, use
      * constructor.
      *
-     * @param bool $isAudienceBusinessSupported
+     * @param bool $audienceBusinessStatus
      */
-    public function setIsAudienceBusinessSupported($isAudienceBusinessSupported)
+    public function setAudienceBusinessStatus($audienceBusinessStatus)
     {
-        $this->isAudienceBusinessSupported = $isAudienceBusinessSupported;
+        $this->audienceBusinessStatus = $audienceBusinessStatus;
     }
 
     /**
-     * Whether this provider supports brivate banking.
+     * Whether personal banking is supported by the provider.
      *
      * @return bool
      */
-    public function getIsAudiencePrivateSupported()
+    public function getAudiencePrivateStatus()
     {
-        return $this->isAudiencePrivateSupported;
+        return $this->audiencePrivateStatus;
     }
 
     /**
      * @deprecated User should not be able to set values via setters, use
      * constructor.
      *
-     * @param bool $isAudiencePrivateSupported
+     * @param bool $audiencePrivateStatus
      */
-    public function setIsAudiencePrivateSupported($isAudiencePrivateSupported)
+    public function setAudiencePrivateStatus($audiencePrivateStatus)
     {
-        $this->isAudiencePrivateSupported = $isAudiencePrivateSupported;
+        $this->audiencePrivateStatus = $audiencePrivateStatus;
     }
 
     /**
@@ -292,7 +334,11 @@ class OpenBankingProviderBank extends BunqModel
             return false;
         }
 
-        if (!is_null($this->status)) {
+        if (!is_null($this->accountInformationServiceStatus)) {
+            return false;
+        }
+
+        if (!is_null($this->paymentInformationServiceStatus)) {
             return false;
         }
 
@@ -312,11 +358,11 @@ class OpenBankingProviderBank extends BunqModel
             return false;
         }
 
-        if (!is_null($this->isAudienceBusinessSupported)) {
+        if (!is_null($this->audienceBusinessStatus)) {
             return false;
         }
 
-        if (!is_null($this->isAudiencePrivateSupported)) {
+        if (!is_null($this->audiencePrivateStatus)) {
             return false;
         }
 
