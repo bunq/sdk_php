@@ -242,6 +242,13 @@ class Payment extends BunqModel
     protected $paymentAutoAllocateInstance;
 
     /**
+     * A reference to the PaymentSuspendedOutgoing if it exists.
+     *
+     * @var PaymentSuspendedOutgoing
+     */
+    protected $paymentSuspendedOutgoing;
+
+    /**
      * The Amount to transfer with the Payment. Must be bigger than 0 and
      * smaller than the MonetaryAccount's balance.
      *
@@ -976,6 +983,27 @@ self::FIELD_ALLOW_BUNQTO => $allowBunqto],
     }
 
     /**
+     * A reference to the PaymentSuspendedOutgoing if it exists.
+     *
+     * @return PaymentSuspendedOutgoing
+     */
+    public function getPaymentSuspendedOutgoing()
+    {
+        return $this->paymentSuspendedOutgoing;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param PaymentSuspendedOutgoing $paymentSuspendedOutgoing
+     */
+    public function setPaymentSuspendedOutgoing($paymentSuspendedOutgoing)
+    {
+        $this->paymentSuspendedOutgoing = $paymentSuspendedOutgoing;
+    }
+
+    /**
      * @return bool
      */
     public function isAllFieldNull()
@@ -1081,6 +1109,10 @@ self::FIELD_ALLOW_BUNQTO => $allowBunqto],
         }
 
         if (!is_null($this->paymentAutoAllocateInstance)) {
+            return false;
+        }
+
+        if (!is_null($this->paymentSuspendedOutgoing)) {
             return false;
         }
 
