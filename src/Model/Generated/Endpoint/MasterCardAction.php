@@ -280,6 +280,13 @@ class MasterCardAction extends BunqModel
     protected $requestReferenceSplitTheBill;
 
     /**
+     * The cardTokenization event awaiting acceptance by the user
+     *
+     * @var string[]
+     */
+    protected $cardTokenizationEvent;
+
+    /**
      * A reference to the Refunds if they exist.
      *
      * @var MasterCardActionRefund[]
@@ -1136,6 +1143,27 @@ class MasterCardAction extends BunqModel
     }
 
     /**
+     * The cardTokenization event awaiting acceptance by the user
+     *
+     * @return string[]
+     */
+    public function getCardTokenizationEvent()
+    {
+        return $this->cardTokenizationEvent;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param string[] $cardTokenizationEvent
+     */
+    public function setCardTokenizationEvent($cardTokenizationEvent)
+    {
+        $this->cardTokenizationEvent = $cardTokenizationEvent;
+    }
+
+    /**
      * A reference to the Refunds if they exist.
      *
      * @return MasterCardActionRefund[]
@@ -1505,6 +1533,10 @@ class MasterCardAction extends BunqModel
         }
 
         if (!is_null($this->requestReferenceSplitTheBill)) {
+            return false;
+        }
+
+        if (!is_null($this->cardTokenizationEvent)) {
             return false;
         }
 
