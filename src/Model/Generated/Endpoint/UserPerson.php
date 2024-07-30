@@ -47,6 +47,7 @@ class UserPerson extends BunqModel
     const FIELD_DOCUMENT_BACK_ATTACHMENT_ID = 'document_back_attachment_id';
     const FIELD_DATE_OF_BIRTH = 'date_of_birth';
     const FIELD_NATIONALITY = 'nationality';
+    const FIELD_ALL_NATIONALITY = 'all_nationality';
     const FIELD_LANGUAGE = 'language';
     const FIELD_REGION = 'region';
     const FIELD_GENDER = 'gender';
@@ -189,6 +190,13 @@ class UserPerson extends BunqModel
      * @var string
      */
     protected $nationality;
+
+    /**
+     * All of the person's nationalities.
+     *
+     * @var string[]
+     */
+    protected $allNationality;
 
     /**
      * The person's preferred language. Formatted as a ISO 639-1 language code
@@ -383,11 +391,19 @@ class UserPerson extends BunqModel
     protected $dateOfBirthFieldForRequest;
 
     /**
-     * The person's nationality. Formatted as a SO 3166-1 alpha-2 country code.
+     * DEPRECATED. The person's nationality. Formatted as a SO 3166-1 alpha-2
+     * country code.
      *
      * @var string|null
      */
     protected $nationalityFieldForRequest;
+
+    /**
+     * All of the person's nationalities.
+     *
+     * @var string[]|null
+     */
+    protected $allNationalityFieldForRequest;
 
     /**
      * The person's preferred language. Formatted as a ISO 639-1 language code
@@ -487,8 +503,9 @@ class UserPerson extends BunqModel
      * picture/scan of the back side of the identification document.
      * @param string|null $dateOfBirth The person's date of birth. Accepts
      * ISO8601 date formats.
-     * @param string|null $nationality The person's nationality. Formatted as a
-     * SO 3166-1 alpha-2 country code.
+     * @param string|null $nationality DEPRECATED. The person's nationality.
+     * Formatted as a SO 3166-1 alpha-2 country code.
+     * @param string[]|null $allNationality All of the person's nationalities.
      * @param string|null $language The person's preferred language. Formatted
      * as a ISO 639-1 language code plus a ISO 3166-1 alpha-2 country code,
      * seperated by an underscore.
@@ -512,7 +529,7 @@ class UserPerson extends BunqModel
      * @param string|null $signupTrackType The type of signup track the user is
      * following.
      */
-    public function __construct(string  $subscriptionType = null, string  $firstName = null, string  $middleName = null, string  $lastName = null, string  $publicNickName = null, Address  $addressMain = null, Address  $addressPostal = null, string  $avatarUuid = null, array  $taxResident = null, string  $documentType = null, string  $documentNumber = null, string  $documentCountryOfIssuance = null, int  $documentFrontAttachmentId = null, int  $documentBackAttachmentId = null, string  $dateOfBirth = null, string  $nationality = null, string  $language = null, string  $region = null, string  $gender = null, string  $status = null, string  $subStatus = null, Pointer  $legalGuardianAlias = null, int  $sessionTimeout = null, Amount  $dailyLimitWithoutConfirmationLogin = null, string  $displayName = null, string  $signupTrackType = null)
+    public function __construct(string  $subscriptionType = null, string  $firstName = null, string  $middleName = null, string  $lastName = null, string  $publicNickName = null, Address  $addressMain = null, Address  $addressPostal = null, string  $avatarUuid = null, array  $taxResident = null, string  $documentType = null, string  $documentNumber = null, string  $documentCountryOfIssuance = null, int  $documentFrontAttachmentId = null, int  $documentBackAttachmentId = null, string  $dateOfBirth = null, string  $nationality = null, array  $allNationality = null, string  $language = null, string  $region = null, string  $gender = null, string  $status = null, string  $subStatus = null, Pointer  $legalGuardianAlias = null, int  $sessionTimeout = null, Amount  $dailyLimitWithoutConfirmationLogin = null, string  $displayName = null, string  $signupTrackType = null)
     {
         $this->subscriptionTypeFieldForRequest = $subscriptionType;
         $this->firstNameFieldForRequest = $firstName;
@@ -530,6 +547,7 @@ class UserPerson extends BunqModel
         $this->documentBackAttachmentIdFieldForRequest = $documentBackAttachmentId;
         $this->dateOfBirthFieldForRequest = $dateOfBirth;
         $this->nationalityFieldForRequest = $nationality;
+        $this->allNationalityFieldForRequest = $allNationality;
         $this->languageFieldForRequest = $language;
         $this->regionFieldForRequest = $region;
         $this->genderFieldForRequest = $gender;
@@ -592,8 +610,9 @@ class UserPerson extends BunqModel
      * picture/scan of the back side of the identification document.
      * @param string|null $dateOfBirth The person's date of birth. Accepts
      * ISO8601 date formats.
-     * @param string|null $nationality The person's nationality. Formatted as a
-     * SO 3166-1 alpha-2 country code.
+     * @param string|null $nationality DEPRECATED. The person's nationality.
+     * Formatted as a SO 3166-1 alpha-2 country code.
+     * @param string[]|null $allNationality All of the person's nationalities.
      * @param string|null $language The person's preferred language. Formatted
      * as a ISO 639-1 language code plus a ISO 3166-1 alpha-2 country code,
      * seperated by an underscore.
@@ -618,7 +637,7 @@ class UserPerson extends BunqModel
      *
      * @return BunqResponseInt
      */
-    public static function update(string  $firstName = null, string  $middleName = null, string  $lastName = null, string  $publicNickName = null, Address  $addressMain = null, Address  $addressPostal = null, string  $avatarUuid = null, array  $taxResident = null, string  $documentType = null, string  $documentNumber = null, string  $documentCountryOfIssuance = null, int  $documentFrontAttachmentId = null, int  $documentBackAttachmentId = null, string  $dateOfBirth = null, string  $nationality = null, string  $language = null, string  $region = null, string  $gender = null, string  $status = null, string  $subStatus = null, Pointer  $legalGuardianAlias = null, int  $sessionTimeout = null, Amount  $dailyLimitWithoutConfirmationLogin = null, string  $displayName = null, array $customHeaders = []): BunqResponseInt
+    public static function update(string  $firstName = null, string  $middleName = null, string  $lastName = null, string  $publicNickName = null, Address  $addressMain = null, Address  $addressPostal = null, string  $avatarUuid = null, array  $taxResident = null, string  $documentType = null, string  $documentNumber = null, string  $documentCountryOfIssuance = null, int  $documentFrontAttachmentId = null, int  $documentBackAttachmentId = null, string  $dateOfBirth = null, string  $nationality = null, array  $allNationality = null, string  $language = null, string  $region = null, string  $gender = null, string  $status = null, string  $subStatus = null, Pointer  $legalGuardianAlias = null, int  $sessionTimeout = null, Amount  $dailyLimitWithoutConfirmationLogin = null, string  $displayName = null, array $customHeaders = []): BunqResponseInt
     {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->put(
@@ -641,6 +660,7 @@ self::FIELD_DOCUMENT_FRONT_ATTACHMENT_ID => $documentFrontAttachmentId,
 self::FIELD_DOCUMENT_BACK_ATTACHMENT_ID => $documentBackAttachmentId,
 self::FIELD_DATE_OF_BIRTH => $dateOfBirth,
 self::FIELD_NATIONALITY => $nationality,
+self::FIELD_ALL_NATIONALITY => $allNationality,
 self::FIELD_LANGUAGE => $language,
 self::FIELD_REGION => $region,
 self::FIELD_GENDER => $gender,
@@ -1038,6 +1058,27 @@ self::FIELD_DISPLAY_NAME => $displayName],
     }
 
     /**
+     * All of the person's nationalities.
+     *
+     * @return string[]
+     */
+    public function getAllNationality()
+    {
+        return $this->allNationality;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param string[] $allNationality
+     */
+    public function setAllNationality($allNationality)
+    {
+        $this->allNationality = $allNationality;
+    }
+
+    /**
      * The person's preferred language. Formatted as a ISO 639-1 language code
      * plus a ISO 3166-1 alpha-2 country code, seperated by an underscore.
      *
@@ -1349,6 +1390,10 @@ self::FIELD_DISPLAY_NAME => $displayName],
         }
 
         if (!is_null($this->nationality)) {
+            return false;
+        }
+
+        if (!is_null($this->allNationality)) {
             return false;
         }
 
