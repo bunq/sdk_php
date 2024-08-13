@@ -70,11 +70,25 @@ class MonetaryAccountCard extends BunqModel
     protected $dailyLimit;
 
     /**
+     * The maximum Amount the MonetaryAccountCard can be 'in the red'.
+     *
+     * @var Amount
+     */
+    protected $overdraftLimit;
+
+    /**
      * The current available balance Amount of the MonetaryAccountCard.
      *
      * @var Amount
      */
     protected $balance;
+
+    /**
+     * The current real balance Amount of the MonetaryAccountCard.
+     *
+     * @var Amount
+     */
+    protected $balanceReal;
 
     /**
      * The Aliases for the MonetaryAccountCard.
@@ -111,6 +125,14 @@ class MonetaryAccountCard extends BunqModel
      * @var int
      */
     protected $userId;
+
+    /**
+     * The credit line attached to this monetary MonetaryAccountCard, if
+     * available.
+     *
+     * @var CreditLine
+     */
+    protected $creditLine;
 
     /**
      * Get a specific MonetaryAccountCard.
@@ -319,6 +341,27 @@ class MonetaryAccountCard extends BunqModel
     }
 
     /**
+     * The maximum Amount the MonetaryAccountCard can be 'in the red'.
+     *
+     * @return Amount
+     */
+    public function getOverdraftLimit()
+    {
+        return $this->overdraftLimit;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param Amount $overdraftLimit
+     */
+    public function setOverdraftLimit($overdraftLimit)
+    {
+        $this->overdraftLimit = $overdraftLimit;
+    }
+
+    /**
      * The current available balance Amount of the MonetaryAccountCard.
      *
      * @return Amount
@@ -337,6 +380,27 @@ class MonetaryAccountCard extends BunqModel
     public function setBalance($balance)
     {
         $this->balance = $balance;
+    }
+
+    /**
+     * The current real balance Amount of the MonetaryAccountCard.
+     *
+     * @return Amount
+     */
+    public function getBalanceReal()
+    {
+        return $this->balanceReal;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param Amount $balanceReal
+     */
+    public function setBalanceReal($balanceReal)
+    {
+        $this->balanceReal = $balanceReal;
     }
 
     /**
@@ -446,6 +510,28 @@ class MonetaryAccountCard extends BunqModel
     }
 
     /**
+     * The credit line attached to this monetary MonetaryAccountCard, if
+     * available.
+     *
+     * @return CreditLine
+     */
+    public function getCreditLine()
+    {
+        return $this->creditLine;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param CreditLine $creditLine
+     */
+    public function setCreditLine($creditLine)
+    {
+        $this->creditLine = $creditLine;
+    }
+
+    /**
      * @return bool
      */
     public function isAllFieldNull()
@@ -474,7 +560,15 @@ class MonetaryAccountCard extends BunqModel
             return false;
         }
 
+        if (!is_null($this->overdraftLimit)) {
+            return false;
+        }
+
         if (!is_null($this->balance)) {
+            return false;
+        }
+
+        if (!is_null($this->balanceReal)) {
             return false;
         }
 
@@ -495,6 +589,10 @@ class MonetaryAccountCard extends BunqModel
         }
 
         if (!is_null($this->userId)) {
+            return false;
+        }
+
+        if (!is_null($this->creditLine)) {
             return false;
         }
 

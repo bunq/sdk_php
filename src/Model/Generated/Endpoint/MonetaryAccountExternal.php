@@ -212,6 +212,14 @@ class MonetaryAccountExternal extends BunqModel
     protected $openBankingAccount;
 
     /**
+     * The credit line attached to this monetary MonetaryAccountExternal, if
+     * available.
+     *
+     * @var CreditLine
+     */
+    protected $creditLine;
+
+    /**
      * The currency of the MonetaryAccountExternal as an ISO 4217 formatted
      * currency code.
      *
@@ -1005,6 +1013,28 @@ self::FIELD_SETTING => $setting],
     }
 
     /**
+     * The credit line attached to this monetary MonetaryAccountExternal, if
+     * available.
+     *
+     * @return CreditLine
+     */
+    public function getCreditLine()
+    {
+        return $this->creditLine;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param CreditLine $creditLine
+     */
+    public function setCreditLine($creditLine)
+    {
+        $this->creditLine = $creditLine;
+    }
+
+    /**
      * @return bool
      */
     public function isAllFieldNull()
@@ -1094,6 +1124,10 @@ self::FIELD_SETTING => $setting],
         }
 
         if (!is_null($this->openBankingAccount)) {
+            return false;
+        }
+
+        if (!is_null($this->creditLine)) {
             return false;
         }
 
