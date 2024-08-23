@@ -85,6 +85,34 @@ class BankSwitchServiceNetherlandsIncoming extends BunqModel
     protected $attachment;
 
     /**
+     * Rejection reason enum.
+     *
+     * @var string
+     */
+    protected $rejectionReason;
+
+    /**
+     * Rejection reason description to be shown to the user.
+     *
+     * @var string
+     */
+    protected $rejectionReasonDescription;
+
+    /**
+     * Rejection reason description to be shown to the user, translated.
+     *
+     * @var string
+     */
+    protected $rejectionReasonDescriptionTranslated;
+
+    /**
+     * Rejection reason together URL.
+     *
+     * @var string
+     */
+    protected $rejectionReasonTogetherUrl;
+
+    /**
      * The alias of the Monetary Account this switch service is for.
      *
      * @var Pointer
@@ -315,6 +343,90 @@ class BankSwitchServiceNetherlandsIncoming extends BunqModel
     }
 
     /**
+     * Rejection reason enum.
+     *
+     * @return string
+     */
+    public function getRejectionReason()
+    {
+        return $this->rejectionReason;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param string $rejectionReason
+     */
+    public function setRejectionReason($rejectionReason)
+    {
+        $this->rejectionReason = $rejectionReason;
+    }
+
+    /**
+     * Rejection reason description to be shown to the user.
+     *
+     * @return string
+     */
+    public function getRejectionReasonDescription()
+    {
+        return $this->rejectionReasonDescription;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param string $rejectionReasonDescription
+     */
+    public function setRejectionReasonDescription($rejectionReasonDescription)
+    {
+        $this->rejectionReasonDescription = $rejectionReasonDescription;
+    }
+
+    /**
+     * Rejection reason description to be shown to the user, translated.
+     *
+     * @return string
+     */
+    public function getRejectionReasonDescriptionTranslated()
+    {
+        return $this->rejectionReasonDescriptionTranslated;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param string $rejectionReasonDescriptionTranslated
+     */
+    public function setRejectionReasonDescriptionTranslated($rejectionReasonDescriptionTranslated)
+    {
+        $this->rejectionReasonDescriptionTranslated = $rejectionReasonDescriptionTranslated;
+    }
+
+    /**
+     * Rejection reason together URL.
+     *
+     * @return string
+     */
+    public function getRejectionReasonTogetherUrl()
+    {
+        return $this->rejectionReasonTogetherUrl;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param string $rejectionReasonTogetherUrl
+     */
+    public function setRejectionReasonTogetherUrl($rejectionReasonTogetherUrl)
+    {
+        $this->rejectionReasonTogetherUrl = $rejectionReasonTogetherUrl;
+    }
+
+    /**
      * @return bool
      */
     public function isAllFieldNull()
@@ -352,6 +464,22 @@ class BankSwitchServiceNetherlandsIncoming extends BunqModel
         }
 
         if (!is_null($this->attachment)) {
+            return false;
+        }
+
+        if (!is_null($this->rejectionReason)) {
+            return false;
+        }
+
+        if (!is_null($this->rejectionReasonDescription)) {
+            return false;
+        }
+
+        if (!is_null($this->rejectionReasonDescriptionTranslated)) {
+            return false;
+        }
+
+        if (!is_null($this->rejectionReasonTogetherUrl)) {
             return false;
         }
 
