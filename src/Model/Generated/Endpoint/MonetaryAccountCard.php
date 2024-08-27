@@ -127,14 +127,6 @@ class MonetaryAccountCard extends BunqModel
     protected $userId;
 
     /**
-     * The credit line attached to this monetary MonetaryAccountCard, if
-     * available.
-     *
-     * @var CreditLine
-     */
-    protected $creditLine;
-
-    /**
      * Get a specific MonetaryAccountCard.
      *
      * @param int $monetaryAccountCardId
@@ -510,28 +502,6 @@ class MonetaryAccountCard extends BunqModel
     }
 
     /**
-     * The credit line attached to this monetary MonetaryAccountCard, if
-     * available.
-     *
-     * @return CreditLine
-     */
-    public function getCreditLine()
-    {
-        return $this->creditLine;
-    }
-
-    /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
-     * @param CreditLine $creditLine
-     */
-    public function setCreditLine($creditLine)
-    {
-        $this->creditLine = $creditLine;
-    }
-
-    /**
      * @return bool
      */
     public function isAllFieldNull()
@@ -589,10 +559,6 @@ class MonetaryAccountCard extends BunqModel
         }
 
         if (!is_null($this->userId)) {
-            return false;
-        }
-
-        if (!is_null($this->creditLine)) {
             return false;
         }
 
