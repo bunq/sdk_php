@@ -198,14 +198,6 @@ class MonetaryAccountJoint extends BunqModel
     protected $allAutoSaveId;
 
     /**
-     * The credit line attached to this monetary MonetaryAccountJoint, if
-     * available.
-     *
-     * @var CreditLine
-     */
-    protected $creditLine;
-
-    /**
      * The currency of the MonetaryAccountJoint as an ISO 4217 formatted
      * currency code.
      *
@@ -962,28 +954,6 @@ self::FIELD_SETTING => $setting],
     }
 
     /**
-     * The credit line attached to this monetary MonetaryAccountJoint, if
-     * available.
-     *
-     * @return CreditLine
-     */
-    public function getCreditLine()
-    {
-        return $this->creditLine;
-    }
-
-    /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
-     * @param CreditLine $creditLine
-     */
-    public function setCreditLine($creditLine)
-    {
-        $this->creditLine = $creditLine;
-    }
-
-    /**
      * @return bool
      */
     public function isAllFieldNull()
@@ -1065,10 +1035,6 @@ self::FIELD_SETTING => $setting],
         }
 
         if (!is_null($this->allAutoSaveId)) {
-            return false;
-        }
-
-        if (!is_null($this->creditLine)) {
             return false;
         }
 
