@@ -33,6 +33,7 @@ class WhitelistSddRecurring extends BunqModel
     const FIELD_REQUEST_ID = 'request_id';
     const FIELD_MAXIMUM_AMOUNT_PER_MONTH = 'maximum_amount_per_month';
     const FIELD_MAXIMUM_AMOUNT_PER_PAYMENT = 'maximum_amount_per_payment';
+    const FIELD_ROUTING_TYPE = 'routing_type';
 
     /**
      * Object type.
@@ -120,6 +121,13 @@ class WhitelistSddRecurring extends BunqModel
     protected $userAliasCreated;
 
     /**
+     * The type of routing for this whitelist.
+     *
+     * @var string
+     */
+    protected $routingType;
+
+    /**
      * ID of the monetary account of which you want to pay from.
      *
      * @var int
@@ -150,6 +158,14 @@ class WhitelistSddRecurring extends BunqModel
     protected $maximumAmountPerPaymentFieldForRequest;
 
     /**
+     * The type of routing for this whitelist. Should be changed to non-optional
+     * CIT/technical#12806.
+     *
+     * @var string|null
+     */
+    protected $routingTypeFieldForRequest;
+
+    /**
      * @param int $monetaryAccountPayingId ID of the monetary account of which
      * you want to pay from.
      * @param int $requestId ID of the request for which you want to whitelist
@@ -158,13 +174,16 @@ class WhitelistSddRecurring extends BunqModel
      * that is allowed to be deducted per month based on the whitelist.
      * @param Amount|null $maximumAmountPerPayment The maximum amount of money
      * that is allowed to be deducted per payment based on the whitelist.
+     * @param string|null $routingType The type of routing for this whitelist.
+     * Should be changed to non-optional CIT/technical#12806.
      */
-    public function __construct(int  $monetaryAccountPayingId, int  $requestId, Amount  $maximumAmountPerMonth = null, Amount  $maximumAmountPerPayment = null)
+    public function __construct(int  $monetaryAccountPayingId, int  $requestId, Amount  $maximumAmountPerMonth = null, Amount  $maximumAmountPerPayment = null, string  $routingType = null)
     {
         $this->monetaryAccountPayingIdFieldForRequest = $monetaryAccountPayingId;
         $this->requestIdFieldForRequest = $requestId;
         $this->maximumAmountPerMonthFieldForRequest = $maximumAmountPerMonth;
         $this->maximumAmountPerPaymentFieldForRequest = $maximumAmountPerPayment;
+        $this->routingTypeFieldForRequest = $routingType;
     }
 
     /**
@@ -203,11 +222,13 @@ class WhitelistSddRecurring extends BunqModel
      * that is allowed to be deducted per month based on the whitelist.
      * @param Amount|null $maximumAmountPerPayment The maximum amount of money
      * that is allowed to be deducted per payment based on the whitelist.
+     * @param string|null $routingType The type of routing for this whitelist.
+     * Should be changed to non-optional CIT/technical#12806.
      * @param string[] $customHeaders
      *
      * @return BunqResponseInt
      */
-    public static function create(int  $monetaryAccountPayingId, int  $requestId, Amount  $maximumAmountPerMonth = null, Amount  $maximumAmountPerPayment = null, array $customHeaders = []): BunqResponseInt
+    public static function create(int  $monetaryAccountPayingId, int  $requestId, Amount  $maximumAmountPerMonth = null, Amount  $maximumAmountPerPayment = null, string  $routingType = null, array $customHeaders = []): BunqResponseInt
     {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->post(
@@ -218,7 +239,8 @@ class WhitelistSddRecurring extends BunqModel
             [self::FIELD_MONETARY_ACCOUNT_PAYING_ID => $monetaryAccountPayingId,
 self::FIELD_REQUEST_ID => $requestId,
 self::FIELD_MAXIMUM_AMOUNT_PER_MONTH => $maximumAmountPerMonth,
-self::FIELD_MAXIMUM_AMOUNT_PER_PAYMENT => $maximumAmountPerPayment],
+self::FIELD_MAXIMUM_AMOUNT_PER_PAYMENT => $maximumAmountPerPayment,
+self::FIELD_ROUTING_TYPE => $routingType],
             $customHeaders
         );
 
@@ -235,11 +257,13 @@ self::FIELD_MAXIMUM_AMOUNT_PER_PAYMENT => $maximumAmountPerPayment],
      * that is allowed to be deducted per month based on the whitelist.
      * @param Amount|null $maximumAmountPerPayment The maximum amount of money
      * that is allowed to be deducted per payment based on the whitelist.
+     * @param string|null $routingType The type of routing for this whitelist.
+     * Should be changed to non-optional CIT/technical#12806.
      * @param string[] $customHeaders
      *
      * @return BunqResponseInt
      */
-    public static function update(int $whitelistSddRecurringId, int  $monetaryAccountPayingId = null, Amount  $maximumAmountPerMonth = null, Amount  $maximumAmountPerPayment = null, array $customHeaders = []): BunqResponseInt
+    public static function update(int $whitelistSddRecurringId, int  $monetaryAccountPayingId = null, Amount  $maximumAmountPerMonth = null, Amount  $maximumAmountPerPayment = null, string  $routingType = null, array $customHeaders = []): BunqResponseInt
     {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->put(
@@ -249,7 +273,8 @@ self::FIELD_MAXIMUM_AMOUNT_PER_PAYMENT => $maximumAmountPerPayment],
             ),
             [self::FIELD_MONETARY_ACCOUNT_PAYING_ID => $monetaryAccountPayingId,
 self::FIELD_MAXIMUM_AMOUNT_PER_MONTH => $maximumAmountPerMonth,
-self::FIELD_MAXIMUM_AMOUNT_PER_PAYMENT => $maximumAmountPerPayment],
+self::FIELD_MAXIMUM_AMOUNT_PER_PAYMENT => $maximumAmountPerPayment,
+self::FIELD_ROUTING_TYPE => $routingType],
             $customHeaders
         );
 
@@ -544,6 +569,27 @@ self::FIELD_MAXIMUM_AMOUNT_PER_PAYMENT => $maximumAmountPerPayment],
     }
 
     /**
+     * The type of routing for this whitelist.
+     *
+     * @return string
+     */
+    public function getRoutingType()
+    {
+        return $this->routingType;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param string $routingType
+     */
+    public function setRoutingType($routingType)
+    {
+        $this->routingType = $routingType;
+    }
+
+    /**
      * @return bool
      */
     public function isAllFieldNull()
@@ -589,6 +635,10 @@ self::FIELD_MAXIMUM_AMOUNT_PER_PAYMENT => $maximumAmountPerPayment],
         }
 
         if (!is_null($this->userAliasCreated)) {
+            return false;
+        }
+
+        if (!is_null($this->routingType)) {
             return false;
         }
 
