@@ -2,11 +2,13 @@
 namespace bunq\Model\Generated\Endpoint;
 
 use bunq\Context\ApiContext;
-use bunq\Exception\BunqException;
 use bunq\Http\ApiClient;
 use bunq\Http\BunqResponse;
-use bunq\Model\Core\AnchorObjectInterface;
 use bunq\Model\Core\BunqModel;
+use bunq\Model\Generated\Object\BunqId;
+use bunq\Model\Generated\Object\CoOwner;
+use bunq\Model\Generated\Object\MonetaryAccountSetting;
+use bunq\Model\Generated\Object\Pointer;
 
 /**
  * Used to show the MonetaryAccounts that you can access. Currently the only
@@ -17,13 +19,8 @@ use bunq\Model\Core\BunqModel;
  *
  * @generated
  */
-class MonetaryAccount extends BunqModel implements AnchorObjectInterface
+class MonetaryAccount extends BunqModel
 {
-    /**
-     * Error constants.
-     */
-    const ERROR_NULL_FIELDS = 'All fields of an extended model or object are null.';
-
     /**
      * Endpoint constants.
      */
@@ -36,14 +33,113 @@ class MonetaryAccount extends BunqModel implements AnchorObjectInterface
     const OBJECT_TYPE_GET = 'MonetaryAccount';
 
     /**
-     * @var MonetaryAccountBank
+     * The aliases for the MonetaryAccount.
+     *
+     * @var Pointer[]
      */
-    protected $monetaryAccountBank;
+    protected $alias;
 
     /**
-     * @var MonetaryAccountJoint
+     * The current available balance amount of the MonetaryAccount.
+     *
+     * @var Amount
      */
-    protected $monetaryAccountJoint;
+    protected $balance;
+
+    /**
+     * The profiles of the account.
+     *
+     * @var MonetaryAccountProfile[]
+     */
+    protected $monetaryAccountProfile;
+
+    /**
+     * The settings of the MonetaryAccount.
+     *
+     * @var MonetaryAccountSetting
+     */
+    protected $setting;
+
+    /**
+     * The budgets of the MonetaryAccount.
+     *
+     * @var MonetaryAccountBudget[]
+     */
+    protected $budget;
+
+    /**
+     * The reason for voluntarily cancelling (closing) the MonetaryAccount.
+     *
+     * @var string
+     */
+    protected $reason;
+
+    /**
+     * The optional free-form reason for voluntarily cancelling (closing) the
+     * MonetaryAccount. Can be any user provided message.
+     *
+     * @var string
+     */
+    protected $reasonDescription;
+
+    /**
+     * The ShareInviteBankResponse when the MonetaryAccount is accessed by the
+     * User via a share/connect.
+     *
+     * @var ShareInviteMonetaryAccountResponse
+     */
+    protected $share;
+
+    /**
+     * The ids of the AutoSave.
+     *
+     * @var BunqId[]
+     */
+    protected $allAutoSaveId;
+
+    /**
+     * The fulfillments for this MonetaryAccount.
+     *
+     * @var Fulfillment[]
+     */
+    protected $fulfillments;
+
+    /**
+     * The RelationUser when the MonetaryAccount is accessed by the User via a
+     * share/connect.
+     *
+     * @var RelationUser
+     */
+    protected $relationUser;
+
+    /**
+     * The users the account will be joint with.
+     *
+     * @var CoOwner[]
+     */
+    protected $allCoOwner;
+
+    /**
+     * The CoOwnerInvite when the MonetaryAccount is accessed by the User via a
+     * CoOwnerInvite.
+     *
+     * @var CoOwnerInviteResponse
+     */
+    protected $coOwnerInvite;
+
+    /**
+     * The open banking account for information about the external account.
+     *
+     * @var OpenBankingAccount
+     */
+    protected $openBankingAccount;
+
+    /**
+     * The Birdee investment portfolio.
+     *
+     * @var BirdeeInvestmentPortfolio
+     */
+    protected $birdeeInvestmentPortfolio;
 
     /**
      * @var MonetaryAccountLight
@@ -51,9 +147,9 @@ class MonetaryAccount extends BunqModel implements AnchorObjectInterface
     protected $monetaryAccountLight;
 
     /**
-     * @var MonetaryAccountSavings
+     * @var MonetaryAccountBank
      */
-    protected $monetaryAccountSavings;
+    protected $monetaryAccountBank;
 
     /**
      * @var MonetaryAccountExternal
@@ -66,9 +162,29 @@ class MonetaryAccount extends BunqModel implements AnchorObjectInterface
     protected $monetaryAccountInvestment;
 
     /**
+     * @var MonetaryAccountJoint
+     */
+    protected $monetaryAccountJoint;
+
+    /**
+     * @var MonetaryAccountSavings
+     */
+    protected $monetaryAccountSavings;
+
+    /**
+     * @var MonetaryAccountSwitchService
+     */
+    protected $monetaryAccountSwitchService;
+
+    /**
      * @var MonetaryAccountExternalSavings
      */
     protected $monetaryAccountExternalSavings;
+
+    /**
+     * @var MonetaryAccountCard
+     */
+    protected $monetaryAccountCard;
 
     /**
      * Get a specific MonetaryAccount.
@@ -124,41 +240,322 @@ class MonetaryAccount extends BunqModel implements AnchorObjectInterface
     }
 
     /**
-     * @return MonetaryAccountBank
+     * The aliases for the MonetaryAccount.
+     *
+     * @return Pointer[]
      */
-    public function getMonetaryAccountBank()
+    public function getAlias()
     {
-        return $this->monetaryAccountBank;
+        return $this->alias;
     }
 
     /**
      * @deprecated User should not be able to set values via setters, use
      * constructor.
      *
-     * @param MonetaryAccountBank $monetaryAccountBank
+     * @param Pointer[] $alias
      */
-    public function setMonetaryAccountBank($monetaryAccountBank)
+    public function setAlias($alias)
     {
-        $this->monetaryAccountBank = $monetaryAccountBank;
+        $this->alias = $alias;
     }
 
     /**
-     * @return MonetaryAccountJoint
+     * The current available balance amount of the MonetaryAccount.
+     *
+     * @return Amount
      */
-    public function getMonetaryAccountJoint()
+    public function getBalance()
     {
-        return $this->monetaryAccountJoint;
+        return $this->balance;
     }
 
     /**
      * @deprecated User should not be able to set values via setters, use
      * constructor.
      *
-     * @param MonetaryAccountJoint $monetaryAccountJoint
+     * @param Amount $balance
      */
-    public function setMonetaryAccountJoint($monetaryAccountJoint)
+    public function setBalance($balance)
     {
-        $this->monetaryAccountJoint = $monetaryAccountJoint;
+        $this->balance = $balance;
+    }
+
+    /**
+     * The profiles of the account.
+     *
+     * @return MonetaryAccountProfile[]
+     */
+    public function getMonetaryAccountProfile()
+    {
+        return $this->monetaryAccountProfile;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param MonetaryAccountProfile[] $monetaryAccountProfile
+     */
+    public function setMonetaryAccountProfile($monetaryAccountProfile)
+    {
+        $this->monetaryAccountProfile = $monetaryAccountProfile;
+    }
+
+    /**
+     * The settings of the MonetaryAccount.
+     *
+     * @return MonetaryAccountSetting
+     */
+    public function getSetting()
+    {
+        return $this->setting;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param MonetaryAccountSetting $setting
+     */
+    public function setSetting($setting)
+    {
+        $this->setting = $setting;
+    }
+
+    /**
+     * The budgets of the MonetaryAccount.
+     *
+     * @return MonetaryAccountBudget[]
+     */
+    public function getBudget()
+    {
+        return $this->budget;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param MonetaryAccountBudget[] $budget
+     */
+    public function setBudget($budget)
+    {
+        $this->budget = $budget;
+    }
+
+    /**
+     * The reason for voluntarily cancelling (closing) the MonetaryAccount.
+     *
+     * @return string
+     */
+    public function getReason()
+    {
+        return $this->reason;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param string $reason
+     */
+    public function setReason($reason)
+    {
+        $this->reason = $reason;
+    }
+
+    /**
+     * The optional free-form reason for voluntarily cancelling (closing) the
+     * MonetaryAccount. Can be any user provided message.
+     *
+     * @return string
+     */
+    public function getReasonDescription()
+    {
+        return $this->reasonDescription;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param string $reasonDescription
+     */
+    public function setReasonDescription($reasonDescription)
+    {
+        $this->reasonDescription = $reasonDescription;
+    }
+
+    /**
+     * The ShareInviteBankResponse when the MonetaryAccount is accessed by the
+     * User via a share/connect.
+     *
+     * @return ShareInviteMonetaryAccountResponse
+     */
+    public function getShare()
+    {
+        return $this->share;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param ShareInviteMonetaryAccountResponse $share
+     */
+    public function setShare($share)
+    {
+        $this->share = $share;
+    }
+
+    /**
+     * The ids of the AutoSave.
+     *
+     * @return BunqId[]
+     */
+    public function getAllAutoSaveId()
+    {
+        return $this->allAutoSaveId;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param BunqId[] $allAutoSaveId
+     */
+    public function setAllAutoSaveId($allAutoSaveId)
+    {
+        $this->allAutoSaveId = $allAutoSaveId;
+    }
+
+    /**
+     * The fulfillments for this MonetaryAccount.
+     *
+     * @return Fulfillment[]
+     */
+    public function getFulfillments()
+    {
+        return $this->fulfillments;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param Fulfillment[] $fulfillments
+     */
+    public function setFulfillments($fulfillments)
+    {
+        $this->fulfillments = $fulfillments;
+    }
+
+    /**
+     * The RelationUser when the MonetaryAccount is accessed by the User via a
+     * share/connect.
+     *
+     * @return RelationUser
+     */
+    public function getRelationUser()
+    {
+        return $this->relationUser;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param RelationUser $relationUser
+     */
+    public function setRelationUser($relationUser)
+    {
+        $this->relationUser = $relationUser;
+    }
+
+    /**
+     * The users the account will be joint with.
+     *
+     * @return CoOwner[]
+     */
+    public function getAllCoOwner()
+    {
+        return $this->allCoOwner;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param CoOwner[] $allCoOwner
+     */
+    public function setAllCoOwner($allCoOwner)
+    {
+        $this->allCoOwner = $allCoOwner;
+    }
+
+    /**
+     * The CoOwnerInvite when the MonetaryAccount is accessed by the User via a
+     * CoOwnerInvite.
+     *
+     * @return CoOwnerInviteResponse
+     */
+    public function getCoOwnerInvite()
+    {
+        return $this->coOwnerInvite;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param CoOwnerInviteResponse $coOwnerInvite
+     */
+    public function setCoOwnerInvite($coOwnerInvite)
+    {
+        $this->coOwnerInvite = $coOwnerInvite;
+    }
+
+    /**
+     * The open banking account for information about the external account.
+     *
+     * @return OpenBankingAccount
+     */
+    public function getOpenBankingAccount()
+    {
+        return $this->openBankingAccount;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param OpenBankingAccount $openBankingAccount
+     */
+    public function setOpenBankingAccount($openBankingAccount)
+    {
+        $this->openBankingAccount = $openBankingAccount;
+    }
+
+    /**
+     * The Birdee investment portfolio.
+     *
+     * @return BirdeeInvestmentPortfolio
+     */
+    public function getBirdeeInvestmentPortfolio()
+    {
+        return $this->birdeeInvestmentPortfolio;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param BirdeeInvestmentPortfolio $birdeeInvestmentPortfolio
+     */
+    public function setBirdeeInvestmentPortfolio($birdeeInvestmentPortfolio)
+    {
+        $this->birdeeInvestmentPortfolio = $birdeeInvestmentPortfolio;
     }
 
     /**
@@ -181,22 +578,22 @@ class MonetaryAccount extends BunqModel implements AnchorObjectInterface
     }
 
     /**
-     * @return MonetaryAccountSavings
+     * @return MonetaryAccountBank
      */
-    public function getMonetaryAccountSavings()
+    public function getMonetaryAccountBank()
     {
-        return $this->monetaryAccountSavings;
+        return $this->monetaryAccountBank;
     }
 
     /**
      * @deprecated User should not be able to set values via setters, use
      * constructor.
      *
-     * @param MonetaryAccountSavings $monetaryAccountSavings
+     * @param MonetaryAccountBank $monetaryAccountBank
      */
-    public function setMonetaryAccountSavings($monetaryAccountSavings)
+    public function setMonetaryAccountBank($monetaryAccountBank)
     {
-        $this->monetaryAccountSavings = $monetaryAccountSavings;
+        $this->monetaryAccountBank = $monetaryAccountBank;
     }
 
     /**
@@ -238,6 +635,63 @@ class MonetaryAccount extends BunqModel implements AnchorObjectInterface
     }
 
     /**
+     * @return MonetaryAccountJoint
+     */
+    public function getMonetaryAccountJoint()
+    {
+        return $this->monetaryAccountJoint;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param MonetaryAccountJoint $monetaryAccountJoint
+     */
+    public function setMonetaryAccountJoint($monetaryAccountJoint)
+    {
+        $this->monetaryAccountJoint = $monetaryAccountJoint;
+    }
+
+    /**
+     * @return MonetaryAccountSavings
+     */
+    public function getMonetaryAccountSavings()
+    {
+        return $this->monetaryAccountSavings;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param MonetaryAccountSavings $monetaryAccountSavings
+     */
+    public function setMonetaryAccountSavings($monetaryAccountSavings)
+    {
+        $this->monetaryAccountSavings = $monetaryAccountSavings;
+    }
+
+    /**
+     * @return MonetaryAccountSwitchService
+     */
+    public function getMonetaryAccountSwitchService()
+    {
+        return $this->monetaryAccountSwitchService;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param MonetaryAccountSwitchService $monetaryAccountSwitchService
+     */
+    public function setMonetaryAccountSwitchService($monetaryAccountSwitchService)
+    {
+        $this->monetaryAccountSwitchService = $monetaryAccountSwitchService;
+    }
+
+    /**
      * @return MonetaryAccountExternalSavings
      */
     public function getMonetaryAccountExternalSavings()
@@ -257,40 +711,22 @@ class MonetaryAccount extends BunqModel implements AnchorObjectInterface
     }
 
     /**
-     * @return BunqModel
-     * @throws BunqException
+     * @return MonetaryAccountCard
      */
-    public function getReferencedObject()
+    public function getMonetaryAccountCard()
     {
-        if (!is_null($this->monetaryAccountBank)) {
-            return $this->monetaryAccountBank;
-        }
+        return $this->monetaryAccountCard;
+    }
 
-        if (!is_null($this->monetaryAccountJoint)) {
-            return $this->monetaryAccountJoint;
-        }
-
-        if (!is_null($this->monetaryAccountLight)) {
-            return $this->monetaryAccountLight;
-        }
-
-        if (!is_null($this->monetaryAccountSavings)) {
-            return $this->monetaryAccountSavings;
-        }
-
-        if (!is_null($this->monetaryAccountExternal)) {
-            return $this->monetaryAccountExternal;
-        }
-
-        if (!is_null($this->monetaryAccountInvestment)) {
-            return $this->monetaryAccountInvestment;
-        }
-
-        if (!is_null($this->monetaryAccountExternalSavings)) {
-            return $this->monetaryAccountExternalSavings;
-        }
-
-        throw new BunqException(self::ERROR_NULL_FIELDS);
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param MonetaryAccountCard $monetaryAccountCard
+     */
+    public function setMonetaryAccountCard($monetaryAccountCard)
+    {
+        $this->monetaryAccountCard = $monetaryAccountCard;
     }
 
     /**
@@ -298,11 +734,63 @@ class MonetaryAccount extends BunqModel implements AnchorObjectInterface
      */
     public function isAllFieldNull()
     {
-        if (!is_null($this->monetaryAccountBank)) {
+        if (!is_null($this->alias)) {
             return false;
         }
 
-        if (!is_null($this->monetaryAccountJoint)) {
+        if (!is_null($this->balance)) {
+            return false;
+        }
+
+        if (!is_null($this->monetaryAccountProfile)) {
+            return false;
+        }
+
+        if (!is_null($this->setting)) {
+            return false;
+        }
+
+        if (!is_null($this->budget)) {
+            return false;
+        }
+
+        if (!is_null($this->reason)) {
+            return false;
+        }
+
+        if (!is_null($this->reasonDescription)) {
+            return false;
+        }
+
+        if (!is_null($this->share)) {
+            return false;
+        }
+
+        if (!is_null($this->allAutoSaveId)) {
+            return false;
+        }
+
+        if (!is_null($this->fulfillments)) {
+            return false;
+        }
+
+        if (!is_null($this->relationUser)) {
+            return false;
+        }
+
+        if (!is_null($this->allCoOwner)) {
+            return false;
+        }
+
+        if (!is_null($this->coOwnerInvite)) {
+            return false;
+        }
+
+        if (!is_null($this->openBankingAccount)) {
+            return false;
+        }
+
+        if (!is_null($this->birdeeInvestmentPortfolio)) {
             return false;
         }
 
@@ -310,7 +798,7 @@ class MonetaryAccount extends BunqModel implements AnchorObjectInterface
             return false;
         }
 
-        if (!is_null($this->monetaryAccountSavings)) {
+        if (!is_null($this->monetaryAccountBank)) {
             return false;
         }
 
@@ -322,7 +810,23 @@ class MonetaryAccount extends BunqModel implements AnchorObjectInterface
             return false;
         }
 
+        if (!is_null($this->monetaryAccountJoint)) {
+            return false;
+        }
+
+        if (!is_null($this->monetaryAccountSavings)) {
+            return false;
+        }
+
+        if (!is_null($this->monetaryAccountSwitchService)) {
+            return false;
+        }
+
         if (!is_null($this->monetaryAccountExternalSavings)) {
+            return false;
+        }
+
+        if (!is_null($this->monetaryAccountCard)) {
             return false;
         }
 
