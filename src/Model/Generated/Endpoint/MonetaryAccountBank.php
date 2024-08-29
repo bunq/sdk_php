@@ -183,7 +183,7 @@ class MonetaryAccountBank extends BunqModel
     /**
      * The legal name of the user / company using this monetary account.
      *
-     * @var string|null
+     * @var string
      */
     protected $displayName;
 
