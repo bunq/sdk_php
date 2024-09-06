@@ -183,6 +183,11 @@ class Registry extends BunqModel
     protected $allRegistryEntry;
 
     /**
+     * @var RegistryGalleryAttachment[]|null
+     */
+    protected $allRegistryGalleryAttachment;
+
+    /**
      * The timestamp of the Registry's last update.
      *
      * @var string|null
@@ -815,6 +820,25 @@ class Registry extends BunqModel
     }
 
     /**
+     * @return RegistryGalleryAttachment[]
+     */
+    public function getAllRegistryGalleryAttachment()
+    {
+        return $this->allRegistryGalleryAttachment;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param RegistryGalleryAttachment[] $allRegistryGalleryAttachment
+     */
+    public function setAllRegistryGalleryAttachment($allRegistryGalleryAttachment)
+    {
+        $this->allRegistryGalleryAttachment = $allRegistryGalleryAttachment;
+    }
+
+    /**
      * @return bool
      */
     public function isAllFieldNull()
@@ -896,6 +920,10 @@ class Registry extends BunqModel
         }
 
         if (!is_null($this->allRegistryEntry)) {
+            return false;
+        }
+
+        if (!is_null($this->allRegistryGalleryAttachment)) {
             return false;
         }
 
