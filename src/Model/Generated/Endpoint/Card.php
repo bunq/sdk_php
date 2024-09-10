@@ -45,8 +45,8 @@ class Card extends BunqModel
     /**
      * Object type.
      */
-    const OBJECT_TYPE_PUT = 'CardDebit';
-    const OBJECT_TYPE_GET = 'CardDebit';
+    const OBJECT_TYPE_PUT = 'Card';
+    const OBJECT_TYPE_GET = 'Card';
 
     /**
      * The id of the card.
@@ -253,6 +253,13 @@ class Card extends BunqModel
      * @var CardReplacement
      */
     protected $cardReplacement;
+
+    /**
+     * The generated CVC2 code for this card.
+     *
+     * @var CardGeneratedCvc2
+     */
+    protected $cardGeneratedCvc2;
 
     /**
      * The plaintext pin code. Requests require encryption to be enabled.
@@ -1127,6 +1134,27 @@ self::FIELD_CANCELLATION_REASON => $cancellationReason],
     }
 
     /**
+     * The generated CVC2 code for this card.
+     *
+     * @return CardGeneratedCvc2
+     */
+    public function getCardGeneratedCvc2()
+    {
+        return $this->cardGeneratedCvc2;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param CardGeneratedCvc2 $cardGeneratedCvc2
+     */
+    public function setCardGeneratedCvc2($cardGeneratedCvc2)
+    {
+        $this->cardGeneratedCvc2 = $cardGeneratedCvc2;
+    }
+
+    /**
      * @return bool
      */
     public function isAllFieldNull()
@@ -1240,6 +1268,10 @@ self::FIELD_CANCELLATION_REASON => $cancellationReason],
         }
 
         if (!is_null($this->cardReplacement)) {
+            return false;
+        }
+
+        if (!is_null($this->cardGeneratedCvc2)) {
             return false;
         }
 
