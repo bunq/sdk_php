@@ -282,7 +282,7 @@ class MasterCardAction extends BunqModel
     /**
      * The cardTokenization event awaiting acceptance by the user
      *
-     * @var string[]
+     * @var Event
      */
     protected $cardTokenizationEvent;
 
@@ -1145,7 +1145,7 @@ class MasterCardAction extends BunqModel
     /**
      * The cardTokenization event awaiting acceptance by the user
      *
-     * @return string[]
+     * @return Event
      */
     public function getCardTokenizationEvent()
     {
@@ -1156,7 +1156,7 @@ class MasterCardAction extends BunqModel
      * @deprecated User should not be able to set values via setters, use
      * constructor.
      *
-     * @param string[] $cardTokenizationEvent
+     * @param Event $cardTokenizationEvent
      */
     public function setCardTokenizationEvent($cardTokenizationEvent)
     {
