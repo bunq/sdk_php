@@ -241,6 +241,14 @@ class RequestResponse extends BunqModel
     protected $mandateIdentifier;
 
     /**
+     * Recommended registration action after IdealIssuerTransaction from iDEAL
+     * issuer transaction.
+     *
+     * @var string
+     */
+    protected $registrationAction;
+
+    /**
      * The whitelist id for this action or null.
      *
      * @var int
@@ -989,6 +997,28 @@ self::FIELD_CURRENCY_CONVERSION_QUOTE_ID => $currencyConversionQuoteId],
     }
 
     /**
+     * Recommended registration action after IdealIssuerTransaction from iDEAL
+     * issuer transaction.
+     *
+     * @return string
+     */
+    public function getRegistrationAction()
+    {
+        return $this->registrationAction;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param string $registrationAction
+     */
+    public function setRegistrationAction($registrationAction)
+    {
+        $this->registrationAction = $registrationAction;
+    }
+
+    /**
      * The whitelist id for this action or null.
      *
      * @return int
@@ -1179,6 +1209,10 @@ self::FIELD_CURRENCY_CONVERSION_QUOTE_ID => $currencyConversionQuoteId],
         }
 
         if (!is_null($this->mandateIdentifier)) {
+            return false;
+        }
+
+        if (!is_null($this->registrationAction)) {
             return false;
         }
 
