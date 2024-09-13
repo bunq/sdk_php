@@ -262,6 +262,20 @@ class Card extends BunqModel
     protected $cardGeneratedCvc2;
 
     /**
+     * Whether this card is a limited edition metal card.
+     *
+     * @var bool
+     */
+    protected $isLimitedEdition;
+
+    /**
+     * The date for the member since field on the black metal card.
+     *
+     * @var string
+     */
+    protected $cardMetalMemberSinceDate;
+
+    /**
      * The plaintext pin code. Requests require encryption to be enabled.
      *
      * @var string|null
@@ -1155,6 +1169,48 @@ self::FIELD_CANCELLATION_REASON => $cancellationReason],
     }
 
     /**
+     * Whether this card is a limited edition metal card.
+     *
+     * @return bool
+     */
+    public function getIsLimitedEdition()
+    {
+        return $this->isLimitedEdition;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param bool $isLimitedEdition
+     */
+    public function setIsLimitedEdition($isLimitedEdition)
+    {
+        $this->isLimitedEdition = $isLimitedEdition;
+    }
+
+    /**
+     * The date for the member since field on the black metal card.
+     *
+     * @return string
+     */
+    public function getCardMetalMemberSinceDate()
+    {
+        return $this->cardMetalMemberSinceDate;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param string $cardMetalMemberSinceDate
+     */
+    public function setCardMetalMemberSinceDate($cardMetalMemberSinceDate)
+    {
+        $this->cardMetalMemberSinceDate = $cardMetalMemberSinceDate;
+    }
+
+    /**
      * @return bool
      */
     public function isAllFieldNull()
@@ -1272,6 +1328,14 @@ self::FIELD_CANCELLATION_REASON => $cancellationReason],
         }
 
         if (!is_null($this->cardGeneratedCvc2)) {
+            return false;
+        }
+
+        if (!is_null($this->isLimitedEdition)) {
+            return false;
+        }
+
+        if (!is_null($this->cardMetalMemberSinceDate)) {
             return false;
         }
 
