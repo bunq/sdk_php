@@ -217,7 +217,7 @@ class ApiClient
             $response = $this->httpClient->request(
                 $method,
                 $this->determineUriFull($uri, $params),
-                $this->determineRequestOptions($body, $customHeaders)
+                $this->determineRequestOptions($method, $body, $customHeaders)
             );
         } catch (RequestException $exception) {
             if ($this->isCurlErrorCodeZero($exception) && $this->isMacOs()) {
@@ -362,21 +362,27 @@ class ApiClient
     }
 
     /**
+     * @param string $method
      * @param mixed[][]|string $body
      * @param string[] $customHeaders
      *
      * @return mixed[]
      */
-    private function determineRequestOptions($body, array $customHeaders): array
+    private function determineRequestOptions(string $method, $body, array $customHeaders): array
     {
         $headers = array_merge($this->determineDefaultHeaders(), $customHeaders);
 
-        return [
+        $options = [
             self::OPTION_HEADERS => $headers,
-            self::OPTION_BODY => $this->determineBodyString($body),
             self::OPTION_DEBUG => false,
             self::OPTION_HTTP_ERRORS => false,
         ];
+
+        if ($method === self::METHOD_POST || $method === self::METHOD_PUT) {
+            $options[self::OPTION_BODY] = $this->determineBodyString($body);
+        }
+
+        return $options;
     }
 
     /**
