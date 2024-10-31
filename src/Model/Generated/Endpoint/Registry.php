@@ -113,14 +113,6 @@ class Registry extends BunqModel
     protected $status;
 
     /**
-     * The number of RegistryEntries in this Registry that the user has not
-     * seen.
-     *
-     * @var int
-     */
-    protected $unseenEntriesCount;
-
-    /**
      * The total amount spent in this Registry since the last settlement.
      *
      * @var Amount
@@ -610,28 +602,6 @@ class Registry extends BunqModel
     }
 
     /**
-     * The number of RegistryEntries in this Registry that the user has not
-     * seen.
-     *
-     * @return int
-     */
-    public function getUnseenEntriesCount()
-    {
-        return $this->unseenEntriesCount;
-    }
-
-    /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
-     * @param int $unseenEntriesCount
-     */
-    public function setUnseenEntriesCount($unseenEntriesCount)
-    {
-        $this->unseenEntriesCount = $unseenEntriesCount;
-    }
-
-    /**
      * The total amount spent in this Registry since the last settlement.
      *
      * @return Amount
@@ -880,10 +850,6 @@ class Registry extends BunqModel
         }
 
         if (!is_null($this->status)) {
-            return false;
-        }
-
-        if (!is_null($this->unseenEntriesCount)) {
             return false;
         }
 
