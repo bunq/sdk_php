@@ -365,6 +365,13 @@ class MasterCardAction extends BunqModel
     protected $merchantCategoryCode;
 
     /**
+     * The receipt the company employee has to provide for this transaction.
+     *
+     * @var CompanyEmployeeCardReceipt
+     */
+    protected $companyEmployeeCardReceipt;
+
+    /**
      * @param int $masterCardActionId
      * @param int|null $monetaryAccountId
      * @param string[] $customHeaders
@@ -1396,6 +1403,27 @@ class MasterCardAction extends BunqModel
     }
 
     /**
+     * The receipt the company employee has to provide for this transaction.
+     *
+     * @return CompanyEmployeeCardReceipt
+     */
+    public function getCompanyEmployeeCardReceipt()
+    {
+        return $this->companyEmployeeCardReceipt;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param CompanyEmployeeCardReceipt $companyEmployeeCardReceipt
+     */
+    public function setCompanyEmployeeCardReceipt($companyEmployeeCardReceipt)
+    {
+        $this->companyEmployeeCardReceipt = $companyEmployeeCardReceipt;
+    }
+
+    /**
      * @return bool
      */
     public function isAllFieldNull()
@@ -1581,6 +1609,10 @@ class MasterCardAction extends BunqModel
         }
 
         if (!is_null($this->merchantCategoryCode)) {
+            return false;
+        }
+
+        if (!is_null($this->companyEmployeeCardReceipt)) {
             return false;
         }
 

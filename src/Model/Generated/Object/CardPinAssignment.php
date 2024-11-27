@@ -23,6 +23,20 @@ class CardPinAssignment extends BunqModel
     protected $monetaryAccountId;
 
     /**
+     * The status of the card pin assignment.
+     *
+     * @var string
+     */
+    protected $status;
+
+    /**
+     * Routing type.
+     *
+     * @var string
+     */
+    protected $routingType;
+
+    /**
      * PIN type. Can be PRIMARY, SECONDARY or TERTIARY
      *
      * @var string
@@ -109,6 +123,48 @@ class CardPinAssignment extends BunqModel
     }
 
     /**
+     * The status of the card pin assignment.
+     *
+     * @return string
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param string $status
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+    }
+
+    /**
+     * Routing type.
+     *
+     * @return string
+     */
+    public function getRoutingType()
+    {
+        return $this->routingType;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param string $routingType
+     */
+    public function setRoutingType($routingType)
+    {
+        $this->routingType = $routingType;
+    }
+
+    /**
      * @return bool
      */
     public function isAllFieldNull()
@@ -118,6 +174,14 @@ class CardPinAssignment extends BunqModel
         }
 
         if (!is_null($this->monetaryAccountId)) {
+            return false;
+        }
+
+        if (!is_null($this->status)) {
+            return false;
+        }
+
+        if (!is_null($this->routingType)) {
             return false;
         }
 
