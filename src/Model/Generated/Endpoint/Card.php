@@ -77,6 +77,27 @@ class Card extends BunqModel
     protected $publicUuid;
 
     /**
+     * DEPRECATED. ID of the user who is owner of the card.
+     *
+     * @var int
+     */
+    protected $userId;
+
+    /**
+     * ID of the user who is owner of the card.
+     *
+     * @var int
+     */
+    protected $userOwnerId;
+
+    /**
+     * ID of the user who is holder of the card.
+     *
+     * @var int
+     */
+    protected $userHolderId;
+
+    /**
      * The type of the card. Can be MAESTRO, MASTERCARD.
      *
      * @var string
@@ -91,18 +112,32 @@ class Card extends BunqModel
     protected $subType;
 
     /**
+     * The product type of the card.
+     *
+     * @var string
+     */
+    protected $productType;
+
+    /**
+     * The product sub-type of the card.
+     *
+     * @var string
+     */
+    protected $productSubType;
+
+    /**
+     * The first line of text on the card
+     *
+     * @var string
+     */
+    protected $firstLine;
+
+    /**
      * The second line of text on the card
      *
      * @var string
      */
     protected $secondLine;
-
-    /**
-     * ID of the user who is owner of the card.
-     *
-     * @var int
-     */
-    protected $userId;
 
     /**
      * The status to set for the card. Can be ACTIVE, DEACTIVATED, LOST, STOLEN,
@@ -245,7 +280,7 @@ class Card extends BunqModel
      *
      * @var bool
      */
-    protected $isEligibleForFreeReplacement;
+    protected $isCardEligibleForFreeReplacement;
 
     /**
      * The card replacement for this card.
@@ -274,6 +309,13 @@ class Card extends BunqModel
      * @var string
      */
     protected $cardMetalMemberSinceDate;
+
+    /**
+     * Details of this card belonging to a company, if applicable.
+     *
+     * @var CompanyEmployeeCard
+     */
+    protected $companyEmployeeCard;
 
     /**
      * The plaintext pin code. Requests require encryption to be enabled.
@@ -634,6 +676,69 @@ self::FIELD_CANCELLATION_REASON => $cancellationReason],
     }
 
     /**
+     * DEPRECATED. ID of the user who is owner of the card.
+     *
+     * @return int
+     */
+    public function getUserId()
+    {
+        return $this->userId;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param int $userId
+     */
+    public function setUserId($userId)
+    {
+        $this->userId = $userId;
+    }
+
+    /**
+     * ID of the user who is owner of the card.
+     *
+     * @return int
+     */
+    public function getUserOwnerId()
+    {
+        return $this->userOwnerId;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param int $userOwnerId
+     */
+    public function setUserOwnerId($userOwnerId)
+    {
+        $this->userOwnerId = $userOwnerId;
+    }
+
+    /**
+     * ID of the user who is holder of the card.
+     *
+     * @return int
+     */
+    public function getUserHolderId()
+    {
+        return $this->userHolderId;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param int $userHolderId
+     */
+    public function setUserHolderId($userHolderId)
+    {
+        $this->userHolderId = $userHolderId;
+    }
+
+    /**
      * The type of the card. Can be MAESTRO, MASTERCARD.
      *
      * @return string
@@ -676,6 +781,69 @@ self::FIELD_CANCELLATION_REASON => $cancellationReason],
     }
 
     /**
+     * The product type of the card.
+     *
+     * @return string
+     */
+    public function getProductType()
+    {
+        return $this->productType;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param string $productType
+     */
+    public function setProductType($productType)
+    {
+        $this->productType = $productType;
+    }
+
+    /**
+     * The product sub-type of the card.
+     *
+     * @return string
+     */
+    public function getProductSubType()
+    {
+        return $this->productSubType;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param string $productSubType
+     */
+    public function setProductSubType($productSubType)
+    {
+        $this->productSubType = $productSubType;
+    }
+
+    /**
+     * The first line of text on the card
+     *
+     * @return string
+     */
+    public function getFirstLine()
+    {
+        return $this->firstLine;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param string $firstLine
+     */
+    public function setFirstLine($firstLine)
+    {
+        $this->firstLine = $firstLine;
+    }
+
+    /**
      * The second line of text on the card
      *
      * @return string
@@ -694,27 +862,6 @@ self::FIELD_CANCELLATION_REASON => $cancellationReason],
     public function setSecondLine($secondLine)
     {
         $this->secondLine = $secondLine;
-    }
-
-    /**
-     * ID of the user who is owner of the card.
-     *
-     * @return int
-     */
-    public function getUserId()
-    {
-        return $this->userId;
-    }
-
-    /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
-     * @param int $userId
-     */
-    public function setUserId($userId)
-    {
-        $this->userId = $userId;
     }
 
     /**
@@ -1110,20 +1257,20 @@ self::FIELD_CANCELLATION_REASON => $cancellationReason],
      *
      * @return bool
      */
-    public function getIsEligibleForFreeReplacement()
+    public function getIsCardEligibleForFreeReplacement()
     {
-        return $this->isEligibleForFreeReplacement;
+        return $this->isCardEligibleForFreeReplacement;
     }
 
     /**
      * @deprecated User should not be able to set values via setters, use
      * constructor.
      *
-     * @param bool $isEligibleForFreeReplacement
+     * @param bool $isCardEligibleForFreeReplacement
      */
-    public function setIsEligibleForFreeReplacement($isEligibleForFreeReplacement)
+    public function setIsCardEligibleForFreeReplacement($isCardEligibleForFreeReplacement)
     {
-        $this->isEligibleForFreeReplacement = $isEligibleForFreeReplacement;
+        $this->isCardEligibleForFreeReplacement = $isCardEligibleForFreeReplacement;
     }
 
     /**
@@ -1211,6 +1358,27 @@ self::FIELD_CANCELLATION_REASON => $cancellationReason],
     }
 
     /**
+     * Details of this card belonging to a company, if applicable.
+     *
+     * @return CompanyEmployeeCard
+     */
+    public function getCompanyEmployeeCard()
+    {
+        return $this->companyEmployeeCard;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param CompanyEmployeeCard $companyEmployeeCard
+     */
+    public function setCompanyEmployeeCard($companyEmployeeCard)
+    {
+        $this->companyEmployeeCard = $companyEmployeeCard;
+    }
+
+    /**
      * @return bool
      */
     public function isAllFieldNull()
@@ -1231,6 +1399,18 @@ self::FIELD_CANCELLATION_REASON => $cancellationReason],
             return false;
         }
 
+        if (!is_null($this->userId)) {
+            return false;
+        }
+
+        if (!is_null($this->userOwnerId)) {
+            return false;
+        }
+
+        if (!is_null($this->userHolderId)) {
+            return false;
+        }
+
         if (!is_null($this->type)) {
             return false;
         }
@@ -1239,11 +1419,19 @@ self::FIELD_CANCELLATION_REASON => $cancellationReason],
             return false;
         }
 
-        if (!is_null($this->secondLine)) {
+        if (!is_null($this->productType)) {
             return false;
         }
 
-        if (!is_null($this->userId)) {
+        if (!is_null($this->productSubType)) {
+            return false;
+        }
+
+        if (!is_null($this->firstLine)) {
+            return false;
+        }
+
+        if (!is_null($this->secondLine)) {
             return false;
         }
 
@@ -1319,7 +1507,7 @@ self::FIELD_CANCELLATION_REASON => $cancellationReason],
             return false;
         }
 
-        if (!is_null($this->isEligibleForFreeReplacement)) {
+        if (!is_null($this->isCardEligibleForFreeReplacement)) {
             return false;
         }
 
@@ -1336,6 +1524,10 @@ self::FIELD_CANCELLATION_REASON => $cancellationReason],
         }
 
         if (!is_null($this->cardMetalMemberSinceDate)) {
+            return false;
+        }
+
+        if (!is_null($this->companyEmployeeCard)) {
             return false;
         }
 
