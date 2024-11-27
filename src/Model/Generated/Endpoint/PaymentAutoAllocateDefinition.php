@@ -28,6 +28,7 @@ class PaymentAutoAllocateDefinition extends BunqModel
     const FIELD_DESCRIPTION = 'description';
     const FIELD_AMOUNT = 'amount';
     const FIELD_FRACTION = 'fraction';
+    const FIELD_GINMON_COST_DISCLOSURE_ID = 'ginmon_cost_disclosure_id';
 
     /**
      * Object type.
@@ -119,6 +120,14 @@ class PaymentAutoAllocateDefinition extends BunqModel
     protected $fractionFieldForRequest;
 
     /**
+     * The id of the ginmon cost disclosure, if this definition is a scheduled
+     * order.
+     *
+     * @var string|null
+     */
+    protected $ginmonCostDisclosureIdFieldForRequest;
+
+    /**
      * @param string $type The type of definition.
      * @param Pointer $counterpartyAlias The alias of the party we are
      * allocating the money to.
@@ -126,14 +135,17 @@ class PaymentAutoAllocateDefinition extends BunqModel
      * @param Amount|null $amount The amount to allocate.
      * @param float|null $fraction The percentage of the triggering payment's
      * amount to allocate.
+     * @param string|null $ginmonCostDisclosureId The id of the ginmon cost
+     * disclosure, if this definition is a scheduled order.
      */
-    public function __construct(string  $type, Pointer  $counterpartyAlias, string  $description, Amount  $amount = null, float  $fraction = null)
+    public function __construct(string  $type, Pointer  $counterpartyAlias, string  $description, Amount  $amount = null, float  $fraction = null, string  $ginmonCostDisclosureId = null)
     {
         $this->typeFieldForRequest = $type;
         $this->counterpartyAliasFieldForRequest = $counterpartyAlias;
         $this->descriptionFieldForRequest = $description;
         $this->amountFieldForRequest = $amount;
         $this->fractionFieldForRequest = $fraction;
+        $this->ginmonCostDisclosureIdFieldForRequest = $ginmonCostDisclosureId;
     }
 
     /**
