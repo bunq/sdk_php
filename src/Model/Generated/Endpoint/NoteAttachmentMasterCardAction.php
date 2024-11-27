@@ -80,7 +80,7 @@ class NoteAttachmentMasterCardAction extends BunqModel
     /**
      * Optional description of the attachment.
      *
-     * @var string|null
+     * @var string
      */
     protected $descriptionFieldForRequest;
 
@@ -92,11 +92,11 @@ class NoteAttachmentMasterCardAction extends BunqModel
     protected $attachmentIdFieldForRequest;
 
     /**
+     * @param string $description Optional description of the attachment.
      * @param int $attachmentId The reference to the uploaded file to attach to
      * this note.
-     * @param string|null $description Optional description of the attachment.
      */
-    public function __construct(int  $attachmentId, string  $description = null)
+    public function __construct(string  $description, int  $attachmentId)
     {
         $this->descriptionFieldForRequest = $description;
         $this->attachmentIdFieldForRequest = $attachmentId;
@@ -104,15 +104,15 @@ class NoteAttachmentMasterCardAction extends BunqModel
 
     /**
      * @param int $mastercardActionId
+     * @param string $description Optional description of the attachment.
      * @param int $attachmentId The reference to the uploaded file to attach to
      * this note.
      * @param int|null $monetaryAccountId
-     * @param string|null $description Optional description of the attachment.
      * @param string[] $customHeaders
      *
      * @return BunqResponseInt
      */
-    public static function create(int $mastercardActionId, int  $attachmentId, int $monetaryAccountId = null, string  $description = null, array $customHeaders = []): BunqResponseInt
+    public static function create(int $mastercardActionId, string  $description, int  $attachmentId, int $monetaryAccountId = null, array $customHeaders = []): BunqResponseInt
     {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->post(
