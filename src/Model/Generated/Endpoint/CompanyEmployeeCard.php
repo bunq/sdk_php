@@ -14,7 +14,8 @@ class CompanyEmployeeCard extends BunqModel
     /**
      * Field constants.
      */
-    const FIELD_ALIAS = 'alias';
+    const FIELD_POINTER_COUNTER_USER = 'pointer_counter_user';
+    const FIELD_POINTER_MONETARY_ACCOUNT = 'pointer_monetary_account';
     const FIELD_TYPE = 'type';
     const FIELD_PRODUCT_TYPE = 'product_type';
     const FIELD_COMPANY_NAME_ON_CARD = 'company_name_on_card';
@@ -29,13 +30,6 @@ class CompanyEmployeeCard extends BunqModel
      * @var Card
      */
     protected $card;
-
-    /**
-     * The id of the relation user.
-     *
-     * @var int
-     */
-    protected $relationUserId;
 
     /**
      * The status of the employee card.
@@ -66,12 +60,26 @@ class CompanyEmployeeCard extends BunqModel
     protected $amountSpentMonthly;
 
     /**
+     * The number of transactions that still need a receipt.
+     *
+     * @var int
+     */
+    protected $numberOfCompanyEmployeeCardReceiptPending;
+
+    /**
+     * The pointer to the employee for which you want to create a card.
+     *
+     * @var Pointer
+     */
+    protected $pointerCounterUserFieldForRequest;
+
+    /**
      * The pointer to the monetary account that will be connected at first with
      * the card.
      *
      * @var Pointer
      */
-    protected $aliasFieldForRequest;
+    protected $pointerMonetaryAccountFieldForRequest;
 
     /**
      * The type of card to order.
@@ -123,8 +131,10 @@ class CompanyEmployeeCard extends BunqModel
     protected $statusFieldForRequest;
 
     /**
-     * @param Pointer $alias The pointer to the monetary account that will be
-     * connected at first with the card.
+     * @param Pointer $pointerCounterUser The pointer to the employee for which
+     * you want to create a card.
+     * @param Pointer $pointerMonetaryAccount The pointer to the monetary
+     * account that will be connected at first with the card.
      * @param string $type The type of card to order.
      * @param string $productType The product type of the card to order.
      * @param string $companyNameOnCard The name of the company that should be
@@ -137,9 +147,10 @@ class CompanyEmployeeCard extends BunqModel
      * this employee on the card.
      * @param string|null $status The status of the employee card.
      */
-    public function __construct(Pointer  $alias, string  $type, string  $productType, string  $companyNameOnCard, string  $employeeNameOnCard = null, string  $employeePreferredNameOnCard = null, Amount  $amountLimitMonthly = null, string  $status = null)
+    public function __construct(Pointer  $pointerCounterUser, Pointer  $pointerMonetaryAccount, string  $type, string  $productType, string  $companyNameOnCard, string  $employeeNameOnCard = null, string  $employeePreferredNameOnCard = null, Amount  $amountLimitMonthly = null, string  $status = null)
     {
-        $this->aliasFieldForRequest = $alias;
+        $this->pointerCounterUserFieldForRequest = $pointerCounterUser;
+        $this->pointerMonetaryAccountFieldForRequest = $pointerMonetaryAccount;
         $this->typeFieldForRequest = $type;
         $this->productTypeFieldForRequest = $productType;
         $this->companyNameOnCardFieldForRequest = $companyNameOnCard;
@@ -168,27 +179,6 @@ class CompanyEmployeeCard extends BunqModel
     public function setCard($card)
     {
         $this->card = $card;
-    }
-
-    /**
-     * The id of the relation user.
-     *
-     * @return int
-     */
-    public function getRelationUserId()
-    {
-        return $this->relationUserId;
-    }
-
-    /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
-     * @param int $relationUserId
-     */
-    public function setRelationUserId($relationUserId)
-    {
-        $this->relationUserId = $relationUserId;
     }
 
     /**
@@ -276,15 +266,32 @@ class CompanyEmployeeCard extends BunqModel
     }
 
     /**
+     * The number of transactions that still need a receipt.
+     *
+     * @return int
+     */
+    public function getNumberOfCompanyEmployeeCardReceiptPending()
+    {
+        return $this->numberOfCompanyEmployeeCardReceiptPending;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param int $numberOfCompanyEmployeeCardReceiptPending
+     */
+    public function setNumberOfCompanyEmployeeCardReceiptPending($numberOfCompanyEmployeeCardReceiptPending)
+    {
+        $this->numberOfCompanyEmployeeCardReceiptPending = $numberOfCompanyEmployeeCardReceiptPending;
+    }
+
+    /**
      * @return bool
      */
     public function isAllFieldNull()
     {
         if (!is_null($this->card)) {
-            return false;
-        }
-
-        if (!is_null($this->relationUserId)) {
             return false;
         }
 
@@ -301,6 +308,10 @@ class CompanyEmployeeCard extends BunqModel
         }
 
         if (!is_null($this->amountSpentMonthly)) {
+            return false;
+        }
+
+        if (!is_null($this->numberOfCompanyEmployeeCardReceiptPending)) {
             return false;
         }
 
