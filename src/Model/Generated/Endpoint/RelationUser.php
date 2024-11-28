@@ -82,13 +82,6 @@ class RelationUser extends BunqModel
     protected $allCompanyEmployeeCard;
 
     /**
-     * The number of transactions that still need a receipt.
-     *
-     * @var int
-     */
-    protected $numberOfCompanyEmployeeCardReceiptPending;
-
-    /**
      * The user's ID.
      *
      * @return string
@@ -300,27 +293,6 @@ class RelationUser extends BunqModel
     }
 
     /**
-     * The number of transactions that still need a receipt.
-     *
-     * @return int
-     */
-    public function getNumberOfCompanyEmployeeCardReceiptPending()
-    {
-        return $this->numberOfCompanyEmployeeCardReceiptPending;
-    }
-
-    /**
-     * @deprecated User should not be able to set values via setters, use
-     * constructor.
-     *
-     * @param int $numberOfCompanyEmployeeCardReceiptPending
-     */
-    public function setNumberOfCompanyEmployeeCardReceiptPending($numberOfCompanyEmployeeCardReceiptPending)
-    {
-        $this->numberOfCompanyEmployeeCardReceiptPending = $numberOfCompanyEmployeeCardReceiptPending;
-    }
-
-    /**
      * @return bool
      */
     public function isAllFieldNull()
@@ -362,10 +334,6 @@ class RelationUser extends BunqModel
         }
 
         if (!is_null($this->allCompanyEmployeeCard)) {
-            return false;
-        }
-
-        if (!is_null($this->numberOfCompanyEmployeeCardReceiptPending)) {
             return false;
         }
 
