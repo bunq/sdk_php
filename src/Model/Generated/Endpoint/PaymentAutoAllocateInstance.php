@@ -82,6 +82,13 @@ class PaymentAutoAllocateInstance extends BunqModel
     protected $paymentId;
 
     /**
+     * All Ginmon transaction orders executed with this instance.
+     *
+     * @var GinmonTransaction[]
+     */
+    protected $allGinmonTransactionOrder;
+
+    /**
      * This method is called "listing" because "list" is a restricted PHP word
      * and cannot be used as constants, class names, function or method names.
      *
@@ -303,6 +310,27 @@ class PaymentAutoAllocateInstance extends BunqModel
     }
 
     /**
+     * All Ginmon transaction orders executed with this instance.
+     *
+     * @return GinmonTransaction[]
+     */
+    public function getAllGinmonTransactionOrder()
+    {
+        return $this->allGinmonTransactionOrder;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param GinmonTransaction[] $allGinmonTransactionOrder
+     */
+    public function setAllGinmonTransactionOrder($allGinmonTransactionOrder)
+    {
+        $this->allGinmonTransactionOrder = $allGinmonTransactionOrder;
+    }
+
+    /**
      * @return bool
      */
     public function isAllFieldNull()
@@ -336,6 +364,10 @@ class PaymentAutoAllocateInstance extends BunqModel
         }
 
         if (!is_null($this->paymentId)) {
+            return false;
+        }
+
+        if (!is_null($this->allGinmonTransactionOrder)) {
             return false;
         }
 
