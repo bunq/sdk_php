@@ -322,6 +322,13 @@ class MasterCardAction extends BunqModel
     protected $cashbackPayoutItem;
 
     /**
+     * The point mutation for this action or null
+     *
+     * @var PointMutation
+     */
+    protected $pointMutation;
+
+    /**
      * DEPRECATED. The blacklist enabled for the merchant of this transaction
      *
      * @var UserBlocklistMasterCardMerchant
@@ -1276,6 +1283,27 @@ class MasterCardAction extends BunqModel
     }
 
     /**
+     * The point mutation for this action or null
+     *
+     * @return PointMutation
+     */
+    public function getPointMutation()
+    {
+        return $this->pointMutation;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param PointMutation $pointMutation
+     */
+    public function setPointMutation($pointMutation)
+    {
+        $this->pointMutation = $pointMutation;
+    }
+
+    /**
      * DEPRECATED. The blacklist enabled for the merchant of this transaction
      *
      * @return UserBlocklistMasterCardMerchant
@@ -1585,6 +1613,10 @@ class MasterCardAction extends BunqModel
         }
 
         if (!is_null($this->cashbackPayoutItem)) {
+            return false;
+        }
+
+        if (!is_null($this->pointMutation)) {
             return false;
         }
 
