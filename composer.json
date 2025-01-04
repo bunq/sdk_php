@@ -25,7 +25,7 @@
         "ext-curl": "*",
         "ext-json": "*",
         "ext-mbstring": "*",
-        "guzzlehttp/guzzle": "~7"
+        "guzzlehttp/guzzle": ">=7.0 <7.3"
     },
     "autoload": {
         "psr-4": {
