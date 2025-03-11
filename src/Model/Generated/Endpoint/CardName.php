@@ -22,6 +22,11 @@ class CardName extends BunqModel
     const ENDPOINT_URL_LISTING = 'user/%s/card-name';
 
     /**
+     * Field constants.
+     */
+    const FIELD_NAME = 'name';
+
+    /**
      * Object type.
      */
     const OBJECT_TYPE_GET = 'CardUserNameArray';
@@ -33,6 +38,21 @@ class CardName extends BunqModel
      * @var string[]
      */
     protected $possibleCardNameArray;
+
+    /**
+     * The card name.
+     *
+     * @var string
+     */
+    protected $nameFieldForRequest;
+
+    /**
+     * @param string $name The card name.
+     */
+    public function __construct(string  $name)
+    {
+        $this->nameFieldForRequest = $name;
+    }
 
     /**
      * Return all the accepted card names for a specific user.
