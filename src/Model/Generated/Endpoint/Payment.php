@@ -248,6 +248,13 @@ class Payment extends BunqModel
     protected $paymentSuspendedOutgoing;
 
     /**
+     * Incurred fee for the payment.
+     *
+     * @var PaymentFee
+     */
+    protected $paymentFee;
+
+    /**
      * The Amount to transfer with the Payment. Must be bigger than 0 and
      * smaller than the MonetaryAccount's balance.
      *
@@ -1003,6 +1010,27 @@ self::FIELD_ALLOW_BUNQTO => $allowBunqto],
     }
 
     /**
+     * Incurred fee for the payment.
+     *
+     * @return PaymentFee
+     */
+    public function getPaymentFee()
+    {
+        return $this->paymentFee;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param PaymentFee $paymentFee
+     */
+    public function setPaymentFee($paymentFee)
+    {
+        $this->paymentFee = $paymentFee;
+    }
+
+    /**
      * @return bool
      */
     public function isAllFieldNull()
@@ -1112,6 +1140,10 @@ self::FIELD_ALLOW_BUNQTO => $allowBunqto],
         }
 
         if (!is_null($this->paymentSuspendedOutgoing)) {
+            return false;
+        }
+
+        if (!is_null($this->paymentFee)) {
             return false;
         }
 
