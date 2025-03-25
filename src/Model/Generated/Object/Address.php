@@ -65,7 +65,7 @@ class Address extends BunqModel
     protected $extra;
 
     /**
-     * The name on the mailbox (only used for Postal addresses).
+     * The name on the mailbox (only used for Postal and Shipping addresses).
      *
      * @var string
      */
@@ -129,7 +129,7 @@ class Address extends BunqModel
     protected $extraFieldForRequest;
 
     /**
-     * The name on the mailbox (only used for Postal addresses).
+     * The name on the mailbox (only used for Postal and Shipping addresses).
      *
      * @var string|null
      */
@@ -145,7 +145,7 @@ class Address extends BunqModel
      * @param string|null $extra The apartment, building or other extra
      * information for addresses.
      * @param string|null $mailboxName The name on the mailbox (only used for
-     * Postal addresses).
+     * Postal and Shipping addresses).
      */
     public function __construct(string  $street, string  $houseNumber, string  $postalCode, string  $city, string  $country, string  $poBox = null, string  $extra = null, string  $mailboxName = null)
     {
@@ -328,7 +328,7 @@ class Address extends BunqModel
     }
 
     /**
-     * The name on the mailbox (only used for Postal addresses).
+     * The name on the mailbox (only used for Postal and Shipping addresses).
      *
      * @return string
      */
