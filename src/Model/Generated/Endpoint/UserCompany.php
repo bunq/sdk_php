@@ -167,6 +167,13 @@ class UserCompany extends BunqModel
     protected $addressPostal;
 
     /**
+     * The company's shipping address.
+     *
+     * @var Address
+     */
+    protected $addressShipping;
+
+    /**
      * The version of the terms of service accepted by the user.
      *
      * @var string
@@ -877,6 +884,27 @@ self::FIELD_DAILY_LIMIT_WITHOUT_CONFIRMATION_LOGIN => $dailyLimitWithoutConfirma
     }
 
     /**
+     * The company's shipping address.
+     *
+     * @return Address
+     */
+    public function getAddressShipping()
+    {
+        return $this->addressShipping;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param Address $addressShipping
+     */
+    public function setAddressShipping($addressShipping)
+    {
+        $this->addressShipping = $addressShipping;
+    }
+
+    /**
      * The version of the terms of service accepted by the user.
      *
      * @return string
@@ -1306,6 +1334,10 @@ self::FIELD_DAILY_LIMIT_WITHOUT_CONFIRMATION_LOGIN => $dailyLimitWithoutConfirma
         }
 
         if (!is_null($this->addressPostal)) {
+            return false;
+        }
+
+        if (!is_null($this->addressShipping)) {
             return false;
         }
 

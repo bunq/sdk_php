@@ -163,6 +163,13 @@ class UserPerson extends BunqModel
     protected $addressPostal;
 
     /**
+     * The person's shipping address.
+     *
+     * @var Address
+     */
+    protected $addressShipping;
+
+    /**
      * The person's date of birth. Accepts ISO8601 date formats.
      *
      * @var string
@@ -973,6 +980,27 @@ self::FIELD_DISPLAY_NAME => $displayName],
     }
 
     /**
+     * The person's shipping address.
+     *
+     * @return Address
+     */
+    public function getAddressShipping()
+    {
+        return $this->addressShipping;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param Address $addressShipping
+     */
+    public function setAddressShipping($addressShipping)
+    {
+        $this->addressShipping = $addressShipping;
+    }
+
+    /**
      * The person's date of birth. Accepts ISO8601 date formats.
      *
      * @return string
@@ -1374,6 +1402,10 @@ self::FIELD_DISPLAY_NAME => $displayName],
         }
 
         if (!is_null($this->addressPostal)) {
+            return false;
+        }
+
+        if (!is_null($this->addressShipping)) {
             return false;
         }
 
