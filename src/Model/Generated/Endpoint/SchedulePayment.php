@@ -28,6 +28,7 @@ class SchedulePayment extends BunqModel
      */
     const FIELD_PAYMENT = 'payment';
     const FIELD_SCHEDULE = 'schedule';
+    const FIELD_PURPOSE = 'purpose';
 
     /**
      * Object type.
@@ -57,6 +58,13 @@ class SchedulePayment extends BunqModel
     protected $status;
 
     /**
+     * The schedule purpose.
+     *
+     * @var string
+     */
+    protected $purpose;
+
+    /**
      * The payment details.
      *
      * @var SchedulePaymentEntry
@@ -71,14 +79,23 @@ class SchedulePayment extends BunqModel
     protected $scheduleFieldForRequest;
 
     /**
+     * The purpose of this scheduled payment.
+     *
+     * @var string|null
+     */
+    protected $purposeFieldForRequest;
+
+    /**
      * @param SchedulePaymentEntry $payment The payment details.
      * @param Schedule $schedule The schedule details when creating or updating
      * a scheduled payment.
+     * @param string|null $purpose The purpose of this scheduled payment.
      */
-    public function __construct(SchedulePaymentEntry  $payment, Schedule  $schedule)
+    public function __construct(SchedulePaymentEntry  $payment, Schedule  $schedule, string  $purpose = null)
     {
         $this->paymentFieldForRequest = $payment;
         $this->scheduleFieldForRequest = $schedule;
+        $this->purposeFieldForRequest = $purpose;
     }
 
     /**
@@ -86,11 +103,12 @@ class SchedulePayment extends BunqModel
      * @param Schedule $schedule The schedule details when creating or updating
      * a scheduled payment.
      * @param int|null $monetaryAccountId
+     * @param string|null $purpose The purpose of this scheduled payment.
      * @param string[] $customHeaders
      *
      * @return BunqResponseInt
      */
-    public static function create(SchedulePaymentEntry  $payment, Schedule  $schedule, int $monetaryAccountId = null, array $customHeaders = []): BunqResponseInt
+    public static function create(SchedulePaymentEntry  $payment, Schedule  $schedule, int $monetaryAccountId = null, string  $purpose = null, array $customHeaders = []): BunqResponseInt
     {
         $apiClient = new ApiClient(static::getApiContext());
         $responseRaw = $apiClient->post(
@@ -99,7 +117,8 @@ class SchedulePayment extends BunqModel
                 [static::determineUserId(), static::determineMonetaryAccountId($monetaryAccountId)]
             ),
             [self::FIELD_PAYMENT => $payment,
-self::FIELD_SCHEDULE => $schedule],
+self::FIELD_SCHEDULE => $schedule,
+self::FIELD_PURPOSE => $purpose],
             $customHeaders
         );
 
@@ -273,6 +292,27 @@ self::FIELD_SCHEDULE => $schedule],
     }
 
     /**
+     * The schedule purpose.
+     *
+     * @return string
+     */
+    public function getPurpose()
+    {
+        return $this->purpose;
+    }
+
+    /**
+     * @deprecated User should not be able to set values via setters, use
+     * constructor.
+     *
+     * @param string $purpose
+     */
+    public function setPurpose($purpose)
+    {
+        $this->purpose = $purpose;
+    }
+
+    /**
      * @return bool
      */
     public function isAllFieldNull()
@@ -286,6 +326,10 @@ self::FIELD_SCHEDULE => $schedule],
         }
 
         if (!is_null($this->status)) {
+            return false;
+        }
+
+        if (!is_null($this->purpose)) {
             return false;
         }
 
