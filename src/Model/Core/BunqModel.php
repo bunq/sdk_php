@@ -245,7 +245,7 @@ abstract class BunqModel implements JsonSerializable
         $list = [];
 
         foreach ($responseArray as $className => $element) {
-            if (is_null($element)) {
+            if (!is_array($element)) {
                 return $list;
             }
 
